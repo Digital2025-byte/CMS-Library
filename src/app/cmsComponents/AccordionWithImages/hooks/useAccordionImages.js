@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from "react";
 
 export function useAccordionImages(items) {
   const [openIndex, setOpenIndex] = useState(0);
-  const [imageKey, setImageKey] = useState(0);
   const itemRefs = useRef([]);
   const containerRef = useRef(null);
 
@@ -25,7 +24,6 @@ export function useAccordionImages(items) {
     }
 
     setOpenIndex(index);
-    setImageKey((prev) => prev + 1);
 
     setTimeout(() => {
       const container = containerRef.current;
@@ -52,11 +50,8 @@ export function useAccordionImages(items) {
 
   return {
     openIndex,
-    imageKey,
     containerRef,
     setItemRef,
     toggleAccordion,
-    currentImage: items[openIndex]?.image || "",
-    currentImageAlt: items[openIndex]?.imageAlt || "Service Image",
   };
 }

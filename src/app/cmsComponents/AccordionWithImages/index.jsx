@@ -8,15 +8,8 @@ import { getAccordionImagesContent } from "./utils/helpers";
 
 const AccordionWithImages = ({ data }) => {
   const { title, description, items } = getAccordionImagesContent(data);
-  const {
-    openIndex,
-    imageKey,
-    containerRef,
-    setItemRef,
-    toggleAccordion,
-    currentImage,
-    currentImageAlt,
-  } = useAccordionImages(items);
+  const { openIndex, containerRef, setItemRef, toggleAccordion } =
+    useAccordionImages(items);
 
   return (
     <>
@@ -43,12 +36,7 @@ const AccordionWithImages = ({ data }) => {
         </div>
 
         <div className="flex w-full items-center justify-center lg:w-1/2">
-          <AccordionImagesPanel
-            image={currentImage}
-            imageAlt={currentImageAlt}
-            openIndex={openIndex}
-            imageKey={imageKey}
-          />
+          <AccordionImagesPanel items={items} activeIndex={openIndex} />
         </div>
       </section>
     </>

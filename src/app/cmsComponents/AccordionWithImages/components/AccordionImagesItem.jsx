@@ -26,15 +26,17 @@ export default function AccordionImagesItem({
           </h3>
 
           <div
-            className={`overflow-hidden transition-all duration-700 ease-in-out ${
-              isOpen ? "max-h-125 opacity-100" : "max-h-0 opacity-0"
+            className={`grid transition-all duration-700 ease-in-out ${
+              isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
             }`}
           >
-            <p
-              className={`${accordionImagesTypography.itemDescription} pt-2 leading-relaxed text-body`}
-            >
-              {item.content}
-            </p>
+            <div className="overflow-hidden">
+              <p
+                className={`${accordionImagesTypography.itemDescription} pt-2 leading-relaxed text-body`}
+              >
+                {item.content}
+              </p>
+            </div>
           </div>
         </div>
 
