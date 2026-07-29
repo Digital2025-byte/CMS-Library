@@ -1,4 +1,4 @@
-import { accordionTypography } from "./typography";
+import { accordionTypography } from "../utils/typography";
 
 export default function AccordionHeader({ title, description }) {
   if (!title && !description) {

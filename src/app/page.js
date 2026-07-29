@@ -2,8 +2,8 @@
 
 import { useTranslation } from "react-i18next";
 import AccordionWithContent from "@/app/cmsComponents/AccordionWithContent";
-import AccordionContainer from "@/app/cmsComponents/AccordionWithContent/AccordionContainer";
-import { buildAccordionData } from "@/app/cmsComponents/AccordionWithContent/data";
+import AccordionContainer from "@/app/cmsComponents/AccordionWithContent/components/AccordionContainer";
+import { buildAccordionData } from "@/app/cmsComponents/AccordionWithContent/utils/data";
 import LanguageSwitcher from "@/i18n/LanguageSwitcher";
 import { isRtl } from "@/i18n/settings";
 

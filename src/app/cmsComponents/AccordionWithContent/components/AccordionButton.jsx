@@ -1,4 +1,4 @@
-import { accordionTypography } from "./typography";
+import { accordionTypography } from "../utils/typography";
 
 export default function AccordionButton({ label, href }) {
   if (!label) {

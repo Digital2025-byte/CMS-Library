@@ -1,10 +1,10 @@
 "use client";
 
-import AccordionButton from "./AccordionButton";
-import AccordionHeader from "./AccordionHeader";
-import AccordionItem from "./AccordionItem";
-import { getAccordionContent } from "./helpers";
-import { useAccordion } from "./useAccordion";
+import AccordionButton from "./components/AccordionButton";
+import AccordionHeader from "./components/AccordionHeader";
+import AccordionItem from "./components/AccordionItem";
+import { useAccordion } from "./hooks/useAccordion";
+import { getAccordionContent } from "./utils/helpers";
 
 const AccordionWithContent = ({ data }) => {
   const { title, description, buttonLabel, buttonHref, items } =

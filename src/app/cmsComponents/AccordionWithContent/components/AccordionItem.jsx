@@ -1,5 +1,5 @@
 import { CaretDownIcon, CaretUpIcon } from "@phosphor-icons/react";
-import { accordionTypography } from "./typography";
+import { accordionTypography } from "../utils/typography";
 
 export default function AccordionItem({ item, isOpen, onToggle }) {
   return (
