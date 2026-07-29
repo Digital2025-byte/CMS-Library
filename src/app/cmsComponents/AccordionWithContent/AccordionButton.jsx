@@ -1,13 +1,15 @@
+import { accordionTypography } from "./typography";
+
 export default function AccordionButton({ label, href }) {
   if (!label) {
     return null;
   }
 
   return (
-    <div className="mt-10 flex justify-center">
+    <div className="mt-8 flex justify-center sm:mt-10">
       <a
         href={href || "#"}
-        className="inline-flex items-center justify-center rounded-md bg-accent-1 px-8 py-3 text-sm font-medium text-white transition-opacity hover:opacity-90 sm:px-10 sm:text-base"
+        className={`${accordionTypography.button} inline-flex w-full max-w-xs items-center justify-center rounded-md bg-accent-1 px-6 py-3 font-medium leading-none text-white transition-opacity hover:opacity-90 sm:w-auto sm:max-w-none sm:px-10`}
       >
         {label}
       </a>

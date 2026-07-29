@@ -1,17 +1,18 @@
 import { CaretDownIcon, CaretUpIcon } from "@phosphor-icons/react";
+import { accordionTypography } from "./typography";
 
 export default function AccordionItem({ item, isOpen, onToggle }) {
   return (
     <div
-      className="cursor-pointer rounded-lg bg-white px-5 py-5 transition-shadow sm:px-6 **:cursor-pointer"
+      className="cursor-pointer rounded-lg bg-white px-4 py-4 transition-shadow sm:px-5 sm:py-5 md:px-6 [&_*]:cursor-pointer"
       onClick={onToggle}
     >
       <button
         type="button"
-        className="flex w-full cursor-pointer items-center justify-between gap-4 text-left"
+        className="flex min-h-11 w-full cursor-pointer items-start justify-between gap-3 text-start sm:min-h-0 sm:items-center sm:gap-4"
       >
         <h3
-          className={`text-base font-medium leading-snug sm:text-lg ${
+          className={`${accordionTypography.itemTitle} font-medium leading-snug ${
             isOpen ? "text-primary-1" : "text-gray-800"
           }`}
         >
@@ -19,12 +20,12 @@ export default function AccordionItem({ item, isOpen, onToggle }) {
         </h3>
         {isOpen ? (
           <CaretUpIcon
-            className="h-5 w-5 shrink-0 text-primary-1"
+            className="mt-0.5 h-4 w-4 shrink-0 text-primary-1 sm:mt-0 sm:h-5 sm:w-5"
             weight="bold"
           />
         ) : (
           <CaretDownIcon
-            className="h-5 w-5 shrink-0 text-gray-500"
+            className="mt-0.5 h-4 w-4 shrink-0 text-gray-500 sm:mt-0 sm:h-5 sm:w-5"
             weight="bold"
           />
         )}
@@ -32,10 +33,12 @@ export default function AccordionItem({ item, isOpen, onToggle }) {
 
       <div
         className={`overflow-hidden transition-all duration-300 ease-in-out ${
-          isOpen ? "mt-3 max-h-125 opacity-100" : "max-h-0 opacity-0"
+          isOpen ? "mt-2 max-h-125 opacity-100 sm:mt-3" : "max-h-0 opacity-0"
         }`}
       >
-        <p className="text-sm leading-relaxed whitespace-pre-line text-gray-600 sm:text-base">
+        <p
+          className={`${accordionTypography.itemDescription} pr-6 leading-relaxed whitespace-pre-line text-gray-600 sm:pr-8 md:leading-7`}
+        >
           {item.description}
         </p>
       </div>
