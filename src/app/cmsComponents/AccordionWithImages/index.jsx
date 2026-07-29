@@ -35,7 +35,7 @@ const AccordionWithImages = ({ data }) => {
           </div>
         </div>
 
-        <div className="flex w-full items-center justify-center lg:w-1/2">
+        <div className="hidden w-full items-center justify-center sm:flex lg:w-1/2">
           <AccordionImagesPanel items={items} activeIndex={openIndex} />
         </div>
       </section>
