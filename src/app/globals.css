@@ -4,4 +4,13 @@
   --color-primary-1: #006080;
   --color-accent-1: #b5a684;
   --color-surface-1: #f5f5f5;
+  --font-sans: var(--font-geist-sans), sans-serif;
+}
+
+html[dir="rtl"] body {
+  font-family: var(--font-arabic), sans-serif;
+}
+
+html[dir="ltr"] body {
+  font-family: var(--font-geist-sans), sans-serif;
 }
