@@ -25,5 +25,27 @@
         "description": "In-flight entertainment options for children vary by aircraft. Where available, family-friendly content is offered onboard."
       }
     ]
+  },
+  "accordionWithImages": {
+    "title": "Our Services",
+    "description": "Explore FlyCham services designed to make every journey smoother from booking to arrival.",
+    "items": [
+      {
+        "title": "Flight booking made simple",
+        "description": "Search routes, compare fares, and confirm your trip in a few steps with a clear booking flow."
+      },
+      {
+        "title": "Airport assistance",
+        "description": "Get support at the airport for check-in guidance, connections, and smoother boarding."
+      },
+      {
+        "title": "Comfortable cabin experience",
+        "description": "Enjoy thoughtful seating options and onboard comfort features tailored to your travel needs."
+      },
+      {
+        "title": "Destination support",
+        "description": "Arrive ready with helpful destination guidance and travel information for your next stop."
+      }
+    ]
   }
 }

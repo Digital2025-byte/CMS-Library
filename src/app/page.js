@@ -4,13 +4,18 @@ import { useTranslation } from "react-i18next";
 import AccordionWithContent from "@/app/cmsComponents/AccordionWithContent";
 import AccordionContainer from "@/app/cmsComponents/AccordionWithContent/components/AccordionContainer";
 import { buildAccordionData } from "@/app/cmsComponents/AccordionWithContent/utils/data";
+import AccordionWithImages from "@/app/cmsComponents/AccordionWithImages";
+import AccordionImagesContainer from "@/app/cmsComponents/AccordionWithImages/components/AccordionImagesContainer";
+import { buildAccordionWithImagesData } from "@/app/cmsComponents/AccordionWithImages/utils/data";
 import LanguageSwitcher from "@/i18n/LanguageSwitcher";
 import { isRtl } from "@/i18n/settings";
 
 export default function Home() {
   const { t, i18n } = useTranslation();
   const lang = i18n.language?.startsWith("ar") ? "ar" : "en";
+  const dir = isRtl(lang) ? "rtl" : "ltr";
   const accordionData = buildAccordionData(t);
+  const accordionWithImagesData = buildAccordionWithImagesData(t);
 
   return (
     <main>
@@ -20,9 +25,13 @@ export default function Home() {
         </div>
       </div>
 
-      <AccordionContainer lang={lang} dir={isRtl(lang) ? "rtl" : "ltr"}>
+      <AccordionContainer lang={lang} dir={dir}>
         <AccordionWithContent data={accordionData} />
       </AccordionContainer>
+
+      <AccordionImagesContainer lang={lang} dir={dir}>
+        <AccordionWithImages data={accordionWithImagesData} />
+      </AccordionImagesContainer>
     </main>
   );
 }
