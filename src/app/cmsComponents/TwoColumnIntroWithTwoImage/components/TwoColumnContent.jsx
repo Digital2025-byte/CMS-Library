@@ -12,7 +12,7 @@ export default function TwoColumnContent({
   }
 
   return (
-    <div className="flex w-full flex-col justify-center lg:w-[48%] lg:pe-6 xl:pe-10">
+    <div className="flex w-full flex-col justify-center">
       {title ? (
         <h2
           className={`${typography.sectionTitle} font-semibold leading-snug text-primary-1`}

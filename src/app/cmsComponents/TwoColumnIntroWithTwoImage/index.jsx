@@ -23,7 +23,7 @@ const TwoColumnIntroWithTwoImage = ({ lang = "en", data }) => {
 
   return (
     <section
-      className={`flex flex-col items-center gap-10 lg:gap-14 xl:gap-16 ${
+      className={`flex flex-col items-center gap-10 lg:gap-3  ${
         isReversed ? "lg:flex-row-reverse" : "lg:flex-row"
       }`}
     >
