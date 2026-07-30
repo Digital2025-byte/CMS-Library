@@ -37,7 +37,7 @@ export default function AccordionItem({ item, isOpen, onToggle }) {
         }`}
       >
         <p
-          className={`${typography.itemDescription} pr-6 leading-relaxed whitespace-pre-line text-gray-600 sm:pr-8 md:leading-7`}
+          className={`${typography.itemDescription} pr-6 leading-relaxed whitespace-pre-line text-body sm:pr-8`}
         >
           {item.description}
         </p>

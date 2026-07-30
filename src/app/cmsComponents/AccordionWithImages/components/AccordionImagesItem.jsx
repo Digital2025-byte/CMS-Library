@@ -20,7 +20,9 @@ export default function AccordionImagesItem({
       >
         <div className="min-w-0 flex-1">
           <h3
-            className={`${typography.itemTitle} mb-2 font-medium text-primary-1 transition-colors duration-300`}
+            className={`${typography.itemTitle} mb-2 font-medium leading-snug ${
+              isOpen ? "text-primary-1" : "text-gray-800"
+            }`}
           >
             {item.title}
           </h3>

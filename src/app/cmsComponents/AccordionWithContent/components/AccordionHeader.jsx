@@ -7,16 +7,16 @@ export default function AccordionHeader({ title, description }) {
 
   return (
     <div className="mb-5 sm:mb-7 lg:mb-8">
-      {title && (
+      {title ? (
         <h2
-          className={`${typography.sectionTitle} font-semibold leading-tight tracking-tight text-primary-1 sm:leading-snug`}
+          className={`${typography.sectionTitle} font-semibold leading-snug text-primary-1`}
         >
           {title}
         </h2>
-      )}
+      ) : null}
       {description ? (
         <p
-          className={`${typography.sectionDescription} mt-2 max-w-2xl leading-relaxed text-gray-600`}
+          className={`${typography.sectionDescription} mt-2 max-w-2xl leading-relaxed text-body`}
         >
           {description}
         </p>
