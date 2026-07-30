@@ -52,5 +52,10 @@
     "title": "A More Enjoyable Flight for Little Travelers",
     "description": "Travel moments are more beautiful when our children are happy, that's why we designed our onboard children's toys to add a fun and entertaining mood during flights, ensuring they have a pleasant time filled with laughter and joy.",
     "imageAlt": "Child holding a toy airplane"
+  },
+  "callUs": {
+    "upperText": "Customer Support Hotline: Open from 9 AM to 9 PM",
+    "mainText": "963 11 215 8121",
+    "bottomText": "Call us anytime for urgent assistance with bookings, flight status, cancellations, and emergency support."
   }
 }

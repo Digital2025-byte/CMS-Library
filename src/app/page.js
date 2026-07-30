@@ -7,6 +7,9 @@ import { buildAccordionData } from "@/app/cmsComponents/AccordionWithContent/uti
 import AccordionWithImages from "@/app/cmsComponents/AccordionWithImages";
 import AccordionImagesContainer from "@/app/cmsComponents/AccordionWithImages/components/AccordionImagesContainer";
 import { buildAccordionWithImagesData } from "@/app/cmsComponents/AccordionWithImages/utils/data";
+import CallUs from "@/app/cmsComponents/CallUs";
+import CallUsContainer from "@/app/cmsComponents/CallUs/components/CallUsContainer";
+import { buildCallUsData } from "@/app/cmsComponents/CallUs/utils/data";
 import TextWithBlobImage from "@/app/cmsComponents/TextWithBlobImage";
 import TextBlobContainer from "@/app/cmsComponents/TextWithBlobImage/components/TextBlobContainer";
 import { buildTextWithBlobData } from "@/app/cmsComponents/TextWithBlobImage/utils/data";
@@ -19,6 +22,7 @@ export default function Home() {
   const dir = isRtl(lang) ? "rtl" : "ltr";
   const accordionData = buildAccordionData(t);
   const accordionWithImagesData = buildAccordionWithImagesData(t);
+  const callUsData = buildCallUsData(t);
   const textWithBlobData = buildTextWithBlobData(t, lang);
 
   return (
@@ -40,6 +44,10 @@ export default function Home() {
       <TextBlobContainer lang={lang} dir={dir}>
         <TextWithBlobImage lang={lang} data={textWithBlobData} />
       </TextBlobContainer>
+
+      <CallUsContainer lang={lang} dir={dir}>
+        <CallUs data={callUsData} />
+      </CallUsContainer>
     </main>
   );
 }
