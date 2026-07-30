@@ -10,6 +10,9 @@ import { buildAccordionWithImagesData } from "@/app/cmsComponents/AccordionWithI
 import CallUs from "@/app/cmsComponents/CallUs";
 import CallUsContainer from "@/app/cmsComponents/CallUs/components/CallUsContainer";
 import { buildCallUsData } from "@/app/cmsComponents/CallUs/utils/data";
+import Paragraph from "@/app/cmsComponents/Paragraph";
+import ParagraphContainer from "@/app/cmsComponents/Paragraph/components/ParagraphContainer";
+import { buildParagraphData } from "@/app/cmsComponents/Paragraph/utils/data";
 import TextWithBlobImage from "@/app/cmsComponents/TextWithBlobImage";
 import TextBlobContainer from "@/app/cmsComponents/TextWithBlobImage/components/TextBlobContainer";
 import { buildTextWithBlobData } from "@/app/cmsComponents/TextWithBlobImage/utils/data";
@@ -26,6 +29,7 @@ export default function Home() {
   const accordionData = buildAccordionData(t);
   const accordionWithImagesData = buildAccordionWithImagesData(t);
   const callUsData = buildCallUsData(t);
+  const paragraphData = buildParagraphData(t, lang);
   const textWithBlobData = buildTextWithBlobData(t, lang);
   const twoColumnIntroData = buildTwoColumnIntroData(t);
 
@@ -44,6 +48,10 @@ export default function Home() {
       <AccordionImagesContainer lang={lang} dir={dir}>
         <AccordionWithImages data={accordionWithImagesData} />
       </AccordionImagesContainer>
+
+      <ParagraphContainer lang={lang} dir={dir}>
+        <Paragraph lang={lang} data={paragraphData} />
+      </ParagraphContainer>
 
       <TextBlobContainer lang={lang} dir={dir}>
         <TextWithBlobImage lang={lang} data={textWithBlobData} />
