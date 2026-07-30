@@ -7,6 +7,9 @@ import { buildAccordionData } from "@/app/cmsComponents/AccordionWithContent/uti
 import AccordionWithImages from "@/app/cmsComponents/AccordionWithImages";
 import AccordionImagesContainer from "@/app/cmsComponents/AccordionWithImages/components/AccordionImagesContainer";
 import { buildAccordionWithImagesData } from "@/app/cmsComponents/AccordionWithImages/utils/data";
+import BannerWithCta from "@/app/cmsComponents/BannerWithCta";
+import BannerWithCtaContainer from "@/app/cmsComponents/BannerWithCta/components/BannerWithCtaContainer";
+import { buildBannerWithCtaData } from "@/app/cmsComponents/BannerWithCta/utils/data";
 import CallUs from "@/app/cmsComponents/CallUs";
 import CallUsContainer from "@/app/cmsComponents/CallUs/components/CallUsContainer";
 import { buildCallUsData } from "@/app/cmsComponents/CallUs/utils/data";
@@ -28,6 +31,7 @@ export default function Home() {
   const dir = isRtl(lang) ? "rtl" : "ltr";
   const accordionData = buildAccordionData(t);
   const accordionWithImagesData = buildAccordionWithImagesData(t);
+  const bannerWithCtaData = buildBannerWithCtaData(t, lang);
   const callUsData = buildCallUsData(t);
   const paragraphData = buildParagraphData(t, lang);
   const textWithBlobData = buildTextWithBlobData(t, lang);
@@ -52,6 +56,10 @@ export default function Home() {
       <ParagraphContainer lang={lang} dir={dir}>
         <Paragraph lang={lang} data={paragraphData} />
       </ParagraphContainer>
+
+      <BannerWithCtaContainer lang={lang} dir={dir}>
+        <BannerWithCta lang={lang} data={bannerWithCtaData} />
+      </BannerWithCtaContainer>
 
       <TextBlobContainer lang={lang} dir={dir}>
         <TextWithBlobImage lang={lang} data={textWithBlobData} />

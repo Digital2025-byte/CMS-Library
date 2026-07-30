@@ -1,0 +1,39 @@
+import BannerWithCtaContent from "./BannerWithCtaContent";
+
+const TITLE_GRADIENT =
+  "linear-gradient(90deg, rgba(5, 78, 114, 0.92) 0%, rgba(5, 78, 114, 0.85) 20%, rgba(5, 78, 114, 0.6) 45%, rgba(5, 78, 114, 0.2) 70%, rgba(5, 78, 114, 0) 100%)";
+
+export default function BannerWithCtaPanel({
+  title,
+  description,
+  ctaLabel,
+  ctaHref,
+  backgroundImage,
+}) {
+  const backgroundLayers = [
+    title ? TITLE_GRADIENT : null,
+    backgroundImage ? `url(${backgroundImage})` : null,
+  ]
+    .filter(Boolean)
+    .join(", ");
+
+  return (
+    <div
+      className="flex min-h-62.5 w-full items-center rounded-2xl md:min-h-80 lg:min-h-103.75"
+      style={{
+        backgroundImage: backgroundLayers || undefined,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        backgroundColor: backgroundImage ? undefined : "#054e72",
+      }}
+    >
+      <BannerWithCtaContent
+        title={title}
+        description={description}
+        ctaLabel={ctaLabel}
+        ctaHref={ctaHref}
+      />
+    </div>
+  );
+}
