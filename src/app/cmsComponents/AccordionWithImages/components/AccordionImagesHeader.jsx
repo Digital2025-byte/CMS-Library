@@ -1,4 +1,4 @@
-import { accordionImagesTypography } from "../utils/typography";
+import { typography } from "@/styles/typography";
 
 export default function AccordionImagesHeader({ title, description }) {
   if (!title && !description) {
@@ -9,14 +9,14 @@ export default function AccordionImagesHeader({ title, description }) {
     <div className="mb-4">
       {title ? (
         <h2
-          className={`${accordionImagesTypography.sectionTitle} border-b border-gray-200 py-2 font-semibold text-primary-1 lg:py-4`}
+          className={`${typography.sectionTitle} border-b border-gray-200 py-2 font-semibold text-primary-1 lg:py-4`}
         >
           {title}
         </h2>
       ) : null}
       {description ? (
         <p
-          className={`${accordionImagesTypography.sectionDescription} mt-4 leading-relaxed text-body`}
+          className={`${typography.sectionDescription} mt-4 leading-relaxed text-body`}
         >
           {description}
         </p>

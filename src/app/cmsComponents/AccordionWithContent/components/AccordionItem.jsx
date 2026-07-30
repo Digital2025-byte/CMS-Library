@@ -1,5 +1,5 @@
 import { CaretDownIcon, CaretUpIcon } from "@phosphor-icons/react";
-import { accordionTypography } from "../utils/typography";
+import { typography } from "@/styles/typography";
 
 export default function AccordionItem({ item, isOpen, onToggle }) {
   return (
@@ -12,7 +12,7 @@ export default function AccordionItem({ item, isOpen, onToggle }) {
         className="flex min-h-11 w-full cursor-pointer items-start justify-between gap-3 text-start sm:min-h-0 sm:items-center sm:gap-4"
       >
         <h3
-          className={`${accordionTypography.itemTitle} font-medium leading-snug ${
+          className={`${typography.itemTitle} font-medium leading-snug ${
             isOpen ? "text-primary-1" : "text-gray-800"
           }`}
         >
@@ -37,7 +37,7 @@ export default function AccordionItem({ item, isOpen, onToggle }) {
         }`}
       >
         <p
-          className={`${accordionTypography.itemDescription} pr-6 leading-relaxed whitespace-pre-line text-gray-600 sm:pr-8 md:leading-7`}
+          className={`${typography.itemDescription} pr-6 leading-relaxed whitespace-pre-line text-gray-600 sm:pr-8 md:leading-7`}
         >
           {item.description}
         </p>

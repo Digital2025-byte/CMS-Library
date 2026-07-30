@@ -1,4 +1,4 @@
-import { accordionTypography } from "../utils/typography";
+import { typography } from "@/styles/typography";
 
 export default function AccordionHeader({ title, description }) {
   if (!title && !description) {
@@ -9,14 +9,14 @@ export default function AccordionHeader({ title, description }) {
     <div className="mb-5 sm:mb-7 lg:mb-8">
       {title && (
         <h2
-          className={`${accordionTypography.sectionTitle} font-semibold leading-tight tracking-tight text-primary-1 sm:leading-snug`}
+          className={`${typography.sectionTitle} font-semibold leading-tight tracking-tight text-primary-1 sm:leading-snug`}
         >
           {title}
         </h2>
       )}
       {description ? (
         <p
-          className={`${accordionTypography.sectionDescription} mt-2 max-w-2xl leading-relaxed text-gray-600`}
+          className={`${typography.sectionDescription} mt-2 max-w-2xl leading-relaxed text-gray-600`}
         >
           {description}
         </p>

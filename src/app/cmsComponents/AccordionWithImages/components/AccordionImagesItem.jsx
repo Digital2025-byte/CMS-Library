@@ -1,5 +1,5 @@
 import AccordionImagesToggle from "./AccordionImagesToggle";
-import { accordionImagesTypography } from "../utils/typography";
+import { typography } from "@/styles/typography";
 
 export default function AccordionImagesItem({
   item,
@@ -20,7 +20,7 @@ export default function AccordionImagesItem({
       >
         <div className="min-w-0 flex-1">
           <h3
-            className={`${accordionImagesTypography.itemTitle} mb-2 font-medium text-primary-1 transition-colors duration-300`}
+            className={`${typography.itemTitle} mb-2 font-medium text-primary-1 transition-colors duration-300`}
           >
             {item.title}
           </h3>
@@ -32,7 +32,7 @@ export default function AccordionImagesItem({
           >
             <div className="overflow-hidden">
               <p
-                className={`${accordionImagesTypography.itemDescription} pt-2 leading-relaxed text-body`}
+                className={`${typography.itemDescription} pt-2 leading-relaxed text-body`}
               >
                 {item.content}
               </p>

@@ -9,6 +9,28 @@
   --font-sans: var(--font-geist-sans), sans-serif;
 }
 
+@layer base {
+  h1 {
+    @apply text-2xl font-semibold sm:text-3xl md:text-4xl lg:text-5xl;
+  }
+
+  h2 {
+    @apply text-xl font-semibold sm:text-2xl md:text-3xl;
+  }
+
+  h3 {
+    @apply text-sm font-medium sm:text-base md:text-lg;
+  }
+
+  h4 {
+    @apply text-sm font-medium sm:text-base;
+  }
+
+  p {
+    @apply text-sm sm:text-base;
+  }
+}
+
 html[dir="rtl"] body {
   font-family: var(--font-arabic), sans-serif;
 }
