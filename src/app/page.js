@@ -13,6 +13,9 @@ import { buildCallUsData } from "@/app/cmsComponents/CallUs/utils/data";
 import TextWithBlobImage from "@/app/cmsComponents/TextWithBlobImage";
 import TextBlobContainer from "@/app/cmsComponents/TextWithBlobImage/components/TextBlobContainer";
 import { buildTextWithBlobData } from "@/app/cmsComponents/TextWithBlobImage/utils/data";
+import TwoColumnIntroWithTwoImage from "@/app/cmsComponents/TwoColumnIntroWithTwoImage";
+import TwoColumnContainer from "@/app/cmsComponents/TwoColumnIntroWithTwoImage/components/TwoColumnContainer";
+import { buildTwoColumnIntroData } from "@/app/cmsComponents/TwoColumnIntroWithTwoImage/utils/data";
 import LanguageSwitcher from "@/i18n/LanguageSwitcher";
 import { isRtl } from "@/i18n/settings";
 
@@ -24,6 +27,7 @@ export default function Home() {
   const accordionWithImagesData = buildAccordionWithImagesData(t);
   const callUsData = buildCallUsData(t);
   const textWithBlobData = buildTextWithBlobData(t, lang);
+  const twoColumnIntroData = buildTwoColumnIntroData(t);
 
   return (
     <main>
@@ -48,6 +52,10 @@ export default function Home() {
       <CallUsContainer lang={lang} dir={dir}>
         <CallUs data={callUsData} />
       </CallUsContainer>
+
+      <TwoColumnContainer lang={lang} dir={dir}>
+        <TwoColumnIntroWithTwoImage lang={lang} data={twoColumnIntroData} />
+      </TwoColumnContainer>
     </main>
   );
 }

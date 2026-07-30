@@ -57,5 +57,13 @@
     "upperText": "Customer Support Hotline: Open from 9 AM to 9 PM",
     "mainText": "963 11 215 8121",
     "bottomText": "Call us anytime for urgent assistance with bookings, flight status, cancellations, and emergency support."
+  },
+  "twoColumnIntro": {
+    "title": "We're Here to Support Your Family Journey",
+    "description": "We understand that traveling with children requires extra care and attention. That's why we offer a range of special services and guidance to make your family's journey as smooth and stress-free as possible. From priority boarding to in-flight entertainment, we've got you covered at every step.",
+    "ctaLabel": "Explore more",
+    "ctaHref": "#",
+    "mainImageAlt": "Young traveler smiling at the airport",
+    "overlayImageAlt": "Parent and child looking at a travel map"
   }
 }
