@@ -47,5 +47,10 @@
         "description": "Arrive ready with helpful destination guidance and travel information for your next stop."
       }
     ]
+  },
+  "callUs": {
+    "upperText": "Customer Support Hotline: Open from 9 AM to 9 PM",
+    "mainText": "963 11 215 8121",
+    "bottomText": "Call us anytime for urgent assistance with bookings, flight status, cancellations, and emergency support."
   }
 }

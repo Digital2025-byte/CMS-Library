@@ -7,6 +7,9 @@ import { buildAccordionData } from "@/app/cmsComponents/AccordionWithContent/uti
 import AccordionWithImages from "@/app/cmsComponents/AccordionWithImages";
 import AccordionImagesContainer from "@/app/cmsComponents/AccordionWithImages/components/AccordionImagesContainer";
 import { buildAccordionWithImagesData } from "@/app/cmsComponents/AccordionWithImages/utils/data";
+import CallUs from "@/app/cmsComponents/CallUs";
+import CallUsContainer from "@/app/cmsComponents/CallUs/components/CallUsContainer";
+import { buildCallUsData } from "@/app/cmsComponents/CallUs/utils/data";
 import LanguageSwitcher from "@/i18n/LanguageSwitcher";
 import { isRtl } from "@/i18n/settings";
 
@@ -16,6 +19,7 @@ export default function Home() {
   const dir = isRtl(lang) ? "rtl" : "ltr";
   const accordionData = buildAccordionData(t);
   const accordionWithImagesData = buildAccordionWithImagesData(t);
+  const callUsData = buildCallUsData(t);
 
   return (
     <main>
@@ -32,6 +36,10 @@ export default function Home() {
       <AccordionImagesContainer lang={lang} dir={dir}>
         <AccordionWithImages data={accordionWithImagesData} />
       </AccordionImagesContainer>
+
+      <CallUsContainer lang={lang} dir={dir}>
+        <CallUs data={callUsData} />
+      </CallUsContainer>
     </main>
   );
 }
