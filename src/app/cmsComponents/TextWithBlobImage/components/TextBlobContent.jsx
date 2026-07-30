@@ -6,7 +6,7 @@ export default function TextBlobContent({ title, description }) {
   }
 
   return (
-    <div className="max-w-xl lg:max-w-lg xl:max-w-xl">
+    <div className="lg:max-w-lg xl:max-w-xl">
       {title ? (
         <h2
           className={`${typography.sectionTitle} font-semibold leading-snug text-primary-1`}
