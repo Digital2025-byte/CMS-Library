@@ -1,35 +1,31 @@
 import Image from "next/image";
-import maskAsset from "@/assets/mask.png";
-import TextBlobHighlight from "./TextBlobHighlight";
+import blobMask from "@/assets/blob-mask.png";
+import blobTicks from "@/assets/blob-ticks.png";
+import blobImage from "@/assets/Text-With-Blob-Image.png";
 
-const maskUrl = typeof maskAsset === "string" ? maskAsset : maskAsset.src;
+const blobMaskUrl = typeof blobMask === "string" ? blobMask : blobMask.src;
 
-export default function TextBlobMedia({ imageSrc, imageAlt }) {
-  if (!imageSrc) {
-    return null;
-  }
-
+export default function TextBlobMedia() {
   return (
     <div className="relative flex justify-center lg:justify-end">
       <div className="relative h-[260px] w-[260px] sm:h-[320px] sm:w-[320px] md:h-[400px] md:w-[400px] lg:h-[440px] lg:w-[440px]">
+        {/* Real image clipped to the solid blob shape */}
         <div
-          className="relative h-full w-full overflow-hidden"
+          className="absolute inset-0"
           style={{
-            WebkitMaskImage: `url(${maskUrl})`,
-            maskImage: `url(${maskUrl})`,
+            WebkitMaskImage: `url(${blobMaskUrl})`,
+            maskImage: `url(${blobMaskUrl})`,
             WebkitMaskSize: "contain",
             maskSize: "contain",
             WebkitMaskRepeat: "no-repeat",
             maskRepeat: "no-repeat",
             WebkitMaskPosition: "center",
             maskPosition: "center",
-            WebkitMaskMode: "luminance",
-            maskMode: "luminance",
           }}
         >
           <Image
-            src={imageSrc}
-            alt={imageAlt}
+            src={blobImage}
+            alt=""
             fill
             quality={75}
             priority
@@ -38,8 +34,15 @@ export default function TextBlobMedia({ imageSrc, imageAlt }) {
           />
         </div>
 
-        <TextBlobHighlight position="top" />
-        <TextBlobHighlight position="bottom" />
+        {/* Accent dashes (extracted from the blob artwork, no outline) */}
+        <Image
+          src={blobTicks}
+          alt=""
+          fill
+          priority
+          className="pointer-events-none object-contain object-center"
+          sizes="(max-width: 640px) 260px, (max-width: 768px) 320px, (max-width: 1024px) 400px, 440px"
+        />
       </div>
     </div>
   );
