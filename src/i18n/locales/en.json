@@ -67,20 +67,20 @@
     "overlayImageAlt": "Parent and child looking at a travel map"
   },
   "twoColumnWithSubSections": {
-    "sectionLabel": "About FlyCham",
-    "title": "Built around every traveler's journey",
-    "description": "From planning to arrival, we design each experience with care, clarity, and comfort so families and solo travelers alike can move with confidence.",
+    "sectionLabel": "About",
+    "title": "Creating Meaningful Journeys for Today's Travelers",
+    "description": "At FlyCham, we believe that every journey should feel personal, seamless, and inspiring. Whether you're traveling for business, leisure, or with family, our mission is to connect people to meaningful destinations through thoughtful service and a human approach.",
     "firstSubSection": {
       "title": "About Us",
-      "description": "We connect people to meaningful destinations with thoughtful service and a human approach at every touchpoint."
+      "description": "We are dedicated to redefining the travel experience by putting people at the heart of everything we do. From the moment you book to the moment you arrive, we focus on comfort, clarity, and care."
     },
     "secondSubSection": {
       "title": "Our Mission",
-      "description": "To make air travel feel simpler, warmer, and more reliable for every passenger who chooses FlyCham."
+      "description": "To make every journey feel purposeful and personal—connecting travelers to destinations that matter through reliable service, warm hospitality, and attention to detail."
     },
-    "ctaLabel": "Learn more",
+    "ctaLabel": "Read about us",
     "ctaHref": "#",
-    "mainImageAlt": "Family traveling at the airport",
-    "overlayImageAlt": "Family planning a journey"
+    "mainImageAlt": "FlyCham cabin crew securing an overhead compartment",
+    "overlayImageAlt": "FlyCham aircraft tail against a clear blue sky"
   }
 }

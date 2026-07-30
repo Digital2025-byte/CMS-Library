@@ -24,7 +24,7 @@ const TwoColumnWithSubSections = ({ lang = "en", data }) => {
   }
 
   return (
-    <section className="flex flex-col justify-between gap-8 lg:flex-row lg:gap-10">
+    <section className="flex flex-col justify-between gap-4 overflow-visible lg:flex-row">
       <SubSectionsMedia
         lang={lang}
         mainImage={mainImage}

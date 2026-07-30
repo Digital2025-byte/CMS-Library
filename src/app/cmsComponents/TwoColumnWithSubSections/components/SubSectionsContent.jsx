@@ -13,30 +13,26 @@ export default function SubSectionsContent({
   ctaHref,
 }) {
   return (
-    <div className="w-full space-y-5 sm:space-y-6 lg:w-[55%] lg:pe-8">
+    <div className="w-full max-w-md space-y-4 ">
       {sectionLabel ? (
-        <p className={`${typography.itemTitle} font-medium text-ink`}>
-          {sectionLabel}
-        </p>
+        <p className="text-sm font-medium text-ink">{sectionLabel}</p>
       ) : null}
 
       {title ? (
         <h2
-          className={`${typography.sectionTitle} font-medium italic leading-tight text-primary-1`}
+          className={`${typography.sectionTitle} font-semibold italic leading-tight text-primary-1`}
         >
           {title}
         </h2>
       ) : null}
 
       {description ? (
-        <p
-          className={`${typography.sectionDescription} leading-relaxed text-muted`}
-        >
+        <p className="text-sm leading-relaxed text-muted sm:text-[15px]">
           {description}
         </p>
       ) : null}
 
-      <div className="flex flex-col gap-6 pt-6 md:flex-row md:gap-8 md:pt-8">
+      <div className="flex flex-col gap-6 pt-2 md:flex-row md:gap-6">
         <SubSectionBlock
           title={firstSubSection?.title}
           description={firstSubSection?.description}
