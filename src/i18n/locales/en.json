@@ -47,5 +47,10 @@
         "description": "Arrive ready with helpful destination guidance and travel information for your next stop."
       }
     ]
+  },
+  "textWithBlobImage": {
+    "title": "A More Enjoyable Flight for Little Travelers",
+    "description": "Travel moments are more beautiful when our children are happy, that's why we designed our onboard children's toys to add a fun and entertaining mood during flights, ensuring they have a pleasant time filled with laughter and joy.",
+    "imageAlt": "Child holding a toy airplane"
   }
 }
