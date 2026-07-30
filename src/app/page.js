@@ -16,6 +16,9 @@ import { buildTextWithBlobData } from "@/app/cmsComponents/TextWithBlobImage/uti
 import TwoColumnIntroWithTwoImage from "@/app/cmsComponents/TwoColumnIntroWithTwoImage";
 import TwoColumnContainer from "@/app/cmsComponents/TwoColumnIntroWithTwoImage/components/TwoColumnContainer";
 import { buildTwoColumnIntroData } from "@/app/cmsComponents/TwoColumnIntroWithTwoImage/utils/data";
+import TwoColumnWithSubSections from "@/app/cmsComponents/TwoColumnWithSubSections";
+import SubSectionsContainer from "@/app/cmsComponents/TwoColumnWithSubSections/components/SubSectionsContainer";
+import { buildTwoColumnWithSubSectionsData } from "@/app/cmsComponents/TwoColumnWithSubSections/utils/data";
 import LanguageSwitcher from "@/i18n/LanguageSwitcher";
 import { isRtl } from "@/i18n/settings";
 
@@ -28,6 +31,7 @@ export default function Home() {
   const callUsData = buildCallUsData(t);
   const textWithBlobData = buildTextWithBlobData(t, lang);
   const twoColumnIntroData = buildTwoColumnIntroData(t);
+  const twoColumnWithSubSectionsData = buildTwoColumnWithSubSectionsData(t);
 
   return (
     <main>
@@ -56,6 +60,13 @@ export default function Home() {
       <TwoColumnContainer lang={lang} dir={dir}>
         <TwoColumnIntroWithTwoImage lang={lang} data={twoColumnIntroData} />
       </TwoColumnContainer>
+
+      <SubSectionsContainer lang={lang} dir={dir}>
+        <TwoColumnWithSubSections
+          lang={lang}
+          data={twoColumnWithSubSectionsData}
+        />
+      </SubSectionsContainer>
     </main>
   );
 }

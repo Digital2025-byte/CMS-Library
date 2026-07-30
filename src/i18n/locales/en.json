@@ -65,5 +65,22 @@
     "ctaHref": "#",
     "mainImageAlt": "Young traveler smiling at the airport",
     "overlayImageAlt": "Parent and child looking at a travel map"
+  },
+  "twoColumnWithSubSections": {
+    "sectionLabel": "About FlyCham",
+    "title": "Built around every traveler's journey",
+    "description": "From planning to arrival, we design each experience with care, clarity, and comfort so families and solo travelers alike can move with confidence.",
+    "firstSubSection": {
+      "title": "About Us",
+      "description": "We connect people to meaningful destinations with thoughtful service and a human approach at every touchpoint."
+    },
+    "secondSubSection": {
+      "title": "Our Mission",
+      "description": "To make air travel feel simpler, warmer, and more reliable for every passenger who chooses FlyCham."
+    },
+    "ctaLabel": "Learn more",
+    "ctaHref": "#",
+    "mainImageAlt": "Family traveling at the airport",
+    "overlayImageAlt": "Family planning a journey"
   }
 }

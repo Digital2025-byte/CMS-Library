@@ -7,6 +7,8 @@
   --color-accent-1: #b5a684;
   --color-surface-1: #f5f5f5;
   --color-body: #3e3e3b;
+  --color-ink: #01263b;
+  --color-muted: #49454f;
   --font-sans: var(--font-geist-sans), sans-serif;
 }
 
