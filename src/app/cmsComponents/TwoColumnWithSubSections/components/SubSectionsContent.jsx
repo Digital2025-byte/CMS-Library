@@ -1,6 +1,6 @@
 import AnimatedCTAButton from "@/components/ui/AnimatedCTAButton";
-import { typography } from "@/styles/typography";
 import SubSectionBlock from "./SubSectionBlock";
+import SubSectionsHeader from "./SubSectionsHeader";
 
 export default function SubSectionsContent({
   lang = "en",
@@ -13,32 +13,20 @@ export default function SubSectionsContent({
   ctaHref,
 }) {
   return (
-    <div className="w-full max-w-md space-y-4 ">
-      {sectionLabel ? (
-        <p className="text-sm font-medium text-ink">{sectionLabel}</p>
-      ) : null}
+    <div className="flex w-full flex-col justify-center gap-6 lg:w-[52%] lg:gap-8 lg:ps-4 xl:ps-8">
+      <SubSectionsHeader
+        sectionLabel={sectionLabel}
+        title={title}
+        description={description}
+      />
 
-      {title ? (
-        <h2
-          className={`${typography.sectionTitle} font-semibold italic leading-tight text-primary-1`}
-        >
-          {title}
-        </h2>
-      ) : null}
-
-      {description ? (
-        <p className="text-sm leading-relaxed text-muted sm:text-[15px]">
-          {description}
-        </p>
-      ) : null}
-
-      <div className="flex flex-col gap-6 pt-2 md:flex-row md:gap-6">
+      <div className="flex flex-row gap-6 pt-2 lg:gap-8">
         <SubSectionBlock
           title={firstSubSection?.title}
           description={firstSubSection?.description}
         />
 
-        <div className="hidden w-px bg-muted md:block" />
+        <div className="w-px shrink-0 self-stretch bg-muted/40" />
 
         <SubSectionBlock
           title={secondSubSection?.title}
@@ -47,7 +35,7 @@ export default function SubSectionsContent({
       </div>
 
       {ctaButton ? (
-        <div className="mb-4 min-h-12">
+        <div className="min-h-12">
           <AnimatedCTAButton
             lang={lang}
             label={ctaButton}
@@ -58,9 +46,6 @@ export default function SubSectionsContent({
             bgFillColor="#006080"
             textFillColor="#fff"
             arrowFillColor="#fff"
-            mobileBgColor="#006080"
-            mobileTextColor="#fff"
-            mobileArrowColor="#fff"
           />
         </div>
       ) : null}

@@ -42,53 +42,61 @@ export default function AnimatedCTAButton({
         ? arrowFillColor
         : arrowColor;
 
-  const buttonContent = (
-    <button
-      type="button"
-      className={`${isMobile ? "" : "relative z-10"} flex items-center gap-3 rounded-lg px-2.5 py-2`}
-      style={{ color: effectiveTextColor }}
-    >
-      <ArrowIcon className="h-5 w-5 shrink-0" style={{ color: effectiveArrowColor }} />
-      <span className={`${typography.button} w-30`}>{label}</span>
-    </button>
-  );
-
-  const motionProps = isMobile
-    ? {
-        initial: { width: "180px", height: "40px", color: effectiveTextColor },
-      }
-    : {
-        initial: { width: "40px", height: "40px", color: effectiveTextColor },
-        whileHover: {
-          width: "180px",
-          color: textFillColor,
-          backgroundColor: bgFillColor,
-        },
-        transition: { duration: 0.3 },
-      };
-
-  const wrapperStyles = {
-    backgroundColor:
-      isMobile && mobileBgColor != null ? mobileBgColor : bgColor,
-    ...(isMobile ? { color: effectiveTextColor } : {}),
-  };
+  if (isMobile) {
+    return (
+      <div className="mt-4 flex items-center">
+        <Link href={href || "#"} className="inline-flex text-inherit no-underline">
+          <div
+            className="flex h-10 items-center gap-3 rounded-4xl px-2.5"
+            style={{
+              width: "180px",
+              backgroundColor: mobileBgColor ?? bgColor,
+              color: mobileTextColor ?? textColor,
+            }}
+          >
+            <ArrowIcon
+              className="h-5 w-5 shrink-0"
+              style={{ color: mobileArrowColor ?? arrowColor }}
+            />
+            <span
+              className={`${typography.button} whitespace-nowrap font-semibold`}
+            >
+              {label}
+            </span>
+          </div>
+        </Link>
+      </div>
+    );
+  }
 
   return (
-    <div
-      className={`${isMobile ? "" : "relative"} flex items-center ${
-        isMobile ? "mt-4" : "mt-8"
-      }`}
-    >
-      <Link href={href || "#"} className="inline-flex text-inherit no-underline">
-        <motion.div
-          {...motionProps}
-          className={`${isMobile ? "" : "absolute"} h-full rounded-4xl bg-primary-1`}
-          style={wrapperStyles}
-          onHoverStart={() => setHovered(true)}
-          onHoverEnd={() => setHovered(false)}
+    <div className="relative mt-2 inline-flex h-10 items-center">
+      <motion.div
+        className="absolute inset-y-0 start-0 rounded-4xl bg-primary-1"
+        style={{ backgroundColor: hovered ? bgFillColor ?? bgColor : bgColor }}
+        initial={false}
+        animate={{ width: hovered ? "100%" : 40 }}
+        transition={{ duration: 0.3 }}
+      />
+
+      <Link
+        href={href || "#"}
+        className="relative z-10 inline-flex h-10 items-center gap-3 px-2.5 text-inherit no-underline"
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+        onFocus={() => setHovered(true)}
+        onBlur={() => setHovered(false)}
+      >
+        <ArrowIcon
+          className="h-5 w-5 shrink-0"
+          style={{ color: effectiveArrowColor }}
+        />
+        <span
+          className={`${typography.button} whitespace-nowrap font-semibold`}
+          style={{ color: effectiveTextColor }}
         >
-          {buttonContent}
-        </motion.div>
+          {label}
+        </span>
       </Link>
     </div>
   );

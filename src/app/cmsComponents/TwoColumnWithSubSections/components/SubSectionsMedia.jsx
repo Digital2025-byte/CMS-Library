@@ -11,8 +11,7 @@ export default function SubSectionsMedia({
   }
 
   return (
-    <div className="relative w-full pb-[14%]  lg:pb-[10%]">
-      {/* Positioning context sized to the main image, leaving room for the overlay */}
+    <div className="relative w-full pb-[14%] lg:w-[48%] lg:pb-[12%] lg:pe-2">
       <div className="relative w-[88%]">
         <div className="relative aspect-4/3 w-full overflow-hidden rounded-[1.75rem] sm:rounded-4xl">
           <Image

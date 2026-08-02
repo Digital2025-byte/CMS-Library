@@ -2,6 +2,7 @@
 
 import SubSectionsContent from "./components/SubSectionsContent";
 import SubSectionsMedia from "./components/SubSectionsMedia";
+import SubSectionsMobile from "./components/SubSectionsMobile";
 import { getTwoColumnWithSubSectionsContent } from "./utils/helpers";
 
 const TwoColumnWithSubSections = ({ lang = "en", data }) => {
@@ -24,25 +25,43 @@ const TwoColumnWithSubSections = ({ lang = "en", data }) => {
   }
 
   return (
-    <section className="flex flex-col justify-between gap-4 overflow-visible lg:flex-row">
-      <SubSectionsMedia
-        lang={lang}
-        mainImage={mainImage}
-        mainImageAlt={mainImageAlt}
-        overlayImage={overlayImage}
-        overlayImageAlt={overlayImageAlt}
-      />
-      <SubSectionsContent
+    <>
+      {/* Desktop: overlapping media + content with side-by-side subsections */}
+      <section className="hidden overflow-visible lg:flex lg:flex-row lg:items-center lg:justify-between lg:gap-12 xl:gap-16">
+        <SubSectionsMedia
+          mainImage={mainImage}
+          mainImageAlt={mainImageAlt}
+          overlayImage={overlayImage}
+          overlayImageAlt={overlayImageAlt}
+        />
+        <SubSectionsContent
+          lang={lang}
+          sectionLabel={sectionLabel}
+          title={title}
+          description={description}
+          firstSubSection={firstSubSection}
+          secondSubSection={secondSubSection}
+          ctaButton={ctaButton}
+          ctaHref={ctaHref}
+        />
+      </section>
+
+      {/* Mobile: header → staggered image/text grid → CTA */}
+      <SubSectionsMobile
         lang={lang}
         sectionLabel={sectionLabel}
         title={title}
         description={description}
+        mainImage={mainImage}
+        mainImageAlt={mainImageAlt}
+        overlayImage={overlayImage}
+        overlayImageAlt={overlayImageAlt}
         firstSubSection={firstSubSection}
         secondSubSection={secondSubSection}
         ctaButton={ctaButton}
         ctaHref={ctaHref}
       />
-    </section>
+    </>
   );
 };
 

@@ -4,12 +4,14 @@ export default function SubSectionBlock({ title, description }) {
   }
 
   return (
-    <div className="flex-1">
+    <div className="min-w-0 flex-1">
       {title ? (
-        <h3 className="mb-2 text-base font-semibold text-ink">{title}</h3>
+        <h3 className="mb-2 text-sm font-medium text-ink sm:text-base">
+          {title}
+        </h3>
       ) : null}
       {description ? (
-        <p className="text-sm leading-5 text-muted">{description}</p>
+        <p className="text-xs leading-6 text-muted sm:text-sm">{description}</p>
       ) : null}
     </div>
   );
