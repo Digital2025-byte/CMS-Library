@@ -4,7 +4,7 @@ export default function SubSectionsHeader({ sectionLabel, title, description }) 
   return (
     <div className="space-y-3 sm:space-y-4">
       {sectionLabel ? (
-        <p className={`${typography.caption} font-medium text-ink`}>
+        <p className={`${typography.caption} font-medium text-secondary-2`}>
           {sectionLabel}
         </p>
       ) : null}

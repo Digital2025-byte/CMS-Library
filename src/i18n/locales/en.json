@@ -112,6 +112,22 @@
         "description": "Benefit from exclusive rates and great value for your airport transfers and private chauffeur service."
       }
     ]
+  },
+  "bannerWithCTAsAndItems": {
+    "title": "Select Your Perfect Seats",
+    "description": "Choose seats together and ensure your family sits side by side. Our family seating options provide extra comfort and convenience for traveling with children",
+    "imageAlt": "Family travelers selecting seats",
+    "primaryLabel": "Select your seat",
+    "primaryHref": "#",
+    "primarySlug": "select-seats",
+    "secondaryLabel": "View seat map",
+    "secondaryHref": "#",
+    "secondarySlug": "seat-map",
+    "items": [
+      "Seats Together",
+      "Extra Legroom Options",
+      "Easy Selection"
+    ]
   }
 }
 

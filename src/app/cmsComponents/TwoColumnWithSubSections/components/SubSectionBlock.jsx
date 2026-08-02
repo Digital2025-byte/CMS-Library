@@ -6,7 +6,7 @@ export default function SubSectionBlock({ title, description }) {
   return (
     <div className="min-w-0 flex-1">
       {title ? (
-        <h3 className="mb-2 text-sm font-medium text-ink sm:text-base">
+        <h3 className="mb-2 text-sm font-medium text-secondary-2 sm:text-base">
           {title}
         </h3>
       ) : null}

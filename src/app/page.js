@@ -28,6 +28,9 @@ import { buildTwoColumnWithSubSectionsData } from "@/app/cmsComponents/TwoColumn
 import ServiceBenefitsList from "@/app/cmsComponents/ServiceBenefitsList";
 import ServiceBenefitsContainer from "@/app/cmsComponents/ServiceBenefitsList/components/ServiceBenefitsContainer";
 import { buildServiceBenefitsData } from "@/app/cmsComponents/ServiceBenefitsList/utils/data";
+import BannerWithCTAsAndItems from "@/app/cmsComponents/BannerWithCTAsAndItems";
+import BannerWithCTAsAndItemsContainer from "@/app/cmsComponents/BannerWithCTAsAndItems/components/BannerWithCTAsAndItemsContainer";
+import { buildBannerWithCTAsAndItemsData } from "@/app/cmsComponents/BannerWithCTAsAndItems/utils/data";
 import LanguageSwitcher from "@/i18n/LanguageSwitcher";
 import { isRtl } from "@/i18n/settings";
 
@@ -44,6 +47,7 @@ export default function Home() {
   const twoColumnIntroData = buildTwoColumnIntroData(t);
   const twoColumnWithSubSectionsData = buildTwoColumnWithSubSectionsData(t);
   const serviceBenefitsData = buildServiceBenefitsData(t, lang);
+  const bannerWithCTAsAndItemsData = buildBannerWithCTAsAndItemsData(t, lang);
 
   return (
     <main>
@@ -52,6 +56,13 @@ export default function Home() {
           <LanguageSwitcher />
         </div>
       </div>
+
+      <BannerWithCTAsAndItemsContainer lang={lang} dir={dir}>
+        <BannerWithCTAsAndItems
+          lang={lang}
+          data={bannerWithCTAsAndItemsData}
+        />
+      </BannerWithCTAsAndItemsContainer>
 
       <AccordionContainer lang={lang} dir={dir}>
         <AccordionWithContent data={accordionData} />
