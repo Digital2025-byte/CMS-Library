@@ -25,6 +25,9 @@ import { buildTwoColumnIntroData } from "@/app/cmsComponents/TwoColumnIntroWithT
 import VerticalImageSliceTextSection from "@/app/cmsComponents/VerticalImageSliceTextSection";
 import VerticalImageSliceContainer from "@/app/cmsComponents/VerticalImageSliceTextSection/components/VerticalImageSliceContainer";
 import { buildVerticalImageSliceData } from "@/app/cmsComponents/VerticalImageSliceTextSection/utils/data";
+import SplitTextOnly from "@/app/cmsComponents/SplitTextOnly";
+import SplitTextOnlyContainer from "@/app/cmsComponents/SplitTextOnly/components/SplitTextOnlyContainer";
+import { buildSplitTextOnlyData } from "@/app/cmsComponents/SplitTextOnly/utils/data";
 import LanguageSwitcher from "@/i18n/LanguageSwitcher";
 import { isRtl } from "@/i18n/settings";
 
@@ -40,6 +43,7 @@ export default function Home() {
   const textWithBlobData = buildTextWithBlobData(t, lang);
   const twoColumnIntroData = buildTwoColumnIntroData(t);
   const verticalImageSliceData = buildVerticalImageSliceData(t, lang);
+  const splitTextOnlyData = buildSplitTextOnlyData(t, lang);
 
   return (
     <main>
@@ -83,6 +87,10 @@ export default function Home() {
           data={verticalImageSliceData}
         />
       </VerticalImageSliceContainer>
+
+      <SplitTextOnlyContainer lang={lang} dir={dir}>
+        <SplitTextOnly lang={lang} data={splitTextOnlyData} />
+      </SplitTextOnlyContainer>
     </main>
   );
 }

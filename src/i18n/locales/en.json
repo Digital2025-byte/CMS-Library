@@ -83,6 +83,11 @@
     "highlightPhrase": "Travel Experience",
     "description": "Every journey is crafted to feel personal — from thoughtful onboard details to destinations that stay with you long after you land.",
     "imageAlt": "Traveler looking out at scenic mountain landscape"
+  },
+  "splitTextOnly": {
+    "title": "Where Every Journey Begins",
+    "description": "From the first booking to the final landing, we shape travel moments that feel calm, clear, and memorable.",
+    "imageAlt": "Scenic aerial view of coastline and travel destination"
   }
 }
 
