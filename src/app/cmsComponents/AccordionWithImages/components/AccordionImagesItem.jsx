@@ -10,7 +10,7 @@ export default function AccordionImagesItem({
   return (
     <div
       ref={itemRef}
-      className="w-full cursor-pointer overflow-hidden border-b border-gray-200 bg-white py-3 transition-all duration-700 ease-in-out sm:py-4 [&_*]:cursor-pointer"
+      className="w-full cursor-pointer overflow-hidden border-b border-200 bg-background py-3 transition-all duration-700 ease-in-out sm:py-4 [&_*]:cursor-pointer"
       onClick={onToggle}
     >
       <div
@@ -21,7 +21,7 @@ export default function AccordionImagesItem({
         <div className="min-w-0 flex-1">
           <h3
             className={`${typography.itemTitle} mb-2 font-medium leading-snug ${
-              isOpen ? "text-primary-1" : "text-gray-800"
+              isOpen ? "text-primary-1" : "text-800"
             }`}
           >
             {item.title}
@@ -34,7 +34,7 @@ export default function AccordionImagesItem({
           >
             <div className="overflow-hidden">
               <p
-                className={`${typography.itemDescription} pt-2 leading-relaxed text-body`}
+                className={`${typography.itemDescription} pt-2 leading-relaxed text-700`}
               >
                 {item.content}
               </p>

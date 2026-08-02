@@ -16,7 +16,7 @@ const CallUs = ({ data }) => {
     <div
       className="w-full rounded-xl px-6 py-12 text-center"
       style={{
-        background: "linear-gradient(90deg, #13364B 0%, #054E72 100%)",
+        background: "linear-gradient(90deg, var(--color-primary-800) 0%, var(--color-main) 100%)",
       }}
     >
       <CallUsIcon />

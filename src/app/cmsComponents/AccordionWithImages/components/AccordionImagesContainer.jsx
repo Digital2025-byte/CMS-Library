@@ -1,7 +1,7 @@
 export default function AccordionImagesContainer({ lang, dir, children }) {
   return (
     <div
-      className="w-full bg-white"
+      className="w-full bg-background"
       lang={lang}
       dir={dir || (lang === "ar" ? "rtl" : "ltr")}
     >

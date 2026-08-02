@@ -1,7 +1,7 @@
 import BannerWithCtaContent from "./BannerWithCtaContent";
 
 const TITLE_GRADIENT =
-  "linear-gradient(90deg, rgba(5, 78, 114, 0.92) 0%, rgba(5, 78, 114, 0.85) 20%, rgba(5, 78, 114, 0.6) 45%, rgba(5, 78, 114, 0.2) 70%, rgba(5, 78, 114, 0) 100%)";
+  "linear-gradient(90deg, rgba(var(--primary-1-rgb), 0.92) 0%, rgba(var(--primary-1-rgb), 0.85) 20%, rgba(var(--primary-1-rgb), 0.6) 45%, rgba(var(--primary-1-rgb), 0.2) 70%, rgba(var(--primary-1-rgb), 0) 100%)";
 
 export default function BannerWithCtaPanel({
   title,
@@ -25,7 +25,7 @@ export default function BannerWithCtaPanel({
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
-        backgroundColor: backgroundImage ? undefined : "#054e72",
+        backgroundColor: backgroundImage ? undefined : "var(--color-main)",
       }}
     >
       <BannerWithCtaContent

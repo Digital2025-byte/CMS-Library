@@ -11,7 +11,7 @@ export default function SubSectionBlock({ title, description }) {
         </h3>
       ) : null}
       {description ? (
-        <p className="text-sm leading-6 text-muted">{description}</p>
+        <p className="text-sm leading-6 text-600">{description}</p>
       ) : null}
     </div>
   );

@@ -49,21 +49,21 @@ export default function CustomBackgroundImage({
       />
 
       {mobileGradient ? (
-        <div className="absolute inset-0 bg-gradient-to-b from-[#00253C]/85 via-[#00253C]/55 to-[#00253C]/75 md:hidden" />
+        <div className="absolute inset-0 bg-gradient-to-b from-secondary-2/85 via-secondary-2/55 to-secondary-2/75 md:hidden" />
       ) : null}
 
       {desktopGradient ? (
         <div
           className={`absolute inset-y-0 hidden w-full opacity-90 md:block lg:w-3/4 ${
             lang === "ar"
-              ? "right-0 bg-gradient-to-l from-[#054E72] via-[#054E72]/70 to-transparent"
-              : "left-0 bg-gradient-to-r from-[#054E72] via-[#054E72]/70 to-transparent"
+              ? "right-0 bg-gradient-to-l from-main via-main/70 to-transparent"
+              : "left-0 bg-gradient-to-r from-main via-main/70 to-transparent"
           }`}
         />
       ) : null}
 
       {specialGradient ? (
-        <div className="absolute inset-0 bg-gradient-to-b from-[#054E72]/20 to-[#13364B]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-main/20 to-primary-800" />
       ) : null}
 
       <div className="relative z-10">{children}</div>

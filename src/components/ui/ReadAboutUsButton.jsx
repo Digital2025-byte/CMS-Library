@@ -6,10 +6,10 @@ export default function ReadAboutUsButton({
   lang = "en",
   label = "",
   href = "#",
-  bgColor = "#006080",
-  textColor = "#fff",
-  arrowColor = "#006080",
-  circleColor = "#fff",
+  bgColor = "var(--color-primary-1)",
+  textColor = "var(--color-background)",
+  arrowColor = "var(--color-primary-1)",
+  circleColor = "var(--color-background)",
 }) {
   if (!label) {
     return null;

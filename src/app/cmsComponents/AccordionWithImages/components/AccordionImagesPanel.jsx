@@ -6,12 +6,12 @@ export default function AccordionImagesPanel({ items, activeIndex }) {
 
   if (!hasImages) {
     return (
-      <div className="relative h-64 w-full overflow-hidden rounded-xl bg-surface-1 sm:h-80 lg:h-150" />
+      <div className="relative h-64 w-full overflow-hidden rounded-xl bg-100 sm:h-80 lg:h-150" />
     );
   }
 
   return (
-    <div className="relative h-64 w-full overflow-hidden rounded-xl bg-surface-1 sm:h-80 lg:h-150">
+    <div className="relative h-64 w-full overflow-hidden rounded-xl bg-100 sm:h-80 lg:h-150">
       {layers.map((item, index) =>
         item?.image ? (
           <Image

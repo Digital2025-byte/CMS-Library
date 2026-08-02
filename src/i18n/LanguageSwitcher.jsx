@@ -19,7 +19,7 @@ export default function LanguageSwitcher() {
             className={`rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${
               isActive
                 ? "bg-primary-1 text-white"
-                : "bg-white text-gray-700 hover:bg-gray-100"
+                : "bg-background text-700 hover:bg-100"
             }`}
           >
             {t(`language.${language}`)}

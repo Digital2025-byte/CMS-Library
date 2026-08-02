@@ -23,7 +23,7 @@ export default function ServiceBenefitsPanel({
 
       <div
         className="absolute inset-0"
-        style={{ backgroundColor: "#01273DB2" }}
+        style={{ backgroundColor: "color-mix(in srgb, var(--color-secondary-2) 70%, transparent)" }}
         aria-hidden
       />
 

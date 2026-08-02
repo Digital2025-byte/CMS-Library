@@ -16,7 +16,7 @@ export default function AccordionHeader({ title, description }) {
       ) : null}
       {description ? (
         <p
-          className={`${typography.sectionDescription} mt-2 max-w-2xl leading-relaxed text-body`}
+          className={`${typography.sectionDescription} mt-2 max-w-2xl leading-relaxed text-700`}
         >
           {description}
         </p>

@@ -1,7 +1,7 @@
 export default function TextBlobContainer({ lang, dir, children }) {
   return (
     <div
-      className="w-full bg-surface-1"
+      className="w-full bg-100"
       lang={lang}
       dir={dir || (lang === "ar" ? "rtl" : "ltr")}
     >

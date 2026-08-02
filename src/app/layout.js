@@ -1,21 +1,22 @@
-import { Geist, Geist_Mono, Noto_Sans_Arabic } from "next/font/google";
+import { Cairo, Geist_Mono, Montserrat } from "next/font/google";
 import I18nProvider from "@/i18n/I18nProvider";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const cairo = Cairo({
+  variable: "--font-cairo",
+  subsets: ["arabic", "latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
-});
-
-const notoArabic = Noto_Sans_Arabic({
-  variable: "--font-arabic",
-  subsets: ["arabic"],
-  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata = {
@@ -27,9 +28,9 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${notoArabic.variable} h-full antialiased`}
+      className={`${montserrat.variable} ${cairo.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full font-sans text-zinc-900">
+      <body className="min-h-full bg-background font-sans text-foreground">
         <I18nProvider>{children}</I18nProvider>
       </body>
     </html>

@@ -26,7 +26,7 @@ export default function TwoColumnMedia({
               sizes="(max-width: 1024px) 100vw, 50vw"
             />
           ) : (
-            <div className="h-full w-full bg-white" />
+            <div className="h-full w-full bg-background" />
           )}
         </div>
 

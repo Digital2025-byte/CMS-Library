@@ -7,7 +7,7 @@ export default function CallUsPhone({ phoneText, href }) {
     <a
       dir="ltr"
       href={href || "#"}
-      className="text-3xl font-bold tracking-wide text-white transition-colors hover:text-accent-1 md:text-4xl"
+      className="text-3xl font-bold tracking-wide text-white transition-colors hover:text-primary-2 md:text-4xl"
     >
       +{phoneText}
     </a>

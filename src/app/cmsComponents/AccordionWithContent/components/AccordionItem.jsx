@@ -4,7 +4,7 @@ import { typography } from "@/styles/typography";
 export default function AccordionItem({ item, isOpen, onToggle }) {
   return (
     <div
-      className="cursor-pointer rounded-lg bg-white px-4 py-4 transition-shadow sm:px-5 sm:py-5 md:px-6 [&_*]:cursor-pointer"
+      className="cursor-pointer rounded-lg bg-background px-4 py-4 transition-shadow sm:px-5 sm:py-5 md:px-6 [&_*]:cursor-pointer"
       onClick={onToggle}
     >
       <button
@@ -13,7 +13,7 @@ export default function AccordionItem({ item, isOpen, onToggle }) {
       >
         <h3
           className={`${typography.itemTitle} font-medium leading-snug ${
-            isOpen ? "text-primary-1" : "text-gray-800"
+            isOpen ? "text-primary-1" : "text-800"
           }`}
         >
           {item.title}
@@ -25,7 +25,7 @@ export default function AccordionItem({ item, isOpen, onToggle }) {
           />
         ) : (
           <CaretDownIcon
-            className="mt-0.5 h-4 w-4 shrink-0 text-gray-500 sm:mt-0 sm:h-5 sm:w-5"
+            className="mt-0.5 h-4 w-4 shrink-0 text-500 sm:mt-0 sm:h-5 sm:w-5"
             weight="bold"
           />
         )}
@@ -37,7 +37,7 @@ export default function AccordionItem({ item, isOpen, onToggle }) {
         }`}
       >
         <p
-          className={`${typography.itemDescription} pr-6 leading-relaxed whitespace-pre-line text-body sm:pr-8`}
+          className={`${typography.itemDescription} pr-6 leading-relaxed whitespace-pre-line text-700 sm:pr-8`}
         >
           {item.description}
         </p>

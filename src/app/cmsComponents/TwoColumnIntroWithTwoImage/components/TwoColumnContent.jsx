@@ -23,7 +23,7 @@ export default function TwoColumnContent({
 
       {description ? (
         <p
-          className={`${typography.sectionDescription} mt-4 leading-relaxed text-body sm:mt-5 lg:mt-6`}
+          className={`${typography.sectionDescription} mt-4 leading-relaxed text-700 sm:mt-5 lg:mt-6`}
         >
           {description}
         </p>

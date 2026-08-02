@@ -58,7 +58,7 @@
   --color-alert: #b00300;
   --color-green: #357b47;
 
-  --font-sans: var(--font-montserrat), 'Montserrat', sans-serif;
+  --font-sans: var(--font-montserrat), "Montserrat", sans-serif;
   --font-mono: var(--font-geist-mono);
 }
 
@@ -110,28 +110,47 @@
 
   --alert: var(--color-alert);
   --green: var(--color-green);
-}
-:root {
-  --font-family-base: var(--font-montserrat), 'Montserrat', sans-serif;
+
+  --font-family-base: var(--font-montserrat), "Montserrat", sans-serif;
 }
 
-html[lang='ar'] {
-  --font-family-base: var(--font-all-genders), var(--font-cairo), 'Cairo', sans-serif;
-  --font-sans: var(--font-all-genders), var(--font-cairo), 'Cairo', sans-serif;
+/* EN: Montserrat | AR: Cairo — driven by document.lang from I18nProvider */
+html[lang="ar"] {
+  --font-family-base: var(--font-cairo), "Cairo", sans-serif;
+  --font-sans: var(--font-cairo), "Cairo", sans-serif;
+}
+
+html[lang="en"] {
+  --font-family-base: var(--font-montserrat), "Montserrat", sans-serif;
+  --font-sans: var(--font-montserrat), "Montserrat", sans-serif;
 }
 
 body,
-h1, h2, h3, h4, h5, h6,
-p, div, span, a, li, td, th, label,
-input, textarea, select, button {
-  font-family: var(--font-family-base) !important;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+div,
+span,
+a,
+li,
+td,
+th,
+label,
+input,
+textarea,
+select,
+button {
+  font-family: var(--font-family-base);
 }
 
 /* Latin tokens (IATA codes, etc.) — Montserrat even on Arabic pages */
 .font-en {
-  font-family: var(--font-montserrat), 'Montserrat', sans-serif !important;
+  font-family: var(--font-montserrat), "Montserrat", sans-serif !important;
 }
-
 
 @layer base {
   h1 {
@@ -153,12 +172,4 @@ input, textarea, select, button {
   p {
     @apply text-sm sm:text-base;
   }
-}
-
-html[dir="rtl"] body {
-  font-family: var(--font-arabic), sans-serif;
-}
-
-html[dir="ltr"] body {
-  font-family: var(--font-geist-sans), sans-serif;
 }

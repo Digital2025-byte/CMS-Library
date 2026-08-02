@@ -16,7 +16,7 @@ export default function TextBlobContent({ title, description }) {
       ) : null}
       {description ? (
         <p
-          className={`${typography.sectionDescription} mt-4 leading-relaxed text-body`}
+          className={`${typography.sectionDescription} mt-4 leading-relaxed text-700`}
         >
           {description}
         </p>

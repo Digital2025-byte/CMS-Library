@@ -16,7 +16,7 @@ export default function ParagraphContent({ title, description }) {
       ) : null}
       {description ? (
         <p
-          className={`${typography.sectionDescription} mt-2 wrap-break-word leading-relaxed text-body md:leading-loose`}
+          className={`${typography.sectionDescription} mt-2 wrap-break-word leading-relaxed text-700 md:leading-loose`}
         >
           {description}
         </p>

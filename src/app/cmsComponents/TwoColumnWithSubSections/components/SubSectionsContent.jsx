@@ -26,7 +26,7 @@ export default function SubSectionsContent({
           description={firstSubSection?.description}
         />
 
-        <div className="w-px shrink-0 self-stretch bg-muted/40" />
+        <div className="w-px shrink-0 self-stretch bg-600/40" />
 
         <SubSectionBlock
           title={secondSubSection?.title}
@@ -40,12 +40,12 @@ export default function SubSectionsContent({
             lang={lang}
             label={ctaButton}
             href={ctaHref || "#"}
-            arrowColor="#fff"
-            textColor="#006080"
-            bgColor="#006080"
-            bgFillColor="#006080"
-            textFillColor="#fff"
-            arrowFillColor="#fff"
+            arrowColor="var(--color-background)"
+            textColor="var(--color-primary-1)"
+            bgColor="var(--color-primary-1)"
+            bgFillColor="var(--color-primary-1)"
+            textFillColor="var(--color-background)"
+            arrowFillColor="var(--color-background)"
           />
         </div>
       ) : null}

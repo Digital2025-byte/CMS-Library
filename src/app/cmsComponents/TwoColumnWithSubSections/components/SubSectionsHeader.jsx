@@ -19,7 +19,7 @@ export default function SubSectionsHeader({ sectionLabel, title, description }) 
 
       {description ? (
         <p
-          className={`${typography.sectionDescription} font-normal  text-muted`}
+          className={`${typography.sectionDescription} font-normal text-600`}
         >
           {description}
         </p>

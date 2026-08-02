@@ -6,7 +6,7 @@ export default function ServiceBenefitItem({ title, description, icon }) {
 
   return (
     <div className="flex items-start gap-3 md:gap-3 lg:gap-4">
-      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white text-primary-1 md:h-11 md:w-11 lg:h-10 lg:w-10 mt-0 md:mt-3 ">
+      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-background text-primary-1 md:h-11 md:w-11 lg:h-10 lg:w-10 mt-0 md:mt-3 ">
         {Icon ? <Icon className="h-5 w-5" weight="fill" size={20} /> : null}
       </div>
 

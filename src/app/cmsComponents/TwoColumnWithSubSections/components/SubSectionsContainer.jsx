@@ -1,7 +1,7 @@
 export default function SubSectionsContainer({ lang, dir, children }) {
   return (
     <div
-      className="w-full bg-[#F5F3EF]"
+      className="w-full bg-secondary-100"
       lang={lang}
       dir={dir || (lang === "ar" ? "rtl" : "ltr")}
     >
