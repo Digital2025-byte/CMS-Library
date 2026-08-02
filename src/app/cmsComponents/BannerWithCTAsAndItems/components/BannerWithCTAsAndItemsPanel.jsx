@@ -15,7 +15,6 @@ export default function BannerWithCTAsAndItemsPanel({
   return (
     <CustomBackgroundImage
       imageUrl={backgroundImage}
-      mobileGradient
       desktopGradient
       lang={lang}
       className="min-h-[52vh] sm:min-h-[48vh] lg:min-h-[56vh]"

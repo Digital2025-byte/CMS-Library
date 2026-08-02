@@ -18,7 +18,6 @@ export default function CustomBackgroundImage({
   initialAnimation = { scale: 1 },
   animateAnimation = { scale: 1 },
   transition = { duration: 5, ease: "easeInOut" },
-  mobileGradient = false,
   desktopGradient = false,
   lang = "en",
   flipImage = false,
@@ -48,13 +47,9 @@ export default function CustomBackgroundImage({
         transition={transition}
       />
 
-      {mobileGradient ? (
-        <div className="absolute inset-0 bg-gradient-to-b from-secondary-2/85 via-secondary-2/55 to-secondary-2/75 md:hidden" />
-      ) : null}
-
       {desktopGradient ? (
         <div
-          className={`absolute inset-y-0 hidden w-full opacity-90 md:block lg:w-3/4 ${
+          className={`absolute inset-y-0 w-full opacity-90 lg:w-3/4 ${
             lang === "ar"
               ? "right-0 bg-gradient-to-l from-main via-main/70 to-transparent"
               : "left-0 bg-gradient-to-r from-main via-main/70 to-transparent"
