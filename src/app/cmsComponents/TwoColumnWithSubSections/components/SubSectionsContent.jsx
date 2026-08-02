@@ -55,7 +55,7 @@ export default function SubSectionsContent({
             arrowColor="#fff"
             textColor="#006080"
             bgColor="#006080"
-            bgFillColor="#004d66"
+            bgFillColor="#006080"
             textFillColor="#fff"
             arrowFillColor="#fff"
             mobileBgColor="#006080"
