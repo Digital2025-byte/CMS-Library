@@ -14,7 +14,7 @@ export default function SubSectionsMedia({
     <div className="relative w-full pb-[14%]  lg:pb-[10%]">
       {/* Positioning context sized to the main image, leaving room for the overlay */}
       <div className="relative w-[88%]">
-        <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[1.75rem] sm:rounded-[2rem]">
+        <div className="relative aspect-4/3 w-full overflow-hidden rounded-[1.75rem] sm:rounded-4xl">
           <Image
             src={mainImage}
             alt={mainImageAlt}
@@ -27,7 +27,7 @@ export default function SubSectionsMedia({
         </div>
 
         {overlayImage ? (
-          <div className="absolute -bottom-[10%] -end-[8%] z-10 aspect-square w-[42%] overflow-hidden rounded-2xl shadow-2xl ring-1 ring-black/5 sm:rounded-[1.5rem]">
+          <div className="absolute -bottom-[10%] -end-[8%] z-10 aspect-square w-[42%] overflow-hidden rounded-2xl shadow-2xl ring-1 ring-black/5 sm:rounded-3xl">
             <Image
               src={overlayImage}
               alt={overlayImageAlt}

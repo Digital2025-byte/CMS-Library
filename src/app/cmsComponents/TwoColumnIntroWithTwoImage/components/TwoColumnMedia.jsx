@@ -14,7 +14,7 @@ export default function TwoColumnMedia({
       className={`relative w-full`}
     >
       <div className="relative ms-auto w-full lg:w-[92%]">
-        <div className="relative aspect-[16/10] w-full overflow-hidden rounded-[1.75rem] shadow-md sm:rounded-[2rem] md:rounded-[2.5rem]">
+        <div className="relative aspect-16/10 w-full overflow-hidden rounded-[1.75rem] shadow-md sm:rounded-4xl md:rounded-[2.5rem]">
           {mainImage ? (
             <Image
               src={mainImage}
@@ -32,8 +32,8 @@ export default function TwoColumnMedia({
 
         {overlayImage ? (
           <div
-            className={`absolute z-10 aspect-[4/3] w-[46%] overflow-hidden   sm:w-[44%] rounded-[24px] 
-              -bottom-[10%] -start-[-10%] sm:-bottom-[10%] sm:-start-[-10%]
+            className={`absolute z-10 aspect-4/3 w-[46%] overflow-hidden sm:w-[44%] rounded-3xl
+              -bottom-[10%] start-[10%] sm:-bottom-[10%] sm:start-[10%]
               `}
           >
             <Image

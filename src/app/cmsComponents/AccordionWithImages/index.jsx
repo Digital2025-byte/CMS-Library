@@ -19,7 +19,7 @@ const AccordionWithImages = ({ data }) => {
         <div className="flex w-full flex-col lg:w-1/2">
           <div
             ref={containerRef}
-            className="relative flex max-h-[28rem] flex-1 flex-col overflow-y-auto sm:max-h-[32rem] lg:max-h-none"
+            className="relative flex max-h-112 flex-1 flex-col overflow-y-auto sm:max-h-128 lg:max-h-none"
           >
             <div className="flex w-full flex-col space-y-2 sm:space-y-4">
               {items.map((item, index) => (

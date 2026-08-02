@@ -8,7 +8,7 @@ const blobMaskUrl = typeof blobMask === "string" ? blobMask : blobMask.src;
 export default function TextBlobMedia() {
   return (
     <div className="relative flex justify-center lg:justify-end">
-      <div className="relative h-[260px] w-[260px] sm:h-[320px] sm:w-[320px] md:h-[400px] md:w-[400px] lg:h-[440px] lg:w-[440px]">
+      <div className="relative h-[260px] w-[260px] sm:h-80 sm:w-80 md:h-[400px] md:w-[400px] lg:h-[440px] lg:w-[440px]">
         {/* Real image clipped to the solid blob shape */}
         <div
           className="absolute inset-0"

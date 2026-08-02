@@ -45,10 +45,10 @@ export default function AnimatedCTAButton({
   const buttonContent = (
     <button
       type="button"
-      className={`${isMobile ? "" : "relative z-10"} flex items-center gap-1 rounded-lg px-[10px] py-[8px] font-semibold`}
+      className={`${isMobile ? "" : "relative z-10"} flex items-center gap-3 rounded-lg px-2.5 py-2`}
       style={{ color: effectiveTextColor }}
     >
-      <ArrowIcon className="h-5 w-5" style={{ color: effectiveArrowColor }} />
+      <ArrowIcon className="h-5 w-5 shrink-0" style={{ color: effectiveArrowColor }} />
       <span className={`${typography.button} w-30`}>{label}</span>
     </button>
   );
