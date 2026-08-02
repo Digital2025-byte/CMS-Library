@@ -22,6 +22,9 @@ import { buildTextWithBlobData } from "@/app/cmsComponents/TextWithBlobImage/uti
 import TwoColumnIntroWithTwoImage from "@/app/cmsComponents/TwoColumnIntroWithTwoImage";
 import TwoColumnContainer from "@/app/cmsComponents/TwoColumnIntroWithTwoImage/components/TwoColumnContainer";
 import { buildTwoColumnIntroData } from "@/app/cmsComponents/TwoColumnIntroWithTwoImage/utils/data";
+import VerticalImageSliceTextSection from "@/app/cmsComponents/VerticalImageSliceTextSection";
+import VerticalImageSliceContainer from "@/app/cmsComponents/VerticalImageSliceTextSection/components/VerticalImageSliceContainer";
+import { buildVerticalImageSliceData } from "@/app/cmsComponents/VerticalImageSliceTextSection/utils/data";
 import LanguageSwitcher from "@/i18n/LanguageSwitcher";
 import { isRtl } from "@/i18n/settings";
 
@@ -36,6 +39,7 @@ export default function Home() {
   const paragraphData = buildParagraphData(t, lang);
   const textWithBlobData = buildTextWithBlobData(t, lang);
   const twoColumnIntroData = buildTwoColumnIntroData(t);
+  const verticalImageSliceData = buildVerticalImageSliceData(t, lang);
 
   return (
     <main>
@@ -72,6 +76,13 @@ export default function Home() {
       <TwoColumnContainer lang={lang} dir={dir}>
         <TwoColumnIntroWithTwoImage lang={lang} data={twoColumnIntroData} />
       </TwoColumnContainer>
+
+      <VerticalImageSliceContainer lang={lang} dir={dir}>
+        <VerticalImageSliceTextSection
+          lang={lang}
+          data={verticalImageSliceData}
+        />
+      </VerticalImageSliceContainer>
     </main>
   );
 }
