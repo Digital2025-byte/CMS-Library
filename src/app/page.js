@@ -51,8 +51,8 @@ export default function Home() {
 
   return (
     <main>
-      <div className="flex justify-end bg-100 px-4 pt-4 sm:px-6 lg:px-8">
-        <div className="mx-auto flex w-full max-w-4xl justify-end">
+      <div className="w-full bg-100 pt-4">
+        <div className="mx-auto flex w-full max-w-7xl justify-end px-4 sm:px-6 lg:px-12">
           <LanguageSwitcher />
         </div>
       </div>

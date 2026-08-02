@@ -61,7 +61,7 @@ export default function CustomBackgroundImage({
         <div className="absolute inset-0 bg-gradient-to-b from-main/20 to-primary-800" />
       ) : null}
 
-      <div className="relative z-10">{children}</div>
+      <div className="relative z-10 w-full">{children}</div>
     </div>
   );
 }
