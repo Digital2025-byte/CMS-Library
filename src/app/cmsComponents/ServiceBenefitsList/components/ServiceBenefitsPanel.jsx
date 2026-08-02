@@ -27,7 +27,7 @@ export default function ServiceBenefitsPanel({
         aria-hidden
       />
 
-      <div className="relative z-10 flex h-full flex-col justify-center px-5 py-8 text-white sm:px-8 sm:py-10 md:px-8 md:py-12 lg:px-14 lg:py-14">
+      <div className="relative z-10 flex h-full flex-col justify-center px-5 py-8 text-white sm:px-8 sm:py-10 md:px-8 md:py-12 lg:px-14 lg:py-14 mb-4 md:mb-0">
         {mainTitle ? (
           <h2
             className={`${typography.sectionTitle} text-center font-semibold text-white`}
