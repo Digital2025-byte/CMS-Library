@@ -22,6 +22,9 @@ import { buildTextWithBlobData } from "@/app/cmsComponents/TextWithBlobImage/uti
 import TwoColumnIntroWithTwoImage from "@/app/cmsComponents/TwoColumnIntroWithTwoImage";
 import TwoColumnContainer from "@/app/cmsComponents/TwoColumnIntroWithTwoImage/components/TwoColumnContainer";
 import { buildTwoColumnIntroData } from "@/app/cmsComponents/TwoColumnIntroWithTwoImage/utils/data";
+import VerticalImageSliceTextSection from "@/app/cmsComponents/VerticalImageSliceTextSection";
+import VerticalImageSliceContainer from "@/app/cmsComponents/VerticalImageSliceTextSection/components/VerticalImageSliceContainer";
+import { buildVerticalImageSliceData } from "@/app/cmsComponents/VerticalImageSliceTextSection/utils/data";
 import TwoColumnWithSubSections from "@/app/cmsComponents/TwoColumnWithSubSections";
 import SubSectionsContainer from "@/app/cmsComponents/TwoColumnWithSubSections/components/SubSectionsContainer";
 import { buildTwoColumnWithSubSectionsData } from "@/app/cmsComponents/TwoColumnWithSubSections/utils/data";
@@ -48,6 +51,7 @@ export default function Home() {
   const twoColumnWithSubSectionsData = buildTwoColumnWithSubSectionsData(t);
   const serviceBenefitsData = buildServiceBenefitsData(t, lang);
   const bannerWithCTAsAndItemsData = buildBannerWithCTAsAndItemsData(t, lang);
+  const verticalImageSliceData = buildVerticalImageSliceData(t, lang);
 
   return (
     <main>
@@ -102,6 +106,13 @@ export default function Home() {
       <ServiceBenefitsContainer lang={lang} dir={dir}>
         <ServiceBenefitsList lang={lang} data={serviceBenefitsData} />
       </ServiceBenefitsContainer>
+
+      <VerticalImageSliceContainer lang={lang} dir={dir}>
+        <VerticalImageSliceTextSection
+          lang={lang}
+          data={verticalImageSliceData}
+        />
+      </VerticalImageSliceContainer>
     </main>
   );
 }

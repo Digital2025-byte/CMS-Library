@@ -95,6 +95,12 @@
     "ctaSlug": "book",
     "imageAlt": "Airplane wing above the clouds"
   },
+  "verticalImageSlice": {
+    "title": "Discover Our Travel Experience",
+    "highlightPhrase": "Travel Experience",
+    "description": "Every journey is crafted to feel personal — from thoughtful onboard details to destinations that stay with you long after you land.",
+    "imageAlt": "Traveler looking out at scenic mountain landscape"
+  },
   "serviceBenefits": {
     "mainTitle": "Service benefits",
     "imageAlt": "Travel experience banner",
