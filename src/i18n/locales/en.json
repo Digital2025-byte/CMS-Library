@@ -94,6 +94,24 @@
     "ctaHref": "#",
     "ctaSlug": "book",
     "imageAlt": "Airplane wing above the clouds"
+  },
+  "serviceBenefits": {
+    "mainTitle": "Service benefits",
+    "imageAlt": "Travel experience banner",
+    "benefits": [
+      {
+        "title": "Comfort",
+        "description": "Enjoy a smooth and relaxing journey with spacious seating and a stress-free ride from start to finish."
+      },
+      {
+        "title": "Luxury",
+        "description": "Travel in style with premium vehicles and a refined experience designed for your comfort and convenience."
+      },
+      {
+        "title": "Special prices",
+        "description": "Benefit from exclusive rates and great value for your airport transfers and private chauffeur service."
+      }
+    ]
   }
 }
 

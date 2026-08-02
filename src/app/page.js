@@ -25,6 +25,9 @@ import { buildTwoColumnIntroData } from "@/app/cmsComponents/TwoColumnIntroWithT
 import TwoColumnWithSubSections from "@/app/cmsComponents/TwoColumnWithSubSections";
 import SubSectionsContainer from "@/app/cmsComponents/TwoColumnWithSubSections/components/SubSectionsContainer";
 import { buildTwoColumnWithSubSectionsData } from "@/app/cmsComponents/TwoColumnWithSubSections/utils/data";
+import ServiceBenefitsList from "@/app/cmsComponents/ServiceBenefitsList";
+import ServiceBenefitsContainer from "@/app/cmsComponents/ServiceBenefitsList/components/ServiceBenefitsContainer";
+import { buildServiceBenefitsData } from "@/app/cmsComponents/ServiceBenefitsList/utils/data";
 import LanguageSwitcher from "@/i18n/LanguageSwitcher";
 import { isRtl } from "@/i18n/settings";
 
@@ -40,6 +43,7 @@ export default function Home() {
   const textWithBlobData = buildTextWithBlobData(t, lang);
   const twoColumnIntroData = buildTwoColumnIntroData(t);
   const twoColumnWithSubSectionsData = buildTwoColumnWithSubSectionsData(t);
+  const serviceBenefitsData = buildServiceBenefitsData(t, lang);
 
   return (
     <main>
@@ -83,6 +87,10 @@ export default function Home() {
           data={twoColumnWithSubSectionsData}
         />
       </SubSectionsContainer>
+
+      <ServiceBenefitsContainer lang={lang} dir={dir}>
+        <ServiceBenefitsList lang={lang} data={serviceBenefitsData} />
+      </ServiceBenefitsContainer>
     </main>
   );
 }
