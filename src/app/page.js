@@ -25,6 +25,21 @@ import { buildTwoColumnIntroData } from "@/app/cmsComponents/TwoColumnIntroWithT
 import VerticalImageSliceTextSection from "@/app/cmsComponents/VerticalImageSliceTextSection";
 import VerticalImageSliceContainer from "@/app/cmsComponents/VerticalImageSliceTextSection/components/VerticalImageSliceContainer";
 import { buildVerticalImageSliceData } from "@/app/cmsComponents/VerticalImageSliceTextSection/utils/data";
+import SplitTextOnly from "@/app/cmsComponents/SplitTextOnly";
+import SplitTextOnlyContainer from "@/app/cmsComponents/SplitTextOnly/components/SplitTextOnlyContainer";
+import { buildSplitTextOnlyData } from "@/app/cmsComponents/SplitTextOnly/utils/data";
+import TabbedCardsSection from "@/app/cmsComponents/TabbedCardsSection";
+import TabbedCardsContainer from "@/app/cmsComponents/TabbedCardsSection/components/TabbedCardsContainer";
+import { buildTabbedCardsData } from "@/app/cmsComponents/TabbedCardsSection/utils/data";
+import GridInfo from "@/app/cmsComponents/GridInfo";
+import GridInfoContainer from "@/app/cmsComponents/GridInfo/components/GridInfoContainer";
+import { buildGridInfoData } from "@/app/cmsComponents/GridInfo/utils/data";
+import SimpleGridWithPrefix from "@/app/cmsComponents/SimpleGridWithPrefix";
+import SimpleGridContainer from "@/app/cmsComponents/SimpleGridWithPrefix/components/SimpleGridContainer";
+import { buildSimpleGridWithPrefixData } from "@/app/cmsComponents/SimpleGridWithPrefix/utils/data";
+import MapInfo from "@/app/cmsComponents/MapInfo";
+import MapInfoContainer from "@/app/cmsComponents/MapInfo/components/MapInfoContainer";
+import { buildMapInfoData } from "@/app/cmsComponents/MapInfo/utils/data";
 import TwoColumnWithSubSections from "@/app/cmsComponents/TwoColumnWithSubSections";
 import SubSectionsContainer from "@/app/cmsComponents/TwoColumnWithSubSections/components/SubSectionsContainer";
 import { buildTwoColumnWithSubSectionsData } from "@/app/cmsComponents/TwoColumnWithSubSections/utils/data";
@@ -67,6 +82,11 @@ export default function Home() {
   const serviceBenefitsData = buildServiceBenefitsData(t, lang);
   const bannerWithCTAsAndItemsData = buildBannerWithCTAsAndItemsData(t, lang);
   const verticalImageSliceData = buildVerticalImageSliceData(t, lang);
+  const splitTextOnlyData = buildSplitTextOnlyData(t, lang);
+  const tabbedCardsData = buildTabbedCardsData(t, lang);
+  const gridInfoData = buildGridInfoData(t, lang);
+  const simpleGridWithPrefixData = buildSimpleGridWithPrefixData(t, lang);
+  const mapInfoData = buildMapInfoData(t, lang);
   const sectionWithAnimatedImagesData = buildSectionWithAnimatedImagesData(
     t,
     lang
@@ -138,6 +158,26 @@ export default function Home() {
           data={verticalImageSliceData}
         />
       </VerticalImageSliceContainer>
+
+      <SplitTextOnlyContainer lang={lang} dir={dir}>
+        <SplitTextOnly lang={lang} data={splitTextOnlyData} />
+      </SplitTextOnlyContainer>
+
+      <TabbedCardsContainer lang={lang} dir={dir}>
+        <TabbedCardsSection lang={lang} data={tabbedCardsData} />
+      </TabbedCardsContainer>
+
+      <GridInfoContainer lang={lang} dir={dir}>
+        <GridInfo lang={lang} data={gridInfoData} />
+      </GridInfoContainer>
+
+      <SimpleGridContainer lang={lang} dir={dir}>
+        <SimpleGridWithPrefix lang={lang} data={simpleGridWithPrefixData} />
+      </SimpleGridContainer>
+
+      <MapInfoContainer lang={lang} dir={dir}>
+        <MapInfo lang={lang} data={mapInfoData} />
+      </MapInfoContainer>
 
       <AnimatedImagesContainer lang={lang} dir={dir}>
         <SectionWithAnimatedImages
