@@ -140,6 +140,26 @@
     "title": "Follow our journey",
     "buttonText": "Follow on Instagram",
     "buttonLink": "https://www.instagram.com/"
+  },
+  "imageCarouselsWithOppositeScroll": {
+    "title": "Discover destinations",
+    "description": "Explore inspiring places and plan your next journey with Cham Wings.",
+    "exploreLabel": "Explore",
+    "exploreHref": "#",
+    "destinations": {
+      "maldives": "Maldives",
+      "venice": "Venice",
+      "dubai": "Dubai",
+      "paris": "Paris",
+      "barcelona": "Barcelona",
+      "rome": "Rome",
+      "istanbul": "Istanbul",
+      "marrakech": "Marrakech",
+      "cairo": "Cairo",
+      "nature": "Nature escapes",
+      "europe": "European cities",
+      "adventure": "Adventure"
+    }
   }
 }
 

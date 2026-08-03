@@ -37,6 +37,9 @@ import { buildBannerWithCTAsAndItemsData } from "@/app/cmsComponents/BannerWithC
 import SectionWithAnimatedImages from "@/app/cmsComponents/SectionWithAnimatedImages";
 import AnimatedImagesContainer from "@/app/cmsComponents/SectionWithAnimatedImages/components/AnimatedImagesContainer";
 import { buildSectionWithAnimatedImagesData } from "@/app/cmsComponents/SectionWithAnimatedImages/utils/data";
+import ImageCarouselsWithOppositeScrollDirections from "@/app/cmsComponents/ImageCarouselsWithOppositeScrollDirections";
+import OppositeScrollContainer from "@/app/cmsComponents/ImageCarouselsWithOppositeScrollDirections/components/OppositeScrollContainer";
+import { buildImageCarouselsWithOppositeScrollData } from "@/app/cmsComponents/ImageCarouselsWithOppositeScrollDirections/utils/data";
 import LanguageSwitcher from "@/i18n/LanguageSwitcher";
 import { isRtl } from "@/i18n/settings";
 
@@ -59,6 +62,8 @@ export default function Home() {
     t,
     lang
   );
+  const imageCarouselsWithOppositeScrollData =
+    buildImageCarouselsWithOppositeScrollData(t, lang);
 
   return (
     <main>
@@ -127,6 +132,13 @@ export default function Home() {
           data={sectionWithAnimatedImagesData}
         />
       </AnimatedImagesContainer>
+
+      <OppositeScrollContainer lang={lang} dir={dir}>
+        <ImageCarouselsWithOppositeScrollDirections
+          lang={lang}
+          data={imageCarouselsWithOppositeScrollData}
+        />
+      </OppositeScrollContainer>
     </main>
   );
 }

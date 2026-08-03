@@ -140,6 +140,26 @@
     "title": "شارك لحظات سفرك معنا",
     "buttonText": "تابعنا على إنستغرام",
     "buttonLink": "https://www.instagram.com/"
+  },
+  "imageCarouselsWithOppositeScroll": {
+    "title": "اكتشف الوجهات",
+    "description": "استكشف أماكن ملهمة وخطط لرحلتك القادمة مع أجنحة الشام.",
+    "exploreLabel": "اكتشف",
+    "exploreHref": "#",
+    "destinations": {
+      "maldives": "المالديف",
+      "venice": "البندقية",
+      "dubai": "دبي",
+      "paris": "باريس",
+      "barcelona": "برشلونة",
+      "rome": "روما",
+      "istanbul": "إسطنبول",
+      "marrakech": "مراكش",
+      "cairo": "القاهرة",
+      "nature": "ملاذات الطبيعة",
+      "europe": "مدن أوروبا",
+      "adventure": "مغامرة"
+    }
   }
 }
 
