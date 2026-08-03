@@ -8,7 +8,7 @@ export default function TabbedCardsCard({ card }) {
 
   return (
     <article className="relative flex h-full flex-col justify-start overflow-hidden rounded-2xl lg:overflow-visible lg:rounded-none">
-      <div className="relative h-[200px] w-full overflow-hidden rounded-t-2xl sm:h-[220px] lg:h-[250px] lg:rounded-2xl">
+      <div className="relative h-50 w-full overflow-hidden rounded-t-2xl sm:h-55 lg:h-62.5 lg:rounded-2xl">
         {card.imageSrc ? (
           <Image
             src={card.imageSrc}
