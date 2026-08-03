@@ -134,6 +134,108 @@
         ]
       }
     ]
+  },
+  "gridInfo": {
+    "title": "Our Branches",
+    "description": "Find FlyCham offices and get in touch with the team closest to you.",
+    "branches": [
+      {
+        "name": "Damascus Main Office",
+        "city": "Damascus",
+        "address": "Baghdad Street<br/>Damascus, Syria",
+        "phone": "+963 11 215 8121",
+        "email": "damascus@flycham.com",
+        "workingHoursText": "Sun – Thu: 9:00 AM – 6:00 PM<br/>Fri – Sat: Closed"
+      },
+      {
+        "name": "Damascus Airport Desk",
+        "city": "Damascus",
+        "address": "Damascus International Airport<br/>Departures Hall",
+        "phone": "+963 11 540 2200",
+        "email": "airport.dam@flycham.com",
+        "workingHoursText": "Daily: 8:00 AM – 10:00 PM"
+      },
+      {
+        "name": "Kafr Sousa Center",
+        "city": "Damascus",
+        "address": "Kafr Sousa<br/>Damascus, Syria",
+        "phone": "+963 11 214 5566",
+        "email": "kafrsousa@flycham.com",
+        "workingHoursText": "Sun – Thu: 10:00 AM – 6:00 PM"
+      },
+      {
+        "name": "Baramkeh Office",
+        "city": "Damascus",
+        "address": "Baramkeh Square<br/>Damascus, Syria",
+        "phone": "+963 11 221 7788",
+        "email": "baramkeh@flycham.com",
+        "workingHoursText": "Sun – Thu: 9:00 AM – 4:30 PM"
+      },
+      {
+        "name": "Midan Service Desk",
+        "city": "Damascus",
+        "address": "Midan<br/>Damascus, Syria",
+        "phone": "+963 11 441 2299",
+        "email": "midan@flycham.com",
+        "workingHoursText": "Sun – Thu: 9:00 AM – 5:00 PM"
+      },
+      {
+        "name": "Muhajireen Branch",
+        "city": "Damascus",
+        "address": "Muhajireen<br/>Damascus, Syria",
+        "phone": "+963 11 373 6600",
+        "email": "muhajireen@flycham.com",
+        "workingHoursText": "Sun – Thu: 9:00 AM – 5:00 PM"
+      },
+      {
+        "name": "Qudsiya Support Office",
+        "city": "Damascus",
+        "address": "Qudsiya<br/>Damascus Countryside",
+        "phone": "+963 11 390 1122",
+        "email": "qudsiya@flycham.com",
+        "workingHoursText": "Sun – Thu: 9:00 AM – 4:00 PM"
+      },
+      {
+        "name": "Aleppo City Office",
+        "city": "Aleppo",
+        "address": "Al Jamiliyah District<br/>Aleppo, Syria",
+        "phone": "+963 21 220 1144",
+        "email": "aleppo@flycham.com",
+        "workingHoursText": "Sun – Thu: 9:00 AM – 4:30 PM<br/>Fri – Sat: Closed"
+      },
+      {
+        "name": "Aleppo Support Center",
+        "city": "Aleppo",
+        "address": "University Square<br/>Aleppo, Syria",
+        "phone": "+963 21 330 7788",
+        "email": "support.aleppo@flycham.com",
+        "workingHoursText": "Sun – Thu: 10:00 AM – 6:00 PM"
+      },
+      {
+        "name": "Aziziyah Branch",
+        "city": "Aleppo",
+        "address": "Aziziyah<br/>Aleppo, Syria",
+        "phone": "+963 21 212 3344",
+        "email": "aziziyah@flycham.com",
+        "workingHoursText": "Sun – Thu: 9:00 AM – 5:00 PM"
+      },
+      {
+        "name": "Shahba Service Center",
+        "city": "Aleppo",
+        "address": "Shahba<br/>Aleppo, Syria",
+        "phone": "+963 21 268 9900",
+        "email": "shahba@flycham.com",
+        "workingHoursText": "Sun – Thu: 9:00 AM – 5:00 PM"
+      },
+      {
+        "name": "New Aleppo Office",
+        "city": "Aleppo",
+        "address": "New Aleppo<br/>Aleppo, Syria",
+        "phone": "+963 21 271 5566",
+        "email": "newaleppo@flycham.com",
+        "workingHoursText": "Sun – Thu: 10:00 AM – 6:00 PM"
+      }
+    ]
   }
 }
 

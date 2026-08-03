@@ -134,6 +134,108 @@
         ]
       }
     ]
+  },
+  "gridInfo": {
+    "title": "فروعنا",
+    "description": "اعثر على مكاتب فلاي شام وتواصل مع الفريق الأقرب إليك.",
+    "branches": [
+      {
+        "name": "المكتب الرئيسي في دمشق",
+        "city": "دمشق",
+        "address": "شارع بغداد<br/>دمشق، سوريا",
+        "phone": "+963 11 215 8121",
+        "email": "damascus@flycham.com",
+        "workingHoursText": "الأحد – الخميس: 9:00 ص – 6:00 م<br/>الجمعة – السبت: مغلق"
+      },
+      {
+        "name": "مكتب مطار دمشق",
+        "city": "دمشق",
+        "address": "مطار دمشق الدولي<br/>صالة المغادرين",
+        "phone": "+963 11 540 2200",
+        "email": "airport.dam@flycham.com",
+        "workingHoursText": "يومياً: 8:00 ص – 10:00 م"
+      },
+      {
+        "name": "مركز كفر سوسة",
+        "city": "دمشق",
+        "address": "كفر سوسة<br/>دمشق، سوريا",
+        "phone": "+963 11 214 5566",
+        "email": "kafrsousa@flycham.com",
+        "workingHoursText": "الأحد – الخميس: 10:00 ص – 6:00 م"
+      },
+      {
+        "name": "مكتب البرامكة",
+        "city": "دمشق",
+        "address": "ساحة البرامكة<br/>دمشق، سوريا",
+        "phone": "+963 11 221 7788",
+        "email": "baramkeh@flycham.com",
+        "workingHoursText": "الأحد – الخميس: 9:00 ص – 4:30 م"
+      },
+      {
+        "name": "مكتب خدمة الميدان",
+        "city": "دمشق",
+        "address": "الميدان<br/>دمشق، سوريا",
+        "phone": "+963 11 441 2299",
+        "email": "midan@flycham.com",
+        "workingHoursText": "الأحد – الخميس: 9:00 ص – 5:00 م"
+      },
+      {
+        "name": "فرع المهاجرين",
+        "city": "دمشق",
+        "address": "المهاجرين<br/>دمشق، سوريا",
+        "phone": "+963 11 373 6600",
+        "email": "muhajireen@flycham.com",
+        "workingHoursText": "الأحد – الخميس: 9:00 ص – 5:00 م"
+      },
+      {
+        "name": "مكتب دعم قدسيا",
+        "city": "دمشق",
+        "address": "قدسيا<br/>ريف دمشق",
+        "phone": "+963 11 390 1122",
+        "email": "qudsiya@flycham.com",
+        "workingHoursText": "الأحد – الخميس: 9:00 ص – 4:00 م"
+      },
+      {
+        "name": "مكتب مدينة حلب",
+        "city": "حلب",
+        "address": "حي الجميلية<br/>حلب، سوريا",
+        "phone": "+963 21 220 1144",
+        "email": "aleppo@flycham.com",
+        "workingHoursText": "الأحد – الخميس: 9:00 ص – 4:30 م<br/>الجمعة – السبت: مغلق"
+      },
+      {
+        "name": "مركز دعم حلب",
+        "city": "حلب",
+        "address": "ساحة الجامعة<br/>حلب، سوريا",
+        "phone": "+963 21 330 7788",
+        "email": "support.aleppo@flycham.com",
+        "workingHoursText": "الأحد – الخميس: 10:00 ص – 6:00 م"
+      },
+      {
+        "name": "فرع العزيزية",
+        "city": "حلب",
+        "address": "العزيزية<br/>حلب، سوريا",
+        "phone": "+963 21 212 3344",
+        "email": "aziziyah@flycham.com",
+        "workingHoursText": "الأحد – الخميس: 9:00 ص – 5:00 م"
+      },
+      {
+        "name": "مركز خدمة الشهباء",
+        "city": "حلب",
+        "address": "الشهباء<br/>حلب، سوريا",
+        "phone": "+963 21 268 9900",
+        "email": "shahba@flycham.com",
+        "workingHoursText": "الأحد – الخميس: 9:00 ص – 5:00 م"
+      },
+      {
+        "name": "مكتب حلب الجديدة",
+        "city": "حلب",
+        "address": "حلب الجديدة<br/>حلب، سوريا",
+        "phone": "+963 21 271 5566",
+        "email": "newaleppo@flycham.com",
+        "workingHoursText": "الأحد – الخميس: 10:00 ص – 6:00 م"
+      }
+    ]
   }
 }
 

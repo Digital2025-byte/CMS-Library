@@ -31,6 +31,9 @@ import { buildSplitTextOnlyData } from "@/app/cmsComponents/SplitTextOnly/utils/
 import TabbedCardsSection from "@/app/cmsComponents/TabbedCardsSection";
 import TabbedCardsContainer from "@/app/cmsComponents/TabbedCardsSection/components/TabbedCardsContainer";
 import { buildTabbedCardsData } from "@/app/cmsComponents/TabbedCardsSection/utils/data";
+import GridInfo from "@/app/cmsComponents/GridInfo";
+import GridInfoContainer from "@/app/cmsComponents/GridInfo/components/GridInfoContainer";
+import { buildGridInfoData } from "@/app/cmsComponents/GridInfo/utils/data";
 import LanguageSwitcher from "@/i18n/LanguageSwitcher";
 import { isRtl } from "@/i18n/settings";
 
@@ -48,6 +51,7 @@ export default function Home() {
   const verticalImageSliceData = buildVerticalImageSliceData(t, lang);
   const splitTextOnlyData = buildSplitTextOnlyData(t, lang);
   const tabbedCardsData = buildTabbedCardsData(t, lang);
+  const gridInfoData = buildGridInfoData(t, lang);
 
   return (
     <main>
@@ -99,6 +103,10 @@ export default function Home() {
       <TabbedCardsContainer lang={lang} dir={dir}>
         <TabbedCardsSection lang={lang} data={tabbedCardsData} />
       </TabbedCardsContainer>
+
+      <GridInfoContainer lang={lang} dir={dir}>
+        <GridInfo lang={lang} data={gridInfoData} />
+      </GridInfoContainer>
     </main>
   );
 }
