@@ -30,13 +30,13 @@ export default function AnimatedFallingCards({ images = [] }) {
       for (let i = 0; i < numCards; i += 1) {
         const randomImage =
           currentImages[Math.floor(Math.random() * currentImages.length)];
-        const horizontalPosition = 5 + Math.random() * 90;
         const startDelay = numCards === 2 && i === 1 ? 0.8 : Math.random() * 0.3;
 
         newCards.push({
           id: cardIdRef.current++,
           image: randomImage,
-          horizontalPosition,
+          // Left edge as % of track (0–78 leaves room for the card width)
+          leftPct: Math.random() * 78,
           startDelay,
         });
       }
@@ -44,22 +44,29 @@ export default function AnimatedFallingCards({ images = [] }) {
       setActiveCards((prev) => [...prev, ...newCards]);
     };
 
-    spawnCards();
+    // Wait one frame so the padded track has a real layout size
+    let cancelled = false;
+    const startId = requestAnimationFrame(() => {
+      if (cancelled) return;
+      spawnCards();
 
-    const scheduleNext = () => {
-      const nextDelay = 2500 + Math.random() * 1500;
-      spawnTimeoutRef.current = setTimeout(() => {
-        spawnCards();
-        scheduleNext();
-      }, nextDelay);
-    };
+      const scheduleNext = () => {
+        const nextDelay = 2500 + Math.random() * 1500;
+        spawnTimeoutRef.current = setTimeout(() => {
+          spawnCards();
+          scheduleNext();
+        }, nextDelay);
+      };
 
-    spawnTimeoutRef.current = setTimeout(
-      scheduleNext,
-      2500 + Math.random() * 1500
-    );
+      spawnTimeoutRef.current = setTimeout(
+        scheduleNext,
+        2500 + Math.random() * 1500
+      );
+    });
 
     return () => {
+      cancelled = true;
+      cancelAnimationFrame(startId);
       if (spawnTimeoutRef.current) {
         clearTimeout(spawnTimeoutRef.current);
       }
@@ -71,48 +78,53 @@ export default function AnimatedFallingCards({ images = [] }) {
   }
 
   return (
-    <div ref={sectionRef} className="pointer-events-none absolute inset-0 z-1">
-      <AnimatePresence>
-        {activeCards.map((card) => {
-          const sectionHeight = sectionRef.current?.offsetHeight || 700;
+    <div className="pointer-events-none absolute inset-0 z-1 px-4 sm:px-6 lg:px-12">
+      <div
+        ref={sectionRef}
+        className="relative mx-auto h-full w-full max-w-7xl overflow-hidden"
+      >
+        <AnimatePresence>
+          {activeCards.map((card) => {
+            const sectionHeight = sectionRef.current?.offsetHeight || 700;
 
-          return (
-            <motion.div
-              key={card.id}
-              initial={{ y: -150, opacity: 0 }}
-              animate={{
-                y: sectionHeight + 150,
-                opacity: [0, 1, 1, 0.9, 0],
-              }}
-              exit={{ opacity: 0 }}
-              transition={{
-                duration: 6,
-                delay: card.startDelay || 0,
-                ease: fallingCardEasing,
-                times: [0, 0.1, 0.5, 0.9, 1],
-              }}
-              onAnimationComplete={() => removeCard(card.id)}
-              className="absolute"
-              style={{
-                left: `${card.horizontalPosition}%`,
-                transform: "translateX(-50%)",
-              }}
-            >
-              <div className="h-36 w-28 overflow-hidden rounded-4xl bg-background shadow-xl md:h-48 md:w-36 lg:h-52 lg:w-40">
-                <Image
-                  src={card.image?.src}
-                  alt={card.image?.alt || "Travel experience"}
-                  width={160}
-                  height={208}
-                  className="h-full w-full object-cover"
-                  sizes="160px"
-                  quality={75}
-                />
+            return (
+              <div
+                key={card.id}
+                className="absolute top-0"
+                style={{ left: `${card.leftPct}%` }}
+              >
+                <motion.div
+                  initial={{ y: -150, opacity: 0 }}
+                  animate={{
+                    y: sectionHeight + 150,
+                    opacity: [0, 1, 1, 0.9, 0],
+                  }}
+                  exit={{ opacity: 0 }}
+                  transition={{
+                    duration: 6,
+                    delay: card.startDelay || 0,
+                    ease: fallingCardEasing,
+                    times: [0, 0.1, 0.5, 0.9, 1],
+                  }}
+                  onAnimationComplete={() => removeCard(card.id)}
+                >
+                  <div className="h-36 w-28 overflow-hidden rounded-4xl bg-background shadow-xl md:h-48 md:w-36 lg:h-52 lg:w-40">
+                    <Image
+                      src={card.image?.src}
+                      alt={card.image?.alt || "Travel experience"}
+                      width={160}
+                      height={208}
+                      className="h-full w-full object-cover"
+                      sizes="160px"
+                      quality={75}
+                    />
+                  </div>
+                </motion.div>
               </div>
-            </motion.div>
-          );
-        })}
-      </AnimatePresence>
+            );
+          })}
+        </AnimatePresence>
+      </div>
     </div>
   );
 }
