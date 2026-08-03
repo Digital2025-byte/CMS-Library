@@ -60,11 +60,11 @@ export default function CustomCard({
       </div>
 
       <div
-        className="absolute inset-x-0 bottom-0 p-4 sm:p-5"
+        className="absolute inset-x-0 bottom-0  lg:bottom-10 p-4 sm:p-5"
         dir={lang === "ar" ? "rtl" : "ltr"}
       >
         <div
-          className={`${typography.itemTitle} font-semibold text-50 transition-all duration-500 opacity-0 translate-y-0 scale-100 lg:opacity-100 lg:group-hover:opacity-0 lg:group-hover:scale-90 lg:group-hover:-translate-y-10`}
+          className={`${typography.itemTitle} font-semibold text-50 transition-all duration-600 opacity-0 translate-y-0 scale-100 lg:opacity-100 lg:group-hover:opacity-0 lg:group-hover:scale-70 lg:group-hover:-translate-y-20`}
           style={{ textShadow: "0 4px 8px rgb(0 0 0 / 0.45)" }}
         >
           {CityName}

@@ -190,6 +190,32 @@
       "saudi": "Saudi Arabia",
       "jordan": "Jordan"
     }
+  },
+  "dualImageText": {
+    "towards": {
+      "itemOne": {
+        "title": "Discover new horizons",
+        "description": "Every route is designed to connect you with places that inspire — from vibrant cities to quiet coastal escapes.",
+        "imageAlt": "Traveler exploring a scenic destination"
+      },
+      "itemTwo": {
+        "title": "Travel with confidence",
+        "description": "Thoughtful service and carefully planned journeys help you focus on the moments that matter most.",
+        "imageAlt": "Tropical beach destination"
+      }
+    },
+    "training": {
+      "itemOne": {
+        "title": "Training excellence",
+        "description": "Our programs help teams grow with practical skills, modern tools, and real-world travel operations experience.",
+        "imageAlt": "Training session in a modern classroom"
+      },
+      "itemTwo": {
+        "title": "Towards your goals",
+        "description": "Build confidence step by step with guided learning paths tailored for airline and hospitality careers.",
+        "imageAlt": "Person studying and planning goals"
+      }
+    }
   }
 }
 

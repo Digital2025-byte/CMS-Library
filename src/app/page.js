@@ -46,6 +46,9 @@ import { buildHeaderWithThreeImageData } from "@/app/cmsComponents/HeaderWithThr
 import PhotoTileGrid from "@/app/cmsComponents/PhotoTileGrid";
 import PhotoTileGridContainer from "@/app/cmsComponents/PhotoTileGrid/components/PhotoTileGridContainer";
 import { buildPhotoTileGridData } from "@/app/cmsComponents/PhotoTileGrid/utils/data";
+import DualImageText from "@/app/cmsComponents/DualImageText";
+import DualImageTextContainer from "@/app/cmsComponents/DualImageText/components/DualImageTextContainer";
+import { buildDualImageTextData } from "@/app/cmsComponents/DualImageText/utils/data";
 import LanguageSwitcher from "@/i18n/LanguageSwitcher";
 import { isRtl } from "@/i18n/settings";
 
@@ -72,6 +75,8 @@ export default function Home() {
     buildImageCarouselsWithOppositeScrollData(t, lang);
   const headerWithThreeImageData = buildHeaderWithThreeImageData(t, lang);
   const photoTileGridData = buildPhotoTileGridData(t, lang);
+  const dualImageTextData = buildDualImageTextData(t, lang, "towards");
+  const dualImageTrainingData = buildDualImageTextData(t, lang, "training");
 
   return (
     <main>
@@ -155,6 +160,14 @@ export default function Home() {
       <PhotoTileGridContainer lang={lang} dir={dir}>
         <PhotoTileGrid lang={lang} data={photoTileGridData} />
       </PhotoTileGridContainer>
+
+      <DualImageTextContainer lang={lang} dir={dir}>
+        <DualImageText lang={lang} data={dualImageTextData} />
+      </DualImageTextContainer>
+
+      <DualImageTextContainer lang={lang} dir={dir}>
+        <DualImageText lang={lang} data={dualImageTrainingData} />
+      </DualImageTextContainer>
     </main>
   );
 }
