@@ -22,6 +22,7 @@ export default function DestinationImageCard({ item, w, h }) {
       />
 
       <div className={styles.overlay} />
+      <div className={styles.cardDim} aria-hidden />
 
       {item.title ? (
         <div className={styles.titleWrap}>
