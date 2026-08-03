@@ -88,6 +88,52 @@
     "title": "Where Every Journey Begins",
     "description": "From the first booking to the final landing, we shape travel moments that feel calm, clear, and memorable.",
     "imageAlt": "Scenic aerial view of coastline and travel destination"
+  },
+  "tabbedCards": {
+    "title": "Cabin Seat Experience",
+    "subtitle": "Comfort designed for every journey",
+    "tabs": [
+      {
+        "label": "Economy",
+        "cards": [
+          {
+            "title": "Relaxed seating",
+            "description": "Enjoy a comfortable cabin layout with thoughtful space for a smoother, more enjoyable flight.",
+            "imageAlt": "Passenger seated in economy cabin"
+          },
+          {
+            "title": "Thoughtful comfort",
+            "description": "From seating support to cabin ambience, every detail is designed for everyday travelers.",
+            "imageAlt": "Economy cabin seating row"
+          },
+          {
+            "title": "Ready for takeoff",
+            "description": "Settle in easily and travel with calm confidence from boarding to landing.",
+            "imageAlt": "Airplane cabin ready for boarding"
+          }
+        ]
+      },
+      {
+        "label": "Business",
+        "cards": [
+          {
+            "title": "A premium experience",
+            "description": "Experience elevated comfort with refined seating, personal space, and a calm cabin atmosphere.",
+            "imageAlt": "Passenger relaxing in business class seat"
+          },
+          {
+            "title": "Extra personal space",
+            "description": "Stretch out and unwind with seating designed for privacy, rest, and effortless travel.",
+            "imageAlt": "Spacious business class seat"
+          },
+          {
+            "title": "Refined onboard calm",
+            "description": "Travel with quiet luxury and attentive comfort throughout your journey.",
+            "imageAlt": "Business cabin interior ambience"
+          }
+        ]
+      }
+    ]
   }
 }
 

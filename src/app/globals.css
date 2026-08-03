@@ -5,9 +5,11 @@
   --color-primary-2: #b5a684;
   --color-primary-ring: #5393c8;
   --color-secondary-2: #13364b;
+  --color-secondary-1: #01263b;
   --color-secondary-100: #ffffff;
   --color-accent-1: #b5a684;
   --color-surface-1: #f5f5f5;
+  --color-surface-2: #e5e5e3;
   --color-body: #3e3e3b;
   --color-muted: #5f5f5c;
   --font-sans: var(--font-geist-sans), sans-serif;
