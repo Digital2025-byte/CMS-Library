@@ -51,6 +51,7 @@ import DualImageTextContainer from "@/app/cmsComponents/DualImageText/components
 import { buildDualImageTextData } from "@/app/cmsComponents/DualImageText/utils/data";
 import LanguageSwitcher from "@/i18n/LanguageSwitcher";
 import { isRtl } from "@/i18n/settings";
+import PageContentContainer from "@/components/layout/PageContentContainer";
 
 export default function Home() {
   const { t, i18n } = useTranslation();
@@ -81,9 +82,9 @@ export default function Home() {
   return (
     <main>
       <div className="w-full bg-100 pt-4">
-        <div className="mx-auto flex w-full max-w-7xl justify-end px-4 sm:px-6 lg:px-12">
+        <PageContentContainer className="flex justify-end">
           <LanguageSwitcher />
-        </div>
+        </PageContentContainer>
       </div>
 
       <BannerWithCTAsAndItemsContainer lang={lang} dir={dir}>

@@ -1,5 +1,6 @@
 import { typography } from "@/styles/typography";
 import AnimatedImagesCta from "./AnimatedImagesCta";
+import PageContentContainer from "@/components/layout/PageContentContainer";
 
 export default function AnimatedImagesContent({
   preTitle,
@@ -10,7 +11,7 @@ export default function AnimatedImagesContent({
   cId,
 }) {
   return (
-    <div className="relative z-10 flex flex-1 flex-col items-center justify-center px-4 py-16 text-center sm:px-6 md:px-8 md:py-20 lg:py-24">
+    <PageContentContainer className="relative z-10 flex flex-1 flex-col items-center justify-center py-16 text-center md:py-20 lg:py-24">
       {preTitle ? (
         <p className={`${typography.sectionDescription} mb-2 text-primary-1 md:mb-3`}>
           {preTitle}
@@ -29,6 +30,6 @@ export default function AnimatedImagesContent({
         iconType={iconType}
         cId={cId}
       />
-    </div>
+    </PageContentContainer>
   );
 }

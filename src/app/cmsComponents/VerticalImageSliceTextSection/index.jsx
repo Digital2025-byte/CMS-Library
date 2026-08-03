@@ -20,7 +20,7 @@ const VerticalImageSliceTextSection = ({ lang = "en", data }) => {
   }
 
   return (
-    <div className="grid w-full max-w-7xl grid-cols-1 items-center gap-6 overflow-visible sm:gap-8 lg:grid-cols-2 lg:gap-12 xl:gap-2">
+    <div className="grid w-full grid-cols-1 items-center gap-6 overflow-visible sm:gap-8 lg:grid-cols-2 lg:gap-12 xl:gap-2">
       <VerticalImageSliceText
         firstPart={firstPart}
         highlightPart={highlightPart}

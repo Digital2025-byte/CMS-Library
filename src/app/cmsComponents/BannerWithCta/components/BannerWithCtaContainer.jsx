@@ -1,3 +1,5 @@
+import PageContentContainer from "@/components/layout/PageContentContainer";
+
 export default function BannerWithCtaContainer({ lang, dir, children }) {
   return (
     <div
@@ -5,9 +7,9 @@ export default function BannerWithCtaContainer({ lang, dir, children }) {
       lang={lang}
       dir={dir || (lang === "ar" ? "rtl" : "ltr")}
     >
-      <section className="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 lg:px-8 lg:py-10">
+      <PageContentContainer as="section" className="py-6 sm:py-8 lg:py-10">
         {children}
-      </section>
+      </PageContentContainer>
     </div>
   );
 }

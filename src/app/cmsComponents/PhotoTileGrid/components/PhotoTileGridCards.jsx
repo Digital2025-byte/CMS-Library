@@ -10,7 +10,7 @@ export default function PhotoTileGridCards({
   }
 
   return (
-    <div className="mx-auto grid w-full max-w-7xl grid-cols-1 gap-4 px-4 py-4 sm:grid-cols-2 sm:gap-6 sm:px-6 lg:grid-cols-3 lg:gap-8 lg:px-12">
+    <div className="mt-4 grid w-full grid-cols-1 gap-4 py-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 lg:gap-8">
       {destinations.map((card) => (
         <CustomCard
           key={`${card.cityName}-${card.iataCode}-${card.imageUrl}`}

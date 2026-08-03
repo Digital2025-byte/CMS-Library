@@ -1,3 +1,5 @@
+import PageContentContainer from "@/components/layout/PageContentContainer";
+
 export default function SubSectionsContainer({ lang, dir, children }) {
   return (
     <div
@@ -5,9 +7,12 @@ export default function SubSectionsContainer({ lang, dir, children }) {
       lang={lang}
       dir={dir || (lang === "ar" ? "rtl" : "ltr")}
     >
-      <section className="mx-auto w-full max-w-7xl overflow-visible px-5 py-10 sm:px-6 sm:py-14 lg:px-8 lg:py-16">
+      <PageContentContainer
+        as="section"
+        className="overflow-visible py-10 sm:py-14 lg:py-16"
+      >
         {children}
-      </section>
+      </PageContentContainer>
     </div>
   );
 }

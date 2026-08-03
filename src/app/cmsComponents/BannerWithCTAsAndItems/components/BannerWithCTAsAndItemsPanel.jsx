@@ -1,4 +1,5 @@
 import CustomBackgroundImage from "@/components/ui/CustomBackgroundImage";
+import PageContentContainer from "@/components/layout/PageContentContainer";
 import BannerWithCTAsAndItemsContent from "./BannerWithCTAsAndItemsContent";
 
 export default function BannerWithCTAsAndItemsPanel({
@@ -19,8 +20,7 @@ export default function BannerWithCTAsAndItemsPanel({
       lang={lang}
       className="w-full min-h-[52vh] sm:min-h-[48vh] lg:min-h-[56vh]"
     >
-      {/* Same horizontal shell as AccordionContainer (inlined for Tailwind detection) */}
-      <div className="mx-auto flex min-h-[52vh] w-full max-w-7xl items-center px-4 sm:min-h-[48vh] sm:px-6 lg:min-h-[56vh] lg:px-12">
+      <PageContentContainer className="flex min-h-[52vh] items-center sm:min-h-[48vh] lg:min-h-[56vh]">
         <BannerWithCTAsAndItemsContent
           title={title}
           description={description}
@@ -30,7 +30,7 @@ export default function BannerWithCTAsAndItemsPanel({
           secondaryLabel={secondaryLabel}
           secondaryHref={secondaryHref}
         />
-      </div>
+      </PageContentContainer>
     </CustomBackgroundImage>
   );
 }

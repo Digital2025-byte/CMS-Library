@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
+import { pageContentPadding } from "@/styles/layout";
 import { fallingCardEasing } from "../utils/easing";
 
 export default function AnimatedFallingCards({ images = [] }) {
@@ -78,7 +79,7 @@ export default function AnimatedFallingCards({ images = [] }) {
   }
 
   return (
-    <div className="pointer-events-none absolute inset-0 z-1 px-4 sm:px-6 lg:px-12">
+    <div className={`pointer-events-none absolute inset-0 z-1 ${pageContentPadding}`}>
       <div
         ref={sectionRef}
         className="relative mx-auto h-full w-full max-w-7xl overflow-hidden"

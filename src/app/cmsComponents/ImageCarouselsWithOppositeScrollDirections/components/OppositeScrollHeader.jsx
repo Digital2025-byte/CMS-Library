@@ -1,4 +1,5 @@
 import { typography } from "@/styles/typography";
+import PageContentContainer from "@/components/layout/PageContentContainer";
 
 export default function OppositeScrollHeader({ title, description }) {
   if (!title && !description) {
@@ -6,7 +7,7 @@ export default function OppositeScrollHeader({ title, description }) {
   }
 
   return (
-    <div className="mb-8 flex flex-col items-center justify-center px-4 text-center sm:px-6 lg:px-12">
+    <PageContentContainer className="mb-8 flex flex-col items-center justify-center text-center">
       {title ? (
         <h2 className={`${typography.sectionTitle} font-bold text-white`}>
           {title}
@@ -17,6 +18,6 @@ export default function OppositeScrollHeader({ title, description }) {
           {description}
         </p>
       ) : null}
-    </div>
+    </PageContentContainer>
   );
 }

@@ -1,4 +1,5 @@
 import { typography } from "@/styles/typography";
+import PageContentContainer from "@/components/layout/PageContentContainer";
 
 export default function HeaderWithThreeImageContent({
   lang = "en",
@@ -10,8 +11,8 @@ export default function HeaderWithThreeImageContent({
   }
 
   return (
-    <div
-      className="relative z-10 mx-auto flex w-full max-w-7xl items-start justify-start px-4 sm:px-6 lg:items-center lg:px-12"
+    <PageContentContainer
+      className="relative z-10 flex items-start justify-start lg:items-center"
       dir={lang === "ar" ? "rtl" : "ltr"}
     >
       <div className="p-1">
@@ -28,6 +29,6 @@ export default function HeaderWithThreeImageContent({
           </p>
         ) : null}
       </div>
-    </div>
+    </PageContentContainer>
   );
 }

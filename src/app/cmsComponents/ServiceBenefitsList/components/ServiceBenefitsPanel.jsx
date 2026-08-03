@@ -8,7 +8,7 @@ export default function ServiceBenefitsPanel({
   benefits = [],
 }) {
   return (
-    <div className="relative mx-auto w-full max-w-7xl overflow-hidden rounded-xl md:min-h-64 lg:min-h-72">
+    <div className="relative w-full overflow-hidden rounded-xl md:min-h-64 lg:min-h-72">
       {backgroundImage ? (
         <Image
           src={backgroundImage}
