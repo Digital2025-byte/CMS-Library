@@ -206,14 +206,14 @@
     },
     "training": {
       "itemOne": {
-        "title": "Training excellence",
-        "description": "Our programs help teams grow with practical skills, modern tools, and real-world travel operations experience.",
-        "imageAlt": "Training session in a modern classroom"
+        "title": "Towards Our Passengers",
+        "description": "At Cham Wings Airlines, we strive to make every journey more than just a flight. We are dedicated to providing a warm, welcoming atmosphere and exceptional care that makes every passenger feel valued and at ease. From the moment you book until you reach your destination, our commitment is to turn every trip into a memorable experience filled with comfort and hospitality.",
+        "imageAlt": "Young passenger waving onboard an aircraft"
       },
       "itemTwo": {
-        "title": "Towards your goals",
-        "description": "Build confidence step by step with guided learning paths tailored for airline and hospitality careers.",
-        "imageAlt": "Person studying and planning goals"
+        "title": "Towards the Syrian Community",
+        "description": "As Syria's national airline, Cham Wings carries a responsibility that goes beyond aviation. We are proud to connect Syrians at home and abroad, supporting families, culture, and opportunities through reliable routes and thoughtful service that reflects our shared identity.",
+        "imageAlt": "Flight attendant presenting flower bouquets"
       }
     }
   }

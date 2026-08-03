@@ -6,6 +6,11 @@ import { motion, useInView } from "framer-motion";
 import PageContentContainer from "@/components/layout/PageContentContainer";
 import { typography } from "@/styles/typography";
 
+function imageSrc(url) {
+  if (!url) return "";
+  return String(url).startsWith("http") ? encodeURI(url) : url;
+}
+
 export default function TowardsSection({ lang = "en", items = [] }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { amount: 0.5, once: false });
@@ -44,7 +49,7 @@ export default function TowardsSection({ lang = "en", items = [] }) {
           <div className="order-1 flex max-w-xl justify-center py-6 lg:order-2">
             {first.imageUrl ? (
               <Image
-                src={encodeURI(first.imageUrl)}
+                src={imageSrc(first.imageUrl)}
                 alt={first.imageAlt}
                 width={1000}
                 height={1000}
@@ -58,7 +63,7 @@ export default function TowardsSection({ lang = "en", items = [] }) {
           <div className="order-3 flex max-w-xl justify-center py-6 lg:order-3">
             {second.imageUrl ? (
               <Image
-                src={encodeURI(second.imageUrl)}
+                src={imageSrc(second.imageUrl)}
                 alt={second.imageAlt}
                 width={1000}
                 height={1000}
