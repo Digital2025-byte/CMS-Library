@@ -160,6 +160,13 @@
       "europe": "European cities",
       "adventure": "Adventure"
     }
+  },
+  "headerWithThreeImage": {
+    "title": "Fly further with Cham Wings",
+    "description": "From takeoff to landing, discover destinations shaped by comfort, culture, and unforgettable views.",
+    "imageOneAlt": "Airplane wing above the clouds",
+    "imageTwoAlt": "Traveler exploring the city",
+    "imageThreeAlt": "Tropical beach destination"
   }
 }
 
