@@ -36,7 +36,7 @@ export default function TabbedCardsCard({ card }) {
         ) : null}
         {card.description ? (
           <p
-            className={`${typography.itemDescription} font-normal leading-relaxed text-white/90 lg:text-muted`}
+            className={`${typography.itemDescription} font-normal leading-relaxed text-black/80`}
           >
             {card.description}
           </p>
