@@ -43,6 +43,9 @@ import { buildImageCarouselsWithOppositeScrollData } from "@/app/cmsComponents/I
 import HeaderWithThreeImage from "@/app/cmsComponents/HeaderWithThreeImage";
 import HeaderWithThreeImageContainer from "@/app/cmsComponents/HeaderWithThreeImage/components/HeaderWithThreeImageContainer";
 import { buildHeaderWithThreeImageData } from "@/app/cmsComponents/HeaderWithThreeImage/utils/data";
+import PhotoTileGrid from "@/app/cmsComponents/PhotoTileGrid";
+import PhotoTileGridContainer from "@/app/cmsComponents/PhotoTileGrid/components/PhotoTileGridContainer";
+import { buildPhotoTileGridData } from "@/app/cmsComponents/PhotoTileGrid/utils/data";
 import LanguageSwitcher from "@/i18n/LanguageSwitcher";
 import { isRtl } from "@/i18n/settings";
 
@@ -68,6 +71,7 @@ export default function Home() {
   const imageCarouselsWithOppositeScrollData =
     buildImageCarouselsWithOppositeScrollData(t, lang);
   const headerWithThreeImageData = buildHeaderWithThreeImageData(t, lang);
+  const photoTileGridData = buildPhotoTileGridData(t, lang);
 
   return (
     <main>
@@ -147,6 +151,10 @@ export default function Home() {
       <HeaderWithThreeImageContainer lang={lang} dir={dir}>
         <HeaderWithThreeImage lang={lang} data={headerWithThreeImageData} />
       </HeaderWithThreeImageContainer>
+
+      <PhotoTileGridContainer lang={lang} dir={dir}>
+        <PhotoTileGrid lang={lang} data={photoTileGridData} />
+      </PhotoTileGridContainer>
     </main>
   );
 }

@@ -167,6 +167,29 @@
     "imageOneAlt": "جناح طائرة فوق السحب",
     "imageTwoAlt": "مسافر يستكشف المدينة",
     "imageThreeAlt": "وجهة شاطئية استوائية"
+  },
+  "photoTileGrid": {
+    "title": "جميع الوجهات",
+    "discover": "اكتشف",
+    "cities": {
+      "dubai": "دبي",
+      "abuDhabi": "أبو ظبي",
+      "sharjah": "الشارقة",
+      "kuwait": "الكويت",
+      "muscat": "مسقط",
+      "doha": "الدوحة",
+      "riyadh": "الرياض",
+      "jeddah": "جدة",
+      "amman": "عمّان"
+    },
+    "countries": {
+      "uae": "الإمارات العربية المتحدة",
+      "kuwait": "الكويت",
+      "oman": "عُمان",
+      "qatar": "قطر",
+      "saudi": "المملكة العربية السعودية",
+      "jordan": "الأردن"
+    }
   }
 }
 

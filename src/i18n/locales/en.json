@@ -167,6 +167,29 @@
     "imageOneAlt": "Airplane wing above the clouds",
     "imageTwoAlt": "Traveler exploring the city",
     "imageThreeAlt": "Tropical beach destination"
+  },
+  "photoTileGrid": {
+    "title": "All destinations",
+    "discover": "Discover",
+    "cities": {
+      "dubai": "Dubai",
+      "abuDhabi": "Abu Dhabi",
+      "sharjah": "Sharjah",
+      "kuwait": "Kuwait",
+      "muscat": "Muscat",
+      "doha": "Doha",
+      "riyadh": "Riyadh",
+      "jeddah": "Jeddah",
+      "amman": "Amman"
+    },
+    "countries": {
+      "uae": "United Arab Emirates",
+      "kuwait": "Kuwait",
+      "oman": "Oman",
+      "qatar": "Qatar",
+      "saudi": "Saudi Arabia",
+      "jordan": "Jordan"
+    }
   }
 }
 
