@@ -1,4 +1,4 @@
-import AnimatedCTAButton from "@/components/ui/AnimatedCTAButton";
+import Button from "@/components/ui/Button";
 import SubSectionBlock from "./SubSectionBlock";
 import SubSectionsHeader from "./SubSectionsHeader";
 
@@ -11,6 +11,8 @@ export default function SubSectionsContent({
   secondSubSection,
   ctaButton,
   ctaHref,
+  ctaIcon,
+  cId,
 }) {
   return (
     <div className="flex w-full flex-col justify-center gap-6 lg:w-[52%] lg:gap-8 lg:ps-4 xl:ps-8">
@@ -36,16 +38,11 @@ export default function SubSectionsContent({
 
       {ctaButton ? (
         <div className="min-h-12">
-          <AnimatedCTAButton
-            lang={lang}
+          <Button
             label={ctaButton}
             href={ctaHref || "#"}
-            arrowColor="var(--color-background)"
-            textColor="var(--color-primary-1)"
-            bgColor="var(--color-primary-1)"
-            bgFillColor="var(--color-primary-1)"
-            textFillColor="var(--color-background)"
-            arrowFillColor="var(--color-background)"
+            icon={ctaIcon}
+            cId={cId}
           />
         </div>
       ) : null}

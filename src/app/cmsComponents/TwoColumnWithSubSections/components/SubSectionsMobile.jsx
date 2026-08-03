@@ -1,5 +1,5 @@
 import Image from "next/image";
-import ReadAboutUsButton from "@/components/ui/ReadAboutUsButton";
+import Button from "@/components/ui/Button";
 import SubSectionBlock from "./SubSectionBlock";
 import SubSectionsHeader from "./SubSectionsHeader";
 
@@ -16,6 +16,8 @@ export default function SubSectionsMobile({
   secondSubSection,
   ctaButton,
   ctaHref,
+  ctaIcon,
+  cId,
 }) {
   return (
     <div className="flex flex-col gap-8 lg:hidden">
@@ -68,10 +70,12 @@ export default function SubSectionsMobile({
 
       {ctaButton ? (
         <div className="w-full pt-2">
-          <ReadAboutUsButton
-            lang={lang}
+          <Button
             label={ctaButton}
             href={ctaHref || "#"}
+            icon={ctaIcon}
+            cId={cId}
+            fullWidth
           />
         </div>
       ) : null}

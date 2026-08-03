@@ -1,24 +1,11 @@
-import Link from "next/link";
-import { typography } from "@/styles/typography";
+import Button from "@/components/ui/Button";
 
-export default function TwoColumnCta({ label, href }) {
+export default function TwoColumnCta({ label, href, icon, cId }) {
   if (!label) {
     return null;
   }
 
-  const className = `${typography.button} inline-flex items-center justify-center rounded-lg bg-primary-2 px-6 py-2.5 font-medium text-white transition-all duration-300 hover:bg-primary-2/90`;
-
-  if (href) {
-    return (
-      <Link href={href} className={className}>
-        {label}
-      </Link>
-    );
-  }
-
   return (
-    <button type="button" className={className}>
-      {label}
-    </button>
+    <Button label={label} href={href} icon={icon} cId={cId} />
   );
 }
