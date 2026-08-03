@@ -34,6 +34,9 @@ import { buildTabbedCardsData } from "@/app/cmsComponents/TabbedCardsSection/uti
 import GridInfo from "@/app/cmsComponents/GridInfo";
 import GridInfoContainer from "@/app/cmsComponents/GridInfo/components/GridInfoContainer";
 import { buildGridInfoData } from "@/app/cmsComponents/GridInfo/utils/data";
+import SimpleGridWithPrefix from "@/app/cmsComponents/SimpleGridWithPrefix";
+import SimpleGridContainer from "@/app/cmsComponents/SimpleGridWithPrefix/components/SimpleGridContainer";
+import { buildSimpleGridWithPrefixData } from "@/app/cmsComponents/SimpleGridWithPrefix/utils/data";
 import LanguageSwitcher from "@/i18n/LanguageSwitcher";
 import { isRtl } from "@/i18n/settings";
 
@@ -52,6 +55,7 @@ export default function Home() {
   const splitTextOnlyData = buildSplitTextOnlyData(t, lang);
   const tabbedCardsData = buildTabbedCardsData(t, lang);
   const gridInfoData = buildGridInfoData(t, lang);
+  const simpleGridWithPrefixData = buildSimpleGridWithPrefixData(t, lang);
 
   return (
     <main>
@@ -107,6 +111,10 @@ export default function Home() {
       <GridInfoContainer lang={lang} dir={dir}>
         <GridInfo lang={lang} data={gridInfoData} />
       </GridInfoContainer>
+
+      <SimpleGridContainer lang={lang} dir={dir}>
+        <SimpleGridWithPrefix lang={lang} data={simpleGridWithPrefixData} />
+      </SimpleGridContainer>
     </main>
   );
 }

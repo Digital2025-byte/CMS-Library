@@ -236,6 +236,67 @@
         "workingHoursText": "Sun – Thu: 10:00 AM – 6:00 PM"
       }
     ]
+  },
+  "simpleGridWithPrefix": {
+    "title": "Follow Us",
+    "description": "Stay connected with FlyCham across our social channels.",
+    "prefix": "Follow us on",
+    "channels": [
+      {
+        "title": "Facebook",
+        "userName": "@flycham",
+        "link": "https://facebook.com",
+        "icon": "facebook"
+      },
+      {
+        "title": "Instagram",
+        "userName": "@flycham",
+        "link": "https://instagram.com",
+        "icon": "instagram"
+      },
+      {
+        "title": "X",
+        "userName": "@flycham",
+        "link": "https://x.com",
+        "icon": "x"
+      },
+      {
+        "title": "YouTube",
+        "userName": "@flycham",
+        "link": "https://youtube.com",
+        "icon": "youtube"
+      },
+      {
+        "title": "LinkedIn",
+        "userName": "FlyCham",
+        "link": "https://linkedin.com",
+        "icon": "linkedin"
+      },
+      {
+        "title": "WhatsApp",
+        "userName": "+963 11 215 8121",
+        "link": "https://wa.me/963112158121",
+        "icon": "whatsapp"
+      },
+      {
+        "title": "Telegram",
+        "userName": "@flycham",
+        "link": "https://t.me/flycham",
+        "icon": "telegram"
+      },
+      {
+        "title": "TikTok",
+        "userName": "@flycham",
+        "link": "https://tiktok.com",
+        "icon": "tiktok"
+      },
+      {
+        "title": "Snapchat",
+        "userName": "@flycham",
+        "link": "https://snapchat.com",
+        "icon": "snapchat"
+      }
+    ]
   }
 }
 

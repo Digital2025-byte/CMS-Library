@@ -236,6 +236,67 @@
         "workingHoursText": "الأحد – الخميس: 10:00 ص – 6:00 م"
       }
     ]
+  },
+  "simpleGridWithPrefix": {
+    "title": "تابعنا",
+    "description": "ابقَ على تواصل مع فلاي شام عبر قنواتنا الاجتماعية.",
+    "prefix": "تابعنا على",
+    "channels": [
+      {
+        "title": "فيسبوك",
+        "userName": "@flycham",
+        "link": "https://facebook.com",
+        "icon": "facebook"
+      },
+      {
+        "title": "إنستغرام",
+        "userName": "@flycham",
+        "link": "https://instagram.com",
+        "icon": "instagram"
+      },
+      {
+        "title": "إكس",
+        "userName": "@flycham",
+        "link": "https://x.com",
+        "icon": "x"
+      },
+      {
+        "title": "يوتيوب",
+        "userName": "@flycham",
+        "link": "https://youtube.com",
+        "icon": "youtube"
+      },
+      {
+        "title": "لينكدإن",
+        "userName": "FlyCham",
+        "link": "https://linkedin.com",
+        "icon": "linkedin"
+      },
+      {
+        "title": "واتساب",
+        "userName": "+963 11 215 8121",
+        "link": "https://wa.me/963112158121",
+        "icon": "whatsapp"
+      },
+      {
+        "title": "تيليغرام",
+        "userName": "@flycham",
+        "link": "https://t.me/flycham",
+        "icon": "telegram"
+      },
+      {
+        "title": "تيك توك",
+        "userName": "@flycham",
+        "link": "https://tiktok.com",
+        "icon": "tiktok"
+      },
+      {
+        "title": "سناب شات",
+        "userName": "@flycham",
+        "link": "https://snapchat.com",
+        "icon": "snapchat"
+      }
+    ]
   }
 }
 
