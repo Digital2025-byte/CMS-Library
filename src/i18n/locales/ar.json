@@ -134,6 +134,12 @@
       "خيارات مساحة إضافية للأرجل",
       "اختيار سهل"
     ]
+  },
+  "sectionWithAnimatedImages": {
+    "preTitle": "تابع الرحلة",
+    "title": "شارك لحظات سفرك معنا",
+    "buttonText": "تابعنا على إنستغرام",
+    "buttonLink": "https://www.instagram.com/"
   }
 }
 

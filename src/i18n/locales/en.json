@@ -134,6 +134,12 @@
       "Extra Legroom Options",
       "Easy Selection"
     ]
+  },
+  "sectionWithAnimatedImages": {
+    "preTitle": "Follow the journey",
+    "title": "Share your travel moments with us",
+    "buttonText": "Follow on Instagram",
+    "buttonLink": "https://www.instagram.com/"
   }
 }
 

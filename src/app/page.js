@@ -34,6 +34,9 @@ import { buildServiceBenefitsData } from "@/app/cmsComponents/ServiceBenefitsLis
 import BannerWithCTAsAndItems from "@/app/cmsComponents/BannerWithCTAsAndItems";
 import BannerWithCTAsAndItemsContainer from "@/app/cmsComponents/BannerWithCTAsAndItems/components/BannerWithCTAsAndItemsContainer";
 import { buildBannerWithCTAsAndItemsData } from "@/app/cmsComponents/BannerWithCTAsAndItems/utils/data";
+import SectionWithAnimatedImages from "@/app/cmsComponents/SectionWithAnimatedImages";
+import AnimatedImagesContainer from "@/app/cmsComponents/SectionWithAnimatedImages/components/AnimatedImagesContainer";
+import { buildSectionWithAnimatedImagesData } from "@/app/cmsComponents/SectionWithAnimatedImages/utils/data";
 import LanguageSwitcher from "@/i18n/LanguageSwitcher";
 import { isRtl } from "@/i18n/settings";
 
@@ -52,6 +55,10 @@ export default function Home() {
   const serviceBenefitsData = buildServiceBenefitsData(t, lang);
   const bannerWithCTAsAndItemsData = buildBannerWithCTAsAndItemsData(t, lang);
   const verticalImageSliceData = buildVerticalImageSliceData(t, lang);
+  const sectionWithAnimatedImagesData = buildSectionWithAnimatedImagesData(
+    t,
+    lang
+  );
 
   return (
     <main>
@@ -113,6 +120,13 @@ export default function Home() {
           data={verticalImageSliceData}
         />
       </VerticalImageSliceContainer>
+
+      <AnimatedImagesContainer lang={lang} dir={dir}>
+        <SectionWithAnimatedImages
+          lang={lang}
+          data={sectionWithAnimatedImagesData}
+        />
+      </AnimatedImagesContainer>
     </main>
   );
 }

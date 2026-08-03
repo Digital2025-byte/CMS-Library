@@ -59,6 +59,7 @@ import {
   Tree,
   Umbrella,
   VideoCamera,
+  InstagramLogo,
 } from "@phosphor-icons/react";
 
 const formatIconLabel = (value) => value.replace(/([a-z])([A-Z])/g, "$1 $2");
@@ -124,6 +125,8 @@ const RAW_ICON_OPTIONS = [
   { value: "VideoCamera", Icon: VideoCamera },
   { value: "Taxi", Icon: Taxi },
   { value: "Tag", Icon: Tag },
+  { value: "Instagram", Icon: InstagramLogo },
+  { value: "InstagramLogo", Icon: InstagramLogo },
 ];
 
 export const SIGHT_TAG_ICON_OPTIONS = RAW_ICON_OPTIONS.map((option) => ({
@@ -133,7 +136,11 @@ export const SIGHT_TAG_ICON_OPTIONS = RAW_ICON_OPTIONS.map((option) => ({
 
 const ICON_MAP = RAW_ICON_OPTIONS.reduce((acc, option) => {
   acc[option.value] = option.Icon;
+  acc[option.value.toLowerCase()] = option.Icon;
   return acc;
 }, {});
 
-export const getIconByName = (iconName) => ICON_MAP[iconName] || null;
+export const getIconByName = (iconName) => {
+  if (!iconName) return null;
+  return ICON_MAP[iconName] || ICON_MAP[String(iconName).toLowerCase()] || null;
+};
