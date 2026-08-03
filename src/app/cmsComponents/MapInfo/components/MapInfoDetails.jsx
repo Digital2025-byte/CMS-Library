@@ -63,7 +63,7 @@ export default function MapInfoDetails({
             ))}
           </div>
 
-          <div className="h-64 min-h-[280px] w-full overflow-hidden rounded-xl bg-white lg:h-full lg:min-h-[360px]">
+          <div className="h-64 min-h-70 w-full overflow-hidden rounded-xl bg-white lg:h-full lg:min-h-90">
             {mapUrl ? (
               <iframe
                 src={mapUrl}

@@ -21,7 +21,7 @@ export default function MapInfoCitySelector({
           <select
             value={selectedCity || ""}
             onChange={(event) => onCityChange(event.target.value)}
-            className={`${typography.button} min-w-[220px] rounded-lg border border-gray-200 bg-white px-4 py-2 text-primary-1 focus:outline-none focus:ring-2 focus:ring-primary-1/20`}
+            className={`${typography.button} min-w-55 rounded-lg border border-gray-200 bg-white px-4 py-2 text-primary-1 focus:outline-none focus:ring-2 focus:ring-primary-1/20`}
           >
             {cities.map((city) => (
               <option key={city} value={city}>
