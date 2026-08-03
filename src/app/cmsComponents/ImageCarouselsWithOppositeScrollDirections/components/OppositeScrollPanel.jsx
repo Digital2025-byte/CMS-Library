@@ -21,8 +21,8 @@ export default function OppositeScrollPanel({
           className={`flex flex-col gap-8 ${styles.carouselContainer}`}
           dir="ltr"
         >
-          <MarqueeRow items={topRow} direction="right" duration={34} />
-          <MarqueeRow items={bottomRow} direction="left" duration={30} />
+          <MarqueeRow items={topRow} direction="right" duration={15} />
+          <MarqueeRow items={bottomRow} direction="left" duration={15} />
           <ExploreOverlay label={exploreLabel} href={exploreHref} cId={cId} />
         </div>
       </div>
