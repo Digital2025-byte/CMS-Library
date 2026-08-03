@@ -37,6 +37,9 @@ import { buildGridInfoData } from "@/app/cmsComponents/GridInfo/utils/data";
 import SimpleGridWithPrefix from "@/app/cmsComponents/SimpleGridWithPrefix";
 import SimpleGridContainer from "@/app/cmsComponents/SimpleGridWithPrefix/components/SimpleGridContainer";
 import { buildSimpleGridWithPrefixData } from "@/app/cmsComponents/SimpleGridWithPrefix/utils/data";
+import MapInfo from "@/app/cmsComponents/MapInfo";
+import MapInfoContainer from "@/app/cmsComponents/MapInfo/components/MapInfoContainer";
+import { buildMapInfoData } from "@/app/cmsComponents/MapInfo/utils/data";
 import LanguageSwitcher from "@/i18n/LanguageSwitcher";
 import { isRtl } from "@/i18n/settings";
 
@@ -56,6 +59,7 @@ export default function Home() {
   const tabbedCardsData = buildTabbedCardsData(t, lang);
   const gridInfoData = buildGridInfoData(t, lang);
   const simpleGridWithPrefixData = buildSimpleGridWithPrefixData(t, lang);
+  const mapInfoData = buildMapInfoData(t, lang);
 
   return (
     <main>
@@ -115,6 +119,10 @@ export default function Home() {
       <SimpleGridContainer lang={lang} dir={dir}>
         <SimpleGridWithPrefix lang={lang} data={simpleGridWithPrefixData} />
       </SimpleGridContainer>
+
+      <MapInfoContainer lang={lang} dir={dir}>
+        <MapInfo lang={lang} data={mapInfoData} />
+      </MapInfoContainer>
     </main>
   );
 }

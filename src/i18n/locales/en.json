@@ -297,6 +297,84 @@
         "icon": "snapchat"
       }
     ]
+  },
+  "mapInfo": {
+    "title": "Our GSA",
+    "description": "Find FlyCham general sales agents by country and city, then view office details and map location.",
+    "branches": [
+      {
+        "id": "dam-main",
+        "name": "Damascus Main Office",
+        "country": "Syria",
+        "city": "Damascus",
+        "address": "Baghdad Street<br/>Damascus, Syria",
+        "phone": "+963 11 215 8121",
+        "email": "damascus@flycham.com",
+        "workingHours": "Sun – Thu: 9:00 AM – 6:00 PM<br/>Fri – Sat: Closed",
+        "latitude": "33.5138",
+        "longitude": "36.2765"
+      },
+      {
+        "id": "alp-city",
+        "name": "Aleppo City Office",
+        "country": "Syria",
+        "city": "Aleppo",
+        "address": "Al Jamiliyah District<br/>Aleppo, Syria",
+        "phone": "+963 21 220 1144",
+        "email": "aleppo@flycham.com",
+        "workingHours": "Sun – Thu: 9:00 AM – 4:30 PM<br/>Fri – Sat: Closed",
+        "latitude": "36.2021",
+        "longitude": "37.1343"
+      },
+      {
+        "id": "khi-quantum",
+        "name": "Quantum Aviation (Pvt.) Ltd",
+        "country": "Pakistan",
+        "city": "Karachi",
+        "address": "U-1 Ground Floor, Trade Tower Opposite Services Mess Abdullah Haroon Road, Karachi-Pakistan",
+        "phone": "+92 2135623305",
+        "email": "info@quantumaviation.aero",
+        "workingHours": "Mon-Sat: 09:00 AM - 05:00 PM<br/>Sun: Closed",
+        "latitude": "24.8607",
+        "longitude": "67.0011"
+      },
+      {
+        "id": "lhe-office",
+        "name": "Lahore Sales Office",
+        "country": "Pakistan",
+        "city": "Lahore",
+        "address": "MM Alam Road<br/>Lahore, Pakistan",
+        "phone": "+92 42 3578 9900",
+        "email": "lahore@flycham.com",
+        "workingHours": "Mon-Sat: 09:00 AM - 05:00 PM<br/>Sun: Closed",
+        "latitude": "31.5204",
+        "longitude": "74.3587"
+      },
+      {
+        "id": "dxb-main",
+        "name": "Dubai Sales Office",
+        "country": "United Arab Emirates",
+        "city": "Dubai",
+        "address": "Sheikh Zayed Road<br/>Dubai, UAE",
+        "phone": "+971 4 123 4567",
+        "email": "dubai@flycham.com",
+        "workingHours": "Sun – Thu: 9:00 AM – 6:00 PM",
+        "latitude": "25.2048",
+        "longitude": "55.2708"
+      },
+      {
+        "id": "auh-airport",
+        "name": "Abu Dhabi Airport Desk",
+        "country": "United Arab Emirates",
+        "city": "Abu Dhabi",
+        "address": "Abu Dhabi International Airport<br/>Terminal 1",
+        "phone": "+971 2 987 6543",
+        "email": "abudhabi@flycham.com",
+        "workingHours": "Daily: 8:00 AM – 9:00 PM",
+        "latitude": "24.4539",
+        "longitude": "54.3773"
+      }
+    ]
   }
 }
 

@@ -297,6 +297,84 @@
         "icon": "snapchat"
       }
     ]
+  },
+  "mapInfo": {
+    "title": "وكلاؤنا العامون",
+    "description": "اعثر على وكلاء المبيعات العامين لفلاي شام حسب الدولة والمدينة، ثم اعرض تفاصيل المكتب وموقعه على الخريطة.",
+    "branches": [
+      {
+        "id": "dam-main",
+        "name": "المكتب الرئيسي في دمشق",
+        "country": "سوريا",
+        "city": "دمشق",
+        "address": "شارع بغداد<br/>دمشق، سوريا",
+        "phone": "+963 11 215 8121",
+        "email": "damascus@flycham.com",
+        "workingHours": "الأحد – الخميس: 9:00 ص – 6:00 م<br/>الجمعة – السبت: مغلق",
+        "latitude": "33.5138",
+        "longitude": "36.2765"
+      },
+      {
+        "id": "alp-city",
+        "name": "مكتب مدينة حلب",
+        "country": "سوريا",
+        "city": "حلب",
+        "address": "حي الجميلية<br/>حلب، سوريا",
+        "phone": "+963 21 220 1144",
+        "email": "aleppo@flycham.com",
+        "workingHours": "الأحد – الخميس: 9:00 ص – 4:30 م<br/>الجمعة – السبت: مغلق",
+        "latitude": "36.2021",
+        "longitude": "37.1343"
+      },
+      {
+        "id": "khi-quantum",
+        "name": "Quantum Aviation (Pvt.) Ltd",
+        "country": "باكستان",
+        "city": "كراتشي",
+        "address": "U-1 Ground Floor, Trade Tower Opposite Services Mess Abdullah Haroon Road, Karachi-Pakistan",
+        "phone": "+92 2135623305",
+        "email": "info@quantumaviation.aero",
+        "workingHours": "الإثنين – السبت: 09:00 ص – 05:00 م<br/>الأحد: مغلق",
+        "latitude": "24.8607",
+        "longitude": "67.0011"
+      },
+      {
+        "id": "lhe-office",
+        "name": "مكتب مبيعات لاهور",
+        "country": "باكستان",
+        "city": "لاهور",
+        "address": "طريق إم إم علم<br/>لاهور، باكستان",
+        "phone": "+92 42 3578 9900",
+        "email": "lahore@flycham.com",
+        "workingHours": "الإثنين – السبت: 09:00 ص – 05:00 م<br/>الأحد: مغلق",
+        "latitude": "31.5204",
+        "longitude": "74.3587"
+      },
+      {
+        "id": "dxb-main",
+        "name": "مكتب مبيعات دبي",
+        "country": "الإمارات العربية المتحدة",
+        "city": "دبي",
+        "address": "شارع الشيخ زايد<br/>دبي، الإمارات",
+        "phone": "+971 4 123 4567",
+        "email": "dubai@flycham.com",
+        "workingHours": "الأحد – الخميس: 9:00 ص – 6:00 م",
+        "latitude": "25.2048",
+        "longitude": "55.2708"
+      },
+      {
+        "id": "auh-airport",
+        "name": "مكتب مطار أبوظبي",
+        "country": "الإمارات العربية المتحدة",
+        "city": "أبوظبي",
+        "address": "مطار أبوظبي الدولي<br/>المبنى 1",
+        "phone": "+971 2 987 6543",
+        "email": "abudhabi@flycham.com",
+        "workingHours": "يومياً: 8:00 ص – 9:00 م",
+        "latitude": "24.4539",
+        "longitude": "54.3773"
+      }
+    ]
   }
 }
 
