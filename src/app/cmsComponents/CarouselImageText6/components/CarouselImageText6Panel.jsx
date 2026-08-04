@@ -16,7 +16,7 @@ export default function CarouselImageText6Panel({
     <section className="min-h-screen bg-secondary-2">
       {title ? (
         <h2
-          className={`${typography.pageTitle} py-4 text-center font-bold text-white`}
+          className={`${typography.pageTitle} py-6 text-center font-bold text-white`}
         >
           {title}
         </h2>

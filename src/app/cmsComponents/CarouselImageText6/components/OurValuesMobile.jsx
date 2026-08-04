@@ -1,13 +1,17 @@
 "use client";
 
 import { useRef, useState } from "react";
-import Image from "next/image";
 import Slider from "react-slick";
 import { ArrowLeft, ArrowRight } from "@phosphor-icons/react";
 import { typography } from "@/styles/typography";
 import "slick-carousel/slick/slick.css";
+import styles from "./OurValuesMobile.module.css";
 
-export default function OurValuesMobile({ lang = "en", items = [], autoplay = true }) {
+export default function OurValuesMobile({
+  lang = "en",
+  items = [],
+  autoplay = true,
+}) {
   const sliderRef = useRef(null);
   const [currentSlide, setCurrentSlide] = useState(0);
 
@@ -24,8 +28,7 @@ export default function OurValuesMobile({ lang = "en", items = [], autoplay = tr
     arrows: false,
     infinite: canLoop,
     centerMode: true,
-    // Slight padding so the previous/next cards peek in on both edges.
-    centerPadding: "7%",
+    centerPadding: "14%",
     slidesToShow: 1,
     slidesToScroll: 1,
     speed: 500,
@@ -39,84 +42,98 @@ export default function OurValuesMobile({ lang = "en", items = [], autoplay = tr
 
   return (
     <div
-      className="relative flex min-h-[85vh] flex-col items-center justify-center overflow-hidden"
+      className="relative flex min-h-[85vh] flex-col items-center justify-center overflow-hidden pb-8"
       dir={isRtl ? "rtl" : "ltr"}
     >
       {activeItem.imageUrl ? (
-        <div className="absolute inset-0 z-0">
-          <Image
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          <img
             key={activeItem.imageUrl}
             src={activeItem.imageUrl}
             alt=""
-            fill
-            className="object-cover brightness-50 blur-md transition-all duration-700"
-            sizes="100vw"
-            quality={60}
+            className="h-full w-full scale-110 object-cover brightness-[0.35] blur-md transition-all duration-700"
             aria-hidden
           />
+          <div className="absolute inset-0 bg-secondary-2/50" />
         </div>
-      ) : null}
+      ) : (
+        <div className="absolute inset-0 z-0 bg-secondary-2" />
+      )}
 
-      <div className="our-values-slick z-10 w-full">
+      <div className={`z-10 w-full ${styles.slider}`}>
         <Slider ref={sliderRef} {...settings}>
-          {items.map((item, index) => (
-            <div key={`${item.title}-${index}`} className="px-2">
-              <div
-                className="slide-card relative overflow-hidden rounded-xl shadow-lg"
-                dir={isRtl ? "rtl" : "ltr"}
-              >
-                <div className="relative h-[60vw] max-h-[280px]">
-                  {item.imageUrl ? (
-                    <Image
-                      src={item.imageUrl}
-                      alt={item.imageAlt || item.title || ""}
-                      fill
-                      className="object-cover"
-                      sizes="100vw"
-                      quality={75}
-                      priority={index === 0}
-                      draggable={false}
-                    />
+          {items.map((item, index) => {
+            const isActive = index === currentSlide;
+
+            return (
+              <div key={`${item.title}-${index}`} className="px-1.5">
+                <div
+                  className={`overflow-hidden rounded-[1.75rem] bg-secondary-2 shadow-xl transition-all duration-500 sm:rounded-[2rem] ${
+                    isActive
+                      ? "scale-100 opacity-100"
+                      : "scale-[0.94] opacity-80"
+                  }`}
+                  dir={isRtl ? "rtl" : "ltr"}
+                >
+                  <div className="relative aspect-4/3 w-full overflow-hidden sm:aspect-[5/4]">
+                    {item.imageUrl ? (
+                      <img
+                        src={item.imageUrl}
+                        alt={item.imageAlt || item.title || ""}
+                        className="h-full w-full object-cover"
+                        draggable={false}
+                      />
+                    ) : null}
+
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/35 via-transparent to-transparent" />
+
+                    {item.title ? (
+                      <h3
+                        className={`${typography.itemTitle} absolute top-5 start-5 z-10 max-w-[70%] font-bold text-white sm:top-6 sm:start-6`}
+                        style={{ textShadow: "0 4px 8px rgb(0 0 0 / 0.45)" }}
+                      >
+                        {item.title}
+                      </h3>
+                    ) : null}
+                  </div>
+
+                  {item.description ? (
+                    <div className="px-5 py-5 sm:px-6 sm:py-6">
+                      <p
+                        className={`${typography.body} leading-relaxed text-white`}
+                      >
+                        {item.description}
+                      </p>
+                    </div>
                   ) : null}
-                  <div className="absolute inset-0 bg-black/10" />
-                  {item.title ? (
-                    <h3
-                      className={`${typography.itemTitle} absolute top-8 start-4 max-w-28 font-semibold text-white`}
-                      style={{ textShadow: "0 4px 8px rgb(0 0 0 / 0.45)" }}
-                    >
-                      {item.title}
-                    </h3>
-                  ) : null}
-                </div>
-                <div className="bg-secondary-2 p-5 text-white">
-                  <p className={`${typography.body} text-white/80`}>
-                    {item.description}
-                  </p>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </Slider>
       </div>
 
-      <div className="z-10 mt-5 flex items-center justify-center gap-6" dir="ltr">
+      <div
+        className="z-10 mt-6 flex items-center justify-center gap-5"
+        dir="ltr"
+      >
         <button
           type="button"
           onClick={() => sliderRef.current?.slickPrev()}
           aria-label="Previous value"
-          className="rounded-full border-2 border-white p-2 transition hover:bg-white/20"
+          className="flex h-10 w-10 items-center justify-center rounded-full border border-white transition hover:bg-white/15"
         >
-          <ArrowLeft className="text-lg text-white" weight="bold" />
+          <ArrowLeft size={18} className="text-white" weight="regular" />
         </button>
 
-        <div className="flex gap-2">
+        <div className="flex items-center gap-2">
           {items.map((_, i) => (
             <button
               key={`dot-${i}`}
               type="button"
               aria-label={`Go to slide ${i + 1}`}
               onClick={() => sliderRef.current?.slickGoTo(i)}
-              className={`cursor-pointer rounded-full bg-primary-2 transition-all duration-300 ${
+              className={`rounded-full bg-primary-2 transition-all duration-300 ${
                 i === currentSlide ? "h-2 w-5" : "h-2 w-2 opacity-40"
               }`}
             />
@@ -127,9 +144,9 @@ export default function OurValuesMobile({ lang = "en", items = [], autoplay = tr
           type="button"
           onClick={() => sliderRef.current?.slickNext()}
           aria-label="Next value"
-          className="rounded-full border-2 border-white p-2 transition hover:bg-white/20"
+          className="flex h-10 w-10 items-center justify-center rounded-full border border-white transition hover:bg-white/15"
         >
-          <ArrowRight className="text-lg text-white" weight="bold" />
+          <ArrowRight size={18} className="text-white" weight="regular" />
         </button>
       </div>
     </div>

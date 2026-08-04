@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import { typography } from "@/styles/typography";
 
 export default function OurValuesDesktop({ lang = "en", items = [] }) {
@@ -36,15 +35,12 @@ export default function OurValuesDesktop({ lang = "en", items = [] }) {
             className={`relative mt-4 h-[90vh] flex-shrink-0 cursor-pointer overflow-hidden transition-all duration-700 ${flexClass}`}
           >
             {item.imageUrl ? (
-              <Image
+              <img
                 src={item.imageUrl}
                 alt={item.imageAlt || item.title || ""}
-                fill
-                className={`object-cover transition-all duration-500 ${
+                className={`absolute inset-0 h-full w-full object-cover transition-all duration-500 ${
                   isActive ? "grayscale-0" : "grayscale"
                 }`}
-                sizes="40vw"
-                quality={75}
               />
             ) : null}
 

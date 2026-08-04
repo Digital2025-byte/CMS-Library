@@ -1,0 +1,16 @@
+.slider :global(.slick-list) {
+  overflow: visible;
+}
+
+.slider :global(.slick-track) {
+  display: flex;
+  align-items: stretch;
+}
+
+.slider :global(.slick-slide) {
+  height: auto;
+}
+
+.slider :global(.slick-slide > div) {
+  height: 100%;
+}
