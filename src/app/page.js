@@ -70,6 +70,9 @@ import { buildFlightFaresData } from "@/app/cmsComponents/FlightFaresSection/uti
 import RelatedContentCarousel from "@/app/cmsComponents/RelatedContentCarousel";
 import RelatedContentCarouselContainer from "@/app/cmsComponents/RelatedContentCarousel/components/RelatedContentCarouselContainer";
 import { buildRelatedContentCarouselData } from "@/app/cmsComponents/RelatedContentCarousel/utils/data";
+import CardsCarouselFillImage from "@/app/cmsComponents/CardsCarouselFillImage";
+import CardsCarouselFillImageContainer from "@/app/cmsComponents/CardsCarouselFillImage/components/CardsCarouselFillImageContainer";
+import { buildCardsCarouselFillImageData } from "@/app/cmsComponents/CardsCarouselFillImage/utils/data";
 import LanguageSwitcher from "@/i18n/LanguageSwitcher";
 import { isRtl } from "@/i18n/settings";
 import PageContentContainer from "@/components/layout/PageContentContainer";
@@ -106,6 +109,7 @@ export default function Home() {
   const dualImageTrainingData = buildDualImageTextData(t, lang, "training");
   const flightFaresData = buildFlightFaresData(t, lang);
   const relatedContentCarouselData = buildRelatedContentCarouselData(t, lang);
+  const cardsCarouselFillImageData = buildCardsCarouselFillImageData(t, lang);
 
   return (
     <main>
@@ -228,6 +232,13 @@ export default function Home() {
           data={relatedContentCarouselData}
         />
       </RelatedContentCarouselContainer>
+
+      <CardsCarouselFillImageContainer lang={lang} dir={dir}>
+        <CardsCarouselFillImage
+          lang={lang}
+          data={cardsCarouselFillImageData}
+        />
+      </CardsCarouselFillImageContainer>
     </main>
   );
 }
