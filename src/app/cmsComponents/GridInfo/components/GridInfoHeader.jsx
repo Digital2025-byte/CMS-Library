@@ -6,7 +6,7 @@ export default function GridInfoHeader({ title, description }) {
   }
 
   return (
-    <div className="mb-4 px-2.5">
+    <div className="mb-4">
       {title ? (
         <h2
           className={`${typography.sectionTitle} mb-4 font-bold text-primary-1`}

@@ -10,7 +10,7 @@ export default function GridInfoCityFilter({
   }
 
   return (
-    <div className="mb-6 flex flex-wrap gap-3 px-2.5">
+    <div className="mb-6 flex flex-wrap gap-3">
       {cities.map((city) => {
         const isActive = selectedCity === city;
 

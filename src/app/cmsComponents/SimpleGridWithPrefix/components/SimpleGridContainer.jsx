@@ -1,3 +1,5 @@
+import PageContentContainer from "@/components/layout/PageContentContainer";
+
 export default function SimpleGridContainer({ lang, dir, children }) {
   return (
     <div
@@ -5,9 +7,9 @@ export default function SimpleGridContainer({ lang, dir, children }) {
       lang={lang}
       dir={dir || (lang === "ar" ? "rtl" : "ltr")}
     >
-      <section className="mx-auto w-full max-w-7xl px-2 py-12 sm:px-4 lg:px-6">
+      <PageContentContainer as="section" className="py-8 sm:py-12 lg:py-16">
         {children}
-      </section>
+      </PageContentContainer>
     </div>
   );
 }

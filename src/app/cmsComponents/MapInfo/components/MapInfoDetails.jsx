@@ -46,7 +46,7 @@ export default function MapInfoDetails({
   const officeTitle = office.name || `${office.city} Branch`;
 
   return (
-    <div className="px-0">
+    <div className="px-2">
       <div className="rounded-2xl bg-surface-1 p-4 pb-10 sm:p-6">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
           <div className="flex flex-col gap-5">
