@@ -550,6 +550,33 @@
     "imageAlt": "FlyCham aircraft flying through the sky",
     "backgroundAlt": "Blue sky with soft clouds"
   },
+  "serviceCardsSlider": {
+    "title": "Add extra services",
+    "description": "Customize your journey by adding extra services online before you fly.",
+    "services": {
+      "baggage": {
+        "title": "Excess Baggage",
+        "description": "Add extra baggage online in advance and enjoy a smoother check-in experience",
+        "imageAlt": "Luggage for excess baggage",
+        "slug": "excess-baggage",
+        "cta": "Book Now"
+      },
+      "seats": {
+        "title": "Seat Selection",
+        "description": "Choose the seat that suits you best and enjoy greater comfort throughout your flight.",
+        "imageAlt": "Aircraft cabin seats",
+        "slug": "seat-selection",
+        "cta": "Select Seat"
+      },
+      "transfer": {
+        "title": "Add Limousine",
+        "description": "Enjoy a premium chauffeur-driven transfer to and from the airport on selected routes.",
+        "imageAlt": "Premium airport limousine",
+        "slug": "add-limousine",
+        "cta": "Book Limousine"
+      }
+    }
+  },
   "flightFares": {
     "title": "Flight deals",
     "cities": [

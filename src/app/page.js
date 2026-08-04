@@ -73,6 +73,9 @@ import { buildFlightFaresData } from "@/app/cmsComponents/FlightFaresSection/uti
 import SplitWithImage from "@/app/cmsComponents/SplitWithImage";
 import SplitWithImageContainer from "@/app/cmsComponents/SplitWithImage/components/SplitWithImageContainer";
 import { buildSplitWithImageData } from "@/app/cmsComponents/SplitWithImage/utils/data";
+import ServiceCardsSlider from "@/app/cmsComponents/ServiceCardsSlider";
+import ServiceCardsSliderContainer from "@/app/cmsComponents/ServiceCardsSlider/components/ServiceCardsSliderContainer";
+import { buildServiceCardsSliderData } from "@/app/cmsComponents/ServiceCardsSlider/utils/data";
 import LanguageSwitcher from "@/i18n/LanguageSwitcher";
 import { isRtl } from "@/i18n/settings";
 import PageContentContainer from "@/components/layout/PageContentContainer";
@@ -110,6 +113,7 @@ export default function Home() {
   const carouselImageText6Data = buildCarouselImageText6Data(t, lang);
   const flightFaresData = buildFlightFaresData(t, lang);
   const splitWithImageData = buildSplitWithImageData(t, lang);
+  const serviceCardsSliderData = buildServiceCardsSliderData(t, lang);
 
   return (
     <main>
@@ -233,6 +237,10 @@ export default function Home() {
       <SplitWithImageContainer lang={lang} dir={dir}>
         <SplitWithImage lang={lang} data={splitWithImageData} />
       </SplitWithImageContainer>
+
+      <ServiceCardsSliderContainer lang={lang} dir={dir}>
+        <ServiceCardsSlider lang={lang} data={serviceCardsSliderData} />
+      </ServiceCardsSliderContainer>
     </main>
   );
 }
