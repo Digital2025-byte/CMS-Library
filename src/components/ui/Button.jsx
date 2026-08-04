@@ -5,11 +5,11 @@ import { withCampaignPath } from "@/utils/withCampaignPath";
 
 const VARIANT_CLASSES = {
   primary:
-    "border-2 border-primary-2 bg-primary-2 text-white hover:opacity-90",
+    "border-1 border-primary-2 bg-primary-2 text-white hover:opacity-90",
   secondary:
-    "border-2 border-white bg-transparent text-white hover:bg-white/10",
+    "border-1 border-white bg-transparent text-white hover:bg-white/10",
   outline:
-    "border-2 border-primary-2 bg-transparent text-primary-2 hover:bg-primary-2/10",
+    "border-1 border-primary-2 bg-transparent text-primary-2 hover:bg-primary-2/10",
 };
 
 /**
