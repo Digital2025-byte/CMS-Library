@@ -577,6 +577,19 @@
       }
     }
   },
+  "mixedLeftThreeImages": {
+    "title": "Sheikh Zayed Grand Mosque",
+    "description": "The Sheikh Zayed Grand Mosque is one of the largest mosques in the world, known for its stunning white marble façade, intricate carvings, and magnificent architecture. It stands as a landmark of faith, culture, and craftsmanship — inviting visitors to experience its serene courtyards, luminous interiors, and timeless design.",
+    "primaryCta": "Explore",
+    "primaryCtaHref": "/",
+    "secondaryCta": "Explore as magazine style",
+    "secondaryCtaHref": "/",
+    "images": {
+      "large": "Sheikh Zayed Grand Mosque exterior",
+      "smallOne": "Sheikh Zayed Grand Mosque interior hall",
+      "smallTwo": "Sheikh Zayed Grand Mosque architectural detail"
+    }
+  },
   "mixedRightThreeImages": {
     "title": "Louvre Abu Dhabi",
     "description": "The Louvre Abu Dhabi is a cultural beacon that blends traditional Arab architecture with contemporary design. Its stunning domed roof, which filters sunlight through intricate patterns, creates a mesmerizing visual experience. The museum's collection spans centuries and continents, featuring art from ancient civilizations to contemporary works. With temporary exhibitions from global collections and educational programs, the Louvre Abu Dhabi is an immersive cultural journey",

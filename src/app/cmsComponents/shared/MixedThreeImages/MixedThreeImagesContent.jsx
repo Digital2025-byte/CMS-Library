@@ -1,15 +1,17 @@
 import { typography } from "@/styles/typography";
-import MixedRightThreeImagesCtas from "./MixedRightThreeImagesCtas";
+import MixedThreeImagesCtas from "./MixedThreeImagesCtas";
 
-export default function MixedRightThreeImagesContent({
+export default function MixedThreeImagesContent({
   lang = "en",
   title,
   description,
   primaryCta,
   secondaryCta,
+  className = "",
+  showDesktopCtas = true,
 }) {
   return (
-    <div className="order-1 flex flex-col justify-center lg:col-start-1 lg:row-start-1">
+    <div className={`flex flex-col justify-center ${className}`.trim()}>
       {title ? (
         <h2 className={`${typography.sectionTitle} font-semibold text-white`}>
           {title}
@@ -24,11 +26,14 @@ export default function MixedRightThreeImagesContent({
         </p>
       ) : null}
 
-      <MixedRightThreeImagesCtas
-        lang={lang}
-        primaryCta={primaryCta}
-        secondaryCta={secondaryCta}
-      />
+      {showDesktopCtas ? (
+        <MixedThreeImagesCtas
+          lang={lang}
+          primaryCta={primaryCta}
+          secondaryCta={secondaryCta}
+          className="hidden lg:flex"
+        />
+      ) : null}
     </div>
   );
 }
