@@ -567,6 +567,48 @@
         "isNew": false
       }
     ]
+  },
+  "relatedContentCarousel": {
+    "title": "محتوى ذو صلة",
+    "description": "استكشف المزيد من القصص والإرشادات وإلهام السفر من أجنحة الشام.",
+    "pages": [
+      {
+        "id": "page-1",
+        "title": "نصائح السفر العائلي",
+        "description": "إرشادات عملية لجعل كل رحلة أكثر سلاسة عند السفر مع الأطفال.",
+        "buttonText": "اعرف المزيد",
+        "slug": "family-travel",
+        "buttonLink": "#",
+        "imageAlt": "عائلة تسافر معًا"
+      },
+      {
+        "id": "page-2",
+        "title": "دليل راحة المقصورة",
+        "description": "اكتشف خيارات المقاعد وميزات على متن الطائرة لرحلة أكثر استرخاءً.",
+        "buttonText": "اعرف المزيد",
+        "slug": "cabin-comfort",
+        "buttonLink": "#",
+        "imageAlt": "مقصورة طائرة مريحة"
+      },
+      {
+        "id": "page-3",
+        "title": "إلهام الوجهات",
+        "description": "تصفح وجهات مختارة واعثر على مغامرتك التالية التي لا تُنسى.",
+        "buttonText": "اعرف المزيد",
+        "slug": "destinations",
+        "buttonLink": "#",
+        "imageAlt": "وجهة سفر خلابة"
+      },
+      {
+        "id": "page-4",
+        "title": "الحجز بسهولة",
+        "description": "دليل واضح للحجز وإدارة الرحلات والاستعداد للإقلاع.",
+        "buttonText": "اعرف المزيد",
+        "slug": "booking-guide",
+        "buttonLink": "#",
+        "imageAlt": "مسافر يحجز رحلة"
+      }
+    ]
   }
 }
 

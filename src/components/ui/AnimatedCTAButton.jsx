@@ -22,7 +22,8 @@ export default function AnimatedCTAButton({
   mobileArrowColor,
 }) {
   const isMobile = useIsMobile(768);
-  const ArrowIcon = lang === "ar" ? ArrowLeftIcon : ArrowRightIcon;
+  const isRtl = lang === "ar";
+  const ArrowIcon = isRtl ? ArrowLeftIcon : ArrowRightIcon;
   const [hovered, setHovered] = useState(false);
 
   if (!label) {
@@ -44,12 +45,13 @@ export default function AnimatedCTAButton({
 
   if (isMobile) {
     return (
-      <div className="mt-4 flex items-center">
+      <div className="mt-4 flex items-center" dir={isRtl ? "rtl" : "ltr"}>
         <Link href={href || "#"} className="inline-flex text-inherit no-underline">
           <div
             className="flex h-10 items-center gap-3 rounded-4xl px-2.5"
             style={{
-              width: "180px",
+              width: "fit-content",
+              minWidth: "180px",
               backgroundColor: mobileBgColor ?? bgColor,
               color: mobileTextColor ?? textColor,
             }}
@@ -70,9 +72,14 @@ export default function AnimatedCTAButton({
   }
 
   return (
-    <div className="relative mt-2 inline-flex h-10 items-center">
+    <div
+      className="relative mt-2 inline-flex h-10 max-w-full items-center overflow-visible"
+      dir={isRtl ? "rtl" : "ltr"}
+    >
       <motion.div
-        className="absolute inset-y-0 start-0 rounded-4xl bg-primary-1"
+        className={`absolute inset-y-0 rounded-4xl bg-primary-1 ${
+          isRtl ? "right-0" : "left-0"
+        }`}
         style={{ backgroundColor: hovered ? bgFillColor ?? bgColor : bgColor }}
         initial={false}
         animate={{ width: hovered ? "100%" : 40 }}

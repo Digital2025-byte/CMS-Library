@@ -67,6 +67,9 @@ import { buildDualImageTextData } from "@/app/cmsComponents/DualImageText/utils/
 import FlightFaresSection from "@/app/cmsComponents/FlightFaresSection";
 import FlightFaresContainer from "@/app/cmsComponents/FlightFaresSection/components/FlightFaresContainer";
 import { buildFlightFaresData } from "@/app/cmsComponents/FlightFaresSection/utils/data";
+import RelatedContentCarousel from "@/app/cmsComponents/RelatedContentCarousel";
+import RelatedContentCarouselContainer from "@/app/cmsComponents/RelatedContentCarousel/components/RelatedContentCarouselContainer";
+import { buildRelatedContentCarouselData } from "@/app/cmsComponents/RelatedContentCarousel/utils/data";
 import LanguageSwitcher from "@/i18n/LanguageSwitcher";
 import { isRtl } from "@/i18n/settings";
 import PageContentContainer from "@/components/layout/PageContentContainer";
@@ -102,6 +105,7 @@ export default function Home() {
   const dualImageTextData = buildDualImageTextData(t, lang, "towards");
   const dualImageTrainingData = buildDualImageTextData(t, lang, "training");
   const flightFaresData = buildFlightFaresData(t, lang);
+  const relatedContentCarouselData = buildRelatedContentCarouselData(t, lang);
 
   return (
     <main>
@@ -217,6 +221,13 @@ export default function Home() {
       <FlightFaresContainer lang={lang} dir={dir}>
         <FlightFaresSection lang={lang} data={flightFaresData} />
       </FlightFaresContainer>
+
+      <RelatedContentCarouselContainer lang={lang} dir={dir}>
+        <RelatedContentCarousel
+          lang={lang}
+          data={relatedContentCarouselData}
+        />
+      </RelatedContentCarouselContainer>
     </main>
   );
 }
