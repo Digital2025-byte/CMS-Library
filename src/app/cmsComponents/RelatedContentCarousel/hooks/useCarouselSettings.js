@@ -1,10 +1,6 @@
 import { useMemo } from "react";
 
-export function useCarouselSettings(
-  cardsCount = 0,
-  isRtl = false,
-  onBeforeChange
-) {
+export function useCarouselSettings(cardsCount = 0, onBeforeChange) {
   return useMemo(() => {
     const desktopShow = Math.min(3, Math.max(cardsCount, 1));
     const tabletShow = Math.min(2, Math.max(cardsCount, 1));
@@ -19,7 +15,9 @@ export function useCarouselSettings(
       swipeToSlide: true,
       accessibility: true,
       autoplay: false,
-      rtl: isRtl,
+      // Keep LTR always — slick rtl breaks initial track position with flex slides.
+      // Arabic opposite motion is handled via CSS mirror in CarouselSlider.
+      rtl: false,
       beforeChange: onBeforeChange,
       responsive: [
         {
@@ -28,7 +26,6 @@ export function useCarouselSettings(
             slidesToShow: tabletShow,
             slidesToScroll: 1,
             infinite: false,
-            rtl: isRtl,
           },
         },
         {
@@ -37,10 +34,9 @@ export function useCarouselSettings(
             slidesToShow: 1,
             slidesToScroll: 1,
             infinite: false,
-            rtl: isRtl,
           },
         },
       ],
     };
-  }, [cardsCount, isRtl, onBeforeChange]);
+  }, [cardsCount, onBeforeChange]);
 }

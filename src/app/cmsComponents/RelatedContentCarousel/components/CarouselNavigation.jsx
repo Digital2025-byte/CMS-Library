@@ -27,7 +27,7 @@ function NavButton({ onClick, disabled, ariaLabel, children }) {
 }
 
 export default function CarouselNavigation({
-  lang,
+  lang = "en",
   onPrev,
   onNext,
   canGoPrev,
@@ -41,28 +41,30 @@ export default function CarouselNavigation({
   }
 
   const isRtl = lang === "ar";
-
-  const ArrowIcon = isRtl ? ArrowLeftIcon : ArrowRightIcon;
+  const slideLabel = `${currentIndex + 1} of ${totalSlides}`;
 
   return (
     <div
-      className="mt-6 flex items-center justify-end gap-3 sm:mt-8"
+      dir="ltr"
+      className={`mt-6 flex items-center gap-3 sm:mt-8 ${
+        isRtl ? "justify-start" : "justify-end"
+      }`}
       role="group"
       aria-label="Carousel navigation"
     >
       <NavButton
         onClick={onPrev}
         disabled={!canGoPrev}
-        ariaLabel={`Previous slide. ${currentIndex + 1} of ${totalSlides}`}
+        ariaLabel={`Previous slide. ${slideLabel}`}
       >
-       { isRtl ? <ArrowRightIcon size={18} weight="bold" aria-hidden="true" /> : <ArrowLeftIcon size={18} weight="bold" aria-hidden="true" /> }
+        <ArrowLeftIcon size={18} weight="bold" aria-hidden="true" />
       </NavButton>
       <NavButton
         onClick={onNext}
         disabled={!canGoNext}
-        ariaLabel={`Next slide. ${currentIndex + 1} of ${totalSlides}`}
+        ariaLabel={`Next slide. ${slideLabel}`}
       >
-        { isRtl ? <ArrowLeftIcon size={18} weight="bold" aria-hidden="true" /> : <ArrowRightIcon size={18} weight="bold" aria-hidden="true" /> }
+        <ArrowRightIcon size={18} weight="bold" aria-hidden="true" />
       </NavButton>
     </div>
   );

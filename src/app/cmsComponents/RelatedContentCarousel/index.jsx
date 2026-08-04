@@ -17,7 +17,6 @@ const RelatedContentCarousel = ({
   cId,
 }) => {
   const sliderRef = useRef(null);
-  const isRtl = lang === "ar";
   const [activeIndex, setActiveIndex] = useState(0);
 
   const { title, description, cards, hasContent } = useCarouselData(
@@ -37,25 +36,24 @@ const RelatedContentCarousel = ({
     return () => window.removeEventListener("resize", update);
   }, [cards.length]);
 
+  // Reset index when language (and thus slide direction) changes
+  useEffect(() => {
+    setActiveIndex(0);
+  }, [lang]);
+
   const handleBeforeChange = useCallback((_, next) => {
     setActiveIndex(next);
   }, []);
 
-  const settings = useCarouselSettings(
-    cards.length,
-    isRtl,
-    handleBeforeChange
-  );
+  const settings = useCarouselSettings(cards.length, handleBeforeChange);
 
   const handlePrev = useCallback(() => {
-    if (isRtl) sliderRef.current?.slickNext();
-    else sliderRef.current?.slickPrev();
-  }, [isRtl]);
+    sliderRef.current?.slickPrev();
+  }, []);
 
   const handleNext = useCallback(() => {
-    if (isRtl) sliderRef.current?.slickPrev();
-    else sliderRef.current?.slickNext();
-  }, [isRtl]);
+    sliderRef.current?.slickNext();
+  }, []);
 
   const handleKeyDown = useCallback(
     (event) => {
@@ -75,12 +73,8 @@ const RelatedContentCarousel = ({
   }
 
   const maxIndex = Math.max(0, cards.length - slidesToShow);
-  // Index bounds (slickPrev / slickNext). In RTL the left button calls slickNext
-  // and the right button calls slickPrev, so enabled states must follow the handlers.
-  const canSlickPrev = activeIndex > 0;
-  const canSlickNext = activeIndex < maxIndex;
-  const canGoPrev = isRtl ? canSlickNext : canSlickPrev;
-  const canGoNext = isRtl ? canSlickPrev : canSlickNext;
+  const canGoPrev = activeIndex > 0;
+  const canGoNext = activeIndex < maxIndex;
   const showNavigation = cards.length > slidesToShow;
 
   return (

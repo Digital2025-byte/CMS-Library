@@ -39,6 +39,18 @@ function CarouselStyles() {
         outline: 2px solid #007bff;
         outline-offset: 2px;
       }
+
+      /*
+       * Arabic: mirror the list so slide motion is opposite of English,
+       * then mirror each slide so card content stays readable.
+       * Slick stays in LTR so the initial 3-card layout is correct.
+       */
+      .cards-carousel--rtl .slick-list {
+        transform: scaleX(-1);
+      }
+      .cards-carousel--rtl .slick-slide {
+        transform: scaleX(-1);
+      }
     `,
       }}
     />
@@ -53,11 +65,17 @@ export default function CarouselSlider({
   cId,
   onKeyDown,
 }) {
+  const isRtl = lang === "ar";
+
   return (
     <div className="relative" onKeyDown={onKeyDown} tabIndex={0}>
       <CarouselStyles />
-      <div className="cards-carousel" role="region" aria-label="Carousel">
-        <Slider ref={sliderRef} {...settings}>
+      <div
+        className={`cards-carousel${isRtl ? " cards-carousel--rtl" : ""}`}
+        role="region"
+        aria-label="Carousel"
+      >
+        <Slider key={lang} ref={sliderRef} {...settings}>
           {cards.map((card, index) => (
             <div key={getCardKey(card, index)} className="h-full w-full">
               <CarouselCard card={card} lang={lang} cId={cId} />
