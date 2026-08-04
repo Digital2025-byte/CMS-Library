@@ -38,6 +38,7 @@ export default function OurValuesMobile({
     pauseOnHover: false,
     rtl: isRtl,
     beforeChange: (_, next) => setCurrentSlide(next),
+    pauseOnHover: true,
   };
 
   return (
@@ -46,18 +47,29 @@ export default function OurValuesMobile({
       dir={isRtl ? "rtl" : "ltr"}
     >
       {activeItem.imageUrl ? (
-        <div className="absolute inset-0 z-0 overflow-hidden">
+        <div className={styles.bg} aria-hidden>
           <img
-            key={activeItem.imageUrl}
+            key={`${activeItem.imageUrl}-sharp`}
             src={activeItem.imageUrl}
             alt=""
-            className="h-full w-full scale-110 object-cover brightness-[0.35] blur-md transition-all duration-700"
-            aria-hidden
+            className={styles.bgImageSharp}
           />
-          <div className="absolute inset-0 bg-secondary-2/50" />
+          <img
+            key={`${activeItem.imageUrl}-mid`}
+            src={activeItem.imageUrl}
+            alt=""
+            className={styles.bgImageMid}
+          />
+          <img
+            key={`${activeItem.imageUrl}-strong`}
+            src={activeItem.imageUrl}
+            alt=""
+            className={styles.bgImageStrong}
+          />
+          <div className={styles.bgTint} />
         </div>
       ) : (
-        <div className="absolute inset-0 z-0 bg-secondary-2" />
+        <div className="absolute inset-0 z-0 bg-main" />
       )}
 
       <div className={`z-10 w-full ${styles.slider}`}>
@@ -68,14 +80,14 @@ export default function OurValuesMobile({
             return (
               <div key={`${item.title}-${index}`} className="px-1.5">
                 <div
-                  className={`overflow-hidden rounded-[1.75rem] bg-secondary-2 shadow-xl transition-all duration-500 sm:rounded-[2rem] ${
+                  className={`overflow-hidden rounded-2xl bg-secondary-2 shadow-xl transition-all duration-500 md:rounded-0 ${
                     isActive
                       ? "scale-100 opacity-100"
                       : "scale-[0.94] opacity-80"
                   }`}
                   dir={isRtl ? "rtl" : "ltr"}
                 >
-                  <div className="relative aspect-4/3 w-full overflow-hidden sm:aspect-[5/4]">
+                  <div className="relative aspect-[3/4] w-full overflow-hidden sm:aspect-[4/5]">
                     {item.imageUrl ? (
                       <img
                         src={item.imageUrl}
@@ -89,23 +101,24 @@ export default function OurValuesMobile({
 
                     {item.title ? (
                       <h3
-                        className={`${typography.itemTitle} absolute top-5 start-5 z-10 max-w-[70%] font-bold text-white sm:top-6 sm:start-6`}
-                        style={{ textShadow: "0 4px 8px rgb(0 0 0 / 0.45)" }}
+                        className={`${typography.itemTitle} absolute top-5 start-5 z-10 max-w-[70%] font-medium text-white sm:top-6 sm:start-6`}
                       >
                         {item.title}
                       </h3>
                     ) : null}
-                  </div>
 
-                  {item.description ? (
-                    <div className="px-5 py-5 sm:px-6 sm:py-6">
-                      <p
-                        className={`${typography.body} leading-relaxed text-white`}
+                    {item.description ? (
+                      <div
+                        className={`${styles.descriptionPanel} absolute inset-x-0 bottom-0 z-10 px-5 py-5 sm:px-6 sm:py-6`}
                       >
-                        {item.description}
-                      </p>
-                    </div>
-                  ) : null}
+                        <p
+                          className={`${typography.body} leading-relaxed text-white`}
+                        >
+                          {item.description}
+                        </p>
+                      </div>
+                    ) : null}
+                  </div>
                 </div>
               </div>
             );
@@ -121,7 +134,7 @@ export default function OurValuesMobile({
           type="button"
           onClick={() => sliderRef.current?.slickPrev()}
           aria-label="Previous value"
-          className="flex h-10 w-10 items-center justify-center rounded-full border border-white transition hover:bg-white/15"
+          className="cursor-pointer flex h-10 w-10 items-center justify-center rounded-full border border-white transition hover:bg-white/15"
         >
           <ArrowLeft size={18} className="text-white" weight="regular" />
         </button>
@@ -133,7 +146,7 @@ export default function OurValuesMobile({
               type="button"
               aria-label={`Go to slide ${i + 1}`}
               onClick={() => sliderRef.current?.slickGoTo(i)}
-              className={`rounded-full bg-primary-2 transition-all duration-300 ${
+              className={`cursor-pointer rounded-full bg-primary-2 transition-all duration-300 ${
                 i === currentSlide ? "h-2 w-5" : "h-2 w-2 opacity-40"
               }`}
             />
@@ -144,7 +157,7 @@ export default function OurValuesMobile({
           type="button"
           onClick={() => sliderRef.current?.slickNext()}
           aria-label="Next value"
-          className="flex h-10 w-10 items-center justify-center rounded-full border border-white transition hover:bg-white/15"
+          className="cursor-pointer  flex h-10 w-10 items-center justify-center rounded-full border border-white transition hover:bg-white/15"
         >
           <ArrowRight size={18} className="text-white" weight="regular" />
         </button>

@@ -31,7 +31,7 @@ export default function OurValuesDesktop({ lang = "en", items = [] }) {
         return (
           <div
             key={`${item.title}-${index}`}
-            onMouseEnter={() => setActiveIndex(index)}
+            onClick={() => setActiveIndex(index)}
             className={`relative mt-4 h-[90vh] flex-shrink-0 cursor-pointer overflow-hidden transition-all duration-700 ${flexClass}`}
           >
             {item.imageUrl ? (
@@ -58,14 +58,14 @@ export default function OurValuesDesktop({ lang = "en", items = [] }) {
             ) : null}
 
             <div
-              className={`absolute bottom-20 z-20 m-3 ml-12 max-w-sm rounded-xl bg-secondary-2 p-3 text-white transition-opacity ${
+              className={`absolute bottom-20 z-20 m-3 ml-12 max-w-lg rounded-[10px] bg-[#054E72]/50 px-8 py-4 text-white backdrop-blur-[20px] transition-opacity ${
                 isActive
-                  ? "opacity-90 delay-300 duration-600"
-                  : "opacity-0 duration-100"
+                  ? "opacity-100 delay-300 duration-600"
+                  : "pointer-events-none opacity-0 duration-100"
               }`}
             >
               <p
-                className={`${typography.body} mt-1 flex items-center gap-4 p-2 leading-relaxed text-white/80`}
+                className={`${typography.body} text-start leading-relaxed text-white`}
               >
                 {item.description}
               </p>
