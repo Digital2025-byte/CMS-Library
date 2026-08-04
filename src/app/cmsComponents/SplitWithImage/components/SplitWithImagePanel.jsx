@@ -4,8 +4,8 @@ import { useRef } from "react";
 import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import CustomBackgroundImage from "@/components/ui/CustomBackgroundImage";
+import PageContentContainer from "@/components/layout/PageContentContainer";
 import { typography } from "@/styles/typography";
-import { pageContentPadding } from "@/styles/layout";
 
 const containerVariants = {
   hidden: {},
@@ -53,10 +53,8 @@ export default function SplitWithImagePanel({
         transition={{ duration: 7, ease: "easeInOut" }}
       >
         <section className="flex min-h-screen items-center justify-center">
-          <div
-            className={`${pageContentPadding} mx-auto mb-8 grid w-full max-w-[1430px] grid-cols-1 gap-0 lg:grid-cols-2`}
-          >
-            <div className="order-2 -mt-14 p-4 lg:order-1">
+          <PageContentContainer className="mb-8 grid grid-cols-1 gap-0 lg:grid-cols-2">
+            <div className="order-2 -mt-14 py-4 lg:order-1">
               <h2
                 className={`${typography.pageTitle} mb-4 font-bold text-primary-1`}
               >
@@ -99,7 +97,7 @@ export default function SplitWithImagePanel({
                 />
               ) : null}
             </motion.div>
-          </div>
+          </PageContentContainer>
         </section>
       </CustomBackgroundImage>
     </div>
