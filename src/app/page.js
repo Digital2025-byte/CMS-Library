@@ -64,6 +64,9 @@ import { buildPhotoTileGridData } from "@/app/cmsComponents/PhotoTileGrid/utils/
 import DualImageText from "@/app/cmsComponents/DualImageText";
 import DualImageTextContainer from "@/app/cmsComponents/DualImageText/components/DualImageTextContainer";
 import { buildDualImageTextData } from "@/app/cmsComponents/DualImageText/utils/data";
+import CarouselImageText6 from "@/app/cmsComponents/CarouselImageText6";
+import CarouselImageText6Container from "@/app/cmsComponents/CarouselImageText6/components/CarouselImageText6Container";
+import { buildCarouselImageText6Data } from "@/app/cmsComponents/CarouselImageText6/utils/data";
 import LanguageSwitcher from "@/i18n/LanguageSwitcher";
 import { isRtl } from "@/i18n/settings";
 import PageContentContainer from "@/components/layout/PageContentContainer";
@@ -98,6 +101,7 @@ export default function Home() {
   const photoTileGridData = buildPhotoTileGridData(t, lang);
   const dualImageTextData = buildDualImageTextData(t, lang, "towards");
   const dualImageTrainingData = buildDualImageTextData(t, lang, "training");
+  const carouselImageText6Data = buildCarouselImageText6Data(t, lang);
 
   return (
     <main>
@@ -209,6 +213,10 @@ export default function Home() {
       <DualImageTextContainer lang={lang} dir={dir}>
         <DualImageText lang={lang} data={dualImageTrainingData} />
       </DualImageTextContainer>
+
+      <CarouselImageText6Container lang={lang} dir={dir}>
+        <CarouselImageText6 lang={lang} data={carouselImageText6Data} />
+      </CarouselImageText6Container>
     </main>
   );
 }

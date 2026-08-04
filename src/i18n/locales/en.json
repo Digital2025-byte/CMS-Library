@@ -508,6 +508,41 @@
         "imageAlt": "Flight attendant presenting flower bouquets"
       }
     }
+  },
+  "carouselImageText6": {
+    "title": "Our Values",
+    "values": {
+      "safety": {
+        "title": "Safety",
+        "description": "Every flight begins with rigorous standards and a culture that puts passenger and crew safety first.",
+        "imageAlt": "Safety-focused aviation operations"
+      },
+      "comfort": {
+        "title": "Comfort",
+        "description": "From seating to service, we design journeys that feel calm, spacious, and thoughtfully considered.",
+        "imageAlt": "Comfortable cabin experience"
+      },
+      "hospitality": {
+        "title": "Hospitality",
+        "description": "Warm Syrian hospitality guides every interaction — onboard, on the ground, and beyond.",
+        "imageAlt": "Warm hospitality onboard"
+      },
+      "reliability": {
+        "title": "Reliability",
+        "description": "Passengers trust us to connect them consistently, with dependable schedules and clear communication.",
+        "imageAlt": "Reliable airline operations"
+      },
+      "excellence": {
+        "title": "Excellence",
+        "description": "We pursue continuous improvement in service quality, operations, and the passenger experience.",
+        "imageAlt": "Excellence in airline service"
+      },
+      "community": {
+        "title": "Community",
+        "description": "As a national carrier, we stay connected to the people and places that shape our shared journey.",
+        "imageAlt": "Connected communities through travel"
+      }
+    }
   }
 }
 
