@@ -508,6 +508,65 @@
         "imageAlt": "مضيفة طيران تقدّم باقات من الزهور"
       }
     }
+  },
+  "flightFares": {
+    "title": "عروض الرحلات",
+    "cities": [
+      {
+        "cityId": 1,
+        "cityName": "دبي",
+        "IATACode": "DXB",
+        "countryName": "الإمارات العربية المتحدة",
+        "price": "120",
+        "currency": "USD",
+        "isNew": true
+      },
+      {
+        "cityId": 2,
+        "cityName": "إسطنبول",
+        "IATACode": "IST",
+        "countryName": "تركيا",
+        "price": "95",
+        "currency": "USD",
+        "isNew": false
+      },
+      {
+        "cityId": 3,
+        "cityName": "باريس",
+        "IATACode": "CDG",
+        "countryName": "فرنسا",
+        "price": "210",
+        "currency": "USD",
+        "isNew": false
+      },
+      {
+        "cityId": 4,
+        "cityName": "لندن",
+        "IATACode": "LHR",
+        "countryName": "المملكة المتحدة",
+        "price": "240",
+        "currency": "USD",
+        "isNew": true
+      },
+      {
+        "cityId": 5,
+        "cityName": "القاهرة",
+        "IATACode": "CAI",
+        "countryName": "مصر",
+        "price": "80",
+        "currency": "USD",
+        "isNew": false
+      },
+      {
+        "cityId": 6,
+        "cityName": "بيروت",
+        "IATACode": "BEY",
+        "countryName": "لبنان",
+        "price": "75",
+        "currency": "USD",
+        "isNew": false
+      }
+    ]
   }
 }
 

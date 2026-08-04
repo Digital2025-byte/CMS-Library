@@ -508,6 +508,65 @@
         "imageAlt": "Flight attendant presenting flower bouquets"
       }
     }
+  },
+  "flightFares": {
+    "title": "Flight deals",
+    "cities": [
+      {
+        "cityId": 1,
+        "cityName": "Dubai",
+        "IATACode": "DXB",
+        "countryName": "United Arab Emirates",
+        "price": "120",
+        "currency": "USD",
+        "isNew": true
+      },
+      {
+        "cityId": 2,
+        "cityName": "Istanbul",
+        "IATACode": "IST",
+        "countryName": "Turkey",
+        "price": "95",
+        "currency": "USD",
+        "isNew": false
+      },
+      {
+        "cityId": 3,
+        "cityName": "Paris",
+        "IATACode": "CDG",
+        "countryName": "France",
+        "price": "210",
+        "currency": "USD",
+        "isNew": false
+      },
+      {
+        "cityId": 4,
+        "cityName": "London",
+        "IATACode": "LHR",
+        "countryName": "United Kingdom",
+        "price": "240",
+        "currency": "USD",
+        "isNew": true
+      },
+      {
+        "cityId": 5,
+        "cityName": "Cairo",
+        "IATACode": "CAI",
+        "countryName": "Egypt",
+        "price": "80",
+        "currency": "USD",
+        "isNew": false
+      },
+      {
+        "cityId": 6,
+        "cityName": "Beirut",
+        "IATACode": "BEY",
+        "countryName": "Lebanon",
+        "price": "75",
+        "currency": "USD",
+        "isNew": false
+      }
+    ]
   }
 }
 
