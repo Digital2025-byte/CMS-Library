@@ -70,6 +70,9 @@ import { buildCarouselImageText6Data } from "@/app/cmsComponents/CarouselImageTe
 import FlightFaresSection from "@/app/cmsComponents/FlightFaresSection";
 import FlightFaresContainer from "@/app/cmsComponents/FlightFaresSection/components/FlightFaresContainer";
 import { buildFlightFaresData } from "@/app/cmsComponents/FlightFaresSection/utils/data";
+import SplitWithImage from "@/app/cmsComponents/SplitWithImage";
+import SplitWithImageContainer from "@/app/cmsComponents/SplitWithImage/components/SplitWithImageContainer";
+import { buildSplitWithImageData } from "@/app/cmsComponents/SplitWithImage/utils/data";
 import LanguageSwitcher from "@/i18n/LanguageSwitcher";
 import { isRtl } from "@/i18n/settings";
 import PageContentContainer from "@/components/layout/PageContentContainer";
@@ -106,6 +109,7 @@ export default function Home() {
   const dualImageTrainingData = buildDualImageTextData(t, lang, "training");
   const carouselImageText6Data = buildCarouselImageText6Data(t, lang);
   const flightFaresData = buildFlightFaresData(t, lang);
+  const splitWithImageData = buildSplitWithImageData(t, lang);
 
   return (
     <main>
@@ -225,6 +229,10 @@ export default function Home() {
       <FlightFaresContainer lang={lang} dir={dir}>
         <FlightFaresSection lang={lang} data={flightFaresData} />
       </FlightFaresContainer>
+
+      <SplitWithImageContainer lang={lang} dir={dir}>
+        <SplitWithImage lang={lang} data={splitWithImageData} />
+      </SplitWithImageContainer>
     </main>
   );
 }

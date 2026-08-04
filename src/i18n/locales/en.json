@@ -544,6 +544,12 @@
       }
     }
   },
+  "splitWithImage": {
+    "title": "Who We Are",
+    "description": "We are a private Syrian commercial airline, established in May 2025 through a strategic partnership with the United Arab Emirates, with an ambitious vision to elevate the aviation sector in Syria and the Middle East. We provide passenger transportation services aboard a modern fleet connecting Syria to regional and international destinations, along with air cargo services that efficiently meet market demands. We believe that flying is not just transportation, but a personal experience that begins the moment you book until the moment you arrive. Every detail reflects the warmth of Syrian hospitality and our constant commitment to exceeding expectations. We are here to bridge distances, connect Syrians with their homeland, and reconnect Syria to the world, guided by an ambitious vision and a deep-rooted tradition in the global aviation sector.",
+    "imageAlt": "FlyCham aircraft flying through the sky",
+    "backgroundAlt": "Blue sky with soft clouds"
+  },
   "flightFares": {
     "title": "Flight deals",
     "cities": [
