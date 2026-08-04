@@ -19,7 +19,7 @@ export default function CarouselCard({ card, lang = "en", cId }) {
 
   return (
     <article className="h-full w-full"  dir={lang === "ar" ? "rtl" : "ltr"}>
-      <div className="group flex h-full min-h-95 w-full flex-col overflow-hidden rounded-2xl border border-200 bg-white shadow-md transition-all duration-300 hover:shadow-lg md:min-h-[420px]">
+      <div className="group flex h-full min-h-95 w-full flex-col overflow-hidden rounded-2xl border border-200 bg-white shadow-md transition-all duration-300 hover:shadow-lg md:min-h-105">
         {imageSrc ? (
           <div className="relative h-50 w-full overflow-hidden sm:h-55 md:h-60 lg:h-65">
             <Image

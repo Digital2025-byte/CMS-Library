@@ -23,7 +23,7 @@ export default function FillImageCard({ card, lang = "en", cId }) {
       className="m-0 flex w-full p-0"
       dir={lang === "ar" ? "rtl" : "ltr"}
     >
-      <div className="group relative h-[380px] w-full overflow-hidden rounded-2xl shadow-md transition-shadow duration-300 hover:shadow-lg md:h-[420px]">
+      <div className="group relative h-95 w-full overflow-hidden rounded-2xl shadow-md transition-shadow duration-300 hover:shadow-lg md:h-105">
         {imageSrc ? (
           <Image
             src={imageSrc}
@@ -40,7 +40,7 @@ export default function FillImageCard({ card, lang = "en", cId }) {
         )}
 
         <div
-          className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-t from-black/90 via-black/55 to-black/15 md:from-black/80 md:via-black/40 md:to-transparent"
+          className="pointer-events-none absolute inset-0 rounded-2xl bg-linear-to-t from-black/90 via-black/55 to-black/15 md:from-black/80 md:via-black/40 md:to-transparent"
           aria-hidden
         />
 
