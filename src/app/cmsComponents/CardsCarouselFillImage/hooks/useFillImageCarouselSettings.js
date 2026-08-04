@@ -1,48 +1,59 @@
 import { useMemo } from "react";
 
 /**
- * Desktop: 3 cards. Tablet: 2. Mobile: 1.
- * Slick stays LTR — Arabic opposite motion uses CSS mirror in the slider.
+ * Fractional slidesToShow (not variableWidth) so slick natively:
+ * - start: full | full | peek
+ * - end:   peek | full | full  (via built-in slideOffset, smooth animation)
  */
 export function useFillImageCarouselSettings(
   cardsCount = 0,
-  slidesToShow = 3,
-  onBeforeChange
+  slidesToShow = 2.7,
+  onBeforeChange,
+  onAfterChange
 ) {
   return useMemo(() => {
-    const capped = Math.max(1, Math.min(slidesToShow, cardsCount || 1));
-    const tabletShow = Math.min(2, Math.max(cardsCount, 1));
+    const count = Math.max(cardsCount, 1);
+    const show = Math.min(slidesToShow, count);
 
     return {
       dots: false,
       arrows: false,
       infinite: false,
-      speed: 500,
-      slidesToShow: capped,
+      speed: 550,
+      cssEase: "ease-in-out",
+      variableWidth: false,
+      slidesToShow: show,
       slidesToScroll: 1,
       swipeToSlide: true,
       accessibility: true,
       autoplay: false,
+      centerMode: false,
+      centerPadding: "0px",
       rtl: false,
       beforeChange: onBeforeChange,
+      afterChange: onAfterChange,
       responsive: [
         {
           breakpoint: 1024,
           settings: {
-            slidesToShow: tabletShow,
+            slidesToShow: Math.min(1.55, count),
             slidesToScroll: 1,
             infinite: false,
+            centerMode: false,
+            variableWidth: false,
           },
         },
         {
           breakpoint: 768,
           settings: {
-            slidesToShow: 1,
+            slidesToShow: Math.min(1.15, count),
             slidesToScroll: 1,
             infinite: false,
+            centerMode: false,
+            variableWidth: false,
           },
         },
       ],
     };
-  }, [cardsCount, slidesToShow, onBeforeChange]);
+  }, [cardsCount, slidesToShow, onBeforeChange, onAfterChange]);
 }

@@ -4,14 +4,18 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import CarouselHeader from "@/app/cmsComponents/RelatedContentCarousel/components/CarouselHeader";
-import CarouselNavigation from "@/app/cmsComponents/RelatedContentCarousel/components/CarouselNavigation";
 import {
   CardsCarouselFillImageInset,
 } from "./components/CardsCarouselFillImageContainer";
+import FillImageCarouselNavigation from "./components/FillImageCarouselNavigation";
 import FillImageCarouselSlider from "./components/FillImageCarouselSlider";
 import { useCarouselData } from "./hooks/useCarouselData";
 import { useFillImageCarouselSettings } from "./hooks/useFillImageCarouselSettings";
-import { getCurrentSlidesToShow } from "./utils/helpers";
+import {
+  getMaxSlideIndex,
+  isAtLastStep,
+  usePeekSlideWidth,
+} from "./hooks/usePeekSlideWidth";
 
 const CardsCarouselFillImage = ({
   lang = "en",
@@ -21,6 +25,7 @@ const CardsCarouselFillImage = ({
 }) => {
   const sliderRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const { edgePad, visibleCount } = usePeekSlideWidth();
 
   const { title, description, cards, hasContent } = useCarouselData(
     data,
@@ -28,39 +33,58 @@ const CardsCarouselFillImage = ({
     posParams
   );
 
-  const [slidesToShow, setSlidesToShow] = useState(() =>
-    getCurrentSlidesToShow(cards.length)
-  );
-
-  useEffect(() => {
-    const update = () => setSlidesToShow(getCurrentSlidesToShow(cards.length));
-    update();
-    window.addEventListener("resize", update);
-    return () => window.removeEventListener("resize", update);
-  }, [cards.length]);
+  const maxIndex = getMaxSlideIndex(cards.length, visibleCount);
+  const atStart = activeIndex <= 0;
+  const atEnd = isAtLastStep(activeIndex, cards.length, visibleCount);
+  const canGoPrev = !atStart;
+  const canGoNext = !atEnd && maxIndex > 0;
 
   useEffect(() => {
     setActiveIndex(0);
   }, [lang]);
 
-  const handleBeforeChange = useCallback((_, next) => {
-    setActiveIndex(next);
-  }, []);
+  const syncIndex = useCallback(
+    (index) => {
+      const next = Math.max(0, Math.min(Number(index) || 0, maxIndex));
+      setActiveIndex(next);
+    },
+    [maxIndex]
+  );
 
-  const cappedSlides = Math.max(1, Math.min(slidesToShow, cards.length || 1));
+  const handleBeforeChange = useCallback(
+    (_, next) => {
+      syncIndex(next);
+    },
+    [syncIndex]
+  );
+
+  const handleAfterChange = useCallback(
+    (current) => {
+      syncIndex(current);
+    },
+    [syncIndex]
+  );
+
   const settings = useFillImageCarouselSettings(
     cards.length,
-    cappedSlides,
-    handleBeforeChange
+    visibleCount,
+    handleBeforeChange,
+    handleAfterChange
   );
 
   const handlePrev = useCallback(() => {
-    sliderRef.current?.slickPrev();
-  }, []);
+    if (atStart) return;
+    const prevIndex = Math.max(0, Math.ceil(activeIndex) - 1);
+    sliderRef.current?.slickGoTo(prevIndex);
+    setActiveIndex(prevIndex);
+  }, [atStart, activeIndex]);
 
   const handleNext = useCallback(() => {
-    sliderRef.current?.slickNext();
-  }, []);
+    if (atEnd) return;
+    const nextIndex = Math.min(maxIndex, Math.floor(activeIndex) + 1);
+    sliderRef.current?.slickGoTo(nextIndex);
+    setActiveIndex(nextIndex);
+  }, [atEnd, activeIndex, maxIndex]);
 
   const handleKeyDown = useCallback(
     (event) => {
@@ -79,10 +103,7 @@ const CardsCarouselFillImage = ({
     return null;
   }
 
-  const maxIndex = Math.max(0, cards.length - cappedSlides);
-  const canGoPrev = activeIndex > 0;
-  const canGoNext = activeIndex < maxIndex;
-  const showNavigation = cards.length > cappedSlides;
+  const showNavigation = maxIndex > 0;
 
   return (
     <div aria-label={title || "Cards carousel"}>
@@ -90,21 +111,21 @@ const CardsCarouselFillImage = ({
         <CarouselHeader title={title} description={description} />
       </CardsCarouselFillImageInset>
 
-      {/* Edge-to-edge carousel */}
       <div className="m-0 w-screen max-w-[100vw] ms-[calc(50%-50vw)] px-0">
         <FillImageCarouselSlider
-          sliderKey={`${lang}-${cappedSlides}`}
+          sliderKey={`${lang}-${visibleCount}`}
           sliderRef={sliderRef}
           settings={settings}
           cards={cards}
           lang={lang}
           cId={cId}
           onKeyDown={handleKeyDown}
+          edgePad={edgePad}
         />
       </div>
 
       <CardsCarouselFillImageInset>
-        <CarouselNavigation
+        <FillImageCarouselNavigation
           lang={lang}
           onPrev={handlePrev}
           onNext={handleNext}
