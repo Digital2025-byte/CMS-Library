@@ -577,6 +577,19 @@
       }
     }
   },
+  "mixedRightThreeImages": {
+    "title": "Louvre Abu Dhabi",
+    "description": "Discover one of the world’s most striking museums, where a luminous dome of interlocking geometry filters light across a serene waterfront plaza — a landmark of art, culture, and modern architecture in the UAE.",
+    "primaryCta": "Explore",
+    "primaryCtaHref": "/",
+    "secondaryCta": "Explore as magazine style",
+    "secondaryCtaHref": "/",
+    "images": {
+      "large": "Louvre Abu Dhabi dome and plaza",
+      "smallOne": "Louvre Abu Dhabi exterior over water",
+      "smallTwo": "Louvre Abu Dhabi dome geometric detail"
+    }
+  },
   "flightFares": {
     "title": "Flight deals",
     "cities": [

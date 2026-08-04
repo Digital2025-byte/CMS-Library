@@ -76,6 +76,9 @@ import { buildSplitWithImageData } from "@/app/cmsComponents/SplitWithImage/util
 import ServiceCardsSlider from "@/app/cmsComponents/ServiceCardsSlider";
 import ServiceCardsSliderContainer from "@/app/cmsComponents/ServiceCardsSlider/components/ServiceCardsSliderContainer";
 import { buildServiceCardsSliderData } from "@/app/cmsComponents/ServiceCardsSlider/utils/data";
+import MixedRightThreeImages from "@/app/cmsComponents/MixedRightThreeImages";
+import MixedRightThreeImagesContainer from "@/app/cmsComponents/MixedRightThreeImages/components/MixedRightThreeImagesContainer";
+import { buildMixedRightThreeImagesData } from "@/app/cmsComponents/MixedRightThreeImages/utils/data";
 import LanguageSwitcher from "@/i18n/LanguageSwitcher";
 import { isRtl } from "@/i18n/settings";
 import PageContentContainer from "@/components/layout/PageContentContainer";
@@ -114,6 +117,7 @@ export default function Home() {
   const flightFaresData = buildFlightFaresData(t, lang);
   const splitWithImageData = buildSplitWithImageData(t, lang);
   const serviceCardsSliderData = buildServiceCardsSliderData(t, lang);
+  const mixedRightThreeImagesData = buildMixedRightThreeImagesData(t, lang);
 
   return (
     <main>
@@ -241,6 +245,10 @@ export default function Home() {
       <ServiceCardsSliderContainer lang={lang} dir={dir}>
         <ServiceCardsSlider lang={lang} data={serviceCardsSliderData} />
       </ServiceCardsSliderContainer>
+
+      <MixedRightThreeImagesContainer lang={lang} dir={dir}>
+        <MixedRightThreeImages lang={lang} data={mixedRightThreeImagesData} />
+      </MixedRightThreeImagesContainer>
     </main>
   );
 }
