@@ -3,13 +3,7 @@
 import ServiceCardsSliderPanel from "./components/ServiceCardsSliderPanel";
 import { getServiceCardsSliderContent } from "./utils/helpers";
 
-const ServiceCardsSlider = ({
-  lang = "en",
-  data,
-  posParams,
-  cId,
-  autoplay = true,
-}) => {
+const ServiceCardsSlider = ({ lang = "en", data, posParams, cId }) => {
   const { title, description, services, hasContent } =
     getServiceCardsSliderContent(data, lang, posParams, cId);
 
@@ -23,7 +17,6 @@ const ServiceCardsSlider = ({
       title={title}
       description={description}
       services={services}
-      autoplay={autoplay}
     />
   );
 };
