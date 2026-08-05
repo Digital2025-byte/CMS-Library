@@ -6,118 +6,106 @@
  * steps[].x / y  → circle CENTER as % of the desktop track (0–100)
  * steps[].label  → "Step N" offset relative to the circle box
  *
- * path.*         → dashed connector between circle rims
- * path.segments  → one entry per gap (1→2, 2→3, 3→4); tweak `bend`
+ * path.*         → dashed sine wave (masked out under each circle)
+ * path.segments  → optional extra bend per gap (1→2, 2→3, 3→4)
  */
 
 export const CONNECTION_STEPS_LAYOUT = {
-  trackHeight: "24rem",
-  circleSize: 130,
+  trackHeight: "26rem",
+  circleSize: 140,
 
   path: {
     color: "#D1B883",
     strokeWidth: 2,
-    /** Short dash + wide gap ≈ design’s dotted gold line. */
     dasharray: "1.5 9",
     /**
-     * Circle radius as % of the track box (keep in sync if you resize circles).
-     *   x ≈ (circleSize/2) / trackWidth * 100
-     *   y ≈ (circleSize/2) / trackHeight * 100
+     * Ellipse used to MASK the stroke under each circle.
+     * Match circleSize vs track size so the cutout hugs the photo.
      */
-    radiusPct: { x: 5.6, y: 16.5 },
-    /** 0 = stroke meets the rim; raise slightly for a hairline gap. */
-    rimGap: 0.04,
-    /**
-     * Extra vertical pull on each gap’s curve (in % of track height).
-     * Positive = pull DOWN, negative = pull UP.
-     * Makes the U / ∩ between steps deeper or flatter.
-     */
+    radiusPct: { x: 6.2, y: 17.5 },
+    /** Slightly larger than the photo so the dash never peeks under the rim. */
+    maskPadding: 1.08,
     segments: [
-      { bend: 4 }, // 1 → 2
-      { bend: -4 }, // 2 → 3
-      { bend: 4 }, // 3 → 4
+      { bend: 0 },
+      { bend: 0 },
+      { bend: 0 },
     ],
   },
 
   steps: [
     {
-      x: 12.5,
-      y: 32,
+      // high
+      x: 12,
+      y: 28,
       label: { top: "0", left: "100%", translateX: "-10%" },
     },
     {
+      // low
       x: 37.5,
-      y: 62,
-      label: { top: "-1.75rem", left: "50%", translateX: "-50%" },
+      y: 68,
+      label: { top: "-1.75rem", left: "100%", translateX: "-10%" },
     },
     {
+      // high
       x: 62.5,
-      y: 32,
+      y: 28,
       label: { top: "0", left: "-25%", translateX: "-10%" },
     },
     {
-      x: 87.5,
-      y: 62,
+      // low
+      x: 88,
+      y: 68,
       label: { top: "-1.75rem", left: "-25%", translateX: "0%" },
     },
   ],
 };
 
-/** Point on the ellipse rim of `from`, facing toward `to`. */
-function rimPoint(from, to, radiusPct, rimGap) {
-  const dx = to.x - from.x;
-  const dy = to.y - from.y;
-  const len = Math.hypot(dx, dy) || 1;
-  const scale = 1 + rimGap;
-
-  return {
-    x: from.x + (dx / len) * radiusPct.x * scale,
-    y: from.y + (dy / len) * radiusPct.y * scale,
-  };
-}
-
 /**
- * One subpath per gap (rim → rim). Circles sit above, so strokes
- * only show in the spaces between steps — matching the design.
+ * Continuous sine through circle centers.
+ * Circles + SVG mask hide the stroke where it would cross each photo.
  */
 export function buildConnectionPathD(
   layout = CONNECTION_STEPS_LAYOUT,
   isRtl = false
 ) {
-  const centers = layout.steps.map((step) => ({
+  const points = layout.steps.map((step) => ({
     x: isRtl ? 100 - step.x : step.x,
     y: step.y,
   }));
 
-  if (centers.length < 2) {
+  if (points.length < 2) {
     return "";
   }
 
-  const { radiusPct, rimGap = 0, segments = [] } = layout.path;
-  const parts = [];
+  const segments = layout.path?.segments || [];
+  let d = `M ${points[0].x} ${points[0].y}`;
 
-  for (let i = 0; i < centers.length - 1; i += 1) {
-    const a = centers[i];
-    const b = centers[i + 1];
-    const start = rimPoint(a, b, radiusPct, rimGap);
-    const end = rimPoint(b, a, radiusPct, rimGap);
-
-    const midX = (start.x + end.x) / 2;
+  for (let i = 0; i < points.length - 1; i += 1) {
+    const a = points[i];
+    const b = points[i + 1];
+    const midX = (a.x + b.x) / 2;
     const bend = segments[i]?.bend ?? 0;
 
-    // Horizontal handles at start/end Y (+ bend) → smooth sine-like U / ∩
-    const c1y = start.y + bend;
-    const c2y = end.y + bend;
-
-    parts.push(
-      [
-        `M ${start.x.toFixed(2)} ${start.y.toFixed(2)}`,
-        `C ${midX.toFixed(2)} ${c1y.toFixed(2)}`,
-        `${midX.toFixed(2)} ${c2y.toFixed(2)}`,
-        `${end.x.toFixed(2)} ${end.y.toFixed(2)}`,
-      ].join(" ")
-    );
+    // Horizontal handles → classic U / ∩ between high and low steps
+    d += ` C ${midX} ${a.y + bend}, ${midX} ${b.y + bend}, ${b.x} ${b.y}`;
   }
 
-  return parts.join(" ");
+  return d;
+}
+
+/** Circle centers in the same % space as the path (for the SVG mask). */
+export function getConnectionMaskCircles(
+  layout = CONNECTION_STEPS_LAYOUT,
+  isRtl = false
+) {
+  const { radiusPct, maskPadding = 1 } = layout.path;
+  const rx = radiusPct.x * maskPadding;
+  const ry = radiusPct.y * maskPadding;
+
+  return layout.steps.map((step) => ({
+    cx: isRtl ? 100 - step.x : step.x,
+    cy: step.y,
+    rx,
+    ry,
+  }));
 }

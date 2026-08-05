@@ -44,7 +44,7 @@ export default function ConnectionStep({
           </p>
         ) : null}
 
-        <div className="relative z-10 h-full w-full overflow-hidden rounded-full shadow-[0_8px_20px_rgb(1_38_59_/_0.14)]">
+        <div className="relative z-10 h-full w-full overflow-hidden rounded-full bg-100 shadow-[0_8px_20px_rgb(1_38_59_/_0.14)]">
           {imageUrl ? (
             <Image
               src={imageUrl}
