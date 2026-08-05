@@ -1,6 +1,10 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+
+function sectionKey(tabIndex, sectionIndex) {
+  return `${tabIndex}-${sectionIndex}`;
+}
 
 export function useMealsDescriptionTabbed(tabs = []) {
   const [activeTabIndex, setActiveTabIndex] = useState(0);
@@ -13,26 +17,35 @@ export function useMealsDescriptionTabbed(tabs = []) {
     ? activeTab.sections
     : [];
 
+  useEffect(() => {
+    if (activeTabIndex !== safeTabIndex) {
+      setActiveTabIndex(safeTabIndex);
+    }
+  }, [activeTabIndex, safeTabIndex]);
+
   const isSectionOpen = useCallback(
     (sectionIndex) => {
-      const key = `${safeTabIndex}-${sectionIndex}`;
-      return openSections[key] === undefined ? true : openSections[key];
+      const key = sectionKey(safeTabIndex, sectionIndex);
+      return openSections[key] ?? true;
     },
     [openSections, safeTabIndex]
   );
 
   const toggleSection = useCallback(
     (sectionIndex) => {
-      const key = `${safeTabIndex}-${sectionIndex}`;
+      const key = sectionKey(safeTabIndex, sectionIndex);
       setOpenSections((prev) => ({
         ...prev,
-        [key]: prev[key] === undefined ? false : !prev[key],
+        [key]: !(prev[key] ?? true),
       }));
     },
     [safeTabIndex]
   );
 
   const handleTabChange = useCallback((index) => {
+    if (typeof index !== "number" || Number.isNaN(index)) {
+      return;
+    }
     setActiveTabIndex(index);
   }, []);
 
