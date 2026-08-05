@@ -4,7 +4,7 @@ import { typography } from "@/styles/typography";
 export default function AccordionItem({ item, isOpen, onToggle }) {
   return (
     <div
-      className="cursor-pointer rounded-lg bg-background px-4 py-4 transition-shadow sm:px-5 sm:py-5 md:px-6 [&_*]:cursor-pointer"
+      className="cursor-pointer rounded-lg bg-background px-4 py-4 transition-shadow sm:px-5 sm:py-5 md:px-6 **:cursor-pointer"
       onClick={onToggle}
     >
       <button

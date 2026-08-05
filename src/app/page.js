@@ -2,7 +2,7 @@
 
 import { useTranslation } from "react-i18next";
 import AccordionWithContent from "@/app/cmsComponents/AccordionWithContent";
-import AccordionContainer from "@/app/cmsComponents/AccordionWithContent/components/AccordionContainer";
+import AccordionContainer from "@/app/cmsComponents/AccordionWithContent/container/AccordionContainer";
 import { buildAccordionData } from "@/app/cmsComponents/AccordionWithContent/utils/data";
 import AccordionWithImages from "@/app/cmsComponents/AccordionWithImages";
 import AccordionImagesContainer from "@/app/cmsComponents/AccordionWithImages/components/AccordionImagesContainer";
