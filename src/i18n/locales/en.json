@@ -661,6 +661,90 @@
         "isNew": false
       }
     ]
+  },
+  "relatedContentCarousel": {
+    "title": "Related content",
+    "description": "Explore more stories, guides, and travel inspiration from Cham Wings.",
+    "pages": [
+      {
+        "id": "page-1",
+        "title": "Family travel tips",
+        "description": "Practical advice to make every journey smoother when you travel with children.",
+        "buttonText": "Learn More",
+        "slug": "family-travel",
+        "buttonLink": "#",
+        "imageAlt": "Family traveling together"
+      },
+      {
+        "id": "page-2",
+        "title": "Cabin comfort guide",
+        "description": "Discover seating options and onboard features designed for a more relaxed flight.",
+        "buttonText": "Learn More",
+        "slug": "cabin-comfort",
+        "buttonLink": "#",
+        "imageAlt": "Comfortable aircraft cabin"
+      },
+      {
+        "id": "page-3",
+        "title": "Destination inspiration",
+        "description": "Browse curated destinations and find your next unforgettable escape.",
+        "buttonText": "Learn More",
+        "slug": "destinations",
+        "buttonLink": "#",
+        "imageAlt": "Scenic travel destination"
+      },
+      {
+        "id": "page-4",
+        "title": "Booking made simple",
+        "description": "A clear guide to booking, managing trips, and preparing for takeoff.",
+        "buttonText": "Learn More",
+        "slug": "booking-guide",
+        "buttonLink": "#",
+        "imageAlt": "Traveler booking a flight"
+      }
+    ]
+  },
+  "cardsCarouselFillImage": {
+    "title": "Featured stories",
+    "description": "Explore destinations, tips, and travel inspiration in a full visual carousel.",
+    "pages": [
+      {
+        "id": "page-1",
+        "title": "Family travel tips",
+        "description": "Practical advice to make every journey smoother when you travel with children.",
+        "buttonText": "Learn More",
+        "slug": "family-travel",
+        "buttonLink": "#",
+        "imageAlt": "Family traveling together"
+      },
+      {
+        "id": "page-2",
+        "title": "Cabin comfort guide",
+        "description": "Discover seating options and onboard features designed for a more relaxed flight.",
+        "buttonText": "Learn More",
+        "slug": "cabin-comfort",
+        "buttonLink": "#",
+        "imageAlt": "Comfortable aircraft cabin"
+      },
+      {
+        "id": "page-3",
+        "title": "Destination inspiration",
+        "description": "Browse curated destinations and find your next unforgettable escape.",
+        "buttonText": "Learn More",
+        "slug": "destinations",
+        "buttonLink": "#",
+        "imageAlt": "Scenic travel destination"
+      },
+      {
+        "id": "page-4",
+        "title": "Booking made simple",
+        "description": "A clear guide to booking, managing trips, and preparing for takeoff.",
+        "buttonText": "Learn More",
+        "slug": "booking-guide",
+        "buttonLink": "#",
+        "imageAlt": "Traveler booking a flight"
+      }
+    ]
   }
 }
 

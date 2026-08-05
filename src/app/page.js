@@ -82,6 +82,12 @@ import { buildMixedRightThreeImagesData } from "@/app/cmsComponents/MixedRightTh
 import MixedLeftThreeImages from "@/app/cmsComponents/MixedLeftThreeImages";
 import MixedLeftThreeImagesContainer from "@/app/cmsComponents/MixedLeftThreeImages/components/MixedLeftThreeImagesContainer";
 import { buildMixedLeftThreeImagesData } from "@/app/cmsComponents/MixedLeftThreeImages/utils/data";
+import RelatedContentCarousel from "@/app/cmsComponents/RelatedContentCarousel";
+import RelatedContentCarouselContainer from "@/app/cmsComponents/RelatedContentCarousel/components/RelatedContentCarouselContainer";
+import { buildRelatedContentCarouselData } from "@/app/cmsComponents/RelatedContentCarousel/utils/data";
+import CardsCarouselFillImage from "@/app/cmsComponents/CardsCarouselFillImage";
+import CardsCarouselFillImageContainer from "@/app/cmsComponents/CardsCarouselFillImage/components/CardsCarouselFillImageContainer";
+import { buildCardsCarouselFillImageData } from "@/app/cmsComponents/CardsCarouselFillImage/utils/data";
 import LanguageSwitcher from "@/i18n/LanguageSwitcher";
 import { isRtl } from "@/i18n/settings";
 import PageContentContainer from "@/components/layout/PageContentContainer";
@@ -122,6 +128,8 @@ export default function Home() {
   const serviceCardsSliderData = buildServiceCardsSliderData(t, lang);
   const mixedRightThreeImagesData = buildMixedRightThreeImagesData(t, lang);
   const mixedLeftThreeImagesData = buildMixedLeftThreeImagesData(t, lang);
+  const relatedContentCarouselData = buildRelatedContentCarouselData(t, lang);
+  const cardsCarouselFillImageData = buildCardsCarouselFillImageData(t, lang);
 
   return (
     <main>
@@ -257,6 +265,20 @@ export default function Home() {
       <MixedLeftThreeImagesContainer lang={lang} dir={dir}>
         <MixedLeftThreeImages lang={lang} data={mixedLeftThreeImagesData} />
       </MixedLeftThreeImagesContainer>
+
+      <RelatedContentCarouselContainer lang={lang} dir={dir}>
+        <RelatedContentCarousel
+          lang={lang}
+          data={relatedContentCarouselData}
+        />
+      </RelatedContentCarouselContainer>
+
+      <CardsCarouselFillImageContainer lang={lang} dir={dir}>
+        <CardsCarouselFillImage
+          lang={lang}
+          data={cardsCarouselFillImageData}
+        />
+      </CardsCarouselFillImageContainer>
     </main>
   );
 }
