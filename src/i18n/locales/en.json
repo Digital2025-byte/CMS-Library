@@ -745,6 +745,223 @@
         "imageAlt": "Traveler booking a flight"
       }
     ]
+  },
+  "mealsDescriptionTabbed": {
+    "title": "Meals descriptions",
+    "notes": [
+      "All of our meals are Halal.",
+      "We are sorry if occasionally your meal choice is not available."
+    ],
+    "tabs": {
+      "breakfast": {
+        "label": "Breakfast",
+        "imageAlt": "In-flight breakfast meal tray with mixed nuts",
+        "sections": [
+          {
+            "sectionTitle": "Breakfast To Dam",
+            "items": [
+              {
+                "title": "Cheese Plate",
+                "description": "A delightful mix of Cheddar, Kashkaval, and Mozzarella cheeses, served with cherry tomatoes, stuffed green olives, and two creamy Labneh balls."
+              },
+              {
+                "title": "Main Course",
+                "description": "Your choice of cheese or parsley omelet, served with crispy potato and tomato wedges, zucchini and carrot sticks, green bell pepper, and delicious mushrooms."
+              },
+              {
+                "title": "Selected Breads",
+                "description": "A delightful assortment of mini croissants, multigrain bread rolls, brown bread, and pita bread."
+              },
+              {
+                "title": "Dessert – Ganaj",
+                "description": "A delicious Arabic dessert with a rich, creamy texture and perfectly balanced sweetness — a delightful finale to your meal."
+              },
+              {
+                "title": "Drinks",
+                "description": "Cold Beverages: Fresh juice or soft drinks. Hot Drinks: Tea or coffee."
+              }
+            ]
+          },
+          {
+            "sectionTitle": "Breakfast From Dam",
+            "items": [
+              {
+                "title": "Cheese Plate",
+                "description": "A delightful mix of Cheddar, Kashkaval, and Mozzarella cheeses, served with cherry tomatoes, stuffed green olives, and two creamy Labneh balls."
+              },
+              {
+                "title": "Main Course",
+                "description": "Your choice of cheese or parsley omelet, served with crispy potato and tomato wedges, zucchini and carrot sticks, green bell pepper, and delicious mushrooms."
+              },
+              {
+                "title": "Selected Breads",
+                "description": "A delightful assortment of mini croissants, multigrain bread rolls, brown bread, and pita bread."
+              },
+              {
+                "title": "Seasonal Fruit Plate",
+                "description": "A refreshing selection of freshly cut seasonal fruits for a light and healthy treat."
+              },
+              {
+                "title": "Drinks",
+                "description": "Cold Beverages: Fresh juice or soft drinks. Hot Drinks: Tea or coffee."
+              }
+            ]
+          }
+        ]
+      },
+      "lunchOrDinner": {
+        "label": "Lunch or Dinner",
+        "imageAlt": "In-flight lunch with shrimp and rice",
+        "sections": [
+          {
+            "sectionTitle": "Lunch or Dinner To Dam",
+            "groups": [
+              {
+                "title": "Salads",
+                "items": [
+                  {
+                    "title": "Eggplant Moussaka and Olive Salad",
+                    "description": "A flavorful mix of olive slices with sweet red pepper paste, green bell pepper, eggplant, cooked tomato, and fresh lemon slices."
+                  }
+                ]
+              },
+              {
+                "title": "Cheese Plate",
+                "items": [
+                  {
+                    "title": "Cheese Plate",
+                    "description": "An elegant trio of cheeses: Cheddar, Kashkaval, and Mozzarella Cheese, accompanied by a dried apricot stuffed with pistachio for a perfect sweet touch."
+                  }
+                ]
+              },
+              {
+                "title": "Main Courses",
+                "items": [
+                  {
+                    "title": "Grilled Chicken with Mushroom Sauce",
+                    "description": "Grilled chicken slices served with sautéed fresh vegetables (zucchini, carrots, red and green bell peppers) and white Basmati rice, topped with a creamy mushroom sauce made with milk, butter, fresh mushrooms, onions, soy sauce, and a touch of oriental spices (ginger, cardamom, and white pepper)."
+                  },
+                  {
+                    "title": "Beef Lasagna",
+                    "description": "Lasagna sheets layered with minced veal tenderloin, Bolognese sauce (made with onion, carrot, tomato paste, black pepper, and cinnamon), white sauce (prepared with flour, butter, and bouillon cubes), and Kashkaval cheese for a rich, hearty flavor."
+                  },
+                  {
+                    "title": "Sayadiyah Fish",
+                    "description": "Grilled fish fillet served with seasoned white basmati rice enhanced with a fragrant mix of cardamom, ginger, cumin, paprika, cinnamon, lemon juice, white pepper, coriander, black pepper, clove, bouillon cubes, garlic powder, and fresh garlic."
+                  }
+                ]
+              },
+              {
+                "title": "Selected Breads",
+                "items": [
+                  {
+                    "title": "Selected Breads",
+                    "description": "A tempting mix of cheese pastries, Musakhan pastries, Toshka pastries, multigrain bread roll, brown bread, and pita bread."
+                  }
+                ]
+              },
+              {
+                "title": "Dessert",
+                "items": [
+                  {
+                    "title": "Dessert — Qata’ef",
+                    "description": "A delicious Arabic dessert with a rich, creamy texture and perfectly balanced sweetness; a delightful finale to your meal."
+                  },
+                  {
+                    "title": "Nuts",
+                    "description": "A fine selection of mixed nuts to elevate your dining experience."
+                  }
+                ]
+              },
+              {
+                "title": "Drinks",
+                "items": [
+                  {
+                    "title": "Drinks",
+                    "description": "Cold Beverages: Fresh juice or soft drinks. Hot Drinks: Tea or coffee."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "sectionTitle": "Lunch or Dinner From Dam",
+            "groups": [
+              {
+                "title": "Salads",
+                "items": [
+                  {
+                    "title": "Cold Shrimp Salad",
+                    "description": "A refreshing blend of shrimp and crab sticks, served with a flavorful soy-honey dressing."
+                  },
+                  {
+                    "title": "Dill Feta & Cherry Tomato Salad",
+                    "description": "Fresh cherry tomatoes halved and tossed with feta cubes, green thyme leaves, a hint of oregano, and a drizzle of olive oil."
+                  }
+                ]
+              },
+              {
+                "title": "Cheese Plate",
+                "items": [
+                  {
+                    "title": "Cheese Plate",
+                    "description": "An elegant trio of cheeses: Cheddar, Kashkaval, and Mozzarella Cheese, accompanied by a dried apricot stuffed with pistachio for a perfect sweet touch."
+                  }
+                ]
+              },
+              {
+                "title": "Main Courses",
+                "items": [
+                  {
+                    "title": "Chicken Biryani",
+                    "description": "Tender chicken slices cooked with fragrant basmati rice and a rich blend of oriental spices (curry, cardamom, cloves, cumin, and paprika) combined with tomato, bell pepper, onion, and garlic. Garnished with cashews and fresh coriander, served with chilled yogurt for a perfectly balanced taste."
+                  },
+                  {
+                    "title": "Maqluba with Lamb",
+                    "description": "Tender lamb layered with fragrant Basmati rice, golden eggplant, carrots, and onions — seasoned with a rich blend of oriental spices (mixed spices, black pepper, ginger, cardamom, and cinnamon), topped with roasted cashews."
+                  },
+                  {
+                    "title": "Shrimp with Cream Sauce",
+                    "description": "Succulent shrimp cooked with fresh mushrooms, butter, milk powder, cooking cream, and onion, served with roasted potato wedges, red and green bell peppers, and perfectly cooked pasta for a rich and satisfying meal."
+                  }
+                ]
+              },
+              {
+                "title": "Selected Breads",
+                "items": [
+                  {
+                    "title": "Selected Breads",
+                    "description": "A tempting mix of cheese pastries, Musakhan pastries, Toshka pastries, multigrain bread roll, brown bread, and pita bread."
+                  }
+                ]
+              },
+              {
+                "title": "Dessert",
+                "items": [
+                  {
+                    "title": "Dessert — Qata’ef",
+                    "description": "A delicious Arabic dessert with a rich, creamy texture and perfectly balanced sweetness; a delightful finale to your meal."
+                  },
+                  {
+                    "title": "Nuts",
+                    "description": "A fine selection of mixed nuts to elevate your dining experience."
+                  }
+                ]
+              },
+              {
+                "title": "Drinks",
+                "items": [
+                  {
+                    "title": "Drinks",
+                    "description": "Cold Beverages: Fresh juice or soft drinks. Hot Drinks: Tea or coffee."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
   }
 }
 

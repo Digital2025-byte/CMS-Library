@@ -88,6 +88,9 @@ import { buildRelatedContentCarouselData } from "@/app/cmsComponents/RelatedCont
 import CardsCarouselFillImage from "@/app/cmsComponents/CardsCarouselFillImage";
 import CardsCarouselFillImageContainer from "@/app/cmsComponents/CardsCarouselFillImage/components/CardsCarouselFillImageContainer";
 import { buildCardsCarouselFillImageData } from "@/app/cmsComponents/CardsCarouselFillImage/utils/data";
+import MealsDescriptionTabbed from "@/app/cmsComponents/MealsDescriptionTabbed";
+import MealsDescriptionTabbedContainer from "@/app/cmsComponents/MealsDescriptionTabbed/components/MealsDescriptionTabbedContainer";
+import { buildMealsDescriptionTabbedData } from "@/app/cmsComponents/MealsDescriptionTabbed/utils/data";
 import LanguageSwitcher from "@/i18n/LanguageSwitcher";
 import { isRtl } from "@/i18n/settings";
 import PageContentContainer from "@/components/layout/PageContentContainer";
@@ -130,6 +133,7 @@ export default function Home() {
   const mixedLeftThreeImagesData = buildMixedLeftThreeImagesData(t, lang);
   const relatedContentCarouselData = buildRelatedContentCarouselData(t, lang);
   const cardsCarouselFillImageData = buildCardsCarouselFillImageData(t, lang);
+  const mealsDescriptionTabbedData = buildMealsDescriptionTabbedData(t, lang);
 
   return (
     <main>
@@ -279,6 +283,13 @@ export default function Home() {
           data={cardsCarouselFillImageData}
         />
       </CardsCarouselFillImageContainer>
+
+      <MealsDescriptionTabbedContainer lang={lang} dir={dir}>
+        <MealsDescriptionTabbed
+          lang={lang}
+          data={mealsDescriptionTabbedData}
+        />
+      </MealsDescriptionTabbedContainer>
     </main>
   );
 }
