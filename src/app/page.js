@@ -94,6 +94,9 @@ import { buildMealsDescriptionTabbedData } from "@/app/cmsComponents/MealsDescri
 import ConnectionStepsList from "@/app/cmsComponents/ConnectionStepsList";
 import ConnectionStepsListContainer from "@/app/cmsComponents/ConnectionStepsList/components/ConnectionStepsListContainer";
 import { buildConnectionStepsListData } from "@/app/cmsComponents/ConnectionStepsList/utils/data";
+import TitleWithList from "@/app/cmsComponents/TitleWithList";
+import TitleWithListContainer from "@/app/cmsComponents/TitleWithList/components/TitleWithListContainer";
+import { buildTitleWithListData } from "@/app/cmsComponents/TitleWithList/utils/data";
 import LanguageSwitcher from "@/i18n/LanguageSwitcher";
 import { isRtl } from "@/i18n/settings";
 import PageContentContainer from "@/components/layout/PageContentContainer";
@@ -138,6 +141,7 @@ export default function Home() {
   const cardsCarouselFillImageData = buildCardsCarouselFillImageData(t, lang);
   const mealsDescriptionTabbedData = buildMealsDescriptionTabbedData(t, lang);
   const connectionStepsListData = buildConnectionStepsListData(t, lang);
+  const titleWithListData = buildTitleWithListData(t, lang);
 
   return (
     <main>
@@ -298,6 +302,10 @@ export default function Home() {
       <ConnectionStepsListContainer lang={lang} dir={dir}>
         <ConnectionStepsList lang={lang} data={connectionStepsListData} />
       </ConnectionStepsListContainer>
+
+      <TitleWithListContainer lang={lang} dir={dir}>
+        <TitleWithList lang={lang} data={titleWithListData} />
+      </TitleWithListContainer>
     </main>
   );
 }

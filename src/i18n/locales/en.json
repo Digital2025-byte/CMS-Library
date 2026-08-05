@@ -984,5 +984,15 @@
         "imageAlt": "Connected and browsing onboard"
       }
     ]
+  },
+  "titleWithList": {
+    "title": "Important Information",
+    "items": [
+      "This calculator provides estimates only. Final charges may vary based on actual weight at check-in.",
+      "Baggage allowances vary by route, fare type, and frequent flyer status. Check your booking confirmation for exact details.",
+      "Excess baggage is subject to availability and must be purchased before check-in for the best rates.",
+      "Special items such as sports equipment, musical instruments, and medical devices have different policies.",
+      "Maximum weight per bag is typically 32 kg. Bags over this weight will not be accepted for safety reasons."
+    ]
   }
 }
