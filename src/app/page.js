@@ -91,6 +91,9 @@ import { buildCardsCarouselFillImageData } from "@/app/cmsComponents/CardsCarous
 import MealsDescriptionTabbed from "@/app/cmsComponents/MealsDescriptionTabbed";
 import MealsDescriptionTabbedContainer from "@/app/cmsComponents/MealsDescriptionTabbed/components/MealsDescriptionTabbedContainer";
 import { buildMealsDescriptionTabbedData } from "@/app/cmsComponents/MealsDescriptionTabbed/utils/data";
+import ConnectionStepsList from "@/app/cmsComponents/ConnectionStepsList";
+import ConnectionStepsListContainer from "@/app/cmsComponents/ConnectionStepsList/components/ConnectionStepsListContainer";
+import { buildConnectionStepsListData } from "@/app/cmsComponents/ConnectionStepsList/utils/data";
 import LanguageSwitcher from "@/i18n/LanguageSwitcher";
 import { isRtl } from "@/i18n/settings";
 import PageContentContainer from "@/components/layout/PageContentContainer";
@@ -134,6 +137,7 @@ export default function Home() {
   const relatedContentCarouselData = buildRelatedContentCarouselData(t, lang);
   const cardsCarouselFillImageData = buildCardsCarouselFillImageData(t, lang);
   const mealsDescriptionTabbedData = buildMealsDescriptionTabbedData(t, lang);
+  const connectionStepsListData = buildConnectionStepsListData(t, lang);
 
   return (
     <main>
@@ -290,6 +294,10 @@ export default function Home() {
           data={mealsDescriptionTabbedData}
         />
       </MealsDescriptionTabbedContainer>
+
+      <ConnectionStepsListContainer lang={lang} dir={dir}>
+        <ConnectionStepsList lang={lang} data={connectionStepsListData} />
+      </ConnectionStepsListContainer>
     </main>
   );
 }

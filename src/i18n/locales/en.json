@@ -962,6 +962,27 @@
         ]
       }
     }
+  },
+  "connectionStepsList": {
+    "title": "How to Connect Easily",
+    "stepLabel": "Step",
+    "steps": [
+      {
+        "description": "Enable Wi-Fi on Your Device",
+        "imageAlt": "Passenger enabling Wi-Fi on a phone near the airplane window"
+      },
+      {
+        "description": "Select FlyCham Wi-Fi Network",
+        "imageAlt": "Selecting FlyCham Wi-Fi network"
+      },
+      {
+        "description": "Open Your Browser",
+        "imageAlt": "Opening a browser on a device"
+      },
+      {
+        "description": "Connect & Enjoy",
+        "imageAlt": "Connected and browsing onboard"
+      }
+    ]
   }
 }
-

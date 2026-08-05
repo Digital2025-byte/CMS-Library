@@ -962,6 +962,27 @@
         ]
       }
     }
+  },
+  "connectionStepsList": {
+    "title": "كيفية الاتصال بسهولة",
+    "stepLabel": "الخطوة",
+    "steps": [
+      {
+        "description": "فعّل الواي فاي على جهازك",
+        "imageAlt": "هاتف يعرض إعدادات الواي فاي"
+      },
+      {
+        "description": "اختر شبكة FlyCham Wi-Fi",
+        "imageAlt": "اختيار شبكة FlyCham Wi-Fi"
+      },
+      {
+        "description": "افتح المتصفح",
+        "imageAlt": "فتح المتصفح على الجهاز"
+      },
+      {
+        "description": "اتصل واستمتع",
+        "imageAlt": "الاتصال والتصفح على متن الطائرة"
+      }
+    ]
   }
 }
-
