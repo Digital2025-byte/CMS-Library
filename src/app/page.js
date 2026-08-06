@@ -97,6 +97,9 @@ import { buildConnectionStepsListData } from "@/app/cmsComponents/ConnectionStep
 import TitleWithList from "@/app/cmsComponents/TitleWithList";
 import TitleWithListContainer from "@/app/cmsComponents/TitleWithList/components/TitleWithListContainer";
 import { buildTitleWithListData } from "@/app/cmsComponents/TitleWithList/utils/data";
+import HeaderWithCityInfo from "@/app/cmsComponents/HeaderWithCityInfo";
+import HeaderWithCityInfoContainer from "@/app/cmsComponents/HeaderWithCityInfo/components/HeaderWithCityInfoContainer";
+import { buildHeaderWithCityInfoData } from "@/app/cmsComponents/HeaderWithCityInfo/utils/data";
 import LanguageSwitcher from "@/i18n/LanguageSwitcher";
 import { isRtl } from "@/i18n/settings";
 import PageContentContainer from "@/components/layout/PageContentContainer";
@@ -142,15 +145,20 @@ export default function Home() {
   const mealsDescriptionTabbedData = buildMealsDescriptionTabbedData(t, lang);
   const connectionStepsListData = buildConnectionStepsListData(t, lang);
   const titleWithListData = buildTitleWithListData(t, lang);
+  const headerWithCityInfoData = buildHeaderWithCityInfoData(t, lang);
 
   return (
     <main>
       <div className="w-full bg-100 pt-4">
+
+
         <PageContentContainer className="flex justify-end">
           <LanguageSwitcher />
         </PageContentContainer>
       </div>
-
+      <HeaderWithCityInfoContainer lang={lang} dir={dir}>
+        <HeaderWithCityInfo lang={lang} data={headerWithCityInfoData} />
+      </HeaderWithCityInfoContainer>
       <BannerWithCTAsAndItemsContainer lang={lang} dir={dir}>
         <BannerWithCTAsAndItems
           lang={lang}
@@ -306,6 +314,7 @@ export default function Home() {
       <TitleWithListContainer lang={lang} dir={dir}>
         <TitleWithList lang={lang} data={titleWithListData} />
       </TitleWithListContainer>
+
     </main>
   );
 }

@@ -35,7 +35,7 @@ export default function CustomBackgroundImage({
   return (
     <div className={`relative overflow-hidden ${className}`}>
       <motion.div
-        className={`absolute inset-0 bg-cover bg-center ${
+        className={`absolute inset-0 z-0 bg-cover bg-center ${
           flipImage ? "scale-x-[-1]" : ""
         }`}
         style={{
@@ -49,7 +49,7 @@ export default function CustomBackgroundImage({
 
       {desktopGradient ? (
         <div
-          className={`absolute inset-y-0 w-full opacity-90 lg:w-3/4 ${
+          className={`absolute inset-y-0 z-[1] w-full opacity-90 lg:w-3/4 ${
             lang === "ar"
               ? "right-0 bg-gradient-to-l from-main via-main/70 to-transparent"
               : "left-0 bg-gradient-to-r from-main via-main/70 to-transparent"
@@ -58,7 +58,10 @@ export default function CustomBackgroundImage({
       ) : null}
 
       {specialGradient ? (
-        <div className="absolute inset-0 bg-gradient-to-b from-main/20 to-primary-800" />
+        <div
+          className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-main/20 to-primary-800"
+          aria-hidden
+        />
       ) : null}
 
       <div className="relative z-10 w-full">{children}</div>

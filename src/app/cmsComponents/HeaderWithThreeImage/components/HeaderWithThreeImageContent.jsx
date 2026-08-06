@@ -15,7 +15,7 @@ export default function HeaderWithThreeImageContent({
       className="relative z-10 flex items-start justify-start lg:items-center"
       dir={lang === "ar" ? "rtl" : "ltr"}
     >
-      <div className="p-1">
+      <div className="py-1">
         {title ? (
           <h1 className={`${typography.pageTitle} mt-2 font-semibold text-50`}>
             {title}
