@@ -1085,5 +1085,14 @@
         "slug": "/mountain-lookout"
       }
     ]
+  },
+  "citiesSections": {
+    "title": "Discover our cities",
+    "description": "From coastal gateways to historic centers, explore destinations that define every journey with Cham Wings.",
+    "template": "right",
+    "slug": "/cities",
+    "ctaLabel": "Explore more",
+    "image1Alt": "City skyline view",
+    "image2Alt": "City street view"
   }
 }

@@ -102,6 +102,9 @@ import HeaderWithCityInfoContainer from "@/app/cmsComponents/HeaderWithCityInfo/
 import { buildHeaderWithCityInfoData } from "@/app/cmsComponents/HeaderWithCityInfo/utils/data";
 import SearchWithTabsAndGrid from "@/app/cmsComponents/SearchWithTabsAndGrid";
 import { buildSearchWithTabsAndGridData } from "@/app/cmsComponents/SearchWithTabsAndGrid/utils/data";
+import CitiesSections from "@/app/cmsComponents/CitiesSections";
+import CitiesSectionsContainer from "@/app/cmsComponents/CitiesSections/components/CitiesSectionsContainer";
+import { buildCitiesSectionsData } from "@/app/cmsComponents/CitiesSections/utils/data";
 import LanguageSwitcher from "@/i18n/LanguageSwitcher";
 import { isRtl } from "@/i18n/settings";
 import PageContentContainer from "@/components/layout/PageContentContainer";
@@ -149,6 +152,7 @@ export default function Home() {
   const titleWithListData = buildTitleWithListData(t, lang);
   const headerWithCityInfoData = buildHeaderWithCityInfoData(t, lang);
   const searchWithTabsAndGridData = buildSearchWithTabsAndGridData(t, lang);
+  const citiesSectionsData = buildCitiesSectionsData(t, lang);
 
   return (
     <main>
@@ -162,6 +166,9 @@ export default function Home() {
       <HeaderWithCityInfoContainer lang={lang} dir={dir}>
         <HeaderWithCityInfo lang={lang} data={headerWithCityInfoData} />
       </HeaderWithCityInfoContainer>
+      <CitiesSectionsContainer lang={lang} dir={dir}>
+        <CitiesSections lang={lang} data={citiesSectionsData} />
+      </CitiesSectionsContainer>
       <BannerWithCTAsAndItemsContainer lang={lang} dir={dir}>
         <BannerWithCTAsAndItems
           lang={lang}
@@ -323,6 +330,8 @@ export default function Home() {
         data={searchWithTabsAndGridData}
         posParams="gb"
       />
+
+
     </main>
   );
 }
