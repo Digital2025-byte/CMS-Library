@@ -80,7 +80,6 @@ import MixedRightThreeImages from "@/app/cmsComponents/MixedRightThreeImages";
 import MixedRightThreeImagesContainer from "@/app/cmsComponents/MixedRightThreeImages/components/MixedRightThreeImagesContainer";
 import { buildMixedRightThreeImagesData } from "@/app/cmsComponents/MixedRightThreeImages/utils/data";
 import MixedLeftThreeImages from "@/app/cmsComponents/MixedLeftThreeImages";
-import MixedLeftThreeImagesContainer from "@/app/cmsComponents/MixedLeftThreeImages/components/MixedLeftThreeImagesContainer";
 import { buildMixedLeftThreeImagesData } from "@/app/cmsComponents/MixedLeftThreeImages/utils/data";
 import RelatedContentCarousel from "@/app/cmsComponents/RelatedContentCarousel";
 import RelatedContentCarouselContainer from "@/app/cmsComponents/RelatedContentCarousel/components/RelatedContentCarouselContainer";
@@ -108,6 +107,8 @@ import { buildCitiesSectionsData } from "@/app/cmsComponents/CitiesSections/util
 import DataTableWithImage from "@/app/cmsComponents/DataTableWithImage";
 import DataTableWithImageContainer from "@/app/cmsComponents/DataTableWithImage/components/DataTableWithImageContainer";
 import { buildDataTableWithImageData } from "@/app/cmsComponents/DataTableWithImage/utils/data";
+import UpperRightThreeImages from "@/app/cmsComponents/UpperRightThreeImages";
+import { buildUpperRightThreeImagesData } from "@/app/cmsComponents/UpperRightThreeImages/utils/data";
 import LanguageSwitcher from "@/i18n/LanguageSwitcher";
 import { isRtl } from "@/i18n/settings";
 import PageContentContainer from "@/components/layout/PageContentContainer";
@@ -157,6 +158,7 @@ export default function Home() {
   const searchWithTabsAndGridData = buildSearchWithTabsAndGridData(t, lang);
   const citiesSectionsData = buildCitiesSectionsData(t, lang);
   const dataTableWithImageData = buildDataTableWithImageData(t, lang);
+  const upperRightThreeImagesData = buildUpperRightThreeImagesData(t, lang);
 
   return (
     <main>
@@ -284,13 +286,6 @@ export default function Home() {
         <ServiceCardsSlider lang={lang} data={serviceCardsSliderData} />
       </ServiceCardsSliderContainer>
 
-      <MixedRightThreeImagesContainer lang={lang} dir={dir}>
-        <MixedRightThreeImages lang={lang} data={mixedRightThreeImagesData} />
-      </MixedRightThreeImagesContainer>
-
-      <MixedLeftThreeImagesContainer lang={lang} dir={dir}>
-        <MixedLeftThreeImages lang={lang} data={mixedLeftThreeImagesData} />
-      </MixedLeftThreeImagesContainer>
 
       <RelatedContentCarouselContainer lang={lang} dir={dir}>
         <RelatedContentCarousel
@@ -338,6 +333,12 @@ export default function Home() {
       <DataTableWithImageContainer lang={lang} dir={dir}>
         <DataTableWithImage lang={lang} data={dataTableWithImageData} />
       </DataTableWithImageContainer>
+
+      <MixedRightThreeImagesContainer lang={lang} dir={dir}>
+        <MixedRightThreeImages lang={lang} data={mixedRightThreeImagesData} />
+        <MixedLeftThreeImages lang={lang} data={mixedLeftThreeImagesData} />
+        <UpperRightThreeImages lang={lang} data={upperRightThreeImagesData} />
+      </MixedRightThreeImagesContainer>
     </main>
   );
 }

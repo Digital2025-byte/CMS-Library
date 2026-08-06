@@ -17,10 +17,7 @@ export default function MixedLeftThreeImagesPanel({
   const isRtl = lang === "ar";
 
   return (
-    <section
-      className="w-full bg-primary-1 py-8 md:py-12 lg:py-14"
-      dir={isRtl ? "rtl" : "ltr"}
-    >
+    <div className="w-full" dir={isRtl ? "rtl" : "ltr"}>
       <PageContentContainer>
         <div className="grid grid-cols-1 gap-4 sm:gap-5 lg:grid-cols-2 lg:grid-rows-[auto_1fr] lg:gap-6 xl:gap-8">
           <MixedThreeImagesContent
@@ -53,6 +50,6 @@ export default function MixedLeftThreeImagesPanel({
           />
         </div>
       </PageContentContainer>
-    </section>
+    </div>
   );
 }
