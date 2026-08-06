@@ -1,21 +1,21 @@
-import UpperRightImageTile from "./UpperRightImageTile";
+import MixedImageTile from "@/app/cmsComponents/shared/MixedThreeImages/MixedImageTile";
 
-/** Two stacked small images — height matches the large image via grid stretch. */
+/** Two equal stacked images — height follows the parent mosaic row. */
 export default function UpperRightThreeImagesSmallPair({
   smallImageOne,
   smallImageTwo,
 }) {
   return (
-    <div className="grid min-h-[18rem] grid-rows-2 gap-3 sm:gap-4 lg:h-full lg:min-h-[22rem] lg:gap-5">
-      <UpperRightImageTile
+    <div className="flex h-full min-h-0 flex-col gap-3 sm:gap-4 lg:gap-5">
+      <MixedImageTile
         image={smallImageOne}
-        className="min-h-0 rounded-2xl sm:rounded-3xl"
-        sizes="(max-width: 1024px) 100vw, 25vw"
+        className="min-h-0 flex-1 rounded-2xl sm:rounded-3xl"
+        sizes="(max-width: 1024px) 100vw, 28vw"
       />
-      <UpperRightImageTile
+      <MixedImageTile
         image={smallImageTwo}
-        className="min-h-0 rounded-2xl sm:rounded-3xl"
-        sizes="(max-width: 1024px) 100vw, 25vw"
+        className="min-h-0 flex-1 rounded-2xl sm:rounded-3xl"
+        sizes="(max-width: 1024px) 100vw, 28vw"
       />
     </div>
   );

@@ -16,7 +16,8 @@ const UpperRightThreeImages = ({ lang = "en", data, cId }) => {
       cId={cId}
       title={content.title}
       description={content.description}
-      cta={content.cta}
+      primaryCta={content.primaryCta}
+      secondaryCta={content.secondaryCta}
       largeImage={content.largeImage}
       smallImageOne={content.smallImageOne}
       smallImageTwo={content.smallImageTwo}

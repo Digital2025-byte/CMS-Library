@@ -1108,8 +1108,10 @@
   "upperRightThreeImages": {
     "title": "Sheikh Zayed Grand Mosque",
     "description": "The Sheikh Zayed Grand Mosque is one of the largest mosques in the world, known for its stunning white marble façade, intricate carvings, and magnificent architecture. Visitors are in awe of the mosque’s grand size, its 82 domes, over 1,000 columns, and its spectacular chandeliers. Open to tourists and worshippers alike, it offers a serene and peaceful experience, inviting you to explore its stunning interiors and beautifully landscaped gardens",
-    "ctaLabel": "Learn more",
-    "ctaHref": "/",
+    "primaryCta": "Explore",
+    "primaryCtaHref": "/",
+    "secondaryCta": "Explore as magazine style",
+    "secondaryCtaHref": "/",
     "images": {
       "large": "Sheikh Zayed Grand Mosque exterior",
       "smallOne": "Mosque courtyard detail",

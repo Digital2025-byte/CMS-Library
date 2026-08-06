@@ -36,7 +36,8 @@ export function getUpperRightThreeImagesContent(data, lang = "en") {
     return {
       title: "",
       description: "",
-      cta: { label: "", href: "/" },
+      primaryCta: { label: "", href: "/" },
+      secondaryCta: { label: "", href: "/" },
       largeImage: { fileUrl: "", alt: "" },
       smallImageOne: { fileUrl: "", alt: "" },
       smallImageTwo: { fileUrl: "", alt: "" },
@@ -55,10 +56,17 @@ export function getUpperRightThreeImagesContent(data, lang = "en") {
   const content = matchedTranslation?.content || {};
   const title = content?.name || content?.title || "";
   const description = content?.description || "";
-  const cta = normalizeCta(
+
+  const primaryCta = normalizeCta(
     content?.primaryCta || content?.cta,
-    content?.ctaLabel || (lang === "ar" ? "اعرف المزيد" : "Learn more"),
-    content?.ctaHref || "/"
+    content?.ctaLabel || (lang === "ar" ? "استكشف" : "Explore"),
+    content?.ctaHref || content?.primaryCtaHref || "/"
+  );
+  const secondaryCta = normalizeCta(
+    content?.secondaryCta,
+    content?.secondaryCtaLabel ||
+      (lang === "ar" ? "استكشف بنمط المجلة" : "Explore as magazine style"),
+    content?.secondaryCtaHref || "/"
   );
 
   const images = Array.isArray(content?.images) ? content.images : [];
@@ -78,7 +86,8 @@ export function getUpperRightThreeImagesContent(data, lang = "en") {
   return {
     title,
     description,
-    cta,
+    primaryCta,
+    secondaryCta,
     largeImage,
     smallImageOne,
     smallImageTwo,

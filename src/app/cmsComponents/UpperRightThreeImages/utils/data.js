@@ -6,7 +6,7 @@ const toUrl = (asset) => (typeof asset === "string" ? asset : asset?.src || "");
 
 /**
  * Builds CMS-shaped UpperRightThreeImages data.
- * images[0] = large right image, images[1]/[2] = small pair under text.
+ * images[0] = large image, images[1]/[2] = small pair.
  */
 export function buildUpperRightThreeImagesData(t, lang = "en") {
   return {
@@ -17,8 +17,12 @@ export function buildUpperRightThreeImagesData(t, lang = "en") {
           name: t("upperRightThreeImages.title"),
           description: t("upperRightThreeImages.description"),
           primaryCta: {
-            label: t("upperRightThreeImages.ctaLabel"),
-            href: t("upperRightThreeImages.ctaHref"),
+            label: t("upperRightThreeImages.primaryCta"),
+            href: t("upperRightThreeImages.primaryCtaHref"),
+          },
+          secondaryCta: {
+            label: t("upperRightThreeImages.secondaryCta"),
+            href: t("upperRightThreeImages.secondaryCtaHref"),
           },
           images: [
             {
