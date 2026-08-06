@@ -28,7 +28,7 @@ export default function CitiesSectionsText({
       ) : null}
 
       {isCTA && ctaLabel && ctaHref ? (
-        <div className="mt-6">
+        <div className="mt-6 hidden lg:block">
           <Button label={ctaLabel} href={ctaHref} cId={cId} />
         </div>
       ) : null}
