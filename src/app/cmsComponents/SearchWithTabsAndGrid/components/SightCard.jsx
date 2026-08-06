@@ -1,10 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { BookOpenTextIcon } from "@phosphor-icons/react";
+import Button from "@/components/ui/Button";
 import { typography } from "@/styles/typography";
-import { withCampaignPath } from "@/utils/withCampaignPath";
 
 export default function SightCard({
   card,
@@ -18,14 +17,8 @@ export default function SightCard({
   const slug = String(card?.slug || "").startsWith("/")
     ? card.slug
     : `/${card?.slug || ""}`;
-  const stackedHref = withCampaignPath(
-    `/${posParams}/${lang}/sights${slug}?template=stacked`,
-    cId
-  );
-  const magazineHref = withCampaignPath(
-    `/${posParams}/${lang}/sights${slug}`,
-    cId
-  );
+  const stackedHref = `/${posParams}/${lang}/sights${slug}?template=stacked`;
+  const magazineHref = `/${posParams}/${lang}/sights${slug}`;
 
   return (
     <article
@@ -84,19 +77,22 @@ export default function SightCard({
 
       {/* Hover CTAs */}
       <div className="absolute inset-x-5 bottom-5 flex translate-y-4 flex-col items-center opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
-        <Link
+        <Button
+          label={exploreLabel}
           href={stackedHref}
-          className={`${typography.button} flex w-full items-center justify-center rounded-lg border border-primary-2 bg-primary-2 p-3 font-semibold text-white shadow-md transition-all hover:bg-[#D0C29C]`}
-        >
-          {exploreLabel}
-        </Link>
-        <Link
+          cId={cId}
+          fullWidth
+          className="shadow-md"
+        />
+        <Button
+          label={exploreMagazineLabel}
           href={magazineHref}
-          className={`${typography.caption} mt-1 flex items-center justify-center gap-1 p-1 text-white transition-opacity hover:opacity-80`}
-        >
-          <BookOpenTextIcon size={20} weight="bold" aria-hidden />
-          {exploreMagazineLabel}
-        </Link>
+          cId={cId}
+          icon={<BookOpenTextIcon size={20} weight="bold" aria-hidden />}
+          iconPosition="start"
+          variant="secondary"
+          className={`${typography.caption} mt-1 border-0 bg-transparent !px-1 !py-1 shadow-none hover:bg-transparent hover:opacity-80`}
+        />
       </div>
     </article>
   );

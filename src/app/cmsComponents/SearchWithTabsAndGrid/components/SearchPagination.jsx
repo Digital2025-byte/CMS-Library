@@ -23,7 +23,7 @@ export default function SearchPagination({
         onClick={onPrev}
         disabled={activePageIndex === 0}
         aria-label="Previous page"
-        className="rounded-full border-2 border-white p-2 transition hover:bg-white/20 disabled:cursor-not-allowed disabled:opacity-40"
+        className="cursor-pointer rounded-full border-2 border-white p-2 transition hover:bg-white/20 disabled:cursor-not-allowed disabled:opacity-40"
       >
         <ArrowLeftIcon size={18} weight="bold" className="text-white" />
       </button>
@@ -48,7 +48,7 @@ export default function SearchPagination({
         onClick={onNext}
         disabled={activePageIndex === pageCount - 1}
         aria-label="Next page"
-        className="rounded-full border-2 border-white p-2 transition hover:bg-white/20 disabled:cursor-not-allowed disabled:opacity-40"
+        className="cursor-pointer rounded-full border-2 border-white p-2 transition hover:bg-white/20 disabled:cursor-not-allowed disabled:opacity-40"
       >
         <ArrowRightIcon size={18} weight="bold" className="text-white" />
       </button>
