@@ -23,13 +23,13 @@ export default function DataTableWithImagePanel({
       <PageContentContainer>
         {title ? (
           <h2
-            className={`${typography.sectionTitle} mb-8 font-semibold text-primary-1`}
+            className={`${typography.sectionTitle} mb-4 font-semibold text-primary-1 lg:mb-5`}
           >
             {title}
           </h2>
         ) : null}
 
-        <div className="grid grid-cols-1 items-center gap-6 lg:grid-cols-12 lg:gap-10">
+        <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-12 lg:gap-10">
           <div className="lg:col-span-7">
             <DataTable headers={headers} rows={rows} isRtl={isRtl} />
             <DataTableNote note={note} />

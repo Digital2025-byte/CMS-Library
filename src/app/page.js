@@ -193,20 +193,22 @@ export default function Home() {
           side="left"
         />
       </MixedRightThreeImagesContainer>
-      
+
       <CitiesSectionsContainer lang={lang} dir={dir}>
         <CitiesSections lang={lang} data={citiesSectionsData} side="right" />
         <CitiesSections lang={lang} data={citiesSectionsData} side="left" />
       </CitiesSectionsContainer>
 
-      
+
       <BannerWithCTAsAndItemsContainer lang={lang} dir={dir}>
         <BannerWithCTAsAndItems
           lang={lang}
           data={bannerWithCTAsAndItemsData}
         />
       </BannerWithCTAsAndItemsContainer>
-
+      <DataTableWithImageContainer lang={lang} dir={dir}>
+        <DataTableWithImage lang={lang} data={dataTableWithImageData} />
+      </DataTableWithImageContainer>
       <AccordionContainer lang={lang} dir={dir}>
         <AccordionWithContent data={accordionData} />
       </AccordionContainer>
@@ -355,9 +357,7 @@ export default function Home() {
         <DualImageText lang={lang} data={dualImageTrainingData} />
       </DualImageTextContainer>
 
-      <DataTableWithImageContainer lang={lang} dir={dir}>
-        <DataTableWithImage lang={lang} data={dataTableWithImageData} />
-      </DataTableWithImageContainer>
+
 
 
     </main>
