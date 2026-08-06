@@ -100,6 +100,8 @@ import { buildTitleWithListData } from "@/app/cmsComponents/TitleWithList/utils/
 import HeaderWithCityInfo from "@/app/cmsComponents/HeaderWithCityInfo";
 import HeaderWithCityInfoContainer from "@/app/cmsComponents/HeaderWithCityInfo/components/HeaderWithCityInfoContainer";
 import { buildHeaderWithCityInfoData } from "@/app/cmsComponents/HeaderWithCityInfo/utils/data";
+import SearchWithTabsAndGrid from "@/app/cmsComponents/SearchWithTabsAndGrid";
+import { buildSearchWithTabsAndGridData } from "@/app/cmsComponents/SearchWithTabsAndGrid/utils/data";
 import LanguageSwitcher from "@/i18n/LanguageSwitcher";
 import { isRtl } from "@/i18n/settings";
 import PageContentContainer from "@/components/layout/PageContentContainer";
@@ -146,6 +148,7 @@ export default function Home() {
   const connectionStepsListData = buildConnectionStepsListData(t, lang);
   const titleWithListData = buildTitleWithListData(t, lang);
   const headerWithCityInfoData = buildHeaderWithCityInfoData(t, lang);
+  const searchWithTabsAndGridData = buildSearchWithTabsAndGridData(t, lang);
 
   return (
     <main>
@@ -315,6 +318,11 @@ export default function Home() {
         <TitleWithList lang={lang} data={titleWithListData} />
       </TitleWithListContainer>
 
+      <SearchWithTabsAndGrid
+        lang={lang}
+        data={searchWithTabsAndGridData}
+        posParams="gb"
+      />
     </main>
   );
 }

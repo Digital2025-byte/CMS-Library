@@ -1013,5 +1013,78 @@
       "flightsPerWeek": "Flights per week:",
       "nextFlight": "Next Flight:"
     }
+  },
+  "searchWithTabsAndGrid": {
+    "namePlaceholder": "Search for any sight...",
+    "cityPlaceholder": "Search for any city...",
+    "gridTitle": "Popular Sights",
+    "emptyMessage": "No sights found for your search.",
+    "allLabel": "All",
+    "exploreLabel": "Explore",
+    "exploreMagazineLabel": "Explore as magazine",
+    "tags": [
+      { "name": "Culture", "icon": "Mosque" },
+      { "name": "Nature", "icon": "Mountains" },
+      { "name": "Food", "icon": "ForkKnife" },
+      { "name": "Shopping", "icon": "ShoppingBag" }
+    ],
+    "sights": [
+      {
+        "id": "1",
+        "name": "Old Damascus Souq",
+        "cityName": "Damascus",
+        "tag": "Culture",
+        "slug": "/old-damascus-souq"
+      },
+      {
+        "id": "2",
+        "name": "Umayyad Mosque",
+        "cityName": "Damascus",
+        "tag": "Culture",
+        "slug": "/umayyad-mosque"
+      },
+      {
+        "id": "3",
+        "name": "Cedar Forest Trail",
+        "cityName": "Latakia",
+        "tag": "Nature",
+        "slug": "/cedar-forest-trail"
+      },
+      {
+        "id": "4",
+        "name": "Seaside Promenade",
+        "cityName": "Latakia",
+        "tag": "Nature",
+        "slug": "/seaside-promenade"
+      },
+      {
+        "id": "5",
+        "name": "Spice Market Kitchen",
+        "cityName": "Aleppo",
+        "tag": "Food",
+        "slug": "/spice-market-kitchen"
+      },
+      {
+        "id": "6",
+        "name": "Heritage Bazaar",
+        "cityName": "Aleppo",
+        "tag": "Shopping",
+        "slug": "/heritage-bazaar"
+      },
+      {
+        "id": "7",
+        "name": "Citadel Viewpoint",
+        "cityName": "Aleppo",
+        "tag": "Culture",
+        "slug": "/citadel-viewpoint"
+      },
+      {
+        "id": "8",
+        "name": "Mountain Lookout",
+        "cityName": "Homs",
+        "tag": "Nature",
+        "slug": "/mountain-lookout"
+      }
+    ]
   }
 }

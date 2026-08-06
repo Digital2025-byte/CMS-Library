@@ -1013,5 +1013,78 @@
       "flightsPerWeek": "عدد الرحلات في الأسبوع:",
       "nextFlight": "الرحلة التالية:"
     }
+  },
+  "searchWithTabsAndGrid": {
+    "namePlaceholder": "ابحث عن أي موقع...",
+    "cityPlaceholder": "ابحث عن أي مدينة...",
+    "gridTitle": "معالم شائعة",
+    "emptyMessage": "لا يوجد مواقع تطابق البحث",
+    "allLabel": "الكل",
+    "exploreLabel": "اكتشف",
+    "exploreMagazineLabel": "اكتشف كمجلة",
+    "tags": [
+      { "name": "Culture", "icon": "Mosque" },
+      { "name": "Nature", "icon": "Mountains" },
+      { "name": "Food", "icon": "ForkKnife" },
+      { "name": "Shopping", "icon": "ShoppingBag" }
+    ],
+    "sights": [
+      {
+        "id": "1",
+        "name": "سوق دمشق القديم",
+        "cityName": "دمشق",
+        "tag": "Culture",
+        "slug": "/old-damascus-souq"
+      },
+      {
+        "id": "2",
+        "name": "الجامع الأموي",
+        "cityName": "دمشق",
+        "tag": "Culture",
+        "slug": "/umayyad-mosque"
+      },
+      {
+        "id": "3",
+        "name": "مسار غابة الأرز",
+        "cityName": "اللاذقية",
+        "tag": "Nature",
+        "slug": "/cedar-forest-trail"
+      },
+      {
+        "id": "4",
+        "name": "الممشى البحري",
+        "cityName": "اللاذقية",
+        "tag": "Nature",
+        "slug": "/seaside-promenade"
+      },
+      {
+        "id": "5",
+        "name": "مطبخ سوق التوابل",
+        "cityName": "حلب",
+        "tag": "Food",
+        "slug": "/spice-market-kitchen"
+      },
+      {
+        "id": "6",
+        "name": "البازار التراثي",
+        "cityName": "حلب",
+        "tag": "Shopping",
+        "slug": "/heritage-bazaar"
+      },
+      {
+        "id": "7",
+        "name": "مطل القلعة",
+        "cityName": "حلب",
+        "tag": "Culture",
+        "slug": "/citadel-viewpoint"
+      },
+      {
+        "id": "8",
+        "name": "مطل الجبل",
+        "cityName": "حمص",
+        "tag": "Nature",
+        "slug": "/mountain-lookout"
+      }
+    ]
   }
 }
