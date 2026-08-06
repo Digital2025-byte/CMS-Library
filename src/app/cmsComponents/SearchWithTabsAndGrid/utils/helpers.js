@@ -24,8 +24,7 @@ export function getSearchWithTabsAndGridContent(data, lang = "en") {
 
   if (!translations.length) {
     return {
-      namePlaceholder: "",
-      cityPlaceholder: "",
+      searchPlaceholder: "",
       gridTitle: "",
       tags: [],
       sights: [],
@@ -72,8 +71,11 @@ export function getSearchWithTabsAndGridContent(data, lang = "en") {
     "";
 
   return {
-    namePlaceholder: search?.namePlaceholder || "",
-    cityPlaceholder: search?.cityPlaceholder || "",
+    searchPlaceholder:
+      search?.placeholder ||
+      search?.searchPlaceholder ||
+      search?.namePlaceholder ||
+      "",
     gridTitle,
     tags,
     sights,

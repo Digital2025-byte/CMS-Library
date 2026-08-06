@@ -8,8 +8,7 @@ export function useSearchWithTabsAndGrid({
   tags = [],
   allLabel = "All",
 }) {
-  const [searchName, setSearchName] = useState("");
-  const [searchCity, setSearchCity] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
   const [activeFilter, setActiveFilter] = useState("All");
   const [activePageIndex, setActivePageIndex] = useState(0);
   const componentTopRef = useRef(null);
@@ -34,18 +33,23 @@ export function useSearchWithTabsAndGrid({
   }, [tags]);
 
   const filteredCards = useMemo(() => {
+    const term = searchQuery.trim().toLowerCase();
+
     return sights.filter((card) => {
-      const city = String(card?.cityName || "").toLowerCase();
-      const title = String(card?.name || "").toLowerCase();
       const matchesFilter =
         activeFilter === "All" || card?.tag === activeFilter;
-      const nameTerm = searchName.trim().toLowerCase();
-      const matchesName = !nameTerm || title.includes(nameTerm);
-      const cityTerm = searchCity.trim().toLowerCase();
-      const matchesCity = !cityTerm || city.includes(cityTerm);
-      return matchesFilter && matchesName && matchesCity;
+
+      if (!term) {
+        return matchesFilter;
+      }
+
+      const city = String(card?.cityName || "").toLowerCase();
+      const title = String(card?.name || "").toLowerCase();
+      const matchesQuery = title.includes(term) || city.includes(term);
+
+      return matchesFilter && matchesQuery;
     });
-  }, [sights, searchName, searchCity, activeFilter]);
+  }, [sights, searchQuery, activeFilter]);
 
   const pageCount = Math.ceil(filteredCards.length / CARDS_PER_PAGE) || 0;
 
@@ -56,7 +60,7 @@ export function useSearchWithTabsAndGrid({
 
   useEffect(() => {
     setActivePageIndex(0);
-  }, [searchName, searchCity, activeFilter]);
+  }, [searchQuery, activeFilter]);
 
   useEffect(() => {
     if (pageCount === 0 && activePageIndex !== 0) {
@@ -80,10 +84,8 @@ export function useSearchWithTabsAndGrid({
   }, [activePageIndex]);
 
   return {
-    searchName,
-    setSearchName,
-    searchCity,
-    setSearchCity,
+    searchQuery,
+    setSearchQuery,
     activeFilter,
     setActiveFilter,
     activePageIndex,

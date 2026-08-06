@@ -19,15 +19,12 @@ export default function SearchWithTabsAndGridPanel({
       dir={isRtl ? "rtl" : "ltr"}
     >
       <PageContentContainer>
-        <div ref={search.componentTopRef} className="flex flex-col gap-6">
+        <div ref={search.componentTopRef} className="flex flex-col gap-6 md:gap-8">
           <div className="order-2 sm:order-1">
             <SearchFields
-              namePlaceholder={content.namePlaceholder}
-              cityPlaceholder={content.cityPlaceholder}
-              searchName={search.searchName}
-              onSearchNameChange={search.setSearchName}
-              searchCity={search.searchCity}
-              onSearchCityChange={search.setSearchCity}
+              placeholder={content.searchPlaceholder}
+              searchQuery={search.searchQuery}
+              onSearchQueryChange={search.setSearchQuery}
             />
           </div>
 

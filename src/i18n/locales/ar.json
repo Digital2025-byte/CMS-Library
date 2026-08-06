@@ -1015,8 +1015,7 @@
     }
   },
   "searchWithTabsAndGrid": {
-    "namePlaceholder": "ابحث عن أي موقع...",
-    "cityPlaceholder": "ابحث عن أي مدينة...",
+    "searchPlaceholder": "ابحث عن موقع أو مدينة...",
     "gridTitle": "معالم شائعة",
     "emptyMessage": "لا يوجد مواقع تطابق البحث",
     "allLabel": "الكل",

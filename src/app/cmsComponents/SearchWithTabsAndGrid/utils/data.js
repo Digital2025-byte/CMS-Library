@@ -16,8 +16,7 @@ export function buildSearchWithTabsAndGridData(t, lang = "en") {
         languageCode: lang,
         content: {
           Search: {
-            namePlaceholder: t("searchWithTabsAndGrid.namePlaceholder"),
-            cityPlaceholder: t("searchWithTabsAndGrid.cityPlaceholder"),
+            placeholder: t("searchWithTabsAndGrid.searchPlaceholder"),
           },
           PhotoTileGrid: {
             title: t("searchWithTabsAndGrid.gridTitle"),
