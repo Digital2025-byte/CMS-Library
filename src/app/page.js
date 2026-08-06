@@ -79,7 +79,6 @@ import { buildServiceCardsSliderData } from "@/app/cmsComponents/ServiceCardsSli
 import MixedRightThreeImages from "@/app/cmsComponents/MixedRightThreeImages";
 import MixedRightThreeImagesContainer from "@/app/cmsComponents/MixedRightThreeImages/components/MixedRightThreeImagesContainer";
 import { buildMixedRightThreeImagesData } from "@/app/cmsComponents/MixedRightThreeImages/utils/data";
-import MixedLeftThreeImages from "@/app/cmsComponents/MixedLeftThreeImages";
 import { buildMixedLeftThreeImagesData } from "@/app/cmsComponents/MixedLeftThreeImages/utils/data";
 import RelatedContentCarousel from "@/app/cmsComponents/RelatedContentCarousel";
 import RelatedContentCarouselContainer from "@/app/cmsComponents/RelatedContentCarousel/components/RelatedContentCarouselContainer";
@@ -335,8 +334,16 @@ export default function Home() {
       </DataTableWithImageContainer>
 
       <MixedRightThreeImagesContainer lang={lang} dir={dir}>
-        <MixedRightThreeImages lang={lang} data={mixedRightThreeImagesData} />
-        <MixedLeftThreeImages lang={lang} data={mixedLeftThreeImagesData} />
+        <MixedRightThreeImages
+          lang={lang}
+          data={mixedRightThreeImagesData}
+          side="right"
+        />
+        <MixedRightThreeImages
+          lang={lang}
+          data={mixedLeftThreeImagesData}
+          side="left"
+        />
         <UpperRightThreeImages
           lang={lang}
           data={upperRightThreeImagesData}

@@ -13,8 +13,23 @@ export default function MixedRightThreeImagesPanel({
   largeImage,
   smallImageOne,
   smallImageTwo,
+  /** "right" = large image on the right; "left" = large image on the left */
+  side = "right",
 }) {
   const isRtl = lang === "ar";
+  const largeOnLeft = side === "left";
+
+  const contentClass = largeOnLeft
+    ? "order-1 lg:order-2 lg:col-start-2 lg:row-start-1"
+    : "order-1 lg:col-start-1 lg:row-start-1";
+
+  const smallImagesClass = largeOnLeft
+    ? "order-2 lg:order-3 lg:col-start-2 lg:row-start-2"
+    : "order-2 lg:order-3 lg:col-start-1 lg:row-start-2";
+
+  const featureClass = largeOnLeft
+    ? "order-3 aspect-[16/10] h-auto rounded-2xl sm:rounded-3xl lg:order-1 lg:col-start-1 lg:row-span-2 lg:aspect-auto lg:h-full lg:min-h-[34rem]"
+    : "order-3 aspect-[16/10] h-auto rounded-2xl sm:rounded-3xl lg:order-2 lg:col-start-2 lg:row-span-2 lg:aspect-auto lg:h-full lg:min-h-[34rem]";
 
   return (
     <div className="w-full" dir={isRtl ? "rtl" : "ltr"}>
@@ -26,18 +41,18 @@ export default function MixedRightThreeImagesPanel({
             description={description}
             primaryCta={primaryCta}
             secondaryCta={secondaryCta}
-            className="order-1 lg:col-start-1 lg:row-start-1"
+            className={contentClass}
           />
 
           <MixedThreeImagesSmallImages
             smallImageOne={smallImageOne}
             smallImageTwo={smallImageTwo}
-            className="order-2 lg:order-3 lg:col-start-1 lg:row-start-2"
+            className={smallImagesClass}
           />
 
           <MixedThreeImagesFeature
             image={largeImage}
-            className="order-3 aspect-[16/10] h-auto rounded-2xl sm:rounded-3xl lg:order-2 lg:col-start-2 lg:row-span-2 lg:aspect-auto lg:h-full lg:min-h-[34rem]"
+            className={featureClass}
             priority
           />
 

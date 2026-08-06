@@ -1,36 +1,13 @@
 "use client";
 
-import MixedLeftThreeImagesPanel from "./components/MixedLeftThreeImagesPanel";
-import { getMixedLeftThreeImagesContent } from "./utils/helpers";
+/**
+ * @deprecated Use MixedRightThreeImages with side="left" instead.
+ * Kept as a thin wrapper for existing imports.
+ */
+import MixedRightThreeImages from "@/app/cmsComponents/MixedRightThreeImages";
 
-const MixedLeftThreeImages = ({ lang = "en", data }) => {
-  const {
-    title,
-    description,
-    primaryCta,
-    secondaryCta,
-    largeImage,
-    smallImageOne,
-    smallImageTwo,
-    hasContent,
-  } = getMixedLeftThreeImagesContent(data, lang);
-
-  if (!hasContent) {
-    return null;
-  }
-
-  return (
-    <MixedLeftThreeImagesPanel
-      lang={lang}
-      title={title}
-      description={description}
-      primaryCta={primaryCta}
-      secondaryCta={secondaryCta}
-      largeImage={largeImage}
-      smallImageOne={smallImageOne}
-      smallImageTwo={smallImageTwo}
-    />
-  );
-};
+const MixedLeftThreeImages = ({ lang = "en", data }) => (
+  <MixedRightThreeImages lang={lang} data={data} side="left" />
+);
 
 export default MixedLeftThreeImages;

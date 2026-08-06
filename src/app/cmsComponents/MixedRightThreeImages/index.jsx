@@ -3,7 +3,12 @@
 import MixedRightThreeImagesPanel from "./components/MixedRightThreeImagesPanel";
 import { getMixedRightThreeImagesContent } from "./utils/helpers";
 
-const MixedRightThreeImages = ({ lang = "en", data }) => {
+const MixedRightThreeImages = ({
+  lang = "en",
+  data,
+  /** "right" (default) = large on the right; "left" = large on the left */
+  side = "right",
+}) => {
   const {
     title,
     description,
@@ -22,6 +27,7 @@ const MixedRightThreeImages = ({ lang = "en", data }) => {
   return (
     <MixedRightThreeImagesPanel
       lang={lang}
+      side={side}
       title={title}
       description={description}
       primaryCta={primaryCta}
