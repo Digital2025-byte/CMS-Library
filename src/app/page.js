@@ -337,7 +337,16 @@ export default function Home() {
       <MixedRightThreeImagesContainer lang={lang} dir={dir}>
         <MixedRightThreeImages lang={lang} data={mixedRightThreeImagesData} />
         <MixedLeftThreeImages lang={lang} data={mixedLeftThreeImagesData} />
-        <UpperRightThreeImages lang={lang} data={upperRightThreeImagesData} />
+        <UpperRightThreeImages
+          lang={lang}
+          data={upperRightThreeImagesData}
+          side="right"
+        />
+        <UpperRightThreeImages
+          lang={lang}
+          data={upperRightThreeImagesData}
+          side="left"
+        />
       </MixedRightThreeImagesContainer>
     </main>
   );

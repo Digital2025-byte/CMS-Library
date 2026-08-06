@@ -14,8 +14,27 @@ export default function UpperRightThreeImagesPanel({
   largeImage,
   smallImageOne,
   smallImageTwo,
+  /** "right" = large left / smalls right; "left" = smalls left / large right */
+  side = "right",
 }) {
   const isRtl = lang === "ar";
+  const smallsOnLeft = side === "left";
+
+  const largeTile = (
+    <MixedImageTile
+      image={largeImage}
+      className="h-full rounded-3xl"
+      sizes="66vw"
+      priority
+    />
+  );
+
+  const smallPair = (
+    <UpperRightThreeImagesSmallPair
+      smallImageOne={smallImageOne}
+      smallImageTwo={smallImageTwo}
+    />
+  );
 
   return (
     <div className="w-full" dir={isRtl ? "rtl" : "ltr"}>
@@ -55,19 +74,26 @@ export default function UpperRightThreeImagesPanel({
             />
           </div>
 
-          {/* Desktop: mosaic on top, content + CTAs below */}
+          {/* Desktop: mosaic (flipped by `side`) + content below */}
           <div className="hidden lg:block">
-            <div className="grid h-[280px] grid-cols-[2fr_1fr] gap-5 xl:h-[340px] 2xl:h-[380px]">
-              <MixedImageTile
-                image={largeImage}
-                className="h-full rounded-3xl"
-                sizes="66vw"
-                priority
-              />
-              <UpperRightThreeImagesSmallPair
-                smallImageOne={smallImageOne}
-                smallImageTwo={smallImageTwo}
-              />
+            <div
+              className={`grid h-[280px] gap-5 xl:h-[340px] 2xl:h-[380px] ${
+                smallsOnLeft
+                  ? "grid-cols-[1fr_2fr]"
+                  : "grid-cols-[2fr_1fr]"
+              }`}
+            >
+              {smallsOnLeft ? (
+                <>
+                  {smallPair}
+                  {largeTile}
+                </>
+              ) : (
+                <>
+                  {largeTile}
+                  {smallPair}
+                </>
+              )}
             </div>
 
             <div className="mt-8">

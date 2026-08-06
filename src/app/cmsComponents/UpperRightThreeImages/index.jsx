@@ -3,7 +3,13 @@
 import UpperRightThreeImagesPanel from "./components/UpperRightThreeImagesPanel";
 import { getUpperRightThreeImagesContent } from "./utils/helpers";
 
-const UpperRightThreeImages = ({ lang = "en", data, cId }) => {
+const UpperRightThreeImages = ({
+  lang = "en",
+  data,
+  cId,
+  /** "right" (default) = large left / smalls right; "left" = smalls left / large right */
+  side = "right",
+}) => {
   const content = getUpperRightThreeImagesContent(data, lang);
 
   if (!content.hasContent) {
@@ -14,6 +20,7 @@ const UpperRightThreeImages = ({ lang = "en", data, cId }) => {
     <UpperRightThreeImagesPanel
       lang={lang}
       cId={cId}
+      side={side}
       title={content.title}
       description={content.description}
       primaryCta={content.primaryCta}
