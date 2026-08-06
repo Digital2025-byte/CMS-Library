@@ -8,7 +8,8 @@ export default function CitiesSectionsPanel({
   cId,
   title = "",
   description = "",
-  template = "right",
+  /** "right" = images on the right; "left" = images on the left */
+  side = "right",
   image1 = "",
   image2 = "",
   isCTA = false,
@@ -16,8 +17,7 @@ export default function CitiesSectionsPanel({
   ctaHref = "",
 }) {
   const isRtl = lang === "ar";
-  // "right" = images on the right (Figma); "left" = images on the left
-  const imagesOnRight = template !== "left";
+  const imagesOnRight = side !== "left";
 
   const textOrder = imagesOnRight ? "order-1" : "order-1 lg:order-2";
   const imagesOrder = imagesOnRight ? "order-2" : "order-2 lg:order-1";

@@ -17,7 +17,13 @@ function buildCtaHref(pathname = "", slug = "") {
   return `${path}${normalizedSlug}`;
 }
 
-const CitiesSections = ({ lang = "en", data, cId }) => {
+const CitiesSections = ({
+  lang = "en",
+  data,
+  cId,
+  /** "right" (default) = images on the right; "left" = images on the left */
+  side = "right",
+}) => {
   const pathname = usePathname();
   const content = getCitiesSectionsContent(data, lang);
 
@@ -29,9 +35,9 @@ const CitiesSections = ({ lang = "en", data, cId }) => {
     <CitiesSectionsPanel
       lang={lang}
       cId={cId}
+      side={side}
       title={content.title}
       description={content.description}
-      template={content.template}
       image1={content.image1}
       image2={content.image2}
       isCTA={content.isCTA}

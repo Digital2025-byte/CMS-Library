@@ -171,9 +171,35 @@ export default function Home() {
       <HeaderWithCityInfoContainer lang={lang} dir={dir}>
         <HeaderWithCityInfo lang={lang} data={headerWithCityInfoData} />
       </HeaderWithCityInfoContainer>
+      <MixedRightThreeImagesContainer lang={lang} dir={dir}>
+        <MixedRightThreeImages
+          lang={lang}
+          data={mixedRightThreeImagesData}
+          side="right"
+        />
+        <MixedRightThreeImages
+          lang={lang}
+          data={mixedLeftThreeImagesData}
+          side="left"
+        />
+        <UpperRightThreeImages
+          lang={lang}
+          data={upperRightThreeImagesData}
+          side="right"
+        />
+        <UpperRightThreeImages
+          lang={lang}
+          data={upperRightThreeImagesData}
+          side="left"
+        />
+      </MixedRightThreeImagesContainer>
+      
       <CitiesSectionsContainer lang={lang} dir={dir}>
-        <CitiesSections lang={lang} data={citiesSectionsData} />
+        <CitiesSections lang={lang} data={citiesSectionsData} side="right" />
+        <CitiesSections lang={lang} data={citiesSectionsData} side="left" />
       </CitiesSectionsContainer>
+
+      
       <BannerWithCTAsAndItemsContainer lang={lang} dir={dir}>
         <BannerWithCTAsAndItems
           lang={lang}
@@ -333,28 +359,7 @@ export default function Home() {
         <DataTableWithImage lang={lang} data={dataTableWithImageData} />
       </DataTableWithImageContainer>
 
-      <MixedRightThreeImagesContainer lang={lang} dir={dir}>
-        <MixedRightThreeImages
-          lang={lang}
-          data={mixedRightThreeImagesData}
-          side="right"
-        />
-        <MixedRightThreeImages
-          lang={lang}
-          data={mixedLeftThreeImagesData}
-          side="left"
-        />
-        <UpperRightThreeImages
-          lang={lang}
-          data={upperRightThreeImagesData}
-          side="right"
-        />
-        <UpperRightThreeImages
-          lang={lang}
-          data={upperRightThreeImagesData}
-          side="left"
-        />
-      </MixedRightThreeImagesContainer>
+
     </main>
   );
 }
