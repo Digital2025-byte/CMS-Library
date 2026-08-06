@@ -57,7 +57,7 @@ export default function SightCard({
 
       {/* Default labels — hide on hover when CTAs show */}
       <div
-        className={`absolute inset-x-5 bottom-20 flex items-end justify-between gap-3 transition-all duration-500 group-hover:translate-y-3 group-hover:opacity-0`}
+        className={`absolute inset-x-5 bottom-15 flex items-end justify-between gap-3 transition-all duration-500 group-hover:translate-y-3 group-hover:opacity-0`}
       >
         <h3
           className={`${typography.itemTitle} font-semibold text-white`}
@@ -82,8 +82,7 @@ export default function SightCard({
           href={stackedHref}
           cId={cId}
           fullWidth
-          className="shadow-md"
-        />
+          className={`shadow-md mt-2 ${typography.caption}`}        />
         <Button
           label={exploreMagazineLabel}
           href={magazineHref}
@@ -91,8 +90,9 @@ export default function SightCard({
           icon={<BookOpenTextIcon size={20} weight="bold" aria-hidden />}
           iconPosition="start"
           variant="secondary"
-          className={`${typography.caption} mt-1 border-0 bg-transparent !px-1 !py-1 shadow-none hover:bg-transparent hover:opacity-80`}
-        />
+          className={`shadow-md mt-2 ${typography.caption}`} 
+          fullWidth
+          />
       </div>
     </article>
   );
