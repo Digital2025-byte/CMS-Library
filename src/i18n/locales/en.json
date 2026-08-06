@@ -1094,5 +1094,15 @@
     "ctaLabel": "Explore more",
     "image1Alt": "City skyline view",
     "image2Alt": "City street view"
+  },
+  "dataTableWithImage": {
+    "sectionTitle": "Baggage Allowance by Class",
+    "tableHeaders": ["Class", "Checked baggage", "Carry-on baggage"],
+    "tableRows": [
+      ["Economy Class", "1 piece 3 kg", "1 piece 7 kg"],
+      ["Business Class", "1 piece 40 kg", "1 piece 7 kg"]
+    ],
+    "infoNote": "On domestic flights, it's 10 kg with 7 kg of hand luggage",
+    "imageAlt": "Baggage size illustration"
   }
 }

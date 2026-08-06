@@ -105,6 +105,9 @@ import { buildSearchWithTabsAndGridData } from "@/app/cmsComponents/SearchWithTa
 import CitiesSections from "@/app/cmsComponents/CitiesSections";
 import CitiesSectionsContainer from "@/app/cmsComponents/CitiesSections/components/CitiesSectionsContainer";
 import { buildCitiesSectionsData } from "@/app/cmsComponents/CitiesSections/utils/data";
+import DataTableWithImage from "@/app/cmsComponents/DataTableWithImage";
+import DataTableWithImageContainer from "@/app/cmsComponents/DataTableWithImage/components/DataTableWithImageContainer";
+import { buildDataTableWithImageData } from "@/app/cmsComponents/DataTableWithImage/utils/data";
 import LanguageSwitcher from "@/i18n/LanguageSwitcher";
 import { isRtl } from "@/i18n/settings";
 import PageContentContainer from "@/components/layout/PageContentContainer";
@@ -153,6 +156,7 @@ export default function Home() {
   const headerWithCityInfoData = buildHeaderWithCityInfoData(t, lang);
   const searchWithTabsAndGridData = buildSearchWithTabsAndGridData(t, lang);
   const citiesSectionsData = buildCitiesSectionsData(t, lang);
+  const dataTableWithImageData = buildDataTableWithImageData(t, lang);
 
   return (
     <main>
@@ -264,14 +268,6 @@ export default function Home() {
         <PhotoTileGrid lang={lang} data={photoTileGridData} />
       </PhotoTileGridContainer>
 
-      <DualImageTextContainer lang={lang} dir={dir}>
-        <DualImageText lang={lang} data={dualImageTextData} />
-      </DualImageTextContainer>
-
-      <DualImageTextContainer lang={lang} dir={dir}>
-        <DualImageText lang={lang} data={dualImageTrainingData} />
-      </DualImageTextContainer>
-
       <CarouselImageText6Container lang={lang} dir={dir}>
         <CarouselImageText6 lang={lang} data={carouselImageText6Data} />
       </CarouselImageText6Container>
@@ -331,7 +327,17 @@ export default function Home() {
         posParams="gb"
       />
 
+      <DualImageTextContainer lang={lang} dir={dir}>
+        <DualImageText lang={lang} data={dualImageTextData} />
+      </DualImageTextContainer>
 
+      <DualImageTextContainer lang={lang} dir={dir}>
+        <DualImageText lang={lang} data={dualImageTrainingData} />
+      </DualImageTextContainer>
+
+      <DataTableWithImageContainer lang={lang} dir={dir}>
+        <DataTableWithImage lang={lang} data={dataTableWithImageData} />
+      </DataTableWithImageContainer>
     </main>
   );
 }
