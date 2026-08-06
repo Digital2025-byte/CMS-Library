@@ -32,7 +32,7 @@ export default function HeaderWithCityInfoPanel({
         className="relative flex min-h-[75vh] w-full items-end"
         dir={isRtl ? "rtl" : "ltr"}
       >
-        <PageContentContainer className="w-full pb-12 pt-20 lg:pb-16 lg:pt-28">
+        <PageContentContainer className="w-full pb-40 pt-20 lg:pb-16 lg:pt-28">
           <div className="flex w-full flex-col justify-between gap-10 md:flex-row md:items-center md:gap-8">
             <div className="flex max-w-xl flex-col justify-end">
               {title ? (
@@ -52,7 +52,7 @@ export default function HeaderWithCityInfoPanel({
             </div>
 
             {hasCityCard ? (
-              <div className="flex shrink-0 items-end justify-start md:justify-end">
+              <div className=" shrink-0 items-end justify-start md:justify-end hidden md:flex">
                 <CityInfoCard
                   lang={lang}
                   weatherTitle={weatherTitle}

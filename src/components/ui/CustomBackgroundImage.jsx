@@ -33,36 +33,44 @@ export default function CustomBackgroundImage({
   const safeBgSrc = typeof bgSrc === "string" ? toCssUrl(bgSrc) : bgSrc;
 
   return (
-    <div className={`relative overflow-hidden ${className}`}>
-      <motion.div
-        className={`absolute inset-0 z-0 bg-cover bg-center ${
-          flipImage ? "scale-x-[-1]" : ""
-        }`}
-        style={{
-          backgroundImage: safeBgSrc ? `url(${safeBgSrc})` : undefined,
-          backgroundPosition: isMobile ? "center top" : "center center",
-        }}
-        initial={initialAnimation}
-        animate={animateAnimation}
-        transition={transition}
-      />
-
-      {desktopGradient ? (
-        <div
-          className={`absolute inset-y-0 z-[1] w-full opacity-90 lg:w-3/4 ${
-            lang === "ar"
-              ? "right-0 bg-gradient-to-l from-main via-main/70 to-transparent"
-              : "left-0 bg-gradient-to-r from-main via-main/70 to-transparent"
+    <div className={`relative ${className}`}>
+      {/* Clip image/gradient only — keep children outside so backdrop-blur works */}
+      <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
+        <motion.div
+          className={`absolute inset-0 bg-cover bg-center ${
+            flipImage ? "scale-x-[-1]" : ""
           }`}
+          style={{
+            backgroundImage: safeBgSrc ? `url(${safeBgSrc})` : undefined,
+            backgroundPosition: isMobile ? "center top" : "center center",
+          }}
+          initial={initialAnimation}
+          animate={animateAnimation}
+          transition={transition}
         />
-      ) : null}
 
-      {specialGradient ? (
-        <div
-          className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-main/20 to-primary-800"
-          aria-hidden
-        />
-      ) : null}
+        {desktopGradient ? (
+          <div
+            className={`absolute inset-y-0 w-full opacity-90 lg:w-3/4 ${
+              lang === "ar"
+                ? "right-0 bg-gradient-to-l from-main via-main/70 to-transparent"
+                : "left-0 bg-gradient-to-r from-main via-main/70 to-transparent"
+            }`}
+          />
+        ) : null}
+
+        {specialGradient ? (
+          <div
+            className="absolute inset-0"
+            style={{
+              // Keep photo visible at the bottom so the city card can blur it
+              backgroundImage:
+                "linear-gradient(180deg, rgb(5 78 114 / 0.2) 0%, rgb(19 54 75 / 0.72) 100%)",
+            }}
+            aria-hidden
+          />
+        ) : null}
+      </div>
 
       <div className="relative z-10 w-full">{children}</div>
     </div>
