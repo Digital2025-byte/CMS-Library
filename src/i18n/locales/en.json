@@ -1117,5 +1117,13 @@
       "smallOne": "Mosque courtyard detail",
       "smallTwo": "Mosque dome and architecture"
     }
+  },
+  "simpleHeaderWithCta": {
+    "subtitle": "Welcome aboard",
+    "title": "Fly with Cham Wings",
+    "description": "Discover destinations across the region with comfort, care, and a seamless booking experience.",
+    "buttonText": "Book now",
+    "ctaSlug": "book",
+    "imageAlt": "Aircraft in the sky"
   }
 }

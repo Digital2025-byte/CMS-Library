@@ -98,6 +98,9 @@ import { buildTitleWithListData } from "@/app/cmsComponents/TitleWithList/utils/
 import HeaderWithCityInfo from "@/app/cmsComponents/HeaderWithCityInfo";
 import HeaderWithCityInfoContainer from "@/app/cmsComponents/HeaderWithCityInfo/components/HeaderWithCityInfoContainer";
 import { buildHeaderWithCityInfoData } from "@/app/cmsComponents/HeaderWithCityInfo/utils/data";
+import SimpleHeaderWithCta from "@/app/cmsComponents/SimpleHeaderWithCta";
+import SimpleHeaderWithCtaContainer from "@/app/cmsComponents/SimpleHeaderWithCta/components/SimpleHeaderWithCtaContainer";
+import { buildSimpleHeaderWithCtaData } from "@/app/cmsComponents/SimpleHeaderWithCta/utils/data";
 import SearchWithTabsAndGrid from "@/app/cmsComponents/SearchWithTabsAndGrid";
 import { buildSearchWithTabsAndGridData } from "@/app/cmsComponents/SearchWithTabsAndGrid/utils/data";
 import CitiesSections from "@/app/cmsComponents/CitiesSections";
@@ -154,6 +157,7 @@ export default function Home() {
   const connectionStepsListData = buildConnectionStepsListData(t, lang);
   const titleWithListData = buildTitleWithListData(t, lang);
   const headerWithCityInfoData = buildHeaderWithCityInfoData(t, lang);
+  const simpleHeaderWithCtaData = buildSimpleHeaderWithCtaData(t, lang);
   const searchWithTabsAndGridData = buildSearchWithTabsAndGridData(t, lang);
   const citiesSectionsData = buildCitiesSectionsData(t, lang);
   const dataTableWithImageData = buildDataTableWithImageData(t, lang);
@@ -168,6 +172,14 @@ export default function Home() {
           <LanguageSwitcher />
         </PageContentContainer>
       </div>
+      <SimpleHeaderWithCtaContainer lang={lang} dir={dir}>
+        <SimpleHeaderWithCta
+          lang={lang}
+          data={simpleHeaderWithCtaData}
+          posParams="gb"
+        />
+      </SimpleHeaderWithCtaContainer>
+
       <HeaderWithCityInfoContainer lang={lang} dir={dir}>
         <HeaderWithCityInfo lang={lang} data={headerWithCityInfoData} />
       </HeaderWithCityInfoContainer>
@@ -206,6 +218,10 @@ export default function Home() {
           data={bannerWithCTAsAndItemsData}
         />
       </BannerWithCTAsAndItemsContainer>
+      <BannerWithCtaContainer lang={lang} dir={dir}>
+        <BannerWithCta lang={lang} data={bannerWithCtaData} />
+      </BannerWithCtaContainer>
+
       <DataTableWithImageContainer lang={lang} dir={dir}>
         <DataTableWithImage lang={lang} data={dataTableWithImageData} />
       </DataTableWithImageContainer>
@@ -221,9 +237,7 @@ export default function Home() {
         <Paragraph lang={lang} data={paragraphData} />
       </ParagraphContainer>
 
-      <BannerWithCtaContainer lang={lang} dir={dir}>
-        <BannerWithCta lang={lang} data={bannerWithCtaData} />
-      </BannerWithCtaContainer>
+
 
       <TextBlobContainer lang={lang} dir={dir}>
         <TextWithBlobImage lang={lang} data={textWithBlobData} />
@@ -293,9 +307,7 @@ export default function Home() {
         <HeaderWithThreeImage lang={lang} data={headerWithThreeImageData} />
       </HeaderWithThreeImageContainer>
 
-      <PhotoTileGridContainer lang={lang} dir={dir}>
-        <PhotoTileGrid lang={lang} data={photoTileGridData} />
-      </PhotoTileGridContainer>
+
 
       <CarouselImageText6Container lang={lang} dir={dir}>
         <CarouselImageText6 lang={lang} data={carouselImageText6Data} />
@@ -357,7 +369,9 @@ export default function Home() {
         <DualImageText lang={lang} data={dualImageTrainingData} />
       </DualImageTextContainer>
 
-
+      <PhotoTileGridContainer lang={lang} dir={dir}>
+        <PhotoTileGrid lang={lang} data={photoTileGridData} />
+      </PhotoTileGridContainer>
 
 
     </main>
