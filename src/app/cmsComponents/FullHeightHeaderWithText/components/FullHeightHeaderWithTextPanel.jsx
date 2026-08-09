@@ -20,10 +20,14 @@ export default function FullHeightHeaderWithTextPanel({
   const isRtl = lang === "ar";
 
   return (
-    <div ref={ref} dir={isRtl ? "rtl" : "ltr"}>
+    <div
+      ref={ref}
+      className="relative h-dvh min-h-dvh w-full"
+      dir={isRtl ? "rtl" : "ltr"}
+    >
       <CustomBackgroundImage
         imageUrl={backgroundImage}
-        className="min-h-screen"
+        className="h-full min-h-dvh"
         initialAnimation={{ scale: 1 }}
         animateAnimation={{ scale: 1.12 }}
         transition={{ duration: 5, ease: "easeInOut" }}
@@ -31,7 +35,7 @@ export default function FullHeightHeaderWithTextPanel({
         desktopGradient
         lang={lang}
       >
-        <section className="flex min-h-screen items-end justify-center py-16 sm:py-20 lg:items-center lg:py-24">
+        <section className="flex h-full min-h-dvh items-end justify-center py-16 sm:py-20 lg:items-center lg:py-24">
           <PageContentContainer className="w-full">
             <motion.div
               className="grid w-full grid-cols-1 gap-8 lg:grid-cols-2"

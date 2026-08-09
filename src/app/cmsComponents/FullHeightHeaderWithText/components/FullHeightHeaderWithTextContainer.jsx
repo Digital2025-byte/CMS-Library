@@ -5,7 +5,7 @@ export default function FullHeightHeaderWithTextContainer({
 }) {
   return (
     <div
-      className="w-full"
+      className="relative h-dvh min-h-dvh w-full"
       lang={lang}
       dir={dir || (lang === "ar" ? "rtl" : "ltr")}
     >

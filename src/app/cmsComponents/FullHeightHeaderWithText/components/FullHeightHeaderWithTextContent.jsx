@@ -17,7 +17,7 @@ export default function FullHeightHeaderWithTextContent({
     <div className={`w-full max-w-xl ${isRtl ? "text-right" : "text-left"}`}>
       {title ? (
         <h1
-          className={`${typography.pageTitle} max-w-lg font-semibold text-secondary-100`}
+          className={`${typography.sectionTitle} max-w-lg font-semibold text-secondary-100`}
         >
           {title}
         </h1>

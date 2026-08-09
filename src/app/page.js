@@ -171,14 +171,21 @@ export default function Home() {
   const upperRightThreeImagesData = buildUpperRightThreeImagesData(t, lang);
 
   return (
-    <main>
-      <div className="w-full bg-100 pt-4">
-
-
+    <main className="relative">
+      <div className="absolute inset-x-0 top-0 z-50 w-full pt-4">
         <PageContentContainer className="flex justify-end">
           <LanguageSwitcher />
         </PageContentContainer>
       </div>
+
+      <FullHeightHeaderWithTextContainer lang={lang} dir={dir}>
+        <FullHeightHeaderWithText
+          lang={lang}
+          data={fullHeightHeaderWithTextData}
+          posParams="gb"
+        />
+      </FullHeightHeaderWithTextContainer>
+
       <SliderContainer lang={lang}>
         <Slider
           lang={lang}
@@ -204,14 +211,6 @@ export default function Home() {
           }}
         />
       </SliderContainer>
-
-      <FullHeightHeaderWithTextContainer lang={lang} dir={dir}>
-        <FullHeightHeaderWithText
-          lang={lang}
-          data={fullHeightHeaderWithTextData}
-          posParams="gb"
-        />
-      </FullHeightHeaderWithTextContainer>
 
       <HeaderWithCityInfoContainer lang={lang} dir={dir}>
         <HeaderWithCityInfo lang={lang} data={headerWithCityInfoData} />

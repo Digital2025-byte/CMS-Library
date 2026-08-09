@@ -38,7 +38,7 @@ export default function CustomBackgroundImage({
       {/* Clip image/gradient only — keep children outside so backdrop-blur works */}
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
         <motion.div
-          className={`absolute inset-0 bg-cover bg-center ${
+          className={`absolute inset-0 h-full w-full bg-cover bg-center ${
             flipImage ? "scale-x-[-1]" : ""
           }`}
           style={{
@@ -52,19 +52,20 @@ export default function CustomBackgroundImage({
 
         {desktopGradient ? (
           <div
-            className={`absolute inset-y-0 w-full opacity-90 lg:w-3/4 ${
+            className={`absolute inset-y-0 w-full lg:w-3/4 ${
               mobileGradient ? "hidden lg:block" : ""
             } ${
               lang === "ar"
-                ? "right-0 bg-gradient-to-l from-main via-main/70 to-transparent"
-                : "left-0 bg-gradient-to-r from-main via-main/70 to-transparent"
+                ? "right-0 bg-gradient-to-l from-main/50 to-transparent"
+                : "left-0 bg-gradient-to-r from-main/50 to-transparent"
             }`}
+            aria-hidden
           />
         ) : null}
 
         {mobileGradient ? (
           <div
-            className="absolute bottom-0 left-0 h-2/3 w-full bg-gradient-to-t from-secondary-2 to-transparent lg:hidden"
+            className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-main/50 to-transparent lg:hidden"
             aria-hidden
           />
         ) : null}
@@ -82,7 +83,7 @@ export default function CustomBackgroundImage({
         ) : null}
       </div>
 
-      <div className="relative z-10 w-full">{children}</div>
+      <div className="relative z-10 h-full w-full">{children}</div>
     </div>
   );
 }
