@@ -435,7 +435,7 @@
   },
   "imageCarouselsWithOppositeScroll": {
     "title": "Discover destinations",
-    "description": "Explore inspiring places and plan your next journey with Cham Wings.",
+    "description": "Explore inspiring places and plan your next journey with Fly cham.",
     "exploreLabel": "Explore",
     "exploreHref": "#",
     "destinations": {
@@ -454,7 +454,7 @@
     }
   },
   "headerWithThreeImage": {
-    "title": "Fly further with Cham Wings",
+    "title": "Fly further with Fly cham",
     "description": "From takeoff to landing, discover destinations shaped by comfort, culture, and unforgettable views.",
     "imageOneAlt": "Airplane wing above the clouds",
     "imageTwoAlt": "Traveler exploring the city",
@@ -499,12 +499,12 @@
     "training": {
       "itemOne": {
         "title": "Towards Our Passengers",
-        "description": "At Cham Wings Airlines, we strive to make every journey more than just a flight. We are dedicated to providing a warm, welcoming atmosphere and exceptional care that makes every passenger feel valued and at ease. From the moment you book until you reach your destination, our commitment is to turn every trip into a memorable experience filled with comfort and hospitality.",
+        "description": "At Fly cham Airlines, we strive to make every journey more than just a flight. We are dedicated to providing a warm, welcoming atmosphere and exceptional care that makes every passenger feel valued and at ease. From the moment you book until you reach your destination, our commitment is to turn every trip into a memorable experience filled with comfort and hospitality.",
         "imageAlt": "Young passenger waving onboard an aircraft"
       },
       "itemTwo": {
         "title": "Towards the Syrian Community",
-        "description": "As Syria's national airline, Cham Wings carries a responsibility that goes beyond aviation. We are proud to connect Syrians at home and abroad, supporting families, culture, and opportunities through reliable routes and thoughtful service that reflects our shared identity.",
+        "description": "As Syria's national airline, Fly cham carries a responsibility that goes beyond aviation. We are proud to connect Syrians at home and abroad, supporting families, culture, and opportunities through reliable routes and thoughtful service that reflects our shared identity.",
         "imageAlt": "Flight attendant presenting flower bouquets"
       }
     }
@@ -664,7 +664,7 @@
   },
   "relatedContentCarousel": {
     "title": "Related content",
-    "description": "Explore more stories, guides, and travel inspiration from Cham Wings.",
+    "description": "Explore more stories, guides, and travel inspiration from Fly cham.",
     "pages": [
       {
         "id": "page-1",
@@ -1088,7 +1088,7 @@
   },
   "citiesSections": {
     "title": "Discover our cities",
-    "description": "From coastal gateways to historic centers, explore destinations that define every journey with Cham Wings.",
+    "description": "From coastal gateways to historic centers, explore destinations that define every journey with Fly cham.",
     "template": "right",
     "slug": "/cities",
     "ctaLabel": "Explore more",
@@ -1118,12 +1118,35 @@
       "smallTwo": "Mosque dome and architecture"
     }
   },
-  "simpleHeaderWithCta": {
-    "subtitle": "Welcome aboard",
-    "title": "Fly with Cham Wings",
-    "description": "Discover destinations across the region with comfort, care, and a seamless booking experience.",
+  "slider": {
     "buttonText": "Book now",
     "ctaSlug": "book",
-    "imageAlt": "Aircraft in the sky"
+    "imageAlt": "Aircraft in the sky",
+    "slides": [
+      {
+        "id": "slide-1",
+        "subtitle": "Welcome aboard",
+        "title": "Fly with Cham Wings",
+        "description": "Discover destinations across the region with comfort, care, and a seamless booking experience.",
+        "buttonText": "Book now",
+        "ctaHref": "book"
+      },
+      {
+        "id": "slide-2",
+        "subtitle": "Explore more",
+        "title": "Your next journey starts here",
+        "description": "From short hops to long-haul routes, travel with care and confidence.",
+        "buttonText": "Book now",
+        "ctaHref": "book"
+      },
+      {
+        "id": "slide-3",
+        "subtitle": "Travel smarter",
+        "title": "Comfort across every mile",
+        "description": "Enjoy a smooth booking flow and destinations chosen for memorable trips.",
+        "buttonText": "Book now",
+        "ctaHref": "book"
+      }
+    ]
   }
 }

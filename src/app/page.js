@@ -98,9 +98,9 @@ import { buildTitleWithListData } from "@/app/cmsComponents/TitleWithList/utils/
 import HeaderWithCityInfo from "@/app/cmsComponents/HeaderWithCityInfo";
 import HeaderWithCityInfoContainer from "@/app/cmsComponents/HeaderWithCityInfo/components/HeaderWithCityInfoContainer";
 import { buildHeaderWithCityInfoData } from "@/app/cmsComponents/HeaderWithCityInfo/utils/data";
-import SimpleHeaderWithCta from "@/app/cmsComponents/SimpleHeaderWithCta";
-import SimpleHeaderWithCtaContainer from "@/app/cmsComponents/SimpleHeaderWithCta/components/SimpleHeaderWithCtaContainer";
-import { buildSimpleHeaderWithCtaData } from "@/app/cmsComponents/SimpleHeaderWithCta/utils/data";
+import Slider from "@/app/cmsComponents/Slider";
+import SliderContainer from "@/app/cmsComponents/Slider/components/SliderContainer";
+import { buildSliderData } from "@/app/cmsComponents/Slider/utils/data";
 import SearchWithTabsAndGrid from "@/app/cmsComponents/SearchWithTabsAndGrid";
 import { buildSearchWithTabsAndGridData } from "@/app/cmsComponents/SearchWithTabsAndGrid/utils/data";
 import CitiesSections from "@/app/cmsComponents/CitiesSections";
@@ -157,7 +157,7 @@ export default function Home() {
   const connectionStepsListData = buildConnectionStepsListData(t, lang);
   const titleWithListData = buildTitleWithListData(t, lang);
   const headerWithCityInfoData = buildHeaderWithCityInfoData(t, lang);
-  const simpleHeaderWithCtaData = buildSimpleHeaderWithCtaData(t, lang);
+  const sliderData = buildSliderData(t, lang);
   const searchWithTabsAndGridData = buildSearchWithTabsAndGridData(t, lang);
   const citiesSectionsData = buildCitiesSectionsData(t, lang);
   const dataTableWithImageData = buildDataTableWithImageData(t, lang);
@@ -172,13 +172,24 @@ export default function Home() {
           <LanguageSwitcher />
         </PageContentContainer>
       </div>
-      <SimpleHeaderWithCtaContainer lang={lang} dir={dir}>
-        <SimpleHeaderWithCta
+      <SliderContainer lang={lang}>
+        <Slider
           lang={lang}
-          data={simpleHeaderWithCtaData}
+          data={sliderData}
           posParams="gb"
+          arrowTheme="secondary-2"
+          settings={{
+            autoplay: true,
+            autoplaySpeed: 5000,
+            dots: true,
+            fade: false,
+            arrows: true,
+            infinite: true,
+            speed: 700,
+            pauseOnHover: true,
+          }}
         />
-      </SimpleHeaderWithCtaContainer>
+      </SliderContainer>
 
       <HeaderWithCityInfoContainer lang={lang} dir={dir}>
         <HeaderWithCityInfo lang={lang} data={headerWithCityInfoData} />
