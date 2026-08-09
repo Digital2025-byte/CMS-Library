@@ -1156,5 +1156,12 @@
         "ctaHref": "book"
       }
     ]
+  },
+  "fullHeightHeaderWithText": {
+    "title": "اكتشف العالم مع أجنحة الشام",
+    "description": "من رحلات المدن إلى الرحلات الطويلة، سافر براحة وعناية وتجربة حجز سلسة.",
+    "buttonText": "استكشف الوجهات",
+    "ctaSlug": "destinations",
+    "imageAlt": "طائرة تحلق في سماء مفتوحة"
   }
 }

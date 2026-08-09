@@ -101,6 +101,9 @@ import { buildHeaderWithCityInfoData } from "@/app/cmsComponents/HeaderWithCityI
 import Slider from "@/app/cmsComponents/Slider";
 import SliderContainer from "@/app/cmsComponents/Slider/components/SliderContainer";
 import { buildSliderData } from "@/app/cmsComponents/Slider/utils/data";
+import FullHeightHeaderWithText from "@/app/cmsComponents/FullHeightHeaderWithText";
+import FullHeightHeaderWithTextContainer from "@/app/cmsComponents/FullHeightHeaderWithText/components/FullHeightHeaderWithTextContainer";
+import { buildFullHeightHeaderWithTextData } from "@/app/cmsComponents/FullHeightHeaderWithText/utils/data";
 import SearchWithTabsAndGrid from "@/app/cmsComponents/SearchWithTabsAndGrid";
 import { buildSearchWithTabsAndGridData } from "@/app/cmsComponents/SearchWithTabsAndGrid/utils/data";
 import CitiesSections from "@/app/cmsComponents/CitiesSections";
@@ -158,6 +161,10 @@ export default function Home() {
   const titleWithListData = buildTitleWithListData(t, lang);
   const headerWithCityInfoData = buildHeaderWithCityInfoData(t, lang);
   const sliderData = buildSliderData(t, lang);
+  const fullHeightHeaderWithTextData = buildFullHeightHeaderWithTextData(
+    t,
+    lang
+  );
   const searchWithTabsAndGridData = buildSearchWithTabsAndGridData(t, lang);
   const citiesSectionsData = buildCitiesSectionsData(t, lang);
   const dataTableWithImageData = buildDataTableWithImageData(t, lang);
@@ -197,6 +204,14 @@ export default function Home() {
           }}
         />
       </SliderContainer>
+
+      <FullHeightHeaderWithTextContainer lang={lang} dir={dir}>
+        <FullHeightHeaderWithText
+          lang={lang}
+          data={fullHeightHeaderWithTextData}
+          posParams="gb"
+        />
+      </FullHeightHeaderWithTextContainer>
 
       <HeaderWithCityInfoContainer lang={lang} dir={dir}>
         <HeaderWithCityInfo lang={lang} data={headerWithCityInfoData} />

@@ -19,6 +19,7 @@ export default function CustomBackgroundImage({
   animateAnimation = { scale: 1 },
   transition = { duration: 5, ease: "easeInOut" },
   desktopGradient = false,
+  mobileGradient = false,
   lang = "en",
   flipImage = false,
   specialGradient = false,
@@ -52,10 +53,19 @@ export default function CustomBackgroundImage({
         {desktopGradient ? (
           <div
             className={`absolute inset-y-0 w-full opacity-90 lg:w-3/4 ${
+              mobileGradient ? "hidden lg:block" : ""
+            } ${
               lang === "ar"
                 ? "right-0 bg-gradient-to-l from-main via-main/70 to-transparent"
                 : "left-0 bg-gradient-to-r from-main via-main/70 to-transparent"
             }`}
+          />
+        ) : null}
+
+        {mobileGradient ? (
+          <div
+            className="absolute bottom-0 left-0 h-2/3 w-full bg-gradient-to-t from-secondary-2 to-transparent lg:hidden"
+            aria-hidden
           />
         ) : null}
 

@@ -1156,5 +1156,12 @@
         "ctaHref": "book"
       }
     ]
+  },
+  "fullHeightHeaderWithText": {
+    "title": "Discover the world with Cham Wings",
+    "description": "From city escapes to long-haul journeys, fly with comfort, care, and a seamless booking experience.",
+    "buttonText": "Explore destinations",
+    "ctaSlug": "destinations",
+    "imageAlt": "Aircraft flying over open sky"
   }
 }
