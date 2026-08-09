@@ -35,7 +35,7 @@ export default function FullHeightHeaderWithTextPanel({
         desktopGradient
         lang={lang}
       >
-        <section className="flex h-full min-h-dvh items-end justify-center py-16 sm:py-20 lg:items-center lg:py-24">
+        <section className="flex h-full min-h-dvh items-end  justify-center py-16 sm:py-20 lg:items-center lg:py-24">
           <PageContentContainer className="w-full">
             <motion.div
               className="grid w-full grid-cols-1 gap-8 lg:grid-cols-2"
