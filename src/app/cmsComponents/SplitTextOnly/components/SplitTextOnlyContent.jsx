@@ -9,7 +9,7 @@ export default function SplitTextOnlyContent({ title, description }) {
     <div className="p-2">
       {title ? (
         <h1
-          className={`${typography.pageTitle} font-semibold text-secondary-100`}
+          className={`${typography.sectionTitle} font-semibold text-secondary-100`}
         >
           {title}
         </h1>
