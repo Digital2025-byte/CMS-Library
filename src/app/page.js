@@ -183,7 +183,7 @@ export default function Home() {
             fromOpacity: 0.7,
             viaOpacity: 0.2,
             to: "transparent",
-            direction: "to top",
+            direction: "to bottom",
           }}
           settings={{
             autoplay: true,
