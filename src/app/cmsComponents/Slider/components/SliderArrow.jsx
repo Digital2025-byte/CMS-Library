@@ -1,13 +1,10 @@
 "use client";
 
 import { ArrowLeftIcon, ArrowRightIcon } from "@phosphor-icons/react";
-import {
-  DEFAULT_ARROW_THEME,
-  resolveArrowTheme,
-} from "../utils/arrowThemes";
+import { DEFAULT_THEME, resolveTheme } from "../utils/themes";
 
 const arrowButtonClasses =
-  "slider-hero-arrow-btn flex h-10 w-10 items-center justify-center rounded-full shadow-md transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-2 md:h-12 md:w-12";
+  "slider-hero-arrow-btn flex h-10 w-10 items-center justify-center rounded-full  transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-2 md:h-12 md:w-12";
 
 function ArrowButton({ onClick, disabled = false, label, children }) {
   return (
@@ -33,22 +30,22 @@ function ArrowButton({ onClick, disabled = false, label, children }) {
  * @param {Object} props
  * @param {Function} props.onPrev
  * @param {Function} props.onNext
- * @param {"primary-1"|"primary-2"|"secondary-1"|"secondary-2"} [props.arrowTheme]
+ * @param {"primary-1"|"primary-2"|"secondary-1"|"secondary-2"} [props.theme]
  */
 export default function SliderArrowNav({
   onPrev,
   onNext,
-  arrowTheme = DEFAULT_ARROW_THEME,
+  theme = DEFAULT_THEME,
 }) {
-  const theme = resolveArrowTheme(arrowTheme);
+  const colors = resolveTheme(theme);
 
   return (
     <div
       className="pointer-events-none absolute inset-0 z-20"
       style={{
-        "--slider-arrow-bg": theme.bg,
-        "--slider-arrow-hover-bg": theme.hoverBg,
-        "--slider-arrow-icon": theme.icon,
+        "--slider-arrow-bg": colors.bg,
+        "--slider-arrow-hover-bg": colors.hoverBg,
+        "--slider-arrow-icon": colors.icon,
       }}
     >
       <style
@@ -96,7 +93,7 @@ export default function SliderArrowNav({
 
 export { ArrowButton as SliderPrevArrow, ArrowButton as SliderNextArrow };
 export {
-  ARROW_THEMES,
-  DEFAULT_ARROW_THEME,
-  resolveArrowTheme,
-} from "../utils/arrowThemes";
+  SLIDER_THEMES,
+  DEFAULT_THEME,
+  resolveTheme,
+} from "../utils/themes";

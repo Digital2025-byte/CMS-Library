@@ -2,8 +2,10 @@
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import "./slider-hero.css";
 import SliderPanel from "./components/SliderPanel";
-import { DEFAULT_ARROW_THEME } from "./utils/arrowThemes";
+import { DEFAULT_THEME } from "./utils/themes";
+import { DEFAULT_IMAGE_OVERLAY } from "./utils/imageOverlay";
 import { getSliderContent } from "./utils/helpers";
 import { mergeSliderSettings } from "./utils/sliderSettings";
 
@@ -16,14 +18,21 @@ import { mergeSliderSettings } from "./utils/sliderSettings";
  * @param {string} [props.posParams="gb"]
  * @param {string|number} [props.cId]
  * @param {Object} [props.settings] - react-slick overrides merged over defaults
- * @param {"primary-1"|"primary-2"|"secondary-1"|"secondary-2"} [props.arrowTheme]
- *   Theme for arrows and active dots
+ * @param {"primary-1"|"primary-2"|"secondary-1"|"secondary-2"} [props.theme]
+ *   Theme for arrows, active dots, and CTA button
+ * @param {Object} [props.imageOverlay] - Gradient overlay on slide images
  *
  * @example
  * <Slider
  *   lang={lang}
  *   data={sliderData}
- *   arrowTheme="primary-1"
+ *   theme="primary-1"
+ *   imageOverlay={{
+ *     color: "main",
+ *     fromOpacity: 0.7,
+ *     viaOpacity: 0.2,
+ *     direction: "to top",
+ *   }}
  *   settings={{ arrows: true, dots: true }}
  * />
  */
@@ -33,7 +42,8 @@ const Slider = ({
   posParams = "gb",
   cId,
   settings: parentSettings = {},
-  arrowTheme = DEFAULT_ARROW_THEME,
+  theme = DEFAULT_THEME,
+  imageOverlay = DEFAULT_IMAGE_OVERLAY,
 }) => {
   const { slides, hasContent } = getSliderContent(data, lang);
 
@@ -64,7 +74,8 @@ const Slider = ({
       slides={slides}
       settings={settings}
       showArrows={showArrows}
-      arrowTheme={arrowTheme}
+      theme={theme}
+      imageOverlay={imageOverlay}
     />
   );
 };
@@ -73,7 +84,11 @@ export default Slider;
 export { DEFAULT_SLIDER_SETTINGS } from "./utils/sliderSettings";
 export { default as SliderArrowNav } from "./components/SliderArrow";
 export {
-  ARROW_THEMES,
-  DEFAULT_ARROW_THEME,
-  resolveArrowTheme,
-} from "./utils/arrowThemes";
+  SLIDER_THEMES,
+  DEFAULT_THEME,
+  resolveTheme,
+} from "./utils/themes";
+export {
+  DEFAULT_IMAGE_OVERLAY,
+  resolveImageOverlay,
+} from "./utils/imageOverlay";

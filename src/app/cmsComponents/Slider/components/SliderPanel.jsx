@@ -7,10 +7,11 @@ export default function SliderPanel({
   slides = [],
   settings = {},
   showArrows = true,
-  arrowTheme,
+  theme,
+  imageOverlay,
 }) {
   return (
-    <section className="relative w-full" dir="ltr">
+    <section className="relative w-full overflow-hidden leading-none" dir="ltr">
       <SliderTrack
         slides={slides}
         settings={settings}
@@ -19,7 +20,8 @@ export default function SliderPanel({
         cId={cId}
         sliderKey={lang}
         showArrows={showArrows}
-        arrowTheme={arrowTheme}
+        theme={theme}
+        imageOverlay={imageOverlay}
       />
     </section>
   );

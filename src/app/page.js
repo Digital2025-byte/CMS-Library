@@ -177,7 +177,14 @@ export default function Home() {
           lang={lang}
           data={sliderData}
           posParams="gb"
-          arrowTheme="secondary-2"
+          theme="secondary-2"
+          imageOverlay={{
+            color: "main",
+            fromOpacity: 0.7,
+            viaOpacity: 0.2,
+            to: "transparent",
+            direction: "to top",
+          }}
           settings={{
             autoplay: true,
             autoplaySpeed: 5000,

@@ -31,14 +31,14 @@ export default function SliderSlideContent({
         }`}
       >
         {subtitle ? (
-          <p className={`${typography.sectionTitle} font-medium text-white`}>
+          <p className={`${typography.sectionDescription} font-medium text-white`}>
             {subtitle}
           </p>
         ) : null}
 
         {title ? (
           <h1
-            className={`${typography.pageTitle} mt-1 font-bold leading-tight text-white sm:mt-2 md:mt-3`}
+            className={`${typography.sectionTitle} mt-1 font-bold leading-tight text-white sm:mt-2 md:mt-3`}
           >
             {title}
           </h1>
@@ -59,7 +59,7 @@ export default function SliderSlideContent({
               href={resolvedHref}
               cId={cId}
               variant="primary"
-              className="min-w-[120px] sm:min-w-[140px] md:min-w-[180px]"
+              className="slider-hero-cta min-w-[120px] sm:min-w-[140px] md:min-w-[180px]"
             />
           </div>
         ) : null}

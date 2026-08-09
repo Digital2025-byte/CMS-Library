@@ -1,6 +1,7 @@
 import Image from "next/image";
 import PageContentContainer from "@/components/layout/PageContentContainer";
 import SliderSlideContent from "./SliderSlideContent";
+import { resolveImageOverlay } from "../utils/imageOverlay";
 
 export default function SliderSlide({
   slide,
@@ -8,33 +9,39 @@ export default function SliderSlide({
   posParams = "gb",
   cId,
   priority = false,
+  imageOverlay,
 }) {
   if (!slide) {
     return null;
   }
 
+  const overlay = resolveImageOverlay(imageOverlay);
+
   return (
-    <div className="relative box-border w-full min-h-[280px] overflow-hidden sm:min-h-[320px] md:min-h-[420px] lg:min-h-[500px]">
+    <div className="relative box-border w-full min-h-[280px] overflow-hidden leading-normal sm:min-h-[320px] md:min-h-[420px] lg:min-h-[500px]">
       {slide.image ? (
-        <div className="absolute inset-0">
+        <div className="absolute inset-0 h-full w-full">
           <Image
             src={slide.image}
             alt={slide.alt || slide.title || "Slide"}
             fill
-            className="object-cover"
+            className="object-cover object-center"
             priority={priority}
             sizes="100vw"
           />
-          <div
-            className="absolute inset-0 bg-gradient-to-t from-main/70 via-main/20 to-transparent"
-            aria-hidden
-          />
+          {overlay ? (
+            <div
+              className="absolute inset-0"
+              style={{ backgroundImage: overlay.backgroundImage }}
+              aria-hidden
+            />
+          ) : null}
         </div>
       ) : (
         <div className="absolute inset-0 bg-primary-800" aria-hidden />
       )}
 
-      <div className="relative flex h-full min-h-[280px] w-full items-end py-8 sm:min-h-[320px] sm:py-10 md:min-h-[420px] md:py-12 lg:min-h-[500px] lg:py-16">
+      <div className="relative z-[1] flex h-full min-h-[280px] w-full items-end py-8 leading-normal sm:min-h-[320px] sm:py-10 md:min-h-[420px] md:py-12 lg:min-h-[500px] lg:py-16">
         <PageContentContainer className="w-full">
           <SliderSlideContent
             lang={lang}
