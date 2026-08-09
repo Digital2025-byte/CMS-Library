@@ -1,9 +1,10 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import SliderSlide from "./SliderSlide";
 import SliderArrowNav from "./SliderArrow";
+import SliderProgressNav from "./SliderProgressNav";
 import { DEFAULT_THEME, resolveTheme } from "../utils/themes";
 
 const ReactSlick = dynamic(() => import("react-slick"), { ssr: false });
@@ -20,14 +21,32 @@ export default function SliderTrack({
   imageOverlay,
 }) {
   const sliderRef = useRef(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
   const colors = resolveTheme(theme);
 
   if (!slides.length) {
     return null;
   }
 
-  const { arrows: _ignoredArrows, prevArrow: _p, nextArrow: _n, ...slickSettings } =
-    settings;
+  const {
+    arrows: _ignoredArrows,
+    prevArrow: _p,
+    nextArrow: _n,
+    dots: showProgress = true,
+    autoplaySpeed = 5000,
+    ...slickSettings
+  } = settings;
+
+  const togglePause = () => {
+    const nextPaused = !isPaused;
+    setIsPaused(nextPaused);
+    if (nextPaused) {
+      sliderRef.current?.slickPause?.();
+    } else {
+      sliderRef.current?.slickPlay?.();
+    }
+  };
 
   return (
     <div
@@ -47,6 +66,11 @@ export default function SliderTrack({
         className="slider-hero-slick !mb-0"
         {...slickSettings}
         arrows={false}
+        dots={false}
+        autoplay={!isPaused && slickSettings.autoplay !== false}
+        autoplaySpeed={autoplaySpeed}
+        beforeChange={(_, next) => setActiveIndex(next)}
+        afterChange={(current) => setActiveIndex(current)}
       >
         {slides.map((slide, index) => (
           <div key={slide.id || `slide-${index}`}>
@@ -57,6 +81,8 @@ export default function SliderTrack({
               cId={cId}
               priority={index === 0}
               imageOverlay={imageOverlay}
+              isActive={index === activeIndex}
+              isPaused={isPaused}
             />
           </div>
         ))}
@@ -66,6 +92,18 @@ export default function SliderTrack({
         <SliderArrowNav
           onPrev={() => sliderRef.current?.slickPrev()}
           onNext={() => sliderRef.current?.slickNext()}
+          theme={theme}
+        />
+      ) : null}
+
+      {showProgress !== false && slides.length > 1 ? (
+        <SliderProgressNav
+          slideCount={slides.length}
+          activeIndex={activeIndex}
+          autoplaySpeed={autoplaySpeed}
+          isPaused={isPaused}
+          onTogglePause={togglePause}
+          onGoTo={(index) => sliderRef.current?.slickGoTo?.(index)}
           theme={theme}
         />
       ) : null}

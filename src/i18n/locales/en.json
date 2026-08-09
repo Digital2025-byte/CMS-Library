@@ -1146,6 +1146,14 @@
         "description": "Enjoy a smooth booking flow and destinations chosen for memorable trips.",
         "buttonText": "Book now",
         "ctaHref": "book"
+      },
+      {
+        "id": "slide-4",
+        "subtitle": "See it in motion",
+        "title": "Experience Cham Wings",
+        "description": "Watch the journey come to life — destinations, comfort, and care in every flight.",
+        "buttonText": "Book now",
+        "ctaHref": "book"
       }
     ]
   }

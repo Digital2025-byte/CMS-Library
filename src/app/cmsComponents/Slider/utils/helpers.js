@@ -1,23 +1,45 @@
-function getFileUrl(image) {
-  if (!image) {
+function getFileUrl(media) {
+  if (!media) {
     return "";
   }
-  if (typeof image === "string") {
-    return image;
+  if (typeof media === "string") {
+    return media;
   }
-  return image.fileUrl || image.url || image.src || "";
+  return media.fileUrl || media.url || media.src || "";
+}
+
+function isVideoUrl(url = "") {
+  return /\.(mp4|webm|ogg)(\?|$)/i.test(String(url));
 }
 
 function normalizeSlide(raw, index, shared = {}) {
   const image =
     getFileUrl(raw?.image) ||
     getFileUrl(raw?.backgroundImage) ||
+    getFileUrl(raw?.poster) ||
     getFileUrl(raw?.fileUrl) ||
     "";
 
+  const video =
+    getFileUrl(raw?.video) ||
+    getFileUrl(raw?.videoUrl) ||
+    (raw?.mediaType === "video" || isVideoUrl(getFileUrl(raw?.fileUrl))
+      ? getFileUrl(raw?.fileUrl)
+      : "") ||
+    "";
+
+  const mediaType =
+    raw?.mediaType === "video" || video
+      ? "video"
+      : raw?.mediaType === "image" || image
+        ? "image"
+        : "";
+
   return {
     id: raw?.id || `slide-${index + 1}`,
+    mediaType,
     image,
+    video,
     alt: raw?.alt || raw?.imageAlt || shared.title || `Slide ${index + 1}`,
     title: raw?.title ?? shared.title ?? "",
     subtitle: raw?.subtitle ?? raw?.kicker ?? shared.subtitle ?? "",
@@ -85,10 +107,12 @@ export function getSliderContent(data, lang = "en") {
     slidesRaw = content.slides;
   } else if (Array.isArray(content?.images) && content.images.length) {
     slidesRaw = content.images;
-  } else if (content?.backgroundImage || content?.image) {
+  } else if (content?.backgroundImage || content?.image || content?.video) {
     slidesRaw = [
       {
         image: content.backgroundImage || content.image,
+        video: content.video,
+        mediaType: content.video ? "video" : "image",
         title: shared.title,
         subtitle: shared.subtitle,
         description: shared.description,
@@ -100,7 +124,9 @@ export function getSliderContent(data, lang = "en") {
 
   const slides = slidesRaw
     .map((slide, index) => normalizeSlide(slide, index, shared))
-    .filter((slide) => slide.image || slide.title || slide.description);
+    .filter(
+      (slide) => slide.image || slide.video || slide.title || slide.description
+    );
 
   return {
     slides,

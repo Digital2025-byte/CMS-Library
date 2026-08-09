@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 import PageContentContainer from "@/components/layout/PageContentContainer";
 import SliderSlideContent from "./SliderSlideContent";
@@ -10,25 +13,65 @@ export default function SliderSlide({
   cId,
   priority = false,
   imageOverlay,
+  isActive = false,
+  isPaused = false,
 }) {
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) {
+      return;
+    }
+
+    if (isActive && !isPaused) {
+      const playPromise = video.play();
+      if (playPromise?.catch) {
+        playPromise.catch(() => {});
+      }
+    } else {
+      video.pause();
+      if (!isActive) {
+        video.currentTime = 0;
+      }
+    }
+  }, [isActive, isPaused]);
+
   if (!slide) {
     return null;
   }
 
   const overlay = resolveImageOverlay(imageOverlay);
+  const hasVideo = Boolean(slide.video);
+  const hasImage = Boolean(slide.image);
 
   return (
     <div className="relative box-border w-full min-h-[280px] overflow-hidden leading-normal sm:min-h-[320px] md:min-h-[420px] lg:min-h-[500px]">
-      {slide.image ? (
+      {hasVideo || hasImage ? (
         <div className="absolute inset-0 h-full w-full">
-          <Image
-            src={slide.image}
-            alt={slide.alt || slide.title || "Slide"}
-            fill
-            className="object-cover object-center"
-            priority={priority}
-            sizes="100vw"
-          />
+          {hasVideo ? (
+            <video
+              ref={videoRef}
+              className="absolute inset-0 h-full w-full object-cover object-center"
+              src={slide.video}
+              poster={slide.image || undefined}
+              muted
+              loop
+              playsInline
+              autoPlay={isActive && !isPaused}
+              preload={priority || isActive ? "auto" : "metadata"}
+              aria-label={slide.alt || slide.title || "Slide video"}
+            />
+          ) : (
+            <Image
+              src={slide.image}
+              alt={slide.alt || slide.title || "Slide"}
+              fill
+              className="object-cover object-center"
+              priority={priority}
+              sizes="100vw"
+            />
+          )}
           {overlay ? (
             <div
               className="absolute inset-0"
