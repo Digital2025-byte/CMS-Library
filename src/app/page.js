@@ -117,6 +117,7 @@ import { buildUpperRightThreeImagesData } from "@/app/cmsComponents/UpperRightTh
 import LanguageSwitcher from "@/i18n/LanguageSwitcher";
 import { isRtl } from "@/i18n/settings";
 import PageContentContainer from "@/components/layout/PageContentContainer";
+import ComponentNav from "@/components/ui/ComponentNav";
 
 export default function Home() {
   const { t, i18n } = useTranslation();
@@ -173,239 +174,311 @@ export default function Home() {
   return (
     <main className="relative">
       <div className="absolute inset-x-0 top-0 z-50 w-full pt-4">
-        <PageContentContainer className="flex justify-end">
+        <PageContentContainer className="flex items-center justify-end gap-2">
+          <ComponentNav />
           <LanguageSwitcher />
         </PageContentContainer>
       </div>
 
-      <FullHeightHeaderWithTextContainer lang={lang} dir={dir}>
-        <FullHeightHeaderWithText
+      <div id="full-height-header-with-text" className="scroll-mt-20">
+        <FullHeightHeaderWithTextContainer lang={lang} dir={dir}>
+          <FullHeightHeaderWithText
+            lang={lang}
+            data={fullHeightHeaderWithTextData}
+            posParams="gb"
+          />
+        </FullHeightHeaderWithTextContainer>
+      </div>
+
+      <div id="slider" className="scroll-mt-20">
+        <SliderContainer lang={lang}>
+          <Slider
+            lang={lang}
+            data={sliderData}
+            posParams="gb"
+            theme="secondary-2"
+            imageOverlay={{
+              color: "main",
+              fromOpacity: 0.7,
+              viaOpacity: 0.2,
+              to: "transparent",
+              direction: "to bottom",
+            }}
+            settings={{
+              autoplay: true,
+              autoplaySpeed: 5000,
+              dots: true,
+              fade: false,
+              arrows: true,
+              infinite: true,
+              speed: 700,
+              pauseOnHover: true,
+            }}
+          />
+        </SliderContainer>
+      </div>
+
+      <div id="header-with-city-info" className="scroll-mt-20">
+        <HeaderWithCityInfoContainer lang={lang} dir={dir}>
+          <HeaderWithCityInfo lang={lang} data={headerWithCityInfoData} />
+        </HeaderWithCityInfoContainer>
+      </div>
+
+      <div id="mixed-right-three-images" className="scroll-mt-20">
+        <MixedRightThreeImagesContainer lang={lang} dir={dir}>
+          <MixedRightThreeImages
+            lang={lang}
+            data={mixedRightThreeImagesData}
+            side="right"
+          />
+          <MixedRightThreeImages
+            lang={lang}
+            data={mixedLeftThreeImagesData}
+            side="left"
+          />
+          <UpperRightThreeImages
+            lang={lang}
+            data={upperRightThreeImagesData}
+            side="right"
+          />
+          <UpperRightThreeImages
+            lang={lang}
+            data={upperRightThreeImagesData}
+            side="left"
+          />
+        </MixedRightThreeImagesContainer>
+      </div>
+
+      <div id="cities-sections" className="scroll-mt-20">
+        <CitiesSectionsContainer lang={lang} dir={dir}>
+          <CitiesSections lang={lang} data={citiesSectionsData} side="right" />
+          <CitiesSections lang={lang} data={citiesSectionsData} side="left" />
+        </CitiesSectionsContainer>
+      </div>
+
+      <div id="banner-with-ctas-and-items" className="scroll-mt-20">
+        <BannerWithCTAsAndItemsContainer lang={lang} dir={dir}>
+          <BannerWithCTAsAndItems
+            lang={lang}
+            data={bannerWithCTAsAndItemsData}
+          />
+        </BannerWithCTAsAndItemsContainer>
+      </div>
+
+      <div id="banner-with-cta" className="scroll-mt-20">
+        <BannerWithCtaContainer lang={lang} dir={dir}>
+          <BannerWithCta lang={lang} data={bannerWithCtaData} />
+        </BannerWithCtaContainer>
+      </div>
+
+      <div id="data-table-with-image" className="scroll-mt-20">
+        <DataTableWithImageContainer lang={lang} dir={dir}>
+          <DataTableWithImage lang={lang} data={dataTableWithImageData} />
+        </DataTableWithImageContainer>
+      </div>
+
+      <div id="accordion-with-content" className="scroll-mt-20">
+        <AccordionContainer lang={lang} dir={dir}>
+          <AccordionWithContent data={accordionData} />
+        </AccordionContainer>
+      </div>
+
+      <div id="accordion-with-images" className="scroll-mt-20">
+        <AccordionImagesContainer lang={lang} dir={dir}>
+          <AccordionWithImages data={accordionWithImagesData} />
+        </AccordionImagesContainer>
+      </div>
+
+      <div id="paragraph" className="scroll-mt-20">
+        <ParagraphContainer lang={lang} dir={dir}>
+          <Paragraph lang={lang} data={paragraphData} />
+        </ParagraphContainer>
+      </div>
+
+      <div id="text-with-blob-image" className="scroll-mt-20">
+        <TextBlobContainer lang={lang} dir={dir}>
+          <TextWithBlobImage lang={lang} data={textWithBlobData} />
+        </TextBlobContainer>
+      </div>
+
+      <div id="call-us" className="scroll-mt-20">
+        <CallUsContainer lang={lang} dir={dir}>
+          <CallUs data={callUsData} />
+        </CallUsContainer>
+      </div>
+
+      <div id="two-column-intro-with-two-image" className="scroll-mt-20">
+        <TwoColumnContainer lang={lang} dir={dir}>
+          <TwoColumnIntroWithTwoImage lang={lang} data={twoColumnIntroData} />
+        </TwoColumnContainer>
+      </div>
+
+      <div id="two-column-with-sub-sections" className="scroll-mt-20">
+        <SubSectionsContainer lang={lang} dir={dir}>
+          <TwoColumnWithSubSections
+            lang={lang}
+            data={twoColumnWithSubSectionsData}
+          />
+        </SubSectionsContainer>
+      </div>
+
+      <div id="service-benefits-list" className="scroll-mt-20">
+        <ServiceBenefitsContainer lang={lang} dir={dir}>
+          <ServiceBenefitsList lang={lang} data={serviceBenefitsData} />
+        </ServiceBenefitsContainer>
+      </div>
+
+      <div id="vertical-image-slice-text-section" className="scroll-mt-20">
+        <VerticalImageSliceContainer lang={lang} dir={dir}>
+          <VerticalImageSliceTextSection
+            lang={lang}
+            data={verticalImageSliceData}
+          />
+        </VerticalImageSliceContainer>
+      </div>
+
+      <div id="split-text-only" className="scroll-mt-20">
+        <SplitTextOnlyContainer lang={lang} dir={dir}>
+          <SplitTextOnly lang={lang} data={splitTextOnlyData} />
+        </SplitTextOnlyContainer>
+      </div>
+
+      <div id="tabbed-cards-section" className="scroll-mt-20">
+        <TabbedCardsContainer lang={lang} dir={dir}>
+          <TabbedCardsSection lang={lang} data={tabbedCardsData} />
+        </TabbedCardsContainer>
+      </div>
+
+      <div id="grid-info" className="scroll-mt-20">
+        <GridInfoContainer lang={lang} dir={dir}>
+          <GridInfo lang={lang} data={gridInfoData} />
+        </GridInfoContainer>
+      </div>
+
+      <div id="simple-grid-with-prefix" className="scroll-mt-20">
+        <SimpleGridContainer lang={lang} dir={dir}>
+          <SimpleGridWithPrefix lang={lang} data={simpleGridWithPrefixData} />
+        </SimpleGridContainer>
+      </div>
+
+      <div id="map-info" className="scroll-mt-20">
+        <MapInfoContainer lang={lang} dir={dir}>
+          <MapInfo lang={lang} data={mapInfoData} />
+        </MapInfoContainer>
+      </div>
+
+      <div id="section-with-animated-images" className="scroll-mt-20">
+        <AnimatedImagesContainer lang={lang} dir={dir}>
+          <SectionWithAnimatedImages
+            lang={lang}
+            data={sectionWithAnimatedImagesData}
+          />
+        </AnimatedImagesContainer>
+      </div>
+
+      <div id="image-carousels-with-opposite-scroll" className="scroll-mt-20">
+        <OppositeScrollContainer lang={lang} dir={dir}>
+          <ImageCarouselsWithOppositeScrollDirections
+            lang={lang}
+            data={imageCarouselsWithOppositeScrollData}
+          />
+        </OppositeScrollContainer>
+      </div>
+
+      <div id="header-with-three-image" className="scroll-mt-20">
+        <HeaderWithThreeImageContainer lang={lang} dir={dir}>
+          <HeaderWithThreeImage lang={lang} data={headerWithThreeImageData} />
+        </HeaderWithThreeImageContainer>
+      </div>
+
+      <div id="carousel-image-text-6" className="scroll-mt-20">
+        <CarouselImageText6Container lang={lang} dir={dir}>
+          <CarouselImageText6 lang={lang} data={carouselImageText6Data} />
+        </CarouselImageText6Container>
+      </div>
+
+      <div id="flight-fares-section" className="scroll-mt-20">
+        <FlightFaresContainer lang={lang} dir={dir}>
+          <FlightFaresSection lang={lang} data={flightFaresData} />
+        </FlightFaresContainer>
+      </div>
+
+      <div id="split-with-image" className="scroll-mt-20">
+        <SplitWithImageContainer lang={lang} dir={dir}>
+          <SplitWithImage lang={lang} data={splitWithImageData} />
+        </SplitWithImageContainer>
+      </div>
+
+      <div id="service-cards-slider" className="scroll-mt-20">
+        <ServiceCardsSliderContainer lang={lang} dir={dir}>
+          <ServiceCardsSlider lang={lang} data={serviceCardsSliderData} />
+        </ServiceCardsSliderContainer>
+      </div>
+
+      <div id="related-content-carousel" className="scroll-mt-20">
+        <RelatedContentCarouselContainer lang={lang} dir={dir}>
+          <RelatedContentCarousel
+            lang={lang}
+            data={relatedContentCarouselData}
+          />
+        </RelatedContentCarouselContainer>
+      </div>
+
+      <div id="cards-carousel-fill-image" className="scroll-mt-20">
+        <CardsCarouselFillImageContainer lang={lang} dir={dir}>
+          <CardsCarouselFillImage
+            lang={lang}
+            data={cardsCarouselFillImageData}
+          />
+        </CardsCarouselFillImageContainer>
+      </div>
+
+      <div id="meals-description-tabbed" className="scroll-mt-20">
+        <MealsDescriptionTabbedContainer lang={lang} dir={dir}>
+          <MealsDescriptionTabbed
+            lang={lang}
+            data={mealsDescriptionTabbedData}
+          />
+        </MealsDescriptionTabbedContainer>
+      </div>
+
+      <div id="connection-steps-list" className="scroll-mt-20">
+        <ConnectionStepsListContainer lang={lang} dir={dir}>
+          <ConnectionStepsList lang={lang} data={connectionStepsListData} />
+        </ConnectionStepsListContainer>
+      </div>
+
+      <div id="title-with-list" className="scroll-mt-20">
+        <TitleWithListContainer lang={lang} dir={dir}>
+          <TitleWithList lang={lang} data={titleWithListData} />
+        </TitleWithListContainer>
+      </div>
+
+      <div id="search-with-tabs-and-grid" className="scroll-mt-20">
+        <SearchWithTabsAndGrid
           lang={lang}
-          data={fullHeightHeaderWithTextData}
+          data={searchWithTabsAndGridData}
           posParams="gb"
         />
-      </FullHeightHeaderWithTextContainer>
+      </div>
 
-      <SliderContainer lang={lang}>
-        <Slider
-          lang={lang}
-          data={sliderData}
-          posParams="gb"
-          theme="secondary-2"
-          imageOverlay={{
-            color: "main",
-            fromOpacity: 0.7,
-            viaOpacity: 0.2,
-            to: "transparent",
-            direction: "to bottom",
-          }}
-          settings={{
-            autoplay: true,
-            autoplaySpeed: 5000,
-            dots: true,
-            fade: false,
-            arrows: true,
-            infinite: true,
-            speed: 700,
-            pauseOnHover: true,
-          }}
-        />
-      </SliderContainer>
+      <div id="dual-image-text" className="scroll-mt-20">
+        <DualImageTextContainer lang={lang} dir={dir}>
+          <DualImageText lang={lang} data={dualImageTextData} />
+        </DualImageTextContainer>
+      </div>
 
-      <HeaderWithCityInfoContainer lang={lang} dir={dir}>
-        <HeaderWithCityInfo lang={lang} data={headerWithCityInfoData} />
-      </HeaderWithCityInfoContainer>
-      <MixedRightThreeImagesContainer lang={lang} dir={dir}>
-        <MixedRightThreeImages
-          lang={lang}
-          data={mixedRightThreeImagesData}
-          side="right"
-        />
-        <MixedRightThreeImages
-          lang={lang}
-          data={mixedLeftThreeImagesData}
-          side="left"
-        />
-        <UpperRightThreeImages
-          lang={lang}
-          data={upperRightThreeImagesData}
-          side="right"
-        />
-        <UpperRightThreeImages
-          lang={lang}
-          data={upperRightThreeImagesData}
-          side="left"
-        />
-      </MixedRightThreeImagesContainer>
+      <div id="dual-image-text-training" className="scroll-mt-20">
+        <DualImageTextContainer lang={lang} dir={dir}>
+          <DualImageText lang={lang} data={dualImageTrainingData} />
+        </DualImageTextContainer>
+      </div>
 
-      <CitiesSectionsContainer lang={lang} dir={dir}>
-        <CitiesSections lang={lang} data={citiesSectionsData} side="right" />
-        <CitiesSections lang={lang} data={citiesSectionsData} side="left" />
-      </CitiesSectionsContainer>
-
-
-      <BannerWithCTAsAndItemsContainer lang={lang} dir={dir}>
-        <BannerWithCTAsAndItems
-          lang={lang}
-          data={bannerWithCTAsAndItemsData}
-        />
-      </BannerWithCTAsAndItemsContainer>
-      <BannerWithCtaContainer lang={lang} dir={dir}>
-        <BannerWithCta lang={lang} data={bannerWithCtaData} />
-      </BannerWithCtaContainer>
-
-      <DataTableWithImageContainer lang={lang} dir={dir}>
-        <DataTableWithImage lang={lang} data={dataTableWithImageData} />
-      </DataTableWithImageContainer>
-      <AccordionContainer lang={lang} dir={dir}>
-        <AccordionWithContent data={accordionData} />
-      </AccordionContainer>
-
-      <AccordionImagesContainer lang={lang} dir={dir}>
-        <AccordionWithImages data={accordionWithImagesData} />
-      </AccordionImagesContainer>
-
-      <ParagraphContainer lang={lang} dir={dir}>
-        <Paragraph lang={lang} data={paragraphData} />
-      </ParagraphContainer>
-
-
-
-      <TextBlobContainer lang={lang} dir={dir}>
-        <TextWithBlobImage lang={lang} data={textWithBlobData} />
-      </TextBlobContainer>
-
-      <CallUsContainer lang={lang} dir={dir}>
-        <CallUs data={callUsData} />
-      </CallUsContainer>
-
-      <TwoColumnContainer lang={lang} dir={dir}>
-        <TwoColumnIntroWithTwoImage lang={lang} data={twoColumnIntroData} />
-      </TwoColumnContainer>
-
-      <SubSectionsContainer lang={lang} dir={dir}>
-        <TwoColumnWithSubSections
-          lang={lang}
-          data={twoColumnWithSubSectionsData}
-        />
-      </SubSectionsContainer>
-
-      <ServiceBenefitsContainer lang={lang} dir={dir}>
-        <ServiceBenefitsList lang={lang} data={serviceBenefitsData} />
-      </ServiceBenefitsContainer>
-
-      <VerticalImageSliceContainer lang={lang} dir={dir}>
-        <VerticalImageSliceTextSection
-          lang={lang}
-          data={verticalImageSliceData}
-        />
-      </VerticalImageSliceContainer>
-
-      <SplitTextOnlyContainer lang={lang} dir={dir}>
-        <SplitTextOnly lang={lang} data={splitTextOnlyData} />
-      </SplitTextOnlyContainer>
-
-      <TabbedCardsContainer lang={lang} dir={dir}>
-        <TabbedCardsSection lang={lang} data={tabbedCardsData} />
-      </TabbedCardsContainer>
-
-      <GridInfoContainer lang={lang} dir={dir}>
-        <GridInfo lang={lang} data={gridInfoData} />
-      </GridInfoContainer>
-
-      <SimpleGridContainer lang={lang} dir={dir}>
-        <SimpleGridWithPrefix lang={lang} data={simpleGridWithPrefixData} />
-      </SimpleGridContainer>
-
-      <MapInfoContainer lang={lang} dir={dir}>
-        <MapInfo lang={lang} data={mapInfoData} />
-      </MapInfoContainer>
-
-      <AnimatedImagesContainer lang={lang} dir={dir}>
-        <SectionWithAnimatedImages
-          lang={lang}
-          data={sectionWithAnimatedImagesData}
-        />
-      </AnimatedImagesContainer>
-
-      <OppositeScrollContainer lang={lang} dir={dir}>
-        <ImageCarouselsWithOppositeScrollDirections
-          lang={lang}
-          data={imageCarouselsWithOppositeScrollData}
-        />
-      </OppositeScrollContainer>
-
-      <HeaderWithThreeImageContainer lang={lang} dir={dir}>
-        <HeaderWithThreeImage lang={lang} data={headerWithThreeImageData} />
-      </HeaderWithThreeImageContainer>
-
-
-
-      <CarouselImageText6Container lang={lang} dir={dir}>
-        <CarouselImageText6 lang={lang} data={carouselImageText6Data} />
-      </CarouselImageText6Container>
-
-      <FlightFaresContainer lang={lang} dir={dir}>
-        <FlightFaresSection lang={lang} data={flightFaresData} />
-      </FlightFaresContainer>
-
-      <SplitWithImageContainer lang={lang} dir={dir}>
-        <SplitWithImage lang={lang} data={splitWithImageData} />
-      </SplitWithImageContainer>
-
-      <ServiceCardsSliderContainer lang={lang} dir={dir}>
-        <ServiceCardsSlider lang={lang} data={serviceCardsSliderData} />
-      </ServiceCardsSliderContainer>
-
-
-      <RelatedContentCarouselContainer lang={lang} dir={dir}>
-        <RelatedContentCarousel
-          lang={lang}
-          data={relatedContentCarouselData}
-        />
-      </RelatedContentCarouselContainer>
-
-      <CardsCarouselFillImageContainer lang={lang} dir={dir}>
-        <CardsCarouselFillImage
-          lang={lang}
-          data={cardsCarouselFillImageData}
-        />
-      </CardsCarouselFillImageContainer>
-
-      <MealsDescriptionTabbedContainer lang={lang} dir={dir}>
-        <MealsDescriptionTabbed
-          lang={lang}
-          data={mealsDescriptionTabbedData}
-        />
-      </MealsDescriptionTabbedContainer>
-
-      <ConnectionStepsListContainer lang={lang} dir={dir}>
-        <ConnectionStepsList lang={lang} data={connectionStepsListData} />
-      </ConnectionStepsListContainer>
-
-      <TitleWithListContainer lang={lang} dir={dir}>
-        <TitleWithList lang={lang} data={titleWithListData} />
-      </TitleWithListContainer>
-
-      <SearchWithTabsAndGrid
-        lang={lang}
-        data={searchWithTabsAndGridData}
-        posParams="gb"
-      />
-
-      <DualImageTextContainer lang={lang} dir={dir}>
-        <DualImageText lang={lang} data={dualImageTextData} />
-      </DualImageTextContainer>
-
-      <DualImageTextContainer lang={lang} dir={dir}>
-        <DualImageText lang={lang} data={dualImageTrainingData} />
-      </DualImageTextContainer>
-
-      <PhotoTileGridContainer lang={lang} dir={dir}>
-        <PhotoTileGrid lang={lang} data={photoTileGridData} />
-      </PhotoTileGridContainer>
-
-
+      <div id="photo-tile-grid" className="scroll-mt-20">
+        <PhotoTileGridContainer lang={lang} dir={dir}>
+          <PhotoTileGrid lang={lang} data={photoTileGridData} />
+        </PhotoTileGridContainer>
+      </div>
     </main>
   );
 }
