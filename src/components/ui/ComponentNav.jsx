@@ -54,6 +54,7 @@ export const COMPONENT_NAV_ITEMS = [
   { id: "photo-tile-grid", label: "PhotoTileGrid" },
   { id: "three-d-image-ring-section", label: "ThreeDImageRingSection" },
   { id: "carousel-item", label: "CarouselItem" },
+  { id: "destinations-map", label: "DestinationsMap" },
 ];
 
 export default function ComponentNav({

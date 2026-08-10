@@ -119,6 +119,9 @@ import { buildThreeDImageRingSectionData } from "@/app/cmsComponents/ThreeDImage
 import CarouselItem from "@/app/cmsComponents/CarouselItem";
 import CarouselItemContainer from "@/app/cmsComponents/CarouselItem/components/CarouselItemContainer";
 import { buildCarouselItemData } from "@/app/cmsComponents/CarouselItem/utils/data";
+import DestinationsMap from "@/app/cmsComponents/DestinationsMap";
+import DestinationsMapContainer from "@/app/cmsComponents/DestinationsMap/components/DestinationsMapContainer";
+import { buildDestinationsMapData } from "@/app/cmsComponents/DestinationsMap/utils/data";
 import LanguageSwitcher from "@/i18n/LanguageSwitcher";
 import { isRtl } from "@/i18n/settings";
 import PageContentContainer from "@/components/layout/PageContentContainer";
@@ -177,6 +180,7 @@ export default function Home() {
   const upperRightThreeImagesData = buildUpperRightThreeImagesData(t, lang);
   const threeDImageRingSectionData = buildThreeDImageRingSectionData(t, lang);
   const carouselItemData = buildCarouselItemData(t, lang);
+  const destinationsMapData = buildDestinationsMapData(t, lang);
 
   return (
     <main className="relative">
@@ -517,6 +521,12 @@ export default function Home() {
             posParams="gb"
           />
         </CarouselItemContainer>
+      </div>
+
+      <div id="destinations-map" className="scroll-mt-20">
+        <DestinationsMapContainer lang={lang} dir={dir}>
+          <DestinationsMap lang={lang} data={destinationsMapData} />
+        </DestinationsMapContainer>
       </div>
     </main>
   );

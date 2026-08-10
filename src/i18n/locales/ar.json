@@ -1234,5 +1234,111 @@
         "imageAlt": "ساحل بيروت"
       }
     ]
+  },
+  "destinationsMap": {
+    "labels": {
+      "from": "من",
+      "to": "إلى",
+      "reset": "إعادة تعيين",
+      "bookNow": "احجز الآن",
+      "newRoutes": "مسارات جديدة",
+      "ourNetwork": "شبكتنا"
+    },
+    "cities": [
+      {
+        "cityId": "dam",
+        "cityName": "دمشق",
+        "countryName": "سوريا",
+        "IATACode": "DAM",
+        "latitude": 33.5138,
+        "longitude": 36.2765,
+        "isNewCity": false,
+        "price": 120,
+        "currency": "USD",
+        "numberOfFlightsPerWeek": 5,
+        "duration": "1س 30د",
+        "flightType": "رحلة مباشرة"
+      },
+      {
+        "cityId": "dxb",
+        "cityName": "دبي",
+        "countryName": "الإمارات العربية المتحدة",
+        "IATACode": "DXB",
+        "latitude": 25.2048,
+        "longitude": 55.2708,
+        "isNewCity": false,
+        "price": 180,
+        "currency": "USD",
+        "numberOfFlightsPerWeek": 7,
+        "duration": "2س 45د",
+        "flightType": "رحلة مباشرة"
+      },
+      {
+        "cityId": "bgw",
+        "cityName": "بغداد",
+        "countryName": "العراق",
+        "IATACode": "BGW",
+        "latitude": 33.3152,
+        "longitude": 44.3661,
+        "isNewCity": true,
+        "price": 95,
+        "currency": "USD",
+        "numberOfFlightsPerWeek": 3,
+        "duration": "1س 10د",
+        "flightType": "رحلة مباشرة"
+      },
+      {
+        "cityId": "kwi",
+        "cityName": "مدينة الكويت",
+        "countryName": "الكويت",
+        "IATACode": "KWI",
+        "latitude": 29.3759,
+        "longitude": 47.9774,
+        "isNewCity": false,
+        "price": 140,
+        "currency": "USD",
+        "numberOfFlightsPerWeek": 4,
+        "duration": "2س 00د",
+        "flightType": "رحلة مباشرة"
+      },
+      {
+        "cityId": "doh",
+        "cityName": "الدوحة",
+        "countryName": "قطر",
+        "IATACode": "DOH",
+        "latitude": 25.2854,
+        "longitude": 51.531,
+        "isNewCity": false,
+        "price": 160,
+        "currency": "USD",
+        "numberOfFlightsPerWeek": 4,
+        "duration": "2س 20د",
+        "flightType": "رحلة مباشرة"
+      },
+      {
+        "cityId": "bey",
+        "cityName": "بيروت",
+        "countryName": "لبنان",
+        "IATACode": "BEY",
+        "latitude": 33.8938,
+        "longitude": 35.5018,
+        "isNewCity": true,
+        "price": 110,
+        "currency": "USD",
+        "numberOfFlightsPerWeek": 6,
+        "duration": "0س 55د",
+        "flightType": "رحلة مباشرة"
+      }
+    ],
+    "routes": [
+      { "fromCityId": "dam", "toCityId": "dxb" },
+      { "fromCityId": "dam", "toCityId": "bgw" },
+      { "fromCityId": "dam", "toCityId": "bey" },
+      { "fromCityId": "dam", "toCityId": "kwi" },
+      { "fromCityId": "dxb", "toCityId": "dam" },
+      { "fromCityId": "dxb", "toCityId": "doh" },
+      { "fromCityId": "bey", "toCityId": "dam" },
+      { "fromCityId": "kwi", "toCityId": "dxb" }
+    ]
   }
 }
