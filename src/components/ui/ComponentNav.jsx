@@ -52,6 +52,7 @@ export const COMPONENT_NAV_ITEMS = [
   { id: "dual-image-text", label: "DualImageText" },
   { id: "dual-image-text-training", label: "DualImageText (Training)" },
   { id: "photo-tile-grid", label: "PhotoTileGrid" },
+  { id: "three-d-image-ring-section", label: "ThreeDImageRingSection" },
 ];
 
 export default function ComponentNav({

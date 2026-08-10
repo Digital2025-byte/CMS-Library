@@ -114,6 +114,8 @@ import DataTableWithImageContainer from "@/app/cmsComponents/DataTableWithImage/
 import { buildDataTableWithImageData } from "@/app/cmsComponents/DataTableWithImage/utils/data";
 import UpperRightThreeImages from "@/app/cmsComponents/UpperRightThreeImages";
 import { buildUpperRightThreeImagesData } from "@/app/cmsComponents/UpperRightThreeImages/utils/data";
+import ThreeDImageRingSection from "@/app/cmsComponents/ThreeDImageRingSection";
+import { buildThreeDImageRingSectionData } from "@/app/cmsComponents/ThreeDImageRingSection/utils/data";
 import LanguageSwitcher from "@/i18n/LanguageSwitcher";
 import { isRtl } from "@/i18n/settings";
 import PageContentContainer from "@/components/layout/PageContentContainer";
@@ -170,6 +172,7 @@ export default function Home() {
   const citiesSectionsData = buildCitiesSectionsData(t, lang);
   const dataTableWithImageData = buildDataTableWithImageData(t, lang);
   const upperRightThreeImagesData = buildUpperRightThreeImagesData(t, lang);
+  const threeDImageRingSectionData = buildThreeDImageRingSectionData(t, lang);
 
   return (
     <main className="relative">
@@ -498,7 +501,9 @@ export default function Home() {
         </DualImageTextContainer>
       </div>
 
-
+      <div id="three-d-image-ring-section" className="scroll-mt-20">
+        <ThreeDImageRingSection lang={lang} data={threeDImageRingSectionData} />
+      </div>
     </main>
   );
 }

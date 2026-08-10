@@ -1174,5 +1174,17 @@
     "buttonText": "Explore destinations",
     "ctaSlug": "destinations",
     "imageAlt": "Aircraft flying over open sky"
+  },
+  "threeDImageRingSection": {
+    "title": "On Board",
+    "description": "Elevate your journey with exceptional comfort, award-winning service, and thoughtful amenities that transform flying into an experience to remember.",
+    "captions": [
+      "Birthdays Onboard",
+      "traveler magazine",
+      "Wi-Fi Onboard",
+      "Business Class Menu",
+      "Entertainment System",
+      "Kids toys"
+    ]
   }
 }
