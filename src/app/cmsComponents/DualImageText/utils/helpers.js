@@ -1,12 +1,15 @@
 function normalizeItem(rawItem) {
   const item = rawItem?.item || rawItem || {};
   const image = item?.image || {};
+  const cta = item?.ctaButton || item?.cta || {};
 
   return {
     title: item?.title || "",
     description: item?.description || "",
     imageUrl: image?.fileUrl || image?.url || image?.src || "",
     imageAlt: image?.alt || item?.title || "Section image",
+    buttonText: cta?.label || cta?.content || item?.buttonText || "",
+    ctaHref: cta?.href || cta?.slug || item?.ctaHref || "",
   };
 }
 
@@ -23,6 +26,8 @@ export function getDualImageTextContent(data, lang = "en") {
   if (!translations.length) {
     return {
       items: [],
+      exploreButtonLabel: "",
+      exploreButtonHref: "",
       hasContent: false,
     };
   }
@@ -41,8 +46,13 @@ export function getDualImageTextContent(data, lang = "en") {
     .map(normalizeItem)
     .filter((item) => item.title || item.imageUrl || item.description);
 
+  const exploreCta = content?.exploreButton || content?.ctaButton || {};
+
   return {
     items,
+    exploreButtonLabel:
+      exploreCta?.label || exploreCta?.content || "Explore more",
+    exploreButtonHref: exploreCta?.href || exploreCta?.slug || "explore",
     hasContent: items.length > 0,
   };
 }

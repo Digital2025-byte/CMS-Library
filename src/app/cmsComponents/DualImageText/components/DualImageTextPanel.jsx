@@ -12,6 +12,10 @@ export default function DualImageTextPanel({
   underlineFirstWord = false,
   animate = false,
   bgColor = "bg-100",
+  showExploreButton = false,
+  exploreButtonLabel = "Explore more",
+  exploreButtonHref = "explore",
+  cId,
 }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { amount: 0.35, once: false });
@@ -21,6 +25,10 @@ export default function DualImageTextPanel({
       items={items}
       blueLayer={blueLayer}
       underlineFirstWord={underlineFirstWord}
+      showExploreButton={showExploreButton}
+      exploreButtonLabel={exploreButtonLabel}
+      exploreButtonHref={exploreButtonHref}
+      cId={cId}
     />
   );
 

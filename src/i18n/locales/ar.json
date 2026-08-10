@@ -484,6 +484,8 @@
     }
   },
   "dualImageText": {
+    "exploreMore": "استكشف المزيد",
+    "exploreSlug": "explore",
     "towards": {
       "itemOne": {
         "title": "اكتشف آفاقاً جديدة",

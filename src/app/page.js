@@ -476,6 +476,7 @@ export default function Home() {
             blueLayer
             animate
             bgColor="bg-200"
+            showExploreButton
           />
         </DualImageTextContainer>
       </div>

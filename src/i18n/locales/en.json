@@ -484,6 +484,8 @@
     }
   },
   "dualImageText": {
+    "exploreMore": "Explore more",
+    "exploreSlug": "explore",
     "towards": {
       "itemOne": {
         "title": "Discover new horizons",

@@ -9,7 +9,8 @@ import { getDualImageTextContent } from "./utils/helpers";
  * @param {boolean} [blueLayer=false] - Offset blue plate behind images
  * @param {boolean} [underlineFirstWord=false] - Accent line under the first title word
  * @param {boolean} [animate=false] - In-view entrance animation
- * @param {string} [bgColor="bg-100"] - Section background Tailwind class (e.g. "bg-100", "bg-200")
+ * @param {string} [bgColor="bg-100"] - Section background Tailwind class
+ * @param {boolean} [showExploreButton=false] - Show "Explore more" CTA under each description
  */
 const DualImageText = ({
   lang = "en",
@@ -18,8 +19,11 @@ const DualImageText = ({
   underlineFirstWord = false,
   animate = false,
   bgColor = "bg-100",
+  showExploreButton = false,
+  cId,
 }) => {
-  const { items, hasContent } = getDualImageTextContent(data, lang);
+  const { items, exploreButtonLabel, exploreButtonHref, hasContent } =
+    getDualImageTextContent(data, lang);
 
   if (!hasContent) {
     return null;
@@ -33,6 +37,10 @@ const DualImageText = ({
       underlineFirstWord={underlineFirstWord}
       animate={animate}
       bgColor={bgColor}
+      showExploreButton={showExploreButton}
+      exploreButtonLabel={exploreButtonLabel}
+      exploreButtonHref={exploreButtonHref}
+      cId={cId}
     />
   );
 };

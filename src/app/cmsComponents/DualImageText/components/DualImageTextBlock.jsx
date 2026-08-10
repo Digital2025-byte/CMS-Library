@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Button from "@/components/ui/Button";
 import { typography } from "@/styles/typography";
 import { imageSrc } from "../utils/helpers";
 import DualImageTextTitle from "./DualImageTextTitle";
@@ -9,6 +10,10 @@ export default function DualImageTextBlock({
   priority = false,
   blueLayer = false,
   underlineFirstWord = false,
+  showExploreButton = false,
+  exploreButtonLabel = "Explore more",
+  exploreButtonHref = "explore",
+  cId,
 }) {
   if (!item?.title && !item?.description && !item?.imageUrl) {
     return null;
@@ -17,6 +22,9 @@ export default function DualImageTextBlock({
   const shadowClass = reverse
     ? "shadow-[-10px_-10px_0_0_var(--color-main)]"
     : "shadow-[10px_10px_0_0_var(--color-main)]";
+
+  const buttonLabel = item.buttonText || exploreButtonLabel;
+  const buttonHref = item.ctaHref || exploreButtonHref;
 
   return (
     <div className="grid grid-cols-1 items-center gap-5 lg:grid-cols-2 lg:gap-12 xl:gap-16">
@@ -56,6 +64,16 @@ export default function DualImageTextBlock({
           >
             {item.description}
           </p>
+        ) : null}
+        {showExploreButton && buttonLabel ? (
+          <div className="mt-5 sm:mt-6">
+            <Button
+              label={buttonLabel}
+              href={buttonHref}
+              cId={cId}
+              variant="primary"
+            />
+          </div>
         ) : null}
       </div>
     </div>

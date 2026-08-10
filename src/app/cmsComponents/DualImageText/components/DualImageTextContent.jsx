@@ -4,6 +4,10 @@ export default function DualImageTextContent({
   items = [],
   blueLayer = false,
   underlineFirstWord = false,
+  showExploreButton = false,
+  exploreButtonLabel = "Explore more",
+  exploreButtonHref = "explore",
+  cId,
 }) {
   const first = items[0] || {};
   const second = items[1] || {};
@@ -16,12 +20,20 @@ export default function DualImageTextContent({
         priority
         blueLayer={blueLayer}
         underlineFirstWord={underlineFirstWord}
+        showExploreButton={showExploreButton}
+        exploreButtonLabel={exploreButtonLabel}
+        exploreButtonHref={exploreButtonHref}
+        cId={cId}
       />
       <DualImageTextBlock
         item={second}
         reverse
         blueLayer={blueLayer}
         underlineFirstWord={underlineFirstWord}
+        showExploreButton={showExploreButton}
+        exploreButtonLabel={exploreButtonLabel}
+        exploreButtonHref={exploreButtonHref}
+        cId={cId}
       />
     </div>
   );

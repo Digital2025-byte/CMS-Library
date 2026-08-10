@@ -15,6 +15,10 @@ export function buildDualImageTextData(t, lang = "en", variant = "towards") {
         languageCode: lang,
         content: {
           variant,
+          exploreButton: {
+            label: t("dualImageText.exploreMore"),
+            slug: t("dualImageText.exploreSlug"),
+          },
           items: [
             {
               item: {
