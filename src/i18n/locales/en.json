@@ -1189,40 +1189,47 @@
   },
   "carouselItem": {
     "title": "Explore our destinations",
+    "discover": "Discover",
     "destinations": [
       {
         "countryName": "Syria",
         "cityName": "Damascus",
+        "iataCode": "DAM",
         "takeATripUrl": "/damascus",
         "imageAlt": "Damascus cityscape"
       },
       {
         "countryName": "UAE",
         "cityName": "Dubai",
+        "iataCode": "DXB",
         "takeATripUrl": "/dubai",
         "imageAlt": "Dubai skyline"
       },
       {
         "countryName": "Iraq",
         "cityName": "Baghdad",
+        "iataCode": "BGW",
         "takeATripUrl": "/baghdad",
         "imageAlt": "Baghdad landmarks"
       },
       {
         "countryName": "Kuwait",
         "cityName": "Kuwait City",
+        "iataCode": "KWI",
         "takeATripUrl": "/kuwait-city",
         "imageAlt": "Kuwait City"
       },
       {
         "countryName": "Qatar",
         "cityName": "Doha",
+        "iataCode": "DOH",
         "takeATripUrl": "/doha",
         "imageAlt": "Doha waterfront"
       },
       {
         "countryName": "Lebanon",
         "cityName": "Beirut",
+        "iataCode": "BEY",
         "takeATripUrl": "/beirut",
         "imageAlt": "Beirut coast"
       }

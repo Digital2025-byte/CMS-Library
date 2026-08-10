@@ -24,17 +24,30 @@ export function getCarouselItemContent(data, lang = "en") {
 
 export function getDestinations(content) {
   return (
-    content?.destinations?.filter(
-      (card) => card?.imageUrl && String(card.imageUrl).trim() !== ""
-    ) ?? []
-  );
-}
+    Array.isArray(content?.destinations) ? content.destinations : []
+  )
+    .map((card) => {
+      const imageUrl =
+        card?.imageUrl ||
+        card?.image?.fileUrl ||
+        card?.image?.url ||
+        card?.fileUrl ||
+        "";
 
-export function toCssUrl(url = "") {
-  return String(url)
-    .replace(/\s/g, "%20")
-    .replace(/\(/g, "%28")
-    .replace(/\)/g, "%29");
+      if (!imageUrl || String(imageUrl).trim() === "") {
+        return null;
+      }
+
+      return {
+        imageUrl,
+        iataCode: card?.iataCode || card?.IATACode || "",
+        cityName: card?.cityName || card?.CityName || "",
+        countryName: card?.countryName || card?.CountryName || "",
+        takeATripUrl: card?.takeATripUrl || card?.TakeUrl || card?.href || "#",
+        discoverLabel: card?.discoverLabel || "",
+      };
+    })
+    .filter(Boolean);
 }
 
 export function getDotCount(slideCount, isMobile, slidesPerView) {

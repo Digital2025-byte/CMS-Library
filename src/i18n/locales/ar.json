@@ -1189,40 +1189,47 @@
   },
   "carouselItem": {
     "title": "استكشف وجهاتنا",
+    "discover": "اكتشف",
     "destinations": [
       {
         "countryName": "سوريا",
         "cityName": "دمشق",
+        "iataCode": "DAM",
         "takeATripUrl": "/damascus",
         "imageAlt": "أفق دمشق"
       },
       {
         "countryName": "الإمارات",
         "cityName": "دبي",
+        "iataCode": "DXB",
         "takeATripUrl": "/dubai",
         "imageAlt": "أفق دبي"
       },
       {
         "countryName": "العراق",
         "cityName": "بغداد",
+        "iataCode": "BGW",
         "takeATripUrl": "/baghdad",
         "imageAlt": "معالم بغداد"
       },
       {
         "countryName": "الكويت",
         "cityName": "مدينة الكويت",
+        "iataCode": "KWI",
         "takeATripUrl": "/kuwait-city",
         "imageAlt": "مدينة الكويت"
       },
       {
         "countryName": "قطر",
         "cityName": "الدوحة",
+        "iataCode": "DOH",
         "takeATripUrl": "/doha",
         "imageAlt": "واجهة الدوحة"
       },
       {
         "countryName": "لبنان",
         "cityName": "بيروت",
+        "iataCode": "BEY",
         "takeATripUrl": "/beirut",
         "imageAlt": "ساحل بيروت"
       }

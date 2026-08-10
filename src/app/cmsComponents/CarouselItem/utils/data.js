@@ -12,10 +12,12 @@ const IMAGES = [ph1, ph2, ph3, ph4, ph5, ph6].map(toUrl);
 /**
  * Builds CMS-shaped CarouselItem (destinations) demo data.
  * Images: assets/CarouselItem/ph1–ph6
+ * Cards use the same CustomCard shape as PhotoTileGrid.
  */
 export function buildCarouselItemData(t, lang = "en") {
   const destinations = t("carouselItem.destinations", { returnObjects: true });
   const safeDestinations = Array.isArray(destinations) ? destinations : [];
+  const discover = t("carouselItem.discover");
 
   return {
     translations: [
@@ -26,9 +28,11 @@ export function buildCarouselItemData(t, lang = "en") {
           destinations: safeDestinations.map((item, index) => ({
             countryName: item?.countryName || "",
             cityName: item?.cityName || "",
-            takeATripUrl: item?.takeATripUrl || "",
+            iataCode: item?.iataCode || "",
+            takeATripUrl: item?.takeATripUrl || "#",
             imageAlt: item?.imageAlt || item?.cityName || "",
             imageUrl: IMAGES[index % IMAGES.length],
+            discoverLabel: `${discover} ${item?.cityName || ""}`.trim(),
           })),
         },
       },
