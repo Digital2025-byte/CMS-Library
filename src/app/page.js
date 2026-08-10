@@ -462,23 +462,36 @@ export default function Home() {
         />
       </div>
 
-      <div id="dual-image-text" className="scroll-mt-20">
-        <DualImageTextContainer lang={lang} dir={dir}>
-          <DualImageText lang={lang} data={dualImageTextData} />
-        </DualImageTextContainer>
-      </div>
-
-      <div id="dual-image-text-training" className="scroll-mt-20">
-        <DualImageTextContainer lang={lang} dir={dir}>
-          <DualImageText lang={lang} data={dualImageTrainingData} />
-        </DualImageTextContainer>
-      </div>
-
       <div id="photo-tile-grid" className="scroll-mt-20">
         <PhotoTileGridContainer lang={lang} dir={dir}>
           <PhotoTileGrid lang={lang} data={photoTileGridData} />
         </PhotoTileGridContainer>
       </div>
+
+      <div id="dual-image-text" className="scroll-mt-20">
+        <DualImageTextContainer lang={lang} dir={dir}>
+          <DualImageText
+            lang={lang}
+            data={dualImageTextData}
+            blueLayer
+            animate
+            bgColor="bg-200"
+          />
+        </DualImageTextContainer>
+      </div>
+
+      <div id="dual-image-text-training" className="scroll-mt-20">
+        <DualImageTextContainer lang={lang} dir={dir}>
+          <DualImageText
+            lang={lang}
+            data={dualImageTrainingData}
+            underlineFirstWord
+            bgColor="bg-100"
+          />
+        </DualImageTextContainer>
+      </div>
+
+
     </main>
   );
 }

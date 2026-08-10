@@ -10,6 +10,11 @@ function normalizeItem(rawItem) {
   };
 }
 
+export function imageSrc(url) {
+  if (!url) return "";
+  return String(url).startsWith("http") ? encodeURI(url) : url;
+}
+
 export function getDualImageTextContent(data, lang = "en") {
   const translations = Array.isArray(data?.translations)
     ? data.translations
@@ -18,7 +23,6 @@ export function getDualImageTextContent(data, lang = "en") {
   if (!translations.length) {
     return {
       items: [],
-      variant: "towards",
       hasContent: false,
     };
   }
@@ -37,28 +41,8 @@ export function getDualImageTextContent(data, lang = "en") {
     .map(normalizeItem)
     .filter((item) => item.title || item.imageUrl || item.description);
 
-  const combinedTitle = items
-    .map((item) => String(item.title || "").toLowerCase())
-    .join(" ");
-
-  const explicitVariant = String(content?.variant || "").toLowerCase();
-
-  let variant = "towards";
-  if (explicitVariant === "training" || explicitVariant === "traning") {
-    variant = "training";
-  } else if (explicitVariant === "towards") {
-    variant = "towards";
-  } else if (
-    combinedTitle.includes("train") ||
-    combinedTitle.includes("training") ||
-    combinedTitle.includes("towards")
-  ) {
-    variant = "training";
-  }
-
   return {
     items,
-    variant,
     hasContent: items.length > 0,
   };
 }
