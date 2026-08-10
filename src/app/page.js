@@ -116,6 +116,9 @@ import UpperRightThreeImages from "@/app/cmsComponents/UpperRightThreeImages";
 import { buildUpperRightThreeImagesData } from "@/app/cmsComponents/UpperRightThreeImages/utils/data";
 import ThreeDImageRingSection from "@/app/cmsComponents/ThreeDImageRingSection";
 import { buildThreeDImageRingSectionData } from "@/app/cmsComponents/ThreeDImageRingSection/utils/data";
+import CarouselItem from "@/app/cmsComponents/CarouselItem";
+import CarouselItemContainer from "@/app/cmsComponents/CarouselItem/components/CarouselItemContainer";
+import { buildCarouselItemData } from "@/app/cmsComponents/CarouselItem/utils/data";
 import LanguageSwitcher from "@/i18n/LanguageSwitcher";
 import { isRtl } from "@/i18n/settings";
 import PageContentContainer from "@/components/layout/PageContentContainer";
@@ -173,6 +176,7 @@ export default function Home() {
   const dataTableWithImageData = buildDataTableWithImageData(t, lang);
   const upperRightThreeImagesData = buildUpperRightThreeImagesData(t, lang);
   const threeDImageRingSectionData = buildThreeDImageRingSectionData(t, lang);
+  const carouselItemData = buildCarouselItemData(t, lang);
 
   return (
     <main className="relative">
@@ -503,6 +507,16 @@ export default function Home() {
 
       <div id="three-d-image-ring-section" className="scroll-mt-20">
         <ThreeDImageRingSection lang={lang} data={threeDImageRingSectionData} />
+      </div>
+
+      <div id="carousel-item" className="scroll-mt-20">
+        <CarouselItemContainer lang={lang} dir={dir}>
+          <CarouselItem
+            lang={lang}
+            data={carouselItemData}
+            posParams="gb"
+          />
+        </CarouselItemContainer>
       </div>
     </main>
   );

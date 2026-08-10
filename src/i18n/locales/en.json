@@ -1186,5 +1186,46 @@
       "Entertainment System",
       "Kids toys"
     ]
+  },
+  "carouselItem": {
+    "title": "Explore our destinations",
+    "destinations": [
+      {
+        "countryName": "Syria",
+        "cityName": "Damascus",
+        "takeATripUrl": "/damascus",
+        "imageAlt": "Damascus cityscape"
+      },
+      {
+        "countryName": "UAE",
+        "cityName": "Dubai",
+        "takeATripUrl": "/dubai",
+        "imageAlt": "Dubai skyline"
+      },
+      {
+        "countryName": "Iraq",
+        "cityName": "Baghdad",
+        "takeATripUrl": "/baghdad",
+        "imageAlt": "Baghdad landmarks"
+      },
+      {
+        "countryName": "Kuwait",
+        "cityName": "Kuwait City",
+        "takeATripUrl": "/kuwait-city",
+        "imageAlt": "Kuwait City"
+      },
+      {
+        "countryName": "Qatar",
+        "cityName": "Doha",
+        "takeATripUrl": "/doha",
+        "imageAlt": "Doha waterfront"
+      },
+      {
+        "countryName": "Lebanon",
+        "cityName": "Beirut",
+        "takeATripUrl": "/beirut",
+        "imageAlt": "Beirut coast"
+      }
+    ]
   }
 }

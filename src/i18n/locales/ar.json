@@ -1186,5 +1186,46 @@
       "نظام الترفيه",
       "ألعاب الأطفال"
     ]
+  },
+  "carouselItem": {
+    "title": "استكشف وجهاتنا",
+    "destinations": [
+      {
+        "countryName": "سوريا",
+        "cityName": "دمشق",
+        "takeATripUrl": "/damascus",
+        "imageAlt": "أفق دمشق"
+      },
+      {
+        "countryName": "الإمارات",
+        "cityName": "دبي",
+        "takeATripUrl": "/dubai",
+        "imageAlt": "أفق دبي"
+      },
+      {
+        "countryName": "العراق",
+        "cityName": "بغداد",
+        "takeATripUrl": "/baghdad",
+        "imageAlt": "معالم بغداد"
+      },
+      {
+        "countryName": "الكويت",
+        "cityName": "مدينة الكويت",
+        "takeATripUrl": "/kuwait-city",
+        "imageAlt": "مدينة الكويت"
+      },
+      {
+        "countryName": "قطر",
+        "cityName": "الدوحة",
+        "takeATripUrl": "/doha",
+        "imageAlt": "واجهة الدوحة"
+      },
+      {
+        "countryName": "لبنان",
+        "cityName": "بيروت",
+        "takeATripUrl": "/beirut",
+        "imageAlt": "ساحل بيروت"
+      }
+    ]
   }
 }
