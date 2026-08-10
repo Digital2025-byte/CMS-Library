@@ -487,6 +487,14 @@
     "exploreMore": "Explore more",
     "exploreSlug": "explore",
     "extraImageAlt": "Child meal tray detail",
+    "firstSection": {
+      "title": "Travelling With Infants (Under 2 Years)",
+      "descriptions": [
+        "Infants under two years may travel on a parent's lap or in a dedicated seat, subject to ticket selection.",
+        "Parents may carry essential baby items on board, including diapers, formula, and baby food. Families traveling with infants benefit from priority boarding for a smooth and comfortable start to their journey."
+      ],
+      "imageAlt": "Parent holding an infant at the airport"
+    },
     "towards": {
       "itemOne": {
         "title": "Discover new horizons",

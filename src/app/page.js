@@ -488,6 +488,7 @@ export default function Home() {
             data={dualImageTrainingData}
             underlineFirstWord
             bgColor="bg-100"
+            showFirstSection
             showExtraImage
             extraImagePositions={[
               { bottom: -50, start: 0, horizontal: 60 },

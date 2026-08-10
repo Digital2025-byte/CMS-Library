@@ -82,13 +82,19 @@ export default function DualImageTextBlock({
           text={item.title}
           underlineFirstWord={underlineFirstWord}
         />
-        {item.description ? (
+        {(item.descriptions?.length
+          ? item.descriptions
+          : item.description
+            ? [item.description]
+            : []
+        ).map((paragraph, index) => (
           <p
+            key={`${item.title}-p-${index}`}
             className={`${typography.sectionDescription} mt-4 leading-relaxed text-700 text-start lg:mt-6 lg:text-justify`}
           >
-            {item.description}
+            {paragraph}
           </p>
-        ) : null}
+        ))}
         {showExploreButton && buttonLabel ? (
           <div className="mt-5 sm:mt-6">
             <Button

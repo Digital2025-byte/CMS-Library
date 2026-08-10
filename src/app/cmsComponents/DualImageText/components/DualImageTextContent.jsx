@@ -3,6 +3,8 @@ import { DEFAULT_EXTRA_IMAGE_POSITION } from "../utils/helpers";
 
 export default function DualImageTextContent({
   items = [],
+  firstSection = null,
+  showFirstSection = false,
   blueLayer = false,
   underlineFirstWord = false,
   showExploreButton = false,
@@ -23,10 +25,22 @@ export default function DualImageTextContent({
 
   return (
     <div className="flex w-full flex-col gap-10 sm:gap-12 lg:gap-16 xl:gap-20">
+      {showFirstSection && firstSection ? (
+        <DualImageTextBlock
+          item={firstSection}
+          reverse
+          priority
+          blueLayer={false}
+          underlineFirstWord={false}
+          showExploreButton={false}
+          showExtraImage={false}
+        />
+      ) : null}
+
       <DualImageTextBlock
         item={first}
         reverse={false}
-        priority
+        priority={!showFirstSection}
         blueLayer={blueLayer}
         underlineFirstWord={underlineFirstWord}
         showExploreButton={showExploreButton}

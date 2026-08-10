@@ -70,9 +70,14 @@ function normalizeItem(rawItem) {
   const image = item?.image || {};
   const cta = item?.ctaButton || item?.cta || {};
 
+  const descriptions = Array.isArray(item?.descriptions)
+    ? item.descriptions.filter(Boolean)
+    : [item?.description, item?.descriptionTwo].filter(Boolean);
+
   return {
     title: item?.title || "",
-    description: item?.description || "",
+    description: descriptions[0] || "",
+    descriptions,
     imageUrl: image?.fileUrl || image?.url || image?.src || "",
     imageAlt: image?.alt || item?.title || "Section image",
     buttonText: cta?.label || cta?.content || item?.buttonText || "",
@@ -93,6 +98,7 @@ export function getDualImageTextContent(data, lang = "en") {
   if (!translations.length) {
     return {
       items: [],
+      firstSection: null,
       exploreButtonLabel: "",
       exploreButtonHref: "",
       extraImageUrl: "",
@@ -117,15 +123,22 @@ export function getDualImageTextContent(data, lang = "en") {
 
   const exploreCta = content?.exploreButton || content?.ctaButton || {};
   const extraImage = content?.extraImage || {};
+  const firstSectionRaw = content?.firstSection || null;
+  const firstSection = firstSectionRaw ? normalizeItem(firstSectionRaw) : null;
+  const hasFirstSection = Boolean(
+    firstSection &&
+      (firstSection.title || firstSection.imageUrl || firstSection.description)
+  );
 
   return {
     items,
+    firstSection: hasFirstSection ? firstSection : null,
     exploreButtonLabel:
       exploreCta?.label || exploreCta?.content || "Explore more",
     exploreButtonHref: exploreCta?.href || exploreCta?.slug || "explore",
     extraImageUrl:
       extraImage?.fileUrl || extraImage?.url || extraImage?.src || "",
     extraImageAlt: extraImage?.alt || "",
-    hasContent: items.length > 0,
+    hasContent: items.length > 0 || hasFirstSection,
   };
 }

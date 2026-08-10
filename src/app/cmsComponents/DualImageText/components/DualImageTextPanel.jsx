@@ -8,6 +8,8 @@ import DualImageTextContent from "./DualImageTextContent";
 export default function DualImageTextPanel({
   lang = "en",
   items = [],
+  firstSection = null,
+  showFirstSection = false,
   blueLayer = false,
   underlineFirstWord = false,
   animate = false,
@@ -27,6 +29,8 @@ export default function DualImageTextPanel({
   const content = (
     <DualImageTextContent
       items={items}
+      firstSection={firstSection}
+      showFirstSection={showFirstSection}
       blueLayer={blueLayer}
       underlineFirstWord={underlineFirstWord}
       showExploreButton={showExploreButton}

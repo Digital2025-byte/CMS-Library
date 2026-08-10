@@ -9,10 +9,9 @@ import {
 /**
  * Dual image + text blocks.
  *
+ * @param {boolean} [showFirstSection=false] - Show leading section (image left, text right, ph4)
  * @param {boolean} [showExtraImage=false]
- * @param {Array<string|Object>} [extraImagePositions] - Per-block position [first, second].
- *   Use `horizontal` (or `x`) to shift left/right without changing width.
- *   Example: { bottom: -12, start: 0, horizontal: 20 }
+ * @param {Array<string|Object>} [extraImagePositions]
  */
 const DualImageText = ({
   lang = "en",
@@ -23,6 +22,7 @@ const DualImageText = ({
   bgColor = "bg-100",
   showExploreButton = false,
   showExtraImage = false,
+  showFirstSection = false,
   extraImagePositions = [
     DEFAULT_EXTRA_IMAGE_POSITION,
     DEFAULT_EXTRA_IMAGE_POSITION,
@@ -31,6 +31,7 @@ const DualImageText = ({
 }) => {
   const {
     items,
+    firstSection,
     exploreButtonLabel,
     exploreButtonHref,
     extraImageUrl,
@@ -46,6 +47,8 @@ const DualImageText = ({
     <DualImageTextPanel
       lang={lang}
       items={items}
+      firstSection={firstSection}
+      showFirstSection={showFirstSection}
       blueLayer={blueLayer}
       underlineFirstWord={underlineFirstWord}
       animate={animate}
