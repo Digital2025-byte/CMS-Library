@@ -18,6 +18,7 @@ export default function DualImageTextPanel({
   showExtraImage = false,
   extraImageUrl = "",
   extraImageAlt = "",
+  extraImagePositions = [],
   cId,
 }) {
   const ref = useRef(null);
@@ -34,6 +35,7 @@ export default function DualImageTextPanel({
       showExtraImage={showExtraImage}
       extraImageUrl={extraImageUrl}
       extraImageAlt={extraImageAlt}
+      extraImagePositions={extraImagePositions}
       cId={cId}
     />
   );

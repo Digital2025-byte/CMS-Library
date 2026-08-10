@@ -1,4 +1,5 @@
 import DualImageTextBlock from "./DualImageTextBlock";
+import { DEFAULT_EXTRA_IMAGE_POSITION } from "../utils/helpers";
 
 export default function DualImageTextContent({
   items = [],
@@ -10,10 +11,15 @@ export default function DualImageTextContent({
   showExtraImage = false,
   extraImageUrl = "",
   extraImageAlt = "",
+  extraImagePositions = [],
   cId,
 }) {
   const first = items[0] || {};
   const second = items[1] || {};
+  const firstPosition =
+    extraImagePositions[0] ?? DEFAULT_EXTRA_IMAGE_POSITION;
+  const secondPosition =
+    extraImagePositions[1] ?? DEFAULT_EXTRA_IMAGE_POSITION;
 
   return (
     <div className="flex w-full flex-col gap-10 sm:gap-12 lg:gap-16 xl:gap-20">
@@ -29,6 +35,7 @@ export default function DualImageTextContent({
         showExtraImage={showExtraImage}
         extraImageUrl={extraImageUrl}
         extraImageAlt={extraImageAlt}
+        extraImagePosition={firstPosition}
         cId={cId}
       />
       <DualImageTextBlock
@@ -42,6 +49,7 @@ export default function DualImageTextContent({
         showExtraImage={showExtraImage}
         extraImageUrl={extraImageUrl}
         extraImageAlt={extraImageAlt}
+        extraImagePosition={secondPosition}
         cId={cId}
       />
     </div>

@@ -1,17 +1,18 @@
 "use client";
 
 import DualImageTextPanel from "./components/DualImageTextPanel";
-import { getDualImageTextContent } from "./utils/helpers";
+import {
+  DEFAULT_EXTRA_IMAGE_POSITION,
+  getDualImageTextContent,
+} from "./utils/helpers";
 
 /**
  * Dual image + text blocks.
  *
- * @param {boolean} [blueLayer=false] - Offset blue plate behind images
- * @param {boolean} [underlineFirstWord=false] - Accent line under the first title word
- * @param {boolean} [animate=false] - In-view entrance animation
- * @param {string} [bgColor="bg-100"] - Section background Tailwind class
- * @param {boolean} [showExploreButton=false] - Show "Explore more" CTA under each description
- * @param {boolean} [showExtraImage=false] - Overlay extra image on both block images
+ * @param {boolean} [showExtraImage=false]
+ * @param {Array<string|Object>} [extraImagePositions] - Per-block position [first, second].
+ *   Use `horizontal` (or `x`) to shift left/right without changing width.
+ *   Example: { bottom: -12, start: 0, horizontal: 20 }
  */
 const DualImageText = ({
   lang = "en",
@@ -22,6 +23,10 @@ const DualImageText = ({
   bgColor = "bg-100",
   showExploreButton = false,
   showExtraImage = false,
+  extraImagePositions = [
+    DEFAULT_EXTRA_IMAGE_POSITION,
+    DEFAULT_EXTRA_IMAGE_POSITION,
+  ],
   cId,
 }) => {
   const {
@@ -51,6 +56,7 @@ const DualImageText = ({
       showExtraImage={showExtraImage}
       extraImageUrl={extraImageUrl}
       extraImageAlt={extraImageAlt}
+      extraImagePositions={extraImagePositions}
       cId={cId}
     />
   );

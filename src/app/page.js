@@ -489,6 +489,10 @@ export default function Home() {
             underlineFirstWord
             bgColor="bg-100"
             showExtraImage
+            extraImagePositions={[
+              { bottom: -50, start: 0, horizontal: 60 },
+              { bottom: -50, end: 0, horizontal: -60 },
+            ]}
           />
         </DualImageTextContainer>
       </div>

@@ -1,7 +1,11 @@
 import Image from "next/image";
 import Button from "@/components/ui/Button";
 import { typography } from "@/styles/typography";
-import { imageSrc } from "../utils/helpers";
+import {
+  DEFAULT_EXTRA_IMAGE_POSITION,
+  imageSrc,
+  resolveExtraImagePosition,
+} from "../utils/helpers";
 import DualImageTextTitle from "./DualImageTextTitle";
 
 export default function DualImageTextBlock({
@@ -16,6 +20,7 @@ export default function DualImageTextBlock({
   showExtraImage = false,
   extraImageUrl = "",
   extraImageAlt = "",
+  extraImagePosition = DEFAULT_EXTRA_IMAGE_POSITION,
   cId,
 }) {
   if (!item?.title && !item?.description && !item?.imageUrl) {
@@ -29,13 +34,14 @@ export default function DualImageTextBlock({
   const buttonLabel = item.buttonText || exploreButtonLabel;
   const buttonHref = item.ctaHref || exploreButtonHref;
   const hasExtraImage = showExtraImage && Boolean(extraImageUrl);
+  const { overlayStyle } = resolveExtraImagePosition(extraImagePosition);
 
   return (
     <div className="grid grid-cols-1 items-center gap-5 lg:grid-cols-2 lg:gap-12 xl:gap-16">
       <div
         className={`relative w-full overflow-visible ${
-          hasExtraImage ? "pb-8 ps-4 sm:pb-10 sm:ps-6" : ""
-        } ${reverse ? "lg:order-1" : "lg:order-2"}`}
+          reverse ? "lg:order-1" : "lg:order-2"
+        }`}
       >
         {item.imageUrl ? (
           <Image
@@ -53,7 +59,7 @@ export default function DualImageTextBlock({
         ) : null}
 
         {hasExtraImage ? (
-          <div className="absolute bottom-0 inset-s-20 z-10 w-[58%] max-w-[280px] sm:w-[52%] sm:max-w-[320px]">
+          <div className="absolute z-10" style={overlayStyle}>
             <Image
               src={imageSrc(extraImageUrl)}
               alt={extraImageAlt || item.imageAlt || "Detail image"}

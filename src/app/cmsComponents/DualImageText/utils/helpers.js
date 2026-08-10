@@ -1,3 +1,70 @@
+/** Preset corners (still supported as string shortcuts). */
+export const EXTRA_IMAGE_POSITIONS = {
+  "bottom-start": { bottom: 0, start: 0 },
+  "bottom-end": { bottom: 0, end: 0 },
+  "top-start": { top: 0, start: 0 },
+  "top-end": { top: 0, end: 0 },
+};
+
+export const DEFAULT_EXTRA_IMAGE_POSITION = {
+  bottom: 0,
+  start: 0,
+};
+
+function toCssLength(value) {
+  if (value == null || value === "") return undefined;
+  if (typeof value === "number") return `${value}px`;
+  return String(value);
+}
+
+/**
+ * Normalizes a position (preset string or value object) into overlay CSS only.
+ * Never affects the main image size — offsets apply to the absolute overlay.
+ *
+ * Value object keys (all optional):
+ * - top, right, bottom, left — physical sides (number → px, or CSS string)
+ * - start, end — logical inline sides (RTL-aware)
+ * - horizontal | x — extra translateX shift (does not change overlay or main width)
+ * - width, maxWidth — overlay size only (default width 52%)
+ */
+export function resolveExtraImagePosition(position) {
+  let raw;
+  if (typeof position === "string") {
+    raw = {
+      ...(EXTRA_IMAGE_POSITIONS[position] || DEFAULT_EXTRA_IMAGE_POSITION),
+    };
+  } else if (position && typeof position === "object") {
+    raw = position;
+  } else {
+    raw = DEFAULT_EXTRA_IMAGE_POSITION;
+  }
+
+  const horizontal = raw.horizontal ?? raw.x;
+  const horizontalCss = toCssLength(horizontal);
+
+  const overlayStyle = {
+    top: toCssLength(raw.top),
+    right: toCssLength(raw.right),
+    bottom: toCssLength(raw.bottom),
+    left: toCssLength(raw.left),
+    insetInlineStart: toCssLength(raw.start),
+    insetInlineEnd: toCssLength(raw.end),
+    width: toCssLength(raw.width) || "52%",
+    maxWidth: toCssLength(raw.maxWidth) || "320px",
+    ...(horizontalCss
+      ? { transform: `translateX(${horizontalCss})` }
+      : {}),
+  };
+
+  Object.keys(overlayStyle).forEach((key) => {
+    if (overlayStyle[key] === undefined) {
+      delete overlayStyle[key];
+    }
+  });
+
+  return { overlayStyle };
+}
+
 function normalizeItem(rawItem) {
   const item = rawItem?.item || rawItem || {};
   const image = item?.image || {};
