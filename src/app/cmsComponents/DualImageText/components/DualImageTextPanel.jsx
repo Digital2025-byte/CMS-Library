@@ -15,6 +15,9 @@ export default function DualImageTextPanel({
   showExploreButton = false,
   exploreButtonLabel = "Explore more",
   exploreButtonHref = "explore",
+  showExtraImage = false,
+  extraImageUrl = "",
+  extraImageAlt = "",
   cId,
 }) {
   const ref = useRef(null);
@@ -28,6 +31,9 @@ export default function DualImageTextPanel({
       showExploreButton={showExploreButton}
       exploreButtonLabel={exploreButtonLabel}
       exploreButtonHref={exploreButtonHref}
+      showExtraImage={showExtraImage}
+      extraImageUrl={extraImageUrl}
+      extraImageAlt={extraImageAlt}
       cId={cId}
     />
   );

@@ -11,6 +11,7 @@ import { getDualImageTextContent } from "./utils/helpers";
  * @param {boolean} [animate=false] - In-view entrance animation
  * @param {string} [bgColor="bg-100"] - Section background Tailwind class
  * @param {boolean} [showExploreButton=false] - Show "Explore more" CTA under each description
+ * @param {boolean} [showExtraImage=false] - Overlay extra image on both block images
  */
 const DualImageText = ({
   lang = "en",
@@ -20,10 +21,17 @@ const DualImageText = ({
   animate = false,
   bgColor = "bg-100",
   showExploreButton = false,
+  showExtraImage = false,
   cId,
 }) => {
-  const { items, exploreButtonLabel, exploreButtonHref, hasContent } =
-    getDualImageTextContent(data, lang);
+  const {
+    items,
+    exploreButtonLabel,
+    exploreButtonHref,
+    extraImageUrl,
+    extraImageAlt,
+    hasContent,
+  } = getDualImageTextContent(data, lang);
 
   if (!hasContent) {
     return null;
@@ -40,6 +48,9 @@ const DualImageText = ({
       showExploreButton={showExploreButton}
       exploreButtonLabel={exploreButtonLabel}
       exploreButtonHref={exploreButtonHref}
+      showExtraImage={showExtraImage}
+      extraImageUrl={extraImageUrl}
+      extraImageAlt={extraImageAlt}
       cId={cId}
     />
   );

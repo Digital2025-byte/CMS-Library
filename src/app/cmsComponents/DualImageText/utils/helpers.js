@@ -28,6 +28,8 @@ export function getDualImageTextContent(data, lang = "en") {
       items: [],
       exploreButtonLabel: "",
       exploreButtonHref: "",
+      extraImageUrl: "",
+      extraImageAlt: "",
       hasContent: false,
     };
   }
@@ -47,12 +49,16 @@ export function getDualImageTextContent(data, lang = "en") {
     .filter((item) => item.title || item.imageUrl || item.description);
 
   const exploreCta = content?.exploreButton || content?.ctaButton || {};
+  const extraImage = content?.extraImage || {};
 
   return {
     items,
     exploreButtonLabel:
       exploreCta?.label || exploreCta?.content || "Explore more",
     exploreButtonHref: exploreCta?.href || exploreCta?.slug || "explore",
+    extraImageUrl:
+      extraImage?.fileUrl || extraImage?.url || extraImage?.src || "",
+    extraImageAlt: extraImage?.alt || "",
     hasContent: items.length > 0,
   };
 }

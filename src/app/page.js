@@ -488,6 +488,7 @@ export default function Home() {
             data={dualImageTrainingData}
             underlineFirstWord
             bgColor="bg-100"
+            showExtraImage
           />
         </DualImageTextContainer>
       </div>

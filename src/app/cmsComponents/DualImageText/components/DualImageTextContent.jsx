@@ -7,6 +7,9 @@ export default function DualImageTextContent({
   showExploreButton = false,
   exploreButtonLabel = "Explore more",
   exploreButtonHref = "explore",
+  showExtraImage = false,
+  extraImageUrl = "",
+  extraImageAlt = "",
   cId,
 }) {
   const first = items[0] || {};
@@ -23,6 +26,9 @@ export default function DualImageTextContent({
         showExploreButton={showExploreButton}
         exploreButtonLabel={exploreButtonLabel}
         exploreButtonHref={exploreButtonHref}
+        showExtraImage={showExtraImage}
+        extraImageUrl={extraImageUrl}
+        extraImageAlt={extraImageAlt}
         cId={cId}
       />
       <DualImageTextBlock
@@ -33,6 +39,9 @@ export default function DualImageTextContent({
         showExploreButton={showExploreButton}
         exploreButtonLabel={exploreButtonLabel}
         exploreButtonHref={exploreButtonHref}
+        showExtraImage={showExtraImage}
+        extraImageUrl={extraImageUrl}
+        extraImageAlt={extraImageAlt}
         cId={cId}
       />
     </div>
