@@ -58,6 +58,7 @@ export const COMPONENT_NAV_ITEMS = [
   { id: "destinations-cities", label: "DestinationsCities" },
   { id: "legal-information-cards", label: "LegalInformationCards" },
   { id: "legal-body-terms", label: "LegalBodyTerms" },
+  { id: "legal-body-cookies", label: "LegalBodyCookies" },
 ];
 
 export default function ComponentNav({

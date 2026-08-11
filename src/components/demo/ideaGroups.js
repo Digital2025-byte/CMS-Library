@@ -96,7 +96,11 @@ export const IDEA_GROUPS = [
     slug: "legal",
     label: "Legal",
     description: "Privacy, cookies, and terms content.",
-    sectionIds: ["legal-information-cards", "legal-body-terms"],
+    sectionIds: [
+      "legal-information-cards",
+      "legal-body-terms",
+      "legal-body-cookies",
+    ],
   },
 ];
 
@@ -146,6 +150,7 @@ export const HOME_SECTION_IDS = [
   "carousel-item",
   "legal-information-cards",
   "legal-body-terms",
+  "legal-body-cookies",
 ];
 
 export function getIdeaGroup(slug) {

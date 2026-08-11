@@ -85,6 +85,8 @@ import LegalInformationCards from "@/app/cmsComponents/LegalInformationCards";
 import LegalInformationCardsContainer from "@/app/cmsComponents/LegalInformationCards/components/LegalInformationCardsContainer";
 import LegalBodyTerms from "@/app/cmsComponents/LegalBodyTerms";
 import LegalBodyTermsContainer from "@/app/cmsComponents/LegalBodyTerms/components/LegalBodyTermsContainer";
+import LegalBodyCookies from "@/app/cmsComponents/LegalBodyCookies";
+import LegalBodyCookiesContainer from "@/app/cmsComponents/LegalBodyCookies/components/LegalBodyCookiesContainer";
 
 const SECTION_RENDERERS = {
   "full-height-header-with-text": ({ lang, dir, fullHeightHeaderWithTextData }) => (
@@ -412,6 +414,11 @@ const SECTION_RENDERERS = {
     <LegalBodyTermsContainer lang={lang} dir={dir}>
       <LegalBodyTerms lang={lang} data={legalBodyTermsData} />
     </LegalBodyTermsContainer>
+  ),
+  "legal-body-cookies": ({ lang, dir, legalBodyCookiesData }) => (
+    <LegalBodyCookiesContainer lang={lang} dir={dir}>
+      <LegalBodyCookies lang={lang} data={legalBodyCookiesData} />
+    </LegalBodyCookiesContainer>
   ),
 };
 
