@@ -1,8 +1,8 @@
 /* FlyCham destinations map
- * Sea  → --color-primary-1   (#006080)
- * Land → --color-primary-200 (#8CB9C8)
+ * Sea  → #1b5a7d (map background)
+ * Land → #a9c5d0 (GeoJSON land polygons, see WorldLandLayer.jsx)
  *
- * Do not use filter:url(#svg) on Leaflet panes — transforms make tiles vanish.
+ * Land/sea colors are driven by the flat GeoJSON layer, not raster tiles.
  */
 
 .flycham-map-shell {
@@ -11,22 +11,12 @@
   height: 100%;
   overflow: hidden;
   border-radius: 8px;
-  background-color: var(--color-primary-1);
+  background-color: #1b5a7d;
 }
 
 .flycham-map.leaflet-container {
-  background-color: var(--color-primary-1) !important;
+  background-color: #1b5a7d !important;
   font-family: inherit;
-}
-
-/*
-  Carto light tiles: water is pale, land is slightly darker.
-  Invert so water is dark (sea) and land is lighter (steel blue).
-*/
-.flycham-map .leaflet-tile-pane {
-  /* filter: grayscale(1) invert(1) contrast(1.28) sepia(0.55) hue-rotate(165deg)
-    saturate(1.85) brightness(0.92);
-  mix-blend-mode: lighten; */
 }
 
 .flycham-map .leaflet-control-zoom {

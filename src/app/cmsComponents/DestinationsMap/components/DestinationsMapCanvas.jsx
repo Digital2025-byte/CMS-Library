@@ -3,7 +3,6 @@
 import { useMemo } from "react";
 import {
   MapContainer,
-  TileLayer,
   Marker,
   Polyline,
   ZoomControl,
@@ -13,9 +12,11 @@ import "leaflet/dist/leaflet.css";
 import "../destinations-map.css";
 import MapFocusController from "./MapFocusController";
 import ResetViewButton from "./ResetViewButton";
+import WorldLandLayer from "./WorldLandLayer";
 import {
   DEFAULT_CENTER,
   DEFAULT_ZOOM,
+  MAP_SEA_COLOR,
   createCustomIcon,
   createPlaneIcon,
 } from "../utils/helpers";
@@ -53,7 +54,7 @@ export default function DestinationsMapCanvas({
           width: "100%",
           height: "100%",
           borderRadius: "8px",
-          backgroundColor: "var(--color-primary-1)",
+          backgroundColor: MAP_SEA_COLOR,
         }}
         scrollWheelZoom
         wheelPxPerZoomLevel={100}
@@ -61,10 +62,7 @@ export default function DestinationsMapCanvas({
       >
       <MapFocusController target={mapTarget} onMoveEnd={onMoveEnd} />
 
-      <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
-        url="https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png"
-      />
+      <WorldLandLayer />
 
       <ZoomControl position="bottomright" />
       <ResetViewButton center={DEFAULT_CENTER} zoom={DEFAULT_ZOOM} />

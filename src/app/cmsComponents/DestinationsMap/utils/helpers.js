@@ -1,6 +1,11 @@
 export const DEFAULT_CENTER = [32.5085, 45.787];
 export const DEFAULT_ZOOM = 5;
 
+/* Flat map palette (matches the reference design). */
+export const MAP_SEA_COLOR = "#1b5a7d";
+export const MAP_LAND_COLOR = "#a9c5d0";
+export const MAP_LAND_BORDER_COLOR = "#1b5a7d";
+
 export function getDestinationsMapContent(data, lang = "en") {
   const translations = Array.isArray(data?.translations)
     ? data.translations
