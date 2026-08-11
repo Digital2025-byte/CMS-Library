@@ -57,6 +57,7 @@ export const COMPONENT_NAV_ITEMS = [
   { id: "destinations-map", label: "DestinationsMap" },
   { id: "destinations-cities", label: "DestinationsCities" },
   { id: "legal-information-cards", label: "LegalInformationCards" },
+  { id: "legal-body-terms", label: "LegalBodyTerms" },
 ];
 
 export default function ComponentNav({

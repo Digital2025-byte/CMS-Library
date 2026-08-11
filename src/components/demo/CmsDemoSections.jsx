@@ -83,6 +83,8 @@ import DestinationsCities from "@/app/cmsComponents/DestinationsCities";
 import DestinationsCitiesContainer from "@/app/cmsComponents/DestinationsCities/components/DestinationsCitiesContainer";
 import LegalInformationCards from "@/app/cmsComponents/LegalInformationCards";
 import LegalInformationCardsContainer from "@/app/cmsComponents/LegalInformationCards/components/LegalInformationCardsContainer";
+import LegalBodyTerms from "@/app/cmsComponents/LegalBodyTerms";
+import LegalBodyTermsContainer from "@/app/cmsComponents/LegalBodyTerms/components/LegalBodyTermsContainer";
 
 const SECTION_RENDERERS = {
   "full-height-header-with-text": ({ lang, dir, fullHeightHeaderWithTextData }) => (
@@ -405,6 +407,11 @@ const SECTION_RENDERERS = {
         posParams="gb"
       />
     </LegalInformationCardsContainer>
+  ),
+  "legal-body-terms": ({ lang, dir, legalBodyTermsData }) => (
+    <LegalBodyTermsContainer lang={lang} dir={dir}>
+      <LegalBodyTerms lang={lang} data={legalBodyTermsData} />
+    </LegalBodyTermsContainer>
   ),
 };
 

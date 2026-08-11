@@ -45,6 +45,7 @@ import { buildCarouselItemData } from "@/app/cmsComponents/CarouselItem/utils/da
 import { buildDestinationsMapData } from "@/app/cmsComponents/DestinationsMap/utils/data";
 import { buildDestinationsCitiesData } from "@/app/cmsComponents/DestinationsCities/utils/data";
 import { buildLegalInformationCardsData } from "@/app/cmsComponents/LegalInformationCards/utils/data";
+import { buildLegalBodyTermsData } from "@/app/cmsComponents/LegalBodyTerms/utils/data";
 import { isRtl } from "@/i18n/settings";
 
 export default function useCmsDemoData() {
@@ -101,5 +102,6 @@ export default function useCmsDemoData() {
     destinationsMapData: buildDestinationsMapData(t, lang),
     destinationsCitiesData: buildDestinationsCitiesData(t, lang),
     legalInformationCardsData: buildLegalInformationCardsData(t, lang),
+    legalBodyTermsData: buildLegalBodyTermsData(t, lang),
   };
 }
