@@ -59,6 +59,7 @@ export const COMPONENT_NAV_ITEMS = [
   { id: "legal-information-cards", label: "LegalInformationCards" },
   { id: "legal-body-terms", label: "LegalBodyTerms" },
   { id: "legal-body-cookies", label: "LegalBodyCookies" },
+  { id: "legal-body-privacy-policy", label: "LegalBodyPrivacyPolicy" },
 ];
 
 export default function ComponentNav({

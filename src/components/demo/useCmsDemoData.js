@@ -47,6 +47,7 @@ import { buildDestinationsCitiesData } from "@/app/cmsComponents/DestinationsCit
 import { buildLegalInformationCardsData } from "@/app/cmsComponents/LegalInformationCards/utils/data";
 import { buildLegalBodyTermsData } from "@/app/cmsComponents/LegalBodyTerms/utils/data";
 import { buildLegalBodyCookiesData } from "@/app/cmsComponents/LegalBodyCookies/utils/data";
+import { buildLegalBodyPrivacyPolicyData } from "@/app/cmsComponents/LegalBodyPrivacyPolicy/utils/data";
 import { isRtl } from "@/i18n/settings";
 
 export default function useCmsDemoData() {
@@ -105,5 +106,6 @@ export default function useCmsDemoData() {
     legalInformationCardsData: buildLegalInformationCardsData(t, lang),
     legalBodyTermsData: buildLegalBodyTermsData(t, lang),
     legalBodyCookiesData: buildLegalBodyCookiesData(lang),
+    legalBodyPrivacyPolicyData: buildLegalBodyPrivacyPolicyData(lang),
   };
 }

@@ -100,6 +100,7 @@ export const IDEA_GROUPS = [
       "legal-information-cards",
       "legal-body-terms",
       "legal-body-cookies",
+      "legal-body-privacy-policy",
     ],
   },
 ];
@@ -151,6 +152,7 @@ export const HOME_SECTION_IDS = [
   "legal-information-cards",
   "legal-body-terms",
   "legal-body-cookies",
+  "legal-body-privacy-policy",
 ];
 
 export function getIdeaGroup(slug) {
