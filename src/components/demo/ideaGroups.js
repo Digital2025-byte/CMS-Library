@@ -92,6 +92,12 @@ export const IDEA_GROUPS = [
     description: "Destination and office maps.",
     sectionIds: ["map-info", "destinations-map"],
   },
+  {
+    slug: "legal",
+    label: "Legal",
+    description: "Privacy, cookies, and terms cards.",
+    sectionIds: ["legal-information-cards"],
+  },
 ];
 
 /** Home page section order — keep in sync with the current homepage. */
@@ -138,6 +144,7 @@ export const HOME_SECTION_IDS = [
   "destinations-map",
   "destinations-cities",
   "carousel-item",
+  "legal-information-cards",
 ];
 
 export function getIdeaGroup(slug) {

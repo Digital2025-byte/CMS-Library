@@ -81,6 +81,8 @@ import DestinationsMap from "@/app/cmsComponents/DestinationsMap";
 import DestinationsMapContainer from "@/app/cmsComponents/DestinationsMap/components/DestinationsMapContainer";
 import DestinationsCities from "@/app/cmsComponents/DestinationsCities";
 import DestinationsCitiesContainer from "@/app/cmsComponents/DestinationsCities/components/DestinationsCitiesContainer";
+import LegalInformationCards from "@/app/cmsComponents/LegalInformationCards";
+import LegalInformationCardsContainer from "@/app/cmsComponents/LegalInformationCards/components/LegalInformationCardsContainer";
 
 const SECTION_RENDERERS = {
   "full-height-header-with-text": ({ lang, dir, fullHeightHeaderWithTextData }) => (
@@ -394,6 +396,15 @@ const SECTION_RENDERERS = {
     <CarouselItemContainer lang={lang} dir={dir}>
       <CarouselItem lang={lang} data={carouselItemData} posParams="gb" />
     </CarouselItemContainer>
+  ),
+  "legal-information-cards": ({ lang, dir, legalInformationCardsData }) => (
+    <LegalInformationCardsContainer lang={lang} dir={dir}>
+      <LegalInformationCards
+        lang={lang}
+        data={legalInformationCardsData}
+        posParams="gb"
+      />
+    </LegalInformationCardsContainer>
   ),
 };
 

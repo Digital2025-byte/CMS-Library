@@ -1378,5 +1378,36 @@
         "description": "Waterfront museums, desert horizons, and a modern hub on the Gulf — a destination built for discovery."
       }
     ]
+  },
+  "legalInformationCards": {
+    "cards": [
+      {
+        "title": "Privacy Policy",
+        "description": "Learn how we collect and protect your personal information.",
+        "icon": "shield",
+        "ctaButton": {
+          "slug": "/legal/privacy-policy",
+          "content": "Read more"
+        }
+      },
+      {
+        "title": "Cookies Policy",
+        "description": "Understand how we use cookies to enhance your experience.",
+        "icon": "cookie",
+        "ctaButton": {
+          "slug": "/legal/cookies-policy",
+          "content": "Read more"
+        }
+      },
+      {
+        "title": "Terms and Conditions",
+        "description": "Review the terms for using FlyCham's services and website.",
+        "icon": "document",
+        "ctaButton": {
+          "slug": "/legal/terms-and-conditions",
+          "content": "Read more"
+        }
+      }
+    ]
   }
 }

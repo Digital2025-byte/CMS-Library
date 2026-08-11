@@ -1378,5 +1378,36 @@
         "description": "متاحف على الواجهة البحرية وآفاق صحراوية ومركز حديث على الخليج."
       }
     ]
+  },
+  "legalInformationCards": {
+    "cards": [
+      {
+        "title": "سياسة الخصوصية",
+        "description": "تعرّف على كيفية جمع معلوماتك الشخصية وحمايتها.",
+        "icon": "shield",
+        "ctaButton": {
+          "slug": "/legal/privacy-policy",
+          "content": "اقرأ المزيد"
+        }
+      },
+      {
+        "title": "سياسة ملفات تعريف الارتباط",
+        "description": "افهم كيف نستخدم ملفات تعريف الارتباط لتحسين تجربتك.",
+        "icon": "cookie",
+        "ctaButton": {
+          "slug": "/legal/cookies-policy",
+          "content": "اقرأ المزيد"
+        }
+      },
+      {
+        "title": "الشروط والأحكام",
+        "description": "راجع شروط استخدام خدمات موقع فلاي شام.",
+        "icon": "document",
+        "ctaButton": {
+          "slug": "/legal/terms-and-conditions",
+          "content": "اقرأ المزيد"
+        }
+      }
+    ]
   }
 }
