@@ -24,7 +24,7 @@ export default function DestinationsMapOverlays({
 }) {
   return (
     <div className="pointer-events-none absolute inset-0">
-      <div className="pointer-events-auto absolute top-4 right-4 left-4 flex flex-col items-stretch gap-3 sm:right-auto sm:flex-row sm:items-center">
+      <div className="pointer-events-auto absolute top-5 start-5 end-5 flex flex-col items-stretch gap-3 sm:end-auto sm:flex-row sm:items-center">
         <div className="z-[999] flex w-full items-center gap-2 rounded-sm bg-white px-3 py-2 shadow-lg sm:w-auto sm:px-4">
           <div className="relative w-full sm:w-40">
             <input
@@ -106,7 +106,7 @@ export default function DestinationsMapOverlays({
         </div>
       </div>
 
-      <div className="pointer-events-auto absolute top-20 right-4 left-4 z-[990] flex flex-wrap justify-start gap-2 sm:top-4 sm:left-auto sm:justify-end lg:top-4">
+      <div className="pointer-events-auto absolute top-[4.75rem] start-5 end-5 z-[990] flex flex-wrap justify-start gap-2 sm:top-5 sm:start-auto sm:justify-end">
         <button
           type="button"
           onClick={onToggleNewRoutes}

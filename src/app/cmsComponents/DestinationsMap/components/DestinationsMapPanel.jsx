@@ -252,7 +252,8 @@ export default function DestinationsMapPanel({
 
   return (
     <section className="relative flex items-center justify-center bg-primary-800 py-8">
-      <PageContentContainer className="relative z-0 h-[500px]">
+      <PageContentContainer>
+        <div className="relative z-0 h-[500px] overflow-hidden rounded-lg">
         <DestinationsMapCanvas
           mapTarget={mapTarget}
           onMoveEnd={() => {
@@ -322,6 +323,7 @@ export default function DestinationsMapPanel({
             </div>
           </div>
         ) : null}
+        </div>
       </PageContentContainer>
     </section>
   );
