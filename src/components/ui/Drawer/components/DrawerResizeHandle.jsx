@@ -1,3 +1,4 @@
+import { DotsSixVertical } from "@phosphor-icons/react";
 import { DRAWER_SIDES } from "../utils/constants";
 
 export default function DrawerResizeHandle({ side = "left", onPointerDown }) {
@@ -10,11 +11,12 @@ export default function DrawerResizeHandle({ side = "left", onPointerDown }) {
       aria-label="Resize drawer"
       onPointerDown={onPointerDown}
       className={[
-        "absolute inset-y-0 z-10 w-3 touch-none",
+        "absolute inset-y-0 z-10 flex w-4 touch-none items-center justify-center text-500",
         sideClasses.handle,
       ].join(" ")}
     >
       <span className="absolute inset-y-0 left-1/2 w-px -translate-x-1/2 bg-200" />
+      <DotsSixVertical size={16} weight="bold" className="relative" aria-hidden />
     </div>
   );
 }

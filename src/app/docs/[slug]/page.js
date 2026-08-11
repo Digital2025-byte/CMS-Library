@@ -52,7 +52,7 @@ export default function DocsComponentPage() {
         </div>
       </div>
       {isDualImageText ? (
-        <DualImageTextExamples ctx={ctx} />
+        <DualImageTextExamples ctx={ctx} name={label} />
       ) : (
         <CmsDemoSections ids={[slug]} ctx={ctx} />
       )}

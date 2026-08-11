@@ -19,7 +19,7 @@ export default function Drawer({
   onClose,
   onOpen,
   children,
-  title = "Props",
+  title,
   side = "left",
   triggerRef,
   panelRef: panelRefProp,

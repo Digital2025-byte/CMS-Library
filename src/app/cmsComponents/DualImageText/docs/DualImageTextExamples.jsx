@@ -11,7 +11,7 @@ const DEFAULT_EXTRA_POSITIONS = [
   { bottom: -50, end: 0, horizontal: -60 },
 ];
 
-export default function DualImageTextExamples({ ctx }) {
+export default function DualImageTextExamples({ ctx, name = "DualImageText" }) {
   const { lang, dir } = ctx;
   const drawer = useDrawer();
   const [flags, setFlags] = useState({
@@ -69,7 +69,7 @@ export default function DualImageTextExamples({ ctx }) {
         triggerRef={drawer.triggerRef}
         panelRef={drawer.panelRef}
         titleId={drawer.titleId}
-        title="Props"
+        title={name}
       >
         <DualImageTextPropsForm
           flags={flags}

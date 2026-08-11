@@ -1,3 +1,4 @@
+import { XIcon } from "@phosphor-icons/react";
 import { typography } from "@/styles/typography";
 
 export default function DrawerHeader({ titleId, title, onClose }) {
@@ -12,9 +13,10 @@ export default function DrawerHeader({ titleId, title, onClose }) {
       <button
         type="button"
         onClick={onClose}
-        className={`${typography.button} rounded-md px-2 py-1 text-700 hover:bg-200 hover:text-main`}
+        aria-label="Close"
+        className="rounded-md p-1 text-700 hover:bg-200 hover:text-main"
       >
-        Close
+        <XIcon size={20} weight="regular" aria-hidden />
       </button>
     </div>
   );
