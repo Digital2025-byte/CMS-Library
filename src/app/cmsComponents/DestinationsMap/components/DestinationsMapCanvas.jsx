@@ -10,6 +10,7 @@ import {
 } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
+import "../destinations-map.css";
 import MapFocusController from "./MapFocusController";
 import ResetViewButton from "./ResetViewButton";
 import {
@@ -39,23 +40,30 @@ export default function DestinationsMapCanvas({
   );
 
   return (
-    <MapContainer
-      center={DEFAULT_CENTER}
-      zoom={DEFAULT_ZOOM}
-      minZoom={4}
-      maxZoom={7}
-      zoomSnap={0.25}
-      zoomDelta={0.5}
-      style={{ width: "100%", height: "100%", borderRadius: "8px" }}
-      scrollWheelZoom
-      wheelPxPerZoomLevel={100}
-      zoomControl={false}
-    >
+    <div className="flycham-map-shell">
+      <MapContainer
+        className="flycham-map"
+        center={DEFAULT_CENTER}
+        zoom={DEFAULT_ZOOM}
+        minZoom={4}
+        maxZoom={7}
+        zoomSnap={0.25}
+        zoomDelta={0.5}
+        style={{
+          width: "100%",
+          height: "100%",
+          borderRadius: "8px",
+          backgroundColor: "var(--color-primary-1)",
+        }}
+        scrollWheelZoom
+        wheelPxPerZoomLevel={100}
+        zoomControl={false}
+      >
       <MapFocusController target={mapTarget} onMoveEnd={onMoveEnd} />
 
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
-        url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png"
+        url="https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png"
       />
 
       <ZoomControl position="bottomright" />
@@ -66,9 +74,9 @@ export default function DestinationsMapCanvas({
           <Polyline
             positions={animatedPoints}
             pathOptions={{
-              color: "#054E72",
-              weight: 3,
-              opacity: 0.9,
+              color: "#C4B59A",
+              weight: 2,
+              opacity: 0.85,
             }}
           />
           {planePosition ? (
@@ -105,5 +113,6 @@ export default function DestinationsMapCanvas({
         />
       ))}
     </MapContainer>
+    </div>
   );
 }

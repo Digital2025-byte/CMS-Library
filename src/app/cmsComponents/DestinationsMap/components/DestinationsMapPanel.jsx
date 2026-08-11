@@ -15,7 +15,7 @@ import {
 const DestinationsMapCanvas = dynamic(() => import("./DestinationsMapCanvas"), {
   ssr: false,
   loading: () => (
-    <div className="flex h-full w-full items-center justify-center rounded-lg bg-[#13364B]/20 text-sm text-white/80">
+    <div className="flex h-full w-full items-center justify-center rounded-lg bg-primary-1/20 text-sm text-white/80">
       Loading map…
     </div>
   ),
@@ -322,12 +322,6 @@ export default function DestinationsMapPanel({
           </div>
         ) : null}
       </div>
-
-      <style jsx global>{`
-        .leaflet-control-attribution {
-          display: none !important;
-        }
-      `}</style>
     </section>
   );
 }

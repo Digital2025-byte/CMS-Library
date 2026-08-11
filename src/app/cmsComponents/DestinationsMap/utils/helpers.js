@@ -201,7 +201,8 @@ export function createCustomIcon(L, destination, {
             border-radius: 50%;
             overflow: hidden;
             cursor: pointer;
-            border: 2px solid #13364B;
+            border: 2px solid #ffffff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.35);
             background-image: url(${imageUrl});
             background-size: cover;
             background-position: center;
@@ -216,15 +217,17 @@ export function createCustomIcon(L, destination, {
             height: 0;
             border-left: 8px solid transparent;
             border-right: 8px solid transparent;
-            border-top: 6px solid #13364B;
+            border-top: 6px solid #ffffff;
           "></div>
         </div>
         <div style="
           margin-top: 10px;
-          text-align: left;
-          font-size: 11px;
-          font-weight: 500;
-          color: #111827;
+          text-align: center;
+          font-size: 12px;
+          font-weight: 600;
+          color: #ffffff;
+          text-shadow: 0 1px 3px rgba(0,0,0,0.65);
+          white-space: nowrap;
         ">
           ${destination.name}
         </div>
@@ -244,27 +247,17 @@ export function createCustomIcon(L, destination, {
           top: 0;
           left: 50%;
           transform: translateX(-50%);
-          width: 18px;
-          height: 18px;
+          width: 14px;
+          height: 14px;
           background-color: ${baseColor};
-          border: 1px solid #3E3E3B;
+          border: 1.5px solid rgba(255,255,255,0.85);
           border-radius: 50%;
-        "></div>
-        <div style="
-          position: absolute;
-          bottom: 0;
-          left: 50%;
-          transform: translateX(-50%) translateY(-30%);
-          width: 0;
-          height: 0;
-          border-left: 5px solid transparent;
-          border-right: 5px solid transparent;
-          border-top: 4px solid #3E3E3B;
+          box-shadow: 0 1px 4px rgba(0,0,0,0.35);
         "></div>
       </div>
     `,
     iconSize: [18, 22],
-    iconAnchor: [9, 22],
+    iconAnchor: [9, 14],
     popupAnchor: [0, -10],
   });
 }
