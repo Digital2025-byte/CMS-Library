@@ -8,6 +8,7 @@ const SIDE_CLASSES = {
 export default function DrawerTrigger({
   triggerRef,
   onClick,
+  onPointerDown,
   isOpen,
   side = "left",
   label = "Edit props",
@@ -19,10 +20,11 @@ export default function DrawerTrigger({
       ref={triggerRef}
       type="button"
       onClick={onClick}
+      onPointerDown={onPointerDown}
       aria-label={label}
       title={label}
       className={[
-        "fixed top-1/2 z-40 -translate-y-1/2 border border-200 bg-50 p-2.5 text-main shadow-sm",
+        "fixed top-1/2 z-40 -translate-y-1/2 touch-none border border-200 bg-50 p-2.5 text-main shadow-sm",
         "hover:bg-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-1",
         SIDE_CLASSES[side] ?? SIDE_CLASSES.left,
       ].join(" ")}
