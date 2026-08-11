@@ -6,7 +6,11 @@ import AccordionItem from "./components/AccordionItem";
 import { useAccordion } from "./hooks/useAccordion";
 import { getAccordionContent } from "./utils/helpers";
 
-const AccordionWithContent = ({ data }) => {
+const AccordionWithContent = ({
+  data,
+  showButton = true,
+  buttonPosition = "center",
+}) => {
   const { title, description, buttonLabel, buttonHref, items } =
     getAccordionContent(data);
   const { isOpen, toggleAccordion } = useAccordion();
@@ -26,7 +30,13 @@ const AccordionWithContent = ({ data }) => {
         ))}
       </div>
 
-      <AccordionButton label={buttonLabel} href={buttonHref} />
+      {showButton ? (
+        <AccordionButton
+          label={buttonLabel}
+          href={buttonHref}
+          position={buttonPosition}
+        />
+      ) : null}
     </>
   );
 };

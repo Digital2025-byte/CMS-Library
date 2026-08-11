@@ -8,6 +8,7 @@ import {
   isKnownSectionId,
 } from "@/components/demo/ideaGroups";
 import useCmsDemoData from "@/components/demo/useCmsDemoData";
+import AccordionWithContentExamples from "@/app/cmsComponents/AccordionWithContent/docs/AccordionWithContentExamples";
 import DualImageTextExamples from "@/app/cmsComponents/DualImageText/docs/DualImageTextExamples";
 import { COMPONENT_NAV_ITEMS } from "@/components/ui/ComponentNav";
 import { typography } from "@/styles/typography";
@@ -38,6 +39,7 @@ export default function DocsComponentPage() {
 
   const isDualImageText =
     slug === "dual-image-text" || slug === "dual-image-text-training";
+  const isAccordionWithContent = slug === "accordion-with-content";
 
   return (
     <CmsDemoChrome overlay={false} sectionIds={[slug]}>
@@ -59,6 +61,8 @@ export default function DocsComponentPage() {
             slug === "dual-image-text-training" ? "training" : "towards"
           }
         />
+      ) : isAccordionWithContent ? (
+        <AccordionWithContentExamples ctx={ctx} name={label} />
       ) : (
         <CmsDemoSections ids={[slug]} ctx={ctx} />
       )}

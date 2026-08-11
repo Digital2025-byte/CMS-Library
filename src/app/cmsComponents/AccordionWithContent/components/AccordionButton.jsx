@@ -1,12 +1,26 @@
 import Button from "@/components/ui/Button";
 
-export default function AccordionButton({ label, href, icon, cId }) {
+const POSITION_CLASS = {
+  left: "justify-start",
+  center: "justify-center",
+  right: "justify-end",
+};
+
+export default function AccordionButton({
+  label,
+  href,
+  icon,
+  cId,
+  position = "center",
+}) {
   if (!label) {
     return null;
   }
 
   return (
-    <div className="mt-8 flex justify-center sm:mt-10">
+    <div
+      className={`mt-8 flex sm:mt-10 ${POSITION_CLASS[position] ?? POSITION_CLASS.center}`}
+    >
       <Button
         label={label}
         href={href || "#"}
