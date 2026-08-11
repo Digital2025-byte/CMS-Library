@@ -1340,5 +1340,43 @@
       { "fromCityId": "bey", "toCityId": "dam" },
       { "fromCityId": "kwi", "toCityId": "dxb" }
     ]
+  },
+  "destinationsCities": {
+    "title": "مدن تبقى في الذاكرة",
+    "description": "اكتشف وجهات شبكتنا — اسحب البطاقة أو اضغط عليها لاستكشاف الرحلات الأسبوعية ومدة الطيران وما يميز كل مدينة.",
+    "cities": [
+      {
+        "IATACode": "DXB",
+        "cityName": "دبي",
+        "subtitle": "من دمشق",
+        "numberOfFlightsPerWeek": 7,
+        "duration": "2س 45د",
+        "description": "أفق طموح وضوء صحراوي وبوابة بين القارات — سافر إلى المدينة التي لا تتوقف."
+      },
+      {
+        "IATACode": "BGW",
+        "cityName": "بغداد",
+        "subtitle": "من دمشق",
+        "numberOfFlightsPerWeek": 3,
+        "duration": "1س 10د",
+        "description": "أنهار وتاريخ وعاصمة نابضة — وصل إلى بغداد برحلات أسبوعية منتظمة من دمشق."
+      },
+      {
+        "IATACode": "BEY",
+        "cityName": "بيروت",
+        "subtitle": "من دمشق",
+        "numberOfFlightsPerWeek": 6,
+        "duration": "0س 55د",
+        "description": "أمسيات متوسطية وهواء جبلي ومدينة تستقبلك في أقل من ساعة."
+      },
+      {
+        "IATACode": "DOH",
+        "cityName": "الدوحة",
+        "subtitle": "من دمشق",
+        "numberOfFlightsPerWeek": 4,
+        "duration": "2س 20د",
+        "description": "متاحف على الواجهة البحرية وآفاق صحراوية ومركز حديث على الخليج."
+      }
+    ]
   }
 }

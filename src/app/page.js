@@ -122,6 +122,9 @@ import { buildCarouselItemData } from "@/app/cmsComponents/CarouselItem/utils/da
 import DestinationsMap from "@/app/cmsComponents/DestinationsMap";
 import DestinationsMapContainer from "@/app/cmsComponents/DestinationsMap/components/DestinationsMapContainer";
 import { buildDestinationsMapData } from "@/app/cmsComponents/DestinationsMap/utils/data";
+import DestinationsCities from "@/app/cmsComponents/DestinationsCities";
+import DestinationsCitiesContainer from "@/app/cmsComponents/DestinationsCities/components/DestinationsCitiesContainer";
+import { buildDestinationsCitiesData } from "@/app/cmsComponents/DestinationsCities/utils/data";
 import LanguageSwitcher from "@/i18n/LanguageSwitcher";
 import { isRtl } from "@/i18n/settings";
 import PageContentContainer from "@/components/layout/PageContentContainer";
@@ -181,6 +184,7 @@ export default function Home() {
   const threeDImageRingSectionData = buildThreeDImageRingSectionData(t, lang);
   const carouselItemData = buildCarouselItemData(t, lang);
   const destinationsMapData = buildDestinationsMapData(t, lang);
+  const destinationsCitiesData = buildDestinationsCitiesData(t, lang);
 
   return (
     <main className="relative">
@@ -527,6 +531,16 @@ export default function Home() {
         <DestinationsMapContainer lang={lang} dir={dir}>
           <DestinationsMap lang={lang} data={destinationsMapData} />
         </DestinationsMapContainer>
+      </div>
+
+      <div id="destinations-cities" className="scroll-mt-20">
+        <DestinationsCitiesContainer lang={lang} dir={dir}>
+          <DestinationsCities
+            lang={lang}
+            data={destinationsCitiesData}
+            posParams="gb"
+          />
+        </DestinationsCitiesContainer>
       </div>
     </main>
   );

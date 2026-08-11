@@ -1340,5 +1340,43 @@
       { "fromCityId": "bey", "toCityId": "dam" },
       { "fromCityId": "kwi", "toCityId": "dxb" }
     ]
+  },
+  "destinationsCities": {
+    "title": "Cities that stay with you",
+    "description": "Discover destinations across our network — tap a card or swipe to explore weekly flights, flight time, and what makes each city worth the journey.",
+    "cities": [
+      {
+        "IATACode": "DXB",
+        "cityName": "Dubai",
+        "subtitle": "From Dam",
+        "numberOfFlightsPerWeek": 7,
+        "duration": "2h 45m",
+        "description": "A skyline of ambition, desert light, and a gateway between continents — fly in for the city that never stands still."
+      },
+      {
+        "IATACode": "BGW",
+        "cityName": "Baghdad",
+        "subtitle": "From Dam",
+        "numberOfFlightsPerWeek": 3,
+        "duration": "1h 10m",
+        "description": "Rivers, history, and a living capital — connect to Baghdad with regular weekly flights from Damascus."
+      },
+      {
+        "IATACode": "BEY",
+        "cityName": "Beirut",
+        "subtitle": "From Dam",
+        "numberOfFlightsPerWeek": 6,
+        "duration": "0h 55m",
+        "description": "Mediterranean evenings, mountain air, and a city that welcomes you in under an hour."
+      },
+      {
+        "IATACode": "DOH",
+        "cityName": "Doha",
+        "subtitle": "From Dam",
+        "numberOfFlightsPerWeek": 4,
+        "duration": "2h 20m",
+        "description": "Waterfront museums, desert horizons, and a modern hub on the Gulf — a destination built for discovery."
+      }
+    ]
   }
 }

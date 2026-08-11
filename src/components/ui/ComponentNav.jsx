@@ -55,6 +55,7 @@ export const COMPONENT_NAV_ITEMS = [
   { id: "three-d-image-ring-section", label: "ThreeDImageRingSection" },
   { id: "carousel-item", label: "CarouselItem" },
   { id: "destinations-map", label: "DestinationsMap" },
+  { id: "destinations-cities", label: "DestinationsCities" },
 ];
 
 export default function ComponentNav({
