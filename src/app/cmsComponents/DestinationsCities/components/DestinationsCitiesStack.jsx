@@ -42,7 +42,7 @@ export default function DestinationsCitiesStack({
 
   return (
     <div className="flex w-full min-w-0 flex-col items-center justify-center gap-6">
-      <div className="relative h-[420px] w-full min-w-0 max-w-[min(100%,36rem)] sm:max-w-xl lg:h-[440px] lg:max-w-none">
+      <div className="relative ms-auto h-[460px] w-full min-w-0 max-w-xl sm:max-w-lg lg:h-[550px]">
         <motion.div
           className="relative h-full w-full"
           style={{

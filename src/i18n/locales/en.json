@@ -1342,8 +1342,8 @@
     ]
   },
   "destinationsCities": {
-    "title": "Cities that stay with you",
-    "description": "Discover destinations across our network — tap a card or swipe to explore weekly flights, flight time, and what makes each city worth the journey.",
+    "title": "New Routes,\nNew Adventures",
+    "description": "Discover exciting new places we're now flying to.",
     "cities": [
       {
         "IATACode": "DXB",
