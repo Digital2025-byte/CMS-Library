@@ -49,6 +49,8 @@ import { buildLegalInformationCardsData } from "@/app/cmsComponents/LegalInforma
 import { buildLegalBodyTermsData } from "@/app/cmsComponents/LegalBodyTerms/utils/data";
 import { buildLegalBodyCookiesData } from "@/app/cmsComponents/LegalBodyCookies/utils/data";
 import { buildLegalBodyPrivacyPolicyData } from "@/app/cmsComponents/LegalBodyPrivacyPolicy/utils/data";
+import { buildFormHeaderData } from "@/app/cmsComponents/FormHeader/utils/data";
+import { buildFormFooterData } from "@/app/cmsComponents/FormFooter/utils/data";
 import { isRtl } from "@/i18n/settings";
 
 export default function useCmsDemoData() {
@@ -109,5 +111,7 @@ export default function useCmsDemoData() {
     legalBodyTermsData: buildLegalBodyTermsData(t, lang),
     legalBodyCookiesData: buildLegalBodyCookiesData(lang),
     legalBodyPrivacyPolicyData: buildLegalBodyPrivacyPolicyData(lang),
+    formHeaderData: buildFormHeaderData(t, lang),
+    formFooterData: buildFormFooterData(t, lang),
   };
 }

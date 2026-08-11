@@ -1379,6 +1379,18 @@
       }
     ]
   },
+  "formHeader": {
+    "title": "Please rate your experience",
+    "subtitle": "booking flights online through our website:",
+    "ctaLabel": "Start the survey",
+    "promoAlt": "Flights from UAE to Turkey"
+  },
+  "formFooter": {
+    "followTitle": "Follow us",
+    "followDescription": "Follow the latest news and events on our social channels.",
+    "contactTitle": "Contact information",
+    "copyright": "ⓒ 2026 Fly Cham"
+  },
   "legalInformationHero": {
     "title": "Legal Information",
     "description": "Review FlyCham policies for privacy, cookies, and terms of use."

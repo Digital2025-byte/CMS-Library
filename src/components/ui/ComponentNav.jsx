@@ -61,6 +61,8 @@ export const COMPONENT_NAV_ITEMS = [
   { id: "legal-body-terms", label: "LegalBodyTerms" },
   { id: "legal-body-cookies", label: "LegalBodyCookies" },
   { id: "legal-body-privacy-policy", label: "LegalBodyPrivacyPolicy" },
+  { id: "form-header", label: "FormHeader" },
+  { id: "form-footer", label: "FormFooter" },
 ];
 
 export default function ComponentNav({

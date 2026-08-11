@@ -93,6 +93,12 @@ export const IDEA_GROUPS = [
     sectionIds: ["map-info", "destinations-map"],
   },
   {
+    slug: "form",
+    label: "Form",
+    description: "Survey form header and footer.",
+    sectionIds: ["form-header", "form-footer"],
+  },
+  {
     slug: "legal",
     label: "Legal",
     description: "Privacy, cookies, and terms content.",
@@ -155,6 +161,8 @@ export const HOME_SECTION_IDS = [
   "legal-body-terms",
   "legal-body-cookies",
   "legal-body-privacy-policy",
+  "form-header",
+  "form-footer",
 ];
 
 export function getIdeaGroup(slug) {

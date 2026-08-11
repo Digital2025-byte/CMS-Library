@@ -91,6 +91,10 @@ import LegalBodyCookies from "@/app/cmsComponents/LegalBodyCookies";
 import LegalBodyCookiesContainer from "@/app/cmsComponents/LegalBodyCookies/components/LegalBodyCookiesContainer";
 import LegalBodyPrivacyPolicy from "@/app/cmsComponents/LegalBodyPrivacyPolicy";
 import LegalBodyPrivacyPolicyContainer from "@/app/cmsComponents/LegalBodyPrivacyPolicy/components/LegalBodyPrivacyPolicyContainer";
+import FormHeader from "@/app/cmsComponents/FormHeader";
+import FormHeaderContainer from "@/app/cmsComponents/FormHeader/components/FormHeaderContainer";
+import FormFooter from "@/app/cmsComponents/FormFooter";
+import FormFooterContainer from "@/app/cmsComponents/FormFooter/components/FormFooterContainer";
 
 const SECTION_RENDERERS = {
   "full-height-header-with-text": ({ lang, dir, fullHeightHeaderWithTextData }) => (
@@ -433,6 +437,16 @@ const SECTION_RENDERERS = {
     <LegalBodyPrivacyPolicyContainer lang={lang} dir={dir}>
       <LegalBodyPrivacyPolicy lang={lang} data={legalBodyPrivacyPolicyData} />
     </LegalBodyPrivacyPolicyContainer>
+  ),
+  "form-header": ({ lang, dir, formHeaderData }) => (
+    <FormHeaderContainer lang={lang} dir={dir}>
+      <FormHeader lang={lang} data={formHeaderData} posParams="gb" />
+    </FormHeaderContainer>
+  ),
+  "form-footer": ({ lang, dir, formFooterData }) => (
+    <FormFooterContainer lang={lang} dir={dir}>
+      <FormFooter lang={lang} data={formFooterData} />
+    </FormFooterContainer>
   ),
 };
 
