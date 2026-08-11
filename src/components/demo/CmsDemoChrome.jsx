@@ -19,11 +19,11 @@ export default function CmsDemoChrome({
       <div
         className={`${
           overlay
-            ? "absolute inset-x-0 top-0 w-full pt-4"
-            : "sticky top-0 border-b border-200 bg-background/95 py-3 backdrop-blur"
+            ? "absolute inset-x-0 top-0 w-full overflow-visible pt-4"
+            : "sticky top-0 overflow-visible border-b border-200 bg-background/95 py-3 backdrop-blur"
         } z-50`}
       >
-        <PageContentContainer className="flex items-center justify-between gap-3">
+        <PageContentContainer className="relative z-[60] flex items-center justify-between gap-3 overflow-visible">
           <IdeaNav tone={overlay ? "light" : "dark"} />
           <div className="flex shrink-0 items-center justify-end gap-2">
             <ComponentNav items={navItems} />

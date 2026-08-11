@@ -168,3 +168,17 @@ export const HOME_SECTION_IDS = [
 export function getIdeaGroup(slug) {
   return IDEA_GROUPS.find((group) => group.slug === slug) || null;
 }
+
+export function getIdeaGroupForSection(sectionId) {
+  return (
+    IDEA_GROUPS.find((group) => group.sectionIds.includes(sectionId)) || null
+  );
+}
+
+export function getDocsHref(sectionId) {
+  return `/docs/${sectionId}`;
+}
+
+export function isKnownSectionId(sectionId) {
+  return HOME_SECTION_IDS.includes(sectionId);
+}
