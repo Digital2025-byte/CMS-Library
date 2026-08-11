@@ -81,6 +81,8 @@ import DestinationsMap from "@/app/cmsComponents/DestinationsMap";
 import DestinationsMapContainer from "@/app/cmsComponents/DestinationsMap/components/DestinationsMapContainer";
 import DestinationsCities from "@/app/cmsComponents/DestinationsCities";
 import DestinationsCitiesContainer from "@/app/cmsComponents/DestinationsCities/components/DestinationsCitiesContainer";
+import LegalInformationHero from "@/app/cmsComponents/LegalInformationHero";
+import LegalInformationHeroContainer from "@/app/cmsComponents/LegalInformationHero/components/LegalInformationHeroContainer";
 import LegalInformationCards from "@/app/cmsComponents/LegalInformationCards";
 import LegalInformationCardsContainer from "@/app/cmsComponents/LegalInformationCards/components/LegalInformationCardsContainer";
 import LegalBodyTerms from "@/app/cmsComponents/LegalBodyTerms";
@@ -402,6 +404,11 @@ const SECTION_RENDERERS = {
     <CarouselItemContainer lang={lang} dir={dir}>
       <CarouselItem lang={lang} data={carouselItemData} posParams="gb" />
     </CarouselItemContainer>
+  ),
+  "legal-information-hero": ({ lang, dir, legalInformationHeroData }) => (
+    <LegalInformationHeroContainer lang={lang} dir={dir}>
+      <LegalInformationHero lang={lang} data={legalInformationHeroData} />
+    </LegalInformationHeroContainer>
   ),
   "legal-information-cards": ({ lang, dir, legalInformationCardsData }) => (
     <LegalInformationCardsContainer lang={lang} dir={dir}>

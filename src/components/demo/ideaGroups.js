@@ -97,6 +97,7 @@ export const IDEA_GROUPS = [
     label: "Legal",
     description: "Privacy, cookies, and terms content.",
     sectionIds: [
+      "legal-information-hero",
       "legal-information-cards",
       "legal-body-terms",
       "legal-body-cookies",
@@ -149,6 +150,7 @@ export const HOME_SECTION_IDS = [
   "destinations-map",
   "destinations-cities",
   "carousel-item",
+  "legal-information-hero",
   "legal-information-cards",
   "legal-body-terms",
   "legal-body-cookies",

@@ -56,6 +56,7 @@ export const COMPONENT_NAV_ITEMS = [
   { id: "carousel-item", label: "CarouselItem" },
   { id: "destinations-map", label: "DestinationsMap" },
   { id: "destinations-cities", label: "DestinationsCities" },
+  { id: "legal-information-hero", label: "LegalInformationHero" },
   { id: "legal-information-cards", label: "LegalInformationCards" },
   { id: "legal-body-terms", label: "LegalBodyTerms" },
   { id: "legal-body-cookies", label: "LegalBodyCookies" },

@@ -1379,6 +1379,10 @@
       }
     ]
   },
+  "legalInformationHero": {
+    "title": "Legal Information",
+    "description": "Review FlyCham policies for privacy, cookies, and terms of use."
+  },
   "legalInformationCards": {
     "cards": [
       {

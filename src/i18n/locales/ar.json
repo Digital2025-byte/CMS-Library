@@ -1379,6 +1379,10 @@
       }
     ]
   },
+  "legalInformationHero": {
+    "title": "المعلومات القانونية",
+    "description": "اطلع على سياسات فلاي شام للخصوصية وملفات تعريف الارتباط وشروط الاستخدام."
+  },
   "legalInformationCards": {
     "cards": [
       {
