@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import dynamic from "next/dynamic";
+import PageContentContainer from "@/components/layout/PageContentContainer";
 import DestinationsCities from "./DestinationsCities";
 import DestinationsMapOverlays from "./DestinationsMapOverlays";
 import {
@@ -250,8 +251,8 @@ export default function DestinationsMapPanel({
   }
 
   return (
-    <section className="relative flex items-center justify-center bg-primary-800 px-4 py-8">
-      <div className="relative z-0 h-[500px] w-full max-w-7xl">
+    <section className="relative flex items-center justify-center bg-primary-800 py-8">
+      <PageContentContainer className="relative z-0 h-[500px]">
         <DestinationsMapCanvas
           mapTarget={mapTarget}
           onMoveEnd={() => {
@@ -321,7 +322,7 @@ export default function DestinationsMapPanel({
             </div>
           </div>
         ) : null}
-      </div>
+      </PageContentContainer>
     </section>
   );
 }

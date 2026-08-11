@@ -3,6 +3,7 @@
 import { useMemo, useRef, useState } from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import PageContentContainer from "@/components/layout/PageContentContainer";
 import useIsMobile from "@/hooks/useIsMobile";
 import CarouselItemTitle from "./CarouselItemTitle";
 import CarouselItemSlider from "./CarouselItemSlider";
@@ -68,8 +69,8 @@ export default function CarouselItemPanel({
       dir={lang === "ar" ? "rtl" : "ltr"}
       className="flex items-start justify-center bg-primary-800"
     >
-      <div className="mb-8 grid w-full max-w-7xl grid-cols-1 gap-0 lg:grid-cols-1">
-        <div className="mt-1 px-0 p-3">
+      <PageContentContainer className="mb-8">
+        <div className="mt-1 py-3">
           <CarouselItemTitle title={content?.title} />
           <CarouselItemSlider
             sliderRef={sliderRef}
@@ -87,7 +88,7 @@ export default function CarouselItemPanel({
             onGoToPage={goToPage}
           />
         </div>
-      </div>
+      </PageContentContainer>
     </section>
   );
 }
