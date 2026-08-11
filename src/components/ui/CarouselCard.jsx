@@ -166,9 +166,10 @@ export default function CarouselCard({
             <Button
               href={`/${posParams}/${lang}/flight-schedule${IATACode ? `?to=${IATACode}` : ""
                 }`}
-              label={lang === "ar" ? "تحقق من الرحلات" : "Check flights"}
-              className="pointer-events-auto relative z-20 shrink-0 -translate-y-1/2 border-main bg-main px-3 py-2 text-50 shadow-md hover:border-50 hover:bg-50 hover:text-main sm:px-4 lg:px-5"
+              label={lang === "ar" ? "احجز الان" : "Book now"}
+              className="pointer-events-auto relative z-20 shrink-0 -translate-y-1/2 !border-main !bg-main !p-3    hover:text-main "
               onClick={(event) => event.stopPropagation()}
+              variant="primary"
             />
           </div>
 

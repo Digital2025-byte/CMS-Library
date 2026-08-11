@@ -517,15 +517,7 @@ export default function Home() {
         <ThreeDImageRingSection lang={lang} data={threeDImageRingSectionData} />
       </div>
 
-      <div id="carousel-item" className="scroll-mt-20">
-        <CarouselItemContainer lang={lang} dir={dir}>
-          <CarouselItem
-            lang={lang}
-            data={carouselItemData}
-            posParams="gb"
-          />
-        </CarouselItemContainer>
-      </div>
+
 
       <div id="destinations-map" className="scroll-mt-20">
         <DestinationsMapContainer lang={lang} dir={dir}>
@@ -541,6 +533,15 @@ export default function Home() {
             posParams="gb"
           />
         </DestinationsCitiesContainer>
+      </div>
+      <div id="carousel-item" className="scroll-mt-20">
+        <CarouselItemContainer lang={lang} dir={dir}>
+          <CarouselItem
+            lang={lang}
+            data={carouselItemData}
+            posParams="gb"
+          />
+        </CarouselItemContainer>
       </div>
     </main>
   );
