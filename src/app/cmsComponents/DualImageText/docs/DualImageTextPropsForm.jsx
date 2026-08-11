@@ -64,8 +64,6 @@ function Checkbox({ checked, onChange, label, hint }) {
 export default function DualImageTextPropsForm({
   flags,
   toggle,
-  useTrainingData,
-  setUseTrainingData,
   bgColor,
   setBgColor,
 }) {
@@ -82,13 +80,6 @@ export default function DualImageTextPropsForm({
             hint={option.hint}
           />
         ))}
-
-        <Checkbox
-          checked={useTrainingData}
-          onChange={() => setUseTrainingData((value) => !value)}
-          label="training content"
-          hint="Use community / training copy instead of destination copy"
-        />
       </div>
 
       <p className={`${typography.caption} mt-4 mb-2 font-medium text-700`}>

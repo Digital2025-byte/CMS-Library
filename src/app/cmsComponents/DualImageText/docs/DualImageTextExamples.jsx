@@ -11,7 +11,11 @@ const DEFAULT_EXTRA_POSITIONS = [
   { bottom: -50, end: 0, horizontal: -60 },
 ];
 
-export default function DualImageTextExamples({ ctx, name = "DualImageText" }) {
+export default function DualImageTextExamples({
+  ctx,
+  name = "DualImageText",
+  variant = "towards",
+}) {
   const { lang, dir } = ctx;
   const drawer = useDrawer();
   const [flags, setFlags] = useState({
@@ -23,7 +27,6 @@ export default function DualImageTextExamples({ ctx, name = "DualImageText" }) {
     showExtraImage: false,
     offsetExtraImage: false,
   });
-  const [useTrainingData, setUseTrainingData] = useState(false);
   const [bgColor, setBgColor] = useState("bg-100");
 
   const toggle = (key) => {
@@ -39,9 +42,8 @@ export default function DualImageTextExamples({ ctx, name = "DualImageText" }) {
     });
   };
 
-  const data = useTrainingData
-    ? ctx.dualImageTrainingData
-    : ctx.dualImageTextData;
+  const data =
+    variant === "training" ? ctx.dualImageTrainingData : ctx.dualImageTextData;
 
   return (
     <div>
@@ -74,8 +76,6 @@ export default function DualImageTextExamples({ ctx, name = "DualImageText" }) {
         <DualImageTextPropsForm
           flags={flags}
           toggle={toggle}
-          useTrainingData={useTrainingData}
-          setUseTrainingData={setUseTrainingData}
           bgColor={bgColor}
           setBgColor={setBgColor}
         />

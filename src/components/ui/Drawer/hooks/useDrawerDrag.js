@@ -2,9 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
-  DRAWER_CLOSE_THRESHOLD,
   DRAWER_DEFAULT_WIDTH,
-  DRAWER_DRAG_THRESHOLD,
   DRAWER_LARGE_BREAKPOINT,
   DRAWER_MAX_RATIO_LARGE,
   DRAWER_MAX_RATIO_SMALL,
@@ -66,7 +64,7 @@ export default function useDrawerDrag({ onOpen, onClose, side = "left" }) {
         const drag = dragRef.current;
         if (!drag) return;
         const next = applyDelta(moveEvent.clientX, drag.startX, drag.startWidth);
-        commitWidth(Math.max(0, Math.min(getMaxWidth(), next)));
+        commitWidth(clampWidth(next));
       };
 
       const onUp = () => {
@@ -74,34 +72,20 @@ export default function useDrawerDrag({ onOpen, onClose, side = "left" }) {
         document.removeEventListener("pointerup", onUp);
         document.removeEventListener("pointercancel", onUp);
 
-        const drag = dragRef.current;
-        const next = widthRef.current;
-        const moved = drag ? Math.abs(next - drag.startWidth) : 0;
+        const next = clampWidth(widthRef.current);
         dragRef.current = null;
         setIsDragging(false);
         document.body.style.userSelect = "";
         document.body.style.cursor = "";
-
-        if (next < DRAWER_CLOSE_THRESHOLD) {
-          if (moved < DRAWER_DRAG_THRESHOLD) {
-            commitWidth(clampWidth(lastOpenWidthRef.current));
-            return;
-          }
-          onClose();
-          commitWidth(lastOpenWidthRef.current);
-          return;
-        }
-
-        const clamped = clampWidth(next);
-        lastOpenWidthRef.current = clamped;
-        commitWidth(clamped);
+        lastOpenWidthRef.current = next;
+        commitWidth(next);
       };
 
       document.addEventListener("pointermove", onMove);
       document.addEventListener("pointerup", onUp);
       document.addEventListener("pointercancel", onUp);
     },
-    [applyDelta, commitWidth, onClose]
+    [applyDelta, commitWidth]
   );
 
   useEffect(() => {

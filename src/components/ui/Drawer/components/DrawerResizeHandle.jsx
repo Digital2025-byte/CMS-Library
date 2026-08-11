@@ -15,8 +15,7 @@ export default function DrawerResizeHandle({ side = "left", onPointerDown }) {
         sideClasses.handle,
       ].join(" ")}
     >
-      <span className="absolute inset-y-0 left-1/2 w-px -translate-x-1/2 bg-200" />
-      <DotsSixVertical size={16} weight="bold" className="relative" aria-hidden />
+      <DotsSixVertical size={16} weight="bold" aria-hidden />
     </div>
   );
 }

@@ -52,7 +52,13 @@ export default function DocsComponentPage() {
         </div>
       </div>
       {isDualImageText ? (
-        <DualImageTextExamples ctx={ctx} name={label} />
+        <DualImageTextExamples
+          ctx={ctx}
+          name={label}
+          variant={
+            slug === "dual-image-text-training" ? "training" : "towards"
+          }
+        />
       ) : (
         <CmsDemoSections ids={[slug]} ctx={ctx} />
       )}
