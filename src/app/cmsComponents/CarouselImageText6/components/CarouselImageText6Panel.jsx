@@ -9,12 +9,15 @@ export default function CarouselImageText6Panel({
   lang = "en",
   title,
   items = [],
+  showTitle = true,
+  showArrows = true,
+  showDots = true,
 }) {
   const isMobile = useIsMobile(1024);
 
   return (
     <section className="min-h-screen bg-secondary-2">
-      {title ? (
+      {showTitle && title ? (
         <h2
           className={`${typography.pageTitle} py-6 text-center font-bold text-white`}
         >
@@ -23,7 +26,12 @@ export default function CarouselImageText6Panel({
       ) : null}
 
       {isMobile ? (
-        <OurValuesMobile lang={lang} items={items} />
+        <OurValuesMobile
+          lang={lang}
+          items={items}
+          showArrows={showArrows}
+          showDots={showDots}
+        />
       ) : (
         <OurValuesDesktop lang={lang} items={items} />
       )}

@@ -7,6 +7,8 @@ const ImageCarouselsWithOppositeScrollDirections = ({
   lang = "en",
   data,
   cId,
+  showTitleDescription = true,
+  showExploreButton = true,
 }) => {
   const {
     title,
@@ -31,6 +33,8 @@ const ImageCarouselsWithOppositeScrollDirections = ({
       topRow={topRow}
       bottomRow={bottomRow}
       cId={cId}
+      showTitleDescription={showTitleDescription}
+      showExploreButton={showExploreButton}
     />
   );
 };

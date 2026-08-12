@@ -7,6 +7,8 @@ export default function SliderPanel({
   slides = [],
   settings = {},
   showArrows = true,
+  showSlideText = true,
+  showButton = true,
   theme,
   imageOverlay,
 }) {
@@ -20,6 +22,8 @@ export default function SliderPanel({
         cId={cId}
         sliderKey={lang}
         showArrows={showArrows}
+        showSlideText={showSlideText}
+        showButton={showButton}
         theme={theme}
         imageOverlay={imageOverlay}
       />

@@ -17,6 +17,8 @@ export default function SliderTrack({
   cId,
   sliderKey,
   showArrows = true,
+  showSlideText = true,
+  showButton = true,
   theme = DEFAULT_THEME,
   imageOverlay,
 }) {
@@ -83,6 +85,8 @@ export default function SliderTrack({
               imageOverlay={imageOverlay}
               isActive={index === activeIndex}
               isPaused={isPaused}
+              showSlideText={showSlideText}
+              showButton={showButton}
             />
           </div>
         ))}

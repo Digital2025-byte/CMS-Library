@@ -10,6 +10,8 @@ export default function SliderSlideContent({
   ctaHref = "",
   posParams = "gb",
   cId,
+  showSlideText = true,
+  showButton = true,
 }) {
   const isRtl = lang === "ar";
   const resolvedHref = ctaHref
@@ -17,6 +19,13 @@ export default function SliderSlideContent({
       ? ctaHref
       : `/${posParams}/${lang}/${String(ctaHref).replace(/^\//, "")}`
     : "";
+
+  const showCopy = showSlideText && (subtitle || title || description);
+  const showCta = showButton && buttonText && resolvedHref;
+
+  if (!showCopy && !showCta) {
+    return null;
+  }
 
   return (
     <div
@@ -30,13 +39,13 @@ export default function SliderSlideContent({
           isRtl ? "text-right" : "text-left"
         }`}
       >
-        {subtitle ? (
+        {showSlideText && subtitle ? (
           <p className={`${typography.sectionDescription} font-medium text-white`}>
             {subtitle}
           </p>
         ) : null}
 
-        {title ? (
+        {showSlideText && title ? (
           <h1
             className={`${typography.sectionTitle} mt-1 font-bold leading-tight text-white sm:mt-2 md:mt-3`}
           >
@@ -44,7 +53,7 @@ export default function SliderSlideContent({
           </h1>
         ) : null}
 
-        {description ? (
+        {showSlideText && description ? (
           <p
             className={`${typography.sectionDescription} mt-2 text-white sm:mt-3`}
           >
@@ -52,7 +61,7 @@ export default function SliderSlideContent({
           </p>
         ) : null}
 
-        {buttonText && resolvedHref ? (
+        {showCta ? (
           <div className="mt-4 sm:mt-5 md:mt-6">
             <Button
               label={buttonText}

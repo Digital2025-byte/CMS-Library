@@ -15,6 +15,8 @@ export default function SliderSlide({
   imageOverlay,
   isActive = false,
   isPaused = false,
+  showSlideText = true,
+  showButton = true,
 }) {
   const videoRef = useRef(null);
 
@@ -95,6 +97,8 @@ export default function SliderSlide({
             description={slide.description}
             buttonText={slide.buttonText}
             ctaHref={slide.ctaHref}
+            showSlideText={showSlideText}
+            showButton={showButton}
           />
         </PageContentContainer>
       </div>

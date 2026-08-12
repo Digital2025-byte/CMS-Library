@@ -44,6 +44,10 @@ const Slider = ({
   settings: parentSettings = {},
   theme = DEFAULT_THEME,
   imageOverlay = DEFAULT_IMAGE_OVERLAY,
+  showArrows = true,
+  showProgress = true,
+  showSlideText = true,
+  showButton = true,
 }) => {
   const { slides, hasContent } = getSliderContent(data, lang);
 
@@ -53,7 +57,11 @@ const Slider = ({
 
   // Keep slick LTR — `rtl: true` breaks the track under document RTL.
   // Arabic text direction is handled on slide content via `dir` / alignment.
-  const settings = mergeSliderSettings(parentSettings);
+  const settings = mergeSliderSettings({
+    ...parentSettings,
+    arrows: showArrows && parentSettings.arrows !== false,
+    dots: showProgress && parentSettings.dots !== false,
+  });
 
   // Single slide: disable loop / autoplay noise
   if (slides.length <= 1) {
@@ -64,7 +72,7 @@ const Slider = ({
     settings.arrows = false;
   }
 
-  const showArrows = settings.arrows !== false && slides.length > 1;
+  const arrowsVisible = settings.arrows !== false && slides.length > 1;
 
   return (
     <SliderPanel
@@ -73,7 +81,9 @@ const Slider = ({
       cId={cId}
       slides={slides}
       settings={settings}
-      showArrows={showArrows}
+      showArrows={arrowsVisible}
+      showSlideText={showSlideText}
+      showButton={showButton}
       theme={theme}
       imageOverlay={imageOverlay}
     />

@@ -3,7 +3,13 @@
 import CarouselImageText6Panel from "./components/CarouselImageText6Panel";
 import { getCarouselImageText6Content } from "./utils/helpers";
 
-const CarouselImageText6 = ({ lang = "en", data }) => {
+const CarouselImageText6 = ({
+  lang = "en",
+  data,
+  showTitle = true,
+  showArrows = true,
+  showDots = true,
+}) => {
   const { title, items, hasContent } = getCarouselImageText6Content(data, lang);
 
   if (!hasContent) {
@@ -11,7 +17,14 @@ const CarouselImageText6 = ({ lang = "en", data }) => {
   }
 
   return (
-    <CarouselImageText6Panel lang={lang} title={title} items={items} />
+    <CarouselImageText6Panel
+      lang={lang}
+      title={title}
+      items={items}
+      showTitle={showTitle}
+      showArrows={showArrows}
+      showDots={showDots}
+    />
   );
 };
 

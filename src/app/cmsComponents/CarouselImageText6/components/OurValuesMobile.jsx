@@ -11,6 +11,8 @@ export default function OurValuesMobile({
   lang = "en",
   items = [],
   autoplay = true,
+  showArrows = true,
+  showDots = true,
 }) {
   const sliderRef = useRef(null);
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -126,42 +128,50 @@ export default function OurValuesMobile({
         </Slider>
       </div>
 
-      <div
-        className="z-10 mt-6 flex items-center justify-center gap-5"
-        dir="ltr"
-      >
-        <button
-          type="button"
-          onClick={() => sliderRef.current?.slickPrev()}
-          aria-label="Previous value"
-          className="cursor-pointer flex h-10 w-10 items-center justify-center rounded-full border border-white transition hover:bg-white/15"
+      {(showArrows || showDots) && canLoop ? (
+        <div
+          className="z-10 mt-6 flex items-center justify-center gap-5"
+          dir="ltr"
         >
-          <ArrowLeft size={18} className="text-white" weight="regular" />
-        </button>
-
-        <div className="flex items-center gap-2">
-          {items.map((_, i) => (
+          {showArrows ? (
             <button
-              key={`dot-${i}`}
               type="button"
-              aria-label={`Go to slide ${i + 1}`}
-              onClick={() => sliderRef.current?.slickGoTo(i)}
-              className={`cursor-pointer rounded-full bg-primary-2 transition-all duration-300 ${
-                i === currentSlide ? "h-2 w-5" : "h-2 w-2 opacity-40"
-              }`}
-            />
-          ))}
-        </div>
+              onClick={() => sliderRef.current?.slickPrev()}
+              aria-label="Previous value"
+              className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-white transition hover:bg-white/15"
+            >
+              <ArrowLeft size={18} className="text-white" weight="regular" />
+            </button>
+          ) : null}
 
-        <button
-          type="button"
-          onClick={() => sliderRef.current?.slickNext()}
-          aria-label="Next value"
-          className="cursor-pointer  flex h-10 w-10 items-center justify-center rounded-full border border-white transition hover:bg-white/15"
-        >
-          <ArrowRight size={18} className="text-white" weight="regular" />
-        </button>
-      </div>
+          {showDots ? (
+            <div className="flex items-center gap-2">
+              {items.map((_, i) => (
+                <button
+                  key={`dot-${i}`}
+                  type="button"
+                  aria-label={`Go to slide ${i + 1}`}
+                  onClick={() => sliderRef.current?.slickGoTo(i)}
+                  className={`cursor-pointer rounded-full bg-primary-2 transition-all duration-300 ${
+                    i === currentSlide ? "h-2 w-5" : "h-2 w-2 opacity-40"
+                  }`}
+                />
+              ))}
+            </div>
+          ) : null}
+
+          {showArrows ? (
+            <button
+              type="button"
+              onClick={() => sliderRef.current?.slickNext()}
+              aria-label="Next value"
+              className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-white transition hover:bg-white/15"
+            >
+              <ArrowRight size={18} className="text-white" weight="regular" />
+            </button>
+          ) : null}
+        </div>
+      ) : null}
     </div>
   );
 }

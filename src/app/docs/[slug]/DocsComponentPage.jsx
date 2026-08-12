@@ -11,10 +11,38 @@ import {
 import useCmsDemoData from "@/components/demo/useCmsDemoData";
 import AccordionWithContentExamples from "@/app/cmsComponents/AccordionWithContent/docs/AccordionWithContentExamples";
 import AccordionWithImagesExamples from "@/app/cmsComponents/AccordionWithImages/docs/AccordionWithImagesExamples";
+import CarouselImageText6Examples from "@/app/cmsComponents/CarouselImageText6/docs/CarouselImageText6Examples";
 import DestinationShowcaseExamples from "@/app/cmsComponents/DestinationShowcase/docs/DestinationShowcaseExamples";
 import DualImageTextExamples from "@/app/cmsComponents/DualImageText/docs/DualImageTextExamples";
+import OppositeScrollExamples from "@/app/cmsComponents/ImageCarouselsWithOppositeScrollDirections/docs/OppositeScrollExamples";
+import SliderExamples from "@/app/cmsComponents/Slider/docs/SliderExamples";
 import { COMPONENT_NAV_ITEMS } from "@/components/ui/ComponentNav";
 import { typography } from "@/styles/typography";
+
+const DOCS_EXAMPLES = {
+  "dual-image-text": (ctx, label) => (
+    <DualImageTextExamples ctx={ctx} name={label} variant="towards" />
+  ),
+  "dual-image-text-training": (ctx, label) => (
+    <DualImageTextExamples ctx={ctx} name={label} variant="training" />
+  ),
+  "accordion-with-content": (ctx, label) => (
+    <AccordionWithContentExamples ctx={ctx} name={label} />
+  ),
+  "accordion-with-images": (ctx, label) => (
+    <AccordionWithImagesExamples ctx={ctx} name={label} />
+  ),
+  "destination-showcase": (ctx, label) => (
+    <DestinationShowcaseExamples ctx={ctx} name={label} />
+  ),
+  slider: (ctx, label) => <SliderExamples ctx={ctx} name={label} />,
+  "image-carousels-with-opposite-scroll": (ctx, label) => (
+    <OppositeScrollExamples ctx={ctx} name={label} />
+  ),
+  "carousel-image-text-6": (ctx, label) => (
+    <CarouselImageText6Examples ctx={ctx} name={label} />
+  ),
+};
 
 export default function DocsComponentPage() {
   const params = useParams();
@@ -25,6 +53,7 @@ export default function DocsComponentPage() {
   const label =
     COMPONENT_NAV_ITEMS.find((item) => item.id === slug)?.label || slug;
   const group = getIdeaGroupForSection(slug);
+  const renderExamples = DOCS_EXAMPLES[slug];
 
   if (!known) {
     return (
@@ -41,12 +70,6 @@ export default function DocsComponentPage() {
     );
   }
 
-  const isDualImageText =
-    slug === "dual-image-text" || slug === "dual-image-text-training";
-  const isAccordionWithContent = slug === "accordion-with-content";
-  const isAccordionWithImages = slug === "accordion-with-images";
-  const isDestinationShowcase = slug === "destination-showcase";
-
   return (
     <CmsDemoChrome overlay={false} sectionIds={[slug]}>
       <div className="border-b border-200 bg-50 px-6 py-10">
@@ -59,20 +82,8 @@ export default function DocsComponentPage() {
           </h1>
         </div>
       </div>
-      {isDualImageText ? (
-        <DualImageTextExamples
-          ctx={ctx}
-          name={label}
-          variant={
-            slug === "dual-image-text-training" ? "training" : "towards"
-          }
-        />
-      ) : isAccordionWithContent ? (
-        <AccordionWithContentExamples ctx={ctx} name={label} />
-      ) : isAccordionWithImages ? (
-        <AccordionWithImagesExamples ctx={ctx} name={label} />
-      ) : isDestinationShowcase ? (
-        <DestinationShowcaseExamples ctx={ctx} name={label} />
+      {renderExamples ? (
+        renderExamples(ctx, label)
       ) : (
         <CmsDemoSections ids={[slug]} ctx={ctx} />
       )}

@@ -11,11 +11,15 @@ export default function OppositeScrollPanel({
   topRow,
   bottomRow,
   cId,
+  showTitleDescription = true,
+  showExploreButton = true,
 }) {
   return (
     <section className={`bg-primary-800 ${styles.sectionContainer}`}>
       <div className="py-10 sm:py-12 lg:py-16">
-        <OppositeScrollHeader title={title} description={description} />
+        {showTitleDescription ? (
+          <OppositeScrollHeader title={title} description={description} />
+        ) : null}
 
         <div
           className={`flex flex-col gap-8 ${styles.carouselContainer}`}
@@ -23,7 +27,9 @@ export default function OppositeScrollPanel({
         >
           <MarqueeRow items={topRow} direction="right" duration={15} />
           <MarqueeRow items={bottomRow} direction="left" duration={15} />
-          <ExploreOverlay label={exploreLabel} href={exploreHref} cId={cId} />
+          {showExploreButton ? (
+            <ExploreOverlay label={exploreLabel} href={exploreHref} cId={cId} />
+          ) : null}
         </div>
       </div>
     </section>
