@@ -1,4 +1,4 @@
-import ph1 from "@/assets/HeaderWithCityInfo/ph1.png";
+import ph1 from "@/assets/HeaderWithCityInfo/ph1.webp";
 
 const toUrl = (asset) => (typeof asset === "string" ? asset : asset?.src || "");
 

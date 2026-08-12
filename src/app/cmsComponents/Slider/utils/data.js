@@ -1,6 +1,6 @@
 import ph1 from "@/assets/header/ph1.webp";
-import ph2 from "@/assets/header/ph2.png";
-import ph3 from "@/assets/header/ph3.png";
+import ph2 from "@/assets/header/ph2.webp";
+import ph3 from "@/assets/header/ph3.webp";
 
 const toUrl = (asset) => (typeof asset === "string" ? asset : asset?.src || "");
 

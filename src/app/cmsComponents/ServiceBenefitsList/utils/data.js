@@ -1,4 +1,4 @@
-import bannerImage from "@/assets/banner.jpg";
+import bannerImage from "@/assets/banner.webp";
 
 const bannerUrl =
   typeof bannerImage === "string" ? bannerImage : bannerImage.src;

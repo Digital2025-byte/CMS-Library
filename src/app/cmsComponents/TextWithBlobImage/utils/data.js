@@ -1,4 +1,4 @@
-import blobImage from "@/assets/Text-With-Blob-Image.png";
+import blobImage from "@/assets/Text-With-Blob-Image.webp";
 
 /**
  * Builds CMS-shaped TextWithBlobImage data from i18next translations.

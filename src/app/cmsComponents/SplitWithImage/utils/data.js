@@ -1,5 +1,5 @@
 import plane from "@/assets/splitWithImage/plane.png";
-import sky from "@/assets/splitWithImage/sky.png";
+import sky from "@/assets/splitWithImage/sky.webp";
 
 const toUrl = (asset) => (typeof asset === "string" ? asset : asset.src);
 

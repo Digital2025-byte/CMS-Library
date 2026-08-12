@@ -1,4 +1,4 @@
-import ph1 from "@/assets/UpperRightThreeImages/ph1.png";
+import ph1 from "@/assets/UpperRightThreeImages/ph1.webp";
 import ph2 from "@/assets/UpperRightThreeImages/ph2.png";
 import ph3 from "@/assets/UpperRightThreeImages/ph3.png";
 

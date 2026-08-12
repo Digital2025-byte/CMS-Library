@@ -1,4 +1,4 @@
-import travelHeader from "@/assets/travelHeader.png";
+import travelHeader from "@/assets/travelHeader.webp";
 
 const travelHeaderUrl =
   typeof travelHeader === "string" ? travelHeader : travelHeader.src;

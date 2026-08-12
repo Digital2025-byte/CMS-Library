@@ -1,7 +1,7 @@
 import Image from "next/image";
 import blobMask from "@/assets/blob-mask.png";
 import blobTicks from "@/assets/blob-ticks.png";
-import blobImage from "@/assets/Text-With-Blob-Image.png";
+import blobImage from "@/assets/Text-With-Blob-Image.webp";
 
 const blobMaskUrl = typeof blobMask === "string" ? blobMask : blobMask.src;
 
