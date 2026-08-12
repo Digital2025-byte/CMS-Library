@@ -10,6 +10,7 @@ import {
 } from "@/components/demo/ideaGroups";
 import useCmsDemoData from "@/components/demo/useCmsDemoData";
 import AccordionWithContentExamples from "@/app/cmsComponents/AccordionWithContent/docs/AccordionWithContentExamples";
+import AccordionWithImagesExamples from "@/app/cmsComponents/AccordionWithImages/docs/AccordionWithImagesExamples";
 import DestinationShowcaseExamples from "@/app/cmsComponents/DestinationShowcase/docs/DestinationShowcaseExamples";
 import DualImageTextExamples from "@/app/cmsComponents/DualImageText/docs/DualImageTextExamples";
 import { COMPONENT_NAV_ITEMS } from "@/components/ui/ComponentNav";
@@ -43,6 +44,7 @@ export default function DocsComponentPage() {
   const isDualImageText =
     slug === "dual-image-text" || slug === "dual-image-text-training";
   const isAccordionWithContent = slug === "accordion-with-content";
+  const isAccordionWithImages = slug === "accordion-with-images";
   const isDestinationShowcase = slug === "destination-showcase";
 
   return (
@@ -67,6 +69,8 @@ export default function DocsComponentPage() {
         />
       ) : isAccordionWithContent ? (
         <AccordionWithContentExamples ctx={ctx} name={label} />
+      ) : isAccordionWithImages ? (
+        <AccordionWithImagesExamples ctx={ctx} name={label} />
       ) : isDestinationShowcase ? (
         <DestinationShowcaseExamples ctx={ctx} name={label} />
       ) : (

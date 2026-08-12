@@ -6,14 +6,20 @@ import AccordionImagesPanel from "./components/AccordionImagesPanel";
 import { useAccordionImages } from "./hooks/useAccordionImages";
 import { getAccordionImagesContent } from "./utils/helpers";
 
-const AccordionWithImages = ({ data }) => {
+const AccordionWithImages = ({
+  data,
+  showTitleDescription = true,
+  showImagePanel = true,
+}) => {
   const { title, description, items } = getAccordionImagesContent(data);
   const { openIndex, containerRef, setItemRef, toggleAccordion } =
     useAccordionImages(items);
 
   return (
     <>
-      <AccordionImagesHeader title={title} description={description} />
+      {showTitleDescription ? (
+        <AccordionImagesHeader title={title} description={description} />
+      ) : null}
 
       <section className="flex flex-col gap-6 py-2 sm:gap-8 lg:flex-row lg:gap-12 lg:py-4">
         <div className="flex w-full flex-col lg:w-1/2">
@@ -35,9 +41,11 @@ const AccordionWithImages = ({ data }) => {
           </div>
         </div>
 
-        <div className="hidden w-full items-center justify-center sm:flex lg:w-1/2">
-          <AccordionImagesPanel items={items} activeIndex={openIndex} />
-        </div>
+        {showImagePanel ? (
+          <div className="hidden w-full items-center justify-center sm:flex lg:w-1/2">
+            <AccordionImagesPanel items={items} activeIndex={openIndex} />
+          </div>
+        ) : null}
       </section>
     </>
   );

@@ -8,6 +8,7 @@ import { getAccordionContent } from "./utils/helpers";
 
 const AccordionWithContent = ({
   data,
+  showTitleDescription = true,
   showButton = true,
   buttonPosition = "center",
 }) => {
@@ -17,7 +18,9 @@ const AccordionWithContent = ({
 
   return (
     <>
-      <AccordionHeader title={title} description={description} />
+      {showTitleDescription ? (
+        <AccordionHeader title={title} description={description} />
+      ) : null}
 
       <div className="flex flex-col gap-3 sm:gap-4">
         {items.map((item, index) => (

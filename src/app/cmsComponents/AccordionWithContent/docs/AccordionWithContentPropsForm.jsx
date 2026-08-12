@@ -24,26 +24,33 @@ function Checkbox({ checked, onChange, label, hint }) {
 }
 
 export default function AccordionWithContentPropsForm({
-  showButton,
-  setShowButton,
+  flags,
+  toggle,
   buttonPosition,
   setButtonPosition,
 }) {
   return (
-    <fieldset>
+    <fieldset className="flex flex-col gap-5">
       <legend className="sr-only">AccordionWithContent props</legend>
+
       <div className="flex flex-col gap-2">
         <Checkbox
-          checked={showButton}
-          onChange={() => setShowButton((value) => !value)}
+          checked={flags.showTitleDescription}
+          onChange={() => toggle("showTitleDescription")}
+          label="showTitleDescription"
+          hint="Section title and description"
+        />
+        <Checkbox
+          checked={flags.showButton}
+          onChange={() => toggle("showButton")}
           label="showButton"
-          hint="Show the CTA under the accordion items"
+          hint="CTA under the accordion items"
         />
       </div>
 
-      {showButton ? (
-        <>
-          <p className={`${typography.caption} mt-4 mb-2 font-medium text-700`}>
+      {flags.showButton ? (
+        <div>
+          <p className={`${typography.caption} mb-2 font-medium text-700`}>
             buttonPosition
           </p>
           <div className="flex flex-wrap gap-2">
@@ -68,7 +75,7 @@ export default function AccordionWithContentPropsForm({
               </label>
             ))}
           </div>
-        </>
+        </div>
       ) : null}
     </fieldset>
   );

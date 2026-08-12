@@ -12,15 +12,23 @@ export default function AccordionWithContentExamples({
 }) {
   const { lang, dir, accordionData } = ctx;
   const drawer = useDrawer();
-  const [showButton, setShowButton] = useState(true);
+  const [flags, setFlags] = useState({
+    showTitleDescription: true,
+    showButton: true,
+  });
   const [buttonPosition, setButtonPosition] = useState("center");
+
+  const toggle = (key) => {
+    setFlags((current) => ({ ...current, [key]: !current[key] }));
+  };
 
   return (
     <div>
       <AccordionContainer lang={lang} dir={dir}>
         <AccordionWithContent
           data={accordionData}
-          showButton={showButton}
+          showTitleDescription={flags.showTitleDescription}
+          showButton={flags.showButton}
           buttonPosition={buttonPosition}
         />
       </AccordionContainer>
@@ -35,8 +43,8 @@ export default function AccordionWithContentExamples({
         title={name}
       >
         <AccordionWithContentPropsForm
-          showButton={showButton}
-          setShowButton={setShowButton}
+          flags={flags}
+          toggle={toggle}
           buttonPosition={buttonPosition}
           setButtonPosition={setButtonPosition}
         />
