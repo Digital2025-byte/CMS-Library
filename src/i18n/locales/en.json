@@ -1341,6 +1341,39 @@
       { "fromCityId": "kwi", "toCityId": "dxb" }
     ]
   },
+  "destinationShowcase": {
+    "title": "Discover our destinations",
+    "description": "Explore featured cities and find your next journey with FlyCham.",
+    "viewAllLabel": "View all destinations",
+    "viewAllHref": "/gb/en/our-destinations",
+    "exploreLabel": "Explore",
+    "cities": [
+      {
+        "cityName": "Dubai",
+        "slug": "dubai",
+        "countryName": "UAE",
+        "description": "A skyline of ambition, desert light, and a gateway between continents."
+      },
+      {
+        "cityName": "Baghdad",
+        "slug": "baghdad",
+        "countryName": "Iraq",
+        "description": "Rivers, history, and a living capital with regular weekly flights."
+      },
+      {
+        "cityName": "Beirut",
+        "slug": "beirut",
+        "countryName": "Lebanon",
+        "description": "Mediterranean evenings, mountain air, and a city that welcomes you."
+      },
+      {
+        "cityName": "Doha",
+        "slug": "doha",
+        "countryName": "Qatar",
+        "description": "Waterfront museums, desert horizons, and a modern hub on the Gulf."
+      }
+    ]
+  },
   "destinationsCities": {
     "title": "New Routes,\nNew Adventures",
     "description": "Discover exciting new places we're now flying to.",

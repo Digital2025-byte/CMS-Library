@@ -1341,6 +1341,39 @@
       { "fromCityId": "kwi", "toCityId": "dxb" }
     ]
   },
+  "destinationShowcase": {
+    "title": "اكتشف وجهاتنا",
+    "description": "استكشف المدن المميزة واعثر على رحلتك القادمة مع فلاي شام.",
+    "viewAllLabel": "عرض كل الوجهات",
+    "viewAllHref": "/gb/ar/our-destinations",
+    "exploreLabel": "اكتشف",
+    "cities": [
+      {
+        "cityName": "دبي",
+        "slug": "dubai",
+        "countryName": "الإمارات",
+        "description": "أفق طموح وضوء صحراوي وبوابة بين القارات."
+      },
+      {
+        "cityName": "بغداد",
+        "slug": "baghdad",
+        "countryName": "العراق",
+        "description": "أنهار وتاريخ وعاصمة نابضة برحلات أسبوعية منتظمة."
+      },
+      {
+        "cityName": "بيروت",
+        "slug": "beirut",
+        "countryName": "لبنان",
+        "description": "أمسيات متوسطية وهواء جبلي ومدينة تستقبلك."
+      },
+      {
+        "cityName": "الدوحة",
+        "slug": "doha",
+        "countryName": "قطر",
+        "description": "متاحف على الواجهة البحرية وآفاق صحراوية ومركز حديث على الخليج."
+      }
+    ]
+  },
   "destinationsCities": {
     "title": "مسارات جديدة،\nمغامرات جديدة",
     "description": "اكتشف أماكن جديدة مثيرة نطير إليها الآن.",

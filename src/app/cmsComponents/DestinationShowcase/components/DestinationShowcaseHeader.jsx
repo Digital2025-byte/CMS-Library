@@ -1,0 +1,49 @@
+import Link from "next/link";
+import { CaretLeftIcon, CaretRightIcon } from "@phosphor-icons/react";
+import { typography } from "@/styles/typography";
+
+export default function DestinationShowcaseHeader({
+  title,
+  description,
+  viewAllLabel,
+  viewAllHref,
+  lang = "en",
+}) {
+  if (!title && !description) return null;
+
+  return (
+    <div className="mb-6 flex flex-col gap-4 sm:mb-8">
+      {title ? (
+        <h2
+          className={`${typography.sectionTitle} font-semibold text-primary-1`}
+        >
+          {title}
+        </h2>
+      ) : null}
+
+      <div className="flex w-full flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+        {description ? (
+          <p
+            className={`${typography.sectionDescription} max-w-2xl text-700`}
+          >
+            {description}
+          </p>
+        ) : null}
+
+        {viewAllLabel && viewAllHref ? (
+          <Link
+            href={viewAllHref}
+            className={`${typography.button} inline-flex shrink-0 items-center gap-2 font-semibold text-secondary-2 hover:text-primary-1`}
+          >
+            {viewAllLabel}
+            {lang === "ar" ? (
+              <CaretLeftIcon size={16} weight="bold" aria-hidden />
+            ) : (
+              <CaretRightIcon size={16} weight="bold" aria-hidden />
+            )}
+          </Link>
+        ) : null}
+      </div>
+    </div>
+  );
+}

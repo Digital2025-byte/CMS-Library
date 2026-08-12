@@ -44,6 +44,7 @@ import { buildThreeDImageRingSectionData } from "@/app/cmsComponents/ThreeDImage
 import { buildCarouselItemData } from "@/app/cmsComponents/CarouselItem/utils/data";
 import { buildDestinationsMapData } from "@/app/cmsComponents/DestinationsMap/utils/data";
 import { buildDestinationsCitiesData } from "@/app/cmsComponents/DestinationsCities/utils/data";
+import { buildDestinationShowcaseData } from "@/app/cmsComponents/DestinationShowcase/utils/data";
 import { buildLegalInformationHeroData } from "@/app/cmsComponents/LegalInformationHero/utils/data";
 import { buildLegalInformationCardsData } from "@/app/cmsComponents/LegalInformationCards/utils/data";
 import { buildLegalBodyTermsData } from "@/app/cmsComponents/LegalBodyTerms/utils/data";
@@ -106,6 +107,7 @@ export default function useCmsDemoData() {
     carouselItemData: buildCarouselItemData(t, lang),
     destinationsMapData: buildDestinationsMapData(t, lang),
     destinationsCitiesData: buildDestinationsCitiesData(t, lang),
+    destinationShowcaseData: buildDestinationShowcaseData(t, lang),
     legalInformationHeroData: buildLegalInformationHeroData(t, lang),
     legalInformationCardsData: buildLegalInformationCardsData(t, lang),
     legalBodyTermsData: buildLegalBodyTermsData(t, lang),
