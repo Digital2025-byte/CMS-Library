@@ -23,9 +23,9 @@ export default function CmsDemoChrome({
             : "sticky top-0 overflow-visible border-b border-200 bg-background/95 py-3 backdrop-blur"
         } z-50`}
       >
-        <PageContentContainer className="relative z-[60] flex items-center justify-between gap-3 overflow-visible">
+        <PageContentContainer className="relative z-[60] flex items-center justify-between gap-2 overflow-visible sm:gap-3">
           <IdeaNav tone={overlay ? "light" : "dark"} />
-          <div className="flex shrink-0 items-center justify-end gap-2">
+          <div className="flex shrink-0 items-center justify-end gap-1.5 sm:gap-2">
             <ComponentNav items={navItems} />
             <LanguageSwitcher />
           </div>
