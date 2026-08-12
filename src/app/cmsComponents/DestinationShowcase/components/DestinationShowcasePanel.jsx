@@ -39,9 +39,9 @@ export default function DestinationShowcasePanel({
         activeIndex={slider.activeIndex}
         direction={slider.direction}
         virtualIndex={slider.virtualIndex}
+        jumping={slider.jumping}
         infiniteList={slider.infiniteList}
         destinationsLength={destinations.length}
-        sliderRef={slider.sliderRef}
         onPrev={slider.handlePrev}
         onNext={slider.handleNext}
         onCardClick={slider.handleCardClick}

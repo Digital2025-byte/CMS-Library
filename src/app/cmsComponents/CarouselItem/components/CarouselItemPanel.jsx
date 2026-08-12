@@ -21,6 +21,9 @@ export default function CarouselItemPanel({
   content,
   posParams = "gb",
   cId,
+  showTitle = true,
+  showArrows = true,
+  showDots = true,
 }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const sliderRef = useRef(null);
@@ -71,7 +74,7 @@ export default function CarouselItemPanel({
     >
       <PageContentContainer className="mb-8">
         <div className="mt-1 py-3">
-          <CarouselItemTitle title={content?.title} />
+          {showTitle ? <CarouselItemTitle title={content?.title} /> : null}
           <CarouselItemSlider
             sliderRef={sliderRef}
             settings={settings}
@@ -86,6 +89,8 @@ export default function CarouselItemPanel({
             onPrev={handlePrev}
             onNext={handleNext}
             onGoToPage={goToPage}
+            showArrows={showArrows}
+            showDots={showDots}
           />
         </div>
       </PageContentContainer>

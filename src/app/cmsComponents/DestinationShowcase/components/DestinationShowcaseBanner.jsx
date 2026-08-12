@@ -18,9 +18,9 @@ export default function DestinationShowcaseBanner({
   activeIndex,
   direction,
   virtualIndex,
+  jumping,
   infiniteList,
   destinationsLength,
-  sliderRef,
   onPrev,
   onNext,
   onCardClick,
@@ -83,9 +83,8 @@ export default function DestinationShowcaseBanner({
         <DestinationShowcaseCards
           infiniteList={infiniteList}
           destinationsLength={destinationsLength}
-          activeIndex={activeIndex}
           virtualIndex={virtualIndex}
-          sliderRef={sliderRef}
+          jumping={jumping}
           lang={lang}
           onCardClick={onCardClick}
         />

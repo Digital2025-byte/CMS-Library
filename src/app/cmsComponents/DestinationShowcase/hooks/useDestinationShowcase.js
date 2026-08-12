@@ -1,111 +1,108 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import {
-  CLONE_COUNT,
-  JUMP_DELAY_MS,
-  START_DELAY_MS,
-  TRANSITION_MS,
-} from "../utils/constants";
-import { buildInfiniteList, toActualIndex } from "../utils/helpers";
+import { useCallback, useMemo, useRef, useState } from "react";
+import { MOVE_DURATION_MS } from "../utils/constants";
+import { buildInfiniteList } from "../utils/helpers";
 
 /**
- * Infinite destination slider state (virtual index + seamless jumps).
+ * Infinite destination slider.
+ *
+ * The track holds THREE identical copies of the destinations
+ * ([A B C][A B C][A B C]). We always navigate inside the middle copy and, once
+ * a slide settles, instantly (transition-less) recenter into it whenever we've
+ * drifted into a side copy. Because every copy is identical, that recenter is
+ * invisible — so the carousel loops forever in both directions with no empty
+ * slot to "wait" for at the last item, and no visible snap.
  */
 export default function useDestinationShowcase(destinations = []) {
   const length = destinations.length;
+  // Full-length clones → 3 identical copies, so the viewport is always filled
+  // on both sides regardless of how many cards are visible at once.
+  const cloneCount = length;
+
   const infiniteList = useMemo(
-    () => buildInfiniteList(destinations, CLONE_COUNT),
-    [destinations]
+    () => buildInfiniteList(destinations, cloneCount),
+    [destinations, cloneCount]
   );
 
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [virtualIndex, setVirtualIndex] = useState(CLONE_COUNT);
-  const [direction, setDirection] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
-  const sliderRef = useRef(null);
-  const isJumpingRef = useRef(false);
+  const [virtualIndex, setVirtualIndex] = useState(cloneCount);
+  const [direction, setDirection] = useState(1);
+  const [jumping, setJumping] = useState(false);
+  const [prevLength, setPrevLength] = useState(length);
 
-  useEffect(() => {
-    if (isJumpingRef.current) return;
-    const next = toActualIndex(virtualIndex, length, CLONE_COUNT);
-    if (next !== activeIndex) setActiveIndex(next);
-  }, [virtualIndex, length, activeIndex]);
+  const isAnimatingRef = useRef(false);
 
-  const jumpToPosition = useCallback(
-    (newIndex) => {
-      if (!sliderRef.current) return;
-      isJumpingRef.current = true;
-      sliderRef.current.style.transition = "none";
-      setVirtualIndex(newIndex);
-      setActiveIndex(toActualIndex(newIndex, length, CLONE_COUNT));
-      setTimeout(() => {
-        if (sliderRef.current) {
-          sliderRef.current.style.transition = "";
-          requestAnimationFrame(() => {
-            isJumpingRef.current = false;
-          });
+  // Reset to the middle copy when the data set changes. React's supported
+  // "adjust state while rendering" pattern (state only, no refs), so it never
+  // triggers a cascading render.
+  if (prevLength !== length) {
+    setPrevLength(length);
+    setVirtualIndex(cloneCount);
+    setJumping(false);
+    setDirection(1);
+  }
+
+  // The real (title / hero) index is derived straight from the virtual
+  // position — a length-sized recenter keeps the same real index, so it never
+  // re-triggers the title animation, and title + cards switch on one render.
+  const activeIndex =
+    length > 0 ? ((virtualIndex % length) + length) % length : 0;
+
+  const step = useCallback(
+    (delta) => {
+      if (!delta || length <= 1 || isAnimatingRef.current) return;
+      isAnimatingRef.current = true;
+      setDirection(delta > 0 ? 1 : -1);
+
+      // Animated slide — the track's CSS transition owns the easing/duration.
+      const target = virtualIndex + delta;
+      setVirtualIndex(target);
+
+      window.setTimeout(() => {
+        // Seamlessly recenter into the middle copy once the slide has settled.
+        // `isAnimatingRef` guarantees nothing else moved the track meanwhile,
+        // so the settled position is exactly `target`.
+        let next = target;
+        if (target >= 2 * length) next = target - length;
+        else if (target < length) next = target + length;
+
+        if (next !== target) {
+          // Kill transitions for the instant jump, restore them after paint.
+          setJumping(true);
+          setVirtualIndex(next);
+          requestAnimationFrame(() =>
+            requestAnimationFrame(() => setJumping(false))
+          );
         }
-      }, START_DELAY_MS);
+
+        isAnimatingRef.current = false;
+      }, MOVE_DURATION_MS);
     },
-    [length]
+    [length, virtualIndex]
   );
 
-  const runTransition = useCallback((nextDirection, updateIndex) => {
-    if (isTransitioning || isJumpingRef.current) return;
-    setIsTransitioning(true);
-    setDirection(nextDirection);
-
-    setTimeout(() => {
-      setVirtualIndex(updateIndex);
-    }, START_DELAY_MS);
-
-    setTimeout(() => {
-      setIsTransitioning(false);
-      setDirection(0);
-    }, TRANSITION_MS);
-  }, [isTransitioning]);
-
-  const handleNext = useCallback(() => {
-    runTransition(1, (prev) => {
-      const next = prev + 1;
-      if (next >= infiniteList.length - CLONE_COUNT) {
-        setTimeout(() => jumpToPosition(CLONE_COUNT), JUMP_DELAY_MS);
-      }
-      return next;
-    });
-  }, [runTransition, infiniteList.length, jumpToPosition]);
-
-  const handlePrev = useCallback(() => {
-    runTransition(-1, (prev) => {
-      const next = prev - 1;
-      if (next < CLONE_COUNT) {
-        setTimeout(
-          () => jumpToPosition(infiniteList.length - CLONE_COUNT - 1),
-          JUMP_DELAY_MS
-        );
-      }
-      return next;
-    });
-  }, [runTransition, infiniteList.length, jumpToPosition]);
+  const handleNext = useCallback(() => step(1), [step]);
+  const handlePrev = useCallback(() => step(-1), [step]);
 
   const handleCardClick = useCallback(
-    (clickedIndex) => {
-      if (isTransitioning || isJumpingRef.current) return;
-      if (clickedIndex === activeIndex) return;
-      const targetVirtualIndex = clickedIndex + CLONE_COUNT;
-      const nextDirection = clickedIndex > activeIndex ? 1 : -1;
-      runTransition(nextDirection, () => targetVirtualIndex);
+    (clickedRealIndex) => {
+      if (length <= 1 || isAnimatingRef.current) return;
+      const currentReal = ((virtualIndex % length) + length) % length;
+      let delta = clickedRealIndex - currentReal;
+      // Take the shortest way around the loop.
+      if (delta > length / 2) delta -= length;
+      else if (delta < -length / 2) delta += length;
+      if (delta !== 0) step(delta);
     },
-    [activeIndex, isTransitioning, runTransition]
+    [length, virtualIndex, step]
   );
 
   return {
     activeIndex,
     virtualIndex,
     direction,
+    jumping,
     infiniteList,
-    sliderRef,
     handleNext,
     handlePrev,
     handleCardClick,

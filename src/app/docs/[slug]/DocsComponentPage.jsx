@@ -11,10 +11,15 @@ import {
 import useCmsDemoData from "@/components/demo/useCmsDemoData";
 import AccordionWithContentExamples from "@/app/cmsComponents/AccordionWithContent/docs/AccordionWithContentExamples";
 import AccordionWithImagesExamples from "@/app/cmsComponents/AccordionWithImages/docs/AccordionWithImagesExamples";
+import CardsCarouselFillImageExamples from "@/app/cmsComponents/CardsCarouselFillImage/docs/CardsCarouselFillImageExamples";
 import CarouselImageText6Examples from "@/app/cmsComponents/CarouselImageText6/docs/CarouselImageText6Examples";
+import CarouselItemExamples from "@/app/cmsComponents/CarouselItem/docs/CarouselItemExamples";
 import DestinationShowcaseExamples from "@/app/cmsComponents/DestinationShowcase/docs/DestinationShowcaseExamples";
+import DestinationsCitiesExamples from "@/app/cmsComponents/DestinationsCities/docs/DestinationsCitiesExamples";
 import DualImageTextExamples from "@/app/cmsComponents/DualImageText/docs/DualImageTextExamples";
 import OppositeScrollExamples from "@/app/cmsComponents/ImageCarouselsWithOppositeScrollDirections/docs/OppositeScrollExamples";
+import RelatedContentCarouselExamples from "@/app/cmsComponents/RelatedContentCarousel/docs/RelatedContentCarouselExamples";
+import ServiceCardsSliderExamples from "@/app/cmsComponents/ServiceCardsSlider/docs/ServiceCardsSliderExamples";
 import SliderExamples from "@/app/cmsComponents/Slider/docs/SliderExamples";
 import { COMPONENT_NAV_ITEMS } from "@/components/ui/ComponentNav";
 import { typography } from "@/styles/typography";
@@ -41,6 +46,21 @@ const DOCS_EXAMPLES = {
   ),
   "carousel-image-text-6": (ctx, label) => (
     <CarouselImageText6Examples ctx={ctx} name={label} />
+  ),
+  "service-cards-slider": (ctx, label) => (
+    <ServiceCardsSliderExamples ctx={ctx} name={label} />
+  ),
+  "related-content-carousel": (ctx, label) => (
+    <RelatedContentCarouselExamples ctx={ctx} name={label} />
+  ),
+  "cards-carousel-fill-image": (ctx, label) => (
+    <CardsCarouselFillImageExamples ctx={ctx} name={label} />
+  ),
+  "carousel-item": (ctx, label) => (
+    <CarouselItemExamples ctx={ctx} name={label} />
+  ),
+  "destinations-cities": (ctx, label) => (
+    <DestinationsCitiesExamples ctx={ctx} name={label} />
   ),
 };
 

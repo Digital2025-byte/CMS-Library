@@ -12,6 +12,9 @@ export default function CarouselItem({
   data,
   posParams = "gb",
   cId,
+  showTitle = true,
+  showArrows = true,
+  showDots = true,
 }) {
   const content = useMemo(
     () => getCarouselItemContent(data, lang),
@@ -28,6 +31,9 @@ export default function CarouselItem({
       content={content}
       posParams={posParams}
       cId={cId}
+      showTitle={showTitle}
+      showArrows={showArrows}
+      showDots={showDots}
     />
   );
 }

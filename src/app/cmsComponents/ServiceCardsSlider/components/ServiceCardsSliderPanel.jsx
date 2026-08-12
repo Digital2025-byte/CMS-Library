@@ -7,6 +7,7 @@ export default function ServiceCardsSliderPanel({
   title,
   description,
   services = [],
+  showTitleDescription = true,
 }) {
   const isRtl = lang === "ar";
 
@@ -20,7 +21,7 @@ export default function ServiceCardsSliderPanel({
       dir={isRtl ? "rtl" : "ltr"}
     >
       <PageContentContainer>
-        {(title || description) && (
+        {showTitleDescription && (title || description) ? (
           <div className="mb-6 md:mb-8">
             {title ? (
               <h2
@@ -37,7 +38,7 @@ export default function ServiceCardsSliderPanel({
               </p>
             ) : null}
           </div>
-        )}
+        ) : null}
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 lg:gap-5">
           {services.map((service, index) => (

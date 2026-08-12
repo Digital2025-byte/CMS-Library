@@ -10,6 +10,7 @@ export default function DestinationsCitiesPanel({
   description = "",
   cities = [],
   posParams = "gb",
+  showTitleDescription = true,
 }) {
   if (!title && !description && !cities.length) {
     return null;
@@ -21,7 +22,11 @@ export default function DestinationsCitiesPanel({
       dir={lang === "ar" ? "rtl" : "ltr"}
     >
       <PageContentContainer className="flex flex-col gap-8 lg:grid lg:grid-cols-[minmax(0,32%)_minmax(0,68%)] lg:items-center lg:gap-10 xl:gap-16">
-        <DestinationsCitiesIntro title={title} description={description} />
+        {showTitleDescription ? (
+          <DestinationsCitiesIntro title={title} description={description} />
+        ) : (
+          <div className="hidden lg:block" />
+        )}
         <DestinationsCitiesStack
           cities={cities}
           lang={lang}

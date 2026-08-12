@@ -105,7 +105,11 @@ export function getDestinationShowcaseContent(
   };
 }
 
-/** Clone edges for seamless infinite slider. */
+/**
+ * Build a seamless infinite track. With `cloneCount === destinations.length`
+ * this yields three identical copies ([A B C][A B C][A B C]), so the slider is
+ * always filled on both sides and can recenter into the middle copy invisibly.
+ */
 export function buildInfiniteList(destinations, cloneCount = 2) {
   if (destinations.length <= 1) return destinations;
   return [
@@ -113,9 +117,4 @@ export function buildInfiniteList(destinations, cloneCount = 2) {
     ...destinations,
     ...destinations.slice(0, cloneCount),
   ];
-}
-
-export function toActualIndex(virtualIndex, length, cloneCount = 2) {
-  if (length <= 0) return 0;
-  return ((virtualIndex - cloneCount) % length + length) % length;
 }

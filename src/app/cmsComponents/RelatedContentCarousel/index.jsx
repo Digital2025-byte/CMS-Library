@@ -15,6 +15,8 @@ const RelatedContentCarousel = ({
   data,
   posParams = "gb",
   cId,
+  showTitleDescription = true,
+  showArrows = true,
 }) => {
   const sliderRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -79,7 +81,9 @@ const RelatedContentCarousel = ({
 
   return (
     <div aria-label={title || "Cards carousel"}>
-      <CarouselHeader title={title} description={description} />
+      {showTitleDescription ? (
+        <CarouselHeader title={title} description={description} />
+      ) : null}
 
       <CarouselSlider
         sliderRef={sliderRef}
@@ -98,7 +102,7 @@ const RelatedContentCarousel = ({
         canGoNext={canGoNext}
         currentIndex={activeIndex}
         totalSlides={cards.length}
-        showNavigation={showNavigation}
+        showNavigation={showArrows && showNavigation}
       />
     </div>
   );

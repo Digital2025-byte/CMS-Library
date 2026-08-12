@@ -10,6 +10,7 @@ export default function DestinationsCities({
   lang = "en",
   data,
   posParams = "gb",
+  showTitleDescription = true,
 }) {
   const { title, description, cities, hasContent } =
     getDestinationsCitiesContent(data, lang);
@@ -25,6 +26,7 @@ export default function DestinationsCities({
       description={description}
       cities={cities}
       posParams={posParams}
+      showTitleDescription={showTitleDescription}
     />
   );
 }

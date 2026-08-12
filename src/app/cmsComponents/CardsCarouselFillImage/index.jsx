@@ -22,6 +22,8 @@ const CardsCarouselFillImage = ({
   data,
   posParams = "gb",
   cId,
+  showTitleDescription = true,
+  showArrows = true,
 }) => {
   const sliderRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -108,7 +110,9 @@ const CardsCarouselFillImage = ({
   return (
     <div aria-label={title || "Cards carousel"}>
       <CardsCarouselFillImageInset>
-        <CarouselHeader title={title} description={description} />
+        {showTitleDescription ? (
+          <CarouselHeader title={title} description={description} />
+        ) : null}
       </CardsCarouselFillImageInset>
 
       <div className="m-0 w-screen max-w-[100vw] ms-[calc(50%-50vw)] px-0">
@@ -133,7 +137,7 @@ const CardsCarouselFillImage = ({
           canGoNext={canGoNext}
           currentIndex={activeIndex}
           totalSlides={cards.length}
-          showNavigation={showNavigation}
+          showNavigation={showArrows && showNavigation}
         />
       </CardsCarouselFillImageInset>
     </div>
