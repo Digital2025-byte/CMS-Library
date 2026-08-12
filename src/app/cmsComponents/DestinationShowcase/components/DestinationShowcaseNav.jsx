@@ -29,7 +29,7 @@ export default function DestinationShowcaseNav({
           <button
             type="button"
             onClick={onPrev}
-            className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-50/50 transition-all hover:border-50 hover:bg-50/10"
+            className="cursor-pointer flex h-10 w-10 items-center justify-center rounded-full border-2 border-50/50 transition-all hover:border-50 hover:bg-50/10"
             aria-label="Previous destination"
           >
             {lang === "ar" ? (
@@ -41,7 +41,7 @@ export default function DestinationShowcaseNav({
           <button
             type="button"
             onClick={onNext}
-            className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-50/50 transition-all hover:border-50 hover:bg-50/10"
+            className="cursor-pointer flex h-10 w-10 items-center justify-center rounded-full border-2 border-50/50 transition-all hover:border-50 hover:bg-50/10"
             aria-label="Next destination"
           >
             {lang === "ar" ? (
