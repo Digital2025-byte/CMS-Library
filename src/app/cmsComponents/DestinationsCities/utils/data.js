@@ -1,7 +1,7 @@
-import ph1 from "@/assets/DestinationCities/ph1.jpg";
-import ph2 from "@/assets/DestinationCities/ph2.jpg";
-import ph3 from "@/assets/DestinationCities/ph3.jpg";
-import ph4 from "@/assets/DestinationCities/ph4.jpg";
+import ph1 from "@/assets/DestinationCities/ph1.webp";
+import ph2 from "@/assets/DestinationCities/ph2.webp";
+import ph3 from "@/assets/DestinationCities/ph3.webp";
+import ph4 from "@/assets/DestinationCities/ph4.webp";
 
 const toUrl = (asset) => (typeof asset === "string" ? asset : asset?.src || "");
 

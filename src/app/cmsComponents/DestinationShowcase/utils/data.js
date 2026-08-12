@@ -2,10 +2,10 @@ import ph1 from "@/assets/DestinationShowcase/ph1.png";
 import ph2 from "@/assets/DestinationShowcase/ph2.png";
 import ph3 from "@/assets/DestinationShowcase/ph3.png";
 import ph4 from "@/assets/DestinationShowcase/ph4.png";
-import heroPh1 from "@/assets/DestinationCities/ph1.jpg";
-import heroPh2 from "@/assets/DestinationCities/ph2.jpg";
-import heroPh3 from "@/assets/DestinationCities/ph3.jpg";
-import heroPh4 from "@/assets/DestinationCities/ph4.jpg";
+import heroPh1 from "@/assets/DestinationCities/ph1.webp";
+import heroPh2 from "@/assets/DestinationCities/ph2.webp";
+import heroPh3 from "@/assets/DestinationCities/ph3.webp";
+import heroPh4 from "@/assets/DestinationCities/ph4.webp";
 
 const toUrl = (asset) => (typeof asset === "string" ? asset : asset?.src || "");
 
