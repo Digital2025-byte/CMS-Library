@@ -11,6 +11,10 @@ export default function DestinationShowcase({
   data,
   posParams = "gb",
   cId,
+  showTitleDescription = true,
+  showViewAll = true,
+  showButton = true,
+  showSliderArrows = true,
 }) {
   const {
     title,
@@ -35,6 +39,10 @@ export default function DestinationShowcase({
       viewAllHref={viewAllHref}
       exploreLabel={exploreLabel}
       destinations={destinations}
+      showTitleDescription={showTitleDescription}
+      showViewAll={showViewAll}
+      showButton={showButton}
+      showSliderArrows={showSliderArrows}
     />
   );
 }

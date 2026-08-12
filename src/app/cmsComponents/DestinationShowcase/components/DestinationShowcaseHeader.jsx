@@ -8,12 +8,18 @@ export default function DestinationShowcaseHeader({
   viewAllLabel,
   viewAllHref,
   lang = "en",
+  showTitleDescription = true,
+  showViewAll = true,
 }) {
-  if (!title && !description) return null;
+  const showTitle = showTitleDescription && title;
+  const showDescription = showTitleDescription && description;
+  const showViewAllLink = showViewAll && viewAllLabel && viewAllHref;
+
+  if (!showTitle && !showDescription && !showViewAllLink) return null;
 
   return (
     <div className="mb-6 flex flex-col gap-4 sm:mb-8">
-      {title ? (
+      {showTitle ? (
         <h2
           className={`${typography.sectionTitle} font-semibold text-primary-1`}
         >
@@ -21,29 +27,33 @@ export default function DestinationShowcaseHeader({
         </h2>
       ) : null}
 
-      <div className="flex w-full flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-        {description ? (
-          <p
-            className={`${typography.sectionDescription} max-w-2xl text-700`}
-          >
-            {description}
-          </p>
-        ) : null}
+      {showDescription || showViewAllLink ? (
+        <div className="flex w-full flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+          {showDescription ? (
+            <p
+              className={`${typography.sectionDescription} max-w-2xl text-700`}
+            >
+              {description}
+            </p>
+          ) : (
+            <span />
+          )}
 
-        {viewAllLabel && viewAllHref ? (
-          <Link
-            href={viewAllHref}
-            className={`${typography.button} inline-flex shrink-0 items-center gap-2 font-semibold text-secondary-2 hover:text-primary-1`}
-          >
-            {viewAllLabel}
-            {lang === "ar" ? (
-              <CaretLeftIcon size={16} weight="bold" aria-hidden />
-            ) : (
-              <CaretRightIcon size={16} weight="bold" aria-hidden />
-            )}
-          </Link>
-        ) : null}
-      </div>
+          {showViewAllLink ? (
+            <Link
+              href={viewAllHref}
+              className={`${typography.button} inline-flex shrink-0 items-center gap-2 font-semibold text-secondary-2 hover:text-primary-1`}
+            >
+              {viewAllLabel}
+              {lang === "ar" ? (
+                <CaretLeftIcon size={16} weight="bold" aria-hidden />
+              ) : (
+                <CaretRightIcon size={16} weight="bold" aria-hidden />
+              )}
+            </Link>
+          ) : null}
+        </div>
+      ) : null}
     </div>
   );
 }

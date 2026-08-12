@@ -24,6 +24,8 @@ export default function DestinationShowcaseBanner({
   onPrev,
   onNext,
   onCardClick,
+  showButton = true,
+  showSliderArrows = true,
 }) {
   if (!current) return null;
 
@@ -73,6 +75,8 @@ export default function DestinationShowcaseBanner({
             lang={lang}
             onPrev={onPrev}
             onNext={onNext}
+            showButton={showButton}
+            showSliderArrows={showSliderArrows}
           />
         </div>
 

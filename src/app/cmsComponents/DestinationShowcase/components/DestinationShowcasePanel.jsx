@@ -12,6 +12,10 @@ export default function DestinationShowcasePanel({
   viewAllHref,
   exploreLabel,
   destinations = [],
+  showTitleDescription = true,
+  showViewAll = true,
+  showButton = true,
+  showSliderArrows = true,
 }) {
   const slider = useDestinationShowcase(destinations);
 
@@ -25,6 +29,8 @@ export default function DestinationShowcasePanel({
         viewAllLabel={viewAllLabel}
         viewAllHref={viewAllHref}
         lang={lang}
+        showTitleDescription={showTitleDescription}
+        showViewAll={showViewAll}
       />
       <DestinationShowcaseBanner
         lang={lang}
@@ -39,6 +45,8 @@ export default function DestinationShowcasePanel({
         onPrev={slider.handlePrev}
         onNext={slider.handleNext}
         onCardClick={slider.handleCardClick}
+        showButton={showButton}
+        showSliderArrows={showSliderArrows}
       />
     </>
   );
