@@ -9,13 +9,21 @@ export default function FullHeightHeaderWithTextContent({
   buttonText = "",
   ctaHref = "",
   cId,
+  showTitleDescription = true,
+  showButton = true,
 }) {
   const isRtl = lang === "ar";
   const ArrowIcon = isRtl ? ArrowLeftIcon : ArrowRightIcon;
+  const showCopy = showTitleDescription && (title || description);
+  const showCta = showButton && buttonText && ctaHref;
+
+  if (!showCopy && !showCta) {
+    return null;
+  }
 
   return (
     <div className={`w-full max-w-xl ${isRtl ? "text-right" : "text-left"}`}>
-      {title ? (
+      {showTitleDescription && title ? (
         <h1
           className={`${typography.sectionTitle} max-w-lg font-semibold text-secondary-100`}
         >
@@ -23,7 +31,7 @@ export default function FullHeightHeaderWithTextContent({
         </h1>
       ) : null}
 
-      {description ? (
+      {showTitleDescription && description ? (
         <p
           className={`${typography.sectionDescription} mt-3 max-w-md leading-relaxed text-secondary-100 sm:mt-4`}
         >
@@ -31,7 +39,7 @@ export default function FullHeightHeaderWithTextContent({
         </p>
       ) : null}
 
-      {buttonText && ctaHref ? (
+      {showCta ? (
         <div className="mt-5 sm:mt-6">
           <Button
             label={buttonText}

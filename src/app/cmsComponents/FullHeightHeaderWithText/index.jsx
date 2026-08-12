@@ -11,6 +11,8 @@ const FullHeightHeaderWithText = ({
   data,
   posParams = "gb",
   cId,
+  showTitleDescription = true,
+  showButton = true,
 }) => {
   const content = getFullHeightHeaderWithTextContent(data, lang, posParams);
 
@@ -27,6 +29,8 @@ const FullHeightHeaderWithText = ({
       ctaHref={content.ctaHref}
       backgroundImage={content.backgroundImage}
       cId={cId}
+      showTitleDescription={showTitleDescription}
+      showButton={showButton}
     />
   );
 };

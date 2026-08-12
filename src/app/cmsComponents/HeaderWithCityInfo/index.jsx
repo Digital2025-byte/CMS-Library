@@ -3,7 +3,12 @@
 import HeaderWithCityInfoPanel from "./components/HeaderWithCityInfoPanel";
 import { getHeaderWithCityInfoContent } from "./utils/helpers";
 
-const HeaderWithCityInfo = ({ lang = "en", data }) => {
+const HeaderWithCityInfo = ({
+  lang = "en",
+  data,
+  showTitleDescription = true,
+  showCityCard = true,
+}) => {
   const content = getHeaderWithCityInfoContent(data, lang);
 
   if (!content.hasContent) {
@@ -25,6 +30,8 @@ const HeaderWithCityInfo = ({ lang = "en", data }) => {
       labels={content.labels}
       backgroundImage={content.backgroundImage}
       hasCityCard={content.hasCityCard}
+      showTitleDescription={showTitleDescription}
+      showCityCard={showCityCard}
     />
   );
 };

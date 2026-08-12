@@ -10,15 +10,14 @@ export default function BannerWithCTAsAndItemsContent({
   primaryHref,
   secondaryLabel,
   secondaryHref,
+  showTitleDescription = true,
+  showItems = true,
+  showPrimaryButton = true,
+  showSecondaryButton = true,
 }) {
   return (
-    /*
-      <640: centered column, text stays start-aligned.
-      ≥640 (sm/tablet+): full shell width — same start edge as FAQ.
-      ≥1024 (lg): left half only, still on that same start edge.
-    */
     <div className="mx-auto w-full max-w-md py-10 text-start sm:mx-0 sm:max-w-none sm:py-12 lg:w-1/2 lg:py-14">
-      {title ? (
+      {showTitleDescription && title ? (
         <h1
           className={`${typography.sectionTitle} font-semibold leading-tight text-white`}
         >
@@ -26,7 +25,7 @@ export default function BannerWithCTAsAndItemsContent({
         </h1>
       ) : null}
 
-      {description ? (
+      {showTitleDescription && description ? (
         <p
           className={`${typography.sectionDescription} mt-3 leading-relaxed text-white sm:mt-4`}
         >
@@ -34,12 +33,12 @@ export default function BannerWithCTAsAndItemsContent({
         </p>
       ) : null}
 
-      <BannerWithCTAsAndItemsList items={items} />
+      {showItems ? <BannerWithCTAsAndItemsList items={items} /> : null}
 
       <BannerWithCTAsAndItemsButtons
-        primaryLabel={primaryLabel}
+        primaryLabel={showPrimaryButton ? primaryLabel : ""}
         primaryHref={primaryHref}
-        secondaryLabel={secondaryLabel}
+        secondaryLabel={showSecondaryButton ? secondaryLabel : ""}
         secondaryHref={secondaryHref}
       />
     </div>

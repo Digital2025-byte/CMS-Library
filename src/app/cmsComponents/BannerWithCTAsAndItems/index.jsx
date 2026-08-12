@@ -8,6 +8,10 @@ const BannerWithCTAsAndItems = ({
   data,
   posParams,
   cId,
+  showTitleDescription = true,
+  showItems = true,
+  showPrimaryButton = true,
+  showSecondaryButton = true,
 }) => {
   const {
     title,
@@ -36,6 +40,10 @@ const BannerWithCTAsAndItems = ({
       primaryHref={primaryHref}
       secondaryLabel={secondaryLabel}
       secondaryHref={secondaryHref}
+      showTitleDescription={showTitleDescription}
+      showItems={showItems}
+      showPrimaryButton={showPrimaryButton}
+      showSecondaryButton={showSecondaryButton}
     />
   );
 };

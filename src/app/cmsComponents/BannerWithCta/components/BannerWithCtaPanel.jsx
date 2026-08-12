@@ -9,6 +9,8 @@ export default function BannerWithCtaPanel({
   ctaLabel,
   ctaHref,
   backgroundImage,
+  showTitleDescription = true,
+  showButton = true,
 }) {
   const backgroundLayers = [
     title ? TITLE_GRADIENT : null,
@@ -33,6 +35,8 @@ export default function BannerWithCtaPanel({
         description={description}
         ctaLabel={ctaLabel}
         ctaHref={ctaHref}
+        showTitleDescription={showTitleDescription}
+        showButton={showButton}
       />
     </div>
   );

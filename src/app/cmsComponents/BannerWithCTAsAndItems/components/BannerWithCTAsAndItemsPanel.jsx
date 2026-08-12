@@ -12,6 +12,10 @@ export default function BannerWithCTAsAndItemsPanel({
   primaryHref,
   secondaryLabel,
   secondaryHref,
+  showTitleDescription = true,
+  showItems = true,
+  showPrimaryButton = true,
+  showSecondaryButton = true,
 }) {
   return (
     <CustomBackgroundImage
@@ -29,6 +33,10 @@ export default function BannerWithCTAsAndItemsPanel({
           primaryHref={primaryHref}
           secondaryLabel={secondaryLabel}
           secondaryHref={secondaryHref}
+          showTitleDescription={showTitleDescription}
+          showItems={showItems}
+          showPrimaryButton={showPrimaryButton}
+          showSecondaryButton={showSecondaryButton}
         />
       </PageContentContainer>
     </CustomBackgroundImage>

@@ -11,12 +11,16 @@ import {
 import useCmsDemoData from "@/components/demo/useCmsDemoData";
 import AccordionWithContentExamples from "@/app/cmsComponents/AccordionWithContent/docs/AccordionWithContentExamples";
 import AccordionWithImagesExamples from "@/app/cmsComponents/AccordionWithImages/docs/AccordionWithImagesExamples";
+import BannerWithCtaExamples from "@/app/cmsComponents/BannerWithCta/docs/BannerWithCtaExamples";
+import BannerWithCTAsAndItemsExamples from "@/app/cmsComponents/BannerWithCTAsAndItems/docs/BannerWithCTAsAndItemsExamples";
 import CardsCarouselFillImageExamples from "@/app/cmsComponents/CardsCarouselFillImage/docs/CardsCarouselFillImageExamples";
 import CarouselImageText6Examples from "@/app/cmsComponents/CarouselImageText6/docs/CarouselImageText6Examples";
 import CarouselItemExamples from "@/app/cmsComponents/CarouselItem/docs/CarouselItemExamples";
 import DestinationShowcaseExamples from "@/app/cmsComponents/DestinationShowcase/docs/DestinationShowcaseExamples";
 import DestinationsCitiesExamples from "@/app/cmsComponents/DestinationsCities/docs/DestinationsCitiesExamples";
 import DualImageTextExamples from "@/app/cmsComponents/DualImageText/docs/DualImageTextExamples";
+import FullHeightHeaderWithTextExamples from "@/app/cmsComponents/FullHeightHeaderWithText/docs/FullHeightHeaderWithTextExamples";
+import HeaderWithCityInfoExamples from "@/app/cmsComponents/HeaderWithCityInfo/docs/HeaderWithCityInfoExamples";
 import OppositeScrollExamples from "@/app/cmsComponents/ImageCarouselsWithOppositeScrollDirections/docs/OppositeScrollExamples";
 import RelatedContentCarouselExamples from "@/app/cmsComponents/RelatedContentCarousel/docs/RelatedContentCarouselExamples";
 import ServiceCardsSliderExamples from "@/app/cmsComponents/ServiceCardsSlider/docs/ServiceCardsSliderExamples";
@@ -61,6 +65,18 @@ const DOCS_EXAMPLES = {
   ),
   "destinations-cities": (ctx, label) => (
     <DestinationsCitiesExamples ctx={ctx} name={label} />
+  ),
+  "full-height-header-with-text": (ctx, label) => (
+    <FullHeightHeaderWithTextExamples ctx={ctx} name={label} />
+  ),
+  "header-with-city-info": (ctx, label) => (
+    <HeaderWithCityInfoExamples ctx={ctx} name={label} />
+  ),
+  "banner-with-cta": (ctx, label) => (
+    <BannerWithCtaExamples ctx={ctx} name={label} />
+  ),
+  "banner-with-ctas-and-items": (ctx, label) => (
+    <BannerWithCTAsAndItemsExamples ctx={ctx} name={label} />
   ),
 };
 
