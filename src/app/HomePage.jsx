@@ -6,7 +6,7 @@ import { HOME_SECTION_IDS } from "@/components/demo/ideaGroups";
 import useCmsDemoData from "@/components/demo/useCmsDemoData";
 
 export default function HomePage() {
-  const ctx = useCmsDemoData();
+  const ctx = useCmsDemoData(HOME_SECTION_IDS);
 
   return (
     <CmsDemoChrome overlay sectionIds={HOME_SECTION_IDS}>

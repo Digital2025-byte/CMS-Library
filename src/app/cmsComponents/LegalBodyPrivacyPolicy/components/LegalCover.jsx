@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
-import pattern from '@/assets/images/legal/pattern.webp'
+import pattern from "@/assets/legal/pattern.webp";
 
 const LegalCover = ({ title, description }) => {
     return (

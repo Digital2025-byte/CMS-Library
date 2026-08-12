@@ -11,7 +11,8 @@ export default function IdeaGroupPage() {
   const params = useParams();
   const slug = typeof params?.slug === "string" ? params.slug : "";
   const group = getIdeaGroup(slug);
-  const ctx = useCmsDemoData();
+  const sectionIds = group?.sectionIds ?? [];
+  const ctx = useCmsDemoData(sectionIds);
 
   if (!group) {
     return (

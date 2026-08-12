@@ -1,5 +1,6 @@
 "use client";
 
+import { useMemo } from "react";
 import { useParams } from "next/navigation";
 import CmsDemoChrome from "@/components/demo/CmsDemoChrome";
 import { CmsDemoSections } from "@/components/demo/CmsDemoSections";
@@ -16,8 +17,9 @@ import { typography } from "@/styles/typography";
 export default function DocsComponentPage() {
   const params = useParams();
   const slug = typeof params?.slug === "string" ? params.slug : "";
-  const ctx = useCmsDemoData();
   const known = isKnownSectionId(slug);
+  const sectionIds = useMemo(() => (slug ? [slug] : []), [slug]);
+  const ctx = useCmsDemoData(sectionIds);
   const label =
     COMPONENT_NAV_ITEMS.find((item) => item.id === slug)?.label || slug;
   const group = getIdeaGroupForSection(slug);
