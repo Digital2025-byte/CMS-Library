@@ -21,7 +21,7 @@ export default function DestinationShowcaseHeader({
     <div className="mb-6 flex flex-col gap-4 sm:mb-8">
       {showTitle ? (
         <h2
-          className={`${typography.sectionTitle} font-semibold text-primary-1`}
+          className={`${typography.sectionTitle} font-semibold text-primary-1 `}
         >
           {title}
         </h2>

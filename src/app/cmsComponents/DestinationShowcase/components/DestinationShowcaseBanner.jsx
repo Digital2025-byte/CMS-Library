@@ -6,6 +6,7 @@ import DestinationShowcaseBlueLayer from "./DestinationShowcaseBlueLayer";
 import DestinationShowcaseContent from "./DestinationShowcaseContent";
 import DestinationShowcaseNav from "./DestinationShowcaseNav";
 import DestinationShowcaseCards from "./DestinationShowcaseCards";
+import DestinationShowcaseControls from "./DestinationShowcaseControls";
 import {
   HERO_IMAGE_QUALITY,
   HERO_IMAGE_SIZES,
@@ -30,7 +31,7 @@ export default function DestinationShowcaseBanner({
   if (!current) return null;
 
   return (
-    <div className="relative min-h-[540px] overflow-hidden shadow-xl lg:rounded-xl">
+    <div className="relative min-h-[540px] overflow-hidden shadow-xl md:rounded-xl">
       <div className="absolute inset-0 min-h-[540px]">
         <AnimatePresence mode="popLayout">
           <motion.div
@@ -61,33 +62,46 @@ export default function DestinationShowcaseBanner({
         <DestinationShowcaseBlueLayer />
       </div>
 
-      <div className="relative z-10 flex h-full min-h-[500px] flex-col justify-center md:min-h-[540px] md:flex-row">
-        <div className="relative flex h-[335px] min-h-0 flex-none flex-col overflow-hidden p-8 md:h-[530px] md:flex-1 md:p-12 lg:p-16">
-          <DestinationShowcaseContent
-            name={current.name}
-            description={current.description}
-            activeIndex={activeIndex}
-            direction={direction}
-          />
-          <DestinationShowcaseNav
-            exploreLabel={exploreLabel}
-            exploreHref={current.exploreLink}
+      <div className="relative z-10 flex min-h-[540px] flex-col overflow-hidden">
+        <div className="relative flex flex-1 flex-col justify-between gap-6 px-5 pb-4 pt-10 sm:px-8 sm:pt-12 md:flex-row md:items-stretch md:gap-6 md:px-12 md:pb-6 md:pt-14 lg:px-16">
+          <div className="relative z-10 w-full max-w-xl shrink-0 md:flex md:flex-1 md:flex-col md:justify-center">
+            <DestinationShowcaseContent
+              name={current.name}
+              description={current.description}
+              activeIndex={activeIndex}
+              direction={direction}
+            />
+            <DestinationShowcaseNav
+              exploreLabel={exploreLabel}
+              exploreHref={current.exploreLink}
+              showButton={showButton}
+            />
+          </div>
+
+          <div className="relative z-20 w-full min-w-0 max-w-full overflow-hidden md:flex md:w-[min(100%,480px)] md:shrink-0 md:items-end md:self-end">
+            <DestinationShowcaseCards
+              infiniteList={infiniteList}
+              destinationsLength={destinationsLength}
+              virtualIndex={virtualIndex}
+              jumping={jumping}
+              lang={lang}
+              onCardClick={onCardClick}
+            />
+          </div>
+        </div>
+
+        {/* Bottom-center: arrows + dots (mobile target) */}
+        <div className="relative z-30 flex shrink-0 justify-center px-5 pb-6 pt-2 sm:pb-8">
+          <DestinationShowcaseControls
             lang={lang}
+            activeIndex={activeIndex}
+            count={destinationsLength}
             onPrev={onPrev}
             onNext={onNext}
-            showButton={showButton}
+            onDotClick={onCardClick}
             showSliderArrows={showSliderArrows}
           />
         </div>
-
-        <DestinationShowcaseCards
-          infiniteList={infiniteList}
-          destinationsLength={destinationsLength}
-          virtualIndex={virtualIndex}
-          jumping={jumping}
-          lang={lang}
-          onCardClick={onCardClick}
-        />
       </div>
     </div>
   );

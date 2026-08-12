@@ -30,7 +30,7 @@ export default function DestinationShowcaseContent({
         <div className="relative mb-4 overflow-hidden md:mb-6">
           {/* Reserve height so absolute title slides don’t collapse layout */}
           <h3
-            className={`${typography.pageTitle} invisible font-bold`}
+            className="invisible text-4xl font-bold sm:text-4xl md:text-4xl lg:text-5xl"
             aria-hidden
           >
             {name || "\u00A0"}
@@ -52,7 +52,7 @@ export default function DestinationShowcaseContent({
                 duration: MOVE_DURATION_S,
                 ease: MOVE_EASE,
               }}
-              className={`${typography.pageTitle} absolute inset-x-0 top-0 font-bold text-50`}
+              className="absolute inset-x-0 top-0 text-4xl font-bold text-50 sm:text-4xl md:text-4xl lg:text-5xl"
             >
               {name}
             </motion.h3>

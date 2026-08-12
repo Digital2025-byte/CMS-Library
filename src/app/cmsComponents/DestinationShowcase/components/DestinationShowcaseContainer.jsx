@@ -1,19 +1,19 @@
-import PageContentContainer from "@/components/layout/PageContentContainer";
-
+/**
+ * Full-bleed section shell — banner goes edge-to-edge on mobile.
+ * Header stays inset via PageContentContainer in the panel.
+ */
 export default function DestinationShowcaseContainer({
   lang,
   dir,
   children,
 }) {
   return (
-    <div
-      className="w-full bg-50"
+    <section
+      className="w-full overflow-x-hidden bg-50 py-8 sm:py-12 lg:py-16"
       lang={lang}
       dir={dir || (lang === "ar" ? "rtl" : "ltr")}
     >
-      <PageContentContainer as="section" className="py-8 sm:py-12 lg:py-16">
-        {children}
-      </PageContentContainer>
-    </div>
+      {children}
+    </section>
   );
 }
