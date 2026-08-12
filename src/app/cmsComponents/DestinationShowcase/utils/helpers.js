@@ -61,15 +61,14 @@ export function getDestinationShowcaseContent(
       const slug = (city.slug || city.cityName || "")
         .toLowerCase()
         .replace(/\s+/g, "-");
-      const heroImageUrl =
+      // One photo per destination — banner background and card share it.
+      const imageUrl =
         resolveImageUrl(city.heroImageUrl) ||
         resolveImageUrl(city.heroImage) ||
-        resolveImageUrl(city.imageUrl) ||
-        resolveImageUrl(city.image);
-      const cardImageUrl =
         resolveImageUrl(city.cardImageUrl) ||
         resolveImageUrl(city.cardImage) ||
-        heroImageUrl;
+        resolveImageUrl(city.imageUrl) ||
+        resolveImageUrl(city.image);
 
       return {
         id: city.cityId || city.airportId || index,
@@ -77,8 +76,8 @@ export function getDestinationShowcaseContent(
         description:
           city.description ||
           [city.cityName, city.countryName].filter(Boolean).join(" — "),
-        imageUrl: heroImageUrl,
-        cardImageUrl,
+        imageUrl,
+        cardImageUrl: imageUrl,
         exploreLink: withCampaignPath(
           `/${posParams}/${lang}/our-destinations/${slug}`,
           cId

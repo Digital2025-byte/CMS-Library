@@ -1,8 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import { ArrowLeftIcon, ArrowRightIcon } from "@phosphor-icons/react";
-import { typography } from "@/styles/typography";
+import Button from "@/components/ui/Button";
 
 export default function DestinationShowcaseNav({
   exploreLabel,
@@ -20,12 +19,7 @@ export default function DestinationShowcaseNav({
   return (
     <div className="mb-10 flex shrink-0 items-center justify-between gap-3 md:mb-12">
       {showExplore ? (
-        <Link
-          href={exploreHref}
-          className={`${typography.button} inline-flex w-fit items-center justify-center rounded-xl bg-secondary-900 px-9 py-2.5 font-semibold text-50 transition-colors hover:bg-secondary-700`}
-        >
-          {exploreLabel}
-        </Link>
+        <Button label={exploreLabel} href={exploreHref} />
       ) : (
         <span />
       )}

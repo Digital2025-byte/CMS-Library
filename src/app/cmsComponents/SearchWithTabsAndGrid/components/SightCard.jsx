@@ -82,7 +82,7 @@ export default function SightCard({
           href={stackedHref}
           cId={cId}
           fullWidth
-          className={`shadow-md mt-2 ${typography.caption}`}        />
+          className={` mt-2 ${typography.caption}`}        />
         <Button
           label={exploreMagazineLabel}
           href={magazineHref}
@@ -90,7 +90,7 @@ export default function SightCard({
           icon={<BookOpenTextIcon size={20} weight="bold" aria-hidden />}
           iconPosition="start"
           variant="secondary"
-          className={`shadow-md mt-2 ${typography.caption}`} 
+          className={` mt-2 ${typography.caption}`} 
           fullWidth
           />
       </div>

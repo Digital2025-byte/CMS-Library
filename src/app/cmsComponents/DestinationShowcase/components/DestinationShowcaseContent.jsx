@@ -2,6 +2,19 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { typography } from "@/styles/typography";
+import { MOVE_DURATION_S, MOVE_EASE } from "../utils/constants";
+
+const titleVariants = {
+  enter: (direction) => ({
+    y: direction > 0 ? "110%" : "-110%",
+  }),
+  center: {
+    y: 0,
+  },
+  exit: (direction) => ({
+    y: direction > 0 ? "-110%" : "110%",
+  }),
+};
 
 export default function DestinationShowcaseContent({
   name,
@@ -9,41 +22,42 @@ export default function DestinationShowcaseContent({
   activeIndex,
   direction,
 }) {
+  const slideDirection = direction === 0 ? 1 : direction;
+
   return (
     <div className="flex min-h-0 flex-1 flex-col justify-center overflow-hidden">
       <div className="relative z-20">
-        <AnimatePresence mode="popLayout" initial={false}>
-          <motion.div
-            key={activeIndex}
-            initial={{
-              opacity: 0,
-              y: direction === 1 ? 50 : -50,
-              scale: 0.8,
-              filter: "blur(10px)",
-            }}
-            animate={{
-              opacity: 1,
-              y: 0,
-              scale: 1,
-              filter: "blur(0px)",
-            }}
-            exit={{
-              opacity: 0,
-              y: direction === 1 ? -50 : 50,
-              scale: 0.8,
-              filter: "blur(10px)",
-            }}
-            transition={{ duration: 0.6, ease: "easeInOut", delay: 0.01 }}
+        <div className="relative mb-4 overflow-hidden md:mb-6">
+          {/* Reserve height so absolute title slides don’t collapse layout */}
+          <h3
+            className={`${typography.pageTitle} invisible font-bold`}
+            aria-hidden
           >
-            {name ? (
-              <h3
-                className={`${typography.pageTitle} mb-4 font-bold text-50 md:mb-6`}
-              >
-                {name}
-              </h3>
-            ) : null}
-          </motion.div>
-        </AnimatePresence>
+            {name || "\u00A0"}
+          </h3>
+
+          <AnimatePresence
+            mode="sync"
+            initial={false}
+            custom={slideDirection}
+          >
+            <motion.h3
+              key={activeIndex}
+              custom={slideDirection}
+              variants={titleVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{
+                duration: MOVE_DURATION_S,
+                ease: MOVE_EASE,
+              }}
+              className={`${typography.pageTitle} absolute inset-x-0 top-0 font-bold text-50`}
+            >
+              {name}
+            </motion.h3>
+          </AnimatePresence>
+        </div>
 
         {description ? (
           <p className={`${typography.body} mb-6 max-w-lg text-50/90 md:mb-6`}>
