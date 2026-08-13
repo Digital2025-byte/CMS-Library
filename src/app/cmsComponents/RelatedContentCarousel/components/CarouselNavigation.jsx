@@ -61,7 +61,7 @@ export default function CarouselNavigation({
         aria-label="Carousel progress"
       >
         <span
-          className="absolute top-1/2 start-0 h-1 -translate-y-1/2 rounded-full bg-primary-1 transition-[width] duration-500 ease-out"
+          className="absolute inset-y-0 start-0 rounded-full bg-primary-1 transition-[width] duration-500 ease-out"
           style={{ width: `${progressPct}%` }}
         />
       </div>

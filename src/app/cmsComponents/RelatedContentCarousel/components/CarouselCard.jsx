@@ -15,6 +15,8 @@ export default function CarouselCard({ card, lang = "en", cId }) {
   }
 
   const imageSrc = getImageUrl(card?.image?.fileUrl || card?.imageUrl);
+  const imageWidth = Number(card?.image?.width) || 0;
+  const imageHeight = Number(card?.image?.height) || 0;
   const title = card?.title || "";
   const description = card?.description || "";
   const buttonText = card?.buttonText || t("relatedContentCarousel.learnMore");
@@ -23,21 +25,35 @@ export default function CarouselCard({ card, lang = "en", cId }) {
 
   return (
     <article className="h-full w-full" dir={isRtl ? "rtl" : "ltr"}>
-      <div className="flex h-[30rem] w-full flex-col overflow-visible rounded-[1.25rem] border border-200 bg-white shadow-sm md:h-[32rem]">
+      <div className="flex h-full w-full flex-col overflow-visible rounded-[1.25rem] border border-200 bg-white shadow-sm">
         {imageSrc ? (
-          <div className="relative h-[55%] w-full shrink-0 overflow-hidden rounded-t-[1.25rem]">
-            <Image
-              src={imageSrc}
-              alt={card?.image?.alt || title || ""}
-              fill
-              className="object-cover"
-              sizes="(max-width: 640px) 90vw, (max-width: 1024px) 50vw, 33vw"
-              loading="lazy"
-            />
+          <div className="relative w-full shrink-0 overflow-hidden rounded-t-[1.25rem]">
+            {imageWidth > 0 && imageHeight > 0 ? (
+              <Image
+                src={imageSrc}
+                alt={card?.image?.alt || title || ""}
+                width={imageWidth}
+                height={imageHeight}
+                className="h-auto w-full"
+                sizes="(max-width: 640px) 90vw, (max-width: 1024px) 50vw, 33vw"
+                loading="lazy"
+              />
+            ) : (
+              <div className="relative aspect-[4/3] w-full">
+                <Image
+                  src={imageSrc}
+                  alt={card?.image?.alt || title || ""}
+                  fill
+                  className="object-cover object-top"
+                  sizes="(max-width: 640px) 90vw, (max-width: 1024px) 50vw, 33vw"
+                  loading="lazy"
+                />
+              </div>
+            )}
           </div>
         ) : (
           <div
-            className="relative h-[55%] w-full shrink-0 rounded-t-[1.25rem] bg-surface-1"
+            className="relative aspect-[4/3] w-full shrink-0 rounded-t-[1.25rem] bg-surface-1"
             aria-hidden
           />
         )}

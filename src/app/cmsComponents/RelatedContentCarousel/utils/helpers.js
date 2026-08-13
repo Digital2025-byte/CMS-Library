@@ -35,6 +35,8 @@ export function normalizeCarouselCard(page, lang = "en", posParams = "gb") {
         page?.image?.fileUrl ||
         page?.imageUrl ||
         "",
+      width: page?.CardImage?.width || page?.image?.width || 0,
+      height: page?.CardImage?.height || page?.image?.height || 0,
       alt: page?.CardImage?.alt || page?.title || "Card image",
     },
     buttonText,

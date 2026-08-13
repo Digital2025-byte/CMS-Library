@@ -4,9 +4,9 @@ import ph3 from "@/assets/RelatedContentCarousel/ph3.png";
 import ph4 from "@/assets/RelatedContentCarousel/ph4.png";
 import ph5 from "@/assets/RelatedContentCarousel/ph5.png";
 
-const toUrl = (asset) => (typeof asset === "string" ? asset : asset?.src || "");
+const CARD_IMAGES = [ph1, ph2, ph3, ph4, ph5];
 
-const CARD_IMAGES = [ph1, ph2, ph3, ph4, ph5].map(toUrl);
+const toUrl = (asset) => (typeof asset === "string" ? asset : asset?.src || "");
 
 /**
  * Builds CMS-shaped RelatedContentCarousel data from i18next translations.
@@ -27,7 +27,9 @@ export function buildRelatedContentCarouselData(t, lang = "en") {
                 title: page?.title || "",
                 description: page?.description || "",
                 CardImage: {
-                  fileUrl: CARD_IMAGES[index % CARD_IMAGES.length],
+                  fileUrl: toUrl(CARD_IMAGES[index % CARD_IMAGES.length]),
+                  width: CARD_IMAGES[index % CARD_IMAGES.length]?.width,
+                  height: CARD_IMAGES[index % CARD_IMAGES.length]?.height,
                   alt: page?.imageAlt || page?.title || "",
                 },
                 CTA: {
