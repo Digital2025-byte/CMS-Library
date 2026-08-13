@@ -56,6 +56,7 @@ export const COMPONENT_NAV_ITEMS = [
   { id: "draggable-3d-image-ring", label: "Draggable3DImageRing" },
   { id: "on-board-image-ring", label: "OnBoardImageRing" },
   { id: "three-d-slider", label: "ThreeDSlider" },
+  { id: "cool-slide-gallery", label: "CoolSlideGallery" },
   { id: "carousel-item", label: "CarouselItem" },
   { id: "destinations-map", label: "DestinationsMap" },
   { id: "destinations-cities", label: "DestinationsCities" },
