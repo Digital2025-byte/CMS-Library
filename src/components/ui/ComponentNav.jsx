@@ -53,6 +53,7 @@ export const COMPONENT_NAV_ITEMS = [
   { id: "dual-image-text-training", label: "DualImageText (Training)" },
   { id: "photo-tile-grid", label: "PhotoTileGrid" },
   { id: "three-d-image-ring-section", label: "ThreeDImageRingSection" },
+  { id: "draggable-3d-image-ring", label: "Draggable3DImageRing" },
   { id: "carousel-item", label: "CarouselItem" },
   { id: "destinations-map", label: "DestinationsMap" },
   { id: "destinations-cities", label: "DestinationsCities" },

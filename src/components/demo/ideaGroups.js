@@ -24,6 +24,7 @@ export const IDEA_GROUPS = [
       "destinations-cities",
       "destination-showcase",
       "three-d-image-ring-section",
+      "draggable-3d-image-ring",
     ],
   },
   {
@@ -154,6 +155,7 @@ export const HOME_SECTION_IDS = [
   "dual-image-text",
   "dual-image-text-training",
   "three-d-image-ring-section",
+  "draggable-3d-image-ring",
   "destinations-map",
   "destination-showcase",
   "destinations-cities",

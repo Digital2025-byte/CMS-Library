@@ -697,6 +697,13 @@ export const SECTION_COMPONENTS = {
       },
     }))
   ),
+  "draggable-3d-image-ring": lazySection(() =>
+    import("@/app/cmsComponents/Draggable3DImageRing").then((Comp) => ({
+      default: function Section({ lang }) {
+        return <Comp.default lang={lang} />;
+      },
+    }))
+  ),
   "destinations-map": lazySection(() =>
     Promise.all([
       import("@/app/cmsComponents/DestinationsMap"),
