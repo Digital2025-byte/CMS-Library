@@ -18,10 +18,10 @@ export default function DestinationShowcaseCards({
   onCardClick,
 }) {
   return (
-    <div className="relative mt-12 flex w-full items-center justify-start overflow-hidden py-4 md:mt-0 md:w-80 md:p-8 lg:w-[470px]">
+    <div className="relative mt-12 flex w-full items-center justify-start overflow-hidden py-4 md:mt-0">
       <div className="relative h-[220px] w-full md:h-[230px]">
         <div
-          className={`flex h-full items-end md:!ps-0 ${
+          className={`flex h-full items-end ${
             jumping
               ? ""
               : "transition-transform duration-900 ease-[cubic-bezier(0.33,1,0.68,1)]"
@@ -36,8 +36,7 @@ export default function DestinationShowcaseCards({
           }}
         >
           {infiniteList.map((dest, index) => {
-            // virtualIndex is the active card. Mobile: centered via start pad.
-            // md+: start pad is cleared so it sits flush to the column start.
+            // virtualIndex is the active card, always centered in the viewport.
             const isActive = index === virtualIndex;
             const mappedIndex =
               destinationsLength > 0 ? index % destinationsLength : 0;

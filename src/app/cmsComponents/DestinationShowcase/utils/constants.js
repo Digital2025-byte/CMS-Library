@@ -2,9 +2,9 @@
  * Card sizing (in px). The transform that positions the track advances by one
  * "slot" per index. Every card to the LEFT of the active one is inactive, so a
  * slot is exactly an inactive card + the gap. Driving the gap and widths from
- * these same constants (see DestinationShowcaseCards) keeps the active card
- * flush-left on md+ with zero drift. On mobile, the track adds start padding
- * of `50% - activeWidth/2` so the same slot lands in the middle.
+ * these same constants (see DestinationShowcaseCards) keeps slot math exact.
+ * Start padding of `50% - activeWidth/2` centers the active card at every
+ * breakpoint, with neighbouring cards peeking on both sides.
  */
 export const CARD_GAP_PX = 20;
 export const CARD_INACTIVE_W_PX = 148;

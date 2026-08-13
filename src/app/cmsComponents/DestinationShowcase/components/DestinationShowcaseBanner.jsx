@@ -78,7 +78,7 @@ export default function DestinationShowcaseBanner({
             />
           </div>
 
-          <div className="relative z-20 w-full min-w-0 max-w-full overflow-hidden md:flex md:w-[min(100%,480px)] md:shrink-0 md:items-end md:self-end">
+          <div className="relative z-20 w-full min-w-0 max-w-full overflow-hidden md:flex md:w-[min(100%,560px)] md:shrink-0 md:items-end md:self-end lg:w-[min(100%,640px)]">
             <DestinationShowcaseCards
               infiniteList={infiniteList}
               destinationsLength={destinationsLength}
