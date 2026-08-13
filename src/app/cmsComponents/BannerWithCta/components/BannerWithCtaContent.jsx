@@ -17,7 +17,7 @@ export default function BannerWithCtaContent({
   }
 
   return (
-    <div className="max-w-145 px-6 py-8 text-white md:px-10 lg:px-14">
+    <div className="px-6 py-8 text-white md:px-10 lg:px-14">
       {showTitleDescription && title ? (
         <h2
           className={`${typography.sectionTitle} font-bold leading-tight text-white`}
@@ -27,7 +27,7 @@ export default function BannerWithCtaContent({
       ) : null}
 
       {showTitleDescription && description ? (
-        <p className={`${typography.body} mt-3 text-white/90`}>
+        <p className={`${typography.sectionDescription} max-w-145  mt-3 text-white/90`}>
           {description}
         </p>
       ) : null}
