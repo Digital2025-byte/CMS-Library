@@ -711,6 +711,13 @@ export const SECTION_COMPONENTS = {
       },
     }))
   ),
+  "three-d-slider": lazySection(() =>
+    import("@/app/cmsComponents/ThreeDSlider").then((Comp) => ({
+      default: function Section({ lang }) {
+        return <Comp.default lang={lang} />;
+      },
+    }))
+  ),
   "destinations-map": lazySection(() =>
     Promise.all([
       import("@/app/cmsComponents/DestinationsMap"),

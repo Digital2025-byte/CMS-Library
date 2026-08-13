@@ -4,6 +4,12 @@
  */
 export const IDEA_GROUPS = [
   {
+    slug: "new",
+    label: "New",
+    description: "Latest Lightswind experiments.",
+    sectionIds: ["three-d-slider"],
+  },
+  {
     slug: "accordion",
     label: "Accordion",
     description: "Expand and collapse content blocks.",
@@ -158,6 +164,7 @@ export const HOME_SECTION_IDS = [
   "three-d-image-ring-section",
   "draggable-3d-image-ring",
   "on-board-image-ring",
+  "three-d-slider",
   "destinations-map",
   "destination-showcase",
   "destinations-cities",
