@@ -94,6 +94,8 @@ const RelatedContentCarousel = ({
         cards={cards}
         lang={lang}
         cId={cId}
+        activeIndex={activeIndex}
+        slidesToShow={slidesToShow}
         onKeyDown={handleKeyDown}
       />
 

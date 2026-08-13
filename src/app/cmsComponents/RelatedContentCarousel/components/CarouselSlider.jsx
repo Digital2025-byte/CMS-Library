@@ -40,16 +40,6 @@ function CarouselStyles() {
         outline-offset: 2px;
       }
 
-      .cards-carousel .slick-slide {
-        opacity: 1;
-        transition: opacity 0.35s ease;
-      }
-
-      /* Peek / incoming card is not .slick-active (slick floors slidesToShow) */
-      .cards-carousel .slick-slide:not(.slick-active) {
-        opacity: 0.4;
-      }
-
       /*
        * Arabic: mirror the list so slide motion is opposite of English,
        * then mirror each slide so card content stays readable.
@@ -73,9 +63,12 @@ export default function CarouselSlider({
   cards,
   lang,
   cId,
+  activeIndex = 0,
+  slidesToShow = 2,
   onKeyDown,
 }) {
   const isRtl = lang === "ar";
+  const fullyVisible = Math.max(1, Math.floor(slidesToShow));
 
   return (
     <div className="relative" onKeyDown={onKeyDown} tabIndex={0}>
@@ -86,11 +79,20 @@ export default function CarouselSlider({
         aria-label="Carousel"
       >
         <Slider key={lang} ref={sliderRef} {...settings}>
-          {cards.map((card, index) => (
-            <div key={getCardKey(card, index)} className="h-full w-full">
-              <CarouselCard card={card} lang={lang} cId={cId} />
-            </div>
-          ))}
+          {cards.map((card, index) => {
+            const isIncoming = index >= activeIndex + fullyVisible;
+
+            return (
+              <div key={getCardKey(card, index)} className="h-full w-full">
+                <div
+                  className="h-full w-full transition-opacity duration-300"
+                  style={{ opacity: isIncoming ? 0.4 : 1 }}
+                >
+                  <CarouselCard card={card} lang={lang} cId={cId} />
+                </div>
+              </div>
+            );
+          })}
         </Slider>
       </div>
     </div>
