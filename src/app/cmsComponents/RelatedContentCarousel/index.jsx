@@ -21,7 +21,7 @@ const RelatedContentCarousel = ({
   const sliderRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const { title, description, cards, hasContent } = useCarouselData(
+  const { title, cards, hasContent } = useCarouselData(
     data,
     lang,
     posParams
@@ -32,7 +32,8 @@ const RelatedContentCarousel = ({
   );
 
   useEffect(() => {
-    const update = () => setSlidesToShow(getCurrentSlidesToShow(cards.length));
+    const update = () =>
+      setSlidesToShow(getCurrentSlidesToShow(cards.length, window.innerWidth));
     update();
     window.addEventListener("resize", update);
     return () => window.removeEventListener("resize", update);
@@ -74,16 +75,18 @@ const RelatedContentCarousel = ({
     return null;
   }
 
-  const maxIndex = Math.max(0, cards.length - slidesToShow);
+  const maxIndex = Math.max(
+    0,
+    cards.length - Math.ceil(slidesToShow)
+  );
   const canGoPrev = activeIndex > 0;
   const canGoNext = activeIndex < maxIndex;
-  const showNavigation = cards.length > slidesToShow;
+  const progressSteps = maxIndex + 1;
+  const progress = (Math.min(activeIndex, maxIndex) + 1) / progressSteps;
 
   return (
     <div aria-label={title || "Cards carousel"}>
-      {showTitleDescription ? (
-        <CarouselHeader title={title} description={description} />
-      ) : null}
+      {showTitleDescription ? <CarouselHeader title={title} /> : null}
 
       <CarouselSlider
         sliderRef={sliderRef}
@@ -102,7 +105,8 @@ const RelatedContentCarousel = ({
         canGoNext={canGoNext}
         currentIndex={activeIndex}
         totalSlides={cards.length}
-        showNavigation={showArrows && showNavigation}
+        progress={progress}
+        showNavigation={showArrows}
       />
     </div>
   );

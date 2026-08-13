@@ -10,19 +10,16 @@ export function getImageUrl(img) {
   return "";
 }
 
-export function getCurrentSlidesToShow(cardsCount = 0) {
-  if (typeof window === "undefined") return Math.min(3, cardsCount || 1);
-  const width = window.innerWidth;
-  if (width < 768) return 1;
-  if (width < 1024) return Math.min(2, cardsCount || 1);
-  return Math.min(3, cardsCount || 1);
+export function getCurrentSlidesToShow(cardsCount = 0, width) {
+  const count = Math.max(cardsCount || 1, 1);
+  if (width == null) return Math.min(2.35, count);
+  if (width < 768) return Math.min(1.15, count);
+  if (width < 1024) return Math.min(1.7, count);
+  return Math.min(2.35, count);
 }
 
 export function normalizeCarouselCard(page, lang = "en", posParams = "gb") {
-  const buttonText =
-    page?.CTA?.content ||
-    page?.buttonText ||
-    (lang === "ar" ? "اعرف المزيد" : "Learn More");
+  const buttonText = page?.CTA?.content || page?.buttonText || "";
 
   const buttonLink = page?.CTA?.slug
     ? `/${posParams}/${lang}/${page.CTA.slug}`

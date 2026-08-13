@@ -13,14 +13,14 @@ function CarouselStyles() {
         __html: `
       .cards-carousel .slick-list {
         overflow: hidden;
-        margin-inline: -0.5rem;
+        margin-inline: -0.75rem;
       }
       .cards-carousel .slick-slide {
         height: auto;
       }
       .cards-carousel .slick-slide > div {
         height: 100%;
-        padding-inline: 0.5rem;
+        padding-inline: 0.75rem;
         box-sizing: border-box;
       }
       .cards-carousel .slick-track {
@@ -38,6 +38,16 @@ function CarouselStyles() {
       .cards-carousel .slick-slide:focus {
         outline: 2px solid #007bff;
         outline-offset: 2px;
+      }
+
+      .cards-carousel .slick-slide {
+        opacity: 1;
+        transition: opacity 0.35s ease;
+      }
+
+      /* Peek / incoming card is not .slick-active (slick floors slidesToShow) */
+      .cards-carousel .slick-slide:not(.slick-active) {
+        opacity: 0.4;
       }
 
       /*

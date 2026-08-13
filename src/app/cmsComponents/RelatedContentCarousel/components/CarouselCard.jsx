@@ -1,11 +1,15 @@
 "use client";
 
 import Image from "next/image";
+import { useTranslation } from "react-i18next";
 import AnimatedCTAButton from "@/components/ui/AnimatedCTAButton";
+import { typography } from "@/styles/typography";
 import { withCampaignPath } from "@/utils/withCampaignPath";
 import { getImageUrl } from "../utils/helpers";
 
 export default function CarouselCard({ card, lang = "en", cId }) {
+  const { t } = useTranslation();
+
   if (!card) {
     return null;
   }
@@ -13,44 +17,49 @@ export default function CarouselCard({ card, lang = "en", cId }) {
   const imageSrc = getImageUrl(card?.image?.fileUrl || card?.imageUrl);
   const title = card?.title || "";
   const description = card?.description || "";
-  const buttonText =
-    card?.buttonText || (lang === "ar" ? "اعرف المزيد" : "Learn More");
+  const buttonText = card?.buttonText || t("relatedContentCarousel.learnMore");
   const buttonLink = card?.buttonLink || "#";
+  const isRtl = lang === "ar";
 
   return (
-    <article className="h-full w-full"  dir={lang === "ar" ? "rtl" : "ltr"}>
-      <div className="group flex h-full min-h-95 w-full flex-col overflow-hidden rounded-2xl border border-200 bg-white shadow-md transition-all duration-300 hover:shadow-lg md:min-h-105">
+    <article className="h-full w-full" dir={isRtl ? "rtl" : "ltr"}>
+      <div className="flex h-[30rem] w-full flex-col overflow-visible rounded-[1.25rem] border border-200 bg-white shadow-sm md:h-[32rem]">
         {imageSrc ? (
-          <div className="relative h-50 w-full overflow-hidden sm:h-55 md:h-60 lg:h-65">
+          <div className="relative h-[55%] w-full shrink-0 overflow-hidden rounded-t-[1.25rem]">
             <Image
               src={imageSrc}
-              alt={card?.image?.alt || title || "Card image"}
+              alt={card?.image?.alt || title || ""}
               fill
-              className="rounded-t-xl object-cover transition-transform duration-300 group-hover:scale-105"
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              className="object-cover"
+              sizes="(max-width: 640px) 90vw, (max-width: 1024px) 50vw, 33vw"
               loading="lazy"
             />
           </div>
         ) : (
-          <div className="relative flex h-50 w-full items-center justify-center bg-gray-200 sm:h-55 md:h-60 lg:h-65">
-            <span className="text-sm text-gray-400">No image</span>
-          </div>
+          <div
+            className="relative h-[55%] w-full shrink-0 rounded-t-[1.25rem] bg-surface-1"
+            aria-hidden
+          />
         )}
 
-        <div className="flex flex-1 flex-col p-4 sm:p-5 md:p-6">
+        <div className="flex min-h-0 flex-1 flex-col px-5 pb-5 pt-5 sm:px-6 sm:pb-6 sm:pt-6">
           {title ? (
-            <h3 className="mb-2 line-clamp-2 text-lg font-semibold text-gray-900 sm:mb-3 sm:text-xl md:text-2xl">
+            <h3
+              className={`${typography.itemTitle} mb-2 font-semibold leading-snug text-primary-1`}
+            >
               {title}
             </h3>
           ) : null}
 
           {description ? (
-            <p className="mb-4 line-clamp-3 flex-1 text-sm leading-relaxed text-gray-600 sm:mb-5 sm:text-base">
+            <p
+              className={`${typography.itemDescription} mb-5 leading-relaxed text-600`}
+            >
               {description}
             </p>
           ) : null}
 
-          <div className="mt-auto min-h-15 w-fit max-w-full overflow-visible">
+          <div className="mt-auto flex w-full justify-end overflow-visible">
             <AnimatedCTAButton
               lang={lang}
               href={withCampaignPath(buttonLink, cId)}

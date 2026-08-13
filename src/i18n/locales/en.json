@@ -677,35 +677,36 @@
     ]
   },
   "relatedContentCarousel": {
-    "title": "Related content",
+    "title": "Related pages",
     "description": "Explore more stories, guides, and travel inspiration from Fly cham.",
+    "learnMore": "Learn More",
     "pages": [
       {
         "id": "page-1",
-        "title": "Family travel tips",
-        "description": "Practical advice to make every journey smoother when you travel with children.",
+        "title": "Baggage Allowance",
+        "description": "Understand baggage allowances, restrictions, and travel documentation requirements for your destination before you pack.",
         "buttonText": "Learn More",
-        "slug": "family-travel",
+        "slug": "baggage-allowance",
         "buttonLink": "#",
-        "imageAlt": "Family traveling together"
+        "imageAlt": "Luggage on a baggage carousel"
       },
       {
         "id": "page-2",
-        "title": "Cabin comfort guide",
-        "description": "Discover seating options and onboard features designed for a more relaxed flight.",
+        "title": "Check-In Informations",
+        "description": "provides passengers with essential details on how to check in for their flight, both online and at the airport.",
         "buttonText": "Learn More",
-        "slug": "cabin-comfort",
+        "slug": "check-in",
         "buttonLink": "#",
-        "imageAlt": "Comfortable aircraft cabin"
+        "imageAlt": "Passenger checking in at the airport"
       },
       {
         "id": "page-3",
-        "title": "Destination inspiration",
-        "description": "Browse curated destinations and find your next unforgettable escape.",
+        "title": "Travel documents",
+        "description": "Review passport, visa, and entry requirements so you are ready before you fly.",
         "buttonText": "Learn More",
-        "slug": "destinations",
+        "slug": "travel-documents",
         "buttonLink": "#",
-        "imageAlt": "Scenic travel destination"
+        "imageAlt": "Passport and travel documents"
       },
       {
         "id": "page-4",
@@ -715,6 +716,15 @@
         "slug": "booking-guide",
         "buttonLink": "#",
         "imageAlt": "Traveler booking a flight"
+      },
+      {
+        "id": "page-5",
+        "title": "Cabin comfort",
+        "description": "Discover seating options and onboard features designed for a more relaxed flight.",
+        "buttonText": "Learn More",
+        "slug": "cabin-comfort",
+        "buttonLink": "#",
+        "imageAlt": "Comfortable aircraft cabin"
       }
     ]
   },

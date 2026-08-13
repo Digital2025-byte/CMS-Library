@@ -30,7 +30,10 @@ export default function RootLayout({ children }) {
       lang="en"
       className={`${montserrat.variable} ${cairo.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full bg-background font-sans text-foreground">
+      <body
+        className="min-h-full bg-background font-sans text-foreground"
+        suppressHydrationWarning
+      >
         <I18nProvider>{children}</I18nProvider>
       </body>
     </html>

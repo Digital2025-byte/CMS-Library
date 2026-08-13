@@ -2,8 +2,7 @@ import { useMemo } from "react";
 
 export function useCarouselSettings(cardsCount = 0, onBeforeChange) {
   return useMemo(() => {
-    const desktopShow = Math.min(3, Math.max(cardsCount, 1));
-    const tabletShow = Math.min(2, Math.max(cardsCount, 1));
+    const desktopShow = Math.min(2.35, Math.max(cardsCount, 1));
 
     return {
       dots: false,
@@ -23,7 +22,7 @@ export function useCarouselSettings(cardsCount = 0, onBeforeChange) {
         {
           breakpoint: 1024,
           settings: {
-            slidesToShow: tabletShow,
+            slidesToShow: Math.min(1.7, Math.max(cardsCount, 1)),
             slidesToScroll: 1,
             infinite: false,
           },
@@ -31,7 +30,7 @@ export function useCarouselSettings(cardsCount = 0, onBeforeChange) {
         {
           breakpoint: 768,
           settings: {
-            slidesToShow: 1,
+            slidesToShow: Math.min(1.15, Math.max(cardsCount, 1)),
             slidesToScroll: 1,
             infinite: false,
           },
