@@ -725,6 +725,13 @@ export const SECTION_COMPONENTS = {
       },
     }))
   ),
+  "scroll-carousel": lazySection(() =>
+    import("@/app/cmsComponents/ScrollCarousel").then((Comp) => ({
+      default: function Section({ lang }) {
+        return <Comp.default lang={lang} />;
+      },
+    }))
+  ),
   "destinations-map": lazySection(() =>
     Promise.all([
       import("@/app/cmsComponents/DestinationsMap"),

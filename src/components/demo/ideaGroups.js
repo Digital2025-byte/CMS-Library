@@ -7,7 +7,7 @@ export const IDEA_GROUPS = [
     slug: "new",
     label: "New",
     description: "Latest Lightswind experiments.",
-    sectionIds: ["three-d-slider", "cool-slide-gallery"],
+    sectionIds: ["three-d-slider", "cool-slide-gallery", "scroll-carousel"],
   },
   {
     slug: "accordion",
@@ -166,6 +166,7 @@ export const HOME_SECTION_IDS = [
   "on-board-image-ring",
   "three-d-slider",
   "cool-slide-gallery",
+  "scroll-carousel",
   "destinations-map",
   "destination-showcase",
   "destinations-cities",
