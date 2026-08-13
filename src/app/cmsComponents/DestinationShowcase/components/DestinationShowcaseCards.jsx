@@ -18,16 +18,17 @@ export default function DestinationShowcaseCards({
   onCardClick,
 }) {
   return (
-    <div className="relative mt-12 flex w-full items-center justify-start overflow-hidden p-6 md:mt-0 md:w-80 md:p-8 lg:w-[470px]">
-      <div className="relative h-[220px] w-full max-w-[400px] p-1 md:h-[230px] lg:p-0">
+    <div className="relative mt-12 flex w-full items-center justify-start overflow-hidden py-4 md:mt-0 md:w-80 md:p-8 lg:w-[470px]">
+      <div className="relative h-[220px] w-full md:h-[230px]">
         <div
-          className={`flex h-full items-end ${
+          className={`flex h-full items-end md:!ps-0 ${
             jumping
               ? ""
               : "transition-transform duration-900 ease-[cubic-bezier(0.33,1,0.68,1)]"
           }`}
           style={{
             gap: `${CARD_GAP_PX}px`,
+            paddingInlineStart: `calc(50% - ${CARD_ACTIVE_W_PX / 2}px)`,
             transform:
               lang === "ar"
                 ? `translateX(${virtualIndex * CARD_STEP_PX}px)`
@@ -35,8 +36,8 @@ export default function DestinationShowcaseCards({
           }}
         >
           {infiniteList.map((dest, index) => {
-            // The card sitting at the left edge (== virtualIndex) is the active
-            // one; modulo maps any copy back to its real destination index.
+            // virtualIndex is the active card. Mobile: centered via start pad.
+            // md+: start pad is cleared so it sits flush to the column start.
             const isActive = index === virtualIndex;
             const mappedIndex =
               destinationsLength > 0 ? index % destinationsLength : 0;

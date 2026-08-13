@@ -63,8 +63,8 @@ export default function DestinationShowcaseBanner({
       </div>
 
       <div className="relative z-10 flex min-h-[540px] flex-col overflow-hidden">
-        <div className="relative flex flex-1 flex-col justify-between gap-6 px-5 pb-4 pt-10 sm:px-8 sm:pt-12 md:flex-row md:items-stretch md:gap-6 md:px-12 md:pb-6 md:pt-14 lg:px-16">
-          <div className="relative z-10 w-full max-w-xl shrink-0 md:flex md:flex-1 md:flex-col md:justify-center">
+        <div className="relative flex flex-1 flex-col justify-between gap-6 pb-4 pt-10 sm:pt-12 md:flex-row md:items-stretch md:gap-6 md:px-12 md:pb-6 md:pt-14 lg:px-16">
+          <div className="relative z-10 w-full max-w-xl shrink-0 px-5 sm:px-8 md:flex md:flex-1 md:flex-col md:justify-center md:px-0">
             <DestinationShowcaseContent
               name={current.name}
               description={current.description}

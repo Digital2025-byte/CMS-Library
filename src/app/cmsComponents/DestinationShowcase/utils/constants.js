@@ -3,7 +3,8 @@
  * "slot" per index. Every card to the LEFT of the active one is inactive, so a
  * slot is exactly an inactive card + the gap. Driving the gap and widths from
  * these same constants (see DestinationShowcaseCards) keeps the active card
- * flush-left with zero drift — no stray sliver of the neighbouring card.
+ * flush-left on md+ with zero drift. On mobile, the track adds start padding
+ * of `50% - activeWidth/2` so the same slot lands in the middle.
  */
 export const CARD_GAP_PX = 20;
 export const CARD_INACTIVE_W_PX = 148;
