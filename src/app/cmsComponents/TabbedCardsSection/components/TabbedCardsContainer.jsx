@@ -1,3 +1,5 @@
+import PageContentContainer from "@/components/layout/PageContentContainer";
+
 export default function TabbedCardsContainer({ lang, dir, children }) {
   return (
     <div
@@ -5,9 +7,9 @@ export default function TabbedCardsContainer({ lang, dir, children }) {
       lang={lang}
       dir={dir || (lang === "ar" ? "rtl" : "ltr")}
     >
-      <section className="mx-auto w-full max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
+      <PageContentContainer as="section" className="py-8 sm:py-10 lg:py-12">
         {children}
-      </section>
+      </PageContentContainer>
     </div>
   );
 }

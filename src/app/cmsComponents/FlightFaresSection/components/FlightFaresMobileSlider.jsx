@@ -7,20 +7,16 @@ export default function FlightFaresMobileSlider({ cities, lang }) {
   }
 
   return (
-    <div className="md:hidden">
+    <div className="lg:hidden">
       <div className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth px-4 sm:-mx-6 sm:px-6 scrollbar-none [&::-webkit-scrollbar]:hidden">
         {cities.map((item, index) => (
-          <div
+          <FlightFareCard
             key={`${item.cityId || item.cityName}-${index}`}
-            className="flex items-center justify-center"
-          >
-            <FlightFareCard
-              lang={lang}
-              item={item}
-              imageIndex={getImageIndexForPosition(cities, index)}
-              className="h-82.5 w-[78vw] max-w-85 shrink-0 snap-start"
-            />
-          </div>
+            lang={lang}
+            item={item}
+            imageIndex={getImageIndexForPosition(cities, index)}
+            className="h-72 w-[78vw] max-w-80 shrink-0 snap-start sm:h-80 sm:w-[46vw] sm:max-w-none md:h-85 md:w-[42vw]"
+          />
         ))}
       </div>
     </div>

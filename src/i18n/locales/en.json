@@ -616,6 +616,9 @@
   },
   "flightFares": {
     "title": "Flight deals",
+    "oneWay": "One-way",
+    "new": "New",
+    "economyFrom": "Economy from {{price}} {{currency}}",
     "cities": [
       {
         "cityId": 1,

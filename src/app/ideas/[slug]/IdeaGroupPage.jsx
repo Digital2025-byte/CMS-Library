@@ -5,6 +5,7 @@ import CmsDemoChrome from "@/components/demo/CmsDemoChrome";
 import { CmsDemoSections } from "@/components/demo/CmsDemoSections";
 import { getIdeaGroup } from "@/components/demo/ideaGroups";
 import useCmsDemoData from "@/components/demo/useCmsDemoData";
+import PageContentContainer from "@/components/layout/PageContentContainer";
 import { typography } from "@/styles/typography";
 
 export default function IdeaGroupPage() {
@@ -17,11 +18,11 @@ export default function IdeaGroupPage() {
   if (!group) {
     return (
       <CmsDemoChrome overlay={false} sectionIds={[]}>
-        <div className="px-6 py-24">
+        <PageContentContainer className="py-24">
           <h1 className={`${typography.pageTitle} font-semibold text-main`}>
             Idea not found
           </h1>
-        </div>
+        </PageContentContainer>
       </CmsDemoChrome>
     );
   }

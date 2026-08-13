@@ -16,7 +16,7 @@ export default function FlightFaresDesktopGrid({ cities, lang }) {
   }
 
   return (
-    <div className="hidden min-h-147.5 gap-4 md:grid md:auto-rows-42.5 md:grid-rows-2 md:grid-cols-[1.4fr_1.7fr_1.1fr_1.1fr]">
+    <div className="hidden min-h-147.5 gap-4 lg:grid lg:auto-rows-42.5 lg:grid-rows-2 lg:grid-cols-[1.4fr_1.7fr_1.1fr_1.1fr]">
       {DESKTOP_LAYOUT.map(({ index, size }) => {
         const item = cities[index];
         if (!item) return null;

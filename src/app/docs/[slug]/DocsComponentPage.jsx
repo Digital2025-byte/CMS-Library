@@ -26,6 +26,7 @@ import RelatedContentCarouselExamples from "@/app/cmsComponents/RelatedContentCa
 import ServiceCardsSliderExamples from "@/app/cmsComponents/ServiceCardsSlider/docs/ServiceCardsSliderExamples";
 import SliderExamples from "@/app/cmsComponents/Slider/docs/SliderExamples";
 import { COMPONENT_NAV_ITEMS } from "@/components/ui/ComponentNav";
+import PageContentContainer from "@/components/layout/PageContentContainer";
 import { typography } from "@/styles/typography";
 
 const DOCS_EXAMPLES = {
@@ -94,29 +95,29 @@ export default function DocsComponentPage() {
   if (!known) {
     return (
       <CmsDemoChrome overlay={false} sectionIds={[]}>
-        <div className="px-6 py-24">
+        <PageContentContainer className="py-24">
           <h1 className={`${typography.pageTitle} font-semibold text-main`}>
             Component not found
           </h1>
           <p className={`${typography.body} mt-3 text-700`}>
             No demo page exists for “{slug}”.
           </p>
-        </div>
+        </PageContentContainer>
       </CmsDemoChrome>
     );
   }
 
   return (
     <CmsDemoChrome overlay={false} sectionIds={[slug]}>
-      <div className="border-b border-200 bg-50 px-6 py-10">
-        <div className="mx-auto w-full max-w-7xl">
+      <div className="border-b border-200 bg-50 py-10">
+        <PageContentContainer>
           {group ? (
             <p className={`${typography.caption} text-500`}>{group.label}</p>
           ) : null}
           <h1 className={`${typography.pageTitle} mt-1 font-semibold text-main`}>
             {label}
           </h1>
-        </div>
+        </PageContentContainer>
       </div>
       {renderExamples ? (
         renderExamples(ctx, label)

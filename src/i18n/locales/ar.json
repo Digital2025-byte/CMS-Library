@@ -616,6 +616,9 @@
   },
   "flightFares": {
     "title": "عروض الرحلات",
+    "oneWay": "اتجاه واحد",
+    "new": "جديد",
+    "economyFrom": "الدرجة الاقتصادية من {{price}} {{currency}}",
     "cities": [
       {
         "cityId": 1,
