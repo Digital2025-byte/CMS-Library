@@ -281,6 +281,14 @@ export const SECTION_DATA_LOADERS = {
       threeDImageRingSectionData: buildThreeDImageRingSectionData(t, lang),
     };
   },
+  "on-board-image-ring": async (t, lang) => {
+    const { buildOnBoardImageRingData } = await import(
+      "@/app/cmsComponents/OnBoardImageRing/utils/data"
+    );
+    return {
+      onBoardImageRingData: buildOnBoardImageRingData(t, lang),
+    };
+  },
   "destinations-map": async (t, lang) => {
     const { buildDestinationsMapData } = await import(
       "@/app/cmsComponents/DestinationsMap/utils/data"

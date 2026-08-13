@@ -704,6 +704,13 @@ export const SECTION_COMPONENTS = {
       },
     }))
   ),
+  "on-board-image-ring": lazySection(() =>
+    import("@/app/cmsComponents/OnBoardImageRing").then((Comp) => ({
+      default: function Section({ lang, onBoardImageRingData }) {
+        return <Comp.default lang={lang} data={onBoardImageRingData} />;
+      },
+    }))
+  ),
   "destinations-map": lazySection(() =>
     Promise.all([
       import("@/app/cmsComponents/DestinationsMap"),

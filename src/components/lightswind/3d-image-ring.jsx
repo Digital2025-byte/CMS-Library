@@ -209,8 +209,9 @@ export function ThreeDImageRing({
                   if (!isDragging.current) setSiblingOpacity(null);
                 }}
               >
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/55 to-transparent" />
                 {captions[index] ? (
-                  <p className="pointer-events-none absolute bottom-4 left-4 z-10 text-sm font-medium text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.75)] md:bottom-6 md:left-6 md:text-lg">
+                  <p className="pointer-events-none absolute bottom-4 start-4 z-10 text-sm font-medium text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.75)] md:bottom-6 md:start-6 md:text-lg">
                     {captions[index]}
                   </p>
                 ) : null}
