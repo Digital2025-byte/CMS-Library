@@ -45,7 +45,7 @@ export default function CarouselCard({ card, lang = "en", cId }) {
         <div className="flex min-h-0 flex-1 flex-col px-5 pb-5 pt-5 sm:px-6 sm:pb-6 sm:pt-6">
           {title ? (
             <h3
-              className={`${typography.itemTitle} mb-2 font-semibold leading-snug text-primary-1`}
+              className={`${typography.itemTitle} mb-2 font-semibold leading-snug text-secondary-2`}
             >
               {title}
             </h3>
