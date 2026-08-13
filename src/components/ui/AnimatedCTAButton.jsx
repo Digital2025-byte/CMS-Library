@@ -48,10 +48,8 @@ export default function AnimatedCTAButton({
       <div className="mt-4 flex items-center" dir={isRtl ? "rtl" : "ltr"}>
         <Link href={href || "#"} className="inline-flex text-inherit no-underline">
           <div
-            className="flex h-10 items-center gap-3 rounded-4xl px-2.5"
+            className="flex h-10 w-fit items-center gap-2 rounded-4xl ps-2.5 pe-4"
             style={{
-              width: "fit-content",
-              minWidth: "180px",
               backgroundColor: mobileBgColor ?? bgColor,
               color: mobileTextColor ?? textColor,
             }}
