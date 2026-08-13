@@ -7,26 +7,38 @@ import {
   CARD_ASPECT,
   CARD_GAP_PX,
   CONCAVE_PUSH,
+  LG_MIN_PX,
   RING_PERSPECTIVE,
   VISIBLE_COUNT,
+  VISIBLE_COUNT_LG,
+  VISIBLE_COUNT_XL,
+  XL_MIN_PX,
 } from "../utils/constants";
+
+function visibleCountForWidth(width) {
+  if (width >= XL_MIN_PX) return VISIBLE_COUNT_XL;
+  if (width >= LG_MIN_PX) return VISIBLE_COUNT_LG;
+  return VISIBLE_COUNT;
+}
 
 /**
  * Concave cylinder: cards sit on the INNER surface.
  * Center goes back (tight / smaller). Left & right come forward (wide / taller).
- * Radius is sized so VISIBLE_COUNT cards span the full viewport.
+ * Radius is sized so the current visible count spans the full viewport.
  */
-function layoutForWidth(containerWidth, count) {
+function layoutForWidth(containerWidth, count, gapPx) {
   const usable = Math.max(containerWidth, 320);
+  const visible = visibleCountForWidth(usable);
   const angle = count > 0 ? 360 / count : 0;
-  const edgeSteps = Math.floor((VISIBLE_COUNT - 1) / 2);
+  const edgeSteps = Math.floor((visible - 1) / 2);
   const edgeRad = ((angle * edgeSteps) * Math.PI) / 180;
   const radius =
     (usable * 0.5) / Math.max(Math.sin(edgeRad) || 0.35, 0.2);
 
   const packedWidth = 2 * radius * Math.tan(Math.PI / Math.max(count, 2));
+  const gap = Math.max(0, Number(gapPx) || 0);
   const cardWidth = Math.round(
-    Math.min(420, Math.max(140, packedWidth - CARD_GAP_PX))
+    Math.min(420, Math.max(120, packedWidth - gap))
   );
 
   return {
@@ -42,7 +54,10 @@ export default function OnBoardImageRingTrack({
   images = [],
   captions = [],
   lang = "en",
+  imageGap = CARD_GAP_PX,
 }) {
+  void lang;
+
   const viewportRef = useRef(null);
   const ringRef = useRef(null);
   const isDragging = useRef(false);
@@ -55,8 +70,8 @@ export default function OnBoardImageRingTrack({
   const [containerWidth, setContainerWidth] = useState(1200);
 
   const { cardWidth, cardHeight, radius, angle, pushZ } = useMemo(
-    () => layoutForWidth(containerWidth, count),
-    [containerWidth, count]
+    () => layoutForWidth(containerWidth, count, imageGap),
+    [containerWidth, count, imageGap]
   );
 
   useEffect(() => {
@@ -97,9 +112,9 @@ export default function OnBoardImageRingTrack({
     if (!isDragging.current) return;
     const delta = event.clientX - lastX.current;
     lastX.current = event.clientX;
-    velocity.current = delta * 0.35;
-    const dir = lang === "ar" ? -1 : 1;
-    rotationY.set(currentRotation.current + dir * velocity.current);
+    // Invert so the strip follows the pointer (drag left → cards move left).
+    velocity.current = -delta * 0.35;
+    rotationY.set(currentRotation.current + velocity.current);
   };
 
   const onPointerUp = (event) => {

@@ -10,6 +10,7 @@ export default function OnBoardImageRingPanel({
   description,
   images,
   captions,
+  imageGap,
 }) {
   return (
     <section
@@ -25,6 +26,7 @@ export default function OnBoardImageRingPanel({
           images={images}
           captions={captions}
           lang={lang}
+          imageGap={imageGap}
         />
       </div>
     </section>
