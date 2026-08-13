@@ -7,8 +7,8 @@ export default function TabbedCardsCard({ card }) {
   }
 
   return (
-    <article className="relative flex h-full flex-col justify-start overflow-hidden rounded-2xl lg:overflow-visible lg:rounded-none">
-      <div className="relative h-50 w-full overflow-hidden rounded-t-2xl sm:h-55 lg:h-62.5 lg:rounded-2xl">
+    <article className="relative flex h-full flex-col overflow-hidden rounded-3xl bg-primary-1 lg:overflow-visible lg:rounded-none lg:bg-transparent">
+      <div className="relative aspect-[4/3] w-full overflow-hidden lg:aspect-auto lg:h-62.5 lg:rounded-3xl">
         {card.imageSrc ? (
           <Image
             src={card.imageSrc}
@@ -26,17 +26,17 @@ export default function TabbedCardsCard({ card }) {
         )}
       </div>
 
-      <div className="flex flex-1 flex-col gap-1 bg-primary-1 px-4 py-5 text-center sm:px-5 sm:py-6 lg:bg-transparent lg:px-0 lg:py-4">
+      <div className="flex flex-1 flex-col gap-2 px-5 py-6 text-center sm:px-6 sm:py-7 lg:gap-1 lg:px-0 lg:py-4">
         {card.title ? (
           <h3
-            className={`${typography.itemTitle} font-medium text-white lg:text-secondary-1`}
+            className={`${typography.itemTitle} font-semibold text-white lg:font-medium lg:text-secondary-2`}
           >
             {card.title}
           </h3>
         ) : null}
         {card.description ? (
           <p
-            className={`${typography.itemDescription} font-normal leading-relaxed text-black/80`}
+            className={`${typography.itemDescription} font-normal leading-relaxed text-white/90 lg:text-600`}
           >
             {card.description}
           </p>

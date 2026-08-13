@@ -10,14 +10,14 @@ export default function TabbedCardsHeader({ title, subtitle }) {
       <div className="max-w-2xl">
         {title ? (
           <h2
-            className={`${typography.sectionTitle} font-semibold text-secondary-1`}
+            className={`${typography.sectionTitle} font-semibold text-primary-1`}
           >
             {title}
           </h2>
         ) : null}
         {subtitle ? (
           <p
-            className={`${typography.sectionDescription} mt-2 text-primary-1/80`}
+            className={`${typography.sectionDescription} mt-2 text-primary-1`}
           >
             {subtitle}
           </p>
