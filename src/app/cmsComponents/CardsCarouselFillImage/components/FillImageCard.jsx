@@ -62,6 +62,7 @@ export default function FillImageCard({ card, lang = "en", cId }) {
               lang={lang}
               href={withCampaignPath(buttonLink, cId)}
               label={buttonText}
+              gapClassName="gap-5"
               arrowColor="#054E72"
               textColor="#FFFFFF"
               bgColor="#FFFFFF"

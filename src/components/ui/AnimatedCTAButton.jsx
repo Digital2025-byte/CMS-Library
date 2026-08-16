@@ -20,6 +20,7 @@ export default function AnimatedCTAButton({
   mobileBgColor,
   mobileTextColor,
   mobileArrowColor,
+  gapClassName = "gap-3",
 }) {
   const isMobile = useIsMobile(768);
   const isRtl = lang === "ar";
@@ -48,7 +49,7 @@ export default function AnimatedCTAButton({
       <div className="mt-4 flex items-center" dir={isRtl ? "rtl" : "ltr"}>
         <Link href={href || "#"} className="inline-flex text-inherit no-underline">
           <div
-            className="flex h-10 w-fit items-center gap-2 rounded-4xl ps-2.5 pe-4"
+            className={`flex h-10 w-fit items-center ${gapClassName} rounded-4xl ps-2.5 pe-4`}
             style={{
               backgroundColor: mobileBgColor ?? bgColor,
               color: mobileTextColor ?? textColor,
@@ -86,7 +87,7 @@ export default function AnimatedCTAButton({
 
       <Link
         href={href || "#"}
-        className="relative z-10 inline-flex h-10 items-center gap-3 px-2.5 text-inherit no-underline"
+        className={`relative z-10 inline-flex h-10 items-center ${gapClassName} px-2.5 text-inherit no-underline`}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
         onFocus={() => setHovered(true)}
