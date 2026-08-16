@@ -63,7 +63,7 @@ function renderLabel(label) {
   return renderLine(label);
 }
 
-const iconClassName = "mt-0.5 size-5 shrink-0 text-icon";
+const iconClassName = "mt-0.5 size-5 shrink-0 text-primary-2";
 
 export default function GridInfoCard({ item, lang = "en" }) {
   if (!item) {
@@ -98,7 +98,7 @@ export default function GridInfoCard({ item, lang = "en" }) {
   return (
     <div className="flex flex-col gap-3 rounded-xl bg-white p-5 shadow-sm">
       {item.name ? (
-        <h3 className={`${typography.itemTitle} font-medium text-primary-1`}>
+        <h3 className={`${typography.itemTitle} font-medium text-main`}>
           {item.name}
         </h3>
       ) : null}
