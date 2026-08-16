@@ -1,4 +1,5 @@
-import Button from "@/components/ui/Button";
+import AnimatedCTAButton from "@/components/ui/AnimatedCTAButton";
+import { withCampaignPath } from "@/utils/withCampaignPath";
 import SubSectionBlock from "./SubSectionBlock";
 import SubSectionsHeader from "./SubSectionsHeader";
 
@@ -37,12 +38,20 @@ export default function SubSectionsContent({
       </div>
 
       {ctaButton ? (
-        <div className="min-h-12">
-          <Button
+        <div className="min-h-12 w-fit overflow-visible">
+          <AnimatedCTAButton
+            lang={lang}
             label={ctaButton}
-            href={ctaHref || "#"}
-            icon={ctaIcon}
-            cId={cId}
+            href={withCampaignPath(ctaHref || "#", cId)}
+            arrowColor="#FFFFFF"
+            textColor="#006080"
+            bgColor="#006080"
+            bgFillColor="#006080"
+            textFillColor="#FFFFFF"
+            arrowFillColor="#FFFFFF"
+            mobileTextColor="#FFFFFF"
+            mobileArrowColor="#FFFFFF"
+            mobileBgColor="#006080"
           />
         </div>
       ) : null}
