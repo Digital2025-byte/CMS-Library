@@ -27,7 +27,7 @@ const TwoColumnWithSubSections = ({ lang = "en", data }) => {
   return (
     <>
       {/* Desktop: overlapping media + content with side-by-side subsections */}
-      <section className="hidden overflow-visible lg:flex lg:flex-row lg:items-center lg:justify-between lg:gap-12 xl:gap-16">
+      <section className="hidden overflow-visible lg:flex lg:flex-row lg:items-center lg:justify-between lg:gap-4">
         <SubSectionsMedia
           mainImage={mainImage}
           mainImageAlt={mainImageAlt}

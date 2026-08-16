@@ -11,7 +11,7 @@ export default function SubSectionsMedia({
   }
 
   return (
-    <div className="relative w-full pb-[14%] lg:w-[52%] lg:pb-[12%] lg:pe-2">
+    <div className="relative w-full pb-[14%] lg:w-[52%] lg:pb-[12%] ">
       <div className="relative w-[88%]">
         <div className="relative aspect-4/3 w-full overflow-hidden rounded-3xl sm:rounded-4xl">
           <Image

@@ -15,7 +15,7 @@ export default function SubSectionsContent({
   cId,
 }) {
   return (
-    <div className="flex w-full flex-col justify-center gap-6 lg:w-[48%] lg:gap-8 lg:ps-4 xl:ps-8">
+    <div className="flex w-full flex-col justify-center gap-6 lg:w-[48%] lg:gap-8 ">
       <SubSectionsHeader
         sectionLabel={sectionLabel}
         title={title}
