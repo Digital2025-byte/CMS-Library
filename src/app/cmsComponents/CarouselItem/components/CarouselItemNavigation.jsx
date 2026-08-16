@@ -25,7 +25,7 @@ export default function CarouselItemNavigation({
           type="button"
           onClick={onPrev}
           aria-label="Previous"
-          className="rounded-full border-2 border-white p-2 transition hover:bg-white/20"
+          className="cursor-pointer rounded-full border-2 border-white p-2 transition hover:bg-white/20"
         >
           <ArrowLeftIcon className="text-lg text-white" weight="bold" />
         </button>
@@ -61,7 +61,7 @@ export default function CarouselItemNavigation({
           type="button"
           onClick={onNext}
           aria-label="Next"
-          className="rounded-full border-2 border-white p-2 transition hover:bg-white/20"
+          className="cursor-pointer rounded-full border-2 border-white p-2 transition hover:bg-white/20"
         >
           <ArrowRightIcon className="text-lg text-white" weight="bold" />
         </button>

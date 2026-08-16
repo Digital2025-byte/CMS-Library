@@ -73,7 +73,7 @@ export default function CarouselItemPanel({
       className="flex items-start justify-center bg-primary-800"
     >
       <PageContentContainer className="mb-8">
-        <div className="mt-1 py-3">
+        <div className="mt-1 py-6 sm:py-12">
           {showTitle ? <CarouselItemTitle title={content?.title} /> : null}
           <CarouselItemSlider
             sliderRef={sliderRef}
