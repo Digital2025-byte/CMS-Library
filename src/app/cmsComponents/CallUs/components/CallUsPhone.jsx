@@ -1,3 +1,5 @@
+import { typography } from "@/styles/typography";
+
 export default function CallUsPhone({ phoneText, href }) {
   if (!phoneText) {
     return null;
@@ -7,7 +9,7 @@ export default function CallUsPhone({ phoneText, href }) {
     <a
       dir="ltr"
       href={href || "#"}
-      className="text-3xl font-bold tracking-wide text-white transition-colors hover:text-primary-2 md:text-4xl"
+      className={`${typography.pageTitle} tracking-wide text-white no-underline hover:opacity-90`}
     >
       +{phoneText}
     </a>

@@ -1,5 +1,6 @@
 "use client";
 
+import { typography } from "@/styles/typography";
 import CallUsIcon from "./components/CallUsIcon";
 import CallUsPhone from "./components/CallUsPhone";
 import { getCallUsContent } from "./utils/helpers";
@@ -13,22 +14,19 @@ const CallUs = ({ data }) => {
   }
 
   return (
-    <div
-      className="w-full rounded-xl px-6 py-12 text-center"
-      style={{
-        background: "linear-gradient(90deg, var(--color-primary-800) 0%, var(--color-main) 100%)",
-      }}
-    >
+    <div className="flex w-full flex-col items-center rounded-2xl bg-main px-6 py-10 text-center sm:px-10 sm:py-12 lg:py-16">
       <CallUsIcon />
 
       {upperText ? (
-        <p className="mb-2 text-sm text-white/80">{upperText}</p>
+        <p className={`${typography.body} mb-2 text-white`}>{upperText}</p>
       ) : null}
 
       <CallUsPhone phoneText={mainText} href={phoneHref} />
 
       {bottomText ? (
-        <p className="mx-auto mt-4 max-w-xl text-sm text-white/60">
+        <p
+          className={`${typography.itemDescription} mx-auto mt-4 max-w-2xl text-white`}
+        >
           {bottomText}
         </p>
       ) : null}
