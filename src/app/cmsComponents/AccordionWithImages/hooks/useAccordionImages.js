@@ -4,26 +4,31 @@ import { useEffect, useRef, useState } from "react";
 
 export function useAccordionImages(items) {
   const [openIndex, setOpenIndex] = useState(0);
+  const [panelIndex, setPanelIndex] = useState(0);
   const itemRefs = useRef([]);
   const containerRef = useRef(null);
 
   useEffect(() => {
     if (items.length === 0) {
       setOpenIndex(0);
+      setPanelIndex(0);
       return;
     }
 
-    if (openIndex > items.length - 1) {
+    if (openIndex != null && openIndex > items.length - 1) {
       setOpenIndex(0);
+      setPanelIndex(0);
     }
   }, [items, openIndex]);
 
   const toggleAccordion = (index) => {
     if (openIndex === index) {
+      setOpenIndex(null);
       return;
     }
 
     setOpenIndex(index);
+    setPanelIndex(index);
 
     setTimeout(() => {
       const container = containerRef.current;
@@ -50,6 +55,7 @@ export function useAccordionImages(items) {
 
   return {
     openIndex,
+    panelIndex,
     containerRef,
     setItemRef,
     toggleAccordion,

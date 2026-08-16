@@ -12,7 +12,7 @@ const AccordionWithImages = ({
   showImagePanel = true,
 }) => {
   const { title, description, items } = getAccordionImagesContent(data);
-  const { openIndex, containerRef, setItemRef, toggleAccordion } =
+  const { openIndex, panelIndex, containerRef, setItemRef, toggleAccordion } =
     useAccordionImages(items);
 
   return (
@@ -43,7 +43,7 @@ const AccordionWithImages = ({
 
         {showImagePanel ? (
           <div className="hidden w-full items-center justify-center sm:flex lg:w-1/2">
-            <AccordionImagesPanel items={items} activeIndex={openIndex} />
+            <AccordionImagesPanel items={items} activeIndex={panelIndex} />
           </div>
         ) : null}
       </section>
