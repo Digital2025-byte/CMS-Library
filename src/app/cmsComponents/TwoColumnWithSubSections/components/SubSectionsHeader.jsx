@@ -11,7 +11,7 @@ export default function SubSectionsHeader({ sectionLabel, title, description }) 
 
       {title ? (
         <h2
-          className={`${typography.sectionTitle} font-medium italic  text-primary-1`}
+          className={`${typography.sectionTitle} font-medium italic text-primary-1`}
         >
           {title}
         </h2>
