@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import { typography } from "@/styles/typography";
 
 function isPhoneNumber(text) {
   if (!text) return false;
@@ -60,7 +61,6 @@ export default function ContactInfoItem({
   label,
   value,
   icon: Icon,
-  isAddress = false,
   lang = "en",
 }) {
   if (!value || !Icon) {
@@ -68,17 +68,19 @@ export default function ContactInfoItem({
   }
 
   return (
-    <div className="flex gap-2 px-2">
+    <div className="flex items-start gap-3">
       <Icon
         size={22}
         weight="regular"
-        className={`shrink-0 text-icon ${isAddress ? "mt-0.5" : ""} ${
+        className={`mt-0.5 shrink-0 text-primary-2 ${
           lang === "ar" && isPhoneNumber(value) ? "-scale-x-100" : ""
         }`}
       />
-      <div className="flex flex-col gap-1">
-        <span className="text-sm text-icon">{label}</span>
-        <div className="flex items-start gap-2 text-sm text-secondary-2 md:text-base">
+      <div className="flex min-w-0 flex-col gap-1">
+        <span className={`${typography.caption} font-medium text-primary-2`}>
+          {label}
+        </span>
+        <div className={`${typography.itemDescription} text-secondary-2`}>
           {renderValue(value)}
         </div>
       </div>

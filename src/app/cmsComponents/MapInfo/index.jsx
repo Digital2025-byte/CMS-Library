@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslation } from "react-i18next";
 import MapInfoCitySelector from "./components/MapInfoCitySelector";
 import MapInfoCountryTabs from "./components/MapInfoCountryTabs";
 import MapInfoDetails from "./components/MapInfoDetails";
@@ -12,8 +13,8 @@ import {
 } from "./utils/helpers";
 
 const MapInfo = ({ lang = "en", data }) => {
-  const isArabic = lang === "ar";
-  const labels = getContactFieldLabels(isArabic);
+  const { t } = useTranslation();
+  const labels = getContactFieldLabels(t);
   const { title, description, branches, hasContent } = getMapInfoContent(
     data,
     lang
@@ -58,12 +59,7 @@ const MapInfo = ({ lang = "en", data }) => {
         onOfficeChange={setSelectedOfficeIndex}
       />
 
-      <MapInfoDetails
-        office={displayOffice}
-        citiesCount={cities.length}
-        lang={lang}
-        isArabic={isArabic}
-      />
+      <MapInfoDetails office={displayOffice} labels={labels} lang={lang} />
     </>
   );
 };

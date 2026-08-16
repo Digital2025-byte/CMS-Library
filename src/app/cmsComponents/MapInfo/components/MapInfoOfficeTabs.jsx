@@ -21,9 +21,9 @@ export default function MapInfoOfficeTabs({
                 key={`${office.id || office.name || index}-${index}`}
                 type="button"
                 onClick={() => onOfficeChange(index)}
-                className={`py-2 text-xs font-medium transition-colors md:text-sm ${
+                className={`cursor-pointer py-2 text-xs font-medium transition-colors md:text-sm ${
                   isActive
-                    ? "border-b-2 border-[#054E72] text-primary-1"
+                    ? "border-b-2 border-main text-primary-1"
                     : "border-b-2 border-transparent text-muted hover:text-primary-1"
                 }`}
               >

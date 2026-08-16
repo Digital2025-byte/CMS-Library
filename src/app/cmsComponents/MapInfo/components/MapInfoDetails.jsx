@@ -4,20 +4,19 @@ import {
   MapPinIcon,
   PhoneIcon,
 } from "@phosphor-icons/react";
+import { typography } from "@/styles/typography";
 import ContactInfoItem from "./ContactInfoItem";
-import { getContactFieldLabels, makeMapUrl } from "../utils/helpers";
+import { makeMapUrl } from "../utils/helpers";
 
 export default function MapInfoDetails({
   office,
-  citiesCount,
+  labels,
   lang = "en",
-  isArabic = false,
 }) {
   if (!office) {
     return null;
   }
 
-  const labels = getContactFieldLabels(isArabic);
   const contactFields = [
     {
       label: labels.address,
@@ -47,23 +46,19 @@ export default function MapInfoDetails({
 
   return (
     <div className="px-2">
-      <div className="rounded-2xl bg-surface-1 p-4 pb-10 sm:p-6">
+      <div className="rounded-2xl bg-white p-4 pb-10 sm:p-6">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
-          <div className="flex flex-col gap-5">
-            {citiesCount === 1 && office.city ? (
-              <div className="-mb-2 px-2 text-sm text-icon">{office.city}</div>
-            ) : null}
+          <div className="flex flex-col gap-6">
+  
 
-            <h3 className="mb-2 px-2 text-xl font-medium text-primary-1">
-              {officeTitle}
-            </h3>
+
 
             {contactFields.map((field) => (
               <ContactInfoItem key={field.label} {...field} lang={lang} />
             ))}
           </div>
 
-          <div className="h-64 min-h-70 w-full overflow-hidden rounded-xl bg-white lg:h-full lg:min-h-90">
+          <div className="h-64 min-h-70 w-full overflow-hidden rounded-xl bg-surface-1 lg:h-full lg:min-h-90">
             {mapUrl ? (
               <iframe
                 src={mapUrl}

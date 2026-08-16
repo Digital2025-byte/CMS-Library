@@ -80,15 +80,13 @@ export function getMapInfoContent(data, lang = "en") {
   };
 }
 
-export function getContactFieldLabels(isArabic) {
+export function getContactFieldLabels(t) {
   return {
-    address: isArabic ? "العنوان" : "Address",
-    phone: isArabic ? "هاتف" : "Phone",
-    email: isArabic ? "البريد الإلكتروني" : "Email",
-    workingHours: isArabic ? "ساعات العمل" : "Working Hours",
-    city: isArabic ? "المدينة" : "City",
-    mapUnavailable: isArabic
-      ? "خريطة الفرع غير متوفرة حالياً"
-      : "Map for this office is not available yet.",
+    address: t("mapInfo.labels.address"),
+    phone: t("mapInfo.labels.phone"),
+    email: t("mapInfo.labels.email"),
+    workingHours: t("mapInfo.labels.workingHours"),
+    city: t("mapInfo.labels.city"),
+    mapUnavailable: t("mapInfo.labels.mapUnavailable"),
   };
 }

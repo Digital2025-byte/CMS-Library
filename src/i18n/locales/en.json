@@ -331,6 +331,14 @@
   "mapInfo": {
     "title": "Our GSA",
     "description": "Find FlyCham general sales agents by country and city, then view office details and map location.",
+    "labels": {
+      "address": "Address",
+      "phone": "Phone",
+      "email": "Email",
+      "workingHours": "Working Hours",
+      "city": "City",
+      "mapUnavailable": "Map for this office is not available yet."
+    },
     "branches": [
       {
         "id": "dam-main",

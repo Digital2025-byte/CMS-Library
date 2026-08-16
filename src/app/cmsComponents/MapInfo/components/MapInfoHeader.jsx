@@ -1,3 +1,5 @@
+import { typography } from "@/styles/typography";
+
 export default function MapInfoHeader({ title, description }) {
   if (!title && !description) {
     return null;
@@ -6,12 +8,14 @@ export default function MapInfoHeader({ title, description }) {
   return (
     <div className="p-2 pt-4">
       {title ? (
-        <h2 className="text-2xl font-bold text-primary-1 md:text-3xl">
+        <h2 className={`${typography.sectionTitle} font-bold text-main`}>
           {title}
         </h2>
       ) : null}
       {description ? (
-        <p className="mb-3 mt-2 px-0.5 text-primary-1">
+        <p
+          className={`${typography.sectionDescription} mb-3 mt-2 px-0.5 text-main`}
+        >
           {description}
         </p>
       ) : null}

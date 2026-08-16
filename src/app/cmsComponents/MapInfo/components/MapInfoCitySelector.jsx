@@ -21,7 +21,7 @@ export default function MapInfoCitySelector({
           <select
             value={selectedCity || ""}
             onChange={(event) => onCityChange(event.target.value)}
-            className={`${typography.button} min-w-55 rounded-lg border border-gray-200 bg-white px-4 py-2 text-primary-1 focus:outline-none focus:ring-2 focus:ring-primary-1/20`}
+            className={`${typography.button} min-w-55 cursor-pointer rounded-lg border border-gray-200 bg-white px-4 py-2 text-primary-1 focus:outline-none focus:ring-2 focus:ring-primary-1/20`}
           >
             {cities.map((city) => (
               <option key={city} value={city}>
@@ -46,9 +46,9 @@ export default function MapInfoCitySelector({
                 key={city}
                 type="button"
                 onClick={() => onCityChange(city)}
-                className={`py-2 text-xs font-medium transition-colors md:text-sm ${
+                className={`cursor-pointer py-2 text-xs font-medium transition-colors md:text-sm ${
                   isActive
-                    ? "border-b-2 border-[#054E72] text-primary-1"
+                    ? "border-b-2 border-main text-primary-1"
                     : "border-b-2 border-transparent text-muted hover:text-primary-1"
                 }`}
               >

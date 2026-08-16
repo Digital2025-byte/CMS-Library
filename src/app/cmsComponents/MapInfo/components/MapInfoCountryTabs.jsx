@@ -19,7 +19,7 @@ export default function MapInfoCountryTabs({
             key={country}
             type="button"
             onClick={() => onCountryChange(country)}
-            className={`${typography.button} rounded-lg px-5 py-2 font-medium transition-all ${
+            className={`${typography.button} cursor-pointer rounded-lg px-5 py-2 font-medium transition-all ${
               isActive
                 ? "bg-primary-1 text-white"
                 : "border border-primary-1 bg-white text-primary-1 hover:bg-primary-1/5"
