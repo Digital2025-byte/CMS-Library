@@ -258,6 +258,7 @@
     "title": "Follow Us",
     "description": "Stay connected with FlyCham across our social channels.",
     "prefix": "Follow us on",
+    "chip": "Join 45,000+ followers",
     "channels": [
       {
         "title": "Facebook",
@@ -312,6 +313,18 @@
         "userName": "@flycham",
         "link": "https://snapchat.com",
         "icon": "snapchat"
+      },
+      {
+        "title": "Threads",
+        "userName": "@flycham",
+        "link": "https://threads.net",
+        "icon": "twitter"
+      },
+      {
+        "title": "Pinterest",
+        "userName": "@flycham",
+        "link": "https://pinterest.com",
+        "icon": "pinterest"
       }
     ]
   },

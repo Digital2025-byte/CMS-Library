@@ -258,6 +258,7 @@
     "title": "تابعنا",
     "description": "ابقَ على تواصل مع فلاي شام عبر قنواتنا الاجتماعية.",
     "prefix": "تابعنا على",
+    "chip": "انضم إلى أكثر من 45,000 متابع",
     "channels": [
       {
         "title": "فيسبوك",
@@ -312,6 +313,18 @@
         "userName": "@flycham",
         "link": "https://snapchat.com",
         "icon": "snapchat"
+      },
+      {
+        "title": "ثريدز",
+        "userName": "@flycham",
+        "link": "https://threads.net",
+        "icon": "twitter"
+      },
+      {
+        "title": "بينتريست",
+        "userName": "@flycham",
+        "link": "https://pinterest.com",
+        "icon": "pinterest"
       }
     ]
   },

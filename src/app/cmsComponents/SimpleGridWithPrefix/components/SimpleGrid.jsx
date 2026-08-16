@@ -1,6 +1,6 @@
 import SimpleGridCard from "./SimpleGridCard";
 
-export default function SimpleGrid({ items, prefix, lang, cId }) {
+export default function SimpleGrid({ items, prefix, chip, lang, cId }) {
   if (!Array.isArray(items) || items.length === 0) {
     return null;
   }
@@ -12,6 +12,7 @@ export default function SimpleGrid({ items, prefix, lang, cId }) {
           key={`${item.title}-${item.userName}-${index}`}
           item={item}
           prefix={prefix}
+          chip={item.chip || chip}
           lang={lang}
           cId={cId}
         />

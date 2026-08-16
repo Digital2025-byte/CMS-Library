@@ -12,6 +12,7 @@ export function buildSimpleGridWithPrefixData(t, lang = "en") {
           title: t("simpleGridWithPrefix.title"),
           description: t("simpleGridWithPrefix.description"),
           prefix: t("simpleGridWithPrefix.prefix"),
+          chip: t("simpleGridWithPrefix.chip"),
           channels: Array.isArray(channels)
             ? channels.map((channel) => ({
                 grid: {

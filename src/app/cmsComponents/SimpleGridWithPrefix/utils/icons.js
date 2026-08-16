@@ -1,49 +1,48 @@
-import {
-  FacebookLogoIcon,
-  InstagramLogoIcon,
-  LinkedinLogoIcon,
-  PinterestLogoIcon,
-  SnapchatLogoIcon,
-  TelegramLogoIcon,
-  ThreadsLogoIcon,
-  TiktokLogoIcon,
-  WhatsappLogoIcon,
-  XLogoIcon,
-  YoutubeLogoIcon,
-} from "@phosphor-icons/react";
+import facebook from "@/assets/SimpleGridWithPrefix/facebook.png";
+import instagram from "@/assets/SimpleGridWithPrefix/instagram.png";
+import linkedin from "@/assets/SimpleGridWithPrefix/linkedin.png";
+import pinterest from "@/assets/SimpleGridWithPrefix/pinterest.png";
+import snapchat from "@/assets/SimpleGridWithPrefix/snapchat.png";
+import telegram from "@/assets/SimpleGridWithPrefix/telegram.png";
+import tikTok from "@/assets/SimpleGridWithPrefix/tik_tok.png";
+import twitter from "@/assets/SimpleGridWithPrefix/twitter.png";
+import whatsapp from "@/assets/SimpleGridWithPrefix/whatsapp.png";
+import x from "@/assets/SimpleGridWithPrefix/x.png";
+import youtube from "@/assets/SimpleGridWithPrefix/youtube.png";
 
-export const ICON_MAP = {
-  facebook: FacebookLogoIcon,
-  instagram: InstagramLogoIcon,
-  linkedin: LinkedinLogoIcon,
-  telegram: TelegramLogoIcon,
-  threeds: ThreadsLogoIcon,
-  threads: ThreadsLogoIcon,
-  tik_tok: TiktokLogoIcon,
-  tiktok: TiktokLogoIcon,
-  whatsapp: WhatsappLogoIcon,
-  x: XLogoIcon,
-  youtube: YoutubeLogoIcon,
-  snapchat: SnapchatLogoIcon,
-  pinterest: PinterestLogoIcon,
+const toUrl = (asset) => (typeof asset === "string" ? asset : asset?.src || "");
+
+export const ICON_SRC = {
+  facebook: toUrl(facebook),
+  instagram: toUrl(instagram),
+  linkedin: toUrl(linkedin),
+  pinterest: toUrl(pinterest),
+  snapchat: toUrl(snapchat),
+  telegram: toUrl(telegram),
+  tik_tok: toUrl(tikTok),
+  twitter: toUrl(twitter),
+  whatsapp: toUrl(whatsapp),
+  x: toUrl(x),
+  youtube: toUrl(youtube),
 };
 
 /**
- * Map icon values from API to ICON_MAP keys.
- * Handle special cases: 'twitter' -> 'x', 'tiktok' -> 'tik_tok'
+ * Map icon values from API to ICON_SRC keys.
  */
 export function mapIconToKey(icon) {
   if (!icon) return null;
 
   const normalizedIcon = String(icon).toLowerCase().trim();
 
-  if (normalizedIcon === "twitter") return "x";
   if (normalizedIcon === "tiktok") return "tik_tok";
+  if (normalizedIcon === "threads" || normalizedIcon === "threeds") {
+    return "twitter";
+  }
 
   return normalizedIcon;
 }
 
-export function getIconComponent(icon) {
+export function getIconSrc(icon) {
   const iconKey = mapIconToKey(icon);
-  return iconKey && ICON_MAP[iconKey] ? ICON_MAP[iconKey] : null;
+  return iconKey && ICON_SRC[iconKey] ? ICON_SRC[iconKey] : "";
 }

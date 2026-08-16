@@ -1,4 +1,4 @@
-import { getIconComponent } from "./icons";
+import { getIconSrc } from "./icons";
 
 export function normalizeSimpleGridItem(item) {
   const grid = item?.grid || {};
@@ -8,7 +8,8 @@ export function normalizeSimpleGridItem(item) {
     link: grid?.link || item?.link || "#",
     userName: grid?.userName || item?.userName || "",
     icon: grid?.icon || item?.icon || "",
-    IconComponent: getIconComponent(grid?.icon || item?.icon),
+    iconSrc: getIconSrc(grid?.icon || item?.icon),
+    chip: grid?.chip || item?.chip || "",
   };
 }
 
@@ -22,6 +23,7 @@ export function getSimpleGridWithPrefixContent(data, lang = "en") {
       title: "",
       description: "",
       prefix: "",
+      chip: "",
       items: [],
       hasContent: false,
     };
@@ -38,6 +40,7 @@ export function getSimpleGridWithPrefixContent(data, lang = "en") {
   const title = content?.title || "";
   const description = content?.description || "";
   const prefix = content?.prefix || "";
+  const chip = content?.chip || "";
   const rawItems = content?.channels || content?.items || [];
   const items = Array.isArray(rawItems)
     ? rawItems.map(normalizeSimpleGridItem)
@@ -47,6 +50,7 @@ export function getSimpleGridWithPrefixContent(data, lang = "en") {
     title,
     description,
     prefix,
+    chip,
     items,
     hasContent: Boolean(title || items.length),
   };

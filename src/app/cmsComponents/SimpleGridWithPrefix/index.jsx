@@ -5,7 +5,7 @@ import SimpleGridHeader from "./components/SimpleGridHeader";
 import { getSimpleGridWithPrefixContent } from "./utils/helpers";
 
 const SimpleGridWithPrefix = ({ lang = "en", data, cId }) => {
-  const { title, description, prefix, items, hasContent } =
+  const { title, description, prefix, chip, items, hasContent } =
     getSimpleGridWithPrefixContent(data, lang);
 
   if (!hasContent) {
@@ -15,7 +15,7 @@ const SimpleGridWithPrefix = ({ lang = "en", data, cId }) => {
   return (
     <>
       <SimpleGridHeader title={title} description={description} />
-      <SimpleGrid items={items} prefix={prefix} lang={lang} cId={cId} />
+      <SimpleGrid items={items} prefix={prefix} chip={chip} lang={lang} cId={cId} />
     </>
   );
 };

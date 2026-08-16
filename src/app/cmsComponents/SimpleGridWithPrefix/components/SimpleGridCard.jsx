@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ArrowUpLeftIcon, ArrowUpRightIcon } from "@phosphor-icons/react";
 import { typography } from "@/styles/typography";
 import { withCampaignPath } from "../utils/withCampaignPath";
@@ -6,13 +7,14 @@ export default function SimpleGridCard({
   lang = "en",
   item,
   prefix = "",
+  chip = "",
   cId,
 }) {
   if (!item) {
     return null;
   }
 
-  const { title, link, userName, IconComponent } = item;
+  const { title, link, userName, iconSrc } = item;
   const href = withCampaignPath(link, cId);
   const ArrowIcon = lang === "ar" ? ArrowUpLeftIcon : ArrowUpRightIcon;
 
@@ -21,27 +23,42 @@ export default function SimpleGridCard({
       href={href || "#"}
       target="_blank"
       rel="noopener noreferrer"
-      className="flex items-center gap-4 rounded-xl bg-white px-4 py-6 transition-shadow hover:shadow-md"
+      className="flex items-stretch gap-4 rounded-xl bg-white px-4 py-5 no-underline transition-shadow "
     >
-      <div className="flex h-12 w-12 shrink-0 items-center justify-center">
-        {IconComponent ? (
-          <IconComponent size={40} weight="fill" className="text-primary-1" />
+      <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full">
+        {iconSrc ? (
+          <Image
+            src={iconSrc}
+            alt={title || ""}
+            fill
+            className="object-contain"
+            sizes="48px"
+          />
         ) : null}
       </div>
 
       <div className="min-w-0 flex-1">
         <h4
-          className={`${typography.caption} truncate font-semibold text-secondary-2`}
+          className={`${typography.itemDescription} truncate font-semibold text-secondary-2`}
         >
           {prefix ? `${prefix} ` : ""}
           {title}
         </h4>
+        {chip ? (
+          <div className="mt-1.5 mb-1.5">
+            <span
+              className={`${typography.caption} inline-flex rounded-full bg-secondary-100/50 px-2.5 py-0.5 font-medium text-primary-2`}
+            >
+              {chip}
+            </span>
+          </div>
+        ) : null}
         {userName ? (
-          <p className="text-xs text-icon">{userName}</p>
+          <p className={`${typography.caption} text-icon`}>{userName}</p>
         ) : null}
       </div>
 
-      <ArrowIcon size={20} className="shrink-0 text-primary-1" />
+      <ArrowIcon size={20} className="mt-auto shrink-0 text-primary-1" />
     </a>
   );
 }
