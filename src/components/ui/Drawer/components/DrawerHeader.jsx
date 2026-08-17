@@ -14,7 +14,7 @@ export default function DrawerHeader({ titleId, title, onClose }) {
         type="button"
         onClick={onClose}
         aria-label="Close"
-        className="rounded-md p-1 text-700 hover:bg-200 hover:text-main"
+        className="cursor-pointer rounded-md p-1 text-700 hover:bg-200 hover:text-main"
       >
         <XIcon size={20} weight="regular" aria-hidden />
       </button>

@@ -64,7 +64,7 @@ export function Tab({ value, children, className }) {
       onClick={() => select(value)}
       className={cn(
         typography.caption,
-        "flex flex-1 flex-col items-center gap-1 border-b-2 px-2 py-2.5 font-medium",
+        "flex flex-1 cursor-pointer flex-col items-center gap-1 border-b-2 px-2 py-2.5 font-medium",
         isActive
           ? "border-primary-1 text-primary-1"
           : "border-transparent text-500 hover:text-main",

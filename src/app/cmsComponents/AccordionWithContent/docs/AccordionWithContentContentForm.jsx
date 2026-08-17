@@ -126,7 +126,7 @@ export default function AccordionWithContentContentForm({ content, onChange }) {
         <button
           type="button"
           onClick={addItem}
-          className={`${typography.caption} inline-flex w-full items-center justify-center gap-1.5 rounded-md border border-200 bg-50 py-2 font-medium text-700 hover:bg-100 hover:text-main`}
+          className={`${typography.caption} inline-flex w-full cursor-pointer items-center justify-center gap-1.5 rounded-md border border-200 bg-50 py-2 font-medium text-700 hover:bg-100 hover:text-main`}
         >
           <PlusIcon size={14} weight="bold" aria-hidden />
           Add Item
