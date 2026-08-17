@@ -68,19 +68,19 @@ export default function SliderExamples({ ctx, name = "Slider" }) {
             direction: style.overlayDirection,
           }}
           settings={{
-            autoplay: style.autoplay,
+            autoplay: Boolean(style.autoplay),
             autoplaySpeed: Number(style.autoplaySpeed),
-            fade: style.fade,
-            infinite: style.infinite,
+            fade: Boolean(style.fade),
+            infinite: Boolean(style.infinite),
             speed: Number(style.speed),
             cssEase: style.cssEase,
-            pauseOnHover: style.pauseOnHover,
-            pauseOnFocus: style.pauseOnFocus,
-            waitForAnimate: style.waitForAnimate,
-            swipe: style.swipe,
-            draggable: style.draggable,
-            touchThreshold: Number(style.touchThreshold),
-            adaptiveHeight: style.adaptiveHeight,
+            pauseOnHover: Boolean(style.pauseOnHover),
+            pauseOnFocus: Boolean(style.pauseOnFocus),
+            waitForAnimate: Boolean(style.waitForAnimate),
+            swipe: Boolean(style.swipe),
+            draggable: Boolean(style.draggable),
+            touchThreshold: Number(style.touchThreshold) || 8,
+            adaptiveHeight: Boolean(style.adaptiveHeight),
           }}
           showSlideText={style.showSlideText}
           showButton={style.showButton}

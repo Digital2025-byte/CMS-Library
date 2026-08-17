@@ -73,7 +73,7 @@ export default function SliderSlideContent({
         ) : null}
 
         {showCta ? (
-          <div className="mt-4 sm:mt-5 md:mt-6">
+          <div className="pointer-events-auto mt-4 sm:mt-5 md:mt-6">
             <Button
               label={buttonText}
               href={resolvedHref}

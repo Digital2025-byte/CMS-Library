@@ -42,8 +42,26 @@ export default function SliderTrack({
     nextArrow: _n,
     dots: showProgress = true,
     autoplaySpeed = 5000,
+    swipe = true,
+    draggable = true,
+    waitForAnimate = true,
+    cssEase = "ease-in-out",
+    touchThreshold = 8,
+    adaptiveHeight = false,
+    pauseOnHover = true,
+    pauseOnFocus = true,
+    autoplay = true,
+    fade = false,
+    infinite = true,
+    speed = 700,
     ...slickSettings
   } = settings;
+
+  const enableSwipe = swipe !== false;
+  const enableDrag = draggable !== false;
+  const enableGesture = enableSwipe || enableDrag;
+  const useAdaptiveHeight = Boolean(adaptiveHeight);
+  const blockTouch = enableDrag && !enableSwipe;
 
   const togglePause = () => {
     const nextPaused = !isPaused;
@@ -57,7 +75,13 @@ export default function SliderTrack({
 
   return (
     <div
-      className="slider-hero relative w-full overflow-hidden"
+      className={[
+        "slider-hero relative w-full overflow-hidden select-none",
+        enableDrag ? "slider-hero--drag" : "",
+        useAdaptiveHeight ? "slider-hero--adaptive" : "",
+      ]
+        .filter(Boolean)
+        .join(" ")}
       dir="ltr"
       role="region"
       aria-label="Hero slider"
@@ -66,6 +90,17 @@ export default function SliderTrack({
         "--slider-theme-hover": colors.hoverBg,
         "--slider-theme-icon": colors.icon,
       }}
+      onDragStart={(event) => event.preventDefault()}
+      onTouchStartCapture={
+        blockTouch
+          ? (event) => {
+              if (event.target.closest("button, a")) {
+                return;
+              }
+              event.stopPropagation();
+            }
+          : undefined
+      }
     >
       <ReactSlick
         ref={sliderRef}
@@ -74,8 +109,20 @@ export default function SliderTrack({
         {...slickSettings}
         arrows={false}
         dots={false}
-        autoplay={!isPaused && slickSettings.autoplay !== false}
-        autoplaySpeed={autoplaySpeed}
+        fade={Boolean(fade)}
+        infinite={infinite !== false}
+        speed={Number(speed) || 700}
+        cssEase={cssEase}
+        autoplay={!isPaused && autoplay !== false}
+        autoplaySpeed={Number(autoplaySpeed) || 5000}
+        pauseOnHover={pauseOnHover !== false}
+        pauseOnFocus={pauseOnFocus !== false}
+        waitForAnimate={Boolean(waitForAnimate)}
+        swipe={enableGesture}
+        draggable={enableDrag}
+        touchMove={enableGesture}
+        touchThreshold={Number(touchThreshold) || 8}
+        adaptiveHeight={useAdaptiveHeight}
         beforeChange={(_, next) => setActiveIndex(next)}
         afterChange={(current) => setActiveIndex(current)}
       >
@@ -97,6 +144,7 @@ export default function SliderTrack({
               subtitleColor={subtitleColor}
               descriptionColor={descriptionColor}
               buttonVariant={buttonVariant}
+              adaptiveHeight={useAdaptiveHeight}
             />
           </div>
         ))}

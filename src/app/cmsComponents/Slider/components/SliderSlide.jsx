@@ -22,6 +22,7 @@ export default function SliderSlide({
   subtitleColor = "white",
   descriptionColor = "white",
   buttonVariant = "primary",
+  adaptiveHeight = false,
 }) {
   const videoRef = useRef(null);
 
@@ -52,14 +53,22 @@ export default function SliderSlide({
   const hasVideo = Boolean(slide.video);
   const hasImage = Boolean(slide.image);
 
+  const heightClass = adaptiveHeight
+    ? "min-h-[200px] sm:min-h-[240px]"
+    : "min-h-[280px] sm:min-h-[320px] md:min-h-[420px] lg:min-h-[500px]";
+  const contentHeightClass = adaptiveHeight ? "h-auto" : `h-full ${heightClass}`;
+
   return (
-    <div className="relative box-border w-full min-h-[280px] overflow-hidden leading-normal sm:min-h-[320px] md:min-h-[420px] lg:min-h-[500px]">
+    <div
+      className={`relative box-border w-full overflow-hidden leading-normal ${heightClass}`}
+      draggable={false}
+    >
       {hasVideo || hasImage ? (
-        <div className="absolute inset-0 h-full w-full">
+        <div className="pointer-events-none absolute inset-0 h-full w-full select-none">
           {hasVideo ? (
             <video
               ref={videoRef}
-              className="absolute inset-0 h-full w-full object-cover object-center"
+              className="pointer-events-none absolute inset-0 h-full w-full object-cover object-center"
               src={slide.video}
               poster={slide.image || undefined}
               muted
@@ -67,6 +76,7 @@ export default function SliderSlide({
               playsInline
               autoPlay={isActive && !isPaused}
               preload={priority || isActive ? "auto" : "metadata"}
+              draggable={false}
               aria-label={slide.alt || slide.title || "Slide video"}
             />
           ) : (
@@ -74,24 +84,27 @@ export default function SliderSlide({
               src={slide.image}
               alt={slide.alt || slide.title || "Slide"}
               fill
-              className="object-cover object-center"
+              draggable={false}
+              className="pointer-events-none object-cover object-center"
               priority={priority}
               sizes="100vw"
             />
           )}
           {overlay ? (
             <div
-              className="absolute inset-0"
+              className="pointer-events-none absolute inset-0"
               style={{ backgroundImage: overlay.backgroundImage }}
               aria-hidden
             />
           ) : null}
         </div>
       ) : (
-        <div className="absolute inset-0 bg-primary-800" aria-hidden />
+        <div className="pointer-events-none absolute inset-0 bg-primary-800" aria-hidden />
       )}
 
-      <div className="relative z-[1] flex h-full min-h-[280px] w-full items-end py-8 leading-normal sm:min-h-[320px] sm:py-10 md:min-h-[420px] md:py-12 lg:min-h-[500px] lg:py-16">
+      <div
+        className={`pointer-events-none relative z-[1] flex w-full items-end py-8 leading-normal sm:py-10 md:py-12 lg:py-16 ${contentHeightClass}`}
+      >
         <PageContentContainer className="w-full">
           <SliderSlideContent
             lang={lang}

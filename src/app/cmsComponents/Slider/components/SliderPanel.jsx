@@ -17,27 +17,30 @@ export default function SliderPanel({
   descriptionColor = "white",
   buttonVariant = "primary",
 }) {
+  const sliderKey = [
+    lang,
+    settings.fade,
+    settings.infinite,
+    settings.speed,
+    settings.autoplay,
+    settings.cssEase,
+    settings.swipe,
+    settings.draggable,
+    settings.adaptiveHeight,
+    settings.waitForAnimate,
+    settings.touchThreshold,
+  ].join("-");
+
   return (
     <section className="relative w-full overflow-hidden leading-none" dir="ltr">
       <SliderTrack
+        key={sliderKey}
         slides={slides}
         settings={settings}
         lang={lang}
         posParams={posParams}
         cId={cId}
-        sliderKey={[
-          lang,
-          settings.fade,
-          settings.infinite,
-          settings.speed,
-          settings.autoplay,
-          settings.cssEase,
-          settings.swipe,
-          settings.draggable,
-          settings.adaptiveHeight,
-          settings.waitForAnimate,
-          settings.touchThreshold,
-        ].join("-")}
+        sliderKey={sliderKey}
         showArrows={showArrows}
         showSlideText={showSlideText}
         showButton={showButton}

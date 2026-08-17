@@ -7,6 +7,13 @@
   direction: ltr !important;
 }
 
+.slider-hero img,
+.slider-hero video {
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
 .slider-hero {
   display: block;
   overflow: hidden;
@@ -30,6 +37,18 @@
   overflow: hidden;
   margin: 0 !important;
   padding: 0 !important;
+}
+
+.slider-hero.slider-hero--drag .slick-list {
+  cursor: grab;
+}
+
+.slider-hero.slider-hero--drag .slick-list:active {
+  cursor: grabbing;
+}
+
+.slider-hero.slider-hero--adaptive .slick-slide > div {
+  height: auto;
 }
 
 .slider-hero .slick-track {

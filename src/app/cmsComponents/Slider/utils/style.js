@@ -67,9 +67,9 @@ export const EFFECT_OPTIONS = [
 ];
 
 export const TOUCH_OPTIONS = [
-  { value: "5", label: "Sensitive" },
+  { value: "16", label: "Sensitive" },
   { value: "8", label: "Default" },
-  { value: "14", label: "Firm" },
+  { value: "4", label: "Firm" },
 ];
 
 export const OVERLAY_TO_OPTIONS = [
