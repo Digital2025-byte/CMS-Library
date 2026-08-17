@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { CaretDownIcon, CaretUpIcon, TrashIcon } from "@phosphor-icons/react";
 import { typography } from "@/styles/typography";
-import { cn } from "@/components/lib/utils";
 
 export function InspectorSection({ title, defaultOpen = true, children }) {
   const [open, setOpen] = useState(defaultOpen);
@@ -39,7 +38,7 @@ export function InspectorField({
   onChange,
   multiline = false,
 }) {
-  const inputClass = `${typography.caption} w-full cursor-text rounded-md border border-200 bg-white px-2.5 py-2 text-foreground outline-none focus:border-primary-1`;
+  const inputClass = `${typography.caption} w-full cursor-text rounded-sm border border-200 bg-white px-2.5 py-2 text-foreground outline-none focus:border-800`;
 
   return (
     <label className="flex flex-col gap-1" htmlFor={id}>
@@ -87,34 +86,52 @@ export function InspectorSwitch({ checked, onChange, label, hint }) {
 }
 
 export function InspectorChoose({ label, name, value, options, onChange }) {
+  const items = options.map((option) =>
+    typeof option === "string" ? { value: option, label: option } : option
+  );
+
   return (
-    <div className="flex flex-col gap-1.5">
-      <p className={`${typography.caption} text-700`}>{label}</p>
-      <div className="grid grid-cols-3 gap-1 rounded-md border border-200 bg-50 p-1">
-        {options.map((option) => (
+    <fieldset className="flex flex-col gap-1.5">
+      <legend className={`${typography.caption} text-700`}>{label}</legend>
+      <div className="flex flex-wrap gap-4">
+        {items.map((option) => (
           <label
-            key={option}
-            className={cn(
-              typography.caption,
-              "cursor-pointer rounded-sm px-2 py-1.5 text-center font-medium",
-              value === option
-                ? "bg-primary-1 text-50"
-                : "text-700 hover:bg-white"
-            )}
+            key={option.value}
+            className={`${typography.caption} flex cursor-pointer items-center gap-2 text-foreground`}
           >
             <input
               type="radio"
               name={name}
-              value={option}
-              checked={value === option}
-              onChange={() => onChange(option)}
-              className="sr-only"
+              value={option.value}
+              checked={value === option.value}
+              onChange={() => onChange(option.value)}
+              className="h-4 w-4 shrink-0 cursor-pointer accent-foreground"
             />
-            {option}
+            {option.label}
           </label>
         ))}
       </div>
-    </div>
+    </fieldset>
+  );
+}
+
+export function InspectorSelect({ id, label, value, options, onChange }) {
+  return (
+    <label className="flex flex-col gap-1" htmlFor={id}>
+      <span className={`${typography.caption} text-700`}>{label}</span>
+      <select
+        id={id}
+        value={value}
+        onChange={(event) => onChange(event.target.value)}
+        className={`${typography.caption} w-full cursor-pointer rounded-sm border border-200 bg-white px-2.5 py-2 text-foreground outline-none focus:border-800`}
+      >
+        {options.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+      </select>
+    </label>
   );
 }
 

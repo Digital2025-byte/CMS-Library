@@ -4,16 +4,44 @@ import { useState } from "react";
 import { PlusIcon } from "@phosphor-icons/react";
 import { typography } from "@/styles/typography";
 import {
+  InspectorChoose,
   InspectorField,
   InspectorRepeaterItem,
   InspectorSection,
+  InspectorSelect,
 } from "@/components/ui/Inspector";
+import {
+  INTERNAL_PAGES,
+  isInternalPage,
+  resolveEditorLink,
+} from "@/components/demo/internalPages";
 
 export default function AccordionWithContentContentForm({ content, onChange }) {
   const [openIndexes, setOpenIndexes] = useState(() => new Set([0]));
+  const resolvedLink = resolveEditorLink(content.buttonHref);
+  const linkType = content.buttonLinkType || resolvedLink.type;
 
   const updateField = (key, value) => {
     onChange({ ...content, [key]: value });
+  };
+
+  const setLinkType = (type) => {
+    if (type === "internal") {
+      onChange({
+        ...content,
+        buttonLinkType: "internal",
+        buttonHref: isInternalPage(content.buttonHref)
+          ? content.buttonHref
+          : INTERNAL_PAGES[0]?.href || "/",
+      });
+      return;
+    }
+
+    onChange({
+      ...content,
+      buttonLinkType: "external",
+      buttonHref: isInternalPage(content.buttonHref) ? "" : content.buttonHref,
+    });
   };
 
   const updateItem = (index, key, value) => {
@@ -86,12 +114,51 @@ export default function AccordionWithContentContentForm({ content, onChange }) {
           value={content.buttonLabel}
           onChange={(value) => updateField("buttonLabel", value)}
         />
-        <InspectorField
-          id="accordion-button-href"
-          label="Link"
-          value={content.buttonHref}
-          onChange={(value) => updateField("buttonHref", value)}
+        <InspectorChoose
+          label="Link type"
+          name="accordion-link-type"
+          value={linkType}
+          options={[
+            { value: "internal", label: "Internal" },
+            { value: "external", label: "External" },
+          ]}
+          onChange={setLinkType}
         />
+        {linkType === "internal" ? (
+          <InspectorSelect
+            id="accordion-button-page"
+            label="Page"
+            value={
+              isInternalPage(content.buttonHref)
+                ? content.buttonHref
+                : INTERNAL_PAGES[0]?.href || "/"
+            }
+            options={INTERNAL_PAGES.map((page) => ({
+              value: page.href,
+              label: page.label,
+            }))}
+            onChange={(value) =>
+              onChange({
+                ...content,
+                buttonLinkType: "internal",
+                buttonHref: value,
+              })
+            }
+          />
+        ) : (
+          <InspectorField
+            id="accordion-button-href"
+            label="URL"
+            value={isInternalPage(content.buttonHref) ? "" : content.buttonHref}
+            onChange={(value) =>
+              onChange({
+                ...content,
+                buttonLinkType: "external",
+                buttonHref: value,
+              })
+            }
+          />
+        )}
       </InspectorSection>
 
       <InspectorSection title="Items">

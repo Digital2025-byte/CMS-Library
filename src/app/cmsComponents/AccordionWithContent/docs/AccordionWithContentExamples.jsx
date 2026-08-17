@@ -8,7 +8,19 @@ import {
   getAccordionContent,
   wrapAccordionContent,
 } from "@/app/cmsComponents/AccordionWithContent/utils/helpers";
+import { resolveEditorLink } from "@/components/demo/internalPages";
 import Drawer, { useDrawer } from "@/components/ui/Drawer";
+
+function toEditorContent(data) {
+  const content = getAccordionContent(data);
+  const link = resolveEditorLink(content.buttonHref);
+
+  return {
+    ...content,
+    buttonLinkType: link.type,
+    buttonHref: link.href,
+  };
+}
 
 export default function AccordionWithContentExamples({
   ctx,
@@ -21,12 +33,10 @@ export default function AccordionWithContentExamples({
     showButton: true,
   });
   const [buttonPosition, setButtonPosition] = useState("center");
-  const [content, setContent] = useState(() =>
-    getAccordionContent(accordionData)
-  );
+  const [content, setContent] = useState(() => toEditorContent(accordionData));
 
   useEffect(() => {
-    setContent(getAccordionContent(accordionData));
+    setContent(toEditorContent(accordionData));
   }, [accordionData]);
 
   const toggle = (key) => {
