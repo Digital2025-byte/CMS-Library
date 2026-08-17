@@ -9,11 +9,11 @@
   display: flex;
   flex-wrap: nowrap;
   width: max-content;
-  gap: 1.5rem;
+  gap: var(--card-gap, 1.5rem);
   will-change: transform;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
-  animation-duration: var(--duration, 30s);
+  animation-duration: var(--duration, 15s);
 }
 
 .left {
@@ -46,7 +46,7 @@
   position: relative;
   width: var(--w, 320px);
   height: var(--h, 350px);
-  border-radius: 1.125rem;
+  border-radius: var(--card-radius, 1.125rem);
   overflow: hidden;
   flex: 0 0 auto;
 }
@@ -72,7 +72,11 @@
   left: 0;
   right: 0;
   height: 40%;
-  background: linear-gradient(to top, rgb(0 0 0 / 0.7), transparent);
+  background: linear-gradient(
+    to top,
+    color-mix(in srgb, var(--card-overlay, #000) 70%, transparent),
+    transparent
+  );
   pointer-events: none;
   z-index: 1;
 }
@@ -108,27 +112,31 @@
   pointer-events: none;
 }
 
-.carouselContainer:hover .hoverOverlay {
+.showExplore:hover .hoverOverlay {
   opacity: 1;
   pointer-events: auto;
 }
 
-.carouselContainer:hover .cardDim {
+.dimOnHover:hover .cardDim {
   opacity: 1;
+}
+
+.pauseOnHover:hover .track {
+  animation-play-state: paused;
 }
 
 .exploreButton {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgb(255 255 255 / 0.28);
-  color: var(--color-background, #fff);
+  background: color-mix(in srgb, var(--explore-bg, #fff) 28%, transparent);
+  color: var(--explore-fg, #fff);
   font-weight: 600;
   padding: 0.9375rem;
   width: 4.6875rem;
   height: 4.6875rem;
   border-radius: 9999px;
-  border: 1px solid rgb(255 255 255 / 0.35);
+  border: 1px solid color-mix(in srgb, var(--explore-fg, #fff) 35%, transparent);
   cursor: pointer;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -142,10 +150,9 @@
 }
 
 .exploreButton:hover {
-  background: rgb(255 255 255 / 0.4);
-  color: var(--color-background, #fff);
-  border-color: rgb(255 255 255 / 0.5);
-
+  background: color-mix(in srgb, var(--explore-bg, #fff) 40%, transparent);
+  color: var(--explore-fg, #fff);
+  border-color: color-mix(in srgb, var(--explore-fg, #fff) 50%, transparent);
 }
 
 .exploreButton:active {

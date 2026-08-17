@@ -2,7 +2,15 @@ import DestinationImageCard from "./DestinationImageCard";
 import { getCardSizeByIndex } from "../utils/cardSizes";
 import styles from "../ImageCarouselsWithOppositeScrollDirections.module.css";
 
-export default function MarqueeRow({ items, direction = "left", duration = 30 }) {
+export default function MarqueeRow({
+  items,
+  direction = "left",
+  duration = 15,
+  cardSize = "mixed",
+  showCardTitles = true,
+  showOverlay = true,
+  cardTitleColor = "white",
+}) {
   const safeItems = Array.isArray(items) ? items : [];
 
   if (!safeItems.length) {
@@ -21,7 +29,7 @@ export default function MarqueeRow({ items, direction = "left", duration = 30 })
       >
         {loopItems.map((item, idx) => {
           const originalIndex = idx % safeItems.length;
-          const { w, h } = getCardSizeByIndex(originalIndex);
+          const { w, h } = getCardSizeByIndex(originalIndex, cardSize);
 
           return (
             <DestinationImageCard
@@ -29,6 +37,9 @@ export default function MarqueeRow({ items, direction = "left", duration = 30 })
               item={item}
               w={w}
               h={h}
+              showTitle={showCardTitles}
+              showOverlay={showOverlay}
+              titleColor={cardTitleColor}
             />
           );
         })}

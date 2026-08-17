@@ -1,56 +1,231 @@
-import { typography } from "@/styles/typography";
+import {
+  InspectorChoose,
+  InspectorColor,
+  InspectorSection,
+  InspectorSelect,
+  InspectorSwitch,
+  InspectorTabs,
+  applyInspectorReset,
+} from "@/components/inspector";
+import OppositeScrollContentForm from "./OppositeScrollContentForm";
+import {
+  CARD_RADIUS_OPTIONS,
+  CARD_SIZE_OPTIONS,
+  DEFAULT_OPPOSITE_SCROLL_STYLE,
+  OPPOSITE_SCROLL_STYLE_RESET_KEYS,
+  SPEED_OPTIONS,
+  SPACING_OPTIONS,
+  TITLE_ALIGN_OPTIONS,
+} from "../utils/style";
 
-const CONTROLS = [
-  {
-    key: "showTitleDescription",
-    label: "showTitleDescription",
-    hint: "Section title and description",
-  },
-  {
-    key: "showExploreButton",
-    label: "showExploreButton",
-    hint: "Explore CTA over the marquees",
-  },
-];
+function OppositeScrollStyleForm({ style, onChange }) {
+  const update = (key, value) => onChange({ ...style, [key]: value });
+  const toggle = (key) => onChange({ ...style, [key]: !style[key] });
+  const reset = (keys) =>
+    onChange(
+      applyInspectorReset(style, DEFAULT_OPPOSITE_SCROLL_STYLE, keys)
+    );
 
-function Checkbox({ checked, onChange, label, hint }) {
   return (
-    <label className="flex cursor-pointer items-start gap-3 rounded-lg border border-200 bg-white px-3 py-2.5 hover:border-primary-200">
-      <input
-        type="checkbox"
-        checked={checked}
-        onChange={onChange}
-        className="mt-1 h-4 w-4 shrink-0 accent-primary-1"
-      />
-      <span>
-        <span className={`${typography.body} block font-medium text-main`}>
-          {label}
-        </span>
-        {hint ? (
-          <span className={`${typography.caption} text-500`}>{hint}</span>
+    <div>
+      <InspectorSection
+        title="Layout"
+        onReset={() => reset(OPPOSITE_SCROLL_STYLE_RESET_KEYS.layout)}
+      >
+        <InspectorSwitch
+          checked={style.showTitleDescription}
+          onChange={() => toggle("showTitleDescription")}
+          label="Title"
+          hint="Show the section heading"
+        />
+        <InspectorSwitch
+          checked={style.showDescription}
+          onChange={() => toggle("showDescription")}
+          label="Description"
+          hint="Show text under the title"
+        />
+        <InspectorSwitch
+          checked={style.showExploreButton}
+          onChange={() => toggle("showExploreButton")}
+          label="Explore"
+          hint="Round CTA over the marquees"
+        />
+        <InspectorColor
+          label="Section background"
+          value={style.sectionBg}
+          onChange={(value) => update("sectionBg", value)}
+        />
+        <InspectorChoose
+          label="Padding"
+          name="sectionPadding"
+          value={style.sectionPadding}
+          options={SPACING_OPTIONS}
+          onChange={(value) => update("sectionPadding", value)}
+        />
+      </InspectorSection>
+
+      {style.showTitleDescription || style.showDescription ? (
+        <InspectorSection
+          title="Title"
+          onReset={() => reset(OPPOSITE_SCROLL_STYLE_RESET_KEYS.title)}
+        >
+          {style.showTitleDescription ? (
+            <>
+              <InspectorChoose
+                label="Alignment"
+                name="titleAlign"
+                value={style.titleAlign}
+                options={TITLE_ALIGN_OPTIONS}
+                onChange={(value) => update("titleAlign", value)}
+              />
+              <InspectorColor
+                label="Title color"
+                value={style.titleColor}
+                onChange={(value) => update("titleColor", value)}
+              />
+            </>
+          ) : null}
+          {style.showDescription ? (
+            <InspectorColor
+              label="Description color"
+              value={style.descriptionColor}
+              onChange={(value) => update("descriptionColor", value)}
+            />
+          ) : null}
+        </InspectorSection>
+      ) : null}
+
+      <InspectorSection
+        title="Cards"
+        onReset={() => reset(OPPOSITE_SCROLL_STYLE_RESET_KEYS.cards)}
+      >
+        <InspectorSwitch
+          checked={style.showCardTitles}
+          onChange={() => toggle("showCardTitles")}
+          label="Names"
+          hint="Title on each destination card"
+        />
+        <InspectorSwitch
+          checked={style.showOverlay}
+          onChange={() => toggle("showOverlay")}
+          label="Gradient"
+          hint="Fade behind the card title"
+        />
+        <InspectorSwitch
+          checked={style.dimOnHover}
+          onChange={() => toggle("dimOnHover")}
+          label="Dim on hover"
+          hint="Darken cards when the section is hovered"
+        />
+        <InspectorChoose
+          label="Size"
+          name="cardSize"
+          value={style.cardSize}
+          options={CARD_SIZE_OPTIONS}
+          onChange={(value) => update("cardSize", value)}
+        />
+        <InspectorChoose
+          label="Corners"
+          name="cardRadius"
+          value={style.cardRadius}
+          options={CARD_RADIUS_OPTIONS}
+          onChange={(value) => update("cardRadius", value)}
+        />
+        <InspectorChoose
+          label="Gap"
+          name="cardGap"
+          value={style.cardGap}
+          options={SPACING_OPTIONS}
+          onChange={(value) => update("cardGap", value)}
+        />
+        <InspectorChoose
+          label="Row gap"
+          name="rowGap"
+          value={style.rowGap}
+          options={SPACING_OPTIONS}
+          onChange={(value) => update("rowGap", value)}
+        />
+        {style.showCardTitles ? (
+          <InspectorColor
+            label="Title color"
+            value={style.cardTitleColor}
+            onChange={(value) => update("cardTitleColor", value)}
+          />
         ) : null}
-      </span>
-    </label>
+        {style.showOverlay ? (
+          <InspectorColor
+            label="Gradient color"
+            value={style.overlayColor}
+            onChange={(value) => update("overlayColor", value)}
+          />
+        ) : null}
+      </InspectorSection>
+
+      <InspectorSection
+        title="Motion"
+        onReset={() => reset(OPPOSITE_SCROLL_STYLE_RESET_KEYS.motion)}
+      >
+        <InspectorSwitch
+          checked={style.pauseOnHover}
+          onChange={() => toggle("pauseOnHover")}
+          label="Pause on hover"
+          hint="Stop the marquee while the pointer is over it"
+        />
+        <InspectorSwitch
+          checked={style.reverseRows}
+          onChange={() => toggle("reverseRows")}
+          label="Reverse"
+          hint="Swap the scroll direction of each row"
+        />
+        <InspectorSelect
+          id="opposite-scroll-speed"
+          label="Speed"
+          value={style.speed}
+          options={SPEED_OPTIONS}
+          onChange={(value) => update("speed", value)}
+        />
+      </InspectorSection>
+
+      {style.showExploreButton ? (
+        <InspectorSection
+          title="Explore"
+          onReset={() => reset(OPPOSITE_SCROLL_STYLE_RESET_KEYS.button)}
+        >
+          <InspectorColor
+            label="Background"
+            value={style.buttonBg}
+            onChange={(value) => update("buttonBg", value)}
+          />
+          <InspectorColor
+            label="Text"
+            value={style.buttonColor}
+            onChange={(value) => update("buttonColor", value)}
+          />
+        </InspectorSection>
+      ) : null}
+    </div>
   );
 }
 
-export default function OppositeScrollPropsForm({ flags, toggle }) {
+export default function OppositeScrollPropsForm({
+  content,
+  onContentChange,
+  contentDefaults,
+  style,
+  onStyleChange,
+}) {
   return (
-    <fieldset className="p-4">
-      <legend className="sr-only">
-        ImageCarouselsWithOppositeScrollDirections props
-      </legend>
-      <div className="flex flex-col gap-2">
-        {CONTROLS.map(({ key, label, hint }) => (
-          <Checkbox
-            key={key}
-            checked={Boolean(flags[key])}
-            onChange={() => toggle(key)}
-            label={label}
-            hint={hint}
-          />
-        ))}
-      </div>
-    </fieldset>
+    <InspectorTabs
+      content={
+        <OppositeScrollContentForm
+          content={content}
+          onChange={onContentChange}
+          defaults={contentDefaults}
+        />
+      }
+      style={
+        <OppositeScrollStyleForm style={style} onChange={onStyleChange} />
+      }
+    />
   );
 }
