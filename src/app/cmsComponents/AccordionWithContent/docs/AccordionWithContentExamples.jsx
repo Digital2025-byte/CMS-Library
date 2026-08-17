@@ -1,9 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AccordionWithContent from "@/app/cmsComponents/AccordionWithContent";
 import AccordionContainer from "@/app/cmsComponents/AccordionWithContent/container/AccordionContainer";
 import AccordionWithContentPropsForm from "@/app/cmsComponents/AccordionWithContent/docs/AccordionWithContentPropsForm";
+import {
+  getAccordionContent,
+  wrapAccordionContent,
+} from "@/app/cmsComponents/AccordionWithContent/utils/helpers";
 import Drawer, { useDrawer } from "@/components/ui/Drawer";
 
 export default function AccordionWithContentExamples({
@@ -17,6 +21,13 @@ export default function AccordionWithContentExamples({
     showButton: true,
   });
   const [buttonPosition, setButtonPosition] = useState("center");
+  const [content, setContent] = useState(() =>
+    getAccordionContent(accordionData)
+  );
+
+  useEffect(() => {
+    setContent(getAccordionContent(accordionData));
+  }, [accordionData]);
 
   const toggle = (key) => {
     setFlags((current) => ({ ...current, [key]: !current[key] }));
@@ -26,7 +37,7 @@ export default function AccordionWithContentExamples({
     <div>
       <AccordionContainer lang={lang} dir={dir}>
         <AccordionWithContent
-          data={accordionData}
+          data={wrapAccordionContent(content)}
           showTitleDescription={flags.showTitleDescription}
           showButton={flags.showButton}
           buttonPosition={buttonPosition}
@@ -43,6 +54,8 @@ export default function AccordionWithContentExamples({
         title={name}
       >
         <AccordionWithContentPropsForm
+          content={content}
+          onContentChange={setContent}
           flags={flags}
           toggle={toggle}
           buttonPosition={buttonPosition}

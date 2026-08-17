@@ -1,4 +1,6 @@
+import Tabs, { Tab, TabsList, TabsPanel } from "@/components/ui/Tabs";
 import { typography } from "@/styles/typography";
+import AccordionWithContentContentForm from "./AccordionWithContentContentForm";
 
 const BUTTON_POSITIONS = ["left", "center", "right"];
 
@@ -23,7 +25,7 @@ function Checkbox({ checked, onChange, label, hint }) {
   );
 }
 
-export default function AccordionWithContentPropsForm({
+function AccordionWithContentStylingForm({
   flags,
   toggle,
   buttonPosition,
@@ -31,7 +33,7 @@ export default function AccordionWithContentPropsForm({
 }) {
   return (
     <fieldset className="flex flex-col gap-5">
-      <legend className="sr-only">AccordionWithContent props</legend>
+      <legend className="sr-only">AccordionWithContent styling</legend>
 
       <div className="flex flex-col gap-2">
         <Checkbox
@@ -78,5 +80,39 @@ export default function AccordionWithContentPropsForm({
         </div>
       ) : null}
     </fieldset>
+  );
+}
+
+export default function AccordionWithContentPropsForm({
+  content,
+  onContentChange,
+  flags,
+  toggle,
+  buttonPosition,
+  setButtonPosition,
+}) {
+  return (
+    <Tabs defaultValue="content">
+      <TabsList>
+        <Tab value="content">Content</Tab>
+        <Tab value="styling">Styling</Tab>
+      </TabsList>
+
+      <TabsPanel value="content">
+        <AccordionWithContentContentForm
+          content={content}
+          onChange={onContentChange}
+        />
+      </TabsPanel>
+
+      <TabsPanel value="styling">
+        <AccordionWithContentStylingForm
+          flags={flags}
+          toggle={toggle}
+          buttonPosition={buttonPosition}
+          setButtonPosition={setButtonPosition}
+        />
+      </TabsPanel>
+    </Tabs>
   );
 }

@@ -14,3 +14,19 @@ export function getAccordionContent(data) {
       : [],
   };
 }
+
+export function wrapAccordionContent(content = {}) {
+  return {
+    translations: [
+      {
+        content: {
+          title: content.title || "",
+          description: content.description || "",
+          buttonLabel: content.buttonLabel || "",
+          buttonHref: content.buttonHref || "#",
+          items: Array.isArray(content.items) ? content.items : [],
+        },
+      },
+    ],
+  };
+}
