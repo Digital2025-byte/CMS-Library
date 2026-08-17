@@ -1,23 +1,49 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import RelatedContentCarousel from "@/app/cmsComponents/RelatedContentCarousel";
 import RelatedContentCarouselContainer from "@/app/cmsComponents/RelatedContentCarousel/components/RelatedContentCarouselContainer";
+import RelatedContentCarouselPropsForm from "@/app/cmsComponents/RelatedContentCarousel/docs/RelatedContentCarouselPropsForm";
+import {
+  getRelatedContentCarouselEditorContent,
+  wrapRelatedContentCarouselContent,
+} from "@/app/cmsComponents/RelatedContentCarousel/utils/helpers";
+import { DEFAULT_RELATED_CONTENT_STYLE } from "@/app/cmsComponents/RelatedContentCarousel/utils/style";
+import {
+  InspectorFooter,
+  InspectorSubmitButton,
+  isExternalHref,
+} from "@/components/inspector";
 import Drawer, { useDrawer } from "@/components/ui/Drawer";
-import LayoutPropsForm from "@/components/demo/LayoutPropsForm";
 
-const CONTROLS = [
-  {
-    key: "showTitleDescription",
-    label: "showTitleDescription",
-    hint: "Section title and description",
-  },
-  {
-    key: "showArrows",
-    label: "showArrows",
-    hint: "Previous / next arrow controls",
-  },
-];
+function toEditorLink(href) {
+  if (!href) {
+    return { type: "internal", href: "" };
+  }
+
+  if (isExternalHref(href)) {
+    return { type: "external", href };
+  }
+
+  return { type: "internal", href };
+}
+
+function toEditorContent(data, lang) {
+  const content = getRelatedContentCarouselEditorContent(data, lang, "gb");
+
+  return {
+    ...content,
+    items: (content.items || []).map((item) => {
+      const link = toEditorLink(item.buttonHref);
+
+      return {
+        ...item,
+        buttonHref: link.href,
+        buttonLinkType: link.type,
+      };
+    }),
+  };
+}
 
 export default function RelatedContentCarouselExamples({
   ctx,
@@ -25,24 +51,49 @@ export default function RelatedContentCarouselExamples({
 }) {
   const { lang, dir, relatedContentCarouselData } = ctx;
   const drawer = useDrawer();
-  const [flags, setFlags] = useState({
-    showTitleDescription: true,
-    showArrows: true,
-  });
-  const toggle = (key) =>
-    setFlags((current) => ({ ...current, [key]: !current[key] }));
+  const [style, setStyle] = useState(DEFAULT_RELATED_CONTENT_STYLE);
+  const [content, setContent] = useState(() =>
+    toEditorContent(relatedContentCarouselData, lang)
+  );
+
+  useEffect(() => {
+    setContent(toEditorContent(relatedContentCarouselData, lang));
+  }, [relatedContentCarouselData, lang]);
 
   return (
     <div>
-      <RelatedContentCarouselContainer lang={lang} dir={dir}>
+      <RelatedContentCarouselContainer
+        lang={lang}
+        dir={dir}
+        background={style.sectionBg}
+        padding={style.sectionPadding}
+      >
         <RelatedContentCarousel
           lang={lang}
-          data={relatedContentCarouselData}
+          data={wrapRelatedContentCarouselContent(content, lang)}
           posParams="gb"
-          showTitleDescription={flags.showTitleDescription}
-          showArrows={flags.showArrows}
+          showTitle={style.showTitle}
+          showDescription={style.showDescription}
+          showArrows={style.showArrows}
+          showCardImage={style.showCardImage}
+          showCardTitle={style.showCardTitle}
+          showCardDescription={style.showCardDescription}
+          showButton={style.showButton}
+          titleAlign={style.titleAlign}
+          titleColor={style.titleColor}
+          descriptionColor={style.descriptionColor}
+          cardBg={style.cardBg}
+          cardRadius={style.cardRadius}
+          cardTitleColor={style.cardTitleColor}
+          cardBodyColor={style.cardBodyColor}
+          buttonBg={style.buttonBg}
+          buttonText={style.buttonText}
+          buttonOnFill={style.buttonOnFill}
+          navColor={style.navColor}
+          navTrack={style.navTrack}
         />
       </RelatedContentCarouselContainer>
+
       <Drawer
         isOpen={drawer.isOpen}
         onClose={drawer.close}
@@ -51,12 +102,22 @@ export default function RelatedContentCarouselExamples({
         panelRef={drawer.panelRef}
         titleId={drawer.titleId}
         title={name}
+        footer={
+          <InspectorFooter>
+            <InspectorSubmitButton
+              onClick={() =>
+                console.log("RelatedContentCarousel", { content, style })
+              }
+            />
+          </InspectorFooter>
+        }
       >
-        <LayoutPropsForm
-          legend={`${name} props`}
-          controls={CONTROLS}
-          flags={flags}
-          toggle={toggle}
+        <RelatedContentCarouselPropsForm
+          content={content}
+          onContentChange={setContent}
+          contentDefaults={toEditorContent(relatedContentCarouselData, lang)}
+          style={style}
+          onStyleChange={setStyle}
         />
       </Drawer>
     </div>

@@ -66,6 +66,17 @@ export default function CarouselSlider({
   activeIndex = 0,
   slidesToShow = 2,
   onKeyDown,
+  showCardImage,
+  showCardTitle,
+  showCardDescription,
+  showButton,
+  cardBg,
+  cardRadius,
+  cardTitleColor,
+  cardBodyColor,
+  buttonBg,
+  buttonText,
+  buttonOnFill,
 }) {
   const isRtl = lang === "ar";
   const fullyVisible = Math.max(1, Math.floor(slidesToShow));
@@ -78,7 +89,7 @@ export default function CarouselSlider({
         role="region"
         aria-label="Carousel"
       >
-        <Slider key={lang} ref={sliderRef} {...settings}>
+        <Slider key={`${lang}-${cards.length}`} ref={sliderRef} {...settings}>
           {cards.map((card, index) => {
             const isIncoming = index >= activeIndex + fullyVisible;
 
@@ -88,7 +99,22 @@ export default function CarouselSlider({
                   className="h-full w-full transition-opacity duration-300"
                   style={{ opacity: isIncoming ? 0.4 : 1 }}
                 >
-                  <CarouselCard card={card} lang={lang} cId={cId} />
+                  <CarouselCard
+                    card={card}
+                    lang={lang}
+                    cId={cId}
+                    showCardImage={showCardImage}
+                    showCardTitle={showCardTitle}
+                    showCardDescription={showCardDescription}
+                    showButton={showButton}
+                    cardBg={cardBg}
+                    cardRadius={cardRadius}
+                    cardTitleColor={cardTitleColor}
+                    cardBodyColor={cardBodyColor}
+                    buttonBg={buttonBg}
+                    buttonText={buttonText}
+                    buttonOnFill={buttonOnFill}
+                  />
                 </div>
               </div>
             );

@@ -1,30 +1,11 @@
 "use client";
 
 import { ArrowLeftIcon, ArrowRightIcon } from "@phosphor-icons/react";
+import { getThemeColorCss } from "@/styles/themeColors";
+import { DEFAULT_RELATED_CONTENT_STYLE } from "../utils/style";
 
 const baseButtonClasses =
   "flex h-11 w-11 shrink-0 items-center justify-center rounded-full border transition-all duration-200 focus:outline-none sm:h-10 sm:w-10";
-
-function getStateClasses(enabled) {
-  return enabled
-    ? "cursor-pointer border-primary-1 bg-white text-primary-1 hover:bg-primary-1/5 active:scale-95"
-    : "cursor-not-allowed border-300 bg-50 text-400";
-}
-
-function NavButton({ onClick, disabled, ariaLabel, children }) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      disabled={disabled}
-      aria-label={ariaLabel}
-      aria-disabled={disabled}
-      className={`${baseButtonClasses} ${getStateClasses(!disabled)}`}
-    >
-      {children}
-    </button>
-  );
-}
 
 export default function CarouselNavigation({
   lang = "en",
@@ -36,6 +17,8 @@ export default function CarouselNavigation({
   totalSlides,
   progress = 0,
   showNavigation = true,
+  navColor = DEFAULT_RELATED_CONTENT_STYLE.navColor,
+  navTrack = DEFAULT_RELATED_CONTENT_STYLE.navTrack,
 }) {
   if (!showNavigation) {
     return null;
@@ -44,6 +27,8 @@ export default function CarouselNavigation({
   const isRtl = lang === "ar";
   const slideLabel = `${currentIndex + 1} of ${totalSlides}`;
   const progressPct = Math.min(100, Math.max(0, progress * 100));
+  const accentCss = getThemeColorCss(navColor, "primary-1");
+  const trackCss = getThemeColorCss(navTrack, "200");
 
   return (
     <div
@@ -53,7 +38,8 @@ export default function CarouselNavigation({
       aria-label="Carousel navigation"
     >
       <div
-        className="relative h-px min-w-0 flex-1 bg-200"
+        className="relative h-px min-w-0 flex-1"
+        style={{ backgroundColor: trackCss }}
         role="progressbar"
         aria-valuemin={0}
         aria-valuemax={100}
@@ -61,26 +47,50 @@ export default function CarouselNavigation({
         aria-label="Carousel progress"
       >
         <span
-          className="absolute inset-y-0 start-0 rounded-full bg-primary-1 transition-[width] duration-500 ease-out"
-          style={{ width: `${progressPct}%` }}
+          className="absolute inset-y-0 start-0 rounded-full transition-[width] duration-500 ease-out"
+          style={{ width: `${progressPct}%`, backgroundColor: accentCss }}
         />
       </div>
 
       <div className="flex shrink-0 items-center gap-3" dir="ltr">
-        <NavButton
+        <button
+          type="button"
           onClick={onPrev}
           disabled={!canGoPrev}
-          ariaLabel={`Previous slide. ${slideLabel}`}
+          aria-label={`Previous slide. ${slideLabel}`}
+          aria-disabled={!canGoPrev}
+          className={`${baseButtonClasses} ${
+            canGoPrev
+              ? "cursor-pointer bg-white hover:bg-primary-1/5 active:scale-95"
+              : "cursor-not-allowed border-300 bg-50 text-400"
+          }`}
+          style={
+            canGoPrev
+              ? { borderColor: accentCss, color: accentCss }
+              : undefined
+          }
         >
           <ArrowLeftIcon size={18} weight="bold" aria-hidden="true" />
-        </NavButton>
-        <NavButton
+        </button>
+        <button
+          type="button"
           onClick={onNext}
           disabled={!canGoNext}
-          ariaLabel={`Next slide. ${slideLabel}`}
+          aria-label={`Next slide. ${slideLabel}`}
+          aria-disabled={!canGoNext}
+          className={`${baseButtonClasses} ${
+            canGoNext
+              ? "cursor-pointer bg-white hover:bg-primary-1/5 active:scale-95"
+              : "cursor-not-allowed border-300 bg-50 text-400"
+          }`}
+          style={
+            canGoNext
+              ? { borderColor: accentCss, color: accentCss }
+              : undefined
+          }
         >
           <ArrowRightIcon size={18} weight="bold" aria-hidden="true" />
-        </NavButton>
+        </button>
       </div>
     </div>
   );

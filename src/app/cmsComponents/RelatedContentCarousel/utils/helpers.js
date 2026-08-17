@@ -10,6 +10,24 @@ export function getImageUrl(img) {
   return "";
 }
 
+export function isUsableImageSrc(src) {
+  const value = String(src || "").trim();
+  if (!value) {
+    return false;
+  }
+
+  if (value.startsWith("/") && !value.startsWith("//")) {
+    return true;
+  }
+
+  try {
+    const url = new URL(value.startsWith("//") ? `https:${value}` : value);
+    return url.protocol === "http:" || url.protocol === "https:";
+  } catch {
+    return false;
+  }
+}
+
 export function getCurrentSlidesToShow(cardsCount = 0, width) {
   const count = Math.max(cardsCount || 1, 1);
   if (width == null) return Math.min(2.35, count);
@@ -37,7 +55,7 @@ export function normalizeCarouselCard(page, lang = "en", posParams = "gb") {
         "",
       width: page?.CardImage?.width || page?.image?.width || 0,
       height: page?.CardImage?.height || page?.image?.height || 0,
-      alt: page?.CardImage?.alt || page?.title || "Card image",
+      alt: page?.CardImage?.alt || page?.image?.alt || page?.title || "Card image",
     },
     buttonText,
     buttonLink,
@@ -84,5 +102,63 @@ export function getRelatedContentCarouselContent(
     description: content?.description || "",
     cards,
     hasContent: Boolean(content?.title || content?.description || cards.length),
+  };
+}
+
+export function getRelatedContentCarouselEditorContent(
+  data,
+  lang = "en",
+  posParams = "gb"
+) {
+  const { title, description, cards } = getRelatedContentCarouselContent(
+    data,
+    lang,
+    posParams
+  );
+
+  return {
+    title,
+    description,
+    items: cards.map((card) => ({
+      id: card.id || "",
+      title: card.title || "",
+      description: card.description || "",
+      imageUrl: card.image?.fileUrl || "",
+      imageAlt: card.image?.alt || "",
+      imageWidth: card.image?.width || 0,
+      imageHeight: card.image?.height || 0,
+      buttonText: card.buttonText || "",
+      buttonHref: card.buttonLink || "",
+      buttonLinkType: "internal",
+    })),
+  };
+}
+
+export function wrapRelatedContentCarouselContent(content = {}, lang = "en") {
+  return {
+    translations: [
+      {
+        languageCode: lang,
+        content: {
+          title: content.title || "",
+          description: content.description || "",
+          pages: (Array.isArray(content.items) ? content.items : []).map(
+            (item, index) => ({
+              id: item?.id || `page-${index + 1}`,
+              title: item?.title || "",
+              description: item?.description || "",
+              CardImage: {
+                fileUrl: item?.imageUrl || "",
+                width: item?.imageWidth || 0,
+                height: item?.imageHeight || 0,
+                alt: item?.imageAlt || item?.title || "Card image",
+              },
+              buttonText: item?.buttonText || "",
+              buttonLink: item?.buttonHref || "#",
+            })
+          ),
+        },
+      },
+    ],
   };
 }
