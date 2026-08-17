@@ -64,7 +64,7 @@ export default function SliderExamples({ ctx, name = "Slider" }) {
             color: style.overlayColor,
             fromOpacity: Number(style.overlayFromOpacity),
             viaOpacity: Number(style.overlayViaOpacity),
-            to: "transparent",
+            to: style.overlayTo,
             direction: style.overlayDirection,
           }}
           settings={{
@@ -73,7 +73,14 @@ export default function SliderExamples({ ctx, name = "Slider" }) {
             fade: style.fade,
             infinite: style.infinite,
             speed: Number(style.speed),
+            cssEase: style.cssEase,
             pauseOnHover: style.pauseOnHover,
+            pauseOnFocus: style.pauseOnFocus,
+            waitForAnimate: style.waitForAnimate,
+            swipe: style.swipe,
+            draggable: style.draggable,
+            touchThreshold: Number(style.touchThreshold),
+            adaptiveHeight: style.adaptiveHeight,
           }}
           showSlideText={style.showSlideText}
           showButton={style.showButton}
@@ -83,6 +90,7 @@ export default function SliderExamples({ ctx, name = "Slider" }) {
           titleColor={style.titleColor}
           subtitleColor={style.subtitleColor}
           descriptionColor={style.descriptionColor}
+          buttonVariant={style.buttonVariant}
         />
       </SliderContainer>
 

@@ -21,6 +21,7 @@ export default function SliderSlide({
   titleColor = "white",
   subtitleColor = "white",
   descriptionColor = "white",
+  buttonVariant = "primary",
 }) {
   const videoRef = useRef(null);
 
@@ -107,6 +108,7 @@ export default function SliderSlide({
             titleColor={titleColor}
             subtitleColor={subtitleColor}
             descriptionColor={descriptionColor}
+            buttonVariant={buttonVariant}
           />
         </PageContentContainer>
       </div>

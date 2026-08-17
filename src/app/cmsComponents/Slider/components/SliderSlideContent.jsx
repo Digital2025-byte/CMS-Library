@@ -18,6 +18,7 @@ export default function SliderSlideContent({
   titleColor = "white",
   subtitleColor = "white",
   descriptionColor = "white",
+  buttonVariant = "primary",
 }) {
   const isRtl = lang === "ar";
   const resolvedHref = ctaHref
@@ -77,8 +78,8 @@ export default function SliderSlideContent({
               label={buttonText}
               href={resolvedHref}
               cId={cId}
-              variant="primary"
-              className="slider-hero-cta min-w-[120px] sm:min-w-[140px] md:min-w-[180px]"
+              variant={buttonVariant}
+              className={`slider-hero-cta slider-hero-cta-${buttonVariant} min-w-[120px] sm:min-w-[140px] md:min-w-[180px]`}
             />
           </div>
         ) : null}

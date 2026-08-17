@@ -10,12 +10,17 @@ import {
 import SliderContentForm from "./SliderContentForm";
 import {
   AUTOPLAY_SPEED_OPTIONS,
+  BUTTON_VARIANT_OPTIONS,
   DEFAULT_SLIDER_STYLE,
+  EASING_OPTIONS,
+  EFFECT_OPTIONS,
   OPACITY_OPTIONS,
   OVERLAY_DIRECTION_OPTIONS,
+  OVERLAY_TO_OPTIONS,
   SLIDER_STYLE_RESET_KEYS,
   THEME_OPTIONS,
   TITLE_ALIGN_OPTIONS,
+  TOUCH_OPTIONS,
   TRANSITION_SPEED_OPTIONS,
 } from "../utils/style";
 
@@ -97,6 +102,21 @@ function SliderStyleForm({ style, onChange }) {
             value={style.descriptionColor}
             onChange={(value) => update("descriptionColor", value)}
           />
+          </InspectorSection>
+        ) : null}
+
+      {style.showButton ? (
+        <InspectorSection
+          title="Button"
+          onReset={() => reset(SLIDER_STYLE_RESET_KEYS.button)}
+        >
+          <InspectorChoose
+            label="Look"
+            name="buttonVariant"
+            value={style.buttonVariant}
+            options={BUTTON_VARIANT_OPTIONS}
+            onChange={(value) => update("buttonVariant", value)}
+          />
         </InspectorSection>
       ) : null}
 
@@ -138,14 +158,34 @@ function SliderStyleForm({ style, onChange }) {
               options={OPACITY_OPTIONS}
               onChange={(value) => update("overlayViaOpacity", value)}
             />
+            <InspectorChoose
+              label="End color"
+              name="overlayTo"
+              value={style.overlayTo}
+              options={OVERLAY_TO_OPTIONS}
+              onChange={(value) => update("overlayTo", value)}
+            />
           </>
         ) : null}
       </InspectorSection>
 
       <InspectorSection
-        title="Motion"
-        onReset={() => reset(SLIDER_STYLE_RESET_KEYS.motion)}
+        title="Slider"
+        onReset={() => reset(SLIDER_STYLE_RESET_KEYS.slider)}
       >
+        <InspectorChoose
+          label="Effect"
+          name="sliderEffect"
+          value={style.fade ? "fade" : "slide"}
+          options={EFFECT_OPTIONS}
+          onChange={(value) => update("fade", value === "fade")}
+        />
+        <InspectorSwitch
+          checked={style.infinite}
+          onChange={() => toggle("infinite")}
+          label="Loop"
+          hint="Loop back to the first slide"
+        />
         <InspectorSwitch
           checked={style.autoplay}
           onChange={() => toggle("autoplay")}
@@ -168,23 +208,57 @@ function SliderStyleForm({ style, onChange }) {
           hint="Pause autoplay when the pointer is over the slider"
         />
         <InspectorSwitch
-          checked={style.fade}
-          onChange={() => toggle("fade")}
-          label="Fade"
-          hint="Cross-fade instead of sliding"
-        />
-        <InspectorSwitch
-          checked={style.infinite}
-          onChange={() => toggle("infinite")}
-          label="Loop"
-          hint="Loop back to the first slide"
+          checked={style.pauseOnFocus}
+          onChange={() => toggle("pauseOnFocus")}
+          label="Pause on focus"
+          hint="Pause autoplay when a control is focused"
         />
         <InspectorSelect
           id="transition-speed"
-          label="Transition"
+          label="Transition speed"
           value={style.speed}
           options={TRANSITION_SPEED_OPTIONS}
           onChange={(value) => update("speed", value)}
+        />
+        <InspectorSelect
+          id="easing"
+          label="Easing"
+          value={style.cssEase}
+          options={EASING_OPTIONS}
+          onChange={(value) => update("cssEase", value)}
+        />
+        <InspectorSwitch
+          checked={style.waitForAnimate}
+          onChange={() => toggle("waitForAnimate")}
+          label="Wait for animation"
+          hint="Block the next move until the current one finishes"
+        />
+        <InspectorSwitch
+          checked={style.swipe}
+          onChange={() => toggle("swipe")}
+          label="Swipe"
+          hint="Allow touch swipe"
+        />
+        <InspectorSwitch
+          checked={style.draggable}
+          onChange={() => toggle("draggable")}
+          label="Drag"
+          hint="Allow mouse drag"
+        />
+        {style.swipe || style.draggable ? (
+          <InspectorChoose
+            label="Touch"
+            name="touchThreshold"
+            value={style.touchThreshold}
+            options={TOUCH_OPTIONS}
+            onChange={(value) => update("touchThreshold", value)}
+          />
+        ) : null}
+        <InspectorSwitch
+          checked={style.adaptiveHeight}
+          onChange={() => toggle("adaptiveHeight")}
+          label="Adaptive height"
+          hint="Resize the track to each slide"
         />
       </InspectorSection>
     </div>

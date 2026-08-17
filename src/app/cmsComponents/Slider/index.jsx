@@ -52,6 +52,7 @@ const Slider = ({
   titleColor = "white",
   subtitleColor = "white",
   descriptionColor = "white",
+  buttonVariant = "primary",
 }) => {
   const { slides, hasContent } = getSliderContent(data, lang);
 
@@ -94,6 +95,7 @@ const Slider = ({
       titleColor={titleColor}
       subtitleColor={subtitleColor}
       descriptionColor={descriptionColor}
+      buttonVariant={buttonVariant}
     />
   );
 };

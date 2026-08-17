@@ -15,6 +15,7 @@ export default function SliderPanel({
   titleColor = "white",
   subtitleColor = "white",
   descriptionColor = "white",
+  buttonVariant = "primary",
 }) {
   return (
     <section className="relative w-full overflow-hidden leading-none" dir="ltr">
@@ -24,7 +25,19 @@ export default function SliderPanel({
         lang={lang}
         posParams={posParams}
         cId={cId}
-        sliderKey={`${lang}-${settings.fade}-${settings.infinite}-${settings.speed}-${settings.autoplay}`}
+        sliderKey={[
+          lang,
+          settings.fade,
+          settings.infinite,
+          settings.speed,
+          settings.autoplay,
+          settings.cssEase,
+          settings.swipe,
+          settings.draggable,
+          settings.adaptiveHeight,
+          settings.waitForAnimate,
+          settings.touchThreshold,
+        ].join("-")}
         showArrows={showArrows}
         showSlideText={showSlideText}
         showButton={showButton}
@@ -34,6 +47,7 @@ export default function SliderPanel({
         titleColor={titleColor}
         subtitleColor={subtitleColor}
         descriptionColor={descriptionColor}
+        buttonVariant={buttonVariant}
       />
     </section>
   );

@@ -25,6 +25,7 @@ export default function SliderTrack({
   titleColor = "white",
   subtitleColor = "white",
   descriptionColor = "white",
+  buttonVariant = "primary",
 }) {
   const sliderRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -95,6 +96,7 @@ export default function SliderTrack({
               titleColor={titleColor}
               subtitleColor={subtitleColor}
               descriptionColor={descriptionColor}
+              buttonVariant={buttonVariant}
             />
           </div>
         ))}
