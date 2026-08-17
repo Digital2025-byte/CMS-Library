@@ -86,6 +86,7 @@ export default function AccordionWithContentExamples({
         <AccordionWithContentPropsForm
           content={content}
           onContentChange={setContent}
+          contentDefaults={toEditorContent(accordionData)}
           style={style}
           onStyleChange={setStyle}
         />

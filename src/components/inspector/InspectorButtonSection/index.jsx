@@ -10,10 +10,11 @@ export default function InspectorButtonSection({
   pages,
   onLabelChange,
   onLinkChange,
+  onReset,
   heading = "Button",
 }) {
   return (
-    <InspectorSection title={heading}>
+    <InspectorSection title={heading} onReset={onReset}>
       <InspectorField
         id={`${idPrefix}-label`}
         label="Label"

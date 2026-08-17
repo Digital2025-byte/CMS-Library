@@ -6,12 +6,22 @@ import {
   InspectorRepeater,
   InspectorSection,
   InspectorTitleSection,
+  applyInspectorReset,
 } from "@/components/inspector";
 
-export default function AccordionWithContentContentForm({ content, onChange }) {
+const TITLE_KEYS = ["title", "description"];
+const BUTTON_KEYS = ["buttonLabel", "buttonHref", "buttonLinkType"];
+const ITEM_KEYS = ["items"];
+
+export default function AccordionWithContentContentForm({
+  content,
+  onChange,
+  defaults,
+}) {
   const updateField = (key, value) => {
     onChange({ ...content, [key]: value });
   };
+  const reset = (keys) => onChange(applyInspectorReset(content, defaults, keys));
 
   return (
     <div>
@@ -21,6 +31,7 @@ export default function AccordionWithContentContentForm({ content, onChange }) {
         description={content.description}
         onTitleChange={(value) => updateField("title", value)}
         onDescriptionChange={(value) => updateField("description", value)}
+        onReset={() => reset(TITLE_KEYS)}
       />
 
       <InspectorButtonSection
@@ -36,9 +47,10 @@ export default function AccordionWithContentContentForm({ content, onChange }) {
             buttonHref: href,
           })
         }
+        onReset={() => reset(BUTTON_KEYS)}
       />
 
-      <InspectorSection title="Items">
+      <InspectorSection title="Items" onReset={() => reset(ITEM_KEYS)}>
         <InspectorRepeater
           items={content.items}
           createItem={() => ({ title: "", description: "" })}

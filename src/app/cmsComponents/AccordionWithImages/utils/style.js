@@ -15,9 +15,8 @@ export const ITEM_RADIUS_OPTIONS = [
   { value: "full", label: "Pill" },
 ];
 
-export const BUTTON_POSITION_OPTIONS = [
+export const IMAGE_POSITION_OPTIONS = [
   { value: "left", label: "Left" },
-  { value: "center", label: "Center" },
   { value: "right", label: "Right" },
 ];
 
@@ -25,16 +24,6 @@ export const SPACING_OPTIONS = [
   { value: "tight", label: "Tight" },
   { value: "default", label: "Default" },
   { value: "loose", label: "Loose" },
-];
-
-export const BUTTON_VARIANT_OPTIONS = [
-  { value: "primary", label: "Solid" },
-  { value: "outline", label: "Outline" },
-];
-
-export const BUTTON_WIDTH_OPTIONS = [
-  { value: "auto", label: "Auto" },
-  { value: "full", label: "Full" },
 ];
 
 export const TITLE_ALIGN_CLASS = {
@@ -45,55 +34,67 @@ export const TITLE_ALIGN_CLASS = {
 export const ITEM_RADIUS_CLASS = {
   none: "rounded-none",
   sm: "rounded-sm",
-  lg: "rounded-lg",
+  lg: "rounded-xl",
   full: "rounded-2xl",
 };
 
 export const ITEM_GAP_CLASS = {
-  tight: "gap-2",
+  tight: "gap-2 sm:gap-4",
   default: "gap-3 sm:gap-4",
   loose: "gap-5 sm:gap-6",
 };
 
 export const ITEM_PADDING_CLASS = {
-  tight: "px-3 py-3",
-  default: "px-4 py-4 sm:px-5 sm:py-5 md:px-6",
-  loose: "px-6 py-6",
+  tight: "p-3 sm:p-4",
+  default: "p-4 sm:p-5",
+  loose: "p-5 sm:p-6",
 };
 
-export const DEFAULT_ACCORDION_STYLE = {
+export const DEFAULT_ACCORDION_IMAGES_STYLE = {
   showTitleDescription: true,
   showDescription: true,
-  showButton: true,
-  sectionBg: "100",
+  showTitleBorder: true,
+  showImagePanel: true,
+  sectionBg: "background",
   titleAlign: "left",
   titleColor: "primary-1",
   descriptionColor: "700",
   itemLook: "filled",
-  itemBg: "white",
-  itemRadius: "lg",
-  itemGap: "default",
-  itemPadding: "default",
+  itemBg: "background",
+  itemRadius: "none",
+  itemGap: "tight",
+  itemPadding: "tight",
+  showItemDivider: true,
   itemTitleColor: "800",
   itemOpenColor: "primary-1",
   itemBodyColor: "700",
-  buttonPosition: "center",
-  buttonVariant: "primary",
-  buttonWidth: "auto",
+  imagePosition: "right",
+  imageRadius: "lg",
+  imageBg: "100",
+  toggleBg: "primary-1",
+  toggleBorder: "secondary-1",
+  toggleIcon: "white",
 };
 
-export const ACCORDION_STYLE_RESET_KEYS = {
-  layout: ["showTitleDescription", "showDescription", "showButton", "sectionBg"],
-  title: ["titleAlign", "titleColor", "descriptionColor"],
+export const ACCORDION_IMAGES_STYLE_RESET_KEYS = {
+  layout: [
+    "showTitleDescription",
+    "showDescription",
+    "showImagePanel",
+    "sectionBg",
+  ],
+  title: ["titleAlign", "showTitleBorder", "titleColor", "descriptionColor"],
   items: [
     "itemLook",
     "itemBg",
     "itemRadius",
     "itemGap",
     "itemPadding",
+    "showItemDivider",
     "itemTitleColor",
     "itemOpenColor",
     "itemBodyColor",
   ],
-  button: ["buttonPosition", "buttonVariant", "buttonWidth"],
+  image: ["imagePosition", "imageRadius", "imageBg"],
+  toggle: ["toggleBg", "toggleBorder", "toggleIcon"],
 };

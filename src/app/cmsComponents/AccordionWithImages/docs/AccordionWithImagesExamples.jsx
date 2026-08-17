@@ -8,6 +8,7 @@ import {
   getAccordionImagesEditorContent,
   wrapAccordionImagesContent,
 } from "@/app/cmsComponents/AccordionWithImages/utils/helpers";
+import { DEFAULT_ACCORDION_IMAGES_STYLE } from "@/app/cmsComponents/AccordionWithImages/utils/style";
 import { InspectorFooter, InspectorSubmitButton } from "@/components/inspector";
 import Drawer, { useDrawer } from "@/components/ui/Drawer";
 
@@ -17,10 +18,7 @@ export default function AccordionWithImagesExamples({
 }) {
   const { lang, dir, accordionWithImagesData } = ctx;
   const drawer = useDrawer();
-  const [flags, setFlags] = useState({
-    showTitleDescription: true,
-    showImagePanel: true,
-  });
+  const [style, setStyle] = useState(DEFAULT_ACCORDION_IMAGES_STYLE);
   const [content, setContent] = useState(() =>
     getAccordionImagesEditorContent(accordionWithImagesData)
   );
@@ -29,17 +27,33 @@ export default function AccordionWithImagesExamples({
     setContent(getAccordionImagesEditorContent(accordionWithImagesData));
   }, [accordionWithImagesData]);
 
-  const toggle = (key) => {
-    setFlags((current) => ({ ...current, [key]: !current[key] }));
-  };
-
   return (
     <div>
-      <AccordionImagesContainer lang={lang} dir={dir}>
+      <AccordionImagesContainer lang={lang} dir={dir} background={style.sectionBg}>
         <AccordionWithImages
           data={wrapAccordionImagesContent(content)}
-          showTitleDescription={flags.showTitleDescription}
-          showImagePanel={flags.showImagePanel}
+          showTitleDescription={style.showTitleDescription}
+          showDescription={style.showDescription}
+          showTitleBorder={style.showTitleBorder}
+          showImagePanel={style.showImagePanel}
+          titleAlign={style.titleAlign}
+          titleColor={style.titleColor}
+          descriptionColor={style.descriptionColor}
+          itemLook={style.itemLook}
+          itemBg={style.itemBg}
+          itemRadius={style.itemRadius}
+          itemGap={style.itemGap}
+          itemPadding={style.itemPadding}
+          showItemDivider={style.showItemDivider}
+          itemTitleColor={style.itemTitleColor}
+          itemOpenColor={style.itemOpenColor}
+          itemBodyColor={style.itemBodyColor}
+          imagePosition={style.imagePosition}
+          imageRadius={style.imageRadius}
+          imageBg={style.imageBg}
+          toggleBg={style.toggleBg}
+          toggleBorder={style.toggleBorder}
+          toggleIcon={style.toggleIcon}
         />
       </AccordionImagesContainer>
 
@@ -55,13 +69,7 @@ export default function AccordionWithImagesExamples({
           <InspectorFooter>
             <InspectorSubmitButton
               onClick={() =>
-                console.log("AccordionWithImages", {
-                  content,
-                  style: {
-                    showTitleDescription: flags.showTitleDescription,
-                    showImagePanel: flags.showImagePanel,
-                  },
-                })
+                console.log("AccordionWithImages", { content, style })
               }
             />
           </InspectorFooter>
@@ -70,8 +78,11 @@ export default function AccordionWithImagesExamples({
         <AccordionWithImagesPropsForm
           content={content}
           onContentChange={setContent}
-          flags={flags}
-          toggle={toggle}
+          contentDefaults={getAccordionImagesEditorContent(
+            accordionWithImagesData
+          )}
+          style={style}
+          onStyleChange={setStyle}
         />
       </Drawer>
     </div>

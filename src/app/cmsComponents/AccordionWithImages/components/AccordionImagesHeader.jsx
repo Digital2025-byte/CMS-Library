@@ -1,22 +1,40 @@
 import { typography } from "@/styles/typography";
+import { getThemeColorCss } from "@/styles/themeColors";
+import { TITLE_ALIGN_CLASS } from "../utils/style";
 
-export default function AccordionImagesHeader({ title, description }) {
-  if (!title && !description) {
+export default function AccordionImagesHeader({
+  title,
+  description,
+  align = "left",
+  titleColor = "primary-1",
+  descriptionColor = "700",
+  showDescription = true,
+  showTitleBorder = true,
+}) {
+  if (!title && !(showDescription && description)) {
     return null;
   }
 
+  const alignClass = TITLE_ALIGN_CLASS[align] ?? TITLE_ALIGN_CLASS.left;
+
   return (
-    <div className="mb-5 sm:mb-7 lg:mb-8">
+    <div className={`mb-5 sm:mb-7 lg:mb-8 ${alignClass}`}>
       {title ? (
         <h2
-          className={`${typography.sectionTitle} border-b border-200 py-2 font-semibold leading-snug text-primary-1 lg:py-4`}
+          className={`${typography.sectionTitle} py-2 font-semibold leading-snug lg:py-4 ${
+            showTitleBorder ? "border-b border-200" : ""
+          }`}
+          style={{ color: getThemeColorCss(titleColor, "primary-1") }}
         >
           {title}
         </h2>
       ) : null}
-      {description ? (
+      {showDescription && description ? (
         <p
-          className={`${typography.sectionDescription} mt-2 max-w-2xl leading-relaxed text-700`}
+          className={`${typography.sectionDescription} mt-2 leading-relaxed ${
+            align === "center" ? "mx-auto max-w-2xl" : "max-w-2xl"
+          }`}
+          style={{ color: getThemeColorCss(descriptionColor, "700") }}
         >
           {description}
         </p>

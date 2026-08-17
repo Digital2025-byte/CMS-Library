@@ -4,12 +4,15 @@ import {
   InspectorSection,
   InspectorSwitch,
   InspectorTabs,
+  applyInspectorReset,
 } from "@/components/inspector";
 import AccordionWithContentContentForm from "./AccordionWithContentContentForm";
 import {
+  ACCORDION_STYLE_RESET_KEYS,
   BUTTON_POSITION_OPTIONS,
   BUTTON_VARIANT_OPTIONS,
   BUTTON_WIDTH_OPTIONS,
+  DEFAULT_ACCORDION_STYLE,
   ITEM_LOOK_OPTIONS,
   ITEM_RADIUS_OPTIONS,
   SPACING_OPTIONS,
@@ -19,10 +22,15 @@ import {
 function AccordionWithContentStyleForm({ style, onChange }) {
   const update = (key, value) => onChange({ ...style, [key]: value });
   const toggle = (key) => onChange({ ...style, [key]: !style[key] });
+  const reset = (keys) =>
+    onChange(applyInspectorReset(style, DEFAULT_ACCORDION_STYLE, keys));
 
   return (
     <div>
-      <InspectorSection title="Layout">
+      <InspectorSection
+        title="Layout"
+        onReset={() => reset(ACCORDION_STYLE_RESET_KEYS.layout)}
+      >
         <InspectorSwitch
           checked={style.showTitleDescription}
           onChange={() => toggle("showTitleDescription")}
@@ -49,7 +57,10 @@ function AccordionWithContentStyleForm({ style, onChange }) {
       </InspectorSection>
 
       {style.showTitleDescription || style.showDescription ? (
-        <InspectorSection title="Title">
+        <InspectorSection
+          title="Title"
+          onReset={() => reset(ACCORDION_STYLE_RESET_KEYS.title)}
+        >
           {style.showTitleDescription ? (
             <>
               <InspectorChoose
@@ -76,7 +87,10 @@ function AccordionWithContentStyleForm({ style, onChange }) {
         </InspectorSection>
       ) : null}
 
-      <InspectorSection title="Items">
+      <InspectorSection
+        title="Items"
+        onReset={() => reset(ACCORDION_STYLE_RESET_KEYS.items)}
+      >
         <InspectorChoose
           label="Look"
           name="itemLook"
@@ -130,7 +144,10 @@ function AccordionWithContentStyleForm({ style, onChange }) {
       </InspectorSection>
 
       {style.showButton ? (
-        <InspectorSection title="Button">
+        <InspectorSection
+          title="Button"
+          onReset={() => reset(ACCORDION_STYLE_RESET_KEYS.button)}
+        >
           <InspectorChoose
             label="Alignment"
             name="buttonPosition"
@@ -161,6 +178,7 @@ function AccordionWithContentStyleForm({ style, onChange }) {
 export default function AccordionWithContentPropsForm({
   content,
   onContentChange,
+  contentDefaults,
   style,
   onStyleChange,
 }) {
@@ -170,6 +188,7 @@ export default function AccordionWithContentPropsForm({
         <AccordionWithContentContentForm
           content={content}
           onChange={onContentChange}
+          defaults={contentDefaults}
         />
       }
       style={

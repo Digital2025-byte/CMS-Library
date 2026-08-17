@@ -12,6 +12,8 @@ export { default as InspectorTitleSection } from "./InspectorTitleSection";
 export { default as InspectorButtonSection } from "./InspectorButtonSection";
 export { default as InspectorTabs } from "./InspectorTabs";
 export { default as InspectorFooter } from "./InspectorFooter";
+export { default as InspectorReset } from "./InspectorReset";
+export { applyInspectorReset } from "./applyReset";
 export { default as InspectorSubmitButton } from "./InspectorSubmitButton";
 export { default as useRepeater } from "./useRepeater";
 export {

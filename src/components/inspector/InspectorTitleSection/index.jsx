@@ -7,10 +7,11 @@ export default function InspectorTitleSection({
   description,
   onTitleChange,
   onDescriptionChange,
+  onReset,
   heading = "Title",
 }) {
   return (
-    <InspectorSection title={heading}>
+    <InspectorSection title={heading} onReset={onReset}>
       <InspectorField
         id={`${idPrefix}-title`}
         label="Title"
