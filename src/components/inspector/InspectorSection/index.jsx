@@ -4,6 +4,7 @@ import { useState } from "react";
 import { CaretDownIcon, CaretUpIcon } from "@phosphor-icons/react";
 import { typography } from "@/styles/typography";
 import InspectorReset from "../InspectorReset";
+import { inspectorIconHoverClass } from "../constants";
 
 export default function InspectorSection({
   title,
@@ -16,7 +17,7 @@ export default function InspectorSection({
 
   return (
     <section className="border-b border-200">
-      <div className="flex items-center bg-100 hover:bg-200">
+      <div className="group flex items-center bg-100 hover:bg-200">
         <button
           type="button"
           onClick={toggle}
@@ -31,6 +32,7 @@ export default function InspectorSection({
           {onReset ? (
             <InspectorReset
               iconOnly
+              className={inspectorIconHoverClass}
               onClick={(event) => {
                 event.stopPropagation();
                 onReset();

@@ -20,6 +20,7 @@ export {
   ALIGNMENT_OPTIONS,
   LINK_TYPE_OPTIONS,
   inspectorControlClass,
+  inspectorIconHoverClass,
 } from "./constants";
 export {
   INTERNAL_PAGES,

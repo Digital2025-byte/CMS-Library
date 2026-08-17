@@ -1,5 +1,6 @@
 import { CaretDownIcon, CaretUpIcon, TrashIcon } from "@phosphor-icons/react";
 import { typography } from "@/styles/typography";
+import { inspectorIconHoverClass } from "../constants";
 
 export default function InspectorRepeaterItem({
   label,
@@ -10,7 +11,7 @@ export default function InspectorRepeaterItem({
 }) {
   return (
     <div className="overflow-hidden rounded-sm border border-200">
-      <div className="flex items-center bg-50">
+      <div className="group flex items-center bg-50">
         <button
           type="button"
           onClick={onToggle}
@@ -38,7 +39,7 @@ export default function InspectorRepeaterItem({
           type="button"
           onClick={onRemove}
           aria-label={`Remove ${label}`}
-          className="cursor-pointer px-2 py-2 text-500 hover:bg-200 hover:text-main"
+          className={`cursor-pointer px-2 py-2 text-500 hover:bg-200 hover:text-main ${inspectorIconHoverClass}`}
         >
           <TrashIcon size={14} weight="regular" aria-hidden />
         </button>

@@ -5,6 +5,7 @@ export default function InspectorReset({
   onClick,
   children = "Reset",
   iconOnly = false,
+  className = "",
 }) {
   return (
     <button
@@ -14,8 +15,8 @@ export default function InspectorReset({
       aria-label={iconOnly ? String(children) : undefined}
       className={
         iconOnly
-          ? "inline-flex h-4 w-4 shrink-0 cursor-pointer items-center justify-center rounded-sm text-700 hover:bg-200 hover:text-main"
-          : `${typography.caption} inline-flex cursor-pointer items-center gap-1 font-medium text-700 hover:text-main`
+          ? `inline-flex h-4 w-4 shrink-0 cursor-pointer items-center justify-center rounded-sm text-700 hover:bg-200 hover:text-main ${className}`
+          : `${typography.caption} inline-flex cursor-pointer items-center gap-1 font-medium text-700 hover:text-main ${className}`
       }
     >
       <ArrowCounterClockwiseIcon
