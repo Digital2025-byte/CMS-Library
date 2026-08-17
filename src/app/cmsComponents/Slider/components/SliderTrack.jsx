@@ -21,6 +21,10 @@ export default function SliderTrack({
   showButton = true,
   theme = DEFAULT_THEME,
   imageOverlay,
+  titleAlign = "left",
+  titleColor = "white",
+  subtitleColor = "white",
+  descriptionColor = "white",
 }) {
   const sliderRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -87,6 +91,10 @@ export default function SliderTrack({
               isPaused={isPaused}
               showSlideText={showSlideText}
               showButton={showButton}
+              titleAlign={titleAlign}
+              titleColor={titleColor}
+              subtitleColor={subtitleColor}
+              descriptionColor={descriptionColor}
             />
           </div>
         ))}

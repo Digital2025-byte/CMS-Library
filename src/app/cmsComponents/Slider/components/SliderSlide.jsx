@@ -17,6 +17,10 @@ export default function SliderSlide({
   isPaused = false,
   showSlideText = true,
   showButton = true,
+  titleAlign = "left",
+  titleColor = "white",
+  subtitleColor = "white",
+  descriptionColor = "white",
 }) {
   const videoRef = useRef(null);
 
@@ -99,6 +103,10 @@ export default function SliderSlide({
             ctaHref={slide.ctaHref}
             showSlideText={showSlideText}
             showButton={showButton}
+            titleAlign={titleAlign}
+            titleColor={titleColor}
+            subtitleColor={subtitleColor}
+            descriptionColor={descriptionColor}
           />
         </PageContentContainer>
       </div>

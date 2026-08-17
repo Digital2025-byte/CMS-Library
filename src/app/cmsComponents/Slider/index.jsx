@@ -48,6 +48,10 @@ const Slider = ({
   showProgress = true,
   showSlideText = true,
   showButton = true,
+  titleAlign = "left",
+  titleColor = "white",
+  subtitleColor = "white",
+  descriptionColor = "white",
 }) => {
   const { slides, hasContent } = getSliderContent(data, lang);
 
@@ -86,6 +90,10 @@ const Slider = ({
       showButton={showButton}
       theme={theme}
       imageOverlay={imageOverlay}
+      titleAlign={titleAlign}
+      titleColor={titleColor}
+      subtitleColor={subtitleColor}
+      descriptionColor={descriptionColor}
     />
   );
 };

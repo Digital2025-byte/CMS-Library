@@ -1,3 +1,5 @@
+import { getThemeColorCss, THEME_COLOR_MAP } from "@/styles/themeColors";
+
 /**
  * Image overlay gradient config for Slider slides.
  *
@@ -39,6 +41,9 @@ function resolveColor(value, fallback = "var(--color-main)") {
   const key = String(value).trim();
   if (COLOR_TOKENS[key]) {
     return COLOR_TOKENS[key];
+  }
+  if (THEME_COLOR_MAP[key]) {
+    return getThemeColorCss(key);
   }
   return key;
 }

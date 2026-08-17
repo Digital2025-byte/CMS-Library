@@ -1,56 +1,88 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Slider from "@/app/cmsComponents/Slider";
 import SliderContainer from "@/app/cmsComponents/Slider/components/SliderContainer";
 import SliderPropsForm from "@/app/cmsComponents/Slider/docs/SliderPropsForm";
+import {
+  getSliderContent,
+  wrapSliderContent,
+} from "@/app/cmsComponents/Slider/utils/helpers";
+import { DEFAULT_SLIDER_STYLE } from "@/app/cmsComponents/Slider/utils/style";
+import {
+  InspectorFooter,
+  InspectorSubmitButton,
+  resolveEditorLink,
+} from "@/components/inspector";
 import Drawer, { useDrawer } from "@/components/ui/Drawer";
 
-const DEMO_SETTINGS = {
-  autoplay: true,
-  autoplaySpeed: 5000,
-  fade: false,
-  infinite: true,
-  speed: 700,
-  pauseOnHover: true,
-};
+function toEditorContent(data, lang) {
+  const { slides } = getSliderContent(data, lang);
 
-const DEMO_OVERLAY = {
-  color: "main",
-  fromOpacity: 0.7,
-  viaOpacity: 0.2,
-  to: "transparent",
-  direction: "to bottom",
-};
+  return {
+    slides: slides.map((slide) => {
+      const link = resolveEditorLink(slide.ctaHref);
+
+      return {
+        id: slide.id,
+        title: slide.title,
+        subtitle: slide.subtitle,
+        description: slide.description,
+        imageUrl: slide.image,
+        videoUrl: slide.video,
+        imageAlt: slide.alt,
+        buttonText: slide.buttonText,
+        buttonHref: link.href,
+        buttonLinkType: link.type,
+      };
+    }),
+  };
+}
 
 export default function SliderExamples({ ctx, name = "Slider" }) {
   const { lang, sliderData } = ctx;
   const drawer = useDrawer();
-  const [flags, setFlags] = useState({
-    showSlideText: true,
-    showButton: true,
-    showArrows: true,
-    showProgress: true,
-  });
+  const [style, setStyle] = useState(DEFAULT_SLIDER_STYLE);
+  const [content, setContent] = useState(() =>
+    toEditorContent(sliderData, lang)
+  );
 
-  const toggle = (key) => {
-    setFlags((current) => ({ ...current, [key]: !current[key] }));
-  };
+  useEffect(() => {
+    setContent(toEditorContent(sliderData, lang));
+  }, [sliderData, lang]);
 
   return (
     <div>
       <SliderContainer lang={lang}>
         <Slider
           lang={lang}
-          data={sliderData}
+          data={wrapSliderContent(content, lang)}
           posParams="gb"
-          theme="secondary-2"
-          imageOverlay={DEMO_OVERLAY}
-          settings={DEMO_SETTINGS}
-          showSlideText={flags.showSlideText}
-          showButton={flags.showButton}
-          showArrows={flags.showArrows}
-          showProgress={flags.showProgress}
+          theme={style.theme}
+          imageOverlay={{
+            enabled: style.overlayEnabled,
+            color: style.overlayColor,
+            fromOpacity: Number(style.overlayFromOpacity),
+            viaOpacity: Number(style.overlayViaOpacity),
+            to: "transparent",
+            direction: style.overlayDirection,
+          }}
+          settings={{
+            autoplay: style.autoplay,
+            autoplaySpeed: Number(style.autoplaySpeed),
+            fade: style.fade,
+            infinite: style.infinite,
+            speed: Number(style.speed),
+            pauseOnHover: style.pauseOnHover,
+          }}
+          showSlideText={style.showSlideText}
+          showButton={style.showButton}
+          showArrows={style.showArrows}
+          showProgress={style.showProgress}
+          titleAlign={style.titleAlign}
+          titleColor={style.titleColor}
+          subtitleColor={style.subtitleColor}
+          descriptionColor={style.descriptionColor}
         />
       </SliderContainer>
 
@@ -62,8 +94,21 @@ export default function SliderExamples({ ctx, name = "Slider" }) {
         panelRef={drawer.panelRef}
         titleId={drawer.titleId}
         title={name}
+        footer={
+          <InspectorFooter>
+            <InspectorSubmitButton
+              onClick={() => console.log("Slider", { content, style })}
+            />
+          </InspectorFooter>
+        }
       >
-        <SliderPropsForm flags={flags} toggle={toggle} />
+        <SliderPropsForm
+          content={content}
+          onContentChange={setContent}
+          contentDefaults={toEditorContent(sliderData, lang)}
+          style={style}
+          onStyleChange={setStyle}
+        />
       </Drawer>
     </div>
   );

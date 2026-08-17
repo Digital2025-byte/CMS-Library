@@ -133,3 +133,31 @@ export function getSliderContent(data, lang = "en") {
     hasContent: slides.length > 0,
   };
 }
+
+export function wrapSliderContent(content = {}, lang = "en") {
+  const slides = Array.isArray(content.slides) ? content.slides : [];
+
+  return {
+    translations: [
+      {
+        languageCode: lang,
+        content: {
+          slides: slides.map((slide, index) => ({
+            id: slide?.id || `slide-${index + 1}`,
+            title: slide?.title || "",
+            subtitle: slide?.subtitle || "",
+            description: slide?.description || "",
+            alt: slide?.imageAlt || slide?.title || `Slide ${index + 1}`,
+            buttonText: slide?.buttonText || "",
+            ctaHref: slide?.buttonHref || "",
+            mediaType: slide?.videoUrl ? "video" : "image",
+            image: { fileUrl: slide?.imageUrl || "" },
+            ...(slide?.videoUrl
+              ? { video: { fileUrl: slide.videoUrl } }
+              : {}),
+          })),
+        },
+      },
+    ],
+  };
+}
