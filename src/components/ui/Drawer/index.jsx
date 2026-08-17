@@ -57,7 +57,7 @@ export default function Drawer({
         onResizePointerDown={drag.onHandlePointerDown}
       >
         <DrawerHeader titleId={titleId} title={title} onClose={onClose} />
-        <div className="flex-1 overflow-y-auto bg-50 px-4 py-4">{children}</div>
+        <div className="min-h-0 flex-1 overflow-y-auto">{children}</div>
       </DrawerPanel>
     </>
   );

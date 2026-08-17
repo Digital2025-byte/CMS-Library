@@ -13,7 +13,7 @@ export default function TabsPanel({ value, children, className }) {
       id={`${baseId}-panel-${value}`}
       aria-labelledby={`${baseId}-tab-${value}`}
       hidden={!isActive}
-      className={cn(isActive ? "flex flex-col gap-5" : "hidden", className)}
+      className={cn(isActive ? "flex flex-col" : "hidden", className)}
     >
       {isActive ? children : null}
     </div>

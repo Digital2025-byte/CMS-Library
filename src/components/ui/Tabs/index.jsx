@@ -32,7 +32,7 @@ export default function Tabs({
 
   return (
     <TabsContext.Provider value={{ ...tabs, baseId }}>
-      <div className={cn("flex flex-col", className)}>{children}</div>
+      <div className={cn("flex min-h-full flex-col", className)}>{children}</div>
     </TabsContext.Provider>
   );
 }

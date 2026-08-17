@@ -36,7 +36,7 @@ function Checkbox({ checked, onChange, label, hint }) {
 
 export default function OppositeScrollPropsForm({ flags, toggle }) {
   return (
-    <fieldset>
+    <fieldset className="p-4">
       <legend className="sr-only">
         ImageCarouselsWithOppositeScrollDirections props
       </legend>

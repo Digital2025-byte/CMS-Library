@@ -23,7 +23,7 @@ function Checkbox({ checked, onChange, label, hint }) {
 
 export default function AccordionWithImagesPropsForm({ flags, toggle }) {
   return (
-    <fieldset>
+    <fieldset className="p-4">
       <legend className="sr-only">AccordionWithImages props</legend>
       <div className="flex flex-col gap-2">
         <Checkbox

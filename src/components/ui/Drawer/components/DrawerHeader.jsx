@@ -3,10 +3,10 @@ import { typography } from "@/styles/typography";
 
 export default function DrawerHeader({ titleId, title, onClose }) {
   return (
-    <div className="flex items-center justify-between border-b border-200 bg-white px-4 py-3">
+    <div className="flex items-center justify-between border-b border-200 bg-white px-4 py-2.5">
       <h2
         id={titleId}
-        className={`${typography.itemTitle} font-semibold text-main`}
+        className={`${typography.caption} font-semibold tracking-wide text-main`}
       >
         {title}
       </h2>

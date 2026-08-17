@@ -23,7 +23,7 @@ function Checkbox({ checked, onChange, label, hint }) {
 
 export default function LayoutPropsForm({ legend, controls = [], flags, toggle }) {
   return (
-    <fieldset>
+    <fieldset className="p-4">
       <legend className="sr-only">{legend}</legend>
       <div className="flex flex-col gap-2">
         {controls.map(({ key, label, hint }) => (

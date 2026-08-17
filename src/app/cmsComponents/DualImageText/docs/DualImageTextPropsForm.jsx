@@ -68,7 +68,7 @@ export default function DualImageTextPropsForm({
   setBgColor,
 }) {
   return (
-    <fieldset>
+    <fieldset className="p-4">
       <legend className="sr-only">DualImageText props</legend>
       <div className="flex flex-col gap-2">
         {BOOLEAN_OPTIONS.map((option) => (

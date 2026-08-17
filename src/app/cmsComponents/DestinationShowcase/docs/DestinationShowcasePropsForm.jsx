@@ -46,7 +46,7 @@ function Checkbox({ checked, onChange, label, hint }) {
 
 export default function DestinationShowcasePropsForm({ flags, toggle }) {
   return (
-    <fieldset>
+    <fieldset className="p-4">
       <legend className="sr-only">DestinationShowcase props</legend>
       <div className="flex flex-col gap-2">
         {CONTROLS.map(({ key, label, hint }) => (

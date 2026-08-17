@@ -14,5 +14,5 @@ export const DRAWER_SIDES = {
 export const DRAWER_LARGE_BREAKPOINT = 1024;
 export const DRAWER_MAX_RATIO_LARGE = 0.5;
 export const DRAWER_MAX_RATIO_SMALL = 1;
-export const DRAWER_DEFAULT_WIDTH = 320;
+export const DRAWER_DEFAULT_WIDTH = 360;
 export const DRAWER_MIN_WIDTH = DRAWER_DEFAULT_WIDTH;
