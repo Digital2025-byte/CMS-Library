@@ -51,13 +51,10 @@ export default function InspectorColor({
                       title={color.label}
                       aria-label={color.label}
                       aria-pressed={selected}
-                      onClick={() => {
-                        onChange(color.value);
-                        setOpen(false);
-                      }}
+                      onClick={() => onChange(color.value)}
                       className={`h-6 w-6 shrink-0 cursor-pointer rounded-sm border ${
                         selected
-                          ? "border-foreground ring-2 ring-foreground ring-offset-1"
+                          ? "border-primary-1 ring-2 ring-primary-1 ring-offset-1"
                           : "border-200 hover:border-700"
                       }`}
                       style={{ backgroundColor: color.css }}

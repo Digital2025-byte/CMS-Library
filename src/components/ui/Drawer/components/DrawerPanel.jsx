@@ -20,6 +20,8 @@ export default function DrawerPanel({
       aria-modal="false"
       aria-labelledby={titleId}
       aria-hidden={!isOpen}
+      dir="ltr"
+      lang="en"
       style={{ width }}
       className={[
         "pointer-events-auto fixed inset-y-0 z-50 flex max-w-full flex-col border-e border-200 bg-white lg:max-w-[50%]",
