@@ -3,36 +3,88 @@
 import { useCallback, useEffect, useRef } from "react";
 import { cn } from "@/components/lib/utils";
 
-const SliderItem = ({ item, onClick, itemRef }) => (
-  <div
-    ref={itemRef}
-    className="pointer-events-auto absolute top-1/2 left-1/2 w-[var(--width)] h-[var(--height)] -mt-[calc(var(--height)/2)] -ml-[calc(var(--width)/2)] origin-[0%_100%] cursor-pointer select-none overflow-hidden rounded-2xl bg-black shadow-2xl will-change-transform"
-    style={{
-      "--width": "clamp(170px, 22vw, 280px)",
-      "--height": "clamp(240px, 36vw, 400px)",
-      transition: "none",
-      display: "block",
-    }}
-    onClick={onClick}
-  >
-    <div className="slider-item-content absolute inset-0 z-10 will-change-opacity">
-      <img
-        src={item.imageUrl}
-        alt={item.title}
-        className="pointer-events-none h-full w-full object-cover"
-        loading="lazy"
-        decoding="async"
-      />
-      <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/35 via-transparent via-45% to-black/55" />
-      <div className="absolute top-3 left-4 z-20 text-[clamp(28px,5vw,52px)] font-semibold leading-none text-white/90">
-        {item.num}
-      </div>
-      <div className="absolute bottom-4 left-4 z-20 text-[clamp(18px,2.4vw,28px)] font-semibold text-white drop-shadow-md">
-        {item.title}
+function SliderItem({
+  item,
+  onClick,
+  itemRef,
+  cardRadiusClass = "rounded-2xl",
+  showCardImage = true,
+  showCardTitle = true,
+  showNumber = true,
+  showOverlay = true,
+  titleCss,
+  numberCss,
+  overlayCss,
+}) {
+  const imageUrl = showCardImage ? item?.imageUrl : "";
+
+  return (
+    <div
+      ref={itemRef}
+      className={cn(
+        "pointer-events-auto absolute top-1/2 left-1/2 w-[var(--width)] h-[var(--height)] -mt-[calc(var(--height)/2)] -ml-[calc(var(--width)/2)] origin-[0%_100%] cursor-pointer select-none overflow-hidden bg-black shadow-2xl will-change-transform",
+        cardRadiusClass
+      )}
+      style={{
+        "--width": "clamp(170px, 22vw, 280px)",
+        "--height": "clamp(240px, 36vw, 400px)",
+        transition: "none",
+        display: "block",
+      }}
+      onClick={onClick}
+    >
+      <div className="slider-item-content absolute inset-0 z-10 will-change-opacity">
+        {imageUrl ? (
+          <img
+            src={imageUrl}
+            alt={item.imageAlt || item.title || ""}
+            className="pointer-events-none h-full w-full object-cover"
+            loading="lazy"
+            decoding="async"
+          />
+        ) : (
+          <div className="h-full w-full bg-black" aria-hidden />
+        )}
+        {showOverlay ? (
+          <div
+            className={
+              overlayCss
+                ? "absolute inset-0 z-10"
+                : "absolute inset-0 z-10 bg-gradient-to-b from-black/35 via-transparent via-45% to-black/55"
+            }
+            style={
+              overlayCss
+                ? {
+                    background: `linear-gradient(to bottom, color-mix(in srgb, ${overlayCss} 35%, transparent), transparent 45%, color-mix(in srgb, ${overlayCss} 55%, transparent))`,
+                  }
+                : undefined
+            }
+          />
+        ) : null}
+        {showNumber && item.num ? (
+          <div
+            className={`absolute top-3 left-4 z-20 text-[clamp(28px,5vw,52px)] font-semibold leading-none ${
+              numberCss ? "" : "text-white/90"
+            }`}
+            style={numberCss ? { color: numberCss } : undefined}
+          >
+            {item.num}
+          </div>
+        ) : null}
+        {showCardTitle && item.title ? (
+          <div
+            className={`absolute bottom-4 left-4 z-20 text-[clamp(18px,2.4vw,28px)] font-semibold drop-shadow-md ${
+              titleCss ? "" : "text-white"
+            }`}
+            style={titleCss ? { color: titleCss } : undefined}
+          >
+            {item.title}
+          </div>
+        ) : null}
       </div>
     </div>
-  </div>
-);
+  );
+}
 
 /**
  * Lightswind ThreeDSlider — drag / wheel 3D card stack.
@@ -44,6 +96,18 @@ export default function ThreeDSlider({
   containerStyle = {},
   onItemClick,
   className,
+  heightClass = "h-[85vh] min-h-[560px]",
+  cardRadiusClass = "rounded-2xl",
+  showDots = true,
+  showCardImage = true,
+  showCardTitle = true,
+  showNumber = true,
+  showOverlay = true,
+  stageBgCss,
+  dotsColorCss,
+  titleCss,
+  numberCss,
+  overlayCss,
 }) {
   const progressRef = useRef(50);
   const targetProgressRef = useRef(50);
@@ -96,6 +160,11 @@ export default function ThreeDSlider({
         cache.opacity = newOpacity;
       }
     });
+  }, [numItems]);
+
+  useEffect(() => {
+    itemRefs.current = itemRefs.current.slice(0, numItems);
+    cacheRef.current = {};
   }, [numItems]);
 
   useEffect(() => {
@@ -185,30 +254,46 @@ export default function ThreeDSlider({
     };
   }, [handleWheel, handleMouseDown, handleMouseMove, handleMouseUp]);
 
+  const dotsCss = dotsColorCss || "rgba(255,255,255,0.14)";
+
   return (
     <div
       ref={containerRef}
       className={cn(
-        "relative h-[85vh] min-h-[560px] w-full overflow-hidden bg-black",
+        "relative w-full overflow-hidden bg-black",
+        heightClass,
         className
       )}
       style={{
-        backgroundImage:
-          "radial-gradient(circle, rgba(255,255,255,0.14) 1px, transparent 1.2px)",
-        backgroundSize: "22px 22px",
-        backgroundColor: "#050505",
+        backgroundImage: showDots
+          ? `radial-gradient(circle, ${
+              dotsColorCss
+                ? `color-mix(in srgb, ${dotsColorCss} 14%, transparent)`
+                : dotsCss
+            } 1px, transparent 1.2px)`
+          : "none",
+        backgroundSize: showDots ? "22px 22px" : undefined,
+        backgroundColor: stageBgCss || "#050505",
         ...containerStyle,
       }}
     >
       <div className="pointer-events-none relative z-10 h-full w-full overflow-hidden">
         {items.map((item, index) => (
           <SliderItem
-            key={`slider-item-${index}`}
+            key={`slider-item-${index}-${item.title || "card"}`}
             item={item}
             itemRef={(el) => {
               itemRefs.current[index] = el;
             }}
             onClick={() => handleClick(item, index)}
+            cardRadiusClass={cardRadiusClass}
+            showCardImage={showCardImage}
+            showCardTitle={showCardTitle}
+            showNumber={showNumber}
+            showOverlay={showOverlay}
+            titleCss={titleCss}
+            numberCss={numberCss}
+            overlayCss={overlayCss}
           />
         ))}
       </div>
