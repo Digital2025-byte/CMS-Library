@@ -4,6 +4,7 @@ import { forwardRef, useEffect, useLayoutEffect, useRef, useState } from "react"
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { cn } from "@/components/lib/utils";
+import { refreshScrollTriggers } from "@/components/lib/refreshScrollTriggers";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -11,6 +12,13 @@ if (typeof window !== "undefined") {
 
 const FALLBACK_IMAGE =
   "https://images.pexels.com/photos/9934462/pexels-photo-9934462.jpeg";
+
+const PIN_BACKGROUND = {
+  backgroundColor: "#050505",
+  backgroundImage:
+    "radial-gradient(circle, rgba(255,255,255,0.14) 1px, transparent 1.2px)",
+  backgroundSize: "22px 22px",
+};
 
 function useFeatureAnimations(
   containerRef,
@@ -28,64 +36,88 @@ function useFeatureAnimations(
 
     const ctx = gsap.context(() => {
       if (isDesktop) {
-        const scrollWidth1 = scrollContainerRef.current?.scrollWidth || 0;
-        const scrollWidth2 = scrollContainerRef2.current?.scrollWidth || 0;
-        const containerWidth = container.offsetWidth || 0;
-        const cardWidth = cardRefs.current[0]?.offsetWidth || 0;
-        const viewportOffset = (containerWidth - cardWidth) / 2;
-        const finalOffset1 = scrollWidth1 - containerWidth + viewportOffset;
-        const finalOffset2 = scrollWidth2 - containerWidth + viewportOffset;
-        const scrollDistance = maxScrollHeight || Math.max(finalOffset1, 1);
+        const measure = () => {
+          const scrollWidth1 = scrollContainerRef.current?.scrollWidth || 0;
+          const scrollWidth2 = scrollContainerRef2.current?.scrollWidth || 0;
+          const containerWidth = container.offsetWidth || 0;
+          const cardWidth = cardRefs.current[0]?.offsetWidth || 0;
+          const viewportOffset = (containerWidth - cardWidth) / 2;
+          const finalOffset1 = scrollWidth1 - containerWidth + viewportOffset;
+          const finalOffset2 = scrollWidth2 - containerWidth + viewportOffset;
+          const scrollDistance = maxScrollHeight || Math.max(finalOffset1, 1);
+          return { viewportOffset, finalOffset1, finalOffset2, scrollDistance };
+        };
 
-        if (scrollContainerRef2.current) {
+        const applyRow2Start = () => {
+          if (!scrollContainerRef2.current) return;
+          const { finalOffset2, viewportOffset } = measure();
           gsap.set(scrollContainerRef2.current, {
             x: -finalOffset2 + viewportOffset * 2,
           });
-        }
+        };
+
+        applyRow2Start();
+
+        const scrollTriggerBase = {
+          trigger: container,
+          start: "top top",
+          end: () => `+=${measure().scrollDistance}`,
+          scrub: 1,
+          invalidateOnRefresh: true,
+        };
 
         gsap
           .timeline({
             scrollTrigger: {
-              trigger: container,
-              start: "top top",
-              end: () => `+=${scrollDistance}`,
-              scrub: 1,
+              ...scrollTriggerBase,
               pin: true,
+              pinSpacing: true,
+              anticipatePin: 1,
+              onRefresh: applyRow2Start,
             },
           })
           .fromTo(
             scrollContainerRef.current,
-            { x: viewportOffset },
-            { x: -finalOffset1 + viewportOffset, ease: "none" }
+            { x: () => measure().viewportOffset },
+            {
+              x: () => {
+                const { finalOffset1, viewportOffset } = measure();
+                return -finalOffset1 + viewportOffset;
+              },
+              ease: "none",
+            }
           );
 
         if (scrollContainerRef2.current) {
           gsap
             .timeline({
               scrollTrigger: {
-                trigger: container,
-                start: "top top",
-                end: () => `+=${scrollDistance}`,
-                scrub: 1,
+                ...scrollTriggerBase,
+                onRefresh: applyRow2Start,
               },
             })
-            .to(scrollContainerRef2.current, {
-              x: viewportOffset,
-              ease: "none",
-            });
+            .fromTo(
+              scrollContainerRef2.current,
+              {
+                x: () => {
+                  const { finalOffset2, viewportOffset } = measure();
+                  return -finalOffset2 + viewportOffset * 2;
+                },
+              },
+              { x: () => measure().viewportOffset, ease: "none" }
+            );
         }
 
         if (progressBarRef.current) {
-          gsap.to(progressBarRef.current, {
-            width: "100%",
-            ease: "none",
-            scrollTrigger: {
-              trigger: container,
-              start: "top top",
-              end: () => `+=${scrollDistance}`,
-              scrub: true,
-            },
-          });
+          gsap.fromTo(
+            progressBarRef.current,
+            { width: "0%" },
+            {
+              width: "100%",
+              ease: "none",
+              scrollTrigger: scrollTriggerBase,
+            }
+          );
         }
       } else {
         const allCards = [...cardRefs.current, ...cardRefs2.current];
@@ -111,7 +143,27 @@ function useFeatureAnimations(
       }
     }, container);
 
-    return () => ctx.revert();
+    refreshScrollTriggers();
+    const delayedRefresh = [120, 450, 1200].map((ms) =>
+      window.setTimeout(() => refreshScrollTriggers(), ms)
+    );
+    window.addEventListener("load", refreshScrollTriggers);
+
+    let debounceId;
+    const root = container.closest("main") || document.body;
+    const observer = new ResizeObserver(() => {
+      window.clearTimeout(debounceId);
+      debounceId = window.setTimeout(() => refreshScrollTriggers(), 200);
+    });
+    observer.observe(root);
+
+    return () => {
+      delayedRefresh.forEach(window.clearTimeout);
+      window.removeEventListener("load", refreshScrollTriggers);
+      window.clearTimeout(debounceId);
+      observer.disconnect();
+      ctx.revert();
+    };
   }, [
     cardRefs,
     cardRefs2,
@@ -128,7 +180,7 @@ function FeatureCard({ feature, cardRef }) {
   return (
     <div
       ref={cardRef}
-      className="feature-card relative z-10 w-[85vw] flex-shrink-0 sm:w-[340px] lg:w-[380px]"
+      className="feature-card relative w-[85vw] shrink-0 sm:w-[340px] lg:w-[380px]"
     >
       <div className="relative aspect-[4/3] overflow-hidden rounded-[28px]">
         <img
@@ -193,6 +245,15 @@ export const ScrollCarousel = forwardRef(function ScrollCarousel(
     maxScrollHeight
   );
 
+  const setPinnedRef = (node) => {
+    containerRef.current = node;
+    if (typeof ref === "function") {
+      ref(node);
+    } else if (ref) {
+      ref.current = node;
+    }
+  };
+
   const renderFeatureCards = (featureSet, refs) =>
     featureSet.map((feature, index) => (
       <FeatureCard
@@ -206,29 +267,27 @@ export const ScrollCarousel = forwardRef(function ScrollCarousel(
 
   return (
     <section
-      ref={ref}
-      className={cn("relative overflow-hidden bg-transparent", className)}
+      ref={setPinnedRef}
+      className={cn("relative isolate w-full", className)}
+      style={PIN_BACKGROUND}
     >
-      <div
-        ref={containerRef}
-        className="relative z-10 flex flex-col justify-center gap-4 overflow-hidden py-16 md:h-screen md:gap-5 md:py-0 lg:[mask-image:linear-gradient(to_right,transparent_0%,black_8%,black_92%,transparent_100%)]"
-      >
+      <div className="relative flex w-full flex-col justify-center gap-4 overflow-hidden py-16 md:h-screen md:gap-5 md:py-0 lg:[mask-image:linear-gradient(to_right,transparent_0%,black_8%,black_92%,transparent_100%)]">
         <div
           ref={scrollContainerRef}
-          className="flex flex-col items-center gap-4 px-6 md:flex-row md:px-0"
+          className="flex flex-col flex-nowrap items-center gap-4 px-6 md:flex-row md:px-0"
         >
           {renderFeatureCards(features, cardRefs)}
         </div>
 
         <div
           ref={scrollContainerRef2}
-          className="hidden items-center gap-4 px-6 md:flex md:flex-row md:px-0"
+          className="hidden flex-nowrap items-center gap-4 px-6 md:flex md:flex-row md:px-0"
         >
           {renderFeatureCards(features2, cardRefs2)}
         </div>
 
         {isDesktop ? (
-          <div className="absolute bottom-8 left-1/2 z-20 h-1 w-40 -translate-x-1/2 overflow-hidden rounded-full bg-white/15">
+          <div className="absolute bottom-8 left-1/2 h-1 w-40 -translate-x-1/2 overflow-hidden rounded-full bg-white/15">
             <div
               ref={progressBarRef}
               className="animated-water h-full rounded-full"
