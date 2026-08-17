@@ -39,7 +39,7 @@ export function InspectorField({
   onChange,
   multiline = false,
 }) {
-  const inputClass = `${typography.caption} w-full rounded-md border border-200 bg-white px-2.5 py-2 text-main outline-none focus:border-primary-1`;
+  const inputClass = `${typography.caption} w-full rounded-md border border-200 bg-white px-2.5 py-2 text-foreground outline-none focus:border-primary-1`;
 
   return (
     <label className="flex flex-col gap-1" htmlFor={id}>
