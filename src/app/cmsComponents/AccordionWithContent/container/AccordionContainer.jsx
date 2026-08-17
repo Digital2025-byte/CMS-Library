@@ -1,5 +1,5 @@
 import PageContentContainer from "@/components/layout/PageContentContainer";
-import { SURFACE_CLASS } from "../utils/style";
+import { getThemeColorCss } from "@/styles/themeColors";
 
 export default function AccordionContainer({
   lang,
@@ -7,13 +7,12 @@ export default function AccordionContainer({
   background = "100",
   children,
 }) {
-  const backgroundClass = SURFACE_CLASS[background] ?? SURFACE_CLASS["100"];
-
   return (
     <div
-      className={`w-full ${backgroundClass}`}
+      className="w-full"
       lang={lang}
       dir={dir || (lang === "ar" ? "rtl" : "ltr")}
+      style={{ backgroundColor: getThemeColorCss(background, "100") }}
     >
       <PageContentContainer as="section" className="py-8 sm:py-12 lg:py-16">
         {children}

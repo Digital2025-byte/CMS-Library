@@ -1,7 +1,7 @@
 import {
   InspectorChoose,
+  InspectorColor,
   InspectorSection,
-  InspectorSelect,
   InspectorSwitch,
   InspectorTabs,
 } from "@/components/inspector";
@@ -13,8 +13,6 @@ import {
   ITEM_LOOK_OPTIONS,
   ITEM_RADIUS_OPTIONS,
   SPACING_OPTIONS,
-  SURFACE_OPTIONS,
-  TEXT_COLOR_OPTIONS,
   TITLE_ALIGN_OPTIONS,
 } from "../utils/style";
 
@@ -43,11 +41,9 @@ function AccordionWithContentStyleForm({ style, onChange }) {
           label="Button"
           hint="Show the CTA under the items"
         />
-        <InspectorSelect
-          id="section-bg"
+        <InspectorColor
           label="Section background"
           value={style.sectionBg}
-          options={SURFACE_OPTIONS}
           onChange={(value) => update("sectionBg", value)}
         />
       </InspectorSection>
@@ -63,21 +59,17 @@ function AccordionWithContentStyleForm({ style, onChange }) {
                 options={TITLE_ALIGN_OPTIONS}
                 onChange={(value) => update("titleAlign", value)}
               />
-              <InspectorSelect
-                id="title-color"
+              <InspectorColor
                 label="Title color"
                 value={style.titleColor}
-                options={TEXT_COLOR_OPTIONS}
                 onChange={(value) => update("titleColor", value)}
               />
             </>
           ) : null}
           {style.showDescription ? (
-            <InspectorSelect
-              id="description-color"
+            <InspectorColor
               label="Description color"
               value={style.descriptionColor}
-              options={TEXT_COLOR_OPTIONS}
               onChange={(value) => update("descriptionColor", value)}
             />
           ) : null}
@@ -93,11 +85,9 @@ function AccordionWithContentStyleForm({ style, onChange }) {
           onChange={(value) => update("itemLook", value)}
         />
         {style.itemLook === "filled" ? (
-          <InspectorSelect
-            id="item-bg"
+          <InspectorColor
             label="Background"
             value={style.itemBg}
-            options={SURFACE_OPTIONS}
             onChange={(value) => update("itemBg", value)}
           />
         ) : null}
@@ -122,25 +112,19 @@ function AccordionWithContentStyleForm({ style, onChange }) {
           options={SPACING_OPTIONS}
           onChange={(value) => update("itemPadding", value)}
         />
-        <InspectorSelect
-          id="item-title-color"
+        <InspectorColor
           label="Title color"
           value={style.itemTitleColor}
-          options={TEXT_COLOR_OPTIONS}
           onChange={(value) => update("itemTitleColor", value)}
         />
-        <InspectorSelect
-          id="item-open-color"
+        <InspectorColor
           label="Open title color"
           value={style.itemOpenColor}
-          options={TEXT_COLOR_OPTIONS}
           onChange={(value) => update("itemOpenColor", value)}
         />
-        <InspectorSelect
-          id="item-body-color"
+        <InspectorColor
           label="Body color"
           value={style.itemBodyColor}
-          options={TEXT_COLOR_OPTIONS}
           onChange={(value) => update("itemBodyColor", value)}
         />
       </InspectorSection>
