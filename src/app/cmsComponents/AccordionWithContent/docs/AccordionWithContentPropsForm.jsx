@@ -32,7 +32,7 @@ function AccordionWithContentStylingForm({
   setButtonPosition,
 }) {
   return (
-    <fieldset className="flex flex-col gap-5">
+    <fieldset className="flex flex-col gap-6">
       <legend className="sr-only">AccordionWithContent styling</legend>
 
       <div className="flex flex-col gap-2">

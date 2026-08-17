@@ -42,10 +42,7 @@ export function TabsList({ children, className }) {
       ref={listRef}
       role="tablist"
       onKeyDown={onKeyDown}
-      className={cn(
-        "sticky top-0 z-10 -mx-4 -mt-4 mb-4 flex border-b border-200 bg-50 px-4",
-        className
-      )}
+      className={cn("mb-4 flex", className)}
     >
       {children}
     </div>
@@ -67,19 +64,14 @@ export function Tab({ value, children, className }) {
       onClick={() => select(value)}
       className={cn(
         typography.body,
-        "relative flex-1 px-3 py-3 font-medium transition-colors",
-        isActive ? "text-main" : "text-500 hover:text-main",
+        "flex-1 border-b-2 px-3 py-2.5 font-medium",
+        isActive
+          ? "border-primary-1 text-main"
+          : "border-transparent text-500 hover:text-main",
         className
       )}
     >
       {children}
-      <span
-        aria-hidden
-        className={cn(
-          "absolute inset-x-0 -bottom-px h-0.5 rounded-full",
-          isActive ? "bg-primary-1" : "bg-transparent"
-        )}
-      />
     </button>
   );
 }

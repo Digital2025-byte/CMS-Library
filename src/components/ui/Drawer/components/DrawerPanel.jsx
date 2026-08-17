@@ -22,7 +22,7 @@ export default function DrawerPanel({
       aria-hidden={!isOpen}
       style={{ width }}
       className={[
-        "pointer-events-auto fixed inset-y-0 z-50 flex max-w-full flex-col bg-50 shadow-xl lg:max-w-[50%]",
+        "pointer-events-auto fixed inset-y-0 z-50 flex max-w-full flex-col border-e border-200 bg-50 shadow-sm lg:max-w-[50%]",
         sideClasses.position,
         isDragging ? "transition-none" : "transition-transform duration-300",
         isOpen ? "translate-x-0" : `pointer-events-none ${sideClasses.closed}`,
