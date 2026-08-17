@@ -8,7 +8,12 @@ import {
   getAccordionContent,
   wrapAccordionContent,
 } from "@/app/cmsComponents/AccordionWithContent/utils/helpers";
-import { resolveEditorLink } from "@/components/demo/internalPages";
+import { DEFAULT_ACCORDION_STYLE } from "@/app/cmsComponents/AccordionWithContent/utils/style";
+import {
+  InspectorFooter,
+  InspectorSubmitButton,
+  resolveEditorLink,
+} from "@/components/inspector";
 import Drawer, { useDrawer } from "@/components/ui/Drawer";
 
 function toEditorContent(data) {
@@ -28,29 +33,35 @@ export default function AccordionWithContentExamples({
 }) {
   const { lang, dir, accordionData } = ctx;
   const drawer = useDrawer();
-  const [flags, setFlags] = useState({
-    showTitleDescription: true,
-    showButton: true,
-  });
-  const [buttonPosition, setButtonPosition] = useState("center");
+  const [style, setStyle] = useState(DEFAULT_ACCORDION_STYLE);
   const [content, setContent] = useState(() => toEditorContent(accordionData));
 
   useEffect(() => {
     setContent(toEditorContent(accordionData));
   }, [accordionData]);
 
-  const toggle = (key) => {
-    setFlags((current) => ({ ...current, [key]: !current[key] }));
-  };
-
   return (
     <div>
-      <AccordionContainer lang={lang} dir={dir}>
+      <AccordionContainer lang={lang} dir={dir} background={style.sectionBg}>
         <AccordionWithContent
           data={wrapAccordionContent(content)}
-          showTitleDescription={flags.showTitleDescription}
-          showButton={flags.showButton}
-          buttonPosition={buttonPosition}
+          showTitleDescription={style.showTitleDescription}
+          showDescription={style.showDescription}
+          showButton={style.showButton}
+          titleAlign={style.titleAlign}
+          titleColor={style.titleColor}
+          descriptionColor={style.descriptionColor}
+          itemLook={style.itemLook}
+          itemBg={style.itemBg}
+          itemRadius={style.itemRadius}
+          itemGap={style.itemGap}
+          itemPadding={style.itemPadding}
+          itemTitleColor={style.itemTitleColor}
+          itemOpenColor={style.itemOpenColor}
+          itemBodyColor={style.itemBodyColor}
+          buttonPosition={style.buttonPosition}
+          buttonVariant={style.buttonVariant}
+          buttonWidth={style.buttonWidth}
         />
       </AccordionContainer>
 
@@ -62,14 +73,21 @@ export default function AccordionWithContentExamples({
         panelRef={drawer.panelRef}
         titleId={drawer.titleId}
         title={name}
+        footer={
+          <InspectorFooter>
+            <InspectorSubmitButton
+              onClick={() =>
+                console.log("AccordionWithContent", { content, style })
+              }
+            />
+          </InspectorFooter>
+        }
       >
         <AccordionWithContentPropsForm
           content={content}
           onContentChange={setContent}
-          flags={flags}
-          toggle={toggle}
-          buttonPosition={buttonPosition}
-          setButtonPosition={setButtonPosition}
+          style={style}
+          onStyleChange={setStyle}
         />
       </Drawer>
     </div>

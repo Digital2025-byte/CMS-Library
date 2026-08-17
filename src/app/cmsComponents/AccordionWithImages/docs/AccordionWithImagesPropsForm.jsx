@@ -1,44 +1,48 @@
-import { typography } from "@/styles/typography";
+import {
+  InspectorSection,
+  InspectorSwitch,
+  InspectorTabs,
+} from "@/components/inspector";
+import AccordionWithImagesContentForm from "./AccordionWithImagesContentForm";
 
-function Checkbox({ checked, onChange, label, hint }) {
+function AccordionWithImagesStyleForm({ flags, toggle }) {
   return (
-    <label className="flex cursor-pointer items-start gap-3 rounded-lg border border-200 bg-white px-3 py-2.5 hover:border-primary-200">
-      <input
-        type="checkbox"
-        checked={checked}
-        onChange={onChange}
-        className="mt-1 h-4 w-4 shrink-0 accent-primary-1"
-      />
-      <span>
-        <span className={`${typography.body} block font-medium text-main`}>
-          {label}
-        </span>
-        {hint ? (
-          <span className={`${typography.caption} text-500`}>{hint}</span>
-        ) : null}
-      </span>
-    </label>
+    <div>
+      <InspectorSection title="Layout">
+        <InspectorSwitch
+          checked={flags.showTitleDescription}
+          onChange={() => toggle("showTitleDescription")}
+          label="Title"
+          hint="Show section title and description"
+        />
+        <InspectorSwitch
+          checked={flags.showImagePanel}
+          onChange={() => toggle("showImagePanel")}
+          label="Image panel"
+          hint="Side image that follows the open item"
+        />
+      </InspectorSection>
+    </div>
   );
 }
 
-export default function AccordionWithImagesPropsForm({ flags, toggle }) {
+export default function AccordionWithImagesPropsForm({
+  content,
+  onContentChange,
+  flags,
+  toggle,
+}) {
   return (
-    <fieldset className="p-4">
-      <legend className="sr-only">AccordionWithImages props</legend>
-      <div className="flex flex-col gap-2">
-        <Checkbox
-          checked={flags.showTitleDescription}
-          onChange={() => toggle("showTitleDescription")}
-          label="showTitleDescription"
-          hint="Section title and description"
+    <InspectorTabs
+      content={
+        <AccordionWithImagesContentForm
+          content={content}
+          onChange={onContentChange}
         />
-        <Checkbox
-          checked={flags.showImagePanel}
-          onChange={() => toggle("showImagePanel")}
-          label="showImagePanel"
-          hint="Side image that follows the open item"
-        />
-      </div>
-    </fieldset>
+      }
+      style={
+        <AccordionWithImagesStyleForm flags={flags} toggle={toggle} />
+      }
+    />
   );
 }

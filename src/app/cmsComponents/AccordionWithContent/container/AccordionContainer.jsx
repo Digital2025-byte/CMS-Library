@@ -1,9 +1,17 @@
 import PageContentContainer from "@/components/layout/PageContentContainer";
+import { SURFACE_CLASS } from "../utils/style";
 
-export default function AccordionContainer({ lang, dir, children }) {
+export default function AccordionContainer({
+  lang,
+  dir,
+  background = "100",
+  children,
+}) {
+  const backgroundClass = SURFACE_CLASS[background] ?? SURFACE_CLASS["100"];
+
   return (
     <div
-      className="w-full bg-100"
+      className={`w-full ${backgroundClass}`}
       lang={lang}
       dir={dir || (lang === "ar" ? "rtl" : "ltr")}
     >

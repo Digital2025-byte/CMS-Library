@@ -1,10 +1,39 @@
 import { CaretDownIcon, CaretUpIcon } from "@phosphor-icons/react";
 import { typography } from "@/styles/typography";
+import {
+  ITEM_PADDING_CLASS,
+  ITEM_RADIUS_CLASS,
+  SURFACE_CLASS,
+  TEXT_COLOR_CLASS,
+} from "../utils/style";
 
-export default function AccordionItem({ item, isOpen, onToggle }) {
+export default function AccordionItem({
+  item,
+  isOpen,
+  onToggle,
+  look = "filled",
+  background = "white",
+  radius = "lg",
+  padding = "default",
+  titleColor = "800",
+  openColor = "primary-1",
+  bodyColor = "700",
+}) {
+  const backgroundClass = SURFACE_CLASS[background] ?? SURFACE_CLASS.white;
+  const radiusClass = ITEM_RADIUS_CLASS[radius] ?? ITEM_RADIUS_CLASS.lg;
+  const paddingClass = ITEM_PADDING_CLASS[padding] ?? ITEM_PADDING_CLASS.default;
+  const lookClass =
+    look === "outline"
+      ? `border border-200 bg-transparent`
+      : backgroundClass;
+  const closedTitleClass = TEXT_COLOR_CLASS[titleColor] ?? TEXT_COLOR_CLASS["800"];
+  const openTitleClass = TEXT_COLOR_CLASS[openColor] ?? TEXT_COLOR_CLASS["primary-1"];
+  const bodyClass = TEXT_COLOR_CLASS[bodyColor] ?? TEXT_COLOR_CLASS["700"];
+  const iconClass = isOpen ? openTitleClass : "text-500";
+
   return (
     <div
-      className="cursor-pointer rounded-lg bg-background px-4 py-4 transition-shadow sm:px-5 sm:py-5 md:px-6 **:cursor-pointer"
+      className={`cursor-pointer **:cursor-pointer ${lookClass} ${radiusClass} ${paddingClass}`}
       onClick={onToggle}
     >
       <button
@@ -13,19 +42,19 @@ export default function AccordionItem({ item, isOpen, onToggle }) {
       >
         <h3
           className={`${typography.itemTitle} font-medium leading-snug ${
-            isOpen ? "text-primary-1" : "text-800"
+            isOpen ? openTitleClass : closedTitleClass
           }`}
         >
           {item.title}
         </h3>
         {isOpen ? (
           <CaretUpIcon
-            className="mt-0.5 h-4 w-4 shrink-0 text-primary-1 sm:mt-0 sm:h-5 sm:w-5"
+            className={`mt-0.5 h-4 w-4 shrink-0 sm:mt-0 sm:h-5 sm:w-5 ${iconClass}`}
             weight="bold"
           />
         ) : (
           <CaretDownIcon
-            className="mt-0.5 h-4 w-4 shrink-0 text-500 sm:mt-0 sm:h-5 sm:w-5"
+            className={`mt-0.5 h-4 w-4 shrink-0 sm:mt-0 sm:h-5 sm:w-5 ${iconClass}`}
             weight="bold"
           />
         )}
@@ -37,7 +66,7 @@ export default function AccordionItem({ item, isOpen, onToggle }) {
         }`}
       >
         <p
-          className={`${typography.itemDescription} pr-6 leading-relaxed whitespace-pre-line text-700 sm:pr-8`}
+          className={`${typography.itemDescription} pr-6 leading-relaxed whitespace-pre-line sm:pr-8 ${bodyClass}`}
         >
           {item.description}
         </p>
