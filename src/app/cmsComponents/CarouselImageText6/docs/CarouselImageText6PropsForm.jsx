@@ -1,59 +1,148 @@
-import { typography } from "@/styles/typography";
+import {
+  InspectorChoose,
+  InspectorColor,
+  InspectorSection,
+  InspectorSwitch,
+  InspectorTabs,
+  applyInspectorReset,
+} from "@/components/inspector";
+import CarouselImageText6ContentForm from "./CarouselImageText6ContentForm";
+import {
+  CARD_RADIUS_OPTIONS,
+  CAROUSEL_IMAGE_TEXT_STYLE_RESET_KEYS,
+  DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE,
+  TITLE_ALIGN_OPTIONS,
+} from "../utils/style";
 
-const CONTROLS = [
-  {
-    key: "showTitle",
-    label: "showTitle",
-    hint: "Section title above the carousel",
-  },
-  {
-    key: "showArrows",
-    label: "showArrows",
-    hint: "Previous / next arrows (mobile)",
-  },
-  {
-    key: "showDots",
-    label: "showDots",
-    hint: "Pagination dots (mobile)",
-  },
-];
+function CarouselImageText6StyleForm({ style, onChange }) {
+  const update = (key, value) => onChange({ ...style, [key]: value });
+  const toggle = (key) => onChange({ ...style, [key]: !style[key] });
+  const reset = (keys) =>
+    onChange(
+      applyInspectorReset(style, DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE, keys)
+    );
 
-function Checkbox({ checked, onChange, label, hint }) {
   return (
-    <label className="flex cursor-pointer items-start gap-3 rounded-lg border border-200 bg-white px-3 py-2.5 hover:border-primary-200">
-      <input
-        type="checkbox"
-        checked={checked}
-        onChange={onChange}
-        className="mt-1 h-4 w-4 shrink-0 accent-primary-1"
-      />
-      <span>
-        <span className={`${typography.body} block font-medium text-main`}>
-          {label}
-        </span>
-        {hint ? (
-          <span className={`${typography.caption} text-500`}>{hint}</span>
+    <div>
+      <InspectorSection
+        title="Layout"
+        onReset={() => reset(CAROUSEL_IMAGE_TEXT_STYLE_RESET_KEYS.layout)}
+      >
+        <InspectorSwitch
+          checked={style.showTitle}
+          onChange={() => toggle("showTitle")}
+          label="Title"
+          hint="Section heading above the carousel"
+        />
+        <InspectorColor
+          label="Section background"
+          value={style.sectionBg}
+          onChange={(value) => update("sectionBg", value)}
+        />
+      </InspectorSection>
+
+      {style.showTitle ? (
+        <InspectorSection
+          title="Title"
+          onReset={() => reset(CAROUSEL_IMAGE_TEXT_STYLE_RESET_KEYS.title)}
+        >
+          <InspectorChoose
+            label="Alignment"
+            name="titleAlign"
+            value={style.titleAlign}
+            options={TITLE_ALIGN_OPTIONS}
+            onChange={(value) => update("titleAlign", value)}
+          />
+          <InspectorColor
+            label="Title color"
+            value={style.titleColor}
+            onChange={(value) => update("titleColor", value)}
+          />
+        </InspectorSection>
+      ) : null}
+
+      <InspectorSection
+        title="Cards"
+        onReset={() => reset(CAROUSEL_IMAGE_TEXT_STYLE_RESET_KEYS.cards)}
+      >
+        <InspectorSwitch
+          checked={style.showItemTitle}
+          onChange={() => toggle("showItemTitle")}
+          label="Names"
+          hint="Title on each value card"
+        />
+        <InspectorSwitch
+          checked={style.showItemDescription}
+          onChange={() => toggle("showItemDescription")}
+          label="Description"
+          hint="Body text on each value card"
+        />
+        <InspectorSwitch
+          checked={style.grayscaleInactive}
+          onChange={() => toggle("grayscaleInactive")}
+          label="Grayscale"
+          hint="Fade inactive desktop panels to gray"
+        />
+        <InspectorChoose
+          label="Corners"
+          name="cardRadius"
+          value={style.cardRadius}
+          options={CARD_RADIUS_OPTIONS}
+          onChange={(value) => update("cardRadius", value)}
+        />
+        <InspectorColor
+          label="Card background"
+          value={style.cardBg}
+          onChange={(value) => update("cardBg", value)}
+        />
+        <InspectorColor
+          label="Overlay"
+          value={style.overlayColor}
+          onChange={(value) => update("overlayColor", value)}
+        />
+        <InspectorColor
+          label="Frosted panel"
+          value={style.panelColor}
+          onChange={(value) => update("panelColor", value)}
+        />
+        {style.showItemTitle ? (
+          <InspectorColor
+            label="Title color"
+            value={style.itemTitleColor}
+            onChange={(value) => update("itemTitleColor", value)}
+          />
         ) : null}
-      </span>
-    </label>
+        {style.showItemDescription ? (
+          <InspectorColor
+            label="Body color"
+            value={style.itemBodyColor}
+            onChange={(value) => update("itemBodyColor", value)}
+          />
+        ) : null}
+      </InspectorSection>
+    </div>
   );
 }
 
-export default function CarouselImageText6PropsForm({ flags, toggle }) {
+export default function CarouselImageText6PropsForm({
+  content,
+  onContentChange,
+  contentDefaults,
+  style,
+  onStyleChange,
+}) {
   return (
-    <fieldset className="p-4">
-      <legend className="sr-only">CarouselImageText6 props</legend>
-      <div className="flex flex-col gap-2">
-        {CONTROLS.map(({ key, label, hint }) => (
-          <Checkbox
-            key={key}
-            checked={Boolean(flags[key])}
-            onChange={() => toggle(key)}
-            label={label}
-            hint={hint}
-          />
-        ))}
-      </div>
-    </fieldset>
+    <InspectorTabs
+      content={
+        <CarouselImageText6ContentForm
+          content={content}
+          onChange={onContentChange}
+          defaults={contentDefaults}
+        />
+      }
+      style={
+        <CarouselImageText6StyleForm style={style} onChange={onStyleChange} />
+      }
+    />
   );
 }

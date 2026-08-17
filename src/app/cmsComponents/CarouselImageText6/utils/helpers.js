@@ -1,3 +1,21 @@
+export function isUsableImageSrc(src) {
+  const value = String(src || "").trim();
+  if (!value) {
+    return false;
+  }
+
+  if (value.startsWith("/") && !value.startsWith("//")) {
+    return true;
+  }
+
+  try {
+    const url = new URL(value.startsWith("//") ? `https:${value}` : value);
+    return url.protocol === "http:" || url.protocol === "https:";
+  } catch {
+    return false;
+  }
+}
+
 function normalizeItem(raw) {
   const item = raw?.item || raw || {};
   const image = item?.image || {};
@@ -5,8 +23,9 @@ function normalizeItem(raw) {
   return {
     title: item?.title || "",
     description: item?.description || "",
-    imageUrl: image?.fileUrl || image?.url || image?.src || "",
-    imageAlt: image?.alt || item?.title || "Value image",
+    imageUrl:
+      item?.imageUrl || image?.fileUrl || image?.url || image?.src || "",
+    imageAlt: image?.alt || item?.imageAlt || item?.title || "Value image",
   };
 }
 
@@ -36,6 +55,45 @@ export function getCarouselImageText6Content(data, lang = "en") {
   return {
     title,
     items,
-    hasContent: items.length > 0,
+    hasContent: Boolean(title || items.length),
+  };
+}
+
+export function getCarouselImageText6EditorContent(data, lang = "en") {
+  const { title, items } = getCarouselImageText6Content(data, lang);
+
+  return {
+    title,
+    items: items.map((item) => ({
+      title: item.title || "",
+      description: item.description || "",
+      imageUrl: item.imageUrl || "",
+      imageAlt: item.imageAlt || "",
+    })),
+  };
+}
+
+export function wrapCarouselImageText6Content(content = {}, lang = "en") {
+  return {
+    translations: [
+      {
+        languageCode: lang,
+        content: {
+          title: content.title || "",
+          items: (Array.isArray(content.items) ? content.items : []).map(
+            (item) => ({
+              item: {
+                title: item?.title || "",
+                description: item?.description || "",
+                image: {
+                  fileUrl: item?.imageUrl || "",
+                  alt: item?.imageAlt || item?.title || "Value image",
+                },
+              },
+            })
+          ),
+        },
+      },
+    ],
   };
 }

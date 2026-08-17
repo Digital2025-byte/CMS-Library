@@ -1,9 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CarouselImageText6 from "@/app/cmsComponents/CarouselImageText6";
 import CarouselImageText6Container from "@/app/cmsComponents/CarouselImageText6/components/CarouselImageText6Container";
 import CarouselImageText6PropsForm from "@/app/cmsComponents/CarouselImageText6/docs/CarouselImageText6PropsForm";
+import {
+  getCarouselImageText6EditorContent,
+  wrapCarouselImageText6Content,
+} from "@/app/cmsComponents/CarouselImageText6/utils/helpers";
+import { DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE } from "@/app/cmsComponents/CarouselImageText6/utils/style";
+import { InspectorFooter, InspectorSubmitButton } from "@/components/inspector";
 import Drawer, { useDrawer } from "@/components/ui/Drawer";
 
 export default function CarouselImageText6Examples({
@@ -12,25 +18,34 @@ export default function CarouselImageText6Examples({
 }) {
   const { lang, dir, carouselImageText6Data } = ctx;
   const drawer = useDrawer();
-  const [flags, setFlags] = useState({
-    showTitle: true,
-    showArrows: true,
-    showDots: true,
-  });
+  const [style, setStyle] = useState(DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE);
+  const [content, setContent] = useState(() =>
+    getCarouselImageText6EditorContent(carouselImageText6Data, lang)
+  );
 
-  const toggle = (key) => {
-    setFlags((current) => ({ ...current, [key]: !current[key] }));
-  };
+  useEffect(() => {
+    setContent(getCarouselImageText6EditorContent(carouselImageText6Data, lang));
+  }, [carouselImageText6Data, lang]);
 
   return (
     <div>
       <CarouselImageText6Container lang={lang} dir={dir}>
         <CarouselImageText6
           lang={lang}
-          data={carouselImageText6Data}
-          showTitle={flags.showTitle}
-          showArrows={flags.showArrows}
-          showDots={flags.showDots}
+          data={wrapCarouselImageText6Content(content, lang)}
+          showTitle={style.showTitle}
+          showItemTitle={style.showItemTitle}
+          showItemDescription={style.showItemDescription}
+          grayscaleInactive={style.grayscaleInactive}
+          sectionBg={style.sectionBg}
+          titleAlign={style.titleAlign}
+          titleColor={style.titleColor}
+          overlayColor={style.overlayColor}
+          panelColor={style.panelColor}
+          cardBg={style.cardBg}
+          cardRadius={style.cardRadius}
+          itemTitleColor={style.itemTitleColor}
+          itemBodyColor={style.itemBodyColor}
         />
       </CarouselImageText6Container>
 
@@ -42,8 +57,26 @@ export default function CarouselImageText6Examples({
         panelRef={drawer.panelRef}
         titleId={drawer.titleId}
         title={name}
+        footer={
+          <InspectorFooter>
+            <InspectorSubmitButton
+              onClick={() =>
+                console.log("CarouselImageText6", { content, style })
+              }
+            />
+          </InspectorFooter>
+        }
       >
-        <CarouselImageText6PropsForm flags={flags} toggle={toggle} />
+        <CarouselImageText6PropsForm
+          content={content}
+          onContentChange={setContent}
+          contentDefaults={getCarouselImageText6EditorContent(
+            carouselImageText6Data,
+            lang
+          )}
+          style={style}
+          onStyleChange={setStyle}
+        />
       </Drawer>
     </div>
   );

@@ -15,13 +15,13 @@
   height: 100%;
 }
 
-/* Progressive layer blur (Figma: start 0 → end 27) + #054E72 fill */
+/* Progressive layer blur (Figma: start 0 → end 27) + panel fill */
 .bg {
   position: absolute;
   inset: 0;
   z-index: 0;
   overflow: hidden;
-  background: var(--color-main, #054e72);
+  background: var(--values-panel, var(--color-main, #054e72));
 }
 
 .bgImageSharp,
@@ -77,13 +77,17 @@
 .bgTint {
   position: absolute;
   inset: 0;
-  background: var(--color-main, #054e72);
+  background: var(--values-panel, var(--color-main, #054e72));
   opacity: 0.72;
 }
 
-/* Frosted description panel (Figma layer blur + #054E72) */
+/* Frosted description panel (Figma layer blur + panel token) */
 .descriptionPanel {
-  background: color-mix(in srgb, var(--color-main, #054e72) 78%, transparent);
+  background: color-mix(
+    in srgb,
+    var(--values-panel, var(--color-main, #054e72)) 78%,
+    transparent
+  );
   backdrop-filter: blur(27px);
   -webkit-backdrop-filter: blur(27px);
   border-top: 1px solid color-mix(in srgb, #8cb9c8 45%, transparent);
