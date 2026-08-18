@@ -25,7 +25,6 @@ export default function CarouselImageText6Panel({
   overlayColor = DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE.overlayColor,
   panelColor = DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE.panelColor,
   cardBg = DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE.cardBg,
-  cardRadius = DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE.cardRadius,
   itemTitleColor = DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE.itemTitleColor,
   itemBodyColor = DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE.itemBodyColor,
 }) {
@@ -60,7 +59,6 @@ export default function CarouselImageText6Panel({
           showItemDescription={showItemDescription}
           overlayColor={overlayColor}
           cardBg={cardBg}
-          cardRadius={cardRadius}
           itemTitleColor={itemTitleColor}
           itemBodyColor={itemBodyColor}
         />

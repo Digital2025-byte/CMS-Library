@@ -8,7 +8,6 @@ import {
 } from "@/components/inspector";
 import CarouselImageText6ContentForm from "./CarouselImageText6ContentForm";
 import {
-  CARD_RADIUS_OPTIONS,
   CAROUSEL_IMAGE_TEXT_STYLE_RESET_KEYS,
   DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE,
   OPEN_ON_OPTIONS,
@@ -90,13 +89,6 @@ function CarouselImageText6StyleForm({ style, onChange }) {
           value={style.openOn}
           options={OPEN_ON_OPTIONS}
           onChange={(value) => update("openOn", value)}
-        />
-        <InspectorChoose
-          label="Corners"
-          name="cardRadius"
-          value={style.cardRadius}
-          options={CARD_RADIUS_OPTIONS}
-          onChange={(value) => update("cardRadius", value)}
         />
         <InspectorColor
           label="Card background"

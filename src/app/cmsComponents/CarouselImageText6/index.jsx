@@ -18,7 +18,6 @@ const CarouselImageText6 = ({
   overlayColor = DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE.overlayColor,
   panelColor = DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE.panelColor,
   cardBg = DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE.cardBg,
-  cardRadius = DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE.cardRadius,
   itemTitleColor = DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE.itemTitleColor,
   itemBodyColor = DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE.itemBodyColor,
 }) => {
@@ -44,7 +43,6 @@ const CarouselImageText6 = ({
       overlayColor={overlayColor}
       panelColor={panelColor}
       cardBg={cardBg}
-      cardRadius={cardRadius}
       itemTitleColor={itemTitleColor}
       itemBodyColor={itemBodyColor}
     />

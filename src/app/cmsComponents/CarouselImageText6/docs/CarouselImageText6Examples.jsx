@@ -44,7 +44,6 @@ export default function CarouselImageText6Examples({
           overlayColor={style.overlayColor}
           panelColor={style.panelColor}
           cardBg={style.cardBg}
-          cardRadius={style.cardRadius}
           itemTitleColor={style.itemTitleColor}
           itemBodyColor={style.itemBodyColor}
         />

@@ -6,10 +6,7 @@ import { ArrowLeft, ArrowRight } from "@phosphor-icons/react";
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
 import { isUsableImageSrc } from "../utils/helpers";
-import {
-  CARD_RADIUS_CLASS,
-  DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE,
-} from "../utils/style";
+import { DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE } from "../utils/style";
 import "slick-carousel/slick/slick.css";
 import styles from "./OurValuesMobile.module.css";
 
@@ -20,7 +17,6 @@ export default function OurValuesMobile({
   showItemDescription = true,
   overlayColor = DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE.overlayColor,
   cardBg = DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE.cardBg,
-  cardRadius = DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE.cardRadius,
   itemTitleColor = DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE.itemTitleColor,
   itemBodyColor = DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE.itemBodyColor,
 }) {
@@ -35,7 +31,7 @@ export default function OurValuesMobile({
   const activeItem = items[currentSlide] || {};
   const canLoop = items.length > 1;
   const canShowActiveImage = isUsableImageSrc(activeItem.imageUrl);
-  const radiusClass = CARD_RADIUS_CLASS[cardRadius] ?? CARD_RADIUS_CLASS.lg;
+  const radiusClass = "rounded-2xl md:rounded-none";
   const overlayCss = getThemeColorCss(overlayColor, "secondary-2");
   const cardBgCss = getThemeColorCss(cardBg, "secondary-2");
 
