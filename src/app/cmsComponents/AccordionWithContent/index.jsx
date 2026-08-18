@@ -16,6 +16,7 @@ const AccordionWithContent = ({
   titleColor = "primary-1",
   descriptionColor = "700",
   itemLook = "filled",
+  showItemBg = true,
   itemBg = "white",
   itemRadius = "lg",
   itemGap = "default",
@@ -53,6 +54,7 @@ const AccordionWithContent = ({
             isOpen={isOpen(index)}
             onToggle={() => toggleAccordion(index)}
             look={itemLook}
+            showBackground={showItemBg}
             background={itemBg}
             radius={itemRadius}
             padding={itemPadding}

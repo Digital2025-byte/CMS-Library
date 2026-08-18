@@ -49,11 +49,19 @@ function AccordionWithContentStyleForm({ style, onChange }) {
           label="Button"
           hint="Show the CTA under the items"
         />
-        <InspectorColor
-          label="Section background"
-          value={style.sectionBg}
-          onChange={(value) => update("sectionBg", value)}
+        <InspectorSwitch
+          checked={style.showSectionBg}
+          onChange={() => toggle("showSectionBg")}
+          label="Background"
+          hint="Fill color behind the whole section"
         />
+        {style.showSectionBg ? (
+          <InspectorColor
+            label="Section background"
+            value={style.sectionBg}
+            onChange={(value) => update("sectionBg", value)}
+          />
+        ) : null}
       </InspectorSection>
 
       {style.showTitleDescription || style.showDescription ? (
@@ -99,11 +107,21 @@ function AccordionWithContentStyleForm({ style, onChange }) {
           onChange={(value) => update("itemLook", value)}
         />
         {style.itemLook === "filled" ? (
-          <InspectorColor
-            label="Background"
-            value={style.itemBg}
-            onChange={(value) => update("itemBg", value)}
-          />
+          <>
+            <InspectorSwitch
+              checked={style.showItemBg}
+              onChange={() => toggle("showItemBg")}
+              label="Background"
+              hint="Fill color on each accordion item"
+            />
+            {style.showItemBg ? (
+              <InspectorColor
+                label="Background"
+                value={style.itemBg}
+                onChange={(value) => update("itemBg", value)}
+              />
+            ) : null}
+          </>
         ) : null}
         <InspectorChoose
           label="Corners"

@@ -8,6 +8,7 @@ export default function AccordionItem({
   isOpen,
   onToggle,
   look = "filled",
+  showBackground = true,
   background = "white",
   radius = "lg",
   padding = "default",
@@ -26,7 +27,7 @@ export default function AccordionItem({
     <div
       className={`cursor-pointer **:cursor-pointer ${lookClass} ${radiusClass} ${paddingClass}`}
       style={
-        look === "filled"
+        look === "filled" && showBackground
           ? { backgroundColor: getThemeColorCss(background, "white") }
           : undefined
       }

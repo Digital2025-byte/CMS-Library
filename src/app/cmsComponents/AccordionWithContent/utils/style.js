@@ -65,11 +65,13 @@ export const DEFAULT_ACCORDION_STYLE = {
   showTitleDescription: true,
   showDescription: true,
   showButton: true,
+  showSectionBg: true,
   sectionBg: "100",
   titleAlign: "left",
   titleColor: "primary-1",
   descriptionColor: "700",
   itemLook: "filled",
+  showItemBg: true,
   itemBg: "white",
   itemRadius: "lg",
   itemGap: "default",
@@ -83,10 +85,17 @@ export const DEFAULT_ACCORDION_STYLE = {
 };
 
 export const ACCORDION_STYLE_RESET_KEYS = {
-  layout: ["showTitleDescription", "showDescription", "showButton", "sectionBg"],
+  layout: [
+    "showTitleDescription",
+    "showDescription",
+    "showButton",
+    "showSectionBg",
+    "sectionBg",
+  ],
   title: ["titleAlign", "titleColor", "descriptionColor"],
   items: [
     "itemLook",
+    "showItemBg",
     "itemBg",
     "itemRadius",
     "itemGap",

@@ -42,7 +42,12 @@ export default function AccordionWithContentExamples({
 
   return (
     <div>
-      <AccordionContainer lang={lang} dir={dir} background={style.sectionBg}>
+      <AccordionContainer
+        lang={lang}
+        dir={dir}
+        background={style.sectionBg}
+        showBackground={style.showSectionBg}
+      >
         <AccordionWithContent
           data={wrapAccordionContent(content)}
           showTitleDescription={style.showTitleDescription}
@@ -52,6 +57,7 @@ export default function AccordionWithContentExamples({
           titleColor={style.titleColor}
           descriptionColor={style.descriptionColor}
           itemLook={style.itemLook}
+          showItemBg={style.showItemBg}
           itemBg={style.itemBg}
           itemRadius={style.itemRadius}
           itemGap={style.itemGap}
