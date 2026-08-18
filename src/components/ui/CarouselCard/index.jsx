@@ -8,11 +8,13 @@ import { getImageSrc, getOriginLabel, getStackLayout } from "./utils/helpers";
 export default function CarouselCard({
   IATACode,
   imageUrl,
+  imageAlt,
   numberOfFlightsPerWeek,
   duration,
   cityName,
   description,
   subtitle,
+  buttonLabel,
   isActive,
   stackIndex,
   direction,
@@ -22,6 +24,26 @@ export default function CarouselCard({
   onDragEnd,
   posParams,
   lang,
+  showImage = true,
+  showCity = true,
+  showOrigin = true,
+  showNew = true,
+  showFlights = true,
+  showDuration = true,
+  showDescription = true,
+  showPanel = true,
+  showInactiveDim = true,
+  showButton = true,
+  cityColor = "50",
+  originColor = "50",
+  metaColor = "50",
+  bodyColor = "50",
+  panelBg = "secondary-2",
+  overlayColor = "secondary-2",
+  buttonBg = "main",
+  buttonText = "white",
+  cardRadiusClass = "rounded-3xl",
+  panelRadiusClass = "rounded-b-3xl",
 }) {
   const { hidden, baseTransform, safeZIndex } = getStackLayout(stackIndex);
   const originLabel = getOriginLabel(subtitle);
@@ -38,18 +60,45 @@ export default function CarouselCard({
       isLeaving={isLeaving}
       direction={direction}
       baseTransform={baseTransform}
+      radiusClass={cardRadiusClass}
     >
-      <CarouselCardMedia src={src} cityName={cityName} isActive={isActive} />
-      <CarouselCardPanel
+      <CarouselCardMedia
+        src={src}
         cityName={cityName}
-        originLabel={originLabel}
-        IATACode={IATACode}
-        posParams={posParams}
-        lang={lang}
-        numberOfFlightsPerWeek={numberOfFlightsPerWeek}
-        duration={duration}
-        description={description}
+        imageAlt={imageAlt}
+        isActive={isActive}
+        showImage={showImage}
+        showInactiveDim={showInactiveDim}
+        overlayColor={overlayColor}
       />
+      {showPanel ? (
+        <CarouselCardPanel
+          cityName={cityName}
+          originLabel={originLabel}
+          IATACode={IATACode}
+          posParams={posParams}
+          lang={lang}
+          numberOfFlightsPerWeek={numberOfFlightsPerWeek}
+          duration={duration}
+          description={description}
+          buttonLabel={buttonLabel}
+          showCity={showCity}
+          showOrigin={showOrigin}
+          showNew={showNew}
+          showFlights={showFlights}
+          showDuration={showDuration}
+          showDescription={showDescription}
+          showButton={showButton}
+          cityColor={cityColor}
+          originColor={originColor}
+          metaColor={metaColor}
+          bodyColor={bodyColor}
+          panelBg={panelBg}
+          buttonBg={buttonBg}
+          buttonText={buttonText}
+          panelRadiusClass={panelRadiusClass}
+        />
+      ) : null}
     </CarouselCardShell>
   );
 }

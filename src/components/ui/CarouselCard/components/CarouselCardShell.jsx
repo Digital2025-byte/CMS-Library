@@ -12,11 +12,12 @@ export default function CarouselCardShell({
   isLeaving,
   direction,
   baseTransform,
+  radiusClass = "rounded-3xl",
   children,
 }) {
   return (
     <motion.div
-      className={`absolute inset-0 cursor-grab overflow-hidden rounded-3xl ${
+      className={`absolute inset-0 cursor-grab overflow-hidden ${radiusClass} ${
         isActive ? "" : "blur-[1px]"
       }`}
       style={{
