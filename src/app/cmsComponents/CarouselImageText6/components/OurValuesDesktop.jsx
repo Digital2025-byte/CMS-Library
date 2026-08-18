@@ -12,6 +12,7 @@ export default function OurValuesDesktop({
   showItemTitle = true,
   showItemDescription = true,
   grayscaleInactive = true,
+  openOn = DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE.openOn,
   overlayColor = DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE.overlayColor,
   panelColor = DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE.panelColor,
   itemTitleColor = DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE.itemTitleColor,
@@ -25,6 +26,7 @@ export default function OurValuesDesktop({
 
   const overlayCss = getThemeColorCss(overlayColor, "secondary-2");
   const panelCss = getThemeColorCss(panelColor, "main");
+  const openOnHover = openOn === "hover";
 
   return (
     <div
@@ -49,6 +51,9 @@ export default function OurValuesDesktop({
           <div
             key={`${item.title}-${index}`}
             onClick={() => setActiveIndex(index)}
+            onMouseEnter={
+              openOnHover ? () => setActiveIndex(index) : undefined
+            }
             className={`relative mt-4 h-[90vh] flex-shrink-0 cursor-pointer overflow-hidden transition-all duration-700 ${flexClass}`}
           >
             {canShowImage ? (

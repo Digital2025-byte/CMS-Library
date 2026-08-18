@@ -37,6 +37,7 @@ export default function CarouselImageText6Examples({
           showItemTitle={style.showItemTitle}
           showItemDescription={style.showItemDescription}
           grayscaleInactive={style.grayscaleInactive}
+          openOn={style.openOn}
           sectionBg={style.sectionBg}
           titleAlign={style.titleAlign}
           titleColor={style.titleColor}

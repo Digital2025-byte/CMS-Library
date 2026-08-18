@@ -10,6 +10,11 @@ export const CARD_RADIUS_OPTIONS = [
   { value: "full", label: "Pill" },
 ];
 
+export const OPEN_ON_OPTIONS = [
+  { value: "click", label: "Click" },
+  { value: "hover", label: "Hover" },
+];
+
 export const TITLE_ALIGN_CLASS = {
   left: "text-start",
   center: "text-center",
@@ -27,6 +32,7 @@ export const DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE = {
   showItemTitle: true,
   showItemDescription: true,
   grayscaleInactive: true,
+  openOn: "click",
   sectionBg: "secondary-2",
   titleAlign: "center",
   titleColor: "white",
@@ -45,6 +51,7 @@ export const CAROUSEL_IMAGE_TEXT_STYLE_RESET_KEYS = {
     "showItemTitle",
     "showItemDescription",
     "grayscaleInactive",
+    "openOn",
     "overlayColor",
     "panelColor",
     "cardBg",

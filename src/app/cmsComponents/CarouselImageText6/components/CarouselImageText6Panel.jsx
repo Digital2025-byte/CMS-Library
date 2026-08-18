@@ -18,6 +18,7 @@ export default function CarouselImageText6Panel({
   showItemTitle = true,
   showItemDescription = true,
   grayscaleInactive = true,
+  openOn = DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE.openOn,
   sectionBg = DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE.sectionBg,
   titleAlign = DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE.titleAlign,
   titleColor = DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE.titleColor,
@@ -70,6 +71,7 @@ export default function CarouselImageText6Panel({
           showItemTitle={showItemTitle}
           showItemDescription={showItemDescription}
           grayscaleInactive={grayscaleInactive}
+          openOn={openOn}
           overlayColor={overlayColor}
           panelColor={panelColor}
           itemTitleColor={itemTitleColor}

@@ -11,6 +11,7 @@ import {
   CARD_RADIUS_OPTIONS,
   CAROUSEL_IMAGE_TEXT_STYLE_RESET_KEYS,
   DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE,
+  OPEN_ON_OPTIONS,
   TITLE_ALIGN_OPTIONS,
 } from "../utils/style";
 
@@ -82,6 +83,13 @@ function CarouselImageText6StyleForm({ style, onChange }) {
           onChange={() => toggle("grayscaleInactive")}
           label="Grayscale"
           hint="Fade inactive desktop panels to gray"
+        />
+        <InspectorChoose
+          label="Open"
+          name="openOn"
+          value={style.openOn}
+          options={OPEN_ON_OPTIONS}
+          onChange={(value) => update("openOn", value)}
         />
         <InspectorChoose
           label="Corners"
