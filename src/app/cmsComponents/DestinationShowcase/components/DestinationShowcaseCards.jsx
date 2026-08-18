@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { getThemeColorCss } from "@/styles/themeColors";
 import {
   CARD_ACTIVE_W_PX,
   CARD_GAP_PX,
@@ -8,6 +9,11 @@ import {
   CARD_INACTIVE_W_PX,
   CARD_STEP_PX,
 } from "../utils/constants";
+import { isUsableImageSrc } from "../utils/helpers";
+import {
+  CARD_RADIUS_CLASS,
+  DEFAULT_DESTINATION_SHOWCASE_STYLE,
+} from "../utils/style";
 
 export default function DestinationShowcaseCards({
   infiniteList,
@@ -16,7 +22,13 @@ export default function DestinationShowcaseCards({
   jumping,
   lang = "en",
   onCardClick,
+  cardRadius = DEFAULT_DESTINATION_SHOWCASE_STYLE.cardRadius,
+  showCardOverlay = DEFAULT_DESTINATION_SHOWCASE_STYLE.showCardOverlay,
+  cardOverlayColor = DEFAULT_DESTINATION_SHOWCASE_STYLE.cardOverlayColor,
 }) {
+  const radiusClass = CARD_RADIUS_CLASS[cardRadius] ?? CARD_RADIUS_CLASS.lg;
+  const overlayCss = getThemeColorCss(cardOverlayColor, "main");
+
   return (
     <div className="relative mt-12 flex w-full items-center justify-start overflow-hidden py-4 md:mt-0">
       <div className="relative h-[220px] w-full md:h-[230px]">
@@ -36,17 +48,17 @@ export default function DestinationShowcaseCards({
           }}
         >
           {infiniteList.map((dest, index) => {
-            // virtualIndex is the active card, always centered in the viewport.
             const isActive = index === virtualIndex;
             const mappedIndex =
               destinationsLength > 0 ? index % destinationsLength : 0;
+            const imageSrc = dest.cardImageUrl || dest.imageUrl;
 
             return (
               <button
                 key={`${dest.id}-${index}`}
                 type="button"
                 onClick={() => onCardClick(mappedIndex)}
-                className={`relative shrink-0 cursor-pointer overflow-hidden rounded-2xl shadow-lg ${
+                className={`relative shrink-0 cursor-pointer overflow-hidden shadow-lg ${radiusClass} ${
                   jumping ? "" : "transition-all duration-300"
                 } ${
                   isActive
@@ -59,20 +71,28 @@ export default function DestinationShowcaseCards({
                 }}
                 aria-label={dest.name || "Destination"}
               >
-                {dest.cardImageUrl ? (
+                {isUsableImageSrc(imageSrc) ? (
                   <Image
-                    src={dest.cardImageUrl}
-                    alt={dest.name || "Destination"}
+                    src={imageSrc}
+                    alt={dest.imageAlt || dest.name || "Destination"}
                     fill
                     sizes={CARD_IMAGE_SIZES}
                     className="object-cover"
                     unoptimized={
-                      typeof dest.cardImageUrl === "string" &&
-                      dest.cardImageUrl.startsWith("http")
+                      typeof imageSrc === "string" && imageSrc.startsWith("http")
                     }
                   />
+                ) : (
+                  <div className="absolute inset-0 bg-primary-700" aria-hidden />
+                )}
+                {showCardOverlay ? (
+                  <div
+                    className="absolute inset-0"
+                    style={{
+                      backgroundImage: `linear-gradient(to top, color-mix(in srgb, ${overlayCss} 30%, transparent), transparent)`,
+                    }}
+                  />
                 ) : null}
-                <div className="absolute inset-0 bg-gradient-to-t from-main/30 to-transparent" />
               </button>
             );
           })}

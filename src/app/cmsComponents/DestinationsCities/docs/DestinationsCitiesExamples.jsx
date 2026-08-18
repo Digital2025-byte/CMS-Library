@@ -62,6 +62,7 @@ export default function DestinationsCitiesExamples({
           cardRadius={style.cardRadius}
           cityColor={style.cityColor}
           originColor={style.originColor}
+          originBg={style.originBg}
           metaColor={style.metaColor}
           bodyColor={style.bodyColor}
           panelBg={style.panelBg}

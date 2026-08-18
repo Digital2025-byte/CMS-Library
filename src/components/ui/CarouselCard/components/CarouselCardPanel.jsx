@@ -20,8 +20,10 @@ export default function CarouselCardPanel({
   showDuration = true,
   showDescription = true,
   showButton = true,
+  showPanel = true,
   cityColor = "50",
   originColor = "50",
+  originBg = "900",
   metaColor = "50",
   bodyColor = "50",
   panelBg = "secondary-2",
@@ -30,24 +32,39 @@ export default function CarouselCardPanel({
   panelRadiusClass = "rounded-b-3xl",
 }) {
   const panelCss = getThemeColorCss(panelBg, "secondary-2");
+  const showHeader =
+    (showCity && cityName) || (showOrigin && originLabel) || showButton;
+  const showMeta =
+    showNew ||
+    showFlights ||
+    showDuration ||
+    (showDescription && description);
+
+  if (!showPanel && !showHeader && !showMeta) {
+    return null;
+  }
 
   return (
     <div
       className={`pointer-events-none absolute inset-x-0 bottom-0 ${BOTTOM_PANEL_CLASS} flex flex-col overflow-visible`}
     >
-      <div
-        className={`absolute inset-0 overflow-hidden ${panelRadiusClass}`}
-        style={{
-          backdropFilter: "blur(5px)",
-          WebkitBackdropFilter: "blur(5px)",
-        }}
-      />
-      <div
-        className={`absolute inset-0 overflow-hidden ${panelRadiusClass}`}
-        style={{
-          backgroundColor: `color-mix(in srgb, ${panelCss} 40%, transparent)`,
-        }}
-      />
+      {showPanel ? (
+        <>
+          <div
+            className={`absolute inset-0 overflow-hidden ${panelRadiusClass}`}
+            style={{
+              backdropFilter: "blur(5px)",
+              WebkitBackdropFilter: "blur(5px)",
+            }}
+          />
+          <div
+            className={`absolute inset-0 overflow-hidden ${panelRadiusClass}`}
+            style={{
+              backgroundColor: `color-mix(in srgb, ${panelCss} 55%, transparent)`,
+            }}
+          />
+        </>
+      ) : null}
 
       <div className="relative z-10 flex h-full min-h-0 flex-1 flex-col overflow-visible">
         <CarouselCardHeader
@@ -62,6 +79,7 @@ export default function CarouselCardPanel({
           showButton={showButton}
           cityColor={cityColor}
           originColor={originColor}
+          originBg={originBg}
           buttonBg={buttonBg}
           buttonText={buttonText}
         />

@@ -20,6 +20,12 @@ function uniqueCities(cities) {
   });
 }
 
+function toSlug(value) {
+  return String(value || "")
+    .toLowerCase()
+    .replace(/\s+/g, "-");
+}
+
 /**
  * Normalize CMS DestinationShowcase payload.
  */
@@ -56,39 +62,39 @@ export function getDestinationShowcaseContent(
     Array.isArray(content.cities) ? content.cities : []
   );
 
-  const destinations = rawCities
-    .map((city, index) => {
-      const slug = (city.slug || city.cityName || "")
-        .toLowerCase()
-        .replace(/\s+/g, "-");
-      // One photo per destination — banner background and card share it.
-      const imageUrl =
-        resolveImageUrl(city.heroImageUrl) ||
-        resolveImageUrl(city.heroImage) ||
-        resolveImageUrl(city.cardImageUrl) ||
-        resolveImageUrl(city.cardImage) ||
-        resolveImageUrl(city.imageUrl) ||
-        resolveImageUrl(city.image);
+  const destinations = rawCities.map((city, index) => {
+    const slug = toSlug(city.slug || city.cityName);
+    const imageUrl =
+      resolveImageUrl(city.heroImageUrl) ||
+      resolveImageUrl(city.heroImage) ||
+      resolveImageUrl(city.cardImageUrl) ||
+      resolveImageUrl(city.cardImage) ||
+      resolveImageUrl(city.imageUrl) ||
+      resolveImageUrl(city.image);
+    const explorePath =
+      city.exploreHref ||
+      city.exploreLink ||
+      `/${posParams}/${lang}/our-destinations/${slug}`;
 
-      return {
-        id: city.cityId || city.airportId || index,
-        name: city.cityName || "",
-        description:
-          city.description ||
-          [city.cityName, city.countryName].filter(Boolean).join(" — "),
-        imageUrl,
-        cardImageUrl: imageUrl,
-        exploreLink: withCampaignPath(
-          `/${posParams}/${lang}/our-destinations/${slug}`,
-          cId
-        ),
-      };
-    })
-    .filter((city) => city.imageUrl);
+    return {
+      id: city.cityId || city.airportId || index,
+      name: city.cityName || "",
+      countryName: city.countryName || "",
+      description:
+        city.description ||
+        [city.cityName, city.countryName].filter(Boolean).join(" — "),
+      slug,
+      imageUrl,
+      imageAlt: city.imageAlt || city.cityName || "",
+      cardImageUrl: imageUrl,
+      exploreLink: withCampaignPath(explorePath, cId),
+    };
+  });
 
   const viewAllPath =
     data?.style?.ctaButton?.slug ||
     content?.ctaButton?.slug ||
+    content?.viewAllHref ||
     `/${posParams}/${lang}/our-destinations`;
 
   return {
@@ -101,7 +107,63 @@ export function getDestinationShowcaseContent(
     viewAllHref: withCampaignPath(viewAllPath, cId),
     exploreLabel: content.exploreLabel || (lang === "ar" ? "اكتشف" : "Explore"),
     destinations,
-    hasContent: Boolean(content.title || destinations.length),
+    hasContent: Boolean(content.title || content.description || destinations.length),
+  };
+}
+
+export function getDestinationShowcaseEditorContent(
+  data,
+  lang = "en",
+  options = {}
+) {
+  const content = getDestinationShowcaseContent(data, lang, options);
+
+  return {
+    title: content.title || "",
+    description: content.description || "",
+    viewAllLabel: content.viewAllLabel || "",
+    viewAllHref: content.viewAllHref || "",
+    viewAllLinkType: "internal",
+    exploreLabel: content.exploreLabel || "",
+    items: content.destinations.map((dest) => ({
+      cityName: dest.name || "",
+      countryName: dest.countryName || "",
+      description: dest.description || "",
+      slug: dest.slug || "",
+      imageUrl: dest.imageUrl || "",
+      imageAlt: dest.imageAlt || "",
+    })),
+  };
+}
+
+export function wrapDestinationShowcaseContent(content = {}, lang = "en") {
+  return {
+    translations: [
+      {
+        languageCode: lang,
+        content: {
+          title: content.title || "",
+          description: content.description || "",
+          viewAllLabel: content.viewAllLabel || "",
+          exploreLabel: content.exploreLabel || "",
+          ctaButton: {
+            content: content.viewAllLabel || "",
+            slug: content.viewAllHref || "",
+          },
+          cities: (Array.isArray(content.items) ? content.items : []).map(
+            (item) => ({
+              cityName: item?.cityName || "",
+              countryName: item?.countryName || "",
+              description: item?.description || "",
+              slug: item?.slug || toSlug(item?.cityName),
+              imageAlt: item?.imageAlt || item?.cityName || "",
+              heroImageUrl: item?.imageUrl || "",
+              cardImageUrl: item?.imageUrl || "",
+            })
+          ),
+        },
+      },
+    ],
   };
 }
 
@@ -117,4 +179,22 @@ export function buildInfiniteList(destinations, cloneCount = 2) {
     ...destinations,
     ...destinations.slice(0, cloneCount),
   ];
+}
+
+export function isUsableImageSrc(src) {
+  const value = String(src || "").trim();
+  if (!value) {
+    return false;
+  }
+
+  if (value.startsWith("/") && !value.startsWith("//")) {
+    return true;
+  }
+
+  try {
+    const url = new URL(value.startsWith("//") ? `https:${value}` : value);
+    return url.protocol === "http:" || url.protocol === "https:";
+  } catch {
+    return false;
+  }
 }

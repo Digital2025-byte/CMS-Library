@@ -32,6 +32,7 @@ export default function DestinationsCities({
   cardRadius = DEFAULT_DESTINATIONS_CITIES_STYLE.cardRadius,
   cityColor = DEFAULT_DESTINATIONS_CITIES_STYLE.cityColor,
   originColor = DEFAULT_DESTINATIONS_CITIES_STYLE.originColor,
+  originBg = DEFAULT_DESTINATIONS_CITIES_STYLE.originBg,
   metaColor = DEFAULT_DESTINATIONS_CITIES_STYLE.metaColor,
   bodyColor = DEFAULT_DESTINATIONS_CITIES_STYLE.bodyColor,
   panelBg = DEFAULT_DESTINATIONS_CITIES_STYLE.panelBg,
@@ -74,6 +75,7 @@ export default function DestinationsCities({
       cardRadius={cardRadius}
       cityColor={cityColor}
       originColor={originColor}
+      originBg={originBg}
       metaColor={metaColor}
       bodyColor={bodyColor}
       panelBg={panelBg}

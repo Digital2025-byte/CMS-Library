@@ -48,7 +48,8 @@ export default function CarouselCardMeta({
                 <span className="inline-flex shrink-0 items-center gap-1">
                   <StarIcon
                     weight="fill"
-                    className="h-3 w-3 shrink-0 text-secondary sm:h-3.5 sm:w-3.5"
+                    className="h-3 w-3 shrink-0 sm:h-3.5 sm:w-3.5"
+                    style={{ color: "var(--color-secondary)" }}
                   />
                   New
                 </span>

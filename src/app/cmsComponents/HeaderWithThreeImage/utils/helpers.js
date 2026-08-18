@@ -13,6 +13,24 @@ function normalizeImage(image, fallbackAlt = "Background image") {
   };
 }
 
+export function isUsableImageSrc(src) {
+  const value = String(src || "").trim();
+  if (!value) {
+    return false;
+  }
+
+  if (value.startsWith("/") && !value.startsWith("//")) {
+    return true;
+  }
+
+  try {
+    const url = new URL(value.startsWith("//") ? `https:${value}` : value);
+    return url.protocol === "http:" || url.protocol === "https:";
+  } catch {
+    return false;
+  }
+}
+
 export function getHeaderWithThreeImageContent(data, lang = "en") {
   const translations = Array.isArray(data?.translations)
     ? data.translations
@@ -86,5 +104,66 @@ export function getHeaderWithThreeImageContent(data, lang = "en") {
         imageTwo.fileUrl ||
         imageThree.fileUrl
     ),
+  };
+}
+
+function toImageFields(image = {}, mobile = {}) {
+  return {
+    imageUrl: image.fileUrl || "",
+    imageAlt: image.alt || "",
+    mobileImageUrl: mobile.fileUrl || "",
+  };
+}
+
+export function getHeaderWithThreeImageEditorContent(data, lang = "en") {
+  const content = getHeaderWithThreeImageContent(data, lang);
+
+  return {
+    title: content.title || "",
+    description: content.description || "",
+    images: [
+      toImageFields(content.imageOne, content.mobileImageOne),
+      toImageFields(content.imageTwo, content.mobileImageTwo),
+      toImageFields(content.imageThree, content.mobileImageThree),
+    ],
+  };
+}
+
+function wrapImage(item = {}, fallbackAlt) {
+  return {
+    fileUrl: item.imageUrl || "",
+    alt: item.imageAlt || fallbackAlt,
+  };
+}
+
+function wrapMobileImage(item = {}, desktop) {
+  return {
+    fileUrl: item.mobileImageUrl || item.imageUrl || "",
+    alt: item.imageAlt || desktop.alt,
+  };
+}
+
+export function wrapHeaderWithThreeImageContent(content = {}, lang = "en") {
+  const images = Array.isArray(content.images) ? content.images : [];
+  const one = wrapImage(images[0], "Background image one");
+  const two = wrapImage(images[1], "Background image two");
+  const three = wrapImage(images[2], "Background image three");
+
+  return {
+    translations: [
+      {
+        languageCode: lang,
+        content: {
+          title: content.title || "",
+          description: content.description || "",
+          backgroundImageOne: one,
+          backgroundImageTwo: two,
+          backgroundImageThree: three,
+          backgroundMobileImageOne: wrapMobileImage(images[0], one),
+          backgroundMobileImageTwo: wrapMobileImage(images[1], two),
+          backgroundMobileImageThree: wrapMobileImage(images[2], three),
+        },
+      },
+    ],
   };
 }

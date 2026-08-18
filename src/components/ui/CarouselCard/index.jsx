@@ -36,6 +36,7 @@ export default function CarouselCard({
   showButton = true,
   cityColor = "50",
   originColor = "50",
+  originBg = "900",
   metaColor = "50",
   bodyColor = "50",
   panelBg = "secondary-2",
@@ -71,8 +72,7 @@ export default function CarouselCard({
         showInactiveDim={showInactiveDim}
         overlayColor={overlayColor}
       />
-      {showPanel ? (
-        <CarouselCardPanel
+      <CarouselCardPanel
           cityName={cityName}
           originLabel={originLabel}
           IATACode={IATACode}
@@ -89,8 +89,10 @@ export default function CarouselCard({
           showDuration={showDuration}
           showDescription={showDescription}
           showButton={showButton}
+          showPanel={showPanel}
           cityColor={cityColor}
           originColor={originColor}
+          originBg={originBg}
           metaColor={metaColor}
           bodyColor={bodyColor}
           panelBg={panelBg}
@@ -98,7 +100,6 @@ export default function CarouselCard({
           buttonText={buttonText}
           panelRadiusClass={panelRadiusClass}
         />
-      ) : null}
     </CarouselCardShell>
   );
 }

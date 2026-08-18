@@ -20,6 +20,7 @@ export default function CustomBackgroundImage({
   transition = { duration: 5, ease: "easeInOut" },
   desktopGradient = false,
   mobileGradient = false,
+  overlayColor,
   lang = "en",
   flipImage = false,
   specialGradient = false,
@@ -55,17 +56,42 @@ export default function CustomBackgroundImage({
             className={`absolute inset-y-0 w-full lg:w-3/4 ${
               mobileGradient ? "hidden lg:block" : ""
             } ${
-              lang === "ar"
-                ? "right-0 bg-gradient-to-l from-main/50 to-transparent"
-                : "left-0 bg-gradient-to-r from-main/50 to-transparent"
+              overlayColor
+                ? lang === "ar"
+                  ? "right-0"
+                  : "left-0"
+                : lang === "ar"
+                  ? "right-0 bg-gradient-to-l from-main/50 to-transparent"
+                  : "left-0 bg-gradient-to-r from-main/50 to-transparent"
             }`}
+            style={
+              overlayColor
+                ? {
+                    backgroundImage:
+                      lang === "ar"
+                        ? `linear-gradient(to left, color-mix(in srgb, ${overlayColor} 50%, transparent), transparent)`
+                        : `linear-gradient(to right, color-mix(in srgb, ${overlayColor} 50%, transparent), transparent)`,
+                  }
+                : undefined
+            }
             aria-hidden
           />
         ) : null}
 
         {mobileGradient ? (
           <div
-            className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-main/50 to-transparent lg:hidden"
+            className={
+              overlayColor
+                ? "absolute inset-x-0 bottom-0 h-1/2 lg:hidden"
+                : "absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-main/50 to-transparent lg:hidden"
+            }
+            style={
+              overlayColor
+                ? {
+                    backgroundImage: `linear-gradient(to top, color-mix(in srgb, ${overlayColor} 50%, transparent), transparent)`,
+                  }
+                : undefined
+            }
             aria-hidden
           />
         ) : null}
@@ -75,8 +101,9 @@ export default function CustomBackgroundImage({
             className="absolute inset-0"
             style={{
               // Keep photo visible at the bottom so the city card can blur it
-              backgroundImage:
-                "linear-gradient(180deg, rgb(5 78 114 / 0.2) 0%, rgb(19 54 75 / 0.72) 100%)",
+              backgroundImage: overlayColor
+                ? `linear-gradient(180deg, color-mix(in srgb, ${overlayColor} 20%, transparent) 0%, color-mix(in srgb, ${overlayColor} 72%, transparent) 100%)`
+                : "linear-gradient(180deg, rgb(5 78 114 / 0.2) 0%, rgb(19 54 75 / 0.72) 100%)",
             }}
             aria-hidden
           />

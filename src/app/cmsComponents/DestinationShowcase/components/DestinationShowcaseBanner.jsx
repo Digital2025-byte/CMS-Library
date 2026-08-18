@@ -11,6 +11,11 @@ import {
   HERO_IMAGE_QUALITY,
   HERO_IMAGE_SIZES,
 } from "../utils/constants";
+import { isUsableImageSrc } from "../utils/helpers";
+import {
+  BANNER_RADIUS_CLASS,
+  DEFAULT_DESTINATION_SHOWCASE_STYLE,
+} from "../utils/style";
 
 export default function DestinationShowcaseBanner({
   lang = "en",
@@ -26,12 +31,32 @@ export default function DestinationShowcaseBanner({
   onNext,
   onCardClick,
   showButton = true,
-  showSliderArrows = true,
+  showHeroImage = DEFAULT_DESTINATION_SHOWCASE_STYLE.showHeroImage,
+  showOverlay = DEFAULT_DESTINATION_SHOWCASE_STYLE.showOverlay,
+  showDestinationName = DEFAULT_DESTINATION_SHOWCASE_STYLE.showDestinationName,
+  showDestinationDescription = DEFAULT_DESTINATION_SHOWCASE_STYLE.showDestinationDescription,
+  showCards = DEFAULT_DESTINATION_SHOWCASE_STYLE.showCards,
+  showCardOverlay = DEFAULT_DESTINATION_SHOWCASE_STYLE.showCardOverlay,
+  showArrows = DEFAULT_DESTINATION_SHOWCASE_STYLE.showArrows,
+  showDots = DEFAULT_DESTINATION_SHOWCASE_STYLE.showDots,
+  bannerRadius = DEFAULT_DESTINATION_SHOWCASE_STYLE.bannerRadius,
+  overlayColor = DEFAULT_DESTINATION_SHOWCASE_STYLE.overlayColor,
+  destNameColor = DEFAULT_DESTINATION_SHOWCASE_STYLE.destNameColor,
+  destBodyColor = DEFAULT_DESTINATION_SHOWCASE_STYLE.destBodyColor,
+  cardRadius = DEFAULT_DESTINATION_SHOWCASE_STYLE.cardRadius,
+  cardOverlayColor = DEFAULT_DESTINATION_SHOWCASE_STYLE.cardOverlayColor,
+  buttonBg = DEFAULT_DESTINATION_SHOWCASE_STYLE.buttonBg,
+  buttonText = DEFAULT_DESTINATION_SHOWCASE_STYLE.buttonText,
+  navColor = DEFAULT_DESTINATION_SHOWCASE_STYLE.navColor,
 }) {
   if (!current) return null;
 
+  const radiusClass =
+    BANNER_RADIUS_CLASS[bannerRadius] ?? BANNER_RADIUS_CLASS.sm;
+  const heroSrc = current.imageUrl;
+
   return (
-    <div className="relative min-h-[540px] overflow-hidden shadow-xl md:rounded-xl">
+    <div className={`relative min-h-[540px] overflow-hidden shadow-xl ${radiusClass}`}>
       <div className="absolute inset-0 min-h-[540px]">
         <AnimatePresence mode="popLayout">
           <motion.div
@@ -42,24 +67,27 @@ export default function DestinationShowcaseBanner({
             transition={{ duration: 0.3, ease: "circOut", delay: 0.01 }}
             className="absolute inset-0"
           >
-            {current.imageUrl ? (
+            {showHeroImage && isUsableImageSrc(heroSrc) ? (
               <Image
-                src={current.imageUrl}
-                alt={current.name || "Destination"}
+                src={heroSrc}
+                alt={current.imageAlt || current.name || "Destination"}
                 fill
                 sizes={HERO_IMAGE_SIZES}
                 quality={HERO_IMAGE_QUALITY}
                 className="object-cover"
                 priority={activeIndex === 0}
                 unoptimized={
-                  typeof current.imageUrl === "string" &&
-                  current.imageUrl.startsWith("http")
+                  typeof heroSrc === "string" && heroSrc.startsWith("http")
                 }
               />
-            ) : null}
+            ) : (
+              <div className="absolute inset-0 bg-primary-800" aria-hidden />
+            )}
           </motion.div>
         </AnimatePresence>
-        <DestinationShowcaseBlueLayer />
+        {showOverlay ? (
+          <DestinationShowcaseBlueLayer color={overlayColor} />
+        ) : null}
       </div>
 
       <div className="relative z-10 flex min-h-[540px] flex-col overflow-hidden">
@@ -70,27 +98,37 @@ export default function DestinationShowcaseBanner({
               description={current.description}
               activeIndex={activeIndex}
               direction={direction}
+              showName={showDestinationName}
+              showDescription={showDestinationDescription}
+              nameColor={destNameColor}
+              bodyColor={destBodyColor}
             />
             <DestinationShowcaseNav
               exploreLabel={exploreLabel}
               exploreHref={current.exploreLink}
               showButton={showButton}
+              buttonBg={buttonBg}
+              buttonText={buttonText}
             />
           </div>
 
-          <div className="relative z-20 w-full min-w-0 max-w-full overflow-hidden md:flex md:w-[min(100%,560px)] md:shrink-0 md:items-end md:self-end lg:w-[min(100%,640px)]">
-            <DestinationShowcaseCards
-              infiniteList={infiniteList}
-              destinationsLength={destinationsLength}
-              virtualIndex={virtualIndex}
-              jumping={jumping}
-              lang={lang}
-              onCardClick={onCardClick}
-            />
-          </div>
+          {showCards ? (
+            <div className="relative z-20 w-full min-w-0 max-w-full overflow-hidden md:flex md:w-[min(100%,560px)] md:shrink-0 md:items-end md:self-end lg:w-[min(100%,640px)]">
+              <DestinationShowcaseCards
+                infiniteList={infiniteList}
+                destinationsLength={destinationsLength}
+                virtualIndex={virtualIndex}
+                jumping={jumping}
+                lang={lang}
+                onCardClick={onCardClick}
+                cardRadius={cardRadius}
+                showCardOverlay={showCardOverlay}
+                cardOverlayColor={cardOverlayColor}
+              />
+            </div>
+          ) : null}
         </div>
 
-        {/* Bottom-center: arrows + dots (mobile target) */}
         <div className="relative z-30 flex shrink-0 justify-center px-5 pb-6 pt-2 sm:pb-8">
           <DestinationShowcaseControls
             lang={lang}
@@ -99,7 +137,9 @@ export default function DestinationShowcaseBanner({
             onPrev={onPrev}
             onNext={onNext}
             onDotClick={onCardClick}
-            showSliderArrows={showSliderArrows}
+            showArrows={showArrows}
+            showDots={showDots}
+            navColor={navColor}
           />
         </div>
       </div>

@@ -26,6 +26,7 @@ import RelatedContentCarouselExamples from "@/app/cmsComponents/RelatedContentCa
 import ServiceCardsSliderExamples from "@/app/cmsComponents/ServiceCardsSlider/docs/ServiceCardsSliderExamples";
 import SliderExamples from "@/app/cmsComponents/Slider/docs/SliderExamples";
 import ThreeDSliderExamples from "@/app/cmsComponents/ThreeDSlider/docs/ThreeDSliderExamples";
+import OnBoardImageRingExamples from "@/app/cmsComponents/OnBoardImageRing/docs/OnBoardImageRingExamples";
 import { COMPONENT_NAV_ITEMS } from "@/components/ui/ComponentNav";
 import PageContentContainer from "@/components/layout/PageContentContainer";
 import { typography } from "@/styles/typography";
@@ -49,6 +50,9 @@ const DOCS_EXAMPLES = {
   slider: (ctx, label) => <SliderExamples ctx={ctx} name={label} />,
   "three-d-slider": (ctx, label) => (
     <ThreeDSliderExamples ctx={ctx} name={label} />
+  ),
+  "on-board-image-ring": (ctx, label) => (
+    <OnBoardImageRingExamples ctx={ctx} name={label} />
   ),
   "image-carousels-with-opposite-scroll": (ctx, label) => (
     <OppositeScrollExamples ctx={ctx} name={label} />

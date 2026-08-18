@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { animate, useMotionValue } from "framer-motion";
 import { typography } from "@/styles/typography";
+import { getThemeColorCss } from "@/styles/themeColors";
 import {
   CARD_ASPECT,
   CARD_GAP_PX,
@@ -14,6 +15,11 @@ import {
   VISIBLE_COUNT_XL,
   XL_MIN_PX,
 } from "../utils/constants";
+import { isUsableImageSrc } from "../utils/helpers";
+import {
+  CARD_RADIUS_CLASS,
+  DEFAULT_ON_BOARD_IMAGE_RING_STYLE,
+} from "../utils/style";
 
 function visibleCountForWidth(width) {
   if (width >= XL_MIN_PX) return VISIBLE_COUNT_XL;
@@ -55,6 +61,12 @@ export default function OnBoardImageRingTrack({
   captions = [],
   lang = "en",
   imageGap = CARD_GAP_PX,
+  showCaptions = DEFAULT_ON_BOARD_IMAGE_RING_STYLE.showCaptions,
+  showOverlay = DEFAULT_ON_BOARD_IMAGE_RING_STYLE.showOverlay,
+  showCardImage = DEFAULT_ON_BOARD_IMAGE_RING_STYLE.showCardImage,
+  cardRadius = DEFAULT_ON_BOARD_IMAGE_RING_STYLE.cardRadius,
+  captionColor = DEFAULT_ON_BOARD_IMAGE_RING_STYLE.captionColor,
+  overlayColor = DEFAULT_ON_BOARD_IMAGE_RING_STYLE.overlayColor,
 }) {
   void lang;
 
@@ -143,6 +155,10 @@ export default function OnBoardImageRingTrack({
 
   if (!count) return null;
 
+  const radiusClass = CARD_RADIUS_CLASS[cardRadius] ?? CARD_RADIUS_CLASS.none;
+  const overlayCss = getThemeColorCss(overlayColor, "foreground");
+  const captionCss = getThemeColorCss(captionColor, "white");
+
   return (
     <div
       ref={viewportRef}
@@ -179,19 +195,34 @@ export default function OnBoardImageRingTrack({
           {images.map((imageUrl, index) => (
             <div
               key={`${imageUrl}-${index}`}
-              className="absolute inset-0 overflow-hidden bg-cover bg-center bg-no-repeat"
+              className={`absolute inset-0 overflow-hidden bg-cover bg-center bg-no-repeat ${radiusClass}`}
               style={{
-                backgroundImage: `url(${imageUrl})`,
+                backgroundImage:
+                  showCardImage && isUsableImageSrc(imageUrl)
+                    ? `url(${imageUrl})`
+                    : undefined,
+                backgroundColor:
+                  showCardImage && isUsableImageSrc(imageUrl)
+                    ? undefined
+                    : "var(--color-primary-700)",
                 transformStyle: "preserve-3d",
                 backfaceVisibility: "hidden",
                 WebkitBackfaceVisibility: "hidden",
                 transform: `rotateY(${index * angle}deg) translateZ(${-radius}px)`,
               }}
             >
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/50 to-transparent" />
-              {captions[index] ? (
+              {showOverlay ? (
+                <div
+                  className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3"
+                  style={{
+                    backgroundImage: `linear-gradient(to top, color-mix(in srgb, ${overlayCss} 50%, transparent), transparent)`,
+                  }}
+                />
+              ) : null}
+              {showCaptions && captions[index] ? (
                 <p
-                  className={`${typography.itemTitle} pointer-events-none absolute bottom-4 start-4 z-10 font-medium text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.7)] md:bottom-5 md:start-5`}
+                  className={`${typography.itemTitle} pointer-events-none absolute bottom-4 start-4 z-10 font-medium drop-shadow-[0_2px_4px_rgba(0,0,0,0.7)] md:bottom-5 md:start-5`}
+                  style={{ color: captionCss }}
                 >
                   {captions[index]}
                 </p>

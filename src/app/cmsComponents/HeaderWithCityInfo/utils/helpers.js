@@ -22,6 +22,16 @@ function formatNextFlightDate(value, lang = "en") {
   });
 }
 
+function getFileUrl(image) {
+  if (!image) {
+    return "";
+  }
+  if (typeof image === "string") {
+    return image;
+  }
+  return image.fileUrl || image.url || image.src || "";
+}
+
 export function getHeaderWithCityInfoContent(data, lang = "en") {
   const translations = Array.isArray(data?.translations)
     ? data.translations
@@ -38,8 +48,9 @@ export function getHeaderWithCityInfoContent(data, lang = "en") {
       duration: "",
       numberOfFlightPerWeek: "",
       nextFlight: "",
-      nextFlightLabel: "",
+      nextFlightRaw: "",
       backgroundImage: "",
+      imageAlt: "",
       labels: {},
       hasContent: false,
       hasCityCard: false,
@@ -64,7 +75,8 @@ export function getHeaderWithCityInfoContent(data, lang = "en") {
   const duration = content?.duration || "";
   const numberOfFlightPerWeek = content?.numberOfFlightPerWeek || "";
   const nextFlightRaw = content?.nextFlight || "";
-  const backgroundImage = content?.backgroundImage?.fileUrl || "";
+  const backgroundImage = getFileUrl(content?.backgroundImage);
+  const imageAlt = content?.backgroundImage?.alt || content?.imageAlt || title || "";
   const labels = content?.labels || {};
 
   return {
@@ -77,7 +89,9 @@ export function getHeaderWithCityInfoContent(data, lang = "en") {
     duration,
     numberOfFlightPerWeek,
     nextFlight: formatNextFlightDate(nextFlightRaw, lang) || nextFlightRaw,
+    nextFlightRaw,
     backgroundImage: backgroundImage ? toCssUrl(backgroundImage) : "",
+    imageAlt,
     labels: {
       weather: labels.weather || (lang === "ar" ? "الطقس:" : "Weather:"),
       localTime:
@@ -92,7 +106,93 @@ export function getHeaderWithCityInfoContent(data, lang = "en") {
         labels.nextFlight ||
         (lang === "ar" ? "الرحلة التالية:" : "Next Flight:"),
     },
-    hasCityCard: Boolean(weatherTitle),
+    hasCityCard: Boolean(
+      weatherTitle ||
+        description ||
+        weather ||
+        localTime ||
+        duration ||
+        numberOfFlightPerWeek ||
+        nextFlightRaw
+    ),
     hasContent: Boolean(title || countryName || weatherTitle || backgroundImage),
   };
+}
+
+export function getHeaderWithCityInfoEditorContent(data, lang = "en") {
+  const content = getHeaderWithCityInfoContent(data, lang);
+
+  return {
+    title: content.title || "",
+    countryName: content.countryName || "",
+    weatherTitle: content.weatherTitle || "",
+    description: content.description || "",
+    weather: content.weather || "",
+    localTime: content.localTime || "",
+    duration: content.duration || "",
+    numberOfFlightPerWeek: content.numberOfFlightPerWeek || "",
+    nextFlight: content.nextFlightRaw || "",
+    imageUrl: content.backgroundImage || "",
+    imageAlt: content.imageAlt || "",
+    labels: {
+      weather: content.labels.weather || "",
+      localTime: content.labels.localTime || "",
+      flightDuration: content.labels.flightDuration || "",
+      flightsPerWeek: content.labels.flightsPerWeek || "",
+      nextFlight: content.labels.nextFlight || "",
+    },
+  };
+}
+
+export function wrapHeaderWithCityInfoContent(content = {}, lang = "en") {
+  const labels = content.labels || {};
+
+  return {
+    translations: [
+      {
+        languageCode: lang,
+        content: {
+          title: content.title || "",
+          countryName: content.countryName || "",
+          weatherTitle: content.weatherTitle || "",
+          description: content.description || "",
+          weather: content.weather || "",
+          localTime: content.localTime || "",
+          duration: content.duration || "",
+          numberOfFlightPerWeek: content.numberOfFlightPerWeek || "",
+          nextFlight: content.nextFlight || "",
+          imageAlt: content.imageAlt || "",
+          labels: {
+            weather: labels.weather || "",
+            localTime: labels.localTime || "",
+            flightDuration: labels.flightDuration || "",
+            flightsPerWeek: labels.flightsPerWeek || "",
+            nextFlight: labels.nextFlight || "",
+          },
+          backgroundImage: {
+            fileUrl: content.imageUrl || "",
+            alt: content.imageAlt || content.title || "",
+          },
+        },
+      },
+    ],
+  };
+}
+
+export function isUsableImageSrc(src) {
+  const value = String(src || "").trim();
+  if (!value) {
+    return false;
+  }
+
+  if (value.startsWith("/") && !value.startsWith("//")) {
+    return true;
+  }
+
+  try {
+    const url = new URL(value.startsWith("//") ? `https:${value}` : value);
+    return url.protocol === "http:" || url.protocol === "https:";
+  } catch {
+    return false;
+  }
 }

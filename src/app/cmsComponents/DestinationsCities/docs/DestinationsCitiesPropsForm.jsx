@@ -167,11 +167,18 @@ function DestinationsCitiesStyleForm({ style, onChange }) {
           />
         ) : null}
         {style.showOrigin ? (
-          <InspectorColor
-            label="Origin color"
-            value={style.originColor}
-            onChange={(value) => update("originColor", value)}
-          />
+          <>
+            <InspectorColor
+              label="Origin color"
+              value={style.originColor}
+              onChange={(value) => update("originColor", value)}
+            />
+            <InspectorColor
+              label="Origin background"
+              value={style.originBg}
+              onChange={(value) => update("originBg", value)}
+            />
+          </>
         ) : null}
         {style.showNew || style.showFlights || style.showDuration ? (
           <InspectorColor

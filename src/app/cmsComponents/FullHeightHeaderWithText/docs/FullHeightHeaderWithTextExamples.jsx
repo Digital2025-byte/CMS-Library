@@ -1,23 +1,46 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import FullHeightHeaderWithText from "@/app/cmsComponents/FullHeightHeaderWithText";
 import FullHeightHeaderWithTextContainer from "@/app/cmsComponents/FullHeightHeaderWithText/components/FullHeightHeaderWithTextContainer";
+import FullHeightHeaderWithTextPropsForm from "@/app/cmsComponents/FullHeightHeaderWithText/docs/FullHeightHeaderWithTextPropsForm";
+import {
+  getFullHeightHeaderWithTextEditorContent,
+  wrapFullHeightHeaderWithTextContent,
+} from "@/app/cmsComponents/FullHeightHeaderWithText/utils/helpers";
+import { DEFAULT_FULL_HEIGHT_HEADER_STYLE } from "@/app/cmsComponents/FullHeightHeaderWithText/utils/style";
+import {
+  InspectorFooter,
+  InspectorSubmitButton,
+  isExternalHref,
+  isInternalPage,
+  resolveEditorLink,
+} from "@/components/inspector";
 import Drawer, { useDrawer } from "@/components/ui/Drawer";
-import LayoutPropsForm from "@/components/demo/LayoutPropsForm";
 
-const CONTROLS = [
-  {
-    key: "showTitleDescription",
-    label: "showTitleDescription",
-    hint: "Title and description",
-  },
-  {
-    key: "showButton",
-    label: "showButton",
-    hint: "CTA button",
-  },
-];
+function toEditorLink(href) {
+  if (!href) {
+    return resolveEditorLink(href);
+  }
+  if (isExternalHref(href) || isInternalPage(href)) {
+    return resolveEditorLink(href);
+  }
+  if (String(href).startsWith("/")) {
+    return { type: "external", href };
+  }
+  return resolveEditorLink(href);
+}
+
+function toEditorContent(data, lang) {
+  const content = getFullHeightHeaderWithTextEditorContent(data, lang, "gb");
+  const link = toEditorLink(content.buttonHref);
+
+  return {
+    ...content,
+    buttonHref: link.href,
+    buttonLinkType: link.type,
+  };
+}
 
 export default function FullHeightHeaderWithTextExamples({
   ctx,
@@ -25,24 +48,36 @@ export default function FullHeightHeaderWithTextExamples({
 }) {
   const { lang, dir, fullHeightHeaderWithTextData } = ctx;
   const drawer = useDrawer();
-  const [flags, setFlags] = useState({
-    showTitleDescription: true,
-    showButton: true,
-  });
-  const toggle = (key) =>
-    setFlags((current) => ({ ...current, [key]: !current[key] }));
+  const [style, setStyle] = useState(DEFAULT_FULL_HEIGHT_HEADER_STYLE);
+  const [content, setContent] = useState(() =>
+    toEditorContent(fullHeightHeaderWithTextData, lang)
+  );
+
+  useEffect(() => {
+    setContent(toEditorContent(fullHeightHeaderWithTextData, lang));
+  }, [fullHeightHeaderWithTextData, lang]);
 
   return (
     <div>
       <FullHeightHeaderWithTextContainer lang={lang} dir={dir}>
         <FullHeightHeaderWithText
           lang={lang}
-          data={fullHeightHeaderWithTextData}
+          data={wrapFullHeightHeaderWithTextContent(content, lang)}
           posParams="gb"
-          showTitleDescription={flags.showTitleDescription}
-          showButton={flags.showButton}
+          showTitle={style.showTitle}
+          showDescription={style.showDescription}
+          showButton={style.showButton}
+          showHeroImage={style.showHeroImage}
+          showOverlay={style.showOverlay}
+          titleAlign={style.titleAlign}
+          titleColor={style.titleColor}
+          descriptionColor={style.descriptionColor}
+          overlayColor={style.overlayColor}
+          buttonBg={style.buttonBg}
+          buttonText={style.buttonText}
         />
       </FullHeightHeaderWithTextContainer>
+
       <Drawer
         isOpen={drawer.isOpen}
         onClose={drawer.close}
@@ -51,12 +86,22 @@ export default function FullHeightHeaderWithTextExamples({
         panelRef={drawer.panelRef}
         titleId={drawer.titleId}
         title={name}
+        footer={
+          <InspectorFooter>
+            <InspectorSubmitButton
+              onClick={() =>
+                console.log("FullHeightHeaderWithText", { content, style })
+              }
+            />
+          </InspectorFooter>
+        }
       >
-        <LayoutPropsForm
-          legend={`${name} props`}
-          controls={CONTROLS}
-          flags={flags}
-          toggle={toggle}
+        <FullHeightHeaderWithTextPropsForm
+          content={content}
+          onContentChange={setContent}
+          contentDefaults={toEditorContent(fullHeightHeaderWithTextData, lang)}
+          style={style}
+          onStyleChange={setStyle}
         />
       </Drawer>
     </div>

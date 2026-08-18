@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { isUsableImageSrc } from "../utils/helpers";
 
 export default function HeaderWithThreeImageSlice({
   width,
@@ -8,7 +9,13 @@ export default function HeaderWithThreeImageSlice({
   mobileImage,
   priority = false,
 }) {
-  if (!desktopImage?.fileUrl && !mobileImage?.fileUrl) {
+  const desktopSrc = isUsableImageSrc(desktopImage?.fileUrl)
+    ? encodeURI(desktopImage.fileUrl)
+    : "";
+  const mobileRaw = mobileImage?.fileUrl || desktopImage?.fileUrl;
+  const mobileSrc = isUsableImageSrc(mobileRaw) ? encodeURI(mobileRaw) : desktopSrc;
+
+  if (!desktopSrc && !mobileSrc) {
     return (
       <div
         style={{ width, ...overlapStyle }}
@@ -16,13 +23,6 @@ export default function HeaderWithThreeImageSlice({
       />
     );
   }
-
-  const desktopSrc = desktopImage?.fileUrl
-    ? encodeURI(desktopImage.fileUrl)
-    : "";
-  const mobileSrc = mobileImage?.fileUrl
-    ? encodeURI(mobileImage.fileUrl)
-    : desktopSrc;
 
   return (
     <div
@@ -39,6 +39,7 @@ export default function HeaderWithThreeImageSlice({
             sizes="50vw"
             className="hidden object-cover lg:block"
             quality={75}
+            unoptimized={desktopSrc.startsWith("http")}
           />
         ) : null}
         {mobileSrc ? (
@@ -50,6 +51,7 @@ export default function HeaderWithThreeImageSlice({
             sizes="100vw"
             className="object-cover lg:hidden"
             quality={75}
+            unoptimized={mobileSrc.startsWith("http")}
           />
         ) : null}
       </div>

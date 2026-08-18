@@ -83,3 +83,65 @@ export function getFullHeightHeaderWithTextContent(
     hasContent: Boolean(title || description || buttonText || backgroundImage),
   };
 }
+
+export function getFullHeightHeaderWithTextEditorContent(
+  data,
+  lang = "en",
+  posParams = "gb"
+) {
+  const content = getFullHeightHeaderWithTextContent(data, lang, posParams);
+
+  return {
+    title: content.title || "",
+    description: content.description || "",
+    buttonLabel: content.buttonText || "",
+    buttonHref: content.ctaHref || "",
+    buttonLinkType: "internal",
+    imageUrl: content.backgroundImage || "",
+    imageAlt: content.imageAlt || "",
+  };
+}
+
+export function wrapFullHeightHeaderWithTextContent(content = {}, lang = "en") {
+  return {
+    translations: [
+      {
+        languageCode: lang,
+        content: {
+          title: content.title || "",
+          description: content.description || "",
+          buttonText: content.buttonLabel || "",
+          imageAlt: content.imageAlt || "",
+          ctaButton: {
+            content: content.buttonLabel || "",
+            label: content.buttonLabel || "",
+            href: content.buttonHref || "",
+            slug: content.buttonHref || "",
+          },
+          backgroundImage: {
+            fileUrl: content.imageUrl || "",
+            alt: content.imageAlt || content.title || "",
+          },
+        },
+      },
+    ],
+  };
+}
+
+export function isUsableImageSrc(src) {
+  const value = String(src || "").trim();
+  if (!value) {
+    return false;
+  }
+
+  if (value.startsWith("/") && !value.startsWith("//")) {
+    return true;
+  }
+
+  try {
+    const url = new URL(value.startsWith("//") ? `https:${value}` : value);
+    return url.protocol === "http:" || url.protocol === "https:";
+  } catch {
+    return false;
+  }
+}
