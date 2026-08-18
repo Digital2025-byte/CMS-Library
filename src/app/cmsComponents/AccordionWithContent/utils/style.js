@@ -1,5 +1,5 @@
 export const TITLE_ALIGN_OPTIONS = [
-  { value: "left", label: "Left" },
+  { value: "left", label: "Start" },
   { value: "center", label: "Center" },
 ];
 
@@ -16,9 +16,9 @@ export const ITEM_RADIUS_OPTIONS = [
 ];
 
 export const BUTTON_POSITION_OPTIONS = [
-  { value: "left", label: "Left" },
+  { value: "left", label: "Start" },
   { value: "center", label: "Center" },
-  { value: "right", label: "Right" },
+  { value: "right", label: "End" },
 ];
 
 export const SPACING_OPTIONS = [

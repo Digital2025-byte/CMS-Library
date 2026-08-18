@@ -5,7 +5,11 @@ export const inspectorControlClass = `${typography.caption} w-full rounded-sm bo
 export const inspectorIconHoverClass =
   "opacity-0 group-hover:opacity-100 group-focus-within:opacity-100";
 
-export const ALIGNMENT_OPTIONS = ["left", "center", "right"];
+export const ALIGNMENT_OPTIONS = [
+  { value: "left", label: "Start" },
+  { value: "center", label: "Center" },
+  { value: "right", label: "End" },
+];
 
 export const LINK_TYPE_OPTIONS = [
   { value: "internal", label: "Internal" },

@@ -6,9 +6,9 @@ export const THEME_OPTIONS = [
 ];
 
 export const TITLE_ALIGN_OPTIONS = [
-  { value: "left", label: "Left" },
+  { value: "left", label: "Start" },
   { value: "center", label: "Center" },
-  { value: "right", label: "Right" },
+  { value: "right", label: "End" },
 ];
 
 export const TITLE_ALIGN_JUSTIFY = {

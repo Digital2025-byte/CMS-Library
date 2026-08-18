@@ -1,5 +1,5 @@
 export const TITLE_ALIGN_OPTIONS = [
-  { value: "left", label: "Left" },
+  { value: "left", label: "Start" },
   { value: "center", label: "Center" },
 ];
 
