@@ -51,6 +51,7 @@ export default function OppositeScrollExamples({
           showTitleDescription={style.showTitleDescription}
           showDescription={style.showDescription}
           showExploreButton={style.showExploreButton}
+          showSectionBg={style.showSectionBg}
           showCardTitles={style.showCardTitles}
           showOverlay={style.showOverlay}
           dimOnHover={style.dimOnHover}

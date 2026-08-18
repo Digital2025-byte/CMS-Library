@@ -50,11 +50,19 @@ function OppositeScrollStyleForm({ style, onChange }) {
           label="Explore"
           hint="Round CTA over the marquees"
         />
-        <InspectorColor
-          label="Section background"
-          value={style.sectionBg}
-          onChange={(value) => update("sectionBg", value)}
+        <InspectorSwitch
+          checked={style.showSectionBg}
+          onChange={() => toggle("showSectionBg")}
+          label="Background"
+          hint="Show the section background color"
         />
+        {style.showSectionBg ? (
+          <InspectorColor
+            label="Section background"
+            value={style.sectionBg}
+            onChange={(value) => update("sectionBg", value)}
+          />
+        ) : null}
         <InspectorChoose
           label="Padding"
           name="sectionPadding"

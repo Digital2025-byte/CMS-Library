@@ -22,6 +22,7 @@ export default function OppositeScrollPanel({
   showTitleDescription = true,
   showDescription = true,
   showExploreButton = true,
+  showSectionBg = DEFAULT_OPPOSITE_SCROLL_STYLE.showSectionBg,
   showCardTitles = true,
   showOverlay = true,
   dimOnHover = true,
@@ -53,7 +54,9 @@ export default function OppositeScrollPanel({
     <section
       className={styles.sectionContainer}
       style={{
-        backgroundColor: getThemeColorCss(sectionBg, "primary-800"),
+        backgroundColor: showSectionBg
+          ? getThemeColorCss(sectionBg, "primary-800")
+          : "transparent",
         "--card-radius":
           CARD_RADIUS_VALUE[cardRadius] ?? CARD_RADIUS_VALUE.lg,
         "--card-gap": CARD_GAP_VALUE[cardGap] ?? CARD_GAP_VALUE.default,
