@@ -23,9 +23,7 @@ export function getCarouselItemContent(data, lang = "en") {
 }
 
 export function getDestinations(content) {
-  return (
-    Array.isArray(content?.destinations) ? content.destinations : []
-  )
+  return (Array.isArray(content?.destinations) ? content.destinations : [])
     .map((card) => {
       const imageUrl =
         card?.imageUrl ||
@@ -33,21 +31,69 @@ export function getDestinations(content) {
         card?.image?.url ||
         card?.fileUrl ||
         "";
+      const cityName = card?.cityName || card?.CityName || "";
+      const countryName = card?.countryName || card?.CountryName || "";
+      const iataCode = card?.iataCode || card?.IATACode || "";
+      const discoverLabel = card?.discoverLabel || "";
 
-      if (!imageUrl || String(imageUrl).trim() === "") {
+      if (!imageUrl && !cityName && !countryName && !iataCode && !discoverLabel) {
         return null;
       }
 
       return {
         imageUrl,
-        iataCode: card?.iataCode || card?.IATACode || "",
-        cityName: card?.cityName || card?.CityName || "",
-        countryName: card?.countryName || card?.CountryName || "",
+        imageAlt: card?.imageAlt || card?.image?.alt || cityName || "",
+        iataCode,
+        cityName,
+        countryName,
         takeATripUrl: card?.takeATripUrl || card?.TakeUrl || card?.href || "#",
-        discoverLabel: card?.discoverLabel || "",
+        discoverLabel,
       };
     })
     .filter(Boolean);
+}
+
+export function getCarouselItemEditorContent(data, lang = "en") {
+  const content = getCarouselItemContent(data, lang) || {};
+  const destinations = getDestinations(content);
+
+  return {
+    title: content.title || "",
+    items: destinations.map((card) => ({
+      cityName: card.cityName || "",
+      countryName: card.countryName || "",
+      iataCode: card.iataCode || "",
+      imageUrl: card.imageUrl || "",
+      imageAlt: card.imageAlt || "",
+      discoverLabel: card.discoverLabel || "",
+      buttonHref: card.takeATripUrl || "",
+      buttonLinkType: "internal",
+    })),
+  };
+}
+
+export function wrapCarouselItemContent(content = {}, lang = "en") {
+  return {
+    translations: [
+      {
+        languageCode: lang,
+        content: {
+          title: content.title || "",
+          destinations: (Array.isArray(content.items) ? content.items : []).map(
+            (item) => ({
+              cityName: item?.cityName || "",
+              countryName: item?.countryName || "",
+              iataCode: item?.iataCode || "",
+              imageUrl: item?.imageUrl || "",
+              imageAlt: item?.imageAlt || item?.cityName || "",
+              takeATripUrl: item?.buttonHref || "#",
+              discoverLabel: item?.discoverLabel || "",
+            })
+          ),
+        },
+      },
+    ],
+  };
 }
 
 export function getDotCount(slideCount, isMobile, slidesPerView) {

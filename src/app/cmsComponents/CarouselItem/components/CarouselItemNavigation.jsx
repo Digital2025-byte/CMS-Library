@@ -1,6 +1,8 @@
 "use client";
 
 import { ArrowLeftIcon, ArrowRightIcon } from "@phosphor-icons/react";
+import { getThemeColorCss } from "@/styles/themeColors";
+import { DEFAULT_CAROUSEL_ITEM_STYLE } from "../utils/style";
 
 export default function CarouselItemNavigation({
   dotCount = 0,
@@ -10,10 +12,15 @@ export default function CarouselItemNavigation({
   onGoToPage,
   showArrows = true,
   showDots = true,
+  navColor = DEFAULT_CAROUSEL_ITEM_STYLE.navColor,
+  dotColor = DEFAULT_CAROUSEL_ITEM_STYLE.dotColor,
 }) {
   if (dotCount <= 0 || (!showArrows && !showDots)) {
     return null;
   }
+
+  const arrowCss = getThemeColorCss(navColor, "white");
+  const dotCss = getThemeColorCss(dotColor, "primary-2");
 
   return (
     <div
@@ -25,9 +32,10 @@ export default function CarouselItemNavigation({
           type="button"
           onClick={onPrev}
           aria-label="Previous"
-          className="cursor-pointer rounded-full border-2 border-white p-2 transition hover:bg-white/20"
+          className="cursor-pointer rounded-full border-2 p-2 transition hover:bg-white/20"
+          style={{ borderColor: arrowCss, color: arrowCss }}
         >
-          <ArrowLeftIcon className="text-lg text-white" weight="bold" />
+          <ArrowLeftIcon className="text-lg" weight="bold" />
         </button>
       ) : null}
 
@@ -46,11 +54,10 @@ export default function CarouselItemNavigation({
                   onGoToPage?.(i);
                 }
               }}
-              className={`h-2 cursor-pointer rounded-full bg-primary-2 transition-all duration-300 ${
-                i === activePageIndex
-                  ? "h-2 w-5 bg-primary-2"
-                  : "h-2 w-2 bg-primary-2 opacity-40"
+              className={`h-2 cursor-pointer rounded-full transition-all duration-300 ${
+                i === activePageIndex ? "w-5" : "w-2 opacity-40"
               }`}
+              style={{ backgroundColor: dotCss }}
             />
           ))}
         </div>
@@ -61,9 +68,10 @@ export default function CarouselItemNavigation({
           type="button"
           onClick={onNext}
           aria-label="Next"
-          className="cursor-pointer rounded-full border-2 border-white p-2 transition hover:bg-white/20"
+          className="cursor-pointer rounded-full border-2 p-2 transition hover:bg-white/20"
+          style={{ borderColor: arrowCss, color: arrowCss }}
         >
-          <ArrowRightIcon className="text-lg text-white" weight="bold" />
+          <ArrowRightIcon className="text-lg" weight="bold" />
         </button>
       ) : null}
     </div>
