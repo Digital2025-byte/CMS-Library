@@ -13,7 +13,9 @@ export default function OurValuesDesktop({
   showItemDescription = true,
   grayscaleInactive = true,
   openOn = DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE.openOn,
+  showOverlay = DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE.showOverlay,
   overlayColor = DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE.overlayColor,
+  showPanelBg = DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE.showPanelBg,
   panelColor = DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE.panelColor,
   itemTitleColor = DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE.itemTitleColor,
   itemBodyColor = DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE.itemBodyColor,
@@ -64,20 +66,24 @@ export default function OurValuesDesktop({
                   isActive || !grayscaleInactive ? "grayscale-0" : "grayscale"
                 }`}
               />
-            ) : (
+            ) : showOverlay ? (
               <div
                 className="absolute inset-0"
                 style={{ backgroundColor: overlayCss }}
                 aria-hidden
               />
+            ) : (
+              <div className="absolute inset-0 bg-black/20" aria-hidden />
             )}
 
-            <div
-              className="absolute inset-0 z-10"
-              style={{
-                backgroundColor: `color-mix(in srgb, ${overlayCss} 10%, transparent)`,
-              }}
-            />
+            {showOverlay ? (
+              <div
+                className="absolute inset-0 z-10"
+                style={{
+                  backgroundColor: `color-mix(in srgb, ${overlayCss} 10%, transparent)`,
+                }}
+              />
+            ) : null}
 
             {isActive && showItemTitle && item.title ? (
               <div className="absolute top-10 z-20 m-3 rounded-xl p-3 opacity-90 transition-opacity duration-500">
@@ -99,9 +105,13 @@ export default function OurValuesDesktop({
                   ? "opacity-100 delay-300 duration-600"
                   : "pointer-events-none opacity-0 duration-100"
               }`}
-              style={{
-                backgroundColor: `color-mix(in srgb, ${panelCss} 50%, transparent)`,
-              }}
+              style={
+                showPanelBg
+                  ? {
+                      backgroundColor: `color-mix(in srgb, ${panelCss} 50%, transparent)`,
+                    }
+                  : undefined
+              }
             >
               <p
                 className={`${typography.body} text-start leading-relaxed`}

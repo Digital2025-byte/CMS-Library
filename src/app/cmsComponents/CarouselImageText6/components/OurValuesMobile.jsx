@@ -15,7 +15,9 @@ export default function OurValuesMobile({
   items = [],
   showItemTitle = true,
   showItemDescription = true,
+  showOverlay = DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE.showOverlay,
   overlayColor = DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE.overlayColor,
+  showCardBg = DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE.showCardBg,
   cardBg = DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE.cardBg,
   itemTitleColor = DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE.itemTitleColor,
   itemBodyColor = DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE.itemBodyColor,
@@ -79,12 +81,12 @@ export default function OurValuesMobile({
           />
           <div className={styles.bgTint} />
         </div>
-      ) : (
+      ) : showOverlay ? (
         <div
           className="absolute inset-0 z-0"
           style={{ backgroundColor: overlayCss }}
         />
-      )}
+      ) : null}
 
       <div className={`z-10 w-full ${styles.slider}`}>
         <Slider ref={sliderRef} {...settings}>
@@ -100,7 +102,7 @@ export default function OurValuesMobile({
                       ? "scale-100 opacity-100"
                       : "scale-[0.94] opacity-80"
                   }`}
-                  style={{ backgroundColor: cardBgCss }}
+                  style={showCardBg ? { backgroundColor: cardBgCss } : undefined}
                   dir={isRtl ? "rtl" : "ltr"}
                 >
                   <div className="relative aspect-[3/4] w-full overflow-hidden sm:aspect-[4/5]">
@@ -111,11 +113,13 @@ export default function OurValuesMobile({
                         className="h-full w-full object-cover"
                         draggable={false}
                       />
-                    ) : (
+                    ) : showOverlay ? (
                       <div
                         className="h-full w-full"
                         style={{ backgroundColor: overlayCss }}
                       />
+                    ) : (
+                      <div className="h-full w-full bg-black/20" />
                     )}
 
                     <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/35 via-transparent to-transparent" />

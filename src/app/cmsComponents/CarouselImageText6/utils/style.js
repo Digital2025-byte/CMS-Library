@@ -15,6 +15,7 @@ export const TITLE_ALIGN_CLASS = {
 
 export const DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE = {
   showTitle: true,
+  showSectionBg: true,
   showItemTitle: true,
   showItemDescription: true,
   grayscaleInactive: true,
@@ -22,24 +23,30 @@ export const DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE = {
   sectionBg: "secondary-2",
   titleAlign: "center",
   titleColor: "white",
+  showOverlay: true,
   overlayColor: "secondary-2",
+  showPanelBg: true,
   panelColor: "main",
+  showCardBg: true,
   cardBg: "secondary-2",
   itemTitleColor: "white",
   itemBodyColor: "white",
 };
 
 export const CAROUSEL_IMAGE_TEXT_STYLE_RESET_KEYS = {
-  layout: ["showTitle", "sectionBg"],
+  layout: ["showTitle", "showSectionBg", "sectionBg"],
   title: ["titleAlign", "titleColor"],
   cards: [
     "showItemTitle",
     "showItemDescription",
     "grayscaleInactive",
     "openOn",
-    "overlayColor",
-    "panelColor",
+    "showCardBg",
     "cardBg",
+    "showOverlay",
+    "overlayColor",
+    "showPanelBg",
+    "panelColor",
     "itemTitleColor",
     "itemBodyColor",
   ],

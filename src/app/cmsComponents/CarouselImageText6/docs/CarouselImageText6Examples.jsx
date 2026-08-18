@@ -38,11 +38,15 @@ export default function CarouselImageText6Examples({
           showItemDescription={style.showItemDescription}
           grayscaleInactive={style.grayscaleInactive}
           openOn={style.openOn}
+          showSectionBg={style.showSectionBg}
           sectionBg={style.sectionBg}
           titleAlign={style.titleAlign}
           titleColor={style.titleColor}
+          showOverlay={style.showOverlay}
           overlayColor={style.overlayColor}
+          showPanelBg={style.showPanelBg}
           panelColor={style.panelColor}
+          showCardBg={style.showCardBg}
           cardBg={style.cardBg}
           itemTitleColor={style.itemTitleColor}
           itemBodyColor={style.itemBodyColor}

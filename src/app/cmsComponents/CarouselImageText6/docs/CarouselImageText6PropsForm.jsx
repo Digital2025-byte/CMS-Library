@@ -34,11 +34,19 @@ function CarouselImageText6StyleForm({ style, onChange }) {
           label="Title"
           hint="Section heading above the carousel"
         />
-        <InspectorColor
-          label="Section background"
-          value={style.sectionBg}
-          onChange={(value) => update("sectionBg", value)}
+        <InspectorSwitch
+          checked={style.showSectionBg}
+          onChange={() => toggle("showSectionBg")}
+          label="Background"
+          hint="Fill color behind the whole section"
         />
+        {style.showSectionBg ? (
+          <InspectorColor
+            label="Section background"
+            value={style.sectionBg}
+            onChange={(value) => update("sectionBg", value)}
+          />
+        ) : null}
       </InspectorSection>
 
       {style.showTitle ? (
@@ -90,21 +98,45 @@ function CarouselImageText6StyleForm({ style, onChange }) {
           options={OPEN_ON_OPTIONS}
           onChange={(value) => update("openOn", value)}
         />
-        <InspectorColor
+        <InspectorSwitch
+          checked={style.showCardBg}
+          onChange={() => toggle("showCardBg")}
           label="Card background"
-          value={style.cardBg}
-          onChange={(value) => update("cardBg", value)}
+          hint="Fill behind mobile slide cards"
         />
-        <InspectorColor
+        {style.showCardBg ? (
+          <InspectorColor
+            label="Card background"
+            value={style.cardBg}
+            onChange={(value) => update("cardBg", value)}
+          />
+        ) : null}
+        <InspectorSwitch
+          checked={style.showOverlay}
+          onChange={() => toggle("showOverlay")}
           label="Overlay"
-          value={style.overlayColor}
-          onChange={(value) => update("overlayColor", value)}
+          hint="Tint over inactive panels and image placeholders"
         />
-        <InspectorColor
+        {style.showOverlay ? (
+          <InspectorColor
+            label="Overlay"
+            value={style.overlayColor}
+            onChange={(value) => update("overlayColor", value)}
+          />
+        ) : null}
+        <InspectorSwitch
+          checked={style.showPanelBg}
+          onChange={() => toggle("showPanelBg")}
           label="Frosted panel"
-          value={style.panelColor}
-          onChange={(value) => update("panelColor", value)}
+          hint="Background on the desktop description panel"
         />
+        {style.showPanelBg ? (
+          <InspectorColor
+            label="Frosted panel"
+            value={style.panelColor}
+            onChange={(value) => update("panelColor", value)}
+          />
+        ) : null}
         {style.showItemTitle ? (
           <InspectorColor
             label="Title color"

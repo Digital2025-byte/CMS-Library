@@ -19,11 +19,15 @@ export default function CarouselImageText6Panel({
   showItemDescription = true,
   grayscaleInactive = true,
   openOn = DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE.openOn,
+  showSectionBg = DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE.showSectionBg,
   sectionBg = DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE.sectionBg,
   titleAlign = DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE.titleAlign,
   titleColor = DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE.titleColor,
+  showOverlay = DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE.showOverlay,
   overlayColor = DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE.overlayColor,
+  showPanelBg = DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE.showPanelBg,
   panelColor = DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE.panelColor,
+  showCardBg = DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE.showCardBg,
   cardBg = DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE.cardBg,
   itemTitleColor = DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE.itemTitleColor,
   itemBodyColor = DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE.itemBodyColor,
@@ -36,7 +40,9 @@ export default function CarouselImageText6Panel({
     <section
       className="min-h-screen"
       style={{
-        backgroundColor: getThemeColorCss(sectionBg, "secondary-2"),
+        ...(showSectionBg
+          ? { backgroundColor: getThemeColorCss(sectionBg, "secondary-2") }
+          : {}),
         "--values-panel": panelCss,
       }}
     >
@@ -57,7 +63,9 @@ export default function CarouselImageText6Panel({
           items={items}
           showItemTitle={showItemTitle}
           showItemDescription={showItemDescription}
+          showOverlay={showOverlay}
           overlayColor={overlayColor}
+          showCardBg={showCardBg}
           cardBg={cardBg}
           itemTitleColor={itemTitleColor}
           itemBodyColor={itemBodyColor}
@@ -70,7 +78,9 @@ export default function CarouselImageText6Panel({
           showItemDescription={showItemDescription}
           grayscaleInactive={grayscaleInactive}
           openOn={openOn}
+          showOverlay={showOverlay}
           overlayColor={overlayColor}
+          showPanelBg={showPanelBg}
           panelColor={panelColor}
           itemTitleColor={itemTitleColor}
           itemBodyColor={itemBodyColor}
