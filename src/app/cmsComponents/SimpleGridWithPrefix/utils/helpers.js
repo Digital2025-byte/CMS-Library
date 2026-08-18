@@ -55,3 +55,48 @@ export function getSimpleGridWithPrefixContent(data, lang = "en") {
     hasContent: Boolean(title || items.length),
   };
 }
+
+export function getSimpleGridWithPrefixEditorContent(data, lang = "en") {
+  const content = getSimpleGridWithPrefixContent(data, lang);
+
+  return {
+    title: content.title || "",
+    description: content.description || "",
+    prefix: content.prefix || "",
+    chip: content.chip || "",
+    items: content.items.map((item) => ({
+      title: item.title || "",
+      userName: item.userName || "",
+      link: item.link === "#" ? "" : item.link || "",
+      icon: item.icon || "",
+      chip: item.chip || "",
+    })),
+  };
+}
+
+export function wrapSimpleGridWithPrefixContent(content = {}, lang = "en") {
+  return {
+    translations: [
+      {
+        languageCode: lang,
+        content: {
+          title: content.title || "",
+          description: content.description || "",
+          prefix: content.prefix || "",
+          chip: content.chip || "",
+          channels: (Array.isArray(content.items) ? content.items : []).map(
+            (item) => ({
+              grid: {
+                title: item?.title || "",
+                userName: item?.userName || "",
+                link: item?.link || "",
+                icon: item?.icon || "",
+                chip: item?.chip || "",
+              },
+            })
+          ),
+        },
+      },
+    ],
+  };
+}

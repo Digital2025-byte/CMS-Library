@@ -79,6 +79,48 @@ export function normalizeFareCity(city) {
   };
 }
 
+export function isUsableImageSrc(src) {
+  const value = String(src || "").trim();
+  if (!value) {
+    return false;
+  }
+
+  if (value.startsWith("/") && !value.startsWith("//")) {
+    return true;
+  }
+
+  try {
+    const url = new URL(value.startsWith("//") ? `https:${value}` : value);
+    return url.protocol === "http:" || url.protocol === "https:";
+  } catch {
+    return false;
+  }
+}
+
+export function formatFarePrice(template, price, currency, fallback) {
+  if (!template) {
+    return fallback;
+  }
+
+  return String(template)
+    .replaceAll("{{price}}", price ?? "")
+    .replaceAll("{{currency}}", currency ?? "")
+    .replaceAll("{price}", price ?? "")
+    .replaceAll("{currency}", currency ?? "");
+}
+
+function defaultFareLabels(lang = "en") {
+  const isAr = String(lang || "").toLowerCase() === "ar";
+
+  return {
+    oneWayLabel: isAr ? "اتجاه واحد" : "One-way",
+    newLabel: isAr ? "جديد" : "New",
+    fromTemplate: isAr
+      ? "الدرجة الاقتصادية من {price} {currency}"
+      : "Economy from {price} {currency}",
+  };
+}
+
 export function getFlightFaresContent(data, lang = "en", posParams) {
   const translations = Array.isArray(data?.translations)
     ? data.translations
@@ -88,6 +130,9 @@ export function getFlightFaresContent(data, lang = "en", posParams) {
     return {
       title: "",
       cities: [],
+      oneWayLabel: "",
+      newLabel: "",
+      fromTemplate: "",
       hasContent: false,
     };
   }
@@ -110,6 +155,66 @@ export function getFlightFaresContent(data, lang = "en", posParams) {
   return {
     title,
     cities,
+    oneWayLabel: content?.oneWayLabel || "",
+    newLabel: content?.newLabel || "",
+    fromTemplate: content?.fromTemplate || "",
     hasContent: Boolean(title || cities.length),
+  };
+}
+
+export function getFlightFaresEditorContent(data, lang = "en") {
+  const content = getFlightFaresContent(data, lang);
+  const labels = defaultFareLabels(lang);
+
+  return {
+    title: content.title || "",
+    oneWayLabel: content.oneWayLabel || labels.oneWayLabel,
+    newLabel: content.newLabel || labels.newLabel,
+    fromTemplate: content.fromTemplate || labels.fromTemplate,
+    items: content.cities.map((city) => ({
+      cityName: city.cityName || "",
+      IATACode: city.IATACode || "",
+      countryName: city.countryName || "",
+      price: city.price || "",
+      currency: city.currency || "",
+      isNew: Boolean(city.isNew),
+      imageUrl: city.images?.[0]?.url || "",
+      imageAlt: city.images?.[0]?.alt || city.cityName || "",
+    })),
+  };
+}
+
+export function wrapFlightFaresContent(content = {}, lang = "en") {
+  return {
+    translations: [
+      {
+        languageCode: lang,
+        content: {
+          title: content.title || "",
+          oneWayLabel: content.oneWayLabel || "",
+          newLabel: content.newLabel || "",
+          fromTemplate: content.fromTemplate || "",
+          cities: (Array.isArray(content.items) ? content.items : []).map(
+            (item, index) => ({
+              cityId: item?.cityId ?? index + 1,
+              cityName: item?.cityName || "",
+              IATACode: item?.IATACode || item?.iataCode || "",
+              countryName: item?.countryName || "",
+              price: item?.price || "",
+              currency: item?.currency || "",
+              isNew: Boolean(item?.isNew),
+              images: item?.imageUrl
+                ? [
+                    {
+                      url: item.imageUrl,
+                      alt: item.imageAlt || item.cityName || "",
+                    },
+                  ]
+                : [],
+            })
+          ),
+        },
+      },
+    ],
   };
 }

@@ -20,7 +20,12 @@ import DestinationShowcaseExamples from "@/app/cmsComponents/DestinationShowcase
 import DestinationsCitiesExamples from "@/app/cmsComponents/DestinationsCities/docs/DestinationsCitiesExamples";
 import DualImageTextExamples from "@/app/cmsComponents/DualImageText/docs/DualImageTextExamples";
 import FullHeightHeaderWithTextExamples from "@/app/cmsComponents/FullHeightHeaderWithText/docs/FullHeightHeaderWithTextExamples";
+import FlightFaresSectionExamples from "@/app/cmsComponents/FlightFaresSection/docs/FlightFaresSectionExamples";
+import GridInfoExamples from "@/app/cmsComponents/GridInfo/docs/GridInfoExamples";
 import HeaderWithCityInfoExamples from "@/app/cmsComponents/HeaderWithCityInfo/docs/HeaderWithCityInfoExamples";
+import PhotoTileGridExamples from "@/app/cmsComponents/PhotoTileGrid/docs/PhotoTileGridExamples";
+import SearchWithTabsAndGridExamples from "@/app/cmsComponents/SearchWithTabsAndGrid/docs/SearchWithTabsAndGridExamples";
+import SimpleGridWithPrefixExamples from "@/app/cmsComponents/SimpleGridWithPrefix/docs/SimpleGridWithPrefixExamples";
 import HeaderWithThreeImageExamples from "@/app/cmsComponents/HeaderWithThreeImage/docs/HeaderWithThreeImageExamples";
 import OppositeScrollExamples from "@/app/cmsComponents/ImageCarouselsWithOppositeScrollDirections/docs/OppositeScrollExamples";
 import RelatedContentCarouselExamples from "@/app/cmsComponents/RelatedContentCarousel/docs/RelatedContentCarouselExamples";
@@ -90,6 +95,19 @@ const DOCS_EXAMPLES = {
   ),
   "banner-with-ctas-and-items": (ctx, label) => (
     <BannerWithCTAsAndItemsExamples ctx={ctx} name={label} />
+  ),
+  "grid-info": (ctx, label) => <GridInfoExamples ctx={ctx} name={label} />,
+  "simple-grid-with-prefix": (ctx, label) => (
+    <SimpleGridWithPrefixExamples ctx={ctx} name={label} />
+  ),
+  "photo-tile-grid": (ctx, label) => (
+    <PhotoTileGridExamples ctx={ctx} name={label} />
+  ),
+  "search-with-tabs-and-grid": (ctx, label) => (
+    <SearchWithTabsAndGridExamples ctx={ctx} name={label} />
+  ),
+  "flight-fares-section": (ctx, label) => (
+    <FlightFaresSectionExamples ctx={ctx} name={label} />
   ),
 };
 

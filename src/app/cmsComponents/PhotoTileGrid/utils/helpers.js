@@ -32,18 +32,23 @@ export function getPhotoTileGridContent(data, lang = "en") {
         card?.image?.url ||
         card?.fileUrl ||
         "";
+      const cityName = card?.cityName || card?.CityName || "";
+      const countryName = card?.countryName || card?.CountryName || "";
+      const iataCode = card?.iataCode || card?.IATACode || "";
+      const discoverLabel = card?.discoverLabel || "";
 
-      if (!imageUrl || String(imageUrl).trim() === "") {
+      if (!imageUrl && !cityName && !countryName && !iataCode && !discoverLabel) {
         return null;
       }
 
       return {
         imageUrl,
-        iataCode: card?.iataCode || card?.IATACode || "",
-        cityName: card?.cityName || card?.CityName || "",
-        countryName: card?.countryName || card?.CountryName || "",
-        takeATripUrl: card?.takeATripUrl || card?.TakeUrl || card?.href || "#",
-        discoverLabel: card?.discoverLabel || "",
+        imageAlt: card?.imageAlt || card?.image?.alt || cityName || "",
+        iataCode,
+        cityName,
+        countryName,
+        takeATripUrl: card?.takeATripUrl || card?.TakeUrl || card?.href || "",
+        discoverLabel,
       };
     })
     .filter(Boolean);
@@ -52,5 +57,47 @@ export function getPhotoTileGridContent(data, lang = "en") {
     title,
     destinations,
     hasContent: Boolean(title || destinations.length),
+  };
+}
+
+export function getPhotoTileGridEditorContent(data, lang = "en") {
+  const content = getPhotoTileGridContent(data, lang);
+
+  return {
+    title: content.title || "",
+    items: content.destinations.map((card) => ({
+      cityName: card.cityName || "",
+      countryName: card.countryName || "",
+      iataCode: card.iataCode || "",
+      imageUrl: card.imageUrl || "",
+      imageAlt: card.imageAlt || "",
+      discoverLabel: card.discoverLabel || "",
+      buttonHref: card.takeATripUrl === "#" ? "" : card.takeATripUrl || "",
+      buttonLinkType: "internal",
+    })),
+  };
+}
+
+export function wrapPhotoTileGridContent(content = {}, lang = "en") {
+  return {
+    translations: [
+      {
+        languageCode: lang,
+        content: {
+          title: content.title || "",
+          destinations: (Array.isArray(content.items) ? content.items : []).map(
+            (item) => ({
+              cityName: item?.cityName || "",
+              countryName: item?.countryName || "",
+              iataCode: item?.iataCode || "",
+              imageUrl: item?.imageUrl || "",
+              imageAlt: item?.imageAlt || "",
+              discoverLabel: item?.discoverLabel || "",
+              takeATripUrl: item?.buttonHref || "",
+            })
+          ),
+        },
+      },
+    ],
   };
 }

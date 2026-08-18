@@ -1,4 +1,6 @@
 import { ArrowLeftIcon, ArrowRightIcon } from "@phosphor-icons/react";
+import { getThemeColorCss } from "@/styles/themeColors";
+import { DEFAULT_SEARCH_GRID_STYLE } from "../utils/style";
 
 export default function SearchPagination({
   pageCount = 0,
@@ -6,10 +8,17 @@ export default function SearchPagination({
   onPrev,
   onNext,
   onGoToPage,
+  showArrows = DEFAULT_SEARCH_GRID_STYLE.showArrows,
+  showDots = DEFAULT_SEARCH_GRID_STYLE.showDots,
+  navColor = DEFAULT_SEARCH_GRID_STYLE.navColor,
+  dotColor = DEFAULT_SEARCH_GRID_STYLE.dotColor,
 }) {
-  if (pageCount <= 1) {
+  if (pageCount <= 1 || (!showArrows && !showDots)) {
     return null;
   }
+
+  const arrowCss = getThemeColorCss(navColor, "white");
+  const dotCss = getThemeColorCss(dotColor, "primary-2");
 
   return (
     <div
@@ -18,40 +27,49 @@ export default function SearchPagination({
       role="navigation"
       aria-label="Results pagination"
     >
-      <button
-        type="button"
-        onClick={onPrev}
-        disabled={activePageIndex === 0}
-        aria-label="Previous page"
-        className="cursor-pointer rounded-full border-2 border-white p-2 transition hover:bg-white/20 disabled:cursor-not-allowed disabled:opacity-40"
-      >
-        <ArrowLeftIcon size={18} weight="bold" className="text-white" />
-      </button>
+      {showArrows ? (
+        <button
+          type="button"
+          onClick={onPrev}
+          disabled={activePageIndex === 0}
+          aria-label="Previous page"
+          className="cursor-pointer rounded-full border-2 p-2 transition disabled:cursor-not-allowed disabled:opacity-40"
+          style={{ borderColor: arrowCss }}
+        >
+          <ArrowLeftIcon size={18} weight="bold" style={{ color: arrowCss }} />
+        </button>
+      ) : null}
 
-      <div className="flex gap-2">
-        {Array.from({ length: pageCount }, (_, index) => (
-          <button
-            key={`page-dot-${index}`}
-            type="button"
-            onClick={() => onGoToPage(index)}
-            aria-label={`Go to page ${index + 1}`}
-            aria-current={index === activePageIndex ? "page" : undefined}
-            className={`h-2 rounded-full bg-primary-2 transition-all duration-300 ${
-              index === activePageIndex ? "w-5" : "w-2 opacity-40"
-            }`}
-          />
-        ))}
-      </div>
+      {showDots ? (
+        <div className="flex gap-2">
+          {Array.from({ length: pageCount }, (_, index) => (
+            <button
+              key={`page-dot-${index}`}
+              type="button"
+              onClick={() => onGoToPage(index)}
+              aria-label={`Go to page ${index + 1}`}
+              aria-current={index === activePageIndex ? "page" : undefined}
+              className={`h-2 rounded-full transition-all duration-300 ${
+                index === activePageIndex ? "w-5" : "w-2 opacity-40"
+              }`}
+              style={{ backgroundColor: dotCss }}
+            />
+          ))}
+        </div>
+      ) : null}
 
-      <button
-        type="button"
-        onClick={onNext}
-        disabled={activePageIndex === pageCount - 1}
-        aria-label="Next page"
-        className="cursor-pointer rounded-full border-2 border-white p-2 transition hover:bg-white/20 disabled:cursor-not-allowed disabled:opacity-40"
-      >
-        <ArrowRightIcon size={18} weight="bold" className="text-white" />
-      </button>
+      {showArrows ? (
+        <button
+          type="button"
+          onClick={onNext}
+          disabled={activePageIndex === pageCount - 1}
+          aria-label="Next page"
+          className="cursor-pointer rounded-full border-2 p-2 transition disabled:cursor-not-allowed disabled:opacity-40"
+          style={{ borderColor: arrowCss }}
+        >
+          <ArrowRightIcon size={18} weight="bold" style={{ color: arrowCss }} />
+        </button>
+      ) : null}
     </div>
   );
 }

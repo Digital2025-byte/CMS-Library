@@ -74,3 +74,46 @@ export function getGridInfoContent(data, lang = "en") {
     hasContent: Boolean(title || description || items.length),
   };
 }
+
+export function getGridInfoEditorContent(data, lang = "en") {
+  const content = getGridInfoContent(data, lang);
+
+  return {
+    title: content.title || "",
+    description: content.description || "",
+    items: content.items.map((item) => ({
+      name: item.name || "",
+      city: item.city || "",
+      address: item.address || "",
+      phone: item.phone || "",
+      email: item.email || "",
+      workingHoursText: item.workingHoursText || "",
+    })),
+  };
+}
+
+export function wrapGridInfoContent(content = {}, lang = "en") {
+  return {
+    translations: [
+      {
+        languageCode: lang,
+        content: {
+          title: content.title || "",
+          description: content.description || "",
+          branches: (Array.isArray(content.items) ? content.items : []).map(
+            (item) => ({
+              grid: {
+                name: item?.name || "",
+                city: item?.city || "",
+                address: item?.address || "",
+                phone: item?.phone || "",
+                email: item?.email || "",
+                workingHoursText: item?.workingHoursText || "",
+              },
+            })
+          ),
+        },
+      },
+    ],
+  };
+}

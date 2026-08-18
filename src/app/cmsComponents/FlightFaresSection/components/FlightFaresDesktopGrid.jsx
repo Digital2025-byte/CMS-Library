@@ -10,7 +10,7 @@ const DESKTOP_LAYOUT = [
   { index: 5, size: "SMALL" },
 ];
 
-export default function FlightFaresDesktopGrid({ cities, lang }) {
+export default function FlightFaresDesktopGrid({ cities, lang, ...cardProps }) {
   if (!Array.isArray(cities) || cities.length === 0) {
     return null;
   }
@@ -28,6 +28,7 @@ export default function FlightFaresDesktopGrid({ cities, lang }) {
             item={item}
             imageIndex={getImageIndexForPosition(cities, index)}
             size={size}
+            {...cardProps}
           />
         );
       })}

@@ -46,3 +46,8 @@ export function getIconSrc(icon) {
   const iconKey = mapIconToKey(icon);
   return iconKey && ICON_SRC[iconKey] ? ICON_SRC[iconKey] : "";
 }
+
+export const ICON_OPTIONS = Object.keys(ICON_SRC).map((value) => ({
+  value,
+  label: value.replace(/_/g, " "),
+}));

@@ -88,3 +88,89 @@ export function getSearchWithTabsAndGridContent(data, lang = "en") {
     hasContent: Boolean(gridTitle || sights.length || tags.length),
   };
 }
+
+export function isUsableImageSrc(src) {
+  const value = String(src || "").trim();
+  if (!value) {
+    return false;
+  }
+
+  if (value.startsWith("/") && !value.startsWith("//")) {
+    return true;
+  }
+
+  try {
+    const url = new URL(value.startsWith("//") ? `https:${value}` : value);
+    return url.protocol === "http:" || url.protocol === "https:";
+  } catch {
+    return false;
+  }
+}
+
+export function getSearchWithTabsAndGridEditorContent(data, lang = "en") {
+  const content = getSearchWithTabsAndGridContent(data, lang);
+
+  return {
+    searchPlaceholder: content.searchPlaceholder || "",
+    gridTitle: content.gridTitle || "",
+    emptyMessage: content.emptyMessage || "",
+    allLabel: content.allLabel || "",
+    exploreLabel: content.exploreLabel || "",
+    exploreMagazineLabel: content.exploreMagazineLabel || "",
+    tags: content.tags.map((tag) => ({
+      name: tag.name || "",
+      icon: tag.icon || "",
+    })),
+    items: content.sights.map((sight) => ({
+      name: sight.name || "",
+      cityName: sight.cityName || "",
+      tag: sight.tag || "",
+      slug: sight.slug || "",
+      description: sight.description || "",
+      imageUrl: sight.image || "",
+    })),
+  };
+}
+
+export function wrapSearchWithTabsAndGridContent(content = {}, lang = "en") {
+  return {
+    translations: [
+      {
+        languageCode: lang,
+        content: {
+          Search: {
+            placeholder: content.searchPlaceholder || "",
+          },
+          PhotoTileGrid: {
+            title: content.gridTitle || "",
+          },
+          tabbedNavigation: {
+            tags: (Array.isArray(content.tags) ? content.tags : []).map(
+              (tag) => ({
+                name: tag?.name || "",
+                Icon: tag?.icon || "",
+              })
+            ),
+          },
+          photoTileGrid: {
+            sights: (Array.isArray(content.items) ? content.items : []).map(
+              (item, index) => ({
+                id: item?.id || `sight-${index + 1}`,
+                name: item?.name || "",
+                cityName: item?.cityName || "",
+                tag: item?.tag || "",
+                slug: item?.slug || "",
+                description: item?.description || "",
+                image: item?.imageUrl || "",
+              })
+            ),
+          },
+          emptyMessage: content.emptyMessage || "",
+          allLabel: content.allLabel || "",
+          exploreLabel: content.exploreLabel || "",
+          exploreMagazineLabel: content.exploreMagazineLabel || "",
+        },
+      },
+    ],
+  };
+}
