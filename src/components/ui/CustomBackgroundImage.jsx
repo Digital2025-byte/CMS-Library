@@ -14,6 +14,7 @@ export default function CustomBackgroundImage({
   imageUrl,
   mobileImageUrl,
   className = "",
+  style,
   children,
   initialAnimation = { scale: 1 },
   animateAnimation = { scale: 1 },
@@ -35,7 +36,7 @@ export default function CustomBackgroundImage({
   const safeBgSrc = typeof bgSrc === "string" ? toCssUrl(bgSrc) : bgSrc;
 
   return (
-    <div className={`relative ${className}`}>
+    <div className={`relative ${className}`} style={style}>
       {/* Clip image/gradient only — keep children outside so backdrop-blur works */}
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
         <motion.div

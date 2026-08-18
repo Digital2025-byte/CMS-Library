@@ -34,6 +34,7 @@ export function getBannerWithCtaContent(data, lang = "en", posParams) {
       ctaLabel: "",
       ctaHref: "#",
       backgroundImage: "",
+      imageAlt: "",
       hasContent: false,
     };
   }
@@ -53,6 +54,8 @@ export function getBannerWithCtaContent(data, lang = "en", posParams) {
   const ctaSlug = content?.ctaButton?.slug || "";
   const ctaHrefRaw = content?.ctaButton?.href || "";
   const backgroundImage = content?.backgroundImage?.fileUrl || "";
+  const imageAlt =
+    content?.backgroundImage?.alt || content?.imageAlt || title || "";
   const safeBackgroundImage =
     typeof backgroundImage === "string" ? toCssUrl(backgroundImage) : backgroundImage;
 
@@ -67,6 +70,64 @@ export function getBannerWithCtaContent(data, lang = "en", posParams) {
       lang,
     }),
     backgroundImage: safeBackgroundImage,
+    imageAlt,
     hasContent: Boolean(title || description || ctaLabel || backgroundImage),
   };
+}
+
+export function getBannerWithCtaEditorContent(data, lang = "en", posParams) {
+  const content = getBannerWithCtaContent(data, lang, posParams);
+
+  return {
+    title: content.title || "",
+    description: content.description || "",
+    buttonLabel: content.ctaLabel || "",
+    buttonHref: content.ctaHref === "#" ? "" : content.ctaHref || "",
+    buttonLinkType: "internal",
+    imageUrl: content.backgroundImage || "",
+    imageAlt: content.imageAlt || "",
+  };
+}
+
+export function wrapBannerWithCtaContent(content = {}, lang = "en") {
+  return {
+    translations: [
+      {
+        languageCode: lang,
+        content: {
+          title: content.title || "",
+          description: content.description || "",
+          imageAlt: content.imageAlt || "",
+          ctaButton: {
+            content: content.buttonLabel || "",
+            label: content.buttonLabel || "",
+            href: content.buttonHref || "",
+            slug: content.buttonHref || "",
+          },
+          backgroundImage: {
+            fileUrl: content.imageUrl || "",
+            alt: content.imageAlt || content.title || "",
+          },
+        },
+      },
+    ],
+  };
+}
+
+export function isUsableImageSrc(src) {
+  const value = String(src || "").trim();
+  if (!value) {
+    return false;
+  }
+
+  if (value.startsWith("/") && !value.startsWith("//")) {
+    return true;
+  }
+
+  try {
+    const url = new URL(value.startsWith("//") ? `https:${value}` : value);
+    return url.protocol === "http:" || url.protocol === "https:";
+  } catch {
+    return false;
+  }
 }

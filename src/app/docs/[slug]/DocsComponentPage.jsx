@@ -21,6 +21,7 @@ import DestinationsCitiesExamples from "@/app/cmsComponents/DestinationsCities/d
 import DualImageTextExamples from "@/app/cmsComponents/DualImageText/docs/DualImageTextExamples";
 import FullHeightHeaderWithTextExamples from "@/app/cmsComponents/FullHeightHeaderWithText/docs/FullHeightHeaderWithTextExamples";
 import HeaderWithCityInfoExamples from "@/app/cmsComponents/HeaderWithCityInfo/docs/HeaderWithCityInfoExamples";
+import HeaderWithThreeImageExamples from "@/app/cmsComponents/HeaderWithThreeImage/docs/HeaderWithThreeImageExamples";
 import OppositeScrollExamples from "@/app/cmsComponents/ImageCarouselsWithOppositeScrollDirections/docs/OppositeScrollExamples";
 import RelatedContentCarouselExamples from "@/app/cmsComponents/RelatedContentCarousel/docs/RelatedContentCarouselExamples";
 import ServiceCardsSliderExamples from "@/app/cmsComponents/ServiceCardsSlider/docs/ServiceCardsSliderExamples";
@@ -80,6 +81,9 @@ const DOCS_EXAMPLES = {
   ),
   "header-with-city-info": (ctx, label) => (
     <HeaderWithCityInfoExamples ctx={ctx} name={label} />
+  ),
+  "header-with-three-image": (ctx, label) => (
+    <HeaderWithThreeImageExamples ctx={ctx} name={label} />
   ),
   "banner-with-cta": (ctx, label) => (
     <BannerWithCtaExamples ctx={ctx} name={label} />

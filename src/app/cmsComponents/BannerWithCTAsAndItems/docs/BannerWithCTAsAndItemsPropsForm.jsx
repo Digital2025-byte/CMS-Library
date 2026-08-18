@@ -1,0 +1,183 @@
+import {
+  InspectorChoose,
+  InspectorColor,
+  InspectorSection,
+  InspectorSwitch,
+  InspectorTabs,
+  applyInspectorReset,
+} from "@/components/inspector";
+import BannerWithCTAsAndItemsContentForm from "./BannerWithCTAsAndItemsContentForm";
+import {
+  BANNER_WITH_CTAS_STYLE_RESET_KEYS,
+  DEFAULT_BANNER_WITH_CTAS_STYLE,
+  TITLE_ALIGN_OPTIONS,
+} from "../utils/style";
+
+function BannerWithCTAsAndItemsStyleForm({ style, onChange }) {
+  const update = (key, value) => onChange({ ...style, [key]: value });
+  const toggle = (key) => onChange({ ...style, [key]: !style[key] });
+  const reset = (keys) =>
+    onChange(applyInspectorReset(style, DEFAULT_BANNER_WITH_CTAS_STYLE, keys));
+
+  return (
+    <div>
+      <InspectorSection
+        title="Layout"
+        onReset={() => reset(BANNER_WITH_CTAS_STYLE_RESET_KEYS.layout)}
+      >
+        <InspectorSwitch
+          checked={style.showTitle}
+          onChange={() => toggle("showTitle")}
+          label="Title"
+          hint="Show the heading"
+        />
+        <InspectorSwitch
+          checked={style.showDescription}
+          onChange={() => toggle("showDescription")}
+          label="Description"
+          hint="Show text under the title"
+        />
+        <InspectorSwitch
+          checked={style.showItems}
+          onChange={() => toggle("showItems")}
+          label="Items"
+          hint="Feature list with checkmarks"
+        />
+      </InspectorSection>
+
+      {style.showTitle || style.showDescription ? (
+        <InspectorSection
+          title="Title"
+          onReset={() => reset(BANNER_WITH_CTAS_STYLE_RESET_KEYS.title)}
+        >
+          {style.showTitle ? (
+            <>
+              <InspectorChoose
+                label="Alignment"
+                name="titleAlign"
+                value={style.titleAlign}
+                options={TITLE_ALIGN_OPTIONS}
+                onChange={(value) => update("titleAlign", value)}
+              />
+              <InspectorColor
+                label="Title color"
+                value={style.titleColor}
+                onChange={(value) => update("titleColor", value)}
+              />
+            </>
+          ) : null}
+          {style.showDescription ? (
+            <InspectorColor
+              label="Description color"
+              value={style.descriptionColor}
+              onChange={(value) => update("descriptionColor", value)}
+            />
+          ) : null}
+        </InspectorSection>
+      ) : null}
+
+      <InspectorSection
+        title="Banner"
+        onReset={() => reset(BANNER_WITH_CTAS_STYLE_RESET_KEYS.banner)}
+      >
+        <InspectorSwitch
+          checked={style.showHeroImage}
+          onChange={() => toggle("showHeroImage")}
+          label="Image"
+          hint="Background photo"
+        />
+        <InspectorSwitch
+          checked={style.showOverlay}
+          onChange={() => toggle("showOverlay")}
+          label="Wash"
+          hint="Colored fade over the photo"
+        />
+        {style.showOverlay ? (
+          <InspectorColor
+            label="Wash color"
+            value={style.overlayColor}
+            onChange={(value) => update("overlayColor", value)}
+          />
+        ) : null}
+      </InspectorSection>
+
+      {style.showItems ? (
+        <InspectorSection
+          title="Items"
+          onReset={() => reset(BANNER_WITH_CTAS_STYLE_RESET_KEYS.items)}
+        >
+          <InspectorColor
+            label="Item color"
+            value={style.itemColor}
+            onChange={(value) => update("itemColor", value)}
+          />
+        </InspectorSection>
+      ) : null}
+
+      <InspectorSection
+        title="Button"
+        onReset={() => reset(BANNER_WITH_CTAS_STYLE_RESET_KEYS.button)}
+      >
+        <InspectorSwitch
+          checked={style.showPrimaryButton}
+          onChange={() => toggle("showPrimaryButton")}
+          label="Primary"
+          hint="Solid call-to-action"
+        />
+        <InspectorSwitch
+          checked={style.showSecondaryButton}
+          onChange={() => toggle("showSecondaryButton")}
+          label="Secondary"
+          hint="Outline call-to-action"
+        />
+        {style.showPrimaryButton ? (
+          <>
+            <InspectorColor
+              label="Primary background"
+              value={style.primaryBg}
+              onChange={(value) => update("primaryBg", value)}
+            />
+            <InspectorColor
+              label="Primary text"
+              value={style.primaryText}
+              onChange={(value) => update("primaryText", value)}
+            />
+          </>
+        ) : null}
+        {style.showSecondaryButton ? (
+          <InspectorColor
+            label="Secondary color"
+            value={style.secondaryText}
+            onChange={(value) => update("secondaryText", value)}
+          />
+        ) : null}
+      </InspectorSection>
+    </div>
+  );
+}
+
+export default function BannerWithCTAsAndItemsPropsForm({
+  content,
+  onContentChange,
+  contentDefaults,
+  style,
+  onStyleChange,
+}) {
+  return (
+    <InspectorTabs
+      content={
+        <BannerWithCTAsAndItemsContentForm
+          content={content}
+          onChange={onContentChange}
+          defaults={contentDefaults}
+        />
+      }
+      style={
+        <BannerWithCTAsAndItemsStyleForm
+          style={style}
+          onChange={onStyleChange}
+        />
+      }
+    />
+  );
+}

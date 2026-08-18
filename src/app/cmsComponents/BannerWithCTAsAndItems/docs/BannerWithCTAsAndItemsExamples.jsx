@@ -1,33 +1,53 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import BannerWithCTAsAndItems from "@/app/cmsComponents/BannerWithCTAsAndItems";
 import BannerWithCTAsAndItemsContainer from "@/app/cmsComponents/BannerWithCTAsAndItems/components/BannerWithCTAsAndItemsContainer";
+import BannerWithCTAsAndItemsPropsForm from "@/app/cmsComponents/BannerWithCTAsAndItems/docs/BannerWithCTAsAndItemsPropsForm";
+import {
+  getBannerWithCTAsAndItemsEditorContent,
+  wrapBannerWithCTAsAndItemsContent,
+} from "@/app/cmsComponents/BannerWithCTAsAndItems/utils/helpers";
+import { DEFAULT_BANNER_WITH_CTAS_STYLE } from "@/app/cmsComponents/BannerWithCTAsAndItems/utils/style";
+import {
+  InspectorFooter,
+  InspectorSubmitButton,
+  isExternalHref,
+  isInternalPage,
+  resolveEditorLink,
+} from "@/components/inspector";
 import Drawer, { useDrawer } from "@/components/ui/Drawer";
-import LayoutPropsForm from "@/components/demo/LayoutPropsForm";
 
-const CONTROLS = [
-  {
-    key: "showTitleDescription",
-    label: "showTitleDescription",
-    hint: "Title and description",
-  },
-  {
-    key: "showItems",
-    label: "showItems",
-    hint: "Feature items list block",
-  },
-  {
-    key: "showPrimaryButton",
-    label: "showPrimaryButton",
-    hint: "Primary CTA",
-  },
-  {
-    key: "showSecondaryButton",
-    label: "showSecondaryButton",
-    hint: "Secondary CTA",
-  },
-];
+function toEditorLink(href) {
+  if (!href || href === "#") {
+    return { type: "external", href: href || "" };
+  }
+  if (isExternalHref(href) || isInternalPage(href)) {
+    return resolveEditorLink(href);
+  }
+  if (String(href).startsWith("/")) {
+    return { type: "external", href };
+  }
+  return resolveEditorLink(href);
+}
+
+function toEditorContent(data, lang) {
+  const content = getBannerWithCTAsAndItemsEditorContent(
+    data,
+    lang,
+    "gb"
+  );
+  const primary = toEditorLink(content.primaryHref);
+  const secondary = toEditorLink(content.secondaryHref);
+
+  return {
+    ...content,
+    primaryHref: primary.href,
+    primaryLinkType: primary.type,
+    secondaryHref: secondary.href,
+    secondaryLinkType: secondary.type,
+  };
+}
 
 export default function BannerWithCTAsAndItemsExamples({
   ctx,
@@ -35,28 +55,40 @@ export default function BannerWithCTAsAndItemsExamples({
 }) {
   const { lang, dir, bannerWithCTAsAndItemsData } = ctx;
   const drawer = useDrawer();
-  const [flags, setFlags] = useState({
-    showTitleDescription: true,
-    showItems: true,
-    showPrimaryButton: true,
-    showSecondaryButton: true,
-  });
-  const toggle = (key) =>
-    setFlags((current) => ({ ...current, [key]: !current[key] }));
+  const [style, setStyle] = useState(DEFAULT_BANNER_WITH_CTAS_STYLE);
+  const [content, setContent] = useState(() =>
+    toEditorContent(bannerWithCTAsAndItemsData, lang)
+  );
+
+  useEffect(() => {
+    setContent(toEditorContent(bannerWithCTAsAndItemsData, lang));
+  }, [bannerWithCTAsAndItemsData, lang]);
 
   return (
     <div>
       <BannerWithCTAsAndItemsContainer lang={lang} dir={dir}>
         <BannerWithCTAsAndItems
           lang={lang}
-          data={bannerWithCTAsAndItemsData}
+          data={wrapBannerWithCTAsAndItemsContent(content, lang)}
           posParams="gb"
-          showTitleDescription={flags.showTitleDescription}
-          showItems={flags.showItems}
-          showPrimaryButton={flags.showPrimaryButton}
-          showSecondaryButton={flags.showSecondaryButton}
+          showTitle={style.showTitle}
+          showDescription={style.showDescription}
+          showItems={style.showItems}
+          showPrimaryButton={style.showPrimaryButton}
+          showSecondaryButton={style.showSecondaryButton}
+          showHeroImage={style.showHeroImage}
+          showOverlay={style.showOverlay}
+          titleAlign={style.titleAlign}
+          titleColor={style.titleColor}
+          descriptionColor={style.descriptionColor}
+          overlayColor={style.overlayColor}
+          itemColor={style.itemColor}
+          primaryBg={style.primaryBg}
+          primaryText={style.primaryText}
+          secondaryText={style.secondaryText}
         />
       </BannerWithCTAsAndItemsContainer>
+
       <Drawer
         isOpen={drawer.isOpen}
         onClose={drawer.close}
@@ -65,12 +97,22 @@ export default function BannerWithCTAsAndItemsExamples({
         panelRef={drawer.panelRef}
         titleId={drawer.titleId}
         title={name}
+        footer={
+          <InspectorFooter>
+            <InspectorSubmitButton
+              onClick={() =>
+                console.log("BannerWithCTAsAndItems", { content, style })
+              }
+            />
+          </InspectorFooter>
+        }
       >
-        <LayoutPropsForm
-          legend={`${name} props`}
-          controls={CONTROLS}
-          flags={flags}
-          toggle={toggle}
+        <BannerWithCTAsAndItemsPropsForm
+          content={content}
+          onContentChange={setContent}
+          contentDefaults={toEditorContent(bannerWithCTAsAndItemsData, lang)}
+          style={style}
+          onStyleChange={setStyle}
         />
       </Drawer>
     </div>

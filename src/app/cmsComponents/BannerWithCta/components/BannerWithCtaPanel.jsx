@@ -1,7 +1,14 @@
+import { getThemeColorCss } from "@/styles/themeColors";
+import { isUsableImageSrc } from "../utils/helpers";
+import {
+  BANNER_RADIUS_CLASS,
+  DEFAULT_BANNER_WITH_CTA_STYLE,
+} from "../utils/style";
 import BannerWithCtaContent from "./BannerWithCtaContent";
 
-const TITLE_GRADIENT =
-  "linear-gradient(90deg, rgba(var(--primary-1-rgb), 0.92) 0%, rgba(var(--primary-1-rgb), 0.85) 20%, rgba(var(--primary-1-rgb), 0.6) 45%, rgba(var(--primary-1-rgb), 0.2) 70%, rgba(var(--primary-1-rgb), 0) 100%)";
+function titleWash(overlayCss) {
+  return `linear-gradient(90deg, color-mix(in srgb, ${overlayCss} 92%, transparent) 0%, color-mix(in srgb, ${overlayCss} 85%, transparent) 20%, color-mix(in srgb, ${overlayCss} 60%, transparent) 45%, color-mix(in srgb, ${overlayCss} 20%, transparent) 70%, transparent 100%)`;
+}
 
 export default function BannerWithCtaPanel({
   title,
@@ -9,25 +16,44 @@ export default function BannerWithCtaPanel({
   ctaLabel,
   ctaHref,
   backgroundImage,
-  showTitleDescription = true,
-  showButton = true,
+  imageAlt = "",
+  showTitle = DEFAULT_BANNER_WITH_CTA_STYLE.showTitle,
+  showDescription = DEFAULT_BANNER_WITH_CTA_STYLE.showDescription,
+  showButton = DEFAULT_BANNER_WITH_CTA_STYLE.showButton,
+  showHeroImage = DEFAULT_BANNER_WITH_CTA_STYLE.showHeroImage,
+  showOverlay = DEFAULT_BANNER_WITH_CTA_STYLE.showOverlay,
+  titleAlign = DEFAULT_BANNER_WITH_CTA_STYLE.titleAlign,
+  titleColor = DEFAULT_BANNER_WITH_CTA_STYLE.titleColor,
+  descriptionColor = DEFAULT_BANNER_WITH_CTA_STYLE.descriptionColor,
+  overlayColor = DEFAULT_BANNER_WITH_CTA_STYLE.overlayColor,
+  bannerRadius = DEFAULT_BANNER_WITH_CTA_STYLE.bannerRadius,
+  buttonBg = DEFAULT_BANNER_WITH_CTA_STYLE.buttonBg,
+  buttonText = DEFAULT_BANNER_WITH_CTA_STYLE.buttonText,
 }) {
+  const overlayCss = getThemeColorCss(overlayColor, "primary-1");
+  const heroSrc =
+    showHeroImage && isUsableImageSrc(backgroundImage) ? backgroundImage : "";
+  const radiusClass =
+    BANNER_RADIUS_CLASS[bannerRadius] ?? BANNER_RADIUS_CLASS.lg;
   const backgroundLayers = [
-    title ? TITLE_GRADIENT : null,
-    backgroundImage ? `url(${backgroundImage})` : null,
+    showOverlay ? titleWash(overlayCss) : null,
+    heroSrc ? `url(${heroSrc})` : null,
   ]
     .filter(Boolean)
     .join(", ");
 
   return (
     <div
-      className="flex min-h-62.5 w-full items-center rounded-2xl md:min-h-80 lg:min-h-103.75"
+      className={`flex min-h-62.5 w-full items-center md:min-h-80 lg:min-h-103.75 ${radiusClass}`}
+      aria-label={imageAlt || title || undefined}
       style={{
         backgroundImage: backgroundLayers || undefined,
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
-        backgroundColor: backgroundImage ? undefined : "var(--color-main)",
+        backgroundColor: heroSrc
+          ? undefined
+          : overlayCss,
       }}
     >
       <BannerWithCtaContent
@@ -35,8 +61,14 @@ export default function BannerWithCtaPanel({
         description={description}
         ctaLabel={ctaLabel}
         ctaHref={ctaHref}
-        showTitleDescription={showTitleDescription}
+        showTitle={showTitle}
+        showDescription={showDescription}
         showButton={showButton}
+        titleAlign={titleAlign}
+        titleColor={titleColor}
+        descriptionColor={descriptionColor}
+        buttonBg={buttonBg}
+        buttonText={buttonText}
       />
     </div>
   );

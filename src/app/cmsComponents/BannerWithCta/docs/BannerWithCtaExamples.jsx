@@ -1,23 +1,46 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import BannerWithCta from "@/app/cmsComponents/BannerWithCta";
 import BannerWithCtaContainer from "@/app/cmsComponents/BannerWithCta/components/BannerWithCtaContainer";
+import BannerWithCtaPropsForm from "@/app/cmsComponents/BannerWithCta/docs/BannerWithCtaPropsForm";
+import {
+  getBannerWithCtaEditorContent,
+  wrapBannerWithCtaContent,
+} from "@/app/cmsComponents/BannerWithCta/utils/helpers";
+import { DEFAULT_BANNER_WITH_CTA_STYLE } from "@/app/cmsComponents/BannerWithCta/utils/style";
+import {
+  InspectorFooter,
+  InspectorSubmitButton,
+  isExternalHref,
+  isInternalPage,
+  resolveEditorLink,
+} from "@/components/inspector";
 import Drawer, { useDrawer } from "@/components/ui/Drawer";
-import LayoutPropsForm from "@/components/demo/LayoutPropsForm";
 
-const CONTROLS = [
-  {
-    key: "showTitleDescription",
-    label: "showTitleDescription",
-    hint: "Title and description",
-  },
-  {
-    key: "showButton",
-    label: "showButton",
-    hint: "CTA button",
-  },
-];
+function toEditorLink(href) {
+  if (!href || href === "#") {
+    return { type: "external", href: href || "" };
+  }
+  if (isExternalHref(href) || isInternalPage(href)) {
+    return resolveEditorLink(href);
+  }
+  if (String(href).startsWith("/")) {
+    return { type: "external", href };
+  }
+  return resolveEditorLink(href);
+}
+
+function toEditorContent(data, lang) {
+  const content = getBannerWithCtaEditorContent(data, lang, "gb");
+  const link = toEditorLink(content.buttonHref);
+
+  return {
+    ...content,
+    buttonHref: link.href,
+    buttonLinkType: link.type,
+  };
+}
 
 export default function BannerWithCtaExamples({
   ctx,
@@ -25,24 +48,43 @@ export default function BannerWithCtaExamples({
 }) {
   const { lang, dir, bannerWithCtaData } = ctx;
   const drawer = useDrawer();
-  const [flags, setFlags] = useState({
-    showTitleDescription: true,
-    showButton: true,
-  });
-  const toggle = (key) =>
-    setFlags((current) => ({ ...current, [key]: !current[key] }));
+  const [style, setStyle] = useState(DEFAULT_BANNER_WITH_CTA_STYLE);
+  const [content, setContent] = useState(() =>
+    toEditorContent(bannerWithCtaData, lang)
+  );
+
+  useEffect(() => {
+    setContent(toEditorContent(bannerWithCtaData, lang));
+  }, [bannerWithCtaData, lang]);
 
   return (
     <div>
-      <BannerWithCtaContainer lang={lang} dir={dir}>
+      <BannerWithCtaContainer
+        lang={lang}
+        dir={dir}
+        background={style.sectionBg}
+        showBackground={style.showSectionBg}
+        padding={style.sectionPadding}
+      >
         <BannerWithCta
           lang={lang}
-          data={bannerWithCtaData}
+          data={wrapBannerWithCtaContent(content, lang)}
           posParams="gb"
-          showTitleDescription={flags.showTitleDescription}
-          showButton={flags.showButton}
+          showTitle={style.showTitle}
+          showDescription={style.showDescription}
+          showButton={style.showButton}
+          showHeroImage={style.showHeroImage}
+          showOverlay={style.showOverlay}
+          titleAlign={style.titleAlign}
+          titleColor={style.titleColor}
+          descriptionColor={style.descriptionColor}
+          overlayColor={style.overlayColor}
+          bannerRadius={style.bannerRadius}
+          buttonBg={style.buttonBg}
+          buttonText={style.buttonText}
         />
       </BannerWithCtaContainer>
+
       <Drawer
         isOpen={drawer.isOpen}
         onClose={drawer.close}
@@ -51,12 +93,20 @@ export default function BannerWithCtaExamples({
         panelRef={drawer.panelRef}
         titleId={drawer.titleId}
         title={name}
+        footer={
+          <InspectorFooter>
+            <InspectorSubmitButton
+              onClick={() => console.log("BannerWithCta", { content, style })}
+            />
+          </InspectorFooter>
+        }
       >
-        <LayoutPropsForm
-          legend={`${name} props`}
-          controls={CONTROLS}
-          flags={flags}
-          toggle={toggle}
+        <BannerWithCtaPropsForm
+          content={content}
+          onContentChange={setContent}
+          contentDefaults={toEditorContent(bannerWithCtaData, lang)}
+          style={style}
+          onStyleChange={setStyle}
         />
       </Drawer>
     </div>
