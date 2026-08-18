@@ -1,14 +1,19 @@
 import { CaretDownIcon, CaretUpIcon, TrashIcon } from "@phosphor-icons/react";
 import { typography } from "@/styles/typography";
-import { inspectorIconHoverClass } from "../constants";
+import { inspectorControlClass, inspectorIconHoverClass } from "../constants";
 
 export default function InspectorRepeaterItem({
   label,
   open,
   onToggle,
   onRemove,
+  titleValue,
+  onTitleChange,
+  titlePlaceholder = "Tab title",
   children,
 }) {
+  const editable = typeof onTitleChange === "function";
+
   return (
     <div className="overflow-hidden rounded-sm border border-200">
       <div className="group flex items-center bg-50">
@@ -16,7 +21,10 @@ export default function InspectorRepeaterItem({
           type="button"
           onClick={onToggle}
           aria-expanded={open}
-          className="flex min-w-0 flex-1 cursor-pointer items-center gap-2 px-3 py-2 text-start hover:bg-100"
+          aria-label={editable ? `Toggle ${titleValue || label}` : undefined}
+          className={`flex cursor-pointer items-center ${
+            editable ? "px-3 py-2" : "min-w-0 flex-1 gap-2 px-3 py-2 text-start hover:bg-100"
+          }`}
         >
           {open ? (
             <CaretUpIcon
@@ -31,10 +39,24 @@ export default function InspectorRepeaterItem({
               aria-hidden
             />
           )}
-          <span className={`${typography.caption} truncate font-medium text-main`}>
-            {label}
-          </span>
+          {editable ? null : (
+            <span
+              className={`${typography.caption} truncate font-medium text-main`}
+            >
+              {label}
+            </span>
+          )}
         </button>
+        {editable ? (
+          <input
+            type="text"
+            value={titleValue || ""}
+            placeholder={titlePlaceholder}
+            aria-label={titlePlaceholder}
+            onChange={(event) => onTitleChange(event.target.value)}
+            className={`${inspectorControlClass} mx-1 my-1 min-w-0 flex-1 py-1.5`}
+          />
+        ) : null}
         <button
           type="button"
           onClick={onRemove}

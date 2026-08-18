@@ -8,6 +8,9 @@ export default function MealsDescriptionSections({
   onToggleSection,
   panelId,
   labelledBy,
+  wide = false,
+  notesColor,
+  accordionStyle,
 }) {
   if (!sections.length && !notes.length) {
     return null;
@@ -15,7 +18,7 @@ export default function MealsDescriptionSections({
 
   return (
     <div
-      className="lg:col-span-8"
+      className={wide ? "lg:col-span-12" : "lg:col-span-8"}
       id={panelId}
       role="tabpanel"
       aria-labelledby={labelledBy}
@@ -27,9 +30,10 @@ export default function MealsDescriptionSections({
           sectionIndex={sectionIndex}
           isOpen={isSectionOpen?.(sectionIndex)}
           onToggle={() => onToggleSection?.(sectionIndex)}
+          accordionStyle={accordionStyle}
         />
       ))}
-      <MealsDescriptionNotes notes={notes} />
+      <MealsDescriptionNotes notes={notes} notesColor={notesColor} />
     </div>
   );
 }

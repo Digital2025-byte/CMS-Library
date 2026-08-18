@@ -100,3 +100,99 @@ export function getMealsDescriptionTabbedContent(data, lang = "en") {
     hasContent: Boolean(title || tabs.length),
   };
 }
+
+export function isUsableImageSrc(src) {
+  const value = String(src || "").trim();
+  if (!value) {
+    return false;
+  }
+
+  if (value.startsWith("/") && !value.startsWith("//")) {
+    return true;
+  }
+
+  try {
+    const url = new URL(value.startsWith("//") ? `https:${value}` : value);
+    return url.protocol === "http:" || url.protocol === "https:";
+  } catch {
+    return false;
+  }
+}
+
+export function getMealsDescriptionTabbedEditorContent(data, lang = "en") {
+  const content = getMealsDescriptionTabbedContent(data, lang);
+
+  return {
+    title: content.title || "",
+    notes: (content.notes || []).map((note) => ({
+      text: note || "",
+    })),
+    items: (content.tabs || []).map((tab) => ({
+      label: tab.label || "",
+      imageUrl: tab.image?.fileUrl || "",
+      imageAlt: tab.image?.alt || "",
+      sections: (tab.sections || []).map((section) => ({
+        sectionTitle: section.sectionTitle || "",
+        items: (section.items || []).map((item) => ({
+          title: item.title || "",
+          description: item.description || "",
+        })),
+        groups: (section.groups || []).map((group) => ({
+          title: group.title || "",
+          items: (group.items || []).map((item) => ({
+            title: item.title || "",
+            description: item.description || "",
+          })),
+        })),
+      })),
+    })),
+  };
+}
+
+export function wrapMealsDescriptionTabbedContent(content = {}, lang = "en") {
+  return {
+    translations: [
+      {
+        languageCode: lang,
+        content: {
+          title: content.title || "",
+          notes: (Array.isArray(content.notes) ? content.notes : [])
+            .map((note) => (typeof note === "string" ? note : note?.text || ""))
+            .filter(Boolean),
+          tabs: (Array.isArray(content.items) ? content.items : []).map(
+            (tab) => ({
+              label: tab?.label || "",
+              image: {
+                fileUrl: tab?.imageUrl || "",
+                alt: tab?.imageAlt || tab?.label || "",
+              },
+              sections: (Array.isArray(tab?.sections) ? tab.sections : []).map(
+                (section) => ({
+                  sectionTitle: section?.sectionTitle || "",
+                  items: (Array.isArray(section?.items) ? section.items : []).map(
+                    (item) => ({
+                      title: item?.title || "",
+                      description: item?.description || "",
+                    })
+                  ),
+                  groups: (Array.isArray(section?.groups)
+                    ? section.groups
+                    : []
+                  ).map((group) => ({
+                    title: group?.title || "",
+                    items: (Array.isArray(group?.items) ? group.items : []).map(
+                      (item) => ({
+                        title: item?.title || "",
+                        description: item?.description || "",
+                      })
+                    ),
+                  })),
+                })
+              ),
+            })
+          ),
+        },
+      },
+    ],
+  };
+}

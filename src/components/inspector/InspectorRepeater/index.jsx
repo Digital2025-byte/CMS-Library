@@ -10,6 +10,8 @@ export default function InspectorRepeater({
   createItem,
   itemLabel = (_item, index) => `Item ${index + 1}`,
   addLabel = "Add Item",
+  titleKey,
+  titlePlaceholder = "Tab title",
   children,
 }) {
   const repeater = useRepeater({ items, onChange, createItem });
@@ -23,6 +25,13 @@ export default function InspectorRepeater({
           open={repeater.isOpen(index)}
           onToggle={() => repeater.toggleItem(index)}
           onRemove={() => repeater.removeItem(index)}
+          titleValue={titleKey ? item?.[titleKey] || "" : undefined}
+          onTitleChange={
+            titleKey
+              ? (value) => repeater.updateItem(index, titleKey, value)
+              : undefined
+          }
+          titlePlaceholder={titlePlaceholder}
         >
           {children(item, {
             index,

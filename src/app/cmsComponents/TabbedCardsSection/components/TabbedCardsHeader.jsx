@@ -1,23 +1,43 @@
 import { typography } from "@/styles/typography";
+import { getThemeColorCss } from "@/styles/themeColors";
+import {
+  DEFAULT_TABBED_CARDS_STYLE,
+  TITLE_ALIGN_CLASS,
+} from "../utils/style";
 
-export default function TabbedCardsHeader({ title, subtitle }) {
-  if (!title && !subtitle) {
+export default function TabbedCardsHeader({
+  title,
+  subtitle,
+  showTitle = DEFAULT_TABBED_CARDS_STYLE.showTitle,
+  showDescription = DEFAULT_TABBED_CARDS_STYLE.showDescription,
+  titleAlign = DEFAULT_TABBED_CARDS_STYLE.titleAlign,
+  titleColor = DEFAULT_TABBED_CARDS_STYLE.titleColor,
+  descriptionColor = DEFAULT_TABBED_CARDS_STYLE.descriptionColor,
+}) {
+  const showHeading = showTitle && title;
+  const showCopy = showDescription && subtitle;
+
+  if (!showHeading && !showCopy) {
     return null;
   }
 
+  const alignClass = TITLE_ALIGN_CLASS[titleAlign] ?? TITLE_ALIGN_CLASS.center;
+
   return (
-    <div className="mb-5 flex flex-col items-center justify-center text-center">
+    <div className={`mb-5 flex flex-col justify-center ${alignClass}`}>
       <div className="max-w-2xl">
-        {title ? (
+        {showHeading ? (
           <h2
-            className={`${typography.sectionTitle} font-semibold text-primary-1`}
+            className={`${typography.sectionTitle} font-semibold wrap-break-word`}
+            style={{ color: getThemeColorCss(titleColor, "primary-1") }}
           >
             {title}
           </h2>
         ) : null}
-        {subtitle ? (
+        {showCopy ? (
           <p
-            className={`${typography.sectionDescription} mt-2 text-primary-1`}
+            className={`${typography.sectionDescription} mt-2 wrap-break-word`}
+            style={{ color: getThemeColorCss(descriptionColor, "primary-1") }}
           >
             {subtitle}
           </p>

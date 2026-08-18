@@ -31,6 +31,8 @@ import OppositeScrollExamples from "@/app/cmsComponents/ImageCarouselsWithOpposi
 import RelatedContentCarouselExamples from "@/app/cmsComponents/RelatedContentCarousel/docs/RelatedContentCarouselExamples";
 import ServiceCardsSliderExamples from "@/app/cmsComponents/ServiceCardsSlider/docs/ServiceCardsSliderExamples";
 import SliderExamples from "@/app/cmsComponents/Slider/docs/SliderExamples";
+import MealsDescriptionTabbedExamples from "@/app/cmsComponents/MealsDescriptionTabbed/docs/MealsDescriptionTabbedExamples";
+import TabbedCardsSectionExamples from "@/app/cmsComponents/TabbedCardsSection/docs/TabbedCardsSectionExamples";
 import ThreeDSliderExamples from "@/app/cmsComponents/ThreeDSlider/docs/ThreeDSliderExamples";
 import OnBoardImageRingExamples from "@/app/cmsComponents/OnBoardImageRing/docs/OnBoardImageRingExamples";
 import { COMPONENT_NAV_ITEMS } from "@/components/ui/ComponentNav";
@@ -108,6 +110,12 @@ const DOCS_EXAMPLES = {
   ),
   "flight-fares-section": (ctx, label) => (
     <FlightFaresSectionExamples ctx={ctx} name={label} />
+  ),
+  "tabbed-cards-section": (ctx, label) => (
+    <TabbedCardsSectionExamples ctx={ctx} name={label} />
+  ),
+  "meals-description-tabbed": (ctx, label) => (
+    <MealsDescriptionTabbedExamples ctx={ctx} name={label} />
   ),
 };
 

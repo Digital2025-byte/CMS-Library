@@ -3,14 +3,17 @@
 import { useId } from "react";
 import { CaretDownIcon, CaretUpIcon } from "@phosphor-icons/react";
 import { typography } from "@/styles/typography";
+import { getThemeColorCss } from "@/styles/themeColors";
 import MealsDescriptionGroup from "./MealsDescriptionGroup";
 import MealsDescriptionItem from "./MealsDescriptionItem";
+import { CARD_RADIUS_CLASS, DEFAULT_MEALS_TABBED_STYLE } from "../utils/style";
 
 export default function MealsDescriptionSection({
   section,
   sectionIndex = 0,
   isOpen = true,
   onToggle,
+  accordionStyle = {},
 }) {
   const reactId = useId();
   const panelId = `${reactId}-panel`;
@@ -24,18 +27,37 @@ export default function MealsDescriptionSection({
   const items = Array.isArray(section.items) ? section.items : [];
   const hasGroups = groups.length > 0;
   const hasBody = hasGroups || items.length > 0;
+  const radius =
+    CARD_RADIUS_CLASS[accordionStyle.accordionRadius] ??
+    CARD_RADIUS_CLASS[DEFAULT_MEALS_TABBED_STYLE.accordionRadius];
+  const headerBgCss = getThemeColorCss(
+    accordionStyle.headerBg || DEFAULT_MEALS_TABBED_STYLE.headerBg,
+    "primary-1"
+  );
+  const headerTextCss = getThemeColorCss(
+    accordionStyle.headerText || DEFAULT_MEALS_TABBED_STYLE.headerText,
+    "white"
+  );
+  const bodyBgCss = getThemeColorCss(
+    accordionStyle.bodyBg || DEFAULT_MEALS_TABBED_STYLE.bodyBg,
+    "100"
+  );
 
   return (
-    <div className="mb-3 overflow-hidden rounded-md shadow-xs">
+    <div className={`mb-3 overflow-hidden shadow-xs ${radius}`}>
       <button
         type="button"
         id={headerId}
         aria-expanded={isOpen}
         aria-controls={panelId}
         onClick={onToggle}
-        className="cursor-pointer flex min-h-11 w-full items-center justify-between gap-3 bg-primary-1 px-4 py-3 text-start text-white transition-colors hover:bg-primary-1/95"
+        className="cursor-pointer flex min-h-11 w-full items-center justify-between gap-3 px-4 py-3 text-start transition-colors"
+        style={{
+          backgroundColor: headerBgCss,
+          color: headerTextCss,
+        }}
       >
-        <span className={`${typography.itemTitle} font-medium`}>
+        <span className={`${typography.itemTitle} font-medium wrap-break-word`}>
           {section.sectionTitle || `Section ${sectionIndex + 1}`}
         </span>
         {isOpen ? (
@@ -59,13 +81,14 @@ export default function MealsDescriptionSection({
             isOpen ? "max-h-[2000px] opacity-100" : "max-h-0 opacity-0"
           }`}
         >
-          <div className="bg-100">
+          <div style={{ backgroundColor: bodyBgCss }}>
             {hasGroups
               ? groups.map((group, groupIndex) => (
                   <MealsDescriptionGroup
                     key={`${group.title || "group"}-${groupIndex}`}
                     group={group}
                     groupIndex={groupIndex}
+                    accordionStyle={accordionStyle}
                   />
                 ))
               : items.map((item, itemIndex) => (
@@ -73,7 +96,11 @@ export default function MealsDescriptionSection({
                     key={`${item.title || "item"}-${itemIndex}`}
                     item={item}
                     striped={itemIndex % 2 === 1}
-                    titleClassName="text-primary-1"
+                    titleColor={
+                      accordionStyle.itemTitleColor ||
+                      DEFAULT_MEALS_TABBED_STYLE.itemTitleColor
+                    }
+                    accordionStyle={accordionStyle}
                   />
                 ))}
           </div>

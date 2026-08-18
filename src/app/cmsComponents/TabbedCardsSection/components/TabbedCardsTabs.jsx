@@ -1,19 +1,35 @@
 import { typography } from "@/styles/typography";
+import { getThemeColorCss } from "@/styles/themeColors";
+import { DEFAULT_TABBED_CARDS_STYLE } from "../utils/style";
 
-export default function TabbedCardsTabs({ tabs, activeTabIndex, onTabChange }) {
+export default function TabbedCardsTabs({
+  tabs,
+  activeTabIndex,
+  onTabChange,
+  tabTrack = DEFAULT_TABBED_CARDS_STYLE.tabTrack,
+  tabActiveBg = DEFAULT_TABBED_CARDS_STYLE.tabActiveBg,
+  tabActiveText = DEFAULT_TABBED_CARDS_STYLE.tabActiveText,
+  tabIdleText = DEFAULT_TABBED_CARDS_STYLE.tabIdleText,
+}) {
   const visibleTabs = tabs.filter((tab) => tab?.label);
 
   if (!visibleTabs.length) {
     return null;
   }
 
+  const trackCss = getThemeColorCss(tabTrack, "200");
+  const activeBgCss = getThemeColorCss(tabActiveBg, "primary-1");
+  const activeTextCss = getThemeColorCss(tabActiveText, "white");
+  const idleTextCss = getThemeColorCss(tabIdleText, "primary-1");
+
   return (
     <div className="mb-6 flex justify-center">
       <div
         role="tablist"
-        className="cursor-pointer grid rounded-lg bg-200/50 px-3 py-1.5"
+        className="cursor-pointer grid rounded-lg px-3 py-1.5"
         style={{
           gridTemplateColumns: `repeat(${visibleTabs.length}, minmax(7.5rem, 1fr))`,
+          backgroundColor: `color-mix(in srgb, ${trackCss} 50%, transparent)`,
         }}
       >
         {tabs.map((tab, index) =>
@@ -24,11 +40,18 @@ export default function TabbedCardsTabs({ tabs, activeTabIndex, onTabChange }) {
               role="tab"
               aria-selected={activeTabIndex === index}
               onClick={() => onTabChange(index)}
-              className={`${typography.button} cursor-pointer  rounded-lg px-10 py-2 text-center font-semibold whitespace-nowrap transition-colors ${
+              className={`${typography.button} cursor-pointer rounded-lg px-10 py-2 text-center font-semibold whitespace-nowrap transition-colors`}
+              style={
                 activeTabIndex === index
-                  ? "bg-primary-1 text-white"
-                  : "bg-transparent text-primary-1"
-              }`}
+                  ? {
+                      backgroundColor: activeBgCss,
+                      color: activeTextCss,
+                    }
+                  : {
+                      backgroundColor: "transparent",
+                      color: idleTextCss,
+                    }
+              }
             >
               {tab.label}
             </button>
