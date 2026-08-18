@@ -86,6 +86,9 @@ export const BUTTON_VARIANT_OPTIONS = [
 
 export const DEFAULT_SLIDER_STYLE = {
   showSlideText: true,
+  showTitleText: true,
+  showSubtitleText: true,
+  showDescriptionText: true,
   showButton: true,
   showArrows: true,
   showProgress: true,
@@ -119,7 +122,15 @@ export const DEFAULT_SLIDER_STYLE = {
 export const SLIDER_STYLE_RESET_KEYS = {
   layout: ["showSlideText", "showButton", "showArrows", "showProgress"],
   theme: ["theme"],
-  text: ["titleAlign", "titleColor", "subtitleColor", "descriptionColor"],
+  text: [
+    "showTitleText",
+    "showSubtitleText",
+    "showDescriptionText",
+    "titleAlign",
+    "titleColor",
+    "subtitleColor",
+    "descriptionColor",
+  ],
   button: ["buttonVariant"],
   overlay: [
     "overlayEnabled",

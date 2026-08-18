@@ -18,7 +18,6 @@ import {
   OVERLAY_DIRECTION_OPTIONS,
   OVERLAY_TO_OPTIONS,
   SLIDER_STYLE_RESET_KEYS,
-  THEME_OPTIONS,
   TITLE_ALIGN_OPTIONS,
   TOUCH_OPTIONS,
   TRANSITION_SPEED_OPTIONS,
@@ -66,11 +65,9 @@ function SliderStyleForm({ style, onChange }) {
         title="Theme"
         onReset={() => reset(SLIDER_STYLE_RESET_KEYS.theme)}
       >
-        <InspectorChoose
+        <InspectorColor
           label="Controls"
-          name="sliderTheme"
           value={style.theme}
-          options={THEME_OPTIONS}
           onChange={(value) => update("theme", value)}
         />
       </InspectorSection>
@@ -80,6 +77,24 @@ function SliderStyleForm({ style, onChange }) {
           title="Text"
           onReset={() => reset(SLIDER_STYLE_RESET_KEYS.text)}
         >
+          <InspectorSwitch
+            checked={style.showTitleText}
+            onChange={() => toggle("showTitleText")}
+            label="Title"
+            hint="Main heading on each slide"
+          />
+          <InspectorSwitch
+            checked={style.showSubtitleText}
+            onChange={() => toggle("showSubtitleText")}
+            label="Subtitle"
+            hint="Small text above the title"
+          />
+          <InspectorSwitch
+            checked={style.showDescriptionText}
+            onChange={() => toggle("showDescriptionText")}
+            label="Description"
+            hint="Body text under the title"
+          />
           <InspectorChoose
             label="Alignment"
             name="titleAlign"
@@ -87,21 +102,27 @@ function SliderStyleForm({ style, onChange }) {
             options={TITLE_ALIGN_OPTIONS}
             onChange={(value) => update("titleAlign", value)}
           />
-          <InspectorColor
-            label="Title color"
-            value={style.titleColor}
-            onChange={(value) => update("titleColor", value)}
-          />
-          <InspectorColor
-            label="Subtitle color"
-            value={style.subtitleColor}
-            onChange={(value) => update("subtitleColor", value)}
-          />
-          <InspectorColor
-            label="Description color"
-            value={style.descriptionColor}
-            onChange={(value) => update("descriptionColor", value)}
-          />
+          {style.showTitleText ? (
+            <InspectorColor
+              label="Title color"
+              value={style.titleColor}
+              onChange={(value) => update("titleColor", value)}
+            />
+          ) : null}
+          {style.showSubtitleText ? (
+            <InspectorColor
+              label="Subtitle color"
+              value={style.subtitleColor}
+              onChange={(value) => update("subtitleColor", value)}
+            />
+          ) : null}
+          {style.showDescriptionText ? (
+            <InspectorColor
+              label="Description color"
+              value={style.descriptionColor}
+              onChange={(value) => update("descriptionColor", value)}
+            />
+          ) : null}
           </InspectorSection>
         ) : null}
 

@@ -8,6 +8,8 @@
  * secondary-1 → hover: primary-500
  * secondary-2 → hover: primary-700
  */
+import { getThemeColorCss } from "@/styles/themeColors";
+
 export const SLIDER_THEMES = {
   "primary-1": {
     bg: "var(--color-primary-1)",
@@ -35,7 +37,19 @@ export const DEFAULT_THEME = "primary-1";
 
 export function resolveTheme(theme = DEFAULT_THEME) {
   const key = String(theme || "").trim();
-  return SLIDER_THEMES[key] || SLIDER_THEMES[DEFAULT_THEME];
+  const preset = SLIDER_THEMES[key];
+
+  if (preset) {
+    return preset;
+  }
+
+  const bg = getThemeColorCss(key, "primary-1");
+
+  return {
+    bg,
+    hoverBg: bg,
+    icon: "#ffffff",
+  };
 }
 
 /** @deprecated Use SLIDER_THEMES */

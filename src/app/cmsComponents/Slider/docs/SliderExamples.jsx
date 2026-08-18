@@ -83,6 +83,9 @@ export default function SliderExamples({ ctx, name = "Slider" }) {
             adaptiveHeight: Boolean(style.adaptiveHeight),
           }}
           showSlideText={style.showSlideText}
+          showTitleText={style.showTitleText}
+          showSubtitleText={style.showSubtitleText}
+          showDescriptionText={style.showDescriptionText}
           showButton={style.showButton}
           showArrows={style.showArrows}
           showProgress={style.showProgress}

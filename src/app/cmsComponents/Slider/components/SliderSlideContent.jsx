@@ -13,6 +13,9 @@ export default function SliderSlideContent({
   posParams = "gb",
   cId,
   showSlideText = true,
+  showTitleText = true,
+  showSubtitleText = true,
+  showDescriptionText = true,
   showButton = true,
   titleAlign = "left",
   titleColor = "white",
@@ -27,7 +30,10 @@ export default function SliderSlideContent({
       : `/${posParams}/${lang}/${String(ctaHref).replace(/^\//, "")}`
     : "";
 
-  const showCopy = showSlideText && (subtitle || title || description);
+  const canShowSubtitle = showSlideText && showSubtitleText && subtitle;
+  const canShowTitle = showSlideText && showTitleText && title;
+  const canShowDescription = showSlideText && showDescriptionText && description;
+  const showCopy = canShowSubtitle || canShowTitle || canShowDescription;
   const showCta = showButton && buttonText && resolvedHref;
   const alignJustify =
     TITLE_ALIGN_JUSTIFY[titleAlign] ?? TITLE_ALIGN_JUSTIFY.left;
@@ -45,7 +51,7 @@ export default function SliderSlideContent({
         dir={isRtl ? "rtl" : "ltr"}
         className={`w-full max-w-lg ${alignText}`}
       >
-        {showSlideText && subtitle ? (
+        {canShowSubtitle ? (
           <p
             className={`${typography.sectionDescription} font-medium`}
             style={{ color: getThemeColorCss(subtitleColor, "white") }}
@@ -54,7 +60,7 @@ export default function SliderSlideContent({
           </p>
         ) : null}
 
-        {showSlideText && title ? (
+        {canShowTitle ? (
           <h1
             className={`${typography.sectionTitle} mt-1 font-bold leading-tight sm:mt-2 md:mt-3`}
             style={{ color: getThemeColorCss(titleColor, "white") }}
@@ -63,7 +69,7 @@ export default function SliderSlideContent({
           </h1>
         ) : null}
 
-        {showSlideText && description ? (
+        {canShowDescription ? (
           <p
             className={`${typography.sectionDescription} mt-2 sm:mt-3`}
             style={{ color: getThemeColorCss(descriptionColor, "white") }}

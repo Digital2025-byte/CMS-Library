@@ -18,6 +18,9 @@ export default function SliderTrack({
   sliderKey,
   showArrows = true,
   showSlideText = true,
+  showTitleText = true,
+  showSubtitleText = true,
+  showDescriptionText = true,
   showButton = true,
   theme = DEFAULT_THEME,
   imageOverlay,
@@ -138,6 +141,9 @@ export default function SliderTrack({
               isActive={index === activeIndex}
               isPaused={isPaused}
               showSlideText={showSlideText}
+              showTitleText={showTitleText}
+              showSubtitleText={showSubtitleText}
+              showDescriptionText={showDescriptionText}
               showButton={showButton}
               titleAlign={titleAlign}
               titleColor={titleColor}

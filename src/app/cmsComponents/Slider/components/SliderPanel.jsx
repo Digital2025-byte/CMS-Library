@@ -8,6 +8,9 @@ export default function SliderPanel({
   settings = {},
   showArrows = true,
   showSlideText = true,
+  showTitleText = true,
+  showSubtitleText = true,
+  showDescriptionText = true,
   showButton = true,
   theme,
   imageOverlay,
@@ -43,6 +46,9 @@ export default function SliderPanel({
         sliderKey={sliderKey}
         showArrows={showArrows}
         showSlideText={showSlideText}
+        showTitleText={showTitleText}
+        showSubtitleText={showSubtitleText}
+        showDescriptionText={showDescriptionText}
         showButton={showButton}
         theme={theme}
         imageOverlay={imageOverlay}

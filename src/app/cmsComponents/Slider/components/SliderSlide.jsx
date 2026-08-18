@@ -16,6 +16,9 @@ export default function SliderSlide({
   isActive = false,
   isPaused = false,
   showSlideText = true,
+  showTitleText = true,
+  showSubtitleText = true,
+  showDescriptionText = true,
   showButton = true,
   titleAlign = "left",
   titleColor = "white",
@@ -116,6 +119,9 @@ export default function SliderSlide({
             buttonText={slide.buttonText}
             ctaHref={slide.ctaHref}
             showSlideText={showSlideText}
+            showTitleText={showTitleText}
+            showSubtitleText={showSubtitleText}
+            showDescriptionText={showDescriptionText}
             showButton={showButton}
             titleAlign={titleAlign}
             titleColor={titleColor}
