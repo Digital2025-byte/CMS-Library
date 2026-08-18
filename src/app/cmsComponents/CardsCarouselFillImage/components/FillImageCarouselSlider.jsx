@@ -65,6 +65,18 @@ export default function FillImageCarouselSlider({
   cId,
   onKeyDown,
   edgePad = 16,
+  showCardImage,
+  showCardTitle,
+  showCardDescription,
+  showOverlay,
+  showButton,
+  cardRadius,
+  cardTitleColor,
+  cardBodyColor,
+  overlayColor,
+  buttonBg,
+  buttonText,
+  buttonOnFill,
 }) {
   const isRtl = lang === "ar";
 
@@ -79,7 +91,23 @@ export default function FillImageCarouselSlider({
         <Slider key={sliderKey ?? lang} ref={sliderRef} {...settings}>
           {cards.map((card, index) => (
             <div key={getCardKey(card, index)} className="h-full">
-              <FillImageCard card={card} lang={lang} cId={cId} />
+              <FillImageCard
+                card={card}
+                lang={lang}
+                cId={cId}
+                showCardImage={showCardImage}
+                showCardTitle={showCardTitle}
+                showCardDescription={showCardDescription}
+                showOverlay={showOverlay}
+                showButton={showButton}
+                cardRadius={cardRadius}
+                cardTitleColor={cardTitleColor}
+                cardBodyColor={cardBodyColor}
+                overlayColor={overlayColor}
+                buttonBg={buttonBg}
+                buttonText={buttonText}
+                buttonOnFill={buttonOnFill}
+              />
             </div>
           ))}
         </Slider>

@@ -1,17 +1,13 @@
 "use client";
 
 import { ArrowLeftIcon, ArrowRightIcon } from "@phosphor-icons/react";
+import { getThemeColorCss } from "@/styles/themeColors";
+import { DEFAULT_FILL_IMAGE_STYLE } from "../utils/style";
 
 const baseButtonClasses =
   "flex h-11 w-11 items-center justify-center rounded-full border transition-all duration-200 focus:outline-none sm:h-10 sm:w-10";
 
-function getStateClasses(enabled) {
-  return enabled
-    ? "cursor-pointer border-primary-1 bg-transparent text-primary-1 hover:bg-primary-1/5 active:scale-95"
-    : "cursor-not-allowed border-gray-300 bg-transparent text-gray-400 opacity-60";
-}
-
-function NavButton({ onClick, disabled, ariaLabel, children }) {
+function NavButton({ onClick, disabled, ariaLabel, color, children }) {
   return (
     <button
       type="button"
@@ -19,7 +15,12 @@ function NavButton({ onClick, disabled, ariaLabel, children }) {
       disabled={disabled}
       aria-label={ariaLabel}
       aria-disabled={disabled}
-      className={`${baseButtonClasses} ${getStateClasses(!disabled)}`}
+      className={`${baseButtonClasses} ${
+        disabled
+          ? "cursor-not-allowed border-gray-300 bg-transparent text-gray-400 opacity-60"
+          : "cursor-pointer bg-transparent hover:bg-primary-1/5 active:scale-95"
+      }`}
+      style={disabled ? undefined : { borderColor: color, color }}
     >
       {children}
     </button>
@@ -39,6 +40,7 @@ export default function FillImageCarouselNavigation({
   currentIndex,
   totalSlides,
   showNavigation = true,
+  navColor = DEFAULT_FILL_IMAGE_STYLE.navColor,
 }) {
   if (!showNavigation) {
     return null;
@@ -46,6 +48,7 @@ export default function FillImageCarouselNavigation({
 
   const isRtl = lang === "ar";
   const slideLabel = `${currentIndex + 1} of ${totalSlides}`;
+  const accentCss = getThemeColorCss(navColor, "primary-1");
 
   return (
     <div
@@ -60,6 +63,7 @@ export default function FillImageCarouselNavigation({
         onClick={onPrev}
         disabled={!canGoPrev}
         ariaLabel={`Previous slide. ${slideLabel}`}
+        color={accentCss}
       >
         <ArrowLeftIcon size={18} weight="bold" aria-hidden="true" />
       </NavButton>
@@ -67,6 +71,7 @@ export default function FillImageCarouselNavigation({
         onClick={onNext}
         disabled={!canGoNext}
         ariaLabel={`Next slide. ${slideLabel}`}
+        color={accentCss}
       >
         <ArrowRightIcon size={18} weight="bold" aria-hidden="true" />
       </NavButton>

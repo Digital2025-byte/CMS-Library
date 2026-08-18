@@ -16,14 +16,32 @@ import {
   isAtLastStep,
   usePeekSlideWidth,
 } from "./hooks/usePeekSlideWidth";
+import { DEFAULT_FILL_IMAGE_STYLE } from "./utils/style";
 
 const CardsCarouselFillImage = ({
   lang = "en",
   data,
   posParams = "gb",
   cId,
-  showTitleDescription = true,
-  showArrows = true,
+  showTitle = DEFAULT_FILL_IMAGE_STYLE.showTitle,
+  showDescription = DEFAULT_FILL_IMAGE_STYLE.showDescription,
+  showArrows = DEFAULT_FILL_IMAGE_STYLE.showArrows,
+  showCardImage = DEFAULT_FILL_IMAGE_STYLE.showCardImage,
+  showCardTitle = DEFAULT_FILL_IMAGE_STYLE.showCardTitle,
+  showCardDescription = DEFAULT_FILL_IMAGE_STYLE.showCardDescription,
+  showOverlay = DEFAULT_FILL_IMAGE_STYLE.showOverlay,
+  showButton = DEFAULT_FILL_IMAGE_STYLE.showButton,
+  titleAlign = DEFAULT_FILL_IMAGE_STYLE.titleAlign,
+  titleColor = DEFAULT_FILL_IMAGE_STYLE.titleColor,
+  descriptionColor = DEFAULT_FILL_IMAGE_STYLE.descriptionColor,
+  cardRadius = DEFAULT_FILL_IMAGE_STYLE.cardRadius,
+  cardTitleColor = DEFAULT_FILL_IMAGE_STYLE.cardTitleColor,
+  cardBodyColor = DEFAULT_FILL_IMAGE_STYLE.cardBodyColor,
+  overlayColor = DEFAULT_FILL_IMAGE_STYLE.overlayColor,
+  buttonBg = DEFAULT_FILL_IMAGE_STYLE.buttonBg,
+  buttonText = DEFAULT_FILL_IMAGE_STYLE.buttonText,
+  buttonOnFill = DEFAULT_FILL_IMAGE_STYLE.buttonOnFill,
+  navColor = DEFAULT_FILL_IMAGE_STYLE.navColor,
 }) => {
   const sliderRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -110,9 +128,15 @@ const CardsCarouselFillImage = ({
   return (
     <div aria-label={title || "Cards carousel"}>
       <CardsCarouselFillImageInset>
-        {showTitleDescription ? (
-          <CarouselHeader title={title} description={description} />
-        ) : null}
+        <CarouselHeader
+          title={title}
+          description={description}
+          align={titleAlign}
+          titleColor={titleColor}
+          descriptionColor={descriptionColor}
+          showTitle={showTitle}
+          showDescription={showDescription}
+        />
       </CardsCarouselFillImageInset>
 
       <div className="m-0 w-screen max-w-[100vw] ms-[calc(50%-50vw)] px-0">
@@ -125,6 +149,18 @@ const CardsCarouselFillImage = ({
           cId={cId}
           onKeyDown={handleKeyDown}
           edgePad={edgePad}
+          showCardImage={showCardImage}
+          showCardTitle={showCardTitle}
+          showCardDescription={showCardDescription}
+          showOverlay={showOverlay}
+          showButton={showButton}
+          cardRadius={cardRadius}
+          cardTitleColor={cardTitleColor}
+          cardBodyColor={cardBodyColor}
+          overlayColor={overlayColor}
+          buttonBg={buttonBg}
+          buttonText={buttonText}
+          buttonOnFill={buttonOnFill}
         />
       </div>
 
@@ -138,6 +174,7 @@ const CardsCarouselFillImage = ({
           currentIndex={activeIndex}
           totalSlides={cards.length}
           showNavigation={showArrows && showNavigation}
+          navColor={navColor}
         />
       </CardsCarouselFillImageInset>
     </div>
