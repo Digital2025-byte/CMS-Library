@@ -1,8 +1,11 @@
 # FlyCham CMS
 
+Plain React app (Vite).
+
 ## Getting Started
 
 ```bash
+npm install
 npm run dev
 ```
 

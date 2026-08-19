@@ -119,6 +119,9 @@
   --green: var(--color-green);
 
   --font-family-base: var(--font-montserrat), "Montserrat", sans-serif;
+  --font-montserrat: "Montserrat", sans-serif;
+  --font-cairo: "Cairo", sans-serif;
+  --font-geist-mono: "Geist Mono", ui-monospace, monospace;
 }
 
 /* EN: Montserrat | AR: Cairo — driven by document.lang from I18nProvider */
