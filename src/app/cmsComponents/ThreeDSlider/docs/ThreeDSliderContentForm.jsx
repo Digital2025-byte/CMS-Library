@@ -21,11 +21,11 @@ export default function ThreeDSliderContentForm({ content, onChange, defaults })
 
   return (
     <div>
-      <InspectorSection title="Cards" onReset={() => reset(ITEM_KEYS)}>
+      <InspectorSection title="Items" onReset={() => reset(ITEM_KEYS)}>
         <InspectorRepeater
           items={content.items || []}
           createItem={() => emptyItem((content.items || []).length)}
-          itemLabel={(item, index) => item.title || `Card ${index + 1}`}
+          itemLabel={(_item, index) => `Item ${index + 1}`}
           onChange={(items) => onChange({ ...content, items })}
         >
           {(item, { index, update }) => (

@@ -57,20 +57,20 @@ function ThreeDSliderStyleForm({ style, onChange }) {
       </InspectorSection>
 
       <InspectorSection
-        title="Cards"
+        title="Items"
         onReset={() => reset(THREE_D_SLIDER_STYLE_RESET_KEYS.cards)}
       >
         <InspectorSwitch
           checked={style.showCardImage}
           onChange={() => toggle("showCardImage")}
           label="Image"
-          hint="Photo filling each card"
+          hint="Photo filling each item"
         />
         <InspectorSwitch
           checked={style.showCardTitle}
           onChange={() => toggle("showCardTitle")}
-          label="Names"
-          hint="Title at the bottom of each card"
+          label="Title"
+          hint="Title at the bottom of each item"
         />
         <InspectorSwitch
           checked={style.showNumber}
