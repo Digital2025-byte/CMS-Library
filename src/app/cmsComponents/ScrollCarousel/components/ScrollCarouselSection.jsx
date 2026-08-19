@@ -14,7 +14,12 @@ export default function ScrollCarouselSection({
   const content = getScrollCarouselContent(data, lang);
 
   return (
-    <ScrollCarouselContainer lang={lang} dir={dir} className={className}>
+    <ScrollCarouselContainer
+      lang={lang}
+      dir={dir}
+      style={resolvedStyle}
+      className={className}
+    >
       {content.hasContent ? (
         <ScrollCarouselPanel
           lang={lang}

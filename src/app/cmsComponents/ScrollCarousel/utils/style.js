@@ -18,10 +18,8 @@ export const DEFAULT_SCROLL_CAROUSEL_STYLE = {
   showCardImage: true,
   showOverlay: true,
   showProgress: true,
-  showDots: true,
   showSectionBg: true,
   sectionBg: "foreground",
-  dotsColor: "white",
   titleColor: "white",
   descriptionColor: "white",
   cardRadius: "lg",
@@ -37,10 +35,8 @@ export function resolveScrollCarouselStyle(style = {}) {
 export const SCROLL_CAROUSEL_STYLE_RESET_KEYS = {
   layout: [
     "showProgress",
-    "showDots",
     "showSectionBg",
     "sectionBg",
-    "dotsColor",
   ],
   cards: [
     "showCardImage",

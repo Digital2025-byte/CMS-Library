@@ -16,7 +16,7 @@ export default function ScrollCarouselPanel({ lang = "en", content, style }) {
         showCardImage={style.showCardImage}
         showOverlay={style.showOverlay}
         showProgress={style.showProgress}
-        showDots={style.showDots}
+        showDots={false}
         cardRadiusClass={
           CARD_RADIUS_CLASS[style.cardRadius] ?? CARD_RADIUS_CLASS.lg
         }
@@ -24,11 +24,6 @@ export default function ScrollCarouselPanel({ lang = "en", content, style }) {
           style.showSectionBg
             ? getThemeColorCss(style.sectionBg, "foreground")
             : "transparent"
-        }
-        dotsColorCss={
-          style.dotsColor
-            ? getThemeColorCss(style.dotsColor, "white")
-            : undefined
         }
         titleCss={
           style.titleColor

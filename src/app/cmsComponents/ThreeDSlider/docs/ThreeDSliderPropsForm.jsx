@@ -29,12 +29,6 @@ function ThreeDSliderStyleForm({ style, onChange }) {
         title="Layout"
         onReset={() => reset(THREE_D_SLIDER_STYLE_RESET_KEYS.layout)}
       >
-        <InspectorSwitch
-          checked={style.showDots}
-          onChange={() => toggle("showDots")}
-          label="Dots"
-          hint="Dotted pattern on the stage"
-        />
         <InspectorChoose
           label="Height"
           name="sectionHeight"
@@ -42,16 +36,17 @@ function ThreeDSliderStyleForm({ style, onChange }) {
           options={HEIGHT_OPTIONS}
           onChange={(value) => update("sectionHeight", value)}
         />
-        <InspectorColor
-          label="Stage background"
-          value={style.sectionBg}
-          onChange={(value) => update("sectionBg", value)}
+        <InspectorSwitch
+          checked={style.showSectionBg}
+          onChange={() => toggle("showSectionBg")}
+          label="Background"
+          hint="Fill color behind the whole component"
         />
-        {style.showDots ? (
+        {style.showSectionBg ? (
           <InspectorColor
-            label="Dot color"
-            value={style.dotsColor}
-            onChange={(value) => update("dotsColor", value)}
+            label="Section background"
+            value={style.sectionBg}
+            onChange={(value) => update("sectionBg", value)}
           />
         ) : null}
       </InspectorSection>

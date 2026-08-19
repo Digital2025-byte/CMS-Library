@@ -39,10 +39,8 @@ export const DEFAULT_COOL_SLIDE_GALLERY_STYLE = {
   showArrows: true,
   showDots: true,
   showCardImage: true,
-  showStageDots: true,
   showSectionBg: true,
   sectionBg: "foreground",
-  dotsColor: "white",
   titleColor: "white",
   subtitleColor: "white",
   cardRadius: "sm",
@@ -59,10 +57,8 @@ export const COOL_SLIDE_GALLERY_STYLE_RESET_KEYS = {
   layout: [
     "showArrows",
     "showDots",
-    "showStageDots",
     "showSectionBg",
     "sectionBg",
-    "dotsColor",
   ],
   cards: [
     "showCardImage",

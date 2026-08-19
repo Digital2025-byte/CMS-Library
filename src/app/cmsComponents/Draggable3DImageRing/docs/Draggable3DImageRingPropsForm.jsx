@@ -38,12 +38,12 @@ function Draggable3DImageRingStyleForm({ style, onChange }) {
           checked={style.showFrame}
           onChange={() => toggle("showFrame")}
           label="Frame"
-          hint="Bordered stage around the ring"
+          hint="Bordered box around the ring"
         />
         <InspectorSwitch
           checked={style.showStageDots}
           onChange={() => toggle("showStageDots")}
-          label="Dotted stage"
+          label="Dotted frame"
           hint="Dot pattern inside the frame"
         />
         {style.showSectionBg ? (
@@ -55,7 +55,7 @@ function Draggable3DImageRingStyleForm({ style, onChange }) {
         ) : null}
         {style.showFrame ? (
           <InspectorColor
-            label="Stage background"
+            label="Frame background"
             value={style.stageBg}
             onChange={(value) => update("stageBg", value)}
           />

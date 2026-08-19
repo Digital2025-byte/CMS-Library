@@ -32,29 +32,16 @@ function ScrollCarouselStyleForm({ style, onChange }) {
           hint="Bar at the bottom while scrolling"
         />
         <InspectorSwitch
-          checked={style.showDots}
-          onChange={() => toggle("showDots")}
-          label="Dotted stage"
-          hint="Dot pattern on the background"
-        />
-        <InspectorSwitch
           checked={style.showSectionBg}
           onChange={() => toggle("showSectionBg")}
           label="Background"
-          hint="Fill color behind the carousel"
+          hint="Fill color behind the whole component"
         />
         {style.showSectionBg ? (
           <InspectorColor
             label="Section background"
             value={style.sectionBg}
             onChange={(value) => update("sectionBg", value)}
-          />
-        ) : null}
-        {style.showDots ? (
-          <InspectorColor
-            label="Dot color"
-            value={style.dotsColor}
-            onChange={(value) => update("dotsColor", value)}
           />
         ) : null}
       </InspectorSection>

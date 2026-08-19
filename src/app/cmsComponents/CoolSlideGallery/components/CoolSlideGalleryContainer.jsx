@@ -8,31 +8,31 @@ export default function CoolSlideGalleryContainer({
   children,
   className = "",
 }) {
-  const dotsCss = style.dotsColor
-    ? getThemeColorCss(style.dotsColor, "white")
-    : "rgba(255,255,255,0.14)";
-
   return (
     <section
       className={`w-full ${className}`.trim()}
       lang={lang}
       dir={dir || (lang === "ar" ? "rtl" : "ltr")}
+      style={
+        style.showSectionBg
+          ? {
+              backgroundColor: getThemeColorCss(style.sectionBg, "foreground"),
+            }
+          : undefined
+      }
     >
       <div
         className="flex h-[560px] w-full items-center justify-center"
-        style={{
-          backgroundColor: style.showSectionBg
-            ? getThemeColorCss(style.sectionBg, "foreground")
-            : "transparent",
-          backgroundImage: style.showStageDots
-            ? `radial-gradient(circle, ${
-                style.dotsColor
-                  ? `color-mix(in srgb, ${dotsCss} 14%, transparent)`
-                  : "rgba(255,255,255,0.14)"
-              } 1px, transparent 1.2px)`
-            : "none",
-          backgroundSize: style.showStageDots ? "22px 22px" : undefined,
-        }}
+        style={
+          style.showSectionBg
+            ? {
+                backgroundColor: getThemeColorCss(
+                  style.sectionBg,
+                  "foreground"
+                ),
+              }
+            : undefined
+        }
       >
         {children}
       </div>

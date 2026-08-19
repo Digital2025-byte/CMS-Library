@@ -56,24 +56,27 @@ export function resolveThreeDSliderStyle(style = {}) {
 }
 
 export const DEFAULT_THREE_D_SLIDER_STYLE = {
-  showDots: true,
   showCardImage: true,
   showCardTitle: true,
   showNumber: true,
   showOverlay: true,
+  showSectionBg: true,
   sectionBg: "foreground",
   sectionHeight: "default",
   cardRadius: "lg",
   cardTitleColor: "white",
   numberColor: "white",
   overlayColor: "foreground",
-  dotsColor: "white",
   wheelSpeed: "default",
   dragSpeed: "default",
 };
 
 export const THREE_D_SLIDER_STYLE_RESET_KEYS = {
-  layout: ["showDots", "sectionBg", "sectionHeight", "dotsColor"],
+  layout: [
+    "showSectionBg",
+    "sectionBg",
+    "sectionHeight",
+  ],
   cards: [
     "showCardImage",
     "showCardTitle",

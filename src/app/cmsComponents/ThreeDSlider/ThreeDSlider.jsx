@@ -5,7 +5,7 @@ import { getThreeDSliderContent } from "./utils/helpers";
 import { resolveThreeDSliderStyle } from "./utils/style";
 
 /**
- * Lightswind 3D slider — destination cards on a dotted stage.
+ * Lightswind 3D slider — destination cards in a full-width section.
  */
 export default function ThreeDSlider({ lang = "en", data, style }) {
   const content = getThreeDSliderContent(data, lang);

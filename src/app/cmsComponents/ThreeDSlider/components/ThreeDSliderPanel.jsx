@@ -22,20 +22,15 @@ export default function ThreeDSliderPanel({ lang = "en", content, style }) {
         cardRadiusClass={
           CARD_RADIUS_CLASS[style.cardRadius] ?? CARD_RADIUS_CLASS.lg
         }
-        showDots={style.showDots}
+        showDots={false}
         showCardImage={style.showCardImage}
         showCardTitle={style.showCardTitle}
         showNumber={style.showNumber}
         showOverlay={style.showOverlay}
         stageBgCss={
-          style.sectionBg
+          style.showSectionBg
             ? getThemeColorCss(style.sectionBg, "foreground")
-            : undefined
-        }
-        dotsColorCss={
-          style.dotsColor
-            ? getThemeColorCss(style.dotsColor, "white")
-            : undefined
+            : "transparent"
         }
         titleCss={
           style.cardTitleColor

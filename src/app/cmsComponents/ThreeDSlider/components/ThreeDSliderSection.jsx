@@ -14,7 +14,12 @@ export default function ThreeDSliderSection({
   const content = getThreeDSliderContent(data, lang);
 
   return (
-    <ThreeDSliderContainer lang={lang} dir={dir} className={className}>
+    <ThreeDSliderContainer
+      lang={lang}
+      dir={dir}
+      style={resolvedStyle}
+      className={className}
+    >
       {content.hasContent ? (
         <ThreeDSliderPanel
           lang={lang}

@@ -40,29 +40,16 @@ function CoolSlideGalleryStyleForm({ style, onChange }) {
           hint="Slide indicators under the gallery"
         />
         <InspectorSwitch
-          checked={style.showStageDots}
-          onChange={() => toggle("showStageDots")}
-          label="Dotted stage"
-          hint="Dot pattern on the background"
-        />
-        <InspectorSwitch
           checked={style.showSectionBg}
           onChange={() => toggle("showSectionBg")}
           label="Background"
-          hint="Fill color behind the gallery"
+          hint="Fill color behind the whole component"
         />
         {style.showSectionBg ? (
           <InspectorColor
             label="Section background"
             value={style.sectionBg}
             onChange={(value) => update("sectionBg", value)}
-          />
-        ) : null}
-        {style.showStageDots ? (
-          <InspectorColor
-            label="Dot color"
-            value={style.dotsColor}
-            onChange={(value) => update("dotsColor", value)}
           />
         ) : null}
       </InspectorSection>
