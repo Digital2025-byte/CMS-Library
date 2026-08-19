@@ -58,6 +58,21 @@ export default function CoolSlideGalleryPanel({ content, style }) {
       badgeTextCss={
         style.chipText ? getThemeColorCss(style.chipText, "white") : undefined
       }
+      arrowsCss={
+        style.arrowsColor
+          ? getThemeColorCss(style.arrowsColor, "white")
+          : undefined
+      }
+      dotsCss={
+        style.dotsColor
+          ? getThemeColorCss(style.dotsColor, "white")
+          : undefined
+      }
+      controlsBgCss={
+        style.controlsBg
+          ? getThemeColorCss(style.controlsBg, "white")
+          : undefined
+      }
     />
   );
 }

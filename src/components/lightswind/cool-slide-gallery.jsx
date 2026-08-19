@@ -119,6 +119,9 @@ export default function CoolSlideGallery({
   overlayCss,
   badgeBgCss,
   badgeTextCss,
+  arrowsCss,
+  dotsCss,
+  controlsBgCss,
   clickable = true,
   draggable = true,
   dragThreshold = 45,
@@ -413,8 +416,16 @@ export default function CoolSlideGallery({
       </div>
 
       <div
-        className="mt-6 flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-4 py-2 backdrop-blur-md"
-        style={{ pointerEvents: "all" }}
+        className="mt-6 flex items-center gap-3 rounded-full border px-4 py-2 backdrop-blur-md"
+        style={{
+          pointerEvents: "all",
+          backgroundColor: controlsBgCss
+            ? `color-mix(in srgb, ${controlsBgCss} 18%, transparent)`
+            : "rgba(255,255,255,0.05)",
+          borderColor: controlsBgCss
+            ? `color-mix(in srgb, ${controlsBgCss} 22%, transparent)`
+            : "rgba(255,255,255,0.1)",
+        }}
         onPointerDown={(event) => event.stopPropagation()}
         onPointerUp={(event) => event.stopPropagation()}
         onTouchStart={(event) => event.stopPropagation()}
@@ -428,7 +439,8 @@ export default function CoolSlideGallery({
               event.stopPropagation();
               step(-1);
             }}
-            className="rounded-full p-2 text-white/60 transition-colors hover:bg-white/10 hover:text-white"
+            className="rounded-full p-2 opacity-60 transition-opacity hover:bg-white/10 hover:opacity-100"
+            style={{ color: arrowsCss || "#ffffff" }}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
           >
@@ -447,14 +459,17 @@ export default function CoolSlideGallery({
                   event.stopPropagation();
                   goTo(index);
                 }}
-                className="cursor-pointer rounded-full bg-white/50 transition-colors hover:bg-white"
+                className="cursor-pointer rounded-full transition-colors"
                 animate={{
                   width: active === index ? 24 : 6,
                   height: 6,
                   opacity: active === index ? 1 : 0.4,
                 }}
                 transition={{ type: "spring", bounce: 0.3, duration: 0.45 }}
-                style={{ minWidth: 6 }}
+                style={{
+                  minWidth: 6,
+                  backgroundColor: dotsCss || "rgba(255,255,255,0.5)",
+                }}
               />
             ))}
           </div>
@@ -474,7 +489,8 @@ export default function CoolSlideGallery({
               event.stopPropagation();
               step(1);
             }}
-            className="rounded-full p-2 text-white/60 transition-colors hover:bg-white/10 hover:text-white"
+            className="rounded-full p-2 opacity-60 transition-opacity hover:bg-white/10 hover:opacity-100"
+            style={{ color: arrowsCss || "#ffffff" }}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
           >

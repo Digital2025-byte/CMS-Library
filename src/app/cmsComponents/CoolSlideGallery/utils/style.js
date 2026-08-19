@@ -46,6 +46,9 @@ export const DEFAULT_COOL_SLIDE_GALLERY_STYLE = {
   chipBg: "white",
   chipText: "white",
   overlayColor: "foreground",
+  arrowsColor: "white",
+  dotsColor: "white",
+  controlsBg: "white",
   cardRadius: "sm",
 };
 
@@ -62,6 +65,9 @@ export const COOL_SLIDE_GALLERY_STYLE_RESET_KEYS = {
     "showDots",
     "showSectionBg",
     "sectionBg",
+    "arrowsColor",
+    "dotsColor",
+    "controlsBg",
   ],
   cards: [
     "showCardImage",

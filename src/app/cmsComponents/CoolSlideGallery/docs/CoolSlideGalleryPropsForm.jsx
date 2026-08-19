@@ -52,6 +52,27 @@ function CoolSlideGalleryStyleForm({ style, onChange }) {
             onChange={(value) => update("sectionBg", value)}
           />
         ) : null}
+        {style.showArrows ? (
+          <InspectorColor
+            label="Arrows color"
+            value={style.arrowsColor}
+            onChange={(value) => update("arrowsColor", value)}
+          />
+        ) : null}
+        {style.showDots ? (
+          <InspectorColor
+            label="Dots color"
+            value={style.dotsColor}
+            onChange={(value) => update("dotsColor", value)}
+          />
+        ) : null}
+        {style.showArrows || style.showDots ? (
+          <InspectorColor
+            label="Controls background"
+            value={style.controlsBg}
+            onChange={(value) => update("controlsBg", value)}
+          />
+        ) : null}
       </InspectorSection>
 
       <InspectorSection
