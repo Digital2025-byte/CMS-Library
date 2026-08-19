@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { isUsableImageSrc } from "./helpers";
 
 export default function MixedImageTile({
   image,
@@ -6,14 +7,15 @@ export default function MixedImageTile({
   sizes = "100vw",
   priority = false,
 }) {
-  if (!image?.fileUrl) {
+  const src = image?.fileUrl;
+  if (!isUsableImageSrc(src)) {
     return <div className={`bg-surface-2 ${className}`} aria-hidden />;
   }
 
   return (
     <div className={`relative overflow-hidden ${className}`}>
       <Image
-        src={image.fileUrl}
+        src={src}
         alt={image.alt || ""}
         fill
         className="object-cover object-center"

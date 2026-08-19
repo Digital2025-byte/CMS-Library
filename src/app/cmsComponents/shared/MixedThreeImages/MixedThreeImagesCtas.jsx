@@ -6,6 +6,8 @@ import {
   BookOpenIcon,
 } from "@phosphor-icons/react";
 import Button from "@/components/ui/Button";
+import { getThemeColorCss } from "@/styles/themeColors";
+import { DEFAULT_MIXED_THREE_IMAGES_STYLE } from "@/app/cmsComponents/MixedRightThreeImages/utils/style";
 
 export default function MixedThreeImagesCtas({
   lang = "en",
@@ -13,13 +15,20 @@ export default function MixedThreeImagesCtas({
   secondaryCta,
   className = "",
   fullWidth = false,
+  style = DEFAULT_MIXED_THREE_IMAGES_STYLE,
 }) {
-  if (!primaryCta?.label && !secondaryCta?.label) {
+  const showPrimaryBtn = style.showPrimary && primaryCta?.label;
+  const showSecondaryBtn = style.showSecondary && secondaryCta?.label;
+
+  if (!showPrimaryBtn && !showSecondaryBtn) {
     return null;
   }
 
   const isRtl = lang === "ar";
   const ArrowIcon = isRtl ? ArrowLeftIcon : ArrowRightIcon;
+  const primaryBgCss = getThemeColorCss(style.primaryBg, "primary-2");
+  const primaryTextCss = getThemeColorCss(style.primaryText, "white");
+  const secondaryCss = getThemeColorCss(style.secondaryText, "white");
 
   return (
     <div
@@ -32,7 +41,7 @@ export default function MixedThreeImagesCtas({
         .filter(Boolean)
         .join(" ")}
     >
-      {primaryCta?.label ? (
+      {showPrimaryBtn ? (
         <Button
           label={primaryCta.label}
           href={primaryCta.href || "/"}
@@ -40,10 +49,15 @@ export default function MixedThreeImagesCtas({
           iconPosition="end"
           variant="primary"
           fullWidth={fullWidth}
+          style={{
+            backgroundColor: primaryBgCss,
+            borderColor: primaryBgCss,
+            color: primaryTextCss,
+          }}
         />
       ) : null}
 
-      {secondaryCta?.label ? (
+      {showSecondaryBtn ? (
         <Button
           label={secondaryCta.label}
           href={secondaryCta.href || "/"}
@@ -51,6 +65,11 @@ export default function MixedThreeImagesCtas({
           iconPosition="start"
           variant="secondary"
           fullWidth={fullWidth}
+          style={{
+            backgroundColor: "transparent",
+            borderColor: secondaryCss,
+            color: secondaryCss,
+          }}
         />
       ) : null}
     </div>

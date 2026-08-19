@@ -32,6 +32,7 @@ import RelatedContentCarouselExamples from "@/app/cmsComponents/RelatedContentCa
 import ServiceCardsSliderExamples from "@/app/cmsComponents/ServiceCardsSlider/docs/ServiceCardsSliderExamples";
 import SliderExamples from "@/app/cmsComponents/Slider/docs/SliderExamples";
 import MealsDescriptionTabbedExamples from "@/app/cmsComponents/MealsDescriptionTabbed/docs/MealsDescriptionTabbedExamples";
+import MixedRightThreeImagesExamples from "@/app/cmsComponents/MixedRightThreeImages/docs/MixedRightThreeImagesExamples";
 import TabbedCardsSectionExamples from "@/app/cmsComponents/TabbedCardsSection/docs/TabbedCardsSectionExamples";
 import ThreeDSliderExamples from "@/app/cmsComponents/ThreeDSlider/docs/ThreeDSliderExamples";
 import OnBoardImageRingExamples from "@/app/cmsComponents/OnBoardImageRing/docs/OnBoardImageRingExamples";
@@ -116,6 +117,9 @@ const DOCS_EXAMPLES = {
   ),
   "meals-description-tabbed": (ctx, label) => (
     <MealsDescriptionTabbedExamples ctx={ctx} name={label} />
+  ),
+  "mixed-right-three-images": (ctx, label) => (
+    <MixedRightThreeImagesExamples ctx={ctx} name={label} />
   ),
 };
 

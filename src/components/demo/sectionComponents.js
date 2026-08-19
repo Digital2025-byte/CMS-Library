@@ -107,12 +107,11 @@ export const SECTION_COMPONENTS = {
             <Mixed.default
               lang={lang}
               data={mixedRightThreeImagesData}
-              side="right"
             />
             <Mixed.default
               lang={lang}
               data={mixedLeftThreeImagesData}
-              side="left"
+              style={{ imageSide: "left" }}
             />
             <Upper.default
               lang={lang}

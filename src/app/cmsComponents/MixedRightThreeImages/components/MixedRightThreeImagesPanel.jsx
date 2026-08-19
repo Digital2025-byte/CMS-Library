@@ -3,63 +3,56 @@ import MixedThreeImagesContent from "@/app/cmsComponents/shared/MixedThreeImages
 import MixedThreeImagesCtas from "@/app/cmsComponents/shared/MixedThreeImages/MixedThreeImagesCtas";
 import MixedThreeImagesFeature from "@/app/cmsComponents/shared/MixedThreeImages/MixedThreeImagesFeature";
 import MixedThreeImagesSmallImages from "@/app/cmsComponents/shared/MixedThreeImages/MixedThreeImagesSmallImages";
+import { MIXED_THREE_IMAGES_LAYOUT_CLASS } from "../utils/style";
 
 export default function MixedRightThreeImagesPanel({
   lang = "en",
-  title,
-  description,
-  primaryCta,
-  secondaryCta,
-  largeImage,
-  smallImageOne,
-  smallImageTwo,
-  /** "right" = large image on the right; "left" = large image on the left */
-  side = "right",
+  content,
+  style,
 }) {
   const isRtl = lang === "ar";
-  const largeOnLeft = side === "left";
+  const layout =
+    MIXED_THREE_IMAGES_LAYOUT_CLASS[style.imageSide] ??
+    MIXED_THREE_IMAGES_LAYOUT_CLASS.right;
 
-  const contentClass = largeOnLeft
-    ? "order-1 lg:order-2 lg:col-start-2 lg:row-start-1"
-    : "order-1 lg:col-start-1 lg:row-start-1";
-
-  const smallImagesClass = largeOnLeft
-    ? "order-2 lg:order-3 lg:col-start-2 lg:row-start-2"
-    : "order-2 lg:order-3 lg:col-start-1 lg:row-start-2";
-
-  const featureClass = largeOnLeft
-    ? "order-3 aspect-[16/10] h-auto rounded-2xl sm:rounded-3xl lg:order-1 lg:col-start-1 lg:row-span-2 lg:aspect-auto lg:h-full lg:min-h-[34rem]"
-    : "order-3 aspect-[16/10] h-auto rounded-2xl sm:rounded-3xl lg:order-2 lg:col-start-2 lg:row-span-2 lg:aspect-auto lg:h-full lg:min-h-[34rem]";
+  const copy = {
+    lang,
+    title: content.title,
+    description: content.description,
+    primaryCta: content.primaryCta,
+    secondaryCta: content.secondaryCta,
+    style,
+  };
 
   return (
     <div className="w-full" dir={isRtl ? "rtl" : "ltr"}>
       <PageContentContainer>
         <div className="grid grid-cols-1 gap-4 sm:gap-5 lg:grid-cols-2 lg:grid-rows-[auto_1fr] lg:gap-6 xl:gap-8">
-          <MixedThreeImagesContent
-            lang={lang}
-            title={title}
-            description={description}
-            primaryCta={primaryCta}
-            secondaryCta={secondaryCta}
-            className={contentClass}
-          />
+          <MixedThreeImagesContent {...copy} className={layout.content} />
 
-          <MixedThreeImagesSmallImages
-            smallImageOne={smallImageOne}
-            smallImageTwo={smallImageTwo}
-            className={smallImagesClass}
-          />
+          {style.showSmallImages ? (
+            <MixedThreeImagesSmallImages
+              smallImageOne={content.smallImageOne}
+              smallImageTwo={content.smallImageTwo}
+              className={layout.small}
+              style={style}
+            />
+          ) : null}
 
-          <MixedThreeImagesFeature
-            image={largeImage}
-            className={featureClass}
-            priority
-          />
+          {style.showLargeImage ? (
+            <MixedThreeImagesFeature
+              image={content.largeImage}
+              className={layout.feature}
+              style={style}
+              priority
+            />
+          ) : null}
 
           <MixedThreeImagesCtas
             lang={lang}
-            primaryCta={primaryCta}
-            secondaryCta={secondaryCta}
+            primaryCta={content.primaryCta}
+            secondaryCta={content.secondaryCta}
+            style={style}
             fullWidth
             className="order-4 lg:hidden"
           />
