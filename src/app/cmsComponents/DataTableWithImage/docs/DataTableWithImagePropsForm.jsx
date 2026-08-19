@@ -35,18 +35,72 @@ function DataTableWithImageStyleForm({ style, onChange }) {
           label="Title"
           hint="Show the heading"
         />
+        {style.showTitle ? (
+          <>
+            <InspectorChoose
+              label="Alignment"
+              name="titleAlign"
+              value={style.titleAlign}
+              options={TITLE_ALIGN_OPTIONS}
+              onChange={(value) => update("titleAlign", value)}
+            />
+            <InspectorColor
+              label="Title color"
+              value={style.titleColor}
+              onChange={(value) => update("titleColor", value)}
+            />
+          </>
+        ) : null}
         <InspectorSwitch
           checked={style.showDescription}
           onChange={() => toggle("showDescription")}
           label="Description"
           hint="Show the note under the table"
         />
+        {style.showDescription ? (
+          <InspectorColor
+            label="Note color"
+            value={style.descriptionColor}
+            onChange={(value) => update("descriptionColor", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.showTable}
           onChange={() => toggle("showTable")}
           label="Table"
           hint="Show the data table"
         />
+        {style.showTable ? (
+          <>
+            <InspectorChoose
+              label="Corners"
+              name="tableRadius"
+              value={style.tableRadius}
+              options={CARD_RADIUS_OPTIONS}
+              onChange={(value) => update("tableRadius", value)}
+            />
+            <InspectorColor
+              label="Table background"
+              value={style.tableBg}
+              onChange={(value) => update("tableBg", value)}
+            />
+            <InspectorColor
+              label="Header color"
+              value={style.headerColor}
+              onChange={(value) => update("headerColor", value)}
+            />
+            <InspectorColor
+              label="Cell color"
+              value={style.cellColor}
+              onChange={(value) => update("cellColor", value)}
+            />
+            <InspectorColor
+              label="Stripe color"
+              value={style.stripeColor}
+              onChange={(value) => update("stripeColor", value)}
+            />
+          </>
+        ) : null}
         <InspectorSwitch
           checked={style.showImage}
           onChange={() => toggle("showImage")}
@@ -74,72 +128,6 @@ function DataTableWithImageStyleForm({ style, onChange }) {
           onChange={(value) => update("sectionPadding", value)}
         />
       </InspectorSection>
-
-      {style.showTitle || style.showDescription ? (
-        <InspectorSection
-          title="Title"
-          onReset={() => reset(DATA_TABLE_WITH_IMAGE_STYLE_RESET_KEYS.title)}
-        >
-          {style.showTitle ? (
-            <>
-              <InspectorChoose
-                label="Alignment"
-                name="titleAlign"
-                value={style.titleAlign}
-                options={TITLE_ALIGN_OPTIONS}
-                onChange={(value) => update("titleAlign", value)}
-              />
-              <InspectorColor
-                label="Title color"
-                value={style.titleColor}
-                onChange={(value) => update("titleColor", value)}
-              />
-            </>
-          ) : null}
-          {style.showDescription ? (
-            <InspectorColor
-              label="Note color"
-              value={style.descriptionColor}
-              onChange={(value) => update("descriptionColor", value)}
-            />
-          ) : null}
-        </InspectorSection>
-      ) : null}
-
-      {style.showTable ? (
-        <InspectorSection
-          title="Table"
-          onReset={() => reset(DATA_TABLE_WITH_IMAGE_STYLE_RESET_KEYS.table)}
-        >
-          <InspectorChoose
-            label="Corners"
-            name="tableRadius"
-            value={style.tableRadius}
-            options={CARD_RADIUS_OPTIONS}
-            onChange={(value) => update("tableRadius", value)}
-          />
-          <InspectorColor
-            label="Table background"
-            value={style.tableBg}
-            onChange={(value) => update("tableBg", value)}
-          />
-          <InspectorColor
-            label="Header color"
-            value={style.headerColor}
-            onChange={(value) => update("headerColor", value)}
-          />
-          <InspectorColor
-            label="Cell color"
-            value={style.cellColor}
-            onChange={(value) => update("cellColor", value)}
-          />
-          <InspectorColor
-            label="Stripe color"
-            value={style.stripeColor}
-            onChange={(value) => update("stripeColor", value)}
-          />
-        </InspectorSection>
-      ) : null}
     </div>
   );
 }

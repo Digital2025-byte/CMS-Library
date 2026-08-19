@@ -33,12 +33,35 @@ function BannerWithCtaStyleForm({ style, onChange }) {
           label="Title"
           hint="Show the heading"
         />
+        {style.showTitle ? (
+          <>
+            <InspectorChoose
+              label="Alignment"
+              name="titleAlign"
+              value={style.titleAlign}
+              options={TITLE_ALIGN_OPTIONS}
+              onChange={(value) => update("titleAlign", value)}
+            />
+            <InspectorColor
+              label="Title color"
+              value={style.titleColor}
+              onChange={(value) => update("titleColor", value)}
+            />
+          </>
+        ) : null}
         <InspectorSwitch
           checked={style.showDescription}
           onChange={() => toggle("showDescription")}
           label="Description"
           hint="Show text under the title"
         />
+        {style.showDescription ? (
+          <InspectorColor
+            label="Description color"
+            value={style.descriptionColor}
+            onChange={(value) => update("descriptionColor", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.showSectionBg}
           onChange={() => toggle("showSectionBg")}
@@ -61,37 +84,6 @@ function BannerWithCtaStyleForm({ style, onChange }) {
         />
       </InspectorSection>
 
-      {style.showTitle || style.showDescription ? (
-        <InspectorSection
-          title="Title"
-          onReset={() => reset(BANNER_WITH_CTA_STYLE_RESET_KEYS.title)}
-        >
-          {style.showTitle ? (
-            <>
-              <InspectorChoose
-                label="Alignment"
-                name="titleAlign"
-                value={style.titleAlign}
-                options={TITLE_ALIGN_OPTIONS}
-                onChange={(value) => update("titleAlign", value)}
-              />
-              <InspectorColor
-                label="Title color"
-                value={style.titleColor}
-                onChange={(value) => update("titleColor", value)}
-              />
-            </>
-          ) : null}
-          {style.showDescription ? (
-            <InspectorColor
-              label="Description color"
-              value={style.descriptionColor}
-              onChange={(value) => update("descriptionColor", value)}
-            />
-          ) : null}
-        </InspectorSection>
-      ) : null}
-
       <InspectorSection
         title="Banner"
         onReset={() => reset(BANNER_WITH_CTA_STYLE_RESET_KEYS.banner)}
@@ -108,13 +100,6 @@ function BannerWithCtaStyleForm({ style, onChange }) {
           label="Wash"
           hint="Colored fade over the photo"
         />
-        <InspectorChoose
-          label="Corners"
-          name="bannerRadius"
-          value={style.bannerRadius}
-          options={CARD_RADIUS_OPTIONS}
-          onChange={(value) => update("bannerRadius", value)}
-        />
         {style.showOverlay ? (
           <InspectorColor
             label="Wash color"
@@ -122,6 +107,13 @@ function BannerWithCtaStyleForm({ style, onChange }) {
             onChange={(value) => update("overlayColor", value)}
           />
         ) : null}
+        <InspectorChoose
+          label="Corners"
+          name="bannerRadius"
+          value={style.bannerRadius}
+          options={CARD_RADIUS_OPTIONS}
+          onChange={(value) => update("bannerRadius", value)}
+        />
       </InspectorSection>
 
       <InspectorSection

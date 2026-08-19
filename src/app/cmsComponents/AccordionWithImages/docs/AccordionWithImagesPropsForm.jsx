@@ -35,12 +35,41 @@ function AccordionWithImagesStyleForm({ style, onChange }) {
           label="Title"
           hint="Show the section heading"
         />
+        {style.showTitleDescription ? (
+          <>
+            <InspectorChoose
+              label="Alignment"
+              name="titleAlign"
+              value={style.titleAlign}
+              options={TITLE_ALIGN_OPTIONS}
+              onChange={(value) => update("titleAlign", value)}
+            />
+            <InspectorSwitch
+              checked={style.showTitleBorder}
+              onChange={() => toggle("showTitleBorder")}
+              label="Underline"
+              hint="Show a line under the title"
+            />
+            <InspectorColor
+              label="Title color"
+              value={style.titleColor}
+              onChange={(value) => update("titleColor", value)}
+            />
+          </>
+        ) : null}
         <InspectorSwitch
           checked={style.showDescription}
           onChange={() => toggle("showDescription")}
           label="Description"
           hint="Show text under the title"
         />
+        {style.showDescription ? (
+          <InspectorColor
+            label="Description color"
+            value={style.descriptionColor}
+            onChange={(value) => update("descriptionColor", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.showImagePanel}
           onChange={() => toggle("showImagePanel")}
@@ -53,43 +82,6 @@ function AccordionWithImagesStyleForm({ style, onChange }) {
           onChange={(value) => update("sectionBg", value)}
         />
       </InspectorSection>
-
-      {style.showTitleDescription || style.showDescription ? (
-        <InspectorSection
-          title="Title"
-          onReset={() => reset(ACCORDION_IMAGES_STYLE_RESET_KEYS.title)}
-        >
-          {style.showTitleDescription ? (
-            <>
-              <InspectorChoose
-                label="Alignment"
-                name="titleAlign"
-                value={style.titleAlign}
-                options={TITLE_ALIGN_OPTIONS}
-                onChange={(value) => update("titleAlign", value)}
-              />
-              <InspectorSwitch
-                checked={style.showTitleBorder}
-                onChange={() => toggle("showTitleBorder")}
-                label="Underline"
-                hint="Show a line under the title"
-              />
-              <InspectorColor
-                label="Title color"
-                value={style.titleColor}
-                onChange={(value) => update("titleColor", value)}
-              />
-            </>
-          ) : null}
-          {style.showDescription ? (
-            <InspectorColor
-              label="Description color"
-              value={style.descriptionColor}
-              onChange={(value) => update("descriptionColor", value)}
-            />
-          ) : null}
-        </InspectorSection>
-      ) : null}
 
       <InspectorSection
         title="Items"

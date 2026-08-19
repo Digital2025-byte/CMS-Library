@@ -33,18 +33,48 @@ function CardsCarouselFillImageStyleForm({ style, onChange }) {
           label="Title"
           hint="Show the section heading"
         />
+        {style.showTitle ? (
+          <>
+            <InspectorChoose
+              label="Alignment"
+              name="titleAlign"
+              value={style.titleAlign}
+              options={TITLE_ALIGN_OPTIONS}
+              onChange={(value) => update("titleAlign", value)}
+            />
+            <InspectorColor
+              label="Title color"
+              value={style.titleColor}
+              onChange={(value) => update("titleColor", value)}
+            />
+          </>
+        ) : null}
         <InspectorSwitch
           checked={style.showDescription}
           onChange={() => toggle("showDescription")}
           label="Description"
           hint="Show text under the title"
         />
+        {style.showDescription ? (
+          <InspectorColor
+            label="Description color"
+            value={style.descriptionColor}
+            onChange={(value) => update("descriptionColor", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.showArrows}
           onChange={() => toggle("showArrows")}
           label="Arrows"
           hint="Previous / next arrow controls"
         />
+        {style.showArrows ? (
+          <InspectorColor
+            label="Arrow color"
+            value={style.navColor}
+            onChange={(value) => update("navColor", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.showSectionBg}
           onChange={() => toggle("showSectionBg")}
@@ -67,37 +97,6 @@ function CardsCarouselFillImageStyleForm({ style, onChange }) {
         />
       </InspectorSection>
 
-      {style.showTitle || style.showDescription ? (
-        <InspectorSection
-          title="Title"
-          onReset={() => reset(FILL_IMAGE_STYLE_RESET_KEYS.title)}
-        >
-          {style.showTitle ? (
-            <>
-              <InspectorChoose
-                label="Alignment"
-                name="titleAlign"
-                value={style.titleAlign}
-                options={TITLE_ALIGN_OPTIONS}
-                onChange={(value) => update("titleAlign", value)}
-              />
-              <InspectorColor
-                label="Title color"
-                value={style.titleColor}
-                onChange={(value) => update("titleColor", value)}
-              />
-            </>
-          ) : null}
-          {style.showDescription ? (
-            <InspectorColor
-              label="Description color"
-              value={style.descriptionColor}
-              onChange={(value) => update("descriptionColor", value)}
-            />
-          ) : null}
-        </InspectorSection>
-      ) : null}
-
       <InspectorSection
         title="Items"
         onReset={() => reset(FILL_IMAGE_STYLE_RESET_KEYS.cards)}
@@ -114,25 +113,6 @@ function CardsCarouselFillImageStyleForm({ style, onChange }) {
           label="Names"
           hint="Title on each card"
         />
-        <InspectorSwitch
-          checked={style.showCardDescription}
-          onChange={() => toggle("showCardDescription")}
-          label="Description"
-          hint="Body text on each card"
-        />
-        <InspectorSwitch
-          checked={style.showOverlay}
-          onChange={() => toggle("showOverlay")}
-          label="Gradient"
-          hint="Fade behind the card copy"
-        />
-        <InspectorChoose
-          label="Corners"
-          name="cardRadius"
-          value={style.cardRadius}
-          options={CARD_RADIUS_OPTIONS}
-          onChange={(value) => update("cardRadius", value)}
-        />
         {style.showCardTitle ? (
           <InspectorColor
             label="Title color"
@@ -140,6 +120,12 @@ function CardsCarouselFillImageStyleForm({ style, onChange }) {
             onChange={(value) => update("cardTitleColor", value)}
           />
         ) : null}
+        <InspectorSwitch
+          checked={style.showCardDescription}
+          onChange={() => toggle("showCardDescription")}
+          label="Description"
+          hint="Body text on each card"
+        />
         {style.showCardDescription ? (
           <InspectorColor
             label="Body color"
@@ -147,6 +133,12 @@ function CardsCarouselFillImageStyleForm({ style, onChange }) {
             onChange={(value) => update("cardBodyColor", value)}
           />
         ) : null}
+        <InspectorSwitch
+          checked={style.showOverlay}
+          onChange={() => toggle("showOverlay")}
+          label="Gradient"
+          hint="Fade behind the card copy"
+        />
         {style.showOverlay ? (
           <InspectorColor
             label="Gradient color"
@@ -154,6 +146,13 @@ function CardsCarouselFillImageStyleForm({ style, onChange }) {
             onChange={(value) => update("overlayColor", value)}
           />
         ) : null}
+        <InspectorChoose
+          label="Corners"
+          name="cardRadius"
+          value={style.cardRadius}
+          options={CARD_RADIUS_OPTIONS}
+          onChange={(value) => update("cardRadius", value)}
+        />
       </InspectorSection>
 
       <InspectorSection
@@ -186,19 +185,6 @@ function CardsCarouselFillImageStyleForm({ style, onChange }) {
           </>
         ) : null}
       </InspectorSection>
-
-      {style.showArrows ? (
-        <InspectorSection
-          title="Nav"
-          onReset={() => reset(FILL_IMAGE_STYLE_RESET_KEYS.nav)}
-        >
-          <InspectorColor
-            label="Arrow color"
-            value={style.navColor}
-            onChange={(value) => update("navColor", value)}
-          />
-        </InspectorSection>
-      ) : null}
     </div>
   );
 }

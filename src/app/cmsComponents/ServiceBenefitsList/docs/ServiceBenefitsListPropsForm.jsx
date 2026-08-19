@@ -33,12 +33,35 @@ function ServiceBenefitsListStyleForm({ style, onChange }) {
           label="Title"
           hint="Show the heading"
         />
+        {style.showTitle ? (
+          <>
+            <InspectorChoose
+              label="Alignment"
+              name="titleAlign"
+              value={style.titleAlign}
+              options={TITLE_ALIGN_OPTIONS}
+              onChange={(value) => update("titleAlign", value)}
+            />
+            <InspectorColor
+              label="Title color"
+              value={style.titleColor}
+              onChange={(value) => update("titleColor", value)}
+            />
+          </>
+        ) : null}
         <InspectorSwitch
           checked={style.showDescription}
           onChange={() => toggle("showDescription")}
           label="Description"
           hint="Show text under each benefit title"
         />
+        {style.showDescription ? (
+          <InspectorColor
+            label="Description color"
+            value={style.descriptionColor}
+            onChange={(value) => update("descriptionColor", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.showSectionBg}
           onChange={() => toggle("showSectionBg")}
@@ -61,26 +84,6 @@ function ServiceBenefitsListStyleForm({ style, onChange }) {
         />
       </InspectorSection>
 
-      {style.showTitle ? (
-        <InspectorSection
-          title="Title"
-          onReset={() => reset(SERVICE_BENEFITS_STYLE_RESET_KEYS.title)}
-        >
-          <InspectorChoose
-            label="Alignment"
-            name="titleAlign"
-            value={style.titleAlign}
-            options={TITLE_ALIGN_OPTIONS}
-            onChange={(value) => update("titleAlign", value)}
-          />
-          <InspectorColor
-            label="Title color"
-            value={style.titleColor}
-            onChange={(value) => update("titleColor", value)}
-          />
-        </InspectorSection>
-      ) : null}
-
       <InspectorSection
         title="Items"
         onReset={() => reset(SERVICE_BENEFITS_STYLE_RESET_KEYS.items)}
@@ -91,18 +94,6 @@ function ServiceBenefitsListStyleForm({ style, onChange }) {
           label="Icons"
           hint="Circle icons beside each benefit"
         />
-        <InspectorColor
-          label="Item title"
-          value={style.itemTitleColor}
-          onChange={(value) => update("itemTitleColor", value)}
-        />
-        {style.showDescription ? (
-          <InspectorColor
-            label="Description color"
-            value={style.descriptionColor}
-            onChange={(value) => update("descriptionColor", value)}
-          />
-        ) : null}
         {style.showIcons ? (
           <>
             <InspectorColor
@@ -117,6 +108,11 @@ function ServiceBenefitsListStyleForm({ style, onChange }) {
             />
           </>
         ) : null}
+        <InspectorColor
+          label="Item title"
+          value={style.itemTitleColor}
+          onChange={(value) => update("itemTitleColor", value)}
+        />
       </InspectorSection>
 
       <InspectorSection
@@ -135,13 +131,6 @@ function ServiceBenefitsListStyleForm({ style, onChange }) {
           label="Overlay"
           hint="Color wash over the photo"
         />
-        <InspectorChoose
-          label="Corners"
-          name="cardRadius"
-          value={style.cardRadius}
-          options={CARD_RADIUS_OPTIONS}
-          onChange={(value) => update("cardRadius", value)}
-        />
         {style.showOverlay ? (
           <InspectorColor
             label="Overlay color"
@@ -149,6 +138,13 @@ function ServiceBenefitsListStyleForm({ style, onChange }) {
             onChange={(value) => update("overlayColor", value)}
           />
         ) : null}
+        <InspectorChoose
+          label="Corners"
+          name="cardRadius"
+          value={style.cardRadius}
+          options={CARD_RADIUS_OPTIONS}
+          onChange={(value) => update("cardRadius", value)}
+        />
       </InspectorSection>
     </div>
   );

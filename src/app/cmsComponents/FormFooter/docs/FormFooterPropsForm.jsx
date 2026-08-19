@@ -31,12 +31,26 @@ function FormFooterStyleForm({ style, onChange }) {
           label="Follow"
           hint="Follow title, copy, and social row"
         />
+        {style.showFollow ? (
+          <InspectorColor
+            label="Title color"
+            value={style.titleColor}
+            onChange={(value) => update("titleColor", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.showDescription}
           onChange={() => toggle("showDescription")}
           label="Description"
           hint="Follow copy under the title"
         />
+        {style.showDescription ? (
+          <InspectorColor
+            label="Copy color"
+            value={style.descriptionColor}
+            onChange={(value) => update("descriptionColor", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.showSocial}
           onChange={() => toggle("showSocial")}
@@ -49,12 +63,26 @@ function FormFooterStyleForm({ style, onChange }) {
           label="Contact"
           hint="Phone, email, and website"
         />
+        {style.showSocial || style.showContact ? (
+          <InspectorColor
+            label="Link color"
+            value={style.linkColor}
+            onChange={(value) => update("linkColor", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.showCopyright}
           onChange={() => toggle("showCopyright")}
           label="Copyright"
           hint="Line under the bar"
         />
+        {style.showCopyright ? (
+          <InspectorColor
+            label="Copyright color"
+            value={style.copyrightColor}
+            onChange={(value) => update("copyrightColor", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.showSectionBg}
           onChange={() => toggle("showSectionBg")}
@@ -75,34 +103,6 @@ function FormFooterStyleForm({ style, onChange }) {
           options={SPACING_OPTIONS}
           onChange={(value) => update("sectionPadding", value)}
         />
-      </InspectorSection>
-
-      <InspectorSection
-        title="Colors"
-        onReset={() => reset(FORM_FOOTER_STYLE_RESET_KEYS.copy)}
-      >
-        <InspectorColor
-          label="Title color"
-          value={style.titleColor}
-          onChange={(value) => update("titleColor", value)}
-        />
-        <InspectorColor
-          label="Copy color"
-          value={style.descriptionColor}
-          onChange={(value) => update("descriptionColor", value)}
-        />
-        <InspectorColor
-          label="Link color"
-          value={style.linkColor}
-          onChange={(value) => update("linkColor", value)}
-        />
-        {style.showCopyright ? (
-          <InspectorColor
-            label="Copyright color"
-            value={style.copyrightColor}
-            onChange={(value) => update("copyrightColor", value)}
-          />
-        ) : null}
       </InspectorSection>
     </div>
   );

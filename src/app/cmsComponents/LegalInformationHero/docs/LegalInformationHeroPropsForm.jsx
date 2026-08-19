@@ -33,12 +33,35 @@ function LegalInformationHeroStyleForm({ style, onChange }) {
           label="Title"
           hint="Show the heading"
         />
+        {style.showTitle ? (
+          <InspectorColor
+            label="Title color"
+            value={style.titleColor}
+            onChange={(value) => update("titleColor", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.showDescription}
           onChange={() => toggle("showDescription")}
           label="Description"
           hint="Show text under the title"
         />
+        {style.showDescription ? (
+          <InspectorColor
+            label="Description color"
+            value={style.descriptionColor}
+            onChange={(value) => update("descriptionColor", value)}
+          />
+        ) : null}
+        {style.showTitle || style.showDescription ? (
+          <InspectorChoose
+            label="Alignment"
+            name="titleAlign"
+            value={style.titleAlign}
+            options={TITLE_ALIGN_OPTIONS}
+            onChange={(value) => update("titleAlign", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.showPattern}
           onChange={() => toggle("showPattern")}
@@ -59,35 +82,6 @@ function LegalInformationHeroStyleForm({ style, onChange }) {
           />
         ) : null}
       </InspectorSection>
-
-      {style.showTitle || style.showDescription ? (
-        <InspectorSection
-          title="Title"
-          onReset={() => reset(LEGAL_INFORMATION_HERO_STYLE_RESET_KEYS.title)}
-        >
-          <InspectorChoose
-            label="Alignment"
-            name="titleAlign"
-            value={style.titleAlign}
-            options={TITLE_ALIGN_OPTIONS}
-            onChange={(value) => update("titleAlign", value)}
-          />
-          {style.showTitle ? (
-            <InspectorColor
-              label="Title color"
-              value={style.titleColor}
-              onChange={(value) => update("titleColor", value)}
-            />
-          ) : null}
-          {style.showDescription ? (
-            <InspectorColor
-              label="Description color"
-              value={style.descriptionColor}
-              onChange={(value) => update("descriptionColor", value)}
-            />
-          ) : null}
-        </InspectorSection>
-      ) : null}
     </div>
   );
 }

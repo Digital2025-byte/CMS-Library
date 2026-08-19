@@ -62,12 +62,26 @@ function ScrollCarouselStyleForm({ style, onChange }) {
           label="Titles"
           hint="Heading on each card"
         />
+        {style.showTitle ? (
+          <InspectorColor
+            label="Title color"
+            value={style.titleColor}
+            onChange={(value) => update("titleColor", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.showDescription}
           onChange={() => toggle("showDescription")}
           label="Descriptions"
           hint="Text under the title"
         />
+        {style.showDescription ? (
+          <InspectorColor
+            label="Description color"
+            value={style.descriptionColor}
+            onChange={(value) => update("descriptionColor", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.showOverlay}
           onChange={() => toggle("showOverlay")}
@@ -81,20 +95,6 @@ function ScrollCarouselStyleForm({ style, onChange }) {
           options={CARD_RADIUS_OPTIONS}
           onChange={(value) => update("cardRadius", value)}
         />
-        {style.showTitle ? (
-          <InspectorColor
-            label="Title color"
-            value={style.titleColor}
-            onChange={(value) => update("titleColor", value)}
-          />
-        ) : null}
-        {style.showDescription ? (
-          <InspectorColor
-            label="Description color"
-            value={style.descriptionColor}
-            onChange={(value) => update("descriptionColor", value)}
-          />
-        ) : null}
       </InspectorSection>
     </div>
   );

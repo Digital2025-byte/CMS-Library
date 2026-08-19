@@ -34,6 +34,22 @@ function CarouselImageText6StyleForm({ style, onChange }) {
           label="Title"
           hint="Section heading above the carousel"
         />
+        {style.showTitle ? (
+          <>
+            <InspectorChoose
+              label="Alignment"
+              name="titleAlign"
+              value={style.titleAlign}
+              options={TITLE_ALIGN_OPTIONS}
+              onChange={(value) => update("titleAlign", value)}
+            />
+            <InspectorColor
+              label="Title color"
+              value={style.titleColor}
+              onChange={(value) => update("titleColor", value)}
+            />
+          </>
+        ) : null}
         <InspectorSwitch
           checked={style.showSectionBg}
           onChange={() => toggle("showSectionBg")}
@@ -49,26 +65,6 @@ function CarouselImageText6StyleForm({ style, onChange }) {
         ) : null}
       </InspectorSection>
 
-      {style.showTitle ? (
-        <InspectorSection
-          title="Title"
-          onReset={() => reset(CAROUSEL_IMAGE_TEXT_STYLE_RESET_KEYS.title)}
-        >
-          <InspectorChoose
-            label="Alignment"
-            name="titleAlign"
-            value={style.titleAlign}
-            options={TITLE_ALIGN_OPTIONS}
-            onChange={(value) => update("titleAlign", value)}
-          />
-          <InspectorColor
-            label="Title color"
-            value={style.titleColor}
-            onChange={(value) => update("titleColor", value)}
-          />
-        </InspectorSection>
-      ) : null}
-
       <InspectorSection
         title="Items"
         onReset={() => reset(CAROUSEL_IMAGE_TEXT_STYLE_RESET_KEYS.cards)}
@@ -79,12 +75,26 @@ function CarouselImageText6StyleForm({ style, onChange }) {
           label="Names"
           hint="Title on each value card"
         />
+        {style.showItemTitle ? (
+          <InspectorColor
+            label="Title color"
+            value={style.itemTitleColor}
+            onChange={(value) => update("itemTitleColor", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.showItemDescription}
           onChange={() => toggle("showItemDescription")}
           label="Description"
           hint="Body text on each value card"
         />
+        {style.showItemDescription ? (
+          <InspectorColor
+            label="Body color"
+            value={style.itemBodyColor}
+            onChange={(value) => update("itemBodyColor", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.grayscaleInactive}
           onChange={() => toggle("grayscaleInactive")}
@@ -135,20 +145,6 @@ function CarouselImageText6StyleForm({ style, onChange }) {
             label="Frosted panel"
             value={style.panelColor}
             onChange={(value) => update("panelColor", value)}
-          />
-        ) : null}
-        {style.showItemTitle ? (
-          <InspectorColor
-            label="Title color"
-            value={style.itemTitleColor}
-            onChange={(value) => update("itemTitleColor", value)}
-          />
-        ) : null}
-        {style.showItemDescription ? (
-          <InspectorColor
-            label="Body color"
-            value={style.itemBodyColor}
-            onChange={(value) => update("itemBodyColor", value)}
           />
         ) : null}
       </InspectorSection>

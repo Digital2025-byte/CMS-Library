@@ -31,50 +31,49 @@ function BannerWithCTAsAndItemsStyleForm({ style, onChange }) {
           label="Title"
           hint="Show the heading"
         />
+        {style.showTitle ? (
+          <>
+            <InspectorChoose
+              label="Alignment"
+              name="titleAlign"
+              value={style.titleAlign}
+              options={TITLE_ALIGN_OPTIONS}
+              onChange={(value) => update("titleAlign", value)}
+            />
+            <InspectorColor
+              label="Title color"
+              value={style.titleColor}
+              onChange={(value) => update("titleColor", value)}
+            />
+          </>
+        ) : null}
         <InspectorSwitch
           checked={style.showDescription}
           onChange={() => toggle("showDescription")}
           label="Description"
           hint="Show text under the title"
         />
+        {style.showDescription ? (
+          <InspectorColor
+            label="Description color"
+            value={style.descriptionColor}
+            onChange={(value) => update("descriptionColor", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.showItems}
           onChange={() => toggle("showItems")}
           label="Items"
           hint="Feature list with checkmarks"
         />
+        {style.showItems ? (
+          <InspectorColor
+            label="Item color"
+            value={style.itemColor}
+            onChange={(value) => update("itemColor", value)}
+          />
+        ) : null}
       </InspectorSection>
-
-      {style.showTitle || style.showDescription ? (
-        <InspectorSection
-          title="Title"
-          onReset={() => reset(BANNER_WITH_CTAS_STYLE_RESET_KEYS.title)}
-        >
-          {style.showTitle ? (
-            <>
-              <InspectorChoose
-                label="Alignment"
-                name="titleAlign"
-                value={style.titleAlign}
-                options={TITLE_ALIGN_OPTIONS}
-                onChange={(value) => update("titleAlign", value)}
-              />
-              <InspectorColor
-                label="Title color"
-                value={style.titleColor}
-                onChange={(value) => update("titleColor", value)}
-              />
-            </>
-          ) : null}
-          {style.showDescription ? (
-            <InspectorColor
-              label="Description color"
-              value={style.descriptionColor}
-              onChange={(value) => update("descriptionColor", value)}
-            />
-          ) : null}
-        </InspectorSection>
-      ) : null}
 
       <InspectorSection
         title="Banner"
@@ -101,19 +100,6 @@ function BannerWithCTAsAndItemsStyleForm({ style, onChange }) {
         ) : null}
       </InspectorSection>
 
-      {style.showItems ? (
-        <InspectorSection
-          title="Items"
-          onReset={() => reset(BANNER_WITH_CTAS_STYLE_RESET_KEYS.items)}
-        >
-          <InspectorColor
-            label="Item color"
-            value={style.itemColor}
-            onChange={(value) => update("itemColor", value)}
-          />
-        </InspectorSection>
-      ) : null}
-
       <InspectorSection
         title="Button"
         onReset={() => reset(BANNER_WITH_CTAS_STYLE_RESET_KEYS.button)}
@@ -123,12 +109,6 @@ function BannerWithCTAsAndItemsStyleForm({ style, onChange }) {
           onChange={() => toggle("showPrimaryButton")}
           label="Primary"
           hint="Solid call-to-action"
-        />
-        <InspectorSwitch
-          checked={style.showSecondaryButton}
-          onChange={() => toggle("showSecondaryButton")}
-          label="Secondary"
-          hint="Outline call-to-action"
         />
         {style.showPrimaryButton ? (
           <>
@@ -144,6 +124,12 @@ function BannerWithCTAsAndItemsStyleForm({ style, onChange }) {
             />
           </>
         ) : null}
+        <InspectorSwitch
+          checked={style.showSecondaryButton}
+          onChange={() => toggle("showSecondaryButton")}
+          label="Secondary"
+          hint="Outline call-to-action"
+        />
         {style.showSecondaryButton ? (
           <InspectorColor
             label="Secondary color"

@@ -33,6 +33,22 @@ function FlightFaresSectionStyleForm({ style, onChange }) {
           label="Title"
           hint="Show the section heading"
         />
+        {style.showTitle ? (
+          <>
+            <InspectorChoose
+              label="Alignment"
+              name="titleAlign"
+              value={style.titleAlign}
+              options={TITLE_ALIGN_OPTIONS}
+              onChange={(value) => update("titleAlign", value)}
+            />
+            <InspectorColor
+              label="Title color"
+              value={style.titleColor}
+              onChange={(value) => update("titleColor", value)}
+            />
+          </>
+        ) : null}
         <InspectorSwitch
           checked={style.showSectionBg}
           onChange={() => toggle("showSectionBg")}
@@ -55,26 +71,6 @@ function FlightFaresSectionStyleForm({ style, onChange }) {
         />
       </InspectorSection>
 
-      {style.showTitle ? (
-        <InspectorSection
-          title="Title"
-          onReset={() => reset(FLIGHT_FARES_STYLE_RESET_KEYS.title)}
-        >
-          <InspectorChoose
-            label="Alignment"
-            name="titleAlign"
-            value={style.titleAlign}
-            options={TITLE_ALIGN_OPTIONS}
-            onChange={(value) => update("titleAlign", value)}
-          />
-          <InspectorColor
-            label="Title color"
-            value={style.titleColor}
-            onChange={(value) => update("titleColor", value)}
-          />
-        </InspectorSection>
-      ) : null}
-
       <InspectorSection
         title="Items"
         onReset={() => reset(FLIGHT_FARES_STYLE_RESET_KEYS.cards)}
@@ -91,6 +87,13 @@ function FlightFaresSectionStyleForm({ style, onChange }) {
           label="Wash"
           hint="Fade over the bottom of the photo"
         />
+        {style.showOverlay ? (
+          <InspectorColor
+            label="Wash color"
+            value={style.overlayColor}
+            onChange={(value) => update("overlayColor", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.showOneWay}
           onChange={() => toggle("showOneWay")}
@@ -103,46 +106,6 @@ function FlightFaresSectionStyleForm({ style, onChange }) {
           label="New"
           hint="New badge when a city is marked new"
         />
-        <InspectorSwitch
-          checked={style.showCity}
-          onChange={() => toggle("showCity")}
-          label="City"
-          hint="City name and IATA"
-        />
-        <InspectorSwitch
-          checked={style.showPrice}
-          onChange={() => toggle("showPrice")}
-          label="Price"
-          hint="Economy from price line"
-        />
-        <InspectorChoose
-          label="Corners"
-          name="cardRadius"
-          value={style.cardRadius}
-          options={CARD_RADIUS_OPTIONS}
-          onChange={(value) => update("cardRadius", value)}
-        />
-        {style.showOverlay ? (
-          <InspectorColor
-            label="Wash color"
-            value={style.overlayColor}
-            onChange={(value) => update("overlayColor", value)}
-          />
-        ) : null}
-        {style.showCity ? (
-          <InspectorColor
-            label="City color"
-            value={style.cityColor}
-            onChange={(value) => update("cityColor", value)}
-          />
-        ) : null}
-        {style.showPrice ? (
-          <InspectorColor
-            label="Price color"
-            value={style.priceColor}
-            onChange={(value) => update("priceColor", value)}
-          />
-        ) : null}
         {style.showOneWay || style.showNew ? (
           <>
             <InspectorColor
@@ -157,6 +120,39 @@ function FlightFaresSectionStyleForm({ style, onChange }) {
             />
           </>
         ) : null}
+        <InspectorSwitch
+          checked={style.showCity}
+          onChange={() => toggle("showCity")}
+          label="City"
+          hint="City name and IATA"
+        />
+        {style.showCity ? (
+          <InspectorColor
+            label="City color"
+            value={style.cityColor}
+            onChange={(value) => update("cityColor", value)}
+          />
+        ) : null}
+        <InspectorSwitch
+          checked={style.showPrice}
+          onChange={() => toggle("showPrice")}
+          label="Price"
+          hint="Economy from price line"
+        />
+        {style.showPrice ? (
+          <InspectorColor
+            label="Price color"
+            value={style.priceColor}
+            onChange={(value) => update("priceColor", value)}
+          />
+        ) : null}
+        <InspectorChoose
+          label="Corners"
+          name="cardRadius"
+          value={style.cardRadius}
+          options={CARD_RADIUS_OPTIONS}
+          onChange={(value) => update("cardRadius", value)}
+        />
       </InspectorSection>
     </div>
   );

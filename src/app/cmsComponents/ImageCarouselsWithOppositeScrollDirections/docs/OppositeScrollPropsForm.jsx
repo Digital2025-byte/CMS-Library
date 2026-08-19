@@ -38,18 +38,55 @@ function OppositeScrollStyleForm({ style, onChange }) {
           label="Title"
           hint="Show the section heading"
         />
+        {style.showTitleDescription ? (
+          <>
+            <InspectorChoose
+              label="Alignment"
+              name="titleAlign"
+              value={style.titleAlign}
+              options={TITLE_ALIGN_OPTIONS}
+              onChange={(value) => update("titleAlign", value)}
+            />
+            <InspectorColor
+              label="Title color"
+              value={style.titleColor}
+              onChange={(value) => update("titleColor", value)}
+            />
+          </>
+        ) : null}
         <InspectorSwitch
           checked={style.showDescription}
           onChange={() => toggle("showDescription")}
           label="Description"
           hint="Show text under the title"
         />
+        {style.showDescription ? (
+          <InspectorColor
+            label="Description color"
+            value={style.descriptionColor}
+            onChange={(value) => update("descriptionColor", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.showExploreButton}
           onChange={() => toggle("showExploreButton")}
           label="Explore"
           hint="Round CTA over the marquees"
         />
+        {style.showExploreButton ? (
+          <>
+            <InspectorColor
+              label="Background"
+              value={style.buttonBg}
+              onChange={(value) => update("buttonBg", value)}
+            />
+            <InspectorColor
+              label="Text"
+              value={style.buttonColor}
+              onChange={(value) => update("buttonColor", value)}
+            />
+          </>
+        ) : null}
         <InspectorSwitch
           checked={style.showSectionBg}
           onChange={() => toggle("showSectionBg")}
@@ -72,37 +109,6 @@ function OppositeScrollStyleForm({ style, onChange }) {
         />
       </InspectorSection>
 
-      {style.showTitleDescription || style.showDescription ? (
-        <InspectorSection
-          title="Title"
-          onReset={() => reset(OPPOSITE_SCROLL_STYLE_RESET_KEYS.title)}
-        >
-          {style.showTitleDescription ? (
-            <>
-              <InspectorChoose
-                label="Alignment"
-                name="titleAlign"
-                value={style.titleAlign}
-                options={TITLE_ALIGN_OPTIONS}
-                onChange={(value) => update("titleAlign", value)}
-              />
-              <InspectorColor
-                label="Title color"
-                value={style.titleColor}
-                onChange={(value) => update("titleColor", value)}
-              />
-            </>
-          ) : null}
-          {style.showDescription ? (
-            <InspectorColor
-              label="Description color"
-              value={style.descriptionColor}
-              onChange={(value) => update("descriptionColor", value)}
-            />
-          ) : null}
-        </InspectorSection>
-      ) : null}
-
       <InspectorSection
         title="Items"
         onReset={() => reset(OPPOSITE_SCROLL_STYLE_RESET_KEYS.cards)}
@@ -113,12 +119,26 @@ function OppositeScrollStyleForm({ style, onChange }) {
           label="Names"
           hint="Title on each destination card"
         />
+        {style.showCardTitles ? (
+          <InspectorColor
+            label="Title color"
+            value={style.cardTitleColor}
+            onChange={(value) => update("cardTitleColor", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.showOverlay}
           onChange={() => toggle("showOverlay")}
           label="Gradient"
           hint="Fade behind the card title"
         />
+        {style.showOverlay ? (
+          <InspectorColor
+            label="Gradient color"
+            value={style.overlayColor}
+            onChange={(value) => update("overlayColor", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.dimOnHover}
           onChange={() => toggle("dimOnHover")}
@@ -153,20 +173,6 @@ function OppositeScrollStyleForm({ style, onChange }) {
           options={SPACING_OPTIONS}
           onChange={(value) => update("rowGap", value)}
         />
-        {style.showCardTitles ? (
-          <InspectorColor
-            label="Title color"
-            value={style.cardTitleColor}
-            onChange={(value) => update("cardTitleColor", value)}
-          />
-        ) : null}
-        {style.showOverlay ? (
-          <InspectorColor
-            label="Gradient color"
-            value={style.overlayColor}
-            onChange={(value) => update("overlayColor", value)}
-          />
-        ) : null}
       </InspectorSection>
 
       <InspectorSection
@@ -193,24 +199,6 @@ function OppositeScrollStyleForm({ style, onChange }) {
           onChange={(value) => update("speed", value)}
         />
       </InspectorSection>
-
-      {style.showExploreButton ? (
-        <InspectorSection
-          title="Explore"
-          onReset={() => reset(OPPOSITE_SCROLL_STYLE_RESET_KEYS.button)}
-        >
-          <InspectorColor
-            label="Background"
-            value={style.buttonBg}
-            onChange={(value) => update("buttonBg", value)}
-          />
-          <InspectorColor
-            label="Text"
-            value={style.buttonColor}
-            onChange={(value) => update("buttonColor", value)}
-          />
-        </InspectorSection>
-      ) : null}
     </div>
   );
 }

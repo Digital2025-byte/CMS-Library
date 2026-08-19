@@ -83,25 +83,6 @@ function SliderStyleForm({ style, onChange }) {
             label="Title"
             hint="Main heading on each slide"
           />
-          <InspectorSwitch
-            checked={style.showSubtitleText}
-            onChange={() => toggle("showSubtitleText")}
-            label="Subtitle"
-            hint="Small text above the title"
-          />
-          <InspectorSwitch
-            checked={style.showDescriptionText}
-            onChange={() => toggle("showDescriptionText")}
-            label="Description"
-            hint="Body text under the title"
-          />
-          <InspectorChoose
-            label="Alignment"
-            name="titleAlign"
-            value={style.titleAlign}
-            options={TITLE_ALIGN_OPTIONS}
-            onChange={(value) => update("titleAlign", value)}
-          />
           {style.showTitleText ? (
             <InspectorColor
               label="Title color"
@@ -109,6 +90,12 @@ function SliderStyleForm({ style, onChange }) {
               onChange={(value) => update("titleColor", value)}
             />
           ) : null}
+          <InspectorSwitch
+            checked={style.showSubtitleText}
+            onChange={() => toggle("showSubtitleText")}
+            label="Subtitle"
+            hint="Small text above the title"
+          />
           {style.showSubtitleText ? (
             <InspectorColor
               label="Subtitle color"
@@ -116,6 +103,12 @@ function SliderStyleForm({ style, onChange }) {
               onChange={(value) => update("subtitleColor", value)}
             />
           ) : null}
+          <InspectorSwitch
+            checked={style.showDescriptionText}
+            onChange={() => toggle("showDescriptionText")}
+            label="Description"
+            hint="Body text under the title"
+          />
           {style.showDescriptionText ? (
             <InspectorColor
               label="Description color"
@@ -123,8 +116,15 @@ function SliderStyleForm({ style, onChange }) {
               onChange={(value) => update("descriptionColor", value)}
             />
           ) : null}
-          </InspectorSection>
-        ) : null}
+          <InspectorChoose
+            label="Alignment"
+            name="titleAlign"
+            value={style.titleAlign}
+            options={TITLE_ALIGN_OPTIONS}
+            onChange={(value) => update("titleAlign", value)}
+          />
+        </InspectorSection>
+      ) : null}
 
       {style.showButton ? (
         <InspectorSection

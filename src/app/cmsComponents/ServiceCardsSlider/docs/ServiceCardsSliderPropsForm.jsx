@@ -33,12 +33,35 @@ function ServiceCardsSliderStyleForm({ style, onChange }) {
           label="Title"
           hint="Show the section heading"
         />
+        {style.showTitle ? (
+          <>
+            <InspectorChoose
+              label="Alignment"
+              name="titleAlign"
+              value={style.titleAlign}
+              options={TITLE_ALIGN_OPTIONS}
+              onChange={(value) => update("titleAlign", value)}
+            />
+            <InspectorColor
+              label="Title color"
+              value={style.titleColor}
+              onChange={(value) => update("titleColor", value)}
+            />
+          </>
+        ) : null}
         <InspectorSwitch
           checked={style.showDescription}
           onChange={() => toggle("showDescription")}
           label="Description"
           hint="Show text under the title"
         />
+        {style.showDescription ? (
+          <InspectorColor
+            label="Description color"
+            value={style.descriptionColor}
+            onChange={(value) => update("descriptionColor", value)}
+          />
+        ) : null}
         <InspectorColor
           label="Section background"
           value={style.sectionBg}
@@ -53,37 +76,6 @@ function ServiceCardsSliderStyleForm({ style, onChange }) {
         />
       </InspectorSection>
 
-      {style.showTitle || style.showDescription ? (
-        <InspectorSection
-          title="Title"
-          onReset={() => reset(SERVICE_CARDS_STYLE_RESET_KEYS.title)}
-        >
-          {style.showTitle ? (
-            <>
-              <InspectorChoose
-                label="Alignment"
-                name="titleAlign"
-                value={style.titleAlign}
-                options={TITLE_ALIGN_OPTIONS}
-                onChange={(value) => update("titleAlign", value)}
-              />
-              <InspectorColor
-                label="Title color"
-                value={style.titleColor}
-                onChange={(value) => update("titleColor", value)}
-              />
-            </>
-          ) : null}
-          {style.showDescription ? (
-            <InspectorColor
-              label="Description color"
-              value={style.descriptionColor}
-              onChange={(value) => update("descriptionColor", value)}
-            />
-          ) : null}
-        </InspectorSection>
-      ) : null}
-
       <InspectorSection
         title="Items"
         onReset={() => reset(SERVICE_CARDS_STYLE_RESET_KEYS.cards)}
@@ -94,24 +86,52 @@ function ServiceCardsSliderStyleForm({ style, onChange }) {
           label="Names"
           hint="Title on each service card"
         />
+        {style.showItemTitle ? (
+          <InspectorColor
+            label="Title color"
+            value={style.itemTitleColor}
+            onChange={(value) => update("itemTitleColor", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.showItemDescription}
           onChange={() => toggle("showItemDescription")}
           label="Description"
           hint="Body text on each service card"
         />
+        {style.showItemDescription ? (
+          <InspectorColor
+            label="Body color"
+            value={style.itemBodyColor}
+            onChange={(value) => update("itemBodyColor", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.showIcon}
           onChange={() => toggle("showIcon")}
           label="Icon"
           hint="Image on the left of each card"
         />
+        {style.showIcon ? (
+          <InspectorColor
+            label="Icon background"
+            value={style.iconBg}
+            onChange={(value) => update("iconBg", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.showArrow}
           onChange={() => toggle("showArrow")}
           label="Arrow"
           hint="Caret on the right of each card"
         />
+        {style.showArrow ? (
+          <InspectorColor
+            label="Arrow color"
+            value={style.arrowColor}
+            onChange={(value) => update("arrowColor", value)}
+          />
+        ) : null}
         <InspectorChoose
           label="Corners"
           name="cardRadius"
@@ -138,34 +158,6 @@ function ServiceCardsSliderStyleForm({ style, onChange }) {
           value={style.cardBg}
           onChange={(value) => update("cardBg", value)}
         />
-        {style.showIcon ? (
-          <InspectorColor
-            label="Icon background"
-            value={style.iconBg}
-            onChange={(value) => update("iconBg", value)}
-          />
-        ) : null}
-        {style.showItemTitle ? (
-          <InspectorColor
-            label="Title color"
-            value={style.itemTitleColor}
-            onChange={(value) => update("itemTitleColor", value)}
-          />
-        ) : null}
-        {style.showItemDescription ? (
-          <InspectorColor
-            label="Body color"
-            value={style.itemBodyColor}
-            onChange={(value) => update("itemBodyColor", value)}
-          />
-        ) : null}
-        {style.showArrow ? (
-          <InspectorColor
-            label="Arrow color"
-            value={style.arrowColor}
-            onChange={(value) => update("arrowColor", value)}
-          />
-        ) : null}
       </InspectorSection>
     </div>
   );

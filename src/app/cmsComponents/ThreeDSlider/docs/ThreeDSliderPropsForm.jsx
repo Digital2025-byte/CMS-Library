@@ -67,25 +67,6 @@ function ThreeDSliderStyleForm({ style, onChange }) {
           label="Title"
           hint="Title at the bottom of each item"
         />
-        <InspectorSwitch
-          checked={style.showNumber}
-          onChange={() => toggle("showNumber")}
-          label="Numbers"
-          hint="Index overlay in the corner"
-        />
-        <InspectorSwitch
-          checked={style.showOverlay}
-          onChange={() => toggle("showOverlay")}
-          label="Gradient"
-          hint="Fade behind the number and title"
-        />
-        <InspectorChoose
-          label="Corners"
-          name="cardRadius"
-          value={style.cardRadius}
-          options={CARD_RADIUS_OPTIONS}
-          onChange={(value) => update("cardRadius", value)}
-        />
         {style.showCardTitle ? (
           <InspectorColor
             label="Title color"
@@ -93,6 +74,12 @@ function ThreeDSliderStyleForm({ style, onChange }) {
             onChange={(value) => update("cardTitleColor", value)}
           />
         ) : null}
+        <InspectorSwitch
+          checked={style.showNumber}
+          onChange={() => toggle("showNumber")}
+          label="Numbers"
+          hint="Index overlay in the corner"
+        />
         {style.showNumber ? (
           <InspectorColor
             label="Number color"
@@ -100,6 +87,12 @@ function ThreeDSliderStyleForm({ style, onChange }) {
             onChange={(value) => update("numberColor", value)}
           />
         ) : null}
+        <InspectorSwitch
+          checked={style.showOverlay}
+          onChange={() => toggle("showOverlay")}
+          label="Gradient"
+          hint="Fade behind the number and title"
+        />
         {style.showOverlay ? (
           <InspectorColor
             label="Gradient color"
@@ -107,6 +100,13 @@ function ThreeDSliderStyleForm({ style, onChange }) {
             onChange={(value) => update("overlayColor", value)}
           />
         ) : null}
+        <InspectorChoose
+          label="Corners"
+          name="cardRadius"
+          value={style.cardRadius}
+          options={CARD_RADIUS_OPTIONS}
+          onChange={(value) => update("cardRadius", value)}
+        />
       </InspectorSection>
 
       <InspectorSection

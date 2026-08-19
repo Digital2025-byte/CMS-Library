@@ -33,12 +33,35 @@ function SimpleGridWithPrefixStyleForm({ style, onChange }) {
           label="Title"
           hint="Show the section heading"
         />
+        {style.showTitle ? (
+          <>
+            <InspectorChoose
+              label="Alignment"
+              name="titleAlign"
+              value={style.titleAlign}
+              options={TITLE_ALIGN_OPTIONS}
+              onChange={(value) => update("titleAlign", value)}
+            />
+            <InspectorColor
+              label="Title color"
+              value={style.titleColor}
+              onChange={(value) => update("titleColor", value)}
+            />
+          </>
+        ) : null}
         <InspectorSwitch
           checked={style.showDescription}
           onChange={() => toggle("showDescription")}
           label="Description"
           hint="Show text under the title"
         />
+        {style.showDescription ? (
+          <InspectorColor
+            label="Description color"
+            value={style.descriptionColor}
+            onChange={(value) => update("descriptionColor", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.showSectionBg}
           onChange={() => toggle("showSectionBg")}
@@ -60,37 +83,6 @@ function SimpleGridWithPrefixStyleForm({ style, onChange }) {
           onChange={(value) => update("sectionPadding", value)}
         />
       </InspectorSection>
-
-      {style.showTitle || style.showDescription ? (
-        <InspectorSection
-          title="Title"
-          onReset={() => reset(SIMPLE_GRID_STYLE_RESET_KEYS.title)}
-        >
-          {style.showTitle ? (
-            <>
-              <InspectorChoose
-                label="Alignment"
-                name="titleAlign"
-                value={style.titleAlign}
-                options={TITLE_ALIGN_OPTIONS}
-                onChange={(value) => update("titleAlign", value)}
-              />
-              <InspectorColor
-                label="Title color"
-                value={style.titleColor}
-                onChange={(value) => update("titleColor", value)}
-              />
-            </>
-          ) : null}
-          {style.showDescription ? (
-            <InspectorColor
-              label="Description color"
-              value={style.descriptionColor}
-              onChange={(value) => update("descriptionColor", value)}
-            />
-          ) : null}
-        </InspectorSection>
-      ) : null}
 
       <InspectorSection
         title="Items"
@@ -114,50 +106,6 @@ function SimpleGridWithPrefixStyleForm({ style, onChange }) {
           label="Chip"
           hint="Follower count badge"
         />
-        <InspectorSwitch
-          checked={style.showUserName}
-          onChange={() => toggle("showUserName")}
-          label="Handle"
-          hint="Username under the title"
-        />
-        <InspectorSwitch
-          checked={style.showArrow}
-          onChange={() => toggle("showArrow")}
-          label="Arrow"
-          hint="External-link arrow"
-        />
-        <InspectorSwitch
-          checked={style.showCardBg}
-          onChange={() => toggle("showCardBg")}
-          label="Card fill"
-          hint="Background color on each card"
-        />
-        <InspectorChoose
-          label="Corners"
-          name="cardRadius"
-          value={style.cardRadius}
-          options={CARD_RADIUS_OPTIONS}
-          onChange={(value) => update("cardRadius", value)}
-        />
-        <InspectorChoose
-          label="Gap"
-          name="cardGap"
-          value={style.cardGap}
-          options={SPACING_OPTIONS}
-          onChange={(value) => update("cardGap", value)}
-        />
-        {style.showCardBg ? (
-          <InspectorColor
-            label="Card background"
-            value={style.cardBg}
-            onChange={(value) => update("cardBg", value)}
-          />
-        ) : null}
-        <InspectorColor
-          label="Name color"
-          value={style.nameColor}
-          onChange={(value) => update("nameColor", value)}
-        />
         {style.showChip ? (
           <>
             <InspectorColor
@@ -172,6 +120,12 @@ function SimpleGridWithPrefixStyleForm({ style, onChange }) {
             />
           </>
         ) : null}
+        <InspectorSwitch
+          checked={style.showUserName}
+          onChange={() => toggle("showUserName")}
+          label="Handle"
+          hint="Username under the title"
+        />
         {style.showUserName ? (
           <InspectorColor
             label="Handle color"
@@ -179,6 +133,12 @@ function SimpleGridWithPrefixStyleForm({ style, onChange }) {
             onChange={(value) => update("userNameColor", value)}
           />
         ) : null}
+        <InspectorSwitch
+          checked={style.showArrow}
+          onChange={() => toggle("showArrow")}
+          label="Arrow"
+          hint="External-link arrow"
+        />
         {style.showArrow ? (
           <InspectorColor
             label="Arrow color"
@@ -186,6 +146,38 @@ function SimpleGridWithPrefixStyleForm({ style, onChange }) {
             onChange={(value) => update("arrowColor", value)}
           />
         ) : null}
+        <InspectorSwitch
+          checked={style.showCardBg}
+          onChange={() => toggle("showCardBg")}
+          label="Card fill"
+          hint="Background color on each card"
+        />
+        {style.showCardBg ? (
+          <InspectorColor
+            label="Card background"
+            value={style.cardBg}
+            onChange={(value) => update("cardBg", value)}
+          />
+        ) : null}
+        <InspectorChoose
+          label="Corners"
+          name="cardRadius"
+          value={style.cardRadius}
+          options={CARD_RADIUS_OPTIONS}
+          onChange={(value) => update("cardRadius", value)}
+        />
+        <InspectorChoose
+          label="Gap"
+          name="cardGap"
+          value={style.cardGap}
+          options={SPACING_OPTIONS}
+          onChange={(value) => update("cardGap", value)}
+        />
+        <InspectorColor
+          label="Name color"
+          value={style.nameColor}
+          onChange={(value) => update("nameColor", value)}
+        />
       </InspectorSection>
     </div>
   );

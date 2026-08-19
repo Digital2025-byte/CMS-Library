@@ -33,18 +33,65 @@ function TabbedCardsSectionStyleForm({ style, onChange }) {
           label="Title"
           hint="Show the section heading"
         />
+        {style.showTitle ? (
+          <InspectorColor
+            label="Title color"
+            value={style.titleColor}
+            onChange={(value) => update("titleColor", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.showDescription}
           onChange={() => toggle("showDescription")}
           label="Description"
           hint="Show text under the title"
         />
+        {style.showDescription ? (
+          <InspectorColor
+            label="Description color"
+            value={style.descriptionColor}
+            onChange={(value) => update("descriptionColor", value)}
+          />
+        ) : null}
+        {style.showTitle || style.showDescription ? (
+          <InspectorChoose
+            label="Alignment"
+            name="titleAlign"
+            value={style.titleAlign}
+            options={TITLE_ALIGN_OPTIONS}
+            onChange={(value) => update("titleAlign", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.showTabs}
           onChange={() => toggle("showTabs")}
           label="Tabs"
           hint="Show the tab bar and filter cards"
         />
+        {style.showTabs ? (
+          <>
+            <InspectorColor
+              label="Track color"
+              value={style.tabTrack}
+              onChange={(value) => update("tabTrack", value)}
+            />
+            <InspectorColor
+              label="Active background"
+              value={style.tabActiveBg}
+              onChange={(value) => update("tabActiveBg", value)}
+            />
+            <InspectorColor
+              label="Active text"
+              value={style.tabActiveText}
+              onChange={(value) => update("tabActiveText", value)}
+            />
+            <InspectorColor
+              label="Idle text"
+              value={style.tabIdleText}
+              onChange={(value) => update("tabIdleText", value)}
+            />
+          </>
+        ) : null}
         <InspectorSwitch
           checked={style.showSectionBg}
           onChange={() => toggle("showSectionBg")}
@@ -67,63 +114,6 @@ function TabbedCardsSectionStyleForm({ style, onChange }) {
         />
       </InspectorSection>
 
-      {style.showTitle || style.showDescription ? (
-        <InspectorSection
-          title="Title"
-          onReset={() => reset(TABBED_CARDS_STYLE_RESET_KEYS.title)}
-        >
-          <InspectorChoose
-            label="Alignment"
-            name="titleAlign"
-            value={style.titleAlign}
-            options={TITLE_ALIGN_OPTIONS}
-            onChange={(value) => update("titleAlign", value)}
-          />
-          {style.showTitle ? (
-            <InspectorColor
-              label="Title color"
-              value={style.titleColor}
-              onChange={(value) => update("titleColor", value)}
-            />
-          ) : null}
-          {style.showDescription ? (
-            <InspectorColor
-              label="Description color"
-              value={style.descriptionColor}
-              onChange={(value) => update("descriptionColor", value)}
-            />
-          ) : null}
-        </InspectorSection>
-      ) : null}
-
-      {style.showTabs ? (
-        <InspectorSection
-          title="Tabs"
-          onReset={() => reset(TABBED_CARDS_STYLE_RESET_KEYS.tabs)}
-        >
-          <InspectorColor
-            label="Track color"
-            value={style.tabTrack}
-            onChange={(value) => update("tabTrack", value)}
-          />
-          <InspectorColor
-            label="Active background"
-            value={style.tabActiveBg}
-            onChange={(value) => update("tabActiveBg", value)}
-          />
-          <InspectorColor
-            label="Active text"
-            value={style.tabActiveText}
-            onChange={(value) => update("tabActiveText", value)}
-          />
-          <InspectorColor
-            label="Idle text"
-            value={style.tabIdleText}
-            onChange={(value) => update("tabIdleText", value)}
-          />
-        </InspectorSection>
-      ) : null}
-
       <InspectorSection
         title="Items"
         onReset={() => reset(TABBED_CARDS_STYLE_RESET_KEYS.cards)}
@@ -140,18 +130,39 @@ function TabbedCardsSectionStyleForm({ style, onChange }) {
           label="Name"
           hint="Card title under the photo"
         />
+        {style.showCardTitle ? (
+          <InspectorColor
+            label="Name color"
+            value={style.nameColor}
+            onChange={(value) => update("nameColor", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.showCardDescription}
           onChange={() => toggle("showCardDescription")}
           label="Copy"
           hint="Card description"
         />
+        {style.showCardDescription ? (
+          <InspectorColor
+            label="Copy color"
+            value={style.bodyColor}
+            onChange={(value) => update("bodyColor", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.showCardBg}
           onChange={() => toggle("showCardBg")}
           label="Card fill"
           hint="Background color on small screens"
         />
+        {style.showCardBg ? (
+          <InspectorColor
+            label="Card background"
+            value={style.cardBg}
+            onChange={(value) => update("cardBg", value)}
+          />
+        ) : null}
         <InspectorChoose
           label="Corners"
           name="cardRadius"
@@ -166,27 +177,6 @@ function TabbedCardsSectionStyleForm({ style, onChange }) {
           options={SPACING_OPTIONS}
           onChange={(value) => update("cardGap", value)}
         />
-        {style.showCardBg ? (
-          <InspectorColor
-            label="Card background"
-            value={style.cardBg}
-            onChange={(value) => update("cardBg", value)}
-          />
-        ) : null}
-        {style.showCardTitle ? (
-          <InspectorColor
-            label="Name color"
-            value={style.nameColor}
-            onChange={(value) => update("nameColor", value)}
-          />
-        ) : null}
-        {style.showCardDescription ? (
-          <InspectorColor
-            label="Copy color"
-            value={style.bodyColor}
-            onChange={(value) => update("bodyColor", value)}
-          />
-        ) : null}
       </InspectorSection>
     </div>
   );

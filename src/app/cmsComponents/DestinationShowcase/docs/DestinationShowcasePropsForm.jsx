@@ -35,18 +35,48 @@ function DestinationShowcaseStyleForm({ style, onChange }) {
           label="Title"
           hint="Show the section heading"
         />
+        {style.showTitle ? (
+          <>
+            <InspectorChoose
+              label="Alignment"
+              name="titleAlign"
+              value={style.titleAlign}
+              options={TITLE_ALIGN_OPTIONS}
+              onChange={(value) => update("titleAlign", value)}
+            />
+            <InspectorColor
+              label="Title color"
+              value={style.titleColor}
+              onChange={(value) => update("titleColor", value)}
+            />
+          </>
+        ) : null}
         <InspectorSwitch
           checked={style.showDescription}
           onChange={() => toggle("showDescription")}
           label="Description"
           hint="Show text under the title"
         />
+        {style.showDescription ? (
+          <InspectorColor
+            label="Description color"
+            value={style.descriptionColor}
+            onChange={(value) => update("descriptionColor", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.showViewAll}
           onChange={() => toggle("showViewAll")}
           label="View all"
           hint="Link to all destinations"
         />
+        {style.showViewAll ? (
+          <InspectorColor
+            label="View all color"
+            value={style.viewAllColor}
+            onChange={(value) => update("viewAllColor", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.showSectionBg}
           onChange={() => toggle("showSectionBg")}
@@ -69,44 +99,6 @@ function DestinationShowcaseStyleForm({ style, onChange }) {
         />
       </InspectorSection>
 
-      {style.showTitle || style.showDescription || style.showViewAll ? (
-        <InspectorSection
-          title="Title"
-          onReset={() => reset(DESTINATION_SHOWCASE_STYLE_RESET_KEYS.title)}
-        >
-          {style.showTitle ? (
-            <>
-              <InspectorChoose
-                label="Alignment"
-                name="titleAlign"
-                value={style.titleAlign}
-                options={TITLE_ALIGN_OPTIONS}
-                onChange={(value) => update("titleAlign", value)}
-              />
-              <InspectorColor
-                label="Title color"
-                value={style.titleColor}
-                onChange={(value) => update("titleColor", value)}
-              />
-            </>
-          ) : null}
-          {style.showDescription ? (
-            <InspectorColor
-              label="Description color"
-              value={style.descriptionColor}
-              onChange={(value) => update("descriptionColor", value)}
-            />
-          ) : null}
-          {style.showViewAll ? (
-            <InspectorColor
-              label="View all color"
-              value={style.viewAllColor}
-              onChange={(value) => update("viewAllColor", value)}
-            />
-          ) : null}
-        </InspectorSection>
-      ) : null}
-
       <InspectorSection
         title="Banner"
         onReset={() => reset(DESTINATION_SHOWCASE_STYLE_RESET_KEYS.banner)}
@@ -123,25 +115,6 @@ function DestinationShowcaseStyleForm({ style, onChange }) {
           label="Wash"
           hint="Colored blur over the hero photo"
         />
-        <InspectorSwitch
-          checked={style.showDestinationName}
-          onChange={() => toggle("showDestinationName")}
-          label="City"
-          hint="Active destination name"
-        />
-        <InspectorSwitch
-          checked={style.showDestinationDescription}
-          onChange={() => toggle("showDestinationDescription")}
-          label="Copy"
-          hint="Active destination description"
-        />
-        <InspectorChoose
-          label="Corners"
-          name="bannerRadius"
-          value={style.bannerRadius}
-          options={CARD_RADIUS_OPTIONS}
-          onChange={(value) => update("bannerRadius", value)}
-        />
         {style.showOverlay ? (
           <InspectorColor
             label="Wash color"
@@ -149,6 +122,12 @@ function DestinationShowcaseStyleForm({ style, onChange }) {
             onChange={(value) => update("overlayColor", value)}
           />
         ) : null}
+        <InspectorSwitch
+          checked={style.showDestinationName}
+          onChange={() => toggle("showDestinationName")}
+          label="City"
+          hint="Active destination name"
+        />
         {style.showDestinationName ? (
           <InspectorColor
             label="City color"
@@ -156,6 +135,12 @@ function DestinationShowcaseStyleForm({ style, onChange }) {
             onChange={(value) => update("destNameColor", value)}
           />
         ) : null}
+        <InspectorSwitch
+          checked={style.showDestinationDescription}
+          onChange={() => toggle("showDestinationDescription")}
+          label="Copy"
+          hint="Active destination description"
+        />
         {style.showDestinationDescription ? (
           <InspectorColor
             label="Copy color"
@@ -163,6 +148,13 @@ function DestinationShowcaseStyleForm({ style, onChange }) {
             onChange={(value) => update("destBodyColor", value)}
           />
         ) : null}
+        <InspectorChoose
+          label="Corners"
+          name="bannerRadius"
+          value={style.bannerRadius}
+          options={CARD_RADIUS_OPTIONS}
+          onChange={(value) => update("bannerRadius", value)}
+        />
       </InspectorSection>
 
       <InspectorSection
@@ -183,13 +175,6 @@ function DestinationShowcaseStyleForm({ style, onChange }) {
               label="Gradient"
               hint="Fade at the bottom of each card"
             />
-            <InspectorChoose
-              label="Corners"
-              name="cardRadius"
-              value={style.cardRadius}
-              options={CARD_RADIUS_OPTIONS}
-              onChange={(value) => update("cardRadius", value)}
-            />
             {style.showCardOverlay ? (
               <InspectorColor
                 label="Gradient color"
@@ -197,6 +182,13 @@ function DestinationShowcaseStyleForm({ style, onChange }) {
                 onChange={(value) => update("cardOverlayColor", value)}
               />
             ) : null}
+            <InspectorChoose
+              label="Corners"
+              name="cardRadius"
+              value={style.cardRadius}
+              options={CARD_RADIUS_OPTIONS}
+              onChange={(value) => update("cardRadius", value)}
+            />
           </>
         ) : null}
       </InspectorSection>

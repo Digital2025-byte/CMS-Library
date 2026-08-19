@@ -32,24 +32,59 @@ function CallUsStyleForm({ style, onChange }) {
           label="Title"
           hint="Show the upper line"
         />
+        {style.showTitle ? (
+          <InspectorColor
+            label="Title color"
+            value={style.titleColor}
+            onChange={(value) => update("titleColor", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.showDescription}
           onChange={() => toggle("showDescription")}
           label="Description"
           hint="Show the bottom line"
         />
+        {style.showDescription ? (
+          <InspectorColor
+            label="Description color"
+            value={style.descriptionColor}
+            onChange={(value) => update("descriptionColor", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.showPhone}
           onChange={() => toggle("showPhone")}
           label="Phone"
           hint="Show the phone number"
         />
+        {style.showPhone ? (
+          <InspectorColor
+            label="Phone color"
+            value={style.phoneColor}
+            onChange={(value) => update("phoneColor", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.showIcon}
           onChange={() => toggle("showIcon")}
           label="Icon"
           hint="Show the phone icon"
         />
+        {style.showIcon ? (
+          <>
+            <InspectorColor
+              label="Icon background"
+              value={style.iconBg}
+              onChange={(value) => update("iconBg", value)}
+            />
+            <InspectorColor
+              label="Icon color"
+              value={style.iconColor}
+              onChange={(value) => update("iconColor", value)}
+            />
+          </>
+        ) : null}
         <InspectorSwitch
           checked={style.showSectionBg}
           onChange={() => toggle("showSectionBg")}
@@ -82,13 +117,6 @@ function CallUsStyleForm({ style, onChange }) {
           label="Card fill"
           hint="Background on the call block"
         />
-        <InspectorChoose
-          label="Corners"
-          name="cardRadius"
-          value={style.cardRadius}
-          options={CARD_RADIUS_OPTIONS}
-          onChange={(value) => update("cardRadius", value)}
-        />
         {style.showCardBg ? (
           <InspectorColor
             label="Card background"
@@ -96,54 +124,14 @@ function CallUsStyleForm({ style, onChange }) {
             onChange={(value) => update("cardBg", value)}
           />
         ) : null}
+        <InspectorChoose
+          label="Corners"
+          name="cardRadius"
+          value={style.cardRadius}
+          options={CARD_RADIUS_OPTIONS}
+          onChange={(value) => update("cardRadius", value)}
+        />
       </InspectorSection>
-
-      {style.showTitle || style.showDescription || style.showPhone ? (
-        <InspectorSection
-          title="Title"
-          onReset={() => reset(CALL_US_STYLE_RESET_KEYS.title)}
-        >
-          {style.showTitle ? (
-            <InspectorColor
-              label="Title color"
-              value={style.titleColor}
-              onChange={(value) => update("titleColor", value)}
-            />
-          ) : null}
-          {style.showPhone ? (
-            <InspectorColor
-              label="Phone color"
-              value={style.phoneColor}
-              onChange={(value) => update("phoneColor", value)}
-            />
-          ) : null}
-          {style.showDescription ? (
-            <InspectorColor
-              label="Description color"
-              value={style.descriptionColor}
-              onChange={(value) => update("descriptionColor", value)}
-            />
-          ) : null}
-        </InspectorSection>
-      ) : null}
-
-      {style.showIcon ? (
-        <InspectorSection
-          title="Icon"
-          onReset={() => reset(CALL_US_STYLE_RESET_KEYS.icon)}
-        >
-          <InspectorColor
-            label="Icon background"
-            value={style.iconBg}
-            onChange={(value) => update("iconBg", value)}
-          />
-          <InspectorColor
-            label="Icon color"
-            value={style.iconColor}
-            onChange={(value) => update("iconColor", value)}
-          />
-        </InspectorSection>
-      ) : null}
     </div>
   );
 }

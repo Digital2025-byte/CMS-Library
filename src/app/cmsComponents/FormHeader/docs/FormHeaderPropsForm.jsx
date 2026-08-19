@@ -44,18 +44,55 @@ function FormHeaderStyleForm({ style, onChange }) {
           label="Title"
           hint="Show the heading"
         />
+        {style.showTitle ? (
+          <InspectorColor
+            label="Title color"
+            value={style.titleColor}
+            onChange={(value) => update("titleColor", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.showDescription}
           onChange={() => toggle("showDescription")}
           label="Description"
           hint="Show text under the title"
         />
+        {style.showDescription ? (
+          <InspectorColor
+            label="Description color"
+            value={style.descriptionColor}
+            onChange={(value) => update("descriptionColor", value)}
+          />
+        ) : null}
+        {style.showTitle || style.showDescription ? (
+          <InspectorChoose
+            label="Alignment"
+            name="titleAlign"
+            value={style.titleAlign}
+            options={TITLE_ALIGN_OPTIONS}
+            onChange={(value) => update("titleAlign", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.showCta}
           onChange={() => toggle("showCta")}
           label="Button"
           hint="Start CTA bar"
         />
+        {style.showCta ? (
+          <>
+            <InspectorColor
+              label="Background"
+              value={style.ctaBg}
+              onChange={(value) => update("ctaBg", value)}
+            />
+            <InspectorColor
+              label="Text"
+              value={style.ctaText}
+              onChange={(value) => update("ctaText", value)}
+            />
+          </>
+        ) : null}
         <InspectorSwitch
           checked={style.showSectionBg}
           onChange={() => toggle("showSectionBg")}
@@ -77,53 +114,6 @@ function FormHeaderStyleForm({ style, onChange }) {
           onChange={(value) => update("sectionPadding", value)}
         />
       </InspectorSection>
-
-      {style.showTitle || style.showDescription ? (
-        <InspectorSection
-          title="Title"
-          onReset={() => reset(FORM_HEADER_STYLE_RESET_KEYS.title)}
-        >
-          <InspectorChoose
-            label="Alignment"
-            name="titleAlign"
-            value={style.titleAlign}
-            options={TITLE_ALIGN_OPTIONS}
-            onChange={(value) => update("titleAlign", value)}
-          />
-          {style.showTitle ? (
-            <InspectorColor
-              label="Title color"
-              value={style.titleColor}
-              onChange={(value) => update("titleColor", value)}
-            />
-          ) : null}
-          {style.showDescription ? (
-            <InspectorColor
-              label="Description color"
-              value={style.descriptionColor}
-              onChange={(value) => update("descriptionColor", value)}
-            />
-          ) : null}
-        </InspectorSection>
-      ) : null}
-
-      {style.showCta ? (
-        <InspectorSection
-          title="Button"
-          onReset={() => reset(FORM_HEADER_STYLE_RESET_KEYS.button)}
-        >
-          <InspectorColor
-            label="Background"
-            value={style.ctaBg}
-            onChange={(value) => update("ctaBg", value)}
-          />
-          <InspectorColor
-            label="Text"
-            value={style.ctaText}
-            onChange={(value) => update("ctaText", value)}
-          />
-        </InspectorSection>
-      ) : null}
     </div>
   );
 }

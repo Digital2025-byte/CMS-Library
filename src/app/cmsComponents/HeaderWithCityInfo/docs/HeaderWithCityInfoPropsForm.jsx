@@ -34,12 +34,35 @@ function HeaderWithCityInfoStyleForm({ style, onChange }) {
           label="Title"
           hint="Show the city heading"
         />
+        {style.showTitle ? (
+          <>
+            <InspectorChoose
+              label="Alignment"
+              name="titleAlign"
+              value={style.titleAlign}
+              options={TITLE_ALIGN_OPTIONS}
+              onChange={(value) => update("titleAlign", value)}
+            />
+            <InspectorColor
+              label="Title color"
+              value={style.titleColor}
+              onChange={(value) => update("titleColor", value)}
+            />
+          </>
+        ) : null}
         <InspectorSwitch
           checked={style.showDescription}
           onChange={() => toggle("showDescription")}
           label="Country"
           hint="Show the country name"
         />
+        {style.showDescription ? (
+          <InspectorColor
+            label="Country color"
+            value={style.descriptionColor}
+            onChange={(value) => update("descriptionColor", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.showCityCard}
           onChange={() => toggle("showCityCard")}
@@ -47,37 +70,6 @@ function HeaderWithCityInfoStyleForm({ style, onChange }) {
           hint="Show the info card on the right"
         />
       </InspectorSection>
-
-      {style.showTitle || style.showDescription ? (
-        <InspectorSection
-          title="Title"
-          onReset={() => reset(HEADER_WITH_CITY_INFO_STYLE_RESET_KEYS.title)}
-        >
-          {style.showTitle ? (
-            <>
-              <InspectorChoose
-                label="Alignment"
-                name="titleAlign"
-                value={style.titleAlign}
-                options={TITLE_ALIGN_OPTIONS}
-                onChange={(value) => update("titleAlign", value)}
-              />
-              <InspectorColor
-                label="Title color"
-                value={style.titleColor}
-                onChange={(value) => update("titleColor", value)}
-              />
-            </>
-          ) : null}
-          {style.showDescription ? (
-            <InspectorColor
-              label="Country color"
-              value={style.descriptionColor}
-              onChange={(value) => update("descriptionColor", value)}
-            />
-          ) : null}
-        </InspectorSection>
-      ) : null}
 
       <InspectorSection
         title="Banner"
@@ -115,6 +107,13 @@ function HeaderWithCityInfoStyleForm({ style, onChange }) {
             label="Heading"
             hint="Card title"
           />
+          {style.showCardHeading ? (
+            <InspectorColor
+              label="Heading color"
+              value={style.cardHeadingColor}
+              onChange={(value) => update("cardHeadingColor", value)}
+            />
+          ) : null}
           <InspectorSwitch
             checked={style.showCardDescription}
             onChange={() => toggle("showCardDescription")}
@@ -127,33 +126,6 @@ function HeaderWithCityInfoStyleForm({ style, onChange }) {
             label="Tiles"
             hint="Weather, time, duration, flights"
           />
-          <InspectorSwitch
-            checked={style.showNextFlight}
-            onChange={() => toggle("showNextFlight")}
-            label="Next flight"
-            hint="Footer row on the card"
-          />
-          <InspectorChoose
-            label="Corners"
-            name="cardRadius"
-            value={style.cardRadius}
-            options={CARD_RADIUS_OPTIONS}
-            onChange={(value) => update("cardRadius", value)}
-          />
-          {style.showCardHeading ? (
-            <InspectorColor
-              label="Heading color"
-              value={style.cardHeadingColor}
-              onChange={(value) => update("cardHeadingColor", value)}
-            />
-          ) : null}
-          {style.showCardDescription || style.showNextFlight ? (
-            <InspectorColor
-              label="Copy color"
-              value={style.cardBodyColor}
-              onChange={(value) => update("cardBodyColor", value)}
-            />
-          ) : null}
           {style.showTiles ? (
             <>
               <InspectorColor
@@ -168,6 +140,12 @@ function HeaderWithCityInfoStyleForm({ style, onChange }) {
               />
             </>
           ) : null}
+          <InspectorSwitch
+            checked={style.showNextFlight}
+            onChange={() => toggle("showNextFlight")}
+            label="Next flight"
+            hint="Footer row on the card"
+          />
           {style.showNextFlight ? (
             <InspectorColor
               label="Next flight color"
@@ -175,6 +153,20 @@ function HeaderWithCityInfoStyleForm({ style, onChange }) {
               onChange={(value) => update("nextFlightColor", value)}
             />
           ) : null}
+          {style.showCardDescription || style.showNextFlight ? (
+            <InspectorColor
+              label="Copy color"
+              value={style.cardBodyColor}
+              onChange={(value) => update("cardBodyColor", value)}
+            />
+          ) : null}
+          <InspectorChoose
+            label="Corners"
+            name="cardRadius"
+            value={style.cardRadius}
+            options={CARD_RADIUS_OPTIONS}
+            onChange={(value) => update("cardRadius", value)}
+          />
         </InspectorSection>
       ) : null}
     </div>

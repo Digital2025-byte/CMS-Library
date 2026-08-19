@@ -35,12 +35,35 @@ function DestinationsCitiesStyleForm({ style, onChange }) {
           label="Title"
           hint="Show the section heading"
         />
+        {style.showTitle ? (
+          <>
+            <InspectorChoose
+              label="Alignment"
+              name="titleAlign"
+              value={style.titleAlign}
+              options={TITLE_ALIGN_OPTIONS}
+              onChange={(value) => update("titleAlign", value)}
+            />
+            <InspectorColor
+              label="Title color"
+              value={style.titleColor}
+              onChange={(value) => update("titleColor", value)}
+            />
+          </>
+        ) : null}
         <InspectorSwitch
           checked={style.showDescription}
           onChange={() => toggle("showDescription")}
           label="Description"
           hint="Show text under the title"
         />
+        {style.showDescription ? (
+          <InspectorColor
+            label="Description color"
+            value={style.descriptionColor}
+            onChange={(value) => update("descriptionColor", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.showSectionBg}
           onChange={() => toggle("showSectionBg")}
@@ -63,37 +86,6 @@ function DestinationsCitiesStyleForm({ style, onChange }) {
         />
       </InspectorSection>
 
-      {style.showTitle || style.showDescription ? (
-        <InspectorSection
-          title="Title"
-          onReset={() => reset(DESTINATIONS_CITIES_STYLE_RESET_KEYS.title)}
-        >
-          {style.showTitle ? (
-            <>
-              <InspectorChoose
-                label="Alignment"
-                name="titleAlign"
-                value={style.titleAlign}
-                options={TITLE_ALIGN_OPTIONS}
-                onChange={(value) => update("titleAlign", value)}
-              />
-              <InspectorColor
-                label="Title color"
-                value={style.titleColor}
-                onChange={(value) => update("titleColor", value)}
-              />
-            </>
-          ) : null}
-          {style.showDescription ? (
-            <InspectorColor
-              label="Description color"
-              value={style.descriptionColor}
-              onChange={(value) => update("descriptionColor", value)}
-            />
-          ) : null}
-        </InspectorSection>
-      ) : null}
-
       <InspectorSection
         title="Items"
         onReset={() => reset(DESTINATIONS_CITIES_STYLE_RESET_KEYS.cards)}
@@ -110,12 +102,33 @@ function DestinationsCitiesStyleForm({ style, onChange }) {
           label="City"
           hint="City name on the card"
         />
+        {style.showCity ? (
+          <InspectorColor
+            label="City color"
+            value={style.cityColor}
+            onChange={(value) => update("cityColor", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.showOrigin}
           onChange={() => toggle("showOrigin")}
           label="Origin"
           hint="From badge next to the city"
         />
+        {style.showOrigin ? (
+          <>
+            <InspectorColor
+              label="Origin color"
+              value={style.originColor}
+              onChange={(value) => update("originColor", value)}
+            />
+            <InspectorColor
+              label="Origin background"
+              value={style.originBg}
+              onChange={(value) => update("originBg", value)}
+            />
+          </>
+        ) : null}
         <InspectorSwitch
           checked={style.showNew}
           onChange={() => toggle("showNew")}
@@ -134,52 +147,6 @@ function DestinationsCitiesStyleForm({ style, onChange }) {
           label="Duration"
           hint="Flight duration"
         />
-        <InspectorSwitch
-          checked={style.showCardDescription}
-          onChange={() => toggle("showCardDescription")}
-          label="Description"
-          hint="Body text on each card"
-        />
-        <InspectorSwitch
-          checked={style.showPanel}
-          onChange={() => toggle("showPanel")}
-          label="Panel"
-          hint="Glass panel over the bottom of the card"
-        />
-        <InspectorSwitch
-          checked={style.showInactiveDim}
-          onChange={() => toggle("showInactiveDim")}
-          label="Dim stacked"
-          hint="Darken cards that are not in front"
-        />
-        <InspectorChoose
-          label="Corners"
-          name="cardRadius"
-          value={style.cardRadius}
-          options={CARD_RADIUS_OPTIONS}
-          onChange={(value) => update("cardRadius", value)}
-        />
-        {style.showCity ? (
-          <InspectorColor
-            label="City color"
-            value={style.cityColor}
-            onChange={(value) => update("cityColor", value)}
-          />
-        ) : null}
-        {style.showOrigin ? (
-          <>
-            <InspectorColor
-              label="Origin color"
-              value={style.originColor}
-              onChange={(value) => update("originColor", value)}
-            />
-            <InspectorColor
-              label="Origin background"
-              value={style.originBg}
-              onChange={(value) => update("originBg", value)}
-            />
-          </>
-        ) : null}
         {style.showNew || style.showFlights || style.showDuration ? (
           <InspectorColor
             label="Meta color"
@@ -187,6 +154,12 @@ function DestinationsCitiesStyleForm({ style, onChange }) {
             onChange={(value) => update("metaColor", value)}
           />
         ) : null}
+        <InspectorSwitch
+          checked={style.showCardDescription}
+          onChange={() => toggle("showCardDescription")}
+          label="Description"
+          hint="Body text on each card"
+        />
         {style.showCardDescription ? (
           <InspectorColor
             label="Body color"
@@ -194,6 +167,12 @@ function DestinationsCitiesStyleForm({ style, onChange }) {
             onChange={(value) => update("bodyColor", value)}
           />
         ) : null}
+        <InspectorSwitch
+          checked={style.showPanel}
+          onChange={() => toggle("showPanel")}
+          label="Panel"
+          hint="Glass panel over the bottom of the card"
+        />
         {style.showPanel ? (
           <InspectorColor
             label="Panel color"
@@ -201,6 +180,12 @@ function DestinationsCitiesStyleForm({ style, onChange }) {
             onChange={(value) => update("panelBg", value)}
           />
         ) : null}
+        <InspectorSwitch
+          checked={style.showInactiveDim}
+          onChange={() => toggle("showInactiveDim")}
+          label="Dim stacked"
+          hint="Darken cards that are not in front"
+        />
         {style.showInactiveDim ? (
           <InspectorColor
             label="Stack dim"
@@ -208,6 +193,13 @@ function DestinationsCitiesStyleForm({ style, onChange }) {
             onChange={(value) => update("overlayColor", value)}
           />
         ) : null}
+        <InspectorChoose
+          label="Corners"
+          name="cardRadius"
+          value={style.cardRadius}
+          options={CARD_RADIUS_OPTIONS}
+          onChange={(value) => update("cardRadius", value)}
+        />
       </InspectorSection>
 
       <InspectorSection

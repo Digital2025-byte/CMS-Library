@@ -33,6 +33,22 @@ function PhotoTileGridStyleForm({ style, onChange }) {
           label="Title"
           hint="Show the section heading"
         />
+        {style.showTitle ? (
+          <>
+            <InspectorChoose
+              label="Alignment"
+              name="titleAlign"
+              value={style.titleAlign}
+              options={TITLE_ALIGN_OPTIONS}
+              onChange={(value) => update("titleAlign", value)}
+            />
+            <InspectorColor
+              label="Title color"
+              value={style.titleColor}
+              onChange={(value) => update("titleColor", value)}
+            />
+          </>
+        ) : null}
         <InspectorSwitch
           checked={style.showSectionBg}
           onChange={() => toggle("showSectionBg")}
@@ -55,26 +71,6 @@ function PhotoTileGridStyleForm({ style, onChange }) {
         />
       </InspectorSection>
 
-      {style.showTitle ? (
-        <InspectorSection
-          title="Title"
-          onReset={() => reset(PHOTO_TILE_GRID_STYLE_RESET_KEYS.title)}
-        >
-          <InspectorChoose
-            label="Alignment"
-            name="titleAlign"
-            value={style.titleAlign}
-            options={TITLE_ALIGN_OPTIONS}
-            onChange={(value) => update("titleAlign", value)}
-          />
-          <InspectorColor
-            label="Title color"
-            value={style.titleColor}
-            onChange={(value) => update("titleColor", value)}
-          />
-        </InspectorSection>
-      ) : null}
-
       <InspectorSection
         title="Items"
         onReset={() => reset(PHOTO_TILE_GRID_STYLE_RESET_KEYS.cards)}
@@ -91,6 +87,13 @@ function PhotoTileGridStyleForm({ style, onChange }) {
           label="City"
           hint="City name on each card"
         />
+        {style.showCity ? (
+          <InspectorColor
+            label="City color"
+            value={style.cityColor}
+            onChange={(value) => update("cityColor", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.showIata}
           onChange={() => toggle("showIata")}
@@ -103,12 +106,26 @@ function PhotoTileGridStyleForm({ style, onChange }) {
           label="Country"
           hint="Country name under the button"
         />
+        {style.showCountry ? (
+          <InspectorColor
+            label="Country color"
+            value={style.countryColor}
+            onChange={(value) => update("countryColor", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.showOverlay}
           onChange={() => toggle("showOverlay")}
           label="Gradient"
           hint="Fade behind the card copy"
         />
+        {style.showOverlay ? (
+          <InspectorColor
+            label="Gradient color"
+            value={style.overlayColor}
+            onChange={(value) => update("overlayColor", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.showHoverDim}
           onChange={() => toggle("showHoverDim")}
@@ -129,27 +146,6 @@ function PhotoTileGridStyleForm({ style, onChange }) {
           options={SPACING_OPTIONS}
           onChange={(value) => update("cardGap", value)}
         />
-        {style.showCity ? (
-          <InspectorColor
-            label="City color"
-            value={style.cityColor}
-            onChange={(value) => update("cityColor", value)}
-          />
-        ) : null}
-        {style.showCountry ? (
-          <InspectorColor
-            label="Country color"
-            value={style.countryColor}
-            onChange={(value) => update("countryColor", value)}
-          />
-        ) : null}
-        {style.showOverlay ? (
-          <InspectorColor
-            label="Gradient color"
-            value={style.overlayColor}
-            onChange={(value) => update("overlayColor", value)}
-          />
-        ) : null}
       </InspectorSection>
 
       <InspectorSection

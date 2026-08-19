@@ -67,44 +67,6 @@ function LegalInformationCardsStyleForm({ style, onChange }) {
           label="Icon"
           hint="Icon badge on each card"
         />
-        <InspectorSwitch
-          checked={style.showTitle}
-          onChange={() => toggle("showTitle")}
-          label="Title"
-          hint="Card heading"
-        />
-        <InspectorSwitch
-          checked={style.showDescription}
-          onChange={() => toggle("showDescription")}
-          label="Description"
-          hint="Card copy"
-        />
-        <InspectorSwitch
-          checked={style.showCta}
-          onChange={() => toggle("showCta")}
-          label="Button"
-          hint="Read more link"
-        />
-        <InspectorSwitch
-          checked={style.showCardBg}
-          onChange={() => toggle("showCardBg")}
-          label="Card fill"
-          hint="Background color on each card"
-        />
-        <InspectorChoose
-          label="Corners"
-          name="cardRadius"
-          value={style.cardRadius}
-          options={CARD_RADIUS_OPTIONS}
-          onChange={(value) => update("cardRadius", value)}
-        />
-        {style.showCardBg ? (
-          <InspectorColor
-            label="Card background"
-            value={style.cardBg}
-            onChange={(value) => update("cardBg", value)}
-          />
-        ) : null}
         {style.showIcon ? (
           <>
             <InspectorColor
@@ -119,6 +81,12 @@ function LegalInformationCardsStyleForm({ style, onChange }) {
             />
           </>
         ) : null}
+        <InspectorSwitch
+          checked={style.showTitle}
+          onChange={() => toggle("showTitle")}
+          label="Title"
+          hint="Card heading"
+        />
         {style.showTitle ? (
           <InspectorColor
             label="Title color"
@@ -126,6 +94,12 @@ function LegalInformationCardsStyleForm({ style, onChange }) {
             onChange={(value) => update("titleColor", value)}
           />
         ) : null}
+        <InspectorSwitch
+          checked={style.showDescription}
+          onChange={() => toggle("showDescription")}
+          label="Description"
+          hint="Card copy"
+        />
         {style.showDescription ? (
           <InspectorColor
             label="Description color"
@@ -133,6 +107,12 @@ function LegalInformationCardsStyleForm({ style, onChange }) {
             onChange={(value) => update("descriptionColor", value)}
           />
         ) : null}
+        <InspectorSwitch
+          checked={style.showCta}
+          onChange={() => toggle("showCta")}
+          label="Button"
+          hint="Read more link"
+        />
         {style.showCta ? (
           <InspectorColor
             label="Button color"
@@ -140,6 +120,26 @@ function LegalInformationCardsStyleForm({ style, onChange }) {
             onChange={(value) => update("ctaColor", value)}
           />
         ) : null}
+        <InspectorSwitch
+          checked={style.showCardBg}
+          onChange={() => toggle("showCardBg")}
+          label="Card fill"
+          hint="Background color on each card"
+        />
+        {style.showCardBg ? (
+          <InspectorColor
+            label="Card background"
+            value={style.cardBg}
+            onChange={(value) => update("cardBg", value)}
+          />
+        ) : null}
+        <InspectorChoose
+          label="Corners"
+          name="cardRadius"
+          value={style.cardRadius}
+          options={CARD_RADIUS_OPTIONS}
+          onChange={(value) => update("cardRadius", value)}
+        />
       </InspectorSection>
     </div>
   );

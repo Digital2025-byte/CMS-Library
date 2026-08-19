@@ -35,18 +35,48 @@ function TwoColumnWithSubSectionsStyleForm({ style, onChange }) {
           label="Title"
           hint="Show the heading"
         />
+        {style.showTitle ? (
+          <InspectorColor
+            label="Title color"
+            value={style.titleColor}
+            onChange={(value) => update("titleColor", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.showDescription}
           onChange={() => toggle("showDescription")}
           label="Description"
           hint="Show text under the title"
         />
+        {style.showDescription ? (
+          <InspectorColor
+            label="Description color"
+            value={style.descriptionColor}
+            onChange={(value) => update("descriptionColor", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.showSectionLabel}
           onChange={() => toggle("showSectionLabel")}
           label="Label"
           hint="Small label above the title"
         />
+        {style.showSectionLabel ? (
+          <InspectorColor
+            label="Label color"
+            value={style.labelColor}
+            onChange={(value) => update("labelColor", value)}
+          />
+        ) : null}
+        {style.showTitle || style.showDescription || style.showSectionLabel ? (
+          <InspectorChoose
+            label="Alignment"
+            name="titleAlign"
+            value={style.titleAlign}
+            options={TITLE_ALIGN_OPTIONS}
+            onChange={(value) => update("titleAlign", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.showSubSections}
           onChange={() => toggle("showSubSections")}
@@ -59,6 +89,20 @@ function TwoColumnWithSubSectionsStyleForm({ style, onChange }) {
           label="Button"
           hint="Show the CTA"
         />
+        {style.showCta ? (
+          <>
+            <InspectorColor
+              label="Button background"
+              value={style.buttonBg}
+              onChange={(value) => update("buttonBg", value)}
+            />
+            <InspectorColor
+              label="Button text"
+              value={style.buttonText}
+              onChange={(value) => update("buttonText", value)}
+            />
+          </>
+        ) : null}
         <InspectorSwitch
           checked={style.showSectionBg}
           onChange={() => toggle("showSectionBg")}
@@ -80,42 +124,6 @@ function TwoColumnWithSubSectionsStyleForm({ style, onChange }) {
           onChange={(value) => update("sectionPadding", value)}
         />
       </InspectorSection>
-
-      {style.showTitle || style.showDescription || style.showSectionLabel ? (
-        <InspectorSection
-          title="Title"
-          onReset={() => reset(TWO_COLUMN_SUB_SECTIONS_STYLE_RESET_KEYS.title)}
-        >
-          <InspectorChoose
-            label="Alignment"
-            name="titleAlign"
-            value={style.titleAlign}
-            options={TITLE_ALIGN_OPTIONS}
-            onChange={(value) => update("titleAlign", value)}
-          />
-          {style.showSectionLabel ? (
-            <InspectorColor
-              label="Label color"
-              value={style.labelColor}
-              onChange={(value) => update("labelColor", value)}
-            />
-          ) : null}
-          {style.showTitle ? (
-            <InspectorColor
-              label="Title color"
-              value={style.titleColor}
-              onChange={(value) => update("titleColor", value)}
-            />
-          ) : null}
-          {style.showDescription ? (
-            <InspectorColor
-              label="Description color"
-              value={style.descriptionColor}
-              onChange={(value) => update("descriptionColor", value)}
-            />
-          ) : null}
-        </InspectorSection>
-      ) : null}
 
       {style.showSubSections ? (
         <InspectorSection
@@ -158,24 +166,6 @@ function TwoColumnWithSubSectionsStyleForm({ style, onChange }) {
           onChange={(value) => update("imageRadius", value)}
         />
       </InspectorSection>
-
-      {style.showCta ? (
-        <InspectorSection
-          title="Button"
-          onReset={() => reset(TWO_COLUMN_SUB_SECTIONS_STYLE_RESET_KEYS.button)}
-        >
-          <InspectorColor
-            label="Button background"
-            value={style.buttonBg}
-            onChange={(value) => update("buttonBg", value)}
-          />
-          <InspectorColor
-            label="Button text"
-            value={style.buttonText}
-            onChange={(value) => update("buttonText", value)}
-          />
-        </InspectorSection>
-      ) : null}
     </div>
   );
 }

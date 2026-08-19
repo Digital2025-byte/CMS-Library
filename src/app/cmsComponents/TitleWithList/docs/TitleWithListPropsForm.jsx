@@ -32,24 +32,61 @@ function TitleWithListStyleForm({ style, onChange }) {
           label="Title"
           hint="Show the heading"
         />
-        <InspectorSwitch
-          checked={style.showDescription}
-          onChange={() => toggle("showDescription")}
-          label="Description"
-          hint="Show the list under the title"
-        />
+        {style.showTitle ? (
+          <InspectorColor
+            label="Title color"
+            value={style.titleColor}
+            onChange={(value) => update("titleColor", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.showIcon}
           onChange={() => toggle("showIcon")}
           label="Icon"
           hint="Info icon beside the title"
         />
+        {style.showIcon ? (
+          <InspectorColor
+            label="Icon color"
+            value={style.iconColor}
+            onChange={(value) => update("iconColor", value)}
+          />
+        ) : null}
+        <InspectorSwitch
+          checked={style.showDescription}
+          onChange={() => toggle("showDescription")}
+          label="Description"
+          hint="Show the list under the title"
+        />
+        {style.showDescription ? (
+          <InspectorColor
+            label="List color"
+            value={style.descriptionColor}
+            onChange={(value) => update("descriptionColor", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.showBullets}
           onChange={() => toggle("showBullets")}
           label="Bullets"
           hint="Dots beside each item"
         />
+        {style.showBullets ? (
+          <InspectorColor
+            label="Bullet color"
+            value={style.bulletColor}
+            onChange={(value) => update("bulletColor", value)}
+          />
+        ) : null}
+        {style.showTitle || style.showDescription ? (
+          <InspectorChoose
+            label="Alignment"
+            name="titleAlign"
+            value={style.titleAlign}
+            options={TITLE_ALIGN_OPTIONS}
+            onChange={(value) => update("titleAlign", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.showSectionBg}
           onChange={() => toggle("showSectionBg")}
@@ -71,53 +108,6 @@ function TitleWithListStyleForm({ style, onChange }) {
           onChange={(value) => update("sectionPadding", value)}
         />
       </InspectorSection>
-
-      {style.showTitle || style.showDescription ? (
-        <InspectorSection
-          title="Title"
-          onReset={() => reset(TITLE_WITH_LIST_STYLE_RESET_KEYS.title)}
-        >
-          <InspectorChoose
-            label="Alignment"
-            name="titleAlign"
-            value={style.titleAlign}
-            options={TITLE_ALIGN_OPTIONS}
-            onChange={(value) => update("titleAlign", value)}
-          />
-          {style.showTitle ? (
-            <>
-              <InspectorColor
-                label="Title color"
-                value={style.titleColor}
-                onChange={(value) => update("titleColor", value)}
-              />
-              {style.showIcon ? (
-                <InspectorColor
-                  label="Icon color"
-                  value={style.iconColor}
-                  onChange={(value) => update("iconColor", value)}
-                />
-              ) : null}
-            </>
-          ) : null}
-          {style.showDescription ? (
-            <>
-              <InspectorColor
-                label="List color"
-                value={style.descriptionColor}
-                onChange={(value) => update("descriptionColor", value)}
-              />
-              {style.showBullets ? (
-                <InspectorColor
-                  label="Bullet color"
-                  value={style.bulletColor}
-                  onChange={(value) => update("bulletColor", value)}
-                />
-              ) : null}
-            </>
-          ) : null}
-        </InspectorSection>
-      ) : null}
     </div>
   );
 }

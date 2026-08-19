@@ -33,18 +33,62 @@ function SearchWithTabsAndGridStyleForm({ style, onChange }) {
           label="Title"
           hint="Show the sights heading"
         />
+        {style.showTitle ? (
+          <>
+            <InspectorChoose
+              label="Alignment"
+              name="titleAlign"
+              value={style.titleAlign}
+              options={TITLE_ALIGN_OPTIONS}
+              onChange={(value) => update("titleAlign", value)}
+            />
+            <InspectorColor
+              label="Title color"
+              value={style.titleColor}
+              onChange={(value) => update("titleColor", value)}
+            />
+          </>
+        ) : null}
         <InspectorSwitch
           checked={style.showSearch}
           onChange={() => toggle("showSearch")}
           label="Search"
           hint="Show the search field"
         />
+        {style.showSearch ? (
+          <>
+            <InspectorColor
+              label="Field color"
+              value={style.searchBg}
+              onChange={(value) => update("searchBg", value)}
+            />
+            <InspectorColor
+              label="Text color"
+              value={style.searchText}
+              onChange={(value) => update("searchText", value)}
+            />
+          </>
+        ) : null}
         <InspectorSwitch
           checked={style.showTabs}
           onChange={() => toggle("showTabs")}
           label="Tabs"
           hint="Show the filter chips"
         />
+        {style.showTabs ? (
+          <>
+            <InspectorColor
+              label="Chip color"
+              value={style.chipColor}
+              onChange={(value) => update("chipColor", value)}
+            />
+            <InspectorColor
+              label="Active text"
+              value={style.chipActiveText}
+              onChange={(value) => update("chipActiveText", value)}
+            />
+          </>
+        ) : null}
         <InspectorSwitch
           checked={style.showSectionBg}
           onChange={() => toggle("showSectionBg")}
@@ -67,62 +111,6 @@ function SearchWithTabsAndGridStyleForm({ style, onChange }) {
         />
       </InspectorSection>
 
-      {style.showTitle ? (
-        <InspectorSection
-          title="Title"
-          onReset={() => reset(SEARCH_GRID_STYLE_RESET_KEYS.title)}
-        >
-          <InspectorChoose
-            label="Alignment"
-            name="titleAlign"
-            value={style.titleAlign}
-            options={TITLE_ALIGN_OPTIONS}
-            onChange={(value) => update("titleAlign", value)}
-          />
-          <InspectorColor
-            label="Title color"
-            value={style.titleColor}
-            onChange={(value) => update("titleColor", value)}
-          />
-        </InspectorSection>
-      ) : null}
-
-      {style.showSearch ? (
-        <InspectorSection
-          title="Search"
-          onReset={() => reset(SEARCH_GRID_STYLE_RESET_KEYS.search)}
-        >
-          <InspectorColor
-            label="Field color"
-            value={style.searchBg}
-            onChange={(value) => update("searchBg", value)}
-          />
-          <InspectorColor
-            label="Text color"
-            value={style.searchText}
-            onChange={(value) => update("searchText", value)}
-          />
-        </InspectorSection>
-      ) : null}
-
-      {style.showTabs ? (
-        <InspectorSection
-          title="Tabs"
-          onReset={() => reset(SEARCH_GRID_STYLE_RESET_KEYS.tabs)}
-        >
-          <InspectorColor
-            label="Chip color"
-            value={style.chipColor}
-            onChange={(value) => update("chipColor", value)}
-          />
-          <InspectorColor
-            label="Active text"
-            value={style.chipActiveText}
-            onChange={(value) => update("chipActiveText", value)}
-          />
-        </InspectorSection>
-      ) : null}
-
       <InspectorSection
         title="Items"
         onReset={() => reset(SEARCH_GRID_STYLE_RESET_KEYS.cards)}
@@ -139,30 +127,44 @@ function SearchWithTabsAndGridStyleForm({ style, onChange }) {
           label="City"
           hint="City name at the top"
         />
+        {style.showCity ? (
+          <InspectorColor
+            label="City color"
+            value={style.cityColor}
+            onChange={(value) => update("cityColor", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.showName}
           onChange={() => toggle("showName")}
           label="Name"
           hint="Sight name at the bottom"
         />
+        {style.showName ? (
+          <InspectorColor
+            label="Name color"
+            value={style.nameColor}
+            onChange={(value) => update("nameColor", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.showTag}
           onChange={() => toggle("showTag")}
           label="Tag"
           hint="Category next to the name"
         />
+        {style.showTag ? (
+          <InspectorColor
+            label="Tag color"
+            value={style.tagColor}
+            onChange={(value) => update("tagColor", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.showOverlay}
           onChange={() => toggle("showOverlay")}
           label="Wash"
           hint="Fade over the bottom of the photo"
-        />
-        <InspectorChoose
-          label="Corners"
-          name="cardRadius"
-          value={style.cardRadius}
-          options={CARD_RADIUS_OPTIONS}
-          onChange={(value) => update("cardRadius", value)}
         />
         {style.showOverlay ? (
           <InspectorColor
@@ -171,27 +173,13 @@ function SearchWithTabsAndGridStyleForm({ style, onChange }) {
             onChange={(value) => update("overlayColor", value)}
           />
         ) : null}
-        {style.showCity ? (
-          <InspectorColor
-            label="City color"
-            value={style.cityColor}
-            onChange={(value) => update("cityColor", value)}
-          />
-        ) : null}
-        {style.showName ? (
-          <InspectorColor
-            label="Name color"
-            value={style.nameColor}
-            onChange={(value) => update("nameColor", value)}
-          />
-        ) : null}
-        {style.showTag ? (
-          <InspectorColor
-            label="Tag color"
-            value={style.tagColor}
-            onChange={(value) => update("tagColor", value)}
-          />
-        ) : null}
+        <InspectorChoose
+          label="Corners"
+          name="cardRadius"
+          value={style.cardRadius}
+          options={CARD_RADIUS_OPTIONS}
+          onChange={(value) => update("cardRadius", value)}
+        />
       </InspectorSection>
 
       <InspectorSection
@@ -235,12 +223,6 @@ function SearchWithTabsAndGridStyleForm({ style, onChange }) {
           label="Arrows"
           hint="Previous / next controls"
         />
-        <InspectorSwitch
-          checked={style.showDots}
-          onChange={() => toggle("showDots")}
-          label="Dots"
-          hint="Pagination dots"
-        />
         {style.showArrows ? (
           <InspectorColor
             label="Arrow color"
@@ -248,6 +230,12 @@ function SearchWithTabsAndGridStyleForm({ style, onChange }) {
             onChange={(value) => update("navColor", value)}
           />
         ) : null}
+        <InspectorSwitch
+          checked={style.showDots}
+          onChange={() => toggle("showDots")}
+          label="Dots"
+          hint="Pagination dots"
+        />
         {style.showDots ? (
           <InspectorColor
             label="Dot color"

@@ -35,12 +35,35 @@ function OnBoardImageRingStyleForm({ style, onChange }) {
           label="Title"
           hint="Show the section heading"
         />
+        {style.showTitle ? (
+          <>
+            <InspectorChoose
+              label="Alignment"
+              name="titleAlign"
+              value={style.titleAlign}
+              options={TITLE_ALIGN_OPTIONS}
+              onChange={(value) => update("titleAlign", value)}
+            />
+            <InspectorColor
+              label="Title color"
+              value={style.titleColor}
+              onChange={(value) => update("titleColor", value)}
+            />
+          </>
+        ) : null}
         <InspectorSwitch
           checked={style.showDescription}
           onChange={() => toggle("showDescription")}
           label="Description"
           hint="Show text beside the title"
         />
+        {style.showDescription ? (
+          <InspectorColor
+            label="Description color"
+            value={style.descriptionColor}
+            onChange={(value) => update("descriptionColor", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.showSectionBg}
           onChange={() => toggle("showSectionBg")}
@@ -63,37 +86,6 @@ function OnBoardImageRingStyleForm({ style, onChange }) {
         />
       </InspectorSection>
 
-      {style.showTitle || style.showDescription ? (
-        <InspectorSection
-          title="Title"
-          onReset={() => reset(ON_BOARD_IMAGE_RING_STYLE_RESET_KEYS.title)}
-        >
-          {style.showTitle ? (
-            <>
-              <InspectorChoose
-                label="Alignment"
-                name="titleAlign"
-                value={style.titleAlign}
-                options={TITLE_ALIGN_OPTIONS}
-                onChange={(value) => update("titleAlign", value)}
-              />
-              <InspectorColor
-                label="Title color"
-                value={style.titleColor}
-                onChange={(value) => update("titleColor", value)}
-              />
-            </>
-          ) : null}
-          {style.showDescription ? (
-            <InspectorColor
-              label="Description color"
-              value={style.descriptionColor}
-              onChange={(value) => update("descriptionColor", value)}
-            />
-          ) : null}
-        </InspectorSection>
-      ) : null}
-
       <InspectorSection
         title="Items"
         onReset={() => reset(ON_BOARD_IMAGE_RING_STYLE_RESET_KEYS.cards)}
@@ -110,12 +102,26 @@ function OnBoardImageRingStyleForm({ style, onChange }) {
           label="Captions"
           hint="Label at the bottom of each panel"
         />
+        {style.showCaptions ? (
+          <InspectorColor
+            label="Caption color"
+            value={style.captionColor}
+            onChange={(value) => update("captionColor", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.showOverlay}
           onChange={() => toggle("showOverlay")}
           label="Gradient"
           hint="Fade behind the caption"
         />
+        {style.showOverlay ? (
+          <InspectorColor
+            label="Gradient color"
+            value={style.overlayColor}
+            onChange={(value) => update("overlayColor", value)}
+          />
+        ) : null}
         <InspectorChoose
           label="Corners"
           name="cardRadius"
@@ -130,20 +136,6 @@ function OnBoardImageRingStyleForm({ style, onChange }) {
           options={SPACING_OPTIONS}
           onChange={(value) => update("cardGap", value)}
         />
-        {style.showCaptions ? (
-          <InspectorColor
-            label="Caption color"
-            value={style.captionColor}
-            onChange={(value) => update("captionColor", value)}
-          />
-        ) : null}
-        {style.showOverlay ? (
-          <InspectorColor
-            label="Gradient color"
-            value={style.overlayColor}
-            onChange={(value) => update("overlayColor", value)}
-          />
-        ) : null}
       </InspectorSection>
     </div>
   );

@@ -33,24 +33,75 @@ function MealsDescriptionTabbedStyleForm({ style, onChange }) {
           label="Title"
           hint="Show the section heading"
         />
+        {style.showTitle ? (
+          <>
+            <InspectorChoose
+              label="Alignment"
+              name="titleAlign"
+              value={style.titleAlign}
+              options={TITLE_ALIGN_OPTIONS}
+              onChange={(value) => update("titleAlign", value)}
+            />
+            <InspectorColor
+              label="Title color"
+              value={style.titleColor}
+              onChange={(value) => update("titleColor", value)}
+            />
+          </>
+        ) : null}
         <InspectorSwitch
           checked={style.showTabs}
           onChange={() => toggle("showTabs")}
           label="Tabs"
           hint="Show breakfast / lunch tabs"
         />
+        {style.showTabs ? (
+          <>
+            <InspectorColor
+              label="Active color"
+              value={style.tabActive}
+              onChange={(value) => update("tabActive", value)}
+            />
+            <InspectorColor
+              label="Idle text"
+              value={style.tabIdle}
+              onChange={(value) => update("tabIdle", value)}
+            />
+            <InspectorColor
+              label="Track color"
+              value={style.tabBorder}
+              onChange={(value) => update("tabBorder", value)}
+            />
+          </>
+        ) : null}
         <InspectorSwitch
           checked={style.showImage}
           onChange={() => toggle("showImage")}
           label="Image"
           hint="Photo beside the meal list"
         />
+        {style.showImage ? (
+          <InspectorChoose
+            label="Corners"
+            name="imageRadius"
+            value={style.imageRadius}
+            options={CARD_RADIUS_OPTIONS}
+            onChange={(value) => update("imageRadius", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.showNotes}
           onChange={() => toggle("showNotes")}
           label="Notes"
           hint="Show the notes under the list"
         />
+        {style.showNotes ? (
+          <InspectorColor
+            label="Notes color"
+            value={style.notesColor}
+            onChange={(value) => update("notesColor", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.showSectionBg}
           onChange={() => toggle("showSectionBg")}
@@ -73,49 +124,6 @@ function MealsDescriptionTabbedStyleForm({ style, onChange }) {
         />
       </InspectorSection>
 
-      {style.showTitle ? (
-        <InspectorSection
-          title="Title"
-          onReset={() => reset(MEALS_TABBED_STYLE_RESET_KEYS.title)}
-        >
-          <InspectorChoose
-            label="Alignment"
-            name="titleAlign"
-            value={style.titleAlign}
-            options={TITLE_ALIGN_OPTIONS}
-            onChange={(value) => update("titleAlign", value)}
-          />
-          <InspectorColor
-            label="Title color"
-            value={style.titleColor}
-            onChange={(value) => update("titleColor", value)}
-          />
-        </InspectorSection>
-      ) : null}
-
-      {style.showTabs ? (
-        <InspectorSection
-          title="Tabs"
-          onReset={() => reset(MEALS_TABBED_STYLE_RESET_KEYS.tabs)}
-        >
-          <InspectorColor
-            label="Active color"
-            value={style.tabActive}
-            onChange={(value) => update("tabActive", value)}
-          />
-          <InspectorColor
-            label="Idle text"
-            value={style.tabIdle}
-            onChange={(value) => update("tabIdle", value)}
-          />
-          <InspectorColor
-            label="Track color"
-            value={style.tabBorder}
-            onChange={(value) => update("tabBorder", value)}
-          />
-        </InspectorSection>
-      ) : null}
-
       <InspectorSection
         title="Accordion"
         onReset={() => reset(MEALS_TABBED_STYLE_RESET_KEYS.accordion)}
@@ -126,12 +134,33 @@ function MealsDescriptionTabbedStyleForm({ style, onChange }) {
           label="Item title"
           hint="Meal item names"
         />
+        {style.showItemTitle ? (
+          <>
+            <InspectorColor
+              label="Item title"
+              value={style.itemTitleColor}
+              onChange={(value) => update("itemTitleColor", value)}
+            />
+            <InspectorColor
+              label="Grouped item title"
+              value={style.groupItemTitleColor}
+              onChange={(value) => update("groupItemTitleColor", value)}
+            />
+          </>
+        ) : null}
         <InspectorSwitch
           checked={style.showItemDescription}
           onChange={() => toggle("showItemDescription")}
           label="Item copy"
           hint="Meal item descriptions"
         />
+        {style.showItemDescription ? (
+          <InspectorColor
+            label="Item copy"
+            value={style.itemBodyColor}
+            onChange={(value) => update("itemBodyColor", value)}
+          />
+        ) : null}
         <InspectorChoose
           label="Corners"
           name="accordionRadius"
@@ -159,27 +188,6 @@ function MealsDescriptionTabbedStyleForm({ style, onChange }) {
           value={style.groupTitleColor}
           onChange={(value) => update("groupTitleColor", value)}
         />
-        {style.showItemTitle ? (
-          <>
-            <InspectorColor
-              label="Item title"
-              value={style.itemTitleColor}
-              onChange={(value) => update("itemTitleColor", value)}
-            />
-            <InspectorColor
-              label="Grouped item title"
-              value={style.groupItemTitleColor}
-              onChange={(value) => update("groupItemTitleColor", value)}
-            />
-          </>
-        ) : null}
-        {style.showItemDescription ? (
-          <InspectorColor
-            label="Item copy"
-            value={style.itemBodyColor}
-            onChange={(value) => update("itemBodyColor", value)}
-          />
-        ) : null}
         <InspectorColor
           label="Row background"
           value={style.itemBg}
@@ -191,34 +199,6 @@ function MealsDescriptionTabbedStyleForm({ style, onChange }) {
           onChange={(value) => update("stripeColor", value)}
         />
       </InspectorSection>
-
-      {style.showNotes ? (
-        <InspectorSection
-          title="Notes"
-          onReset={() => reset(MEALS_TABBED_STYLE_RESET_KEYS.notes)}
-        >
-          <InspectorColor
-            label="Notes color"
-            value={style.notesColor}
-            onChange={(value) => update("notesColor", value)}
-          />
-        </InspectorSection>
-      ) : null}
-
-      {style.showImage ? (
-        <InspectorSection
-          title="Image"
-          onReset={() => reset(MEALS_TABBED_STYLE_RESET_KEYS.image)}
-        >
-          <InspectorChoose
-            label="Corners"
-            name="imageRadius"
-            value={style.imageRadius}
-            options={CARD_RADIUS_OPTIONS}
-            onChange={(value) => update("imageRadius", value)}
-          />
-        </InspectorSection>
-      ) : null}
     </div>
   );
 }

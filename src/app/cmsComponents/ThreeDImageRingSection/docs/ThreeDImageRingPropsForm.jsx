@@ -35,12 +35,35 @@ function ThreeDImageRingStyleForm({ style, onChange }) {
           label="Title"
           hint="Show the section heading"
         />
+        {style.showTitle ? (
+          <>
+            <InspectorChoose
+              label="Alignment"
+              name="titleAlign"
+              value={style.titleAlign}
+              options={TITLE_ALIGN_OPTIONS}
+              onChange={(value) => update("titleAlign", value)}
+            />
+            <InspectorColor
+              label="Title color"
+              value={style.titleColor}
+              onChange={(value) => update("titleColor", value)}
+            />
+          </>
+        ) : null}
         <InspectorSwitch
           checked={style.showDescription}
           onChange={() => toggle("showDescription")}
           label="Description"
           hint="Show text beside the title"
         />
+        {style.showDescription ? (
+          <InspectorColor
+            label="Description color"
+            value={style.descriptionColor}
+            onChange={(value) => update("descriptionColor", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.showSectionBg}
           onChange={() => toggle("showSectionBg")}
@@ -63,37 +86,6 @@ function ThreeDImageRingStyleForm({ style, onChange }) {
         />
       </InspectorSection>
 
-      {style.showTitle || style.showDescription ? (
-        <InspectorSection
-          title="Title"
-          onReset={() => reset(THREE_D_IMAGE_RING_STYLE_RESET_KEYS.title)}
-        >
-          {style.showTitle ? (
-            <>
-              <InspectorChoose
-                label="Alignment"
-                name="titleAlign"
-                value={style.titleAlign}
-                options={TITLE_ALIGN_OPTIONS}
-                onChange={(value) => update("titleAlign", value)}
-              />
-              <InspectorColor
-                label="Title color"
-                value={style.titleColor}
-                onChange={(value) => update("titleColor", value)}
-              />
-            </>
-          ) : null}
-          {style.showDescription ? (
-            <InspectorColor
-              label="Description color"
-              value={style.descriptionColor}
-              onChange={(value) => update("descriptionColor", value)}
-            />
-          ) : null}
-        </InspectorSection>
-      ) : null}
-
       <InspectorSection
         title="Items"
         onReset={() => reset(THREE_D_IMAGE_RING_STYLE_RESET_KEYS.cards)}
@@ -110,6 +102,13 @@ function ThreeDImageRingStyleForm({ style, onChange }) {
           label="Captions"
           hint="Label at the bottom of each panel"
         />
+        {style.showCaptions ? (
+          <InspectorColor
+            label="Caption color"
+            value={style.captionColor}
+            onChange={(value) => update("captionColor", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.showOverlay}
           onChange={() => toggle("showOverlay")}
@@ -123,13 +122,6 @@ function ThreeDImageRingStyleForm({ style, onChange }) {
           options={CARD_RADIUS_OPTIONS}
           onChange={(value) => update("cardRadius", value)}
         />
-        {style.showCaptions ? (
-          <InspectorColor
-            label="Caption color"
-            value={style.captionColor}
-            onChange={(value) => update("captionColor", value)}
-          />
-        ) : null}
       </InspectorSection>
     </div>
   );

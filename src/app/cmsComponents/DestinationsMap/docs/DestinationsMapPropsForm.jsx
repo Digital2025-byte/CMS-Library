@@ -40,6 +40,20 @@ function DestinationsMapStyleForm({ style, onChange }) {
           label="Filters"
           hint="New routes and network toggles"
         />
+        {style.showFilters ? (
+          <>
+            <InspectorColor
+              label="Chip background"
+              value={style.filterBg}
+              onChange={(value) => update("filterBg", value)}
+            />
+            <InspectorColor
+              label="Chip text"
+              value={style.filterText}
+              onChange={(value) => update("filterText", value)}
+            />
+          </>
+        ) : null}
         <InspectorSwitch
           checked={style.showSectionBg}
           onChange={() => toggle("showSectionBg")}
@@ -86,11 +100,6 @@ function DestinationsMapStyleForm({ style, onChange }) {
             label="Book now"
             hint="CTA after both cities are selected"
           />
-          <InspectorColor
-            label="Search background"
-            value={style.searchBg}
-            onChange={(value) => update("searchBg", value)}
-          />
           {style.showBookNow ? (
             <>
               <InspectorColor
@@ -105,23 +114,10 @@ function DestinationsMapStyleForm({ style, onChange }) {
               />
             </>
           ) : null}
-        </InspectorSection>
-      ) : null}
-
-      {style.showFilters ? (
-        <InspectorSection
-          title="Filters"
-          onReset={() => reset(DESTINATIONS_MAP_STYLE_RESET_KEYS.filters)}
-        >
           <InspectorColor
-            label="Chip background"
-            value={style.filterBg}
-            onChange={(value) => update("filterBg", value)}
-          />
-          <InspectorColor
-            label="Chip text"
-            value={style.filterText}
-            onChange={(value) => update("filterText", value)}
+            label="Search background"
+            value={style.searchBg}
+            onChange={(value) => update("searchBg", value)}
           />
         </InspectorSection>
       ) : null}

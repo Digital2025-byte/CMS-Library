@@ -33,6 +33,13 @@ function LegalBodyTermsStyleForm({ style, onChange }) {
           label="Date chip"
           hint="Effective date badge"
         />
+        {style.showChip ? (
+          <InspectorColor
+            label="Chip color"
+            value={style.chipColor}
+            onChange={(value) => update("chipColor", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.showAcceptance}
           onChange={() => toggle("showAcceptance")}
@@ -100,13 +107,6 @@ function LegalBodyTermsStyleForm({ style, onChange }) {
           value={style.bodyColor}
           onChange={(value) => update("bodyColor", value)}
         />
-        {style.showChip ? (
-          <InspectorColor
-            label="Chip color"
-            value={style.chipColor}
-            onChange={(value) => update("chipColor", value)}
-          />
-        ) : null}
       </InspectorSection>
     </div>
   );

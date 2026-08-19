@@ -33,18 +33,48 @@ function CarouselItemStyleForm({ style, onChange }) {
           label="Title"
           hint="Show the section heading"
         />
+        {style.showTitle ? (
+          <>
+            <InspectorChoose
+              label="Alignment"
+              name="titleAlign"
+              value={style.titleAlign}
+              options={TITLE_ALIGN_OPTIONS}
+              onChange={(value) => update("titleAlign", value)}
+            />
+            <InspectorColor
+              label="Title color"
+              value={style.titleColor}
+              onChange={(value) => update("titleColor", value)}
+            />
+          </>
+        ) : null}
         <InspectorSwitch
           checked={style.showArrows}
           onChange={() => toggle("showArrows")}
           label="Arrows"
           hint="Previous / next arrow controls"
         />
+        {style.showArrows ? (
+          <InspectorColor
+            label="Arrow color"
+            value={style.navColor}
+            onChange={(value) => update("navColor", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.showDots}
           onChange={() => toggle("showDots")}
           label="Dots"
           hint="Pagination dots"
         />
+        {style.showDots ? (
+          <InspectorColor
+            label="Dot color"
+            value={style.dotColor}
+            onChange={(value) => update("dotColor", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.showSectionBg}
           onChange={() => toggle("showSectionBg")}
@@ -67,26 +97,6 @@ function CarouselItemStyleForm({ style, onChange }) {
         />
       </InspectorSection>
 
-      {style.showTitle ? (
-        <InspectorSection
-          title="Title"
-          onReset={() => reset(CAROUSEL_ITEM_STYLE_RESET_KEYS.title)}
-        >
-          <InspectorChoose
-            label="Alignment"
-            name="titleAlign"
-            value={style.titleAlign}
-            options={TITLE_ALIGN_OPTIONS}
-            onChange={(value) => update("titleAlign", value)}
-          />
-          <InspectorColor
-            label="Title color"
-            value={style.titleColor}
-            onChange={(value) => update("titleColor", value)}
-          />
-        </InspectorSection>
-      ) : null}
-
       <InspectorSection
         title="Items"
         onReset={() => reset(CAROUSEL_ITEM_STYLE_RESET_KEYS.cards)}
@@ -103,6 +113,13 @@ function CarouselItemStyleForm({ style, onChange }) {
           label="City"
           hint="City name on each card"
         />
+        {style.showCity ? (
+          <InspectorColor
+            label="City color"
+            value={style.cityColor}
+            onChange={(value) => update("cityColor", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.showIata}
           onChange={() => toggle("showIata")}
@@ -115,12 +132,26 @@ function CarouselItemStyleForm({ style, onChange }) {
           label="Country"
           hint="Country name under the button"
         />
+        {style.showCountry ? (
+          <InspectorColor
+            label="Country color"
+            value={style.countryColor}
+            onChange={(value) => update("countryColor", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.showOverlay}
           onChange={() => toggle("showOverlay")}
           label="Gradient"
           hint="Fade behind the card copy"
         />
+        {style.showOverlay ? (
+          <InspectorColor
+            label="Gradient color"
+            value={style.overlayColor}
+            onChange={(value) => update("overlayColor", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.showHoverDim}
           onChange={() => toggle("showHoverDim")}
@@ -134,27 +165,6 @@ function CarouselItemStyleForm({ style, onChange }) {
           options={CARD_RADIUS_OPTIONS}
           onChange={(value) => update("cardRadius", value)}
         />
-        {style.showCity ? (
-          <InspectorColor
-            label="City color"
-            value={style.cityColor}
-            onChange={(value) => update("cityColor", value)}
-          />
-        ) : null}
-        {style.showCountry ? (
-          <InspectorColor
-            label="Country color"
-            value={style.countryColor}
-            onChange={(value) => update("countryColor", value)}
-          />
-        ) : null}
-        {style.showOverlay ? (
-          <InspectorColor
-            label="Gradient color"
-            value={style.overlayColor}
-            onChange={(value) => update("overlayColor", value)}
-          />
-        ) : null}
       </InspectorSection>
 
       <InspectorSection
@@ -182,28 +192,6 @@ function CarouselItemStyleForm({ style, onChange }) {
           </>
         ) : null}
       </InspectorSection>
-
-      {style.showArrows || style.showDots ? (
-        <InspectorSection
-          title="Nav"
-          onReset={() => reset(CAROUSEL_ITEM_STYLE_RESET_KEYS.nav)}
-        >
-          {style.showArrows ? (
-            <InspectorColor
-              label="Arrow color"
-              value={style.navColor}
-              onChange={(value) => update("navColor", value)}
-            />
-          ) : null}
-          {style.showDots ? (
-            <InspectorColor
-              label="Dot color"
-              value={style.dotColor}
-              onChange={(value) => update("dotColor", value)}
-            />
-          ) : null}
-        </InspectorSection>
-      ) : null}
     </div>
   );
 }

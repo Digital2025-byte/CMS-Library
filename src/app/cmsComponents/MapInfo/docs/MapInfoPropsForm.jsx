@@ -33,18 +33,60 @@ function MapInfoStyleForm({ style, onChange }) {
           label="Title"
           hint="Show the section heading"
         />
+        {style.showTitle ? (
+          <>
+            <InspectorChoose
+              label="Alignment"
+              name="titleAlign"
+              value={style.titleAlign}
+              options={TITLE_ALIGN_OPTIONS}
+              onChange={(value) => update("titleAlign", value)}
+            />
+            <InspectorColor
+              label="Title color"
+              value={style.titleColor}
+              onChange={(value) => update("titleColor", value)}
+            />
+          </>
+        ) : null}
         <InspectorSwitch
           checked={style.showDescription}
           onChange={() => toggle("showDescription")}
           label="Description"
           hint="Show text under the title"
         />
+        {style.showDescription ? (
+          <InspectorColor
+            label="Description color"
+            value={style.descriptionColor}
+            onChange={(value) => update("descriptionColor", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.showCountries}
           onChange={() => toggle("showCountries")}
           label="Countries"
           hint="Country chips"
         />
+        {style.showCountries ? (
+          <>
+            <InspectorColor
+              label="Chip color"
+              value={style.chipColor}
+              onChange={(value) => update("chipColor", value)}
+            />
+            <InspectorColor
+              label="Active text"
+              value={style.chipActiveText}
+              onChange={(value) => update("chipActiveText", value)}
+            />
+            <InspectorColor
+              label="Idle background"
+              value={style.chipIdleBg}
+              onChange={(value) => update("chipIdleBg", value)}
+            />
+          </>
+        ) : null}
         <InspectorSwitch
           checked={style.showCities}
           onChange={() => toggle("showCities")}
@@ -57,6 +99,13 @@ function MapInfoStyleForm({ style, onChange }) {
           label="Offices"
           hint="Office tabs when a city has more than one"
         />
+        {style.showCities || style.showOffices ? (
+          <InspectorColor
+            label="Tab color"
+            value={style.tabColor}
+            onChange={(value) => update("tabColor", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.showSectionBg}
           onChange={() => toggle("showSectionBg")}
@@ -79,71 +128,6 @@ function MapInfoStyleForm({ style, onChange }) {
         />
       </InspectorSection>
 
-      {style.showTitle || style.showDescription ? (
-        <InspectorSection
-          title="Title"
-          onReset={() => reset(MAP_INFO_STYLE_RESET_KEYS.title)}
-        >
-          {style.showTitle ? (
-            <>
-              <InspectorChoose
-                label="Alignment"
-                name="titleAlign"
-                value={style.titleAlign}
-                options={TITLE_ALIGN_OPTIONS}
-                onChange={(value) => update("titleAlign", value)}
-              />
-              <InspectorColor
-                label="Title color"
-                value={style.titleColor}
-                onChange={(value) => update("titleColor", value)}
-              />
-            </>
-          ) : null}
-          {style.showDescription ? (
-            <InspectorColor
-              label="Description color"
-              value={style.descriptionColor}
-              onChange={(value) => update("descriptionColor", value)}
-            />
-          ) : null}
-        </InspectorSection>
-      ) : null}
-
-      {style.showCountries || style.showCities || style.showOffices ? (
-        <InspectorSection
-          title="Tabs"
-          onReset={() => reset(MAP_INFO_STYLE_RESET_KEYS.tabs)}
-        >
-          {style.showCountries ? (
-            <>
-              <InspectorColor
-                label="Chip color"
-                value={style.chipColor}
-                onChange={(value) => update("chipColor", value)}
-              />
-              <InspectorColor
-                label="Active text"
-                value={style.chipActiveText}
-                onChange={(value) => update("chipActiveText", value)}
-              />
-              <InspectorColor
-                label="Idle background"
-                value={style.chipIdleBg}
-                onChange={(value) => update("chipIdleBg", value)}
-              />
-            </>
-          ) : null}
-          {style.showCities || style.showOffices ? (
-            <InspectorColor
-              label="Tab color"
-              value={style.tabColor}
-              onChange={(value) => update("tabColor", value)}
-            />
-          ) : null}
-        </InspectorSection>
-      ) : null}
-
       <InspectorSection
         title="Details"
         onReset={() => reset(MAP_INFO_STYLE_RESET_KEYS.details)}
@@ -154,6 +138,13 @@ function MapInfoStyleForm({ style, onChange }) {
           label="Name"
           hint="Office name on the card"
         />
+        {style.showName ? (
+          <InspectorColor
+            label="Name color"
+            value={style.nameColor}
+            onChange={(value) => update("nameColor", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.showAddress}
           onChange={() => toggle("showAddress")}
@@ -178,39 +169,6 @@ function MapInfoStyleForm({ style, onChange }) {
           label="Hours"
           hint="Working hours row"
         />
-        <InspectorSwitch
-          checked={style.showMap}
-          onChange={() => toggle("showMap")}
-          label="Map"
-          hint="Embedded location map"
-        />
-        <InspectorSwitch
-          checked={style.showCardBg}
-          onChange={() => toggle("showCardBg")}
-          label="Card fill"
-          hint="Background color on the details card"
-        />
-        <InspectorChoose
-          label="Corners"
-          name="cardRadius"
-          value={style.cardRadius}
-          options={CARD_RADIUS_OPTIONS}
-          onChange={(value) => update("cardRadius", value)}
-        />
-        {style.showCardBg ? (
-          <InspectorColor
-            label="Card background"
-            value={style.cardBg}
-            onChange={(value) => update("cardBg", value)}
-          />
-        ) : null}
-        {style.showName ? (
-          <InspectorColor
-            label="Name color"
-            value={style.nameColor}
-            onChange={(value) => update("nameColor", value)}
-          />
-        ) : null}
         {style.showAddress ||
         style.showPhone ||
         style.showEmail ||
@@ -228,6 +186,32 @@ function MapInfoStyleForm({ style, onChange }) {
             />
           </>
         ) : null}
+        <InspectorSwitch
+          checked={style.showMap}
+          onChange={() => toggle("showMap")}
+          label="Map"
+          hint="Embedded location map"
+        />
+        <InspectorSwitch
+          checked={style.showCardBg}
+          onChange={() => toggle("showCardBg")}
+          label="Card fill"
+          hint="Background color on the details card"
+        />
+        {style.showCardBg ? (
+          <InspectorColor
+            label="Card background"
+            value={style.cardBg}
+            onChange={(value) => update("cardBg", value)}
+          />
+        ) : null}
+        <InspectorChoose
+          label="Corners"
+          name="cardRadius"
+          value={style.cardRadius}
+          options={CARD_RADIUS_OPTIONS}
+          onChange={(value) => update("cardRadius", value)}
+        />
       </InspectorSection>
     </div>
   );

@@ -39,6 +39,13 @@ function LegalBodyPrivacyPolicyStyleForm({ style, onChange }) {
           label="Date chip"
           hint="Last updated badge"
         />
+        {style.showChip ? (
+          <InspectorColor
+            label="Chip color"
+            value={style.chipColor}
+            onChange={(value) => update("chipColor", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.showIntroduction}
           onChange={() => toggle("showIntroduction")}
@@ -112,13 +119,6 @@ function LegalBodyPrivacyPolicyStyleForm({ style, onChange }) {
           value={style.bodyColor}
           onChange={(value) => update("bodyColor", value)}
         />
-        {style.showChip ? (
-          <InspectorColor
-            label="Chip color"
-            value={style.chipColor}
-            onChange={(value) => update("chipColor", value)}
-          />
-        ) : null}
       </InspectorSection>
     </div>
   );

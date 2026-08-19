@@ -34,18 +34,6 @@ function Draggable3DImageRingStyleForm({ style, onChange }) {
           label="Background"
           hint="Fill color behind the section"
         />
-        <InspectorSwitch
-          checked={style.showFrame}
-          onChange={() => toggle("showFrame")}
-          label="Frame"
-          hint="Bordered box around the ring"
-        />
-        <InspectorSwitch
-          checked={style.showStageDots}
-          onChange={() => toggle("showStageDots")}
-          label="Dotted frame"
-          hint="Dot pattern inside the frame"
-        />
         {style.showSectionBg ? (
           <InspectorColor
             label="Section background"
@@ -53,13 +41,34 @@ function Draggable3DImageRingStyleForm({ style, onChange }) {
             onChange={(value) => update("sectionBg", value)}
           />
         ) : null}
+        <InspectorSwitch
+          checked={style.showFrame}
+          onChange={() => toggle("showFrame")}
+          label="Frame"
+          hint="Bordered box around the ring"
+        />
         {style.showFrame ? (
-          <InspectorColor
-            label="Frame background"
-            value={style.stageBg}
-            onChange={(value) => update("stageBg", value)}
-          />
+          <>
+            <InspectorColor
+              label="Frame background"
+              value={style.stageBg}
+              onChange={(value) => update("stageBg", value)}
+            />
+            <InspectorChoose
+              label="Frame corners"
+              name="frameRadius"
+              value={style.frameRadius}
+              options={CARD_RADIUS_OPTIONS}
+              onChange={(value) => update("frameRadius", value)}
+            />
+          </>
         ) : null}
+        <InspectorSwitch
+          checked={style.showStageDots}
+          onChange={() => toggle("showStageDots")}
+          label="Dotted frame"
+          hint="Dot pattern inside the frame"
+        />
         {style.showFrame && style.showStageDots ? (
           <InspectorColor
             label="Dot color"
@@ -74,15 +83,6 @@ function Draggable3DImageRingStyleForm({ style, onChange }) {
           options={SPACING_OPTIONS}
           onChange={(value) => update("sectionPadding", value)}
         />
-        {style.showFrame ? (
-          <InspectorChoose
-            label="Frame corners"
-            name="frameRadius"
-            value={style.frameRadius}
-            options={CARD_RADIUS_OPTIONS}
-            onChange={(value) => update("frameRadius", value)}
-          />
-        ) : null}
       </InspectorSection>
 
       <InspectorSection
