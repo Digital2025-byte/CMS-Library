@@ -7,15 +7,14 @@ import {
 
 export default function FlightFaresHeader({
   title,
-  showTitle = DEFAULT_FLIGHT_FARES_STYLE.showTitle,
-  titleAlign = DEFAULT_FLIGHT_FARES_STYLE.titleAlign,
-  titleColor = DEFAULT_FLIGHT_FARES_STYLE.titleColor,
+  style = DEFAULT_FLIGHT_FARES_STYLE,
 }) {
-  if (!showTitle || !title) {
+  if (!style.showTitle || !title) {
     return null;
   }
 
-  const alignClass = TITLE_ALIGN_CLASS[titleAlign] ?? TITLE_ALIGN_CLASS.left;
+  const alignClass =
+    TITLE_ALIGN_CLASS[style.titleAlign] ?? TITLE_ALIGN_CLASS.left;
 
   return (
     <div
@@ -23,7 +22,7 @@ export default function FlightFaresHeader({
     >
       <h2
         className={`${typography.sectionTitle} font-semibold`}
-        style={{ color: getThemeColorCss(titleColor, "primary-1") }}
+        style={{ color: getThemeColorCss(style.titleColor, "primary-1") }}
       >
         {title}
       </h2>

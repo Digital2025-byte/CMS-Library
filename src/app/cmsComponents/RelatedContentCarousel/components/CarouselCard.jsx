@@ -7,28 +7,9 @@ import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
 import { withCampaignPath } from "@/utils/withCampaignPath";
 import { getImageUrl, isUsableImageSrc } from "../utils/helpers";
-import {
-  CARD_RADIUS_CLASS,
-  CARD_RADIUS_TOP_CLASS,
-  DEFAULT_RELATED_CONTENT_STYLE,
-} from "../utils/style";
+import { CARD_RADIUS_CLASS, CARD_RADIUS_TOP_CLASS } from "../utils/style";
 
-export default function CarouselCard({
-  card,
-  lang = "en",
-  cId,
-  showCardImage = true,
-  showCardTitle = true,
-  showCardDescription = true,
-  showButton = true,
-  cardBg = DEFAULT_RELATED_CONTENT_STYLE.cardBg,
-  cardRadius = DEFAULT_RELATED_CONTENT_STYLE.cardRadius,
-  cardTitleColor = DEFAULT_RELATED_CONTENT_STYLE.cardTitleColor,
-  cardBodyColor = DEFAULT_RELATED_CONTENT_STYLE.cardBodyColor,
-  buttonBg = DEFAULT_RELATED_CONTENT_STYLE.buttonBg,
-  buttonText = DEFAULT_RELATED_CONTENT_STYLE.buttonText,
-  buttonOnFill = DEFAULT_RELATED_CONTENT_STYLE.buttonOnFill,
-}) {
+export default function CarouselCard({ card, lang = "en", cId, style }) {
   const { t } = useTranslation();
 
   if (!card) {
@@ -43,19 +24,20 @@ export default function CarouselCard({
   const buttonLabel = card?.buttonText || t("relatedContentCarousel.learnMore");
   const buttonLink = card?.buttonLink || "#";
   const isRtl = lang === "ar";
-  const canShowImage = showCardImage && isUsableImageSrc(imageSrc);
-  const radiusClass = CARD_RADIUS_CLASS[cardRadius] ?? CARD_RADIUS_CLASS.lg;
+  const canShowImage = style.showCardImage && isUsableImageSrc(imageSrc);
+  const radiusClass =
+    CARD_RADIUS_CLASS[style.cardRadius] ?? CARD_RADIUS_CLASS.lg;
   const radiusTopClass =
-    CARD_RADIUS_TOP_CLASS[cardRadius] ?? CARD_RADIUS_TOP_CLASS.lg;
-  const pillCss = getThemeColorCss(buttonBg, "primary-1");
-  const labelCss = getThemeColorCss(buttonText, "primary-1");
-  const onFillCss = getThemeColorCss(buttonOnFill, "white");
+    CARD_RADIUS_TOP_CLASS[style.cardRadius] ?? CARD_RADIUS_TOP_CLASS.lg;
+  const pillCss = getThemeColorCss(style.buttonBg, "primary-1");
+  const labelCss = getThemeColorCss(style.buttonText, "primary-1");
+  const onFillCss = getThemeColorCss(style.buttonOnFill, "white");
 
   return (
     <article className="h-full w-full" dir={isRtl ? "rtl" : "ltr"}>
       <div
         className={`flex h-full w-full flex-col overflow-visible border border-200 shadow-sm ${radiusClass}`}
-        style={{ backgroundColor: getThemeColorCss(cardBg, "white") }}
+        style={{ backgroundColor: getThemeColorCss(style.cardBg, "white") }}
       >
         {canShowImage ? (
           <div
@@ -84,7 +66,7 @@ export default function CarouselCard({
               </div>
             )}
           </div>
-        ) : showCardImage ? (
+        ) : style.showCardImage ? (
           <div
             className={`relative aspect-[4/3] w-full shrink-0 bg-surface-1 ${radiusTopClass}`}
             aria-hidden
@@ -92,27 +74,27 @@ export default function CarouselCard({
         ) : null}
 
         <div className="flex min-h-0 flex-1 flex-col px-5 pb-5 pt-5 sm:px-6 sm:pb-6 sm:pt-6">
-          {showCardTitle && title ? (
+          {style.showCardTitle && title ? (
             <h3
               className={`${typography.itemTitle} mb-2 font-semibold leading-snug`}
               style={{
-                color: getThemeColorCss(cardTitleColor, "secondary-2"),
+                color: getThemeColorCss(style.cardTitleColor, "secondary-2"),
               }}
             >
               {title}
             </h3>
           ) : null}
 
-          {showCardDescription && description ? (
+          {style.showCardDescription && description ? (
             <p
               className={`${typography.itemDescription} mb-5 leading-relaxed`}
-              style={{ color: getThemeColorCss(cardBodyColor, "600") }}
+              style={{ color: getThemeColorCss(style.cardBodyColor, "600") }}
             >
               {description}
             </p>
           ) : null}
 
-          {showButton && buttonLabel ? (
+          {style.showButton && buttonLabel ? (
             <div className="mt-auto flex w-full justify-end overflow-visible">
               <AnimatedCTAButton
                 lang={lang}

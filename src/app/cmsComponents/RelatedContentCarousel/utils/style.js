@@ -41,6 +41,13 @@ export const SECTION_PADDING_CLASS = {
   loose: "py-12 sm:py-14 lg:py-16",
 };
 
+export function resolveRelatedContentStyle(style = {}) {
+  return {
+    ...DEFAULT_RELATED_CONTENT_STYLE,
+    ...style,
+  };
+}
+
 export const DEFAULT_RELATED_CONTENT_STYLE = {
   showTitle: true,
   showDescription: false,

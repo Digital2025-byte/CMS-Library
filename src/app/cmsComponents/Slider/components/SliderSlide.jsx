@@ -15,16 +15,7 @@ export default function SliderSlide({
   imageOverlay,
   isActive = false,
   isPaused = false,
-  showSlideText = true,
-  showTitleText = true,
-  showSubtitleText = true,
-  showDescriptionText = true,
-  showButton = true,
-  titleAlign = "left",
-  titleColor = "white",
-  subtitleColor = "white",
-  descriptionColor = "white",
-  buttonVariant = "primary",
+  style,
   adaptiveHeight = false,
 }) {
   const videoRef = useRef(null);
@@ -118,16 +109,7 @@ export default function SliderSlide({
             description={slide.description}
             buttonText={slide.buttonText}
             ctaHref={slide.ctaHref}
-            showSlideText={showSlideText}
-            showTitleText={showTitleText}
-            showSubtitleText={showSubtitleText}
-            showDescriptionText={showDescriptionText}
-            showButton={showButton}
-            titleAlign={titleAlign}
-            titleColor={titleColor}
-            subtitleColor={subtitleColor}
-            descriptionColor={descriptionColor}
-            buttonVariant={buttonVariant}
+            style={style}
           />
         </PageContentContainer>
       </div>

@@ -46,6 +46,13 @@ export const SECTION_PADDING_CLASS = {
   loose: "py-12 md:py-16",
 };
 
+export function resolveServiceCardsStyle(style = {}) {
+  return {
+    ...DEFAULT_SERVICE_CARDS_STYLE,
+    ...style,
+  };
+}
+
 export const DEFAULT_SERVICE_CARDS_STYLE = {
   showTitle: true,
   showDescription: true,

@@ -1,12 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import DualImageText from "@/app/cmsComponents/DualImageText";
-import DualImageTextContainer from "@/app/cmsComponents/DualImageText/components/DualImageTextContainer";
+import { DualImageTextSection } from "@/app/cmsComponents/DualImageText";
 import DualImageTextPropsForm from "@/app/cmsComponents/DualImageText/docs/DualImageTextPropsForm";
+import { DEFAULT_DUAL_IMAGE_TEXT_STYLE } from "@/app/cmsComponents/DualImageText/utils/style";
 import Drawer, { useDrawer } from "@/components/ui/Drawer";
 
-const DEFAULT_EXTRA_POSITIONS = [
+const OFFSET_EXTRA_POSITIONS = [
   { bottom: -50, start: 0, horizontal: 60 },
   { bottom: -50, end: 0, horizontal: -60 },
 ];
@@ -18,19 +18,13 @@ export default function DualImageTextExamples({
 }) {
   const { lang, dir } = ctx;
   const drawer = useDrawer();
-  const [flags, setFlags] = useState({
-    underlineFirstWord: false,
-    blueLayer: false,
-    animate: false,
-    showExploreButton: false,
-    showFirstSection: false,
-    showExtraImage: false,
+  const [style, setStyle] = useState({
+    ...DEFAULT_DUAL_IMAGE_TEXT_STYLE,
     offsetExtraImage: false,
   });
-  const [bgColor, setBgColor] = useState("bg-100");
 
   const toggle = (key) => {
-    setFlags((current) => {
+    setStyle((current) => {
       const next = { ...current, [key]: !current[key] };
       if (key === "showExtraImage" && !next.showExtraImage) {
         next.offsetExtraImage = false;
@@ -47,22 +41,15 @@ export default function DualImageTextExamples({
 
   return (
     <div>
-      <DualImageTextContainer lang={lang} dir={dir}>
-        <DualImageText
-          lang={lang}
-          data={data}
-          blueLayer={flags.blueLayer}
-          animate={flags.animate}
-          showExploreButton={flags.showExploreButton}
-          showFirstSection={flags.showFirstSection}
-          underlineFirstWord={flags.underlineFirstWord}
-          showExtraImage={flags.showExtraImage}
-          bgColor={bgColor}
-          extraImagePositions={
-            flags.offsetExtraImage ? DEFAULT_EXTRA_POSITIONS : undefined
-          }
-        />
-      </DualImageTextContainer>
+      <DualImageTextSection
+        lang={lang}
+        dir={dir}
+        data={data}
+        style={style}
+        extraImagePositions={
+          style.offsetExtraImage ? OFFSET_EXTRA_POSITIONS : undefined
+        }
+      />
 
       <Drawer
         isOpen={drawer.isOpen}
@@ -74,10 +61,10 @@ export default function DualImageTextExamples({
         title={name}
       >
         <DualImageTextPropsForm
-          flags={flags}
+          flags={style}
           toggle={toggle}
-          bgColor={bgColor}
-          setBgColor={setBgColor}
+          bgColor={style.bgColor}
+          setBgColor={(bgColor) => setStyle((current) => ({ ...current, bgColor }))}
         />
       </Drawer>
     </div>

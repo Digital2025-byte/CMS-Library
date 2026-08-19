@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import ImageCarouselsWithOppositeScrollDirections from "@/app/cmsComponents/ImageCarouselsWithOppositeScrollDirections";
-import OppositeScrollContainer from "@/app/cmsComponents/ImageCarouselsWithOppositeScrollDirections/components/OppositeScrollContainer";
+import { ImageCarouselsWithOppositeScrollDirectionsSection } from "@/app/cmsComponents/ImageCarouselsWithOppositeScrollDirections";
 import OppositeScrollPropsForm from "@/app/cmsComponents/ImageCarouselsWithOppositeScrollDirections/docs/OppositeScrollPropsForm";
 import {
   getOppositeScrollEditorContent,
@@ -44,35 +43,12 @@ export default function OppositeScrollExamples({
 
   return (
     <div>
-      <OppositeScrollContainer lang={lang} dir={dir}>
-        <ImageCarouselsWithOppositeScrollDirections
-          lang={lang}
-          data={wrapOppositeScrollContent(content, lang)}
-          showTitleDescription={style.showTitleDescription}
-          showDescription={style.showDescription}
-          showExploreButton={style.showExploreButton}
-          showSectionBg={style.showSectionBg}
-          showCardTitles={style.showCardTitles}
-          showOverlay={style.showOverlay}
-          dimOnHover={style.dimOnHover}
-          pauseOnHover={style.pauseOnHover}
-          reverseRows={style.reverseRows}
-          sectionBg={style.sectionBg}
-          sectionPadding={style.sectionPadding}
-          titleAlign={style.titleAlign}
-          titleColor={style.titleColor}
-          descriptionColor={style.descriptionColor}
-          cardSize={style.cardSize}
-          cardRadius={style.cardRadius}
-          cardGap={style.cardGap}
-          rowGap={style.rowGap}
-          cardTitleColor={style.cardTitleColor}
-          overlayColor={style.overlayColor}
-          speed={style.speed}
-          buttonBg={style.buttonBg}
-          buttonColor={style.buttonColor}
-        />
-      </OppositeScrollContainer>
+      <ImageCarouselsWithOppositeScrollDirectionsSection
+        lang={lang}
+        dir={dir}
+        data={wrapOppositeScrollContent(content, lang)}
+        style={style}
+      />
 
       <Drawer
         isOpen={drawer.isOpen}

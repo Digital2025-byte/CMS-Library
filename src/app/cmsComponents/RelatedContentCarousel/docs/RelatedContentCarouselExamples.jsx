@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import RelatedContentCarousel from "@/app/cmsComponents/RelatedContentCarousel";
-import RelatedContentCarouselContainer from "@/app/cmsComponents/RelatedContentCarousel/components/RelatedContentCarouselContainer";
+import { RelatedContentCarouselSection } from "@/app/cmsComponents/RelatedContentCarousel";
 import RelatedContentCarouselPropsForm from "@/app/cmsComponents/RelatedContentCarousel/docs/RelatedContentCarouselPropsForm";
 import {
   getRelatedContentCarouselEditorContent,
@@ -62,37 +61,13 @@ export default function RelatedContentCarouselExamples({
 
   return (
     <div>
-      <RelatedContentCarouselContainer
+      <RelatedContentCarouselSection
         lang={lang}
         dir={dir}
-        background={style.sectionBg}
-        padding={style.sectionPadding}
-      >
-        <RelatedContentCarousel
-          lang={lang}
-          data={wrapRelatedContentCarouselContent(content, lang)}
-          posParams="gb"
-          showTitle={style.showTitle}
-          showDescription={style.showDescription}
-          showArrows={style.showArrows}
-          showCardImage={style.showCardImage}
-          showCardTitle={style.showCardTitle}
-          showCardDescription={style.showCardDescription}
-          showButton={style.showButton}
-          titleAlign={style.titleAlign}
-          titleColor={style.titleColor}
-          descriptionColor={style.descriptionColor}
-          cardBg={style.cardBg}
-          cardRadius={style.cardRadius}
-          cardTitleColor={style.cardTitleColor}
-          cardBodyColor={style.cardBodyColor}
-          buttonBg={style.buttonBg}
-          buttonText={style.buttonText}
-          buttonOnFill={style.buttonOnFill}
-          navColor={style.navColor}
-          navTrack={style.navTrack}
-        />
-      </RelatedContentCarouselContainer>
+        data={wrapRelatedContentCarouselContent(content, lang)}
+        posParams="gb"
+        style={style}
+      />
 
       <Drawer
         isOpen={drawer.isOpen}

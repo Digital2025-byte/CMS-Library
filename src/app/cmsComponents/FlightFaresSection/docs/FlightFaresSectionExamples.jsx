@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import FlightFaresSection from "@/app/cmsComponents/FlightFaresSection";
-import FlightFaresContainer from "@/app/cmsComponents/FlightFaresSection/components/FlightFaresContainer";
+import { FlightFaresSectionSection } from "@/app/cmsComponents/FlightFaresSection";
 import FlightFaresSectionPropsForm from "@/app/cmsComponents/FlightFaresSection/docs/FlightFaresSectionPropsForm";
 import {
   getFlightFaresEditorContent,
@@ -36,33 +35,12 @@ export default function FlightFaresSectionExamples({
 
   return (
     <div>
-      <FlightFaresContainer
+      <FlightFaresSectionSection
         lang={lang}
         dir={dir}
-        background={style.sectionBg}
-        showBackground={style.showSectionBg}
-        padding={style.sectionPadding}
-      >
-        <FlightFaresSection
-          lang={lang}
-          data={wrapFlightFaresContent(content, lang)}
-          showTitle={style.showTitle}
-          showImage={style.showImage}
-          showOverlay={style.showOverlay}
-          showOneWay={style.showOneWay}
-          showNew={style.showNew}
-          showCity={style.showCity}
-          showPrice={style.showPrice}
-          titleAlign={style.titleAlign}
-          titleColor={style.titleColor}
-          cardRadius={style.cardRadius}
-          overlayColor={style.overlayColor}
-          cityColor={style.cityColor}
-          priceColor={style.priceColor}
-          badgeColor={style.badgeColor}
-          badgeText={style.badgeText}
-        />
-      </FlightFaresContainer>
+        data={wrapFlightFaresContent(content, lang)}
+        style={style}
+      />
 
       <Drawer
         isOpen={drawer.isOpen}

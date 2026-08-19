@@ -1,16 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import OnBoardImageRing from "@/app/cmsComponents/OnBoardImageRing";
+import { OnBoardImageRingSection } from "@/app/cmsComponents/OnBoardImageRing";
 import OnBoardImageRingPropsForm from "@/app/cmsComponents/OnBoardImageRing/docs/OnBoardImageRingPropsForm";
 import {
   getOnBoardImageRingEditorContent,
   wrapOnBoardImageRingContent,
 } from "@/app/cmsComponents/OnBoardImageRing/utils/helpers";
-import {
-  CARD_GAP_VALUE,
-  DEFAULT_ON_BOARD_IMAGE_RING_STYLE,
-} from "@/app/cmsComponents/OnBoardImageRing/utils/style";
+import { DEFAULT_ON_BOARD_IMAGE_RING_STYLE } from "@/app/cmsComponents/OnBoardImageRing/utils/style";
 import {
   InspectorFooter,
   InspectorSubmitButton,
@@ -25,7 +22,7 @@ export default function OnBoardImageRingExamples({
   ctx,
   name = "OnBoardImageRing",
 }) {
-  const { lang, onBoardImageRingData } = ctx;
+  const { lang, dir, onBoardImageRingData } = ctx;
   const drawer = useDrawer();
   const [style, setStyle] = useState(DEFAULT_ON_BOARD_IMAGE_RING_STYLE);
   const [content, setContent] = useState(() =>
@@ -38,25 +35,11 @@ export default function OnBoardImageRingExamples({
 
   return (
     <div>
-      <OnBoardImageRing
+      <OnBoardImageRingSection
         lang={lang}
+        dir={dir}
         data={wrapOnBoardImageRingContent(content, lang)}
-        showTitle={style.showTitle}
-        showDescription={style.showDescription}
-        showSectionBg={style.showSectionBg}
-        showCaptions={style.showCaptions}
-        showOverlay={style.showOverlay}
-        showCardImage={style.showCardImage}
-        sectionBg={style.sectionBg}
-        sectionPadding={style.sectionPadding}
-        titleAlign={style.titleAlign}
-        titleColor={style.titleColor}
-        descriptionColor={style.descriptionColor}
-        cardRadius={style.cardRadius}
-        cardGap={style.cardGap}
-        captionColor={style.captionColor}
-        overlayColor={style.overlayColor}
-        imageGap={CARD_GAP_VALUE[style.cardGap] ?? CARD_GAP_VALUE.default}
+        style={style}
       />
 
       <Drawer

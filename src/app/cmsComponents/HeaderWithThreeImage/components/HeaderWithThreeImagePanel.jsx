@@ -5,58 +5,31 @@ import HeaderWithThreeImageContent from "./HeaderWithThreeImageContent";
 
 export default function HeaderWithThreeImagePanel({
   lang = "en",
-  title,
-  description,
-  imageOne,
-  imageTwo,
-  imageThree,
-  mobileImageOne,
-  mobileImageTwo,
-  mobileImageThree,
-  showTitle = DEFAULT_HEADER_WITH_THREE_IMAGE_STYLE.showTitle,
-  showDescription = DEFAULT_HEADER_WITH_THREE_IMAGE_STYLE.showDescription,
-  showHeroImage = DEFAULT_HEADER_WITH_THREE_IMAGE_STYLE.showHeroImage,
-  showOverlay = DEFAULT_HEADER_WITH_THREE_IMAGE_STYLE.showOverlay,
-  titleAlign = DEFAULT_HEADER_WITH_THREE_IMAGE_STYLE.titleAlign,
-  titleColor = DEFAULT_HEADER_WITH_THREE_IMAGE_STYLE.titleColor,
-  descriptionColor = DEFAULT_HEADER_WITH_THREE_IMAGE_STYLE.descriptionColor,
-  overlayColor = DEFAULT_HEADER_WITH_THREE_IMAGE_STYLE.overlayColor,
+  content,
+  style = DEFAULT_HEADER_WITH_THREE_IMAGE_STYLE,
 }) {
-  const overlayCss = getThemeColorCss(overlayColor, "main");
+  const overlayCss = getThemeColorCss(style.overlayColor, "main");
 
   return (
     <section
       className="relative flex min-h-[50vh] w-full items-center justify-center overflow-hidden"
       style={
-        showHeroImage
+        style.showHeroImage
           ? undefined
           : { backgroundColor: overlayCss }
       }
     >
-      {showHeroImage ? (
-        <HeaderWithThreeImageBackground
-          lang={lang}
-          imageOne={imageOne}
-          imageTwo={imageTwo}
-          imageThree={imageThree}
-          mobileImageOne={mobileImageOne}
-          mobileImageTwo={mobileImageTwo}
-          mobileImageThree={mobileImageThree}
-        />
+      {style.showHeroImage ? (
+        <HeaderWithThreeImageBackground lang={lang} content={content} />
       ) : null}
 
       <HeaderWithThreeImageContent
         lang={lang}
-        title={title}
-        description={description}
-        showTitle={showTitle}
-        showDescription={showDescription}
-        titleAlign={titleAlign}
-        titleColor={titleColor}
-        descriptionColor={descriptionColor}
+        content={content}
+        style={style}
       />
 
-      {showOverlay ? (
+      {style.showOverlay ? (
         <div
           className="pointer-events-none absolute inset-0 z-[1]"
           style={{

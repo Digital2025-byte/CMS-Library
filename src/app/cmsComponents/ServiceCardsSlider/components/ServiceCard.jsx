@@ -4,50 +4,33 @@ import { CaretLeftIcon, CaretRightIcon } from "@phosphor-icons/react";
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
 import { isUsableImageSrc } from "../utils/helpers";
-import {
-  CARD_PADDING_CLASS,
-  CARD_RADIUS_CLASS,
-  DEFAULT_SERVICE_CARDS_STYLE,
-} from "../utils/style";
+import { CARD_PADDING_CLASS, CARD_RADIUS_CLASS } from "../utils/style";
 
-export default function ServiceCard({
-  service,
-  isRtl = false,
-  showItemTitle = true,
-  showItemDescription = true,
-  showIcon = true,
-  showArrow = true,
-  cardBg = DEFAULT_SERVICE_CARDS_STYLE.cardBg,
-  cardRadius = DEFAULT_SERVICE_CARDS_STYLE.cardRadius,
-  cardPadding = DEFAULT_SERVICE_CARDS_STYLE.cardPadding,
-  iconBg,
-  itemTitleColor = DEFAULT_SERVICE_CARDS_STYLE.itemTitleColor,
-  itemBodyColor = DEFAULT_SERVICE_CARDS_STYLE.itemBodyColor,
-  arrowColor = DEFAULT_SERVICE_CARDS_STYLE.arrowColor,
-}) {
+export default function ServiceCard({ service, isRtl = false, style }) {
   if (!service) {
     return null;
   }
 
   const { title, description, imageUrl, imageAlt, href } = service;
   const ArrowIcon = isRtl ? CaretLeftIcon : CaretRightIcon;
-  const radiusClass = CARD_RADIUS_CLASS[cardRadius] ?? CARD_RADIUS_CLASS.lg;
+  const radiusClass =
+    CARD_RADIUS_CLASS[style.cardRadius] ?? CARD_RADIUS_CLASS.lg;
   const paddingClass =
-    CARD_PADDING_CLASS[cardPadding] ?? CARD_PADDING_CLASS.default;
-  const canShowImage = showIcon && isUsableImageSrc(imageUrl);
+    CARD_PADDING_CLASS[style.cardPadding] ?? CARD_PADDING_CLASS.default;
+  const canShowImage = style.showIcon && isUsableImageSrc(imageUrl);
 
   const card = (
     <article
       className={`group flex h-full items-center gap-3 shadow-sm transition sm:gap-4 ${radiusClass} ${paddingClass}`}
-      style={{ backgroundColor: getThemeColorCss(cardBg, "white") }}
+      style={{ backgroundColor: getThemeColorCss(style.cardBg, "white") }}
     >
-      {showIcon ? (
+      {style.showIcon ? (
         <div className="relative flex h-16 w-16 shrink-0 items-center justify-center sm:h-20 sm:w-20">
           <span
             className="absolute inset-[6%] rounded-[42%_58%_48%_52%/48%_42%_58%_52%]"
             style={{
-              backgroundColor: iconBg
-                ? getThemeColorCss(iconBg)
+              backgroundColor: style.iconBg
+                ? getThemeColorCss(style.iconBg)
                 : "#EEF4F7",
             }}
             aria-hidden
@@ -65,31 +48,31 @@ export default function ServiceCard({
       ) : null}
 
       <div className="min-w-0 flex-1">
-        {showItemTitle && title ? (
+        {style.showItemTitle && title ? (
           <h3
             className={`${typography.itemTitle} font-semibold`}
-            style={{ color: getThemeColorCss(itemTitleColor, "secondary-2") }}
+            style={{ color: getThemeColorCss(style.itemTitleColor, "secondary-2") }}
           >
             {title}
           </h3>
         ) : null}
 
-        {showItemDescription && description ? (
+        {style.showItemDescription && description ? (
           <p
             className={`${typography.caption} mt-1 line-clamp-3 leading-relaxed`}
-            style={{ color: getThemeColorCss(itemBodyColor, "icon") }}
+            style={{ color: getThemeColorCss(style.itemBodyColor, "icon") }}
           >
             {description}
           </p>
         ) : null}
       </div>
 
-      {showArrow ? (
+      {style.showArrow ? (
         <ArrowIcon
           size={18}
           weight="bold"
           className="shrink-0 transition-transform group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5"
-          style={{ color: getThemeColorCss(arrowColor, "icon") }}
+          style={{ color: getThemeColorCss(style.arrowColor, "icon") }}
           aria-hidden
         />
       ) : null}

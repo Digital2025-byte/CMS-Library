@@ -76,6 +76,13 @@ export const DEFAULT_ACCORDION_IMAGES_STYLE = {
   toggleIcon: "white",
 };
 
+export function resolveAccordionImagesStyle(style = {}) {
+  return {
+    ...DEFAULT_ACCORDION_IMAGES_STYLE,
+    ...style,
+  };
+}
+
 export const ACCORDION_IMAGES_STYLE_RESET_KEYS = {
   layout: [
     "showTitleDescription",

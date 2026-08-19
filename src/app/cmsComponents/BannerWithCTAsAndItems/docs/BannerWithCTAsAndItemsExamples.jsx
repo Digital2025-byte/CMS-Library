@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import BannerWithCTAsAndItems from "@/app/cmsComponents/BannerWithCTAsAndItems";
-import BannerWithCTAsAndItemsContainer from "@/app/cmsComponents/BannerWithCTAsAndItems/components/BannerWithCTAsAndItemsContainer";
+import { BannerWithCTAsAndItemsSection } from "@/app/cmsComponents/BannerWithCTAsAndItems";
 import BannerWithCTAsAndItemsPropsForm from "@/app/cmsComponents/BannerWithCTAsAndItems/docs/BannerWithCTAsAndItemsPropsForm";
 import {
   getBannerWithCTAsAndItemsEditorContent,
@@ -66,28 +65,13 @@ export default function BannerWithCTAsAndItemsExamples({
 
   return (
     <div>
-      <BannerWithCTAsAndItemsContainer lang={lang} dir={dir}>
-        <BannerWithCTAsAndItems
-          lang={lang}
-          data={wrapBannerWithCTAsAndItemsContent(content, lang)}
-          posParams="gb"
-          showTitle={style.showTitle}
-          showDescription={style.showDescription}
-          showItems={style.showItems}
-          showPrimaryButton={style.showPrimaryButton}
-          showSecondaryButton={style.showSecondaryButton}
-          showHeroImage={style.showHeroImage}
-          showOverlay={style.showOverlay}
-          titleAlign={style.titleAlign}
-          titleColor={style.titleColor}
-          descriptionColor={style.descriptionColor}
-          overlayColor={style.overlayColor}
-          itemColor={style.itemColor}
-          primaryBg={style.primaryBg}
-          primaryText={style.primaryText}
-          secondaryText={style.secondaryText}
-        />
-      </BannerWithCTAsAndItemsContainer>
+      <BannerWithCTAsAndItemsSection
+        lang={lang}
+        dir={dir}
+        data={wrapBannerWithCTAsAndItemsContent(content, lang)}
+        style={style}
+        posParams="gb"
+      />
 
       <Drawer
         isOpen={drawer.isOpen}

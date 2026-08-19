@@ -2,7 +2,6 @@
 
 import { ArrowLeftIcon, ArrowRightIcon } from "@phosphor-icons/react";
 import { getThemeColorCss } from "@/styles/themeColors";
-import { DEFAULT_CAROUSEL_ITEM_STYLE } from "../utils/style";
 
 export default function CarouselItemNavigation({
   dotCount = 0,
@@ -10,17 +9,17 @@ export default function CarouselItemNavigation({
   onPrev,
   onNext,
   onGoToPage,
-  showArrows = true,
-  showDots = true,
-  navColor = DEFAULT_CAROUSEL_ITEM_STYLE.navColor,
-  dotColor = DEFAULT_CAROUSEL_ITEM_STYLE.dotColor,
+  style,
 }) {
+  const showArrows = style.showArrows;
+  const showDots = style.showDots;
+
   if (dotCount <= 0 || (!showArrows && !showDots)) {
     return null;
   }
 
-  const arrowCss = getThemeColorCss(navColor, "white");
-  const dotCss = getThemeColorCss(dotColor, "primary-2");
+  const arrowCss = getThemeColorCss(style.navColor, "white");
+  const dotCss = getThemeColorCss(style.dotColor, "primary-2");
 
   return (
     <div

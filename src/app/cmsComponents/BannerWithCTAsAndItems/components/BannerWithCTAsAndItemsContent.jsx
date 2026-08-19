@@ -8,29 +8,16 @@ import BannerWithCTAsAndItemsButtons from "./BannerWithCTAsAndItemsButtons";
 import BannerWithCTAsAndItemsList from "./BannerWithCTAsAndItemsList";
 
 export default function BannerWithCTAsAndItemsContent({
-  title,
-  description,
-  items,
-  primaryLabel,
-  primaryHref,
-  secondaryLabel,
-  secondaryHref,
-  showTitle = DEFAULT_BANNER_WITH_CTAS_STYLE.showTitle,
-  showDescription = DEFAULT_BANNER_WITH_CTAS_STYLE.showDescription,
-  showItems = DEFAULT_BANNER_WITH_CTAS_STYLE.showItems,
-  showPrimaryButton = DEFAULT_BANNER_WITH_CTAS_STYLE.showPrimaryButton,
-  showSecondaryButton = DEFAULT_BANNER_WITH_CTAS_STYLE.showSecondaryButton,
-  titleAlign = DEFAULT_BANNER_WITH_CTAS_STYLE.titleAlign,
-  titleColor = DEFAULT_BANNER_WITH_CTAS_STYLE.titleColor,
-  descriptionColor = DEFAULT_BANNER_WITH_CTAS_STYLE.descriptionColor,
-  itemColor = DEFAULT_BANNER_WITH_CTAS_STYLE.itemColor,
-  primaryBg = DEFAULT_BANNER_WITH_CTAS_STYLE.primaryBg,
-  primaryText = DEFAULT_BANNER_WITH_CTAS_STYLE.primaryText,
-  secondaryText = DEFAULT_BANNER_WITH_CTAS_STYLE.secondaryText,
+  content,
+  style = DEFAULT_BANNER_WITH_CTAS_STYLE,
+  cId,
 }) {
-  const showHeading = showTitle && title;
-  const showCopy = showDescription && description;
-  const alignClass = TITLE_ALIGN_CLASS[titleAlign] ?? TITLE_ALIGN_CLASS.left;
+  const title = content.title;
+  const description = content.description;
+  const showHeading = style.showTitle && title;
+  const showCopy = style.showDescription && description;
+  const alignClass =
+    TITLE_ALIGN_CLASS[style.titleAlign] ?? TITLE_ALIGN_CLASS.left;
 
   return (
     <div
@@ -39,7 +26,7 @@ export default function BannerWithCTAsAndItemsContent({
       {showHeading ? (
         <h1
           className={`${typography.sectionTitle} font-semibold leading-tight`}
-          style={{ color: getThemeColorCss(titleColor, "white") }}
+          style={{ color: getThemeColorCss(style.titleColor, "white") }}
         >
           {title}
         </h1>
@@ -48,24 +35,23 @@ export default function BannerWithCTAsAndItemsContent({
       {showCopy ? (
         <p
           className={`${typography.sectionDescription} mt-3 leading-relaxed sm:mt-4`}
-          style={{ color: getThemeColorCss(descriptionColor, "white") }}
+          style={{ color: getThemeColorCss(style.descriptionColor, "white") }}
         >
           {description}
         </p>
       ) : null}
 
-      {showItems ? (
-        <BannerWithCTAsAndItemsList items={items} itemColor={itemColor} />
+      {style.showItems ? (
+        <BannerWithCTAsAndItemsList items={content.items} style={style} />
       ) : null}
 
       <BannerWithCTAsAndItemsButtons
-        primaryLabel={showPrimaryButton ? primaryLabel : ""}
-        primaryHref={primaryHref}
-        secondaryLabel={showSecondaryButton ? secondaryLabel : ""}
-        secondaryHref={secondaryHref}
-        primaryBg={primaryBg}
-        primaryText={primaryText}
-        secondaryText={secondaryText}
+        primaryLabel={style.showPrimaryButton ? content.primaryLabel : ""}
+        primaryHref={content.primaryHref}
+        secondaryLabel={style.showSecondaryButton ? content.secondaryLabel : ""}
+        secondaryHref={content.secondaryHref}
+        style={style}
+        cId={cId}
       />
     </div>
   );

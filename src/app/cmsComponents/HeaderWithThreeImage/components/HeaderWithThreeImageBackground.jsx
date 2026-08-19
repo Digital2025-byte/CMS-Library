@@ -3,12 +3,7 @@ import { getHeaderClipPaths } from "../utils/clipPaths";
 
 export default function HeaderWithThreeImageBackground({
   lang = "en",
-  imageOne,
-  imageTwo,
-  imageThree,
-  mobileImageOne,
-  mobileImageTwo,
-  mobileImageThree,
+  content,
 }) {
   const {
     LEFT_W,
@@ -25,23 +20,23 @@ export default function HeaderWithThreeImageBackground({
       <HeaderWithThreeImageSlice
         width={LEFT_W}
         clipPath={leftClipPath}
-        desktopImage={imageOne}
-        mobileImage={mobileImageOne}
+        desktopImage={content.imageOne}
+        mobileImage={content.mobileImageOne}
         priority
       />
       <HeaderWithThreeImageSlice
         width={MID_W}
         overlapStyle={overlapStyle}
         clipPath={midClipPath}
-        desktopImage={imageTwo}
-        mobileImage={mobileImageTwo}
+        desktopImage={content.imageTwo}
+        mobileImage={content.mobileImageTwo}
       />
       <HeaderWithThreeImageSlice
         width={RIGHT_W}
         overlapStyle={overlapStyle}
         clipPath={rightClipPath}
-        desktopImage={imageThree}
-        mobileImage={mobileImageThree}
+        desktopImage={content.imageThree}
+        mobileImage={content.mobileImageThree}
       />
     </div>
   );

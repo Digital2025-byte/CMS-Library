@@ -3,21 +3,13 @@ import { CARD_GAP_CLASS, DEFAULT_TABBED_CARDS_STYLE } from "../utils/style";
 
 export default function TabbedCardsGrid({
   cards,
-  showImage = DEFAULT_TABBED_CARDS_STYLE.showImage,
-  showCardTitle = DEFAULT_TABBED_CARDS_STYLE.showCardTitle,
-  showCardDescription = DEFAULT_TABBED_CARDS_STYLE.showCardDescription,
-  showCardBg = DEFAULT_TABBED_CARDS_STYLE.showCardBg,
-  cardRadius = DEFAULT_TABBED_CARDS_STYLE.cardRadius,
-  cardGap = DEFAULT_TABBED_CARDS_STYLE.cardGap,
-  cardBg = DEFAULT_TABBED_CARDS_STYLE.cardBg,
-  nameColor = DEFAULT_TABBED_CARDS_STYLE.nameColor,
-  bodyColor = DEFAULT_TABBED_CARDS_STYLE.bodyColor,
+  style = DEFAULT_TABBED_CARDS_STYLE,
 }) {
   if (!Array.isArray(cards) || cards.length === 0) {
     return null;
   }
 
-  const gapClass = CARD_GAP_CLASS[cardGap] ?? CARD_GAP_CLASS.default;
+  const gapClass = CARD_GAP_CLASS[style.cardGap] ?? CARD_GAP_CLASS.default;
 
   return (
     <div
@@ -30,17 +22,7 @@ export default function TabbedCardsGrid({
           role="listitem"
           className="w-[82%] shrink-0 snap-start sm:w-[70%] md:w-[55%] lg:w-auto lg:shrink"
         >
-          <TabbedCardsCard
-            card={card}
-            showImage={showImage}
-            showCardTitle={showCardTitle}
-            showCardDescription={showCardDescription}
-            showCardBg={showCardBg}
-            cardRadius={cardRadius}
-            cardBg={cardBg}
-            nameColor={nameColor}
-            bodyColor={bodyColor}
-          />
+          <TabbedCardsCard card={card} style={style} />
         </div>
       ))}
     </div>

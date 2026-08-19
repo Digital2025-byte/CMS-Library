@@ -6,10 +6,7 @@ export default function TabbedCardsTabs({
   tabs,
   activeTabIndex,
   onTabChange,
-  tabTrack = DEFAULT_TABBED_CARDS_STYLE.tabTrack,
-  tabActiveBg = DEFAULT_TABBED_CARDS_STYLE.tabActiveBg,
-  tabActiveText = DEFAULT_TABBED_CARDS_STYLE.tabActiveText,
-  tabIdleText = DEFAULT_TABBED_CARDS_STYLE.tabIdleText,
+  style = DEFAULT_TABBED_CARDS_STYLE,
 }) {
   const visibleTabs = tabs.filter((tab) => tab?.label);
 
@@ -17,10 +14,10 @@ export default function TabbedCardsTabs({
     return null;
   }
 
-  const trackCss = getThemeColorCss(tabTrack, "200");
-  const activeBgCss = getThemeColorCss(tabActiveBg, "primary-1");
-  const activeTextCss = getThemeColorCss(tabActiveText, "white");
-  const idleTextCss = getThemeColorCss(tabIdleText, "primary-1");
+  const trackCss = getThemeColorCss(style.tabTrack, "200");
+  const activeBgCss = getThemeColorCss(style.tabActiveBg, "primary-1");
+  const activeTextCss = getThemeColorCss(style.tabActiveText, "white");
+  const idleTextCss = getThemeColorCss(style.tabIdleText, "primary-1");
 
   return (
     <div className="mb-6 flex justify-center">

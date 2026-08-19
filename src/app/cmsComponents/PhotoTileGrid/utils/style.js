@@ -63,6 +63,13 @@ export const DEFAULT_PHOTO_TILE_GRID_STYLE = {
   buttonText: "white",
 };
 
+export function resolvePhotoTileGridStyle(style = {}) {
+  return {
+    ...DEFAULT_PHOTO_TILE_GRID_STYLE,
+    ...style,
+  };
+}
+
 export const PHOTO_TILE_GRID_STYLE_RESET_KEYS = {
   layout: [
     "showTitle",

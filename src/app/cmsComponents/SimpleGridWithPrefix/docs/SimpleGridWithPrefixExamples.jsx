@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import SimpleGridWithPrefix from "@/app/cmsComponents/SimpleGridWithPrefix";
-import SimpleGridContainer from "@/app/cmsComponents/SimpleGridWithPrefix/components/SimpleGridContainer";
+import { SimpleGridWithPrefixSection } from "@/app/cmsComponents/SimpleGridWithPrefix";
 import SimpleGridWithPrefixPropsForm from "@/app/cmsComponents/SimpleGridWithPrefix/docs/SimpleGridWithPrefixPropsForm";
 import {
   getSimpleGridWithPrefixEditorContent,
@@ -36,37 +35,12 @@ export default function SimpleGridWithPrefixExamples({
 
   return (
     <div>
-      <SimpleGridContainer
+      <SimpleGridWithPrefixSection
         lang={lang}
         dir={dir}
-        background={style.sectionBg}
-        showBackground={style.showSectionBg}
-        padding={style.sectionPadding}
-      >
-        <SimpleGridWithPrefix
-          lang={lang}
-          data={wrapSimpleGridWithPrefixContent(content, lang)}
-          showTitle={style.showTitle}
-          showDescription={style.showDescription}
-          showIcon={style.showIcon}
-          showPrefix={style.showPrefix}
-          showChip={style.showChip}
-          showUserName={style.showUserName}
-          showArrow={style.showArrow}
-          showCardBg={style.showCardBg}
-          titleAlign={style.titleAlign}
-          titleColor={style.titleColor}
-          descriptionColor={style.descriptionColor}
-          cardRadius={style.cardRadius}
-          cardGap={style.cardGap}
-          cardBg={style.cardBg}
-          nameColor={style.nameColor}
-          chipBg={style.chipBg}
-          chipText={style.chipText}
-          userNameColor={style.userNameColor}
-          arrowColor={style.arrowColor}
-        />
-      </SimpleGridContainer>
+        data={wrapSimpleGridWithPrefixContent(content, lang)}
+        style={style}
+      />
 
       <Drawer
         isOpen={drawer.isOpen}

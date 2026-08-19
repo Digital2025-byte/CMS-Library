@@ -72,6 +72,13 @@ export const DEFAULT_DESTINATIONS_CITIES_STYLE = {
   buttonText: "white",
 };
 
+export function resolveDestinationsCitiesStyle(style = {}) {
+  return {
+    ...DEFAULT_DESTINATIONS_CITIES_STYLE,
+    ...style,
+  };
+}
+
 export const DESTINATIONS_CITIES_STYLE_RESET_KEYS = {
   layout: [
     "showTitle",

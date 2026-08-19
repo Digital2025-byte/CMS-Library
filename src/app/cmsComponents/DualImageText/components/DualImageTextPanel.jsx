@@ -4,41 +4,31 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import PageContentContainer from "@/components/layout/PageContentContainer";
 import DualImageTextContent from "./DualImageTextContent";
+import { DEFAULT_DUAL_IMAGE_TEXT_STYLE } from "../utils/style";
 
 export default function DualImageTextPanel({
   lang = "en",
-  items = [],
-  firstSection = null,
-  showFirstSection = false,
-  blueLayer = false,
-  underlineFirstWord = false,
-  animate = false,
-  bgColor = "bg-100",
-  showExploreButton = false,
-  exploreButtonLabel = "Explore more",
-  exploreButtonHref = "explore",
-  showExtraImage = false,
-  extraImageUrl = "",
-  extraImageAlt = "",
+  content,
+  style = DEFAULT_DUAL_IMAGE_TEXT_STYLE,
   extraImagePositions = [],
   cId,
 }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { amount: 0.35, once: false });
 
-  const content = (
+  const copy = (
     <DualImageTextContent
-      items={items}
-      firstSection={firstSection}
-      showFirstSection={showFirstSection}
-      blueLayer={blueLayer}
-      underlineFirstWord={underlineFirstWord}
-      showExploreButton={showExploreButton}
-      exploreButtonLabel={exploreButtonLabel}
-      exploreButtonHref={exploreButtonHref}
-      showExtraImage={showExtraImage}
-      extraImageUrl={extraImageUrl}
-      extraImageAlt={extraImageAlt}
+      items={content.items}
+      firstSection={content.firstSection}
+      showFirstSection={style.showFirstSection}
+      blueLayer={style.blueLayer}
+      underlineFirstWord={style.underlineFirstWord}
+      showExploreButton={style.showExploreButton}
+      exploreButtonLabel={content.exploreButtonLabel}
+      exploreButtonHref={content.exploreButtonHref}
+      showExtraImage={style.showExtraImage}
+      extraImageUrl={content.extraImageUrl}
+      extraImageAlt={content.extraImageAlt}
       extraImagePositions={extraImagePositions}
       cId={cId}
     />
@@ -47,20 +37,20 @@ export default function DualImageTextPanel({
   return (
     <section
       ref={ref}
-      className={`flex items-center justify-center py-10 sm:py-12 lg:py-16 ${bgColor}`}
+      className={`flex items-center justify-center py-10 sm:py-12 lg:py-16 ${style.bgColor}`}
       dir={lang === "ar" ? "rtl" : "ltr"}
     >
       <PageContentContainer>
-        {animate ? (
+        {style.animate ? (
           <motion.div
             initial={{ opacity: 0, y: 100 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
             transition={{ duration: 2, ease: "easeIn" }}
           >
-            {content}
+            {copy}
           </motion.div>
         ) : (
-          content
+          copy
         )}
       </PageContentContainer>
     </section>

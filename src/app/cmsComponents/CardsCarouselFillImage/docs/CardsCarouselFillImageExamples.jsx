@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import CardsCarouselFillImage from "@/app/cmsComponents/CardsCarouselFillImage";
-import CardsCarouselFillImageContainer from "@/app/cmsComponents/CardsCarouselFillImage/components/CardsCarouselFillImageContainer";
+import { CardsCarouselFillImageSection } from "@/app/cmsComponents/CardsCarouselFillImage";
 import CardsCarouselFillImagePropsForm from "@/app/cmsComponents/CardsCarouselFillImage/docs/CardsCarouselFillImagePropsForm";
 import {
   getCardsCarouselFillImageEditorContent,
@@ -50,38 +49,13 @@ export default function CardsCarouselFillImageExamples({
 
   return (
     <div>
-      <CardsCarouselFillImageContainer
+      <CardsCarouselFillImageSection
         lang={lang}
         dir={dir}
-        background={style.sectionBg}
-        showBackground={style.showSectionBg}
-        padding={style.sectionPadding}
-      >
-        <CardsCarouselFillImage
-          lang={lang}
-          data={wrapCardsCarouselFillImageContent(content, lang)}
-          posParams="gb"
-          showTitle={style.showTitle}
-          showDescription={style.showDescription}
-          showArrows={style.showArrows}
-          showCardImage={style.showCardImage}
-          showCardTitle={style.showCardTitle}
-          showCardDescription={style.showCardDescription}
-          showOverlay={style.showOverlay}
-          showButton={style.showButton}
-          titleAlign={style.titleAlign}
-          titleColor={style.titleColor}
-          descriptionColor={style.descriptionColor}
-          cardRadius={style.cardRadius}
-          cardTitleColor={style.cardTitleColor}
-          cardBodyColor={style.cardBodyColor}
-          overlayColor={style.overlayColor}
-          buttonBg={style.buttonBg}
-          buttonText={style.buttonText}
-          buttonOnFill={style.buttonOnFill}
-          navColor={style.navColor}
-        />
-      </CardsCarouselFillImageContainer>
+        data={wrapCardsCarouselFillImageContent(content, lang)}
+        posParams="gb"
+        style={style}
+      />
 
       <Drawer
         isOpen={drawer.isOpen}

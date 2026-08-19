@@ -8,15 +8,13 @@ import { DEFAULT_DESTINATION_SHOWCASE_STYLE } from "../utils/style";
 export default function DestinationShowcaseNav({
   exploreLabel,
   exploreHref,
-  showButton = true,
-  buttonBg = DEFAULT_DESTINATION_SHOWCASE_STYLE.buttonBg,
-  buttonText = DEFAULT_DESTINATION_SHOWCASE_STYLE.buttonText,
+  style = DEFAULT_DESTINATION_SHOWCASE_STYLE,
 }) {
-  const showExplore = showButton && exploreLabel && exploreHref;
+  const showExplore = style.showButton && exploreLabel && exploreHref;
   if (!showExplore) return null;
 
-  const pillCss = getThemeColorCss(buttonBg, "primary-2");
-  const labelCss = getThemeColorCss(buttonText, "white");
+  const pillCss = getThemeColorCss(style.buttonBg, "primary-2");
+  const labelCss = getThemeColorCss(style.buttonText, "white");
 
   return (
     <div className="mt-5 shrink-0 sm:mt-6 md:mb-12">

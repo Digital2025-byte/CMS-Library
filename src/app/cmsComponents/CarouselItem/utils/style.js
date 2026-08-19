@@ -34,6 +34,13 @@ export const SECTION_PADDING_CLASS = {
   loose: "mt-1 py-10 sm:py-16",
 };
 
+export function resolveCarouselItemStyle(style = {}) {
+  return {
+    ...DEFAULT_CAROUSEL_ITEM_STYLE,
+    ...style,
+  };
+}
+
 export const DEFAULT_CAROUSEL_ITEM_STYLE = {
   showTitle: true,
   showArrows: true,

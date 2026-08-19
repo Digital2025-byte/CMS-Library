@@ -29,6 +29,13 @@ export const SECTION_PADDING_CLASS = {
   loose: "py-12 sm:py-14 lg:py-16",
 };
 
+export function resolveFillImageStyle(style = {}) {
+  return {
+    ...DEFAULT_FILL_IMAGE_STYLE,
+    ...style,
+  };
+}
+
 export const DEFAULT_FILL_IMAGE_STYLE = {
   showTitle: true,
   showDescription: true,

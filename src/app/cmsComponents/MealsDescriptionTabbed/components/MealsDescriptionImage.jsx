@@ -5,14 +5,14 @@ import { DEFAULT_MEALS_TABBED_STYLE, IMAGE_RADIUS_CLASS } from "../utils/style";
 export default function MealsDescriptionImage({
   image,
   tabKey = "",
-  imageRadius = DEFAULT_MEALS_TABBED_STYLE.imageRadius,
+  style = DEFAULT_MEALS_TABBED_STYLE,
 }) {
   if (!isUsableImageSrc(image?.fileUrl)) {
     return null;
   }
 
   const radiusClass =
-    IMAGE_RADIUS_CLASS[imageRadius] ?? IMAGE_RADIUS_CLASS.full;
+    IMAGE_RADIUS_CLASS[style.imageRadius] ?? IMAGE_RADIUS_CLASS.full;
 
   return (
     <div className="lg:sticky lg:top-24 lg:col-span-4">

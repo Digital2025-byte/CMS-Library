@@ -10,17 +10,15 @@ export default function BannerWithCTAsAndItemsButtons({
   primaryIcon,
   secondaryIcon,
   cId,
-  primaryBg = DEFAULT_BANNER_WITH_CTAS_STYLE.primaryBg,
-  primaryText = DEFAULT_BANNER_WITH_CTAS_STYLE.primaryText,
-  secondaryText = DEFAULT_BANNER_WITH_CTAS_STYLE.secondaryText,
+  style = DEFAULT_BANNER_WITH_CTAS_STYLE,
 }) {
   if (!primaryLabel && !secondaryLabel) {
     return null;
   }
 
-  const primaryPill = getThemeColorCss(primaryBg, "primary-2");
-  const primaryFg = getThemeColorCss(primaryText, "white");
-  const secondaryFg = getThemeColorCss(secondaryText, "white");
+  const primaryPill = getThemeColorCss(style.primaryBg, "primary-2");
+  const primaryFg = getThemeColorCss(style.primaryText, "white");
+  const secondaryFg = getThemeColorCss(style.secondaryText, "white");
 
   return (
     <div className="mt-6 flex w-full flex-col gap-3 sm:mt-8 sm:flex-row sm:flex-wrap sm:gap-4">

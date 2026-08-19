@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import DestinationShowcase from "@/app/cmsComponents/DestinationShowcase";
-import DestinationShowcaseContainer from "@/app/cmsComponents/DestinationShowcase/components/DestinationShowcaseContainer";
+import { DestinationShowcaseSection } from "@/app/cmsComponents/DestinationShowcase";
 import DestinationShowcasePropsForm from "@/app/cmsComponents/DestinationShowcase/docs/DestinationShowcasePropsForm";
 import {
   getDestinationShowcaseEditorContent,
@@ -46,44 +45,13 @@ export default function DestinationShowcaseExamples({
 
   return (
     <div>
-      <DestinationShowcaseContainer
+      <DestinationShowcaseSection
         lang={lang}
         dir={dir}
-        background={style.sectionBg}
-        showBackground={style.showSectionBg}
-        padding={style.sectionPadding}
-      >
-        <DestinationShowcase
-          lang={lang}
-          data={wrapDestinationShowcaseContent(content, lang)}
-          posParams="gb"
-          showTitle={style.showTitle}
-          showDescription={style.showDescription}
-          showViewAll={style.showViewAll}
-          showButton={style.showButton}
-          showHeroImage={style.showHeroImage}
-          showOverlay={style.showOverlay}
-          showDestinationName={style.showDestinationName}
-          showDestinationDescription={style.showDestinationDescription}
-          showCards={style.showCards}
-          showCardOverlay={style.showCardOverlay}
-          showArrows={style.showArrows}
-          showDots={style.showDots}
-          titleAlign={style.titleAlign}
-          titleColor={style.titleColor}
-          descriptionColor={style.descriptionColor}
-          viewAllColor={style.viewAllColor}
-          bannerRadius={style.bannerRadius}
-          overlayColor={style.overlayColor}
-          destNameColor={style.destNameColor}
-          destBodyColor={style.destBodyColor}
-          cardRadius={style.cardRadius}
-          cardOverlayColor={style.cardOverlayColor}
-          buttonBg={style.buttonBg}
-          buttonText={style.buttonText}
-          navColor={style.navColor}
-        />
-      </DestinationShowcaseContainer>
+        data={wrapDestinationShowcaseContent(content, lang)}
+        style={style}
+        posParams="gb"
+      />
 
       <Drawer
         isOpen={drawer.isOpen}

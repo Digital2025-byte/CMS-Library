@@ -44,6 +44,13 @@ export const DEFAULT_HEADER_WITH_CITY_INFO_STYLE = {
   nextFlightColor: "primary-100",
 };
 
+export function resolveHeaderWithCityInfoStyle(style = {}) {
+  return {
+    ...DEFAULT_HEADER_WITH_CITY_INFO_STYLE,
+    ...style,
+  };
+}
+
 export const HEADER_WITH_CITY_INFO_STYLE_RESET_KEYS = {
   layout: ["showTitle", "showDescription", "showCityCard"],
   title: ["titleAlign", "titleColor", "descriptionColor"],

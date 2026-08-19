@@ -18,32 +18,17 @@ export default function SightCardsGrid({
   paginatedCards = [],
   filteredCount = 0,
   activePageIndex = 0,
-  showTitle = DEFAULT_SEARCH_GRID_STYLE.showTitle,
-  showCardImage = DEFAULT_SEARCH_GRID_STYLE.showCardImage,
-  showCity = DEFAULT_SEARCH_GRID_STYLE.showCity,
-  showName = DEFAULT_SEARCH_GRID_STYLE.showName,
-  showTag = DEFAULT_SEARCH_GRID_STYLE.showTag,
-  showOverlay = DEFAULT_SEARCH_GRID_STYLE.showOverlay,
-  showButtons = DEFAULT_SEARCH_GRID_STYLE.showButtons,
-  titleAlign = DEFAULT_SEARCH_GRID_STYLE.titleAlign,
-  titleColor = DEFAULT_SEARCH_GRID_STYLE.titleColor,
-  cardRadius = DEFAULT_SEARCH_GRID_STYLE.cardRadius,
-  overlayColor = DEFAULT_SEARCH_GRID_STYLE.overlayColor,
-  cityColor = DEFAULT_SEARCH_GRID_STYLE.cityColor,
-  nameColor = DEFAULT_SEARCH_GRID_STYLE.nameColor,
-  tagColor = DEFAULT_SEARCH_GRID_STYLE.tagColor,
-  primaryBg = DEFAULT_SEARCH_GRID_STYLE.primaryBg,
-  primaryText = DEFAULT_SEARCH_GRID_STYLE.primaryText,
-  secondaryText = DEFAULT_SEARCH_GRID_STYLE.secondaryText,
+  style = DEFAULT_SEARCH_GRID_STYLE,
 }) {
-  const alignClass = TITLE_ALIGN_CLASS[titleAlign] ?? TITLE_ALIGN_CLASS.left;
+  const alignClass =
+    TITLE_ALIGN_CLASS[style.titleAlign] ?? TITLE_ALIGN_CLASS.left;
 
   return (
     <div className="space-y-4">
-      {showTitle && gridTitle ? (
+      {style.showTitle && gridTitle ? (
         <h2
           className={`${typography.sectionTitle} font-bold ${alignClass}`}
-          style={{ color: getThemeColorCss(titleColor, "white") }}
+          style={{ color: getThemeColorCss(style.titleColor, "white") }}
         >
           {gridTitle}
         </h2>
@@ -62,20 +47,7 @@ export default function SightCardsGrid({
             cId={cId}
             exploreLabel={exploreLabel}
             exploreMagazineLabel={exploreMagazineLabel}
-            showCardImage={showCardImage}
-            showCity={showCity}
-            showName={showName}
-            showTag={showTag}
-            showOverlay={showOverlay}
-            showButtons={showButtons}
-            cardRadius={cardRadius}
-            overlayColor={overlayColor}
-            cityColor={cityColor}
-            nameColor={nameColor}
-            tagColor={tagColor}
-            primaryBg={primaryBg}
-            primaryText={primaryText}
-            secondaryText={secondaryText}
+            style={style}
           />
         ))}
 
@@ -83,7 +55,7 @@ export default function SightCardsGrid({
           <p
             className={`${typography.body} col-span-full`}
             style={{
-              color: `color-mix(in srgb, ${getThemeColorCss(titleColor, "white")} 80%, transparent)`,
+              color: `color-mix(in srgb, ${getThemeColorCss(style.titleColor, "white")} 80%, transparent)`,
             }}
           >
             {emptyMessage}

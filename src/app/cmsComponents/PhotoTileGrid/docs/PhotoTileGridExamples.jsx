@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import PhotoTileGrid from "@/app/cmsComponents/PhotoTileGrid";
-import PhotoTileGridContainer from "@/app/cmsComponents/PhotoTileGrid/components/PhotoTileGridContainer";
+import { PhotoTileGridSection } from "@/app/cmsComponents/PhotoTileGrid";
 import PhotoTileGridPropsForm from "@/app/cmsComponents/PhotoTileGrid/docs/PhotoTileGridPropsForm";
 import {
   getPhotoTileGridEditorContent,
@@ -64,32 +63,12 @@ export default function PhotoTileGridExamples({
 
   return (
     <div>
-      <PhotoTileGridContainer lang={lang} dir={dir}>
-        <PhotoTileGrid
-          lang={lang}
-          data={wrapPhotoTileGridContent(content, lang)}
-          showTitle={style.showTitle}
-          showSectionBg={style.showSectionBg}
-          showCardImage={style.showCardImage}
-          showCity={style.showCity}
-          showIata={style.showIata}
-          showCountry={style.showCountry}
-          showOverlay={style.showOverlay}
-          showHoverDim={style.showHoverDim}
-          showButton={style.showButton}
-          sectionBg={style.sectionBg}
-          sectionPadding={style.sectionPadding}
-          titleAlign={style.titleAlign}
-          titleColor={style.titleColor}
-          cardRadius={style.cardRadius}
-          cardGap={style.cardGap}
-          cityColor={style.cityColor}
-          countryColor={style.countryColor}
-          overlayColor={style.overlayColor}
-          buttonBg={style.buttonBg}
-          buttonText={style.buttonText}
-        />
-      </PhotoTileGridContainer>
+      <PhotoTileGridSection
+        lang={lang}
+        dir={dir}
+        data={wrapPhotoTileGridContent(content, lang)}
+        style={style}
+      />
 
       <Drawer
         isOpen={drawer.isOpen}

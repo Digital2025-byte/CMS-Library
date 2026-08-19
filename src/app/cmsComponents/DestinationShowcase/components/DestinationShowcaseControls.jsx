@@ -14,15 +14,13 @@ export default function DestinationShowcaseControls({
   onPrev,
   onNext,
   onDotClick,
-  showArrows = DEFAULT_DESTINATION_SHOWCASE_STYLE.showArrows,
-  showDots = DEFAULT_DESTINATION_SHOWCASE_STYLE.showDots,
-  navColor = DEFAULT_DESTINATION_SHOWCASE_STYLE.navColor,
+  style = DEFAULT_DESTINATION_SHOWCASE_STYLE,
 }) {
-  if ((!showArrows && !showDots) || count <= 0) return null;
+  if ((!style.showArrows && !style.showDots) || count <= 0) return null;
 
   const PrevIcon = lang === "ar" ? ArrowRightIcon : ArrowLeftIcon;
   const NextIcon = lang === "ar" ? ArrowLeftIcon : ArrowRightIcon;
-  const accentCss = getThemeColorCss(navColor, "50");
+  const accentCss = getThemeColorCss(style.navColor, "50");
 
   return (
     <div
@@ -30,7 +28,7 @@ export default function DestinationShowcaseControls({
       role="group"
       aria-label="Destination carousel controls"
     >
-      {showArrows ? (
+      {style.showArrows ? (
         <button
           type="button"
           onClick={onPrev}
@@ -42,7 +40,7 @@ export default function DestinationShowcaseControls({
         </button>
       ) : null}
 
-      {showDots ? (
+      {style.showDots ? (
         <div
           className="flex items-center gap-2"
           role="tablist"
@@ -74,7 +72,7 @@ export default function DestinationShowcaseControls({
         </div>
       ) : null}
 
-      {showArrows ? (
+      {style.showArrows ? (
         <button
           type="button"
           onClick={onNext}

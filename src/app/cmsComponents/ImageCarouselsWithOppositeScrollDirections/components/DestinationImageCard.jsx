@@ -4,14 +4,7 @@ import { getThemeColorCss } from "@/styles/themeColors";
 import { isUsableImageSrc } from "../utils/helpers";
 import styles from "../ImageCarouselsWithOppositeScrollDirections.module.css";
 
-export default function DestinationImageCard({
-  item,
-  w,
-  h,
-  showTitle = true,
-  showOverlay = true,
-  titleColor = "white",
-}) {
+export default function DestinationImageCard({ item, w, h, style }) {
   if (!item) {
     return null;
   }
@@ -34,14 +27,14 @@ export default function DestinationImageCard({
         <div className="absolute inset-0 bg-primary-700" aria-hidden />
       )}
 
-      {showOverlay ? <div className={styles.overlay} /> : null}
+      {style.showOverlay ? <div className={styles.overlay} /> : null}
       <div className={styles.cardDim} aria-hidden />
 
-      {showTitle && item.title ? (
+      {style.showCardTitles && item.title ? (
         <div className={styles.titleWrap}>
           <p
             className={`${typography.itemTitle} font-semibold`}
-            style={{ color: getThemeColorCss(titleColor, "white") }}
+            style={{ color: getThemeColorCss(style.cardTitleColor, "white") }}
           >
             {item.title}
           </p>

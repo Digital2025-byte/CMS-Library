@@ -1,5 +1,6 @@
 import MealsDescriptionNotes from "./MealsDescriptionNotes";
 import MealsDescriptionSection from "./MealsDescriptionSection";
+import { DEFAULT_MEALS_TABBED_STYLE } from "../utils/style";
 
 export default function MealsDescriptionSections({
   sections = [],
@@ -9,8 +10,7 @@ export default function MealsDescriptionSections({
   panelId,
   labelledBy,
   wide = false,
-  notesColor,
-  accordionStyle,
+  style = DEFAULT_MEALS_TABBED_STYLE,
 }) {
   if (!sections.length && !notes.length) {
     return null;
@@ -30,10 +30,10 @@ export default function MealsDescriptionSections({
           sectionIndex={sectionIndex}
           isOpen={isSectionOpen?.(sectionIndex)}
           onToggle={() => onToggleSection?.(sectionIndex)}
-          accordionStyle={accordionStyle}
+          style={style}
         />
       ))}
-      <MealsDescriptionNotes notes={notes} notesColor={notesColor} />
+      <MealsDescriptionNotes notes={notes} style={style} />
     </div>
   );
 }

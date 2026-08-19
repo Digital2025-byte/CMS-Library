@@ -15,18 +15,7 @@ export default function FlightFareCard({
   oneWayLabel,
   newLabel,
   fromTemplate,
-  showImage = DEFAULT_FLIGHT_FARES_STYLE.showImage,
-  showOverlay = DEFAULT_FLIGHT_FARES_STYLE.showOverlay,
-  showOneWay = DEFAULT_FLIGHT_FARES_STYLE.showOneWay,
-  showNew = DEFAULT_FLIGHT_FARES_STYLE.showNew,
-  showCity = DEFAULT_FLIGHT_FARES_STYLE.showCity,
-  showPrice = DEFAULT_FLIGHT_FARES_STYLE.showPrice,
-  cardRadius = DEFAULT_FLIGHT_FARES_STYLE.cardRadius,
-  overlayColor = DEFAULT_FLIGHT_FARES_STYLE.overlayColor,
-  cityColor = DEFAULT_FLIGHT_FARES_STYLE.cityColor,
-  priceColor = DEFAULT_FLIGHT_FARES_STYLE.priceColor,
-  badgeColor = DEFAULT_FLIGHT_FARES_STYLE.badgeColor,
-  badgeText = DEFAULT_FLIGHT_FARES_STYLE.badgeText,
+  style = DEFAULT_FLIGHT_FARES_STYLE,
 }) {
   const { t } = useTranslation();
 
@@ -40,12 +29,13 @@ export default function FlightFareCard({
   const safeIndex = Math.min(imageIndex, Math.max(0, images.length - 1));
   const image = images[safeIndex] || images[0];
   const imageSrc = image?.url;
-  const radiusClass = CARD_RADIUS_CLASS[cardRadius] ?? CARD_RADIUS_CLASS.lg;
-  const overlayCss = getThemeColorCss(overlayColor, "secondary-2");
-  const cityCss = getThemeColorCss(cityColor, "primary-3");
-  const priceCss = getThemeColorCss(priceColor, "white");
-  const badgeCss = getThemeColorCss(badgeColor, "secondary-2");
-  const badgeTextCss = getThemeColorCss(badgeText, "white");
+  const radiusClass =
+    CARD_RADIUS_CLASS[style.cardRadius] ?? CARD_RADIUS_CLASS.lg;
+  const overlayCss = getThemeColorCss(style.overlayColor, "secondary-2");
+  const cityCss = getThemeColorCss(style.cityColor, "primary-3");
+  const priceCss = getThemeColorCss(style.priceColor, "white");
+  const badgeCss = getThemeColorCss(style.badgeColor, "secondary-2");
+  const badgeTextCss = getThemeColorCss(style.badgeText, "white");
   const priceLine = formatFarePrice(
     fromTemplate,
     item.price,
@@ -67,7 +57,7 @@ export default function FlightFareCard({
       ].join(" ")}
     >
       <div className="absolute inset-0">
-        {showImage && isUsableImageSrc(imageSrc) ? (
+        {style.showImage && isUsableImageSrc(imageSrc) ? (
           <Image
             src={imageSrc}
             alt={item?.cityName || image?.alt || ""}
@@ -76,7 +66,7 @@ export default function FlightFareCard({
             sizes="(min-width: 1024px) 33vw, (min-width: 640px) 46vw, 80vw"
           />
         ) : null}
-        {showOverlay ? (
+        {style.showOverlay ? (
           <div
             className="absolute bottom-0 left-0 right-0 h-24.25 w-full shadow-[0_4px_6px_0_rgba(33,37,41,0.20),0_0_1px_0_rgba(33,37,41,0.32)] blur-2xl"
             style={{
@@ -86,7 +76,7 @@ export default function FlightFareCard({
         ) : null}
       </div>
 
-      {showOneWay ? (
+      {style.showOneWay ? (
         <div className="absolute top-3 end-3 z-10">
           <span
             className={`${typography.caption} rounded-full px-2.5 py-1 font-medium backdrop-blur`}
@@ -101,7 +91,7 @@ export default function FlightFareCard({
       ) : null}
 
       <div className="relative z-10 flex h-full flex-col justify-end p-4">
-        {showNew && item.isNew ? (
+        {style.showNew && item.isNew ? (
           <div className="mb-1 flex items-center gap-2">
             <span
               className={`${typography.caption} inline-flex items-center gap-1 rounded-full px-2 py-1 font-medium backdrop-blur`}
@@ -116,7 +106,7 @@ export default function FlightFareCard({
           </div>
         ) : null}
 
-        {showCity ? (
+        {style.showCity ? (
           <h3
             className={`${typography.itemTitle} font-bold wrap-break-word`}
             style={{ color: cityCss }}
@@ -125,7 +115,7 @@ export default function FlightFareCard({
             {item.IATACode ? ` (${item.IATACode})` : ""}
           </h3>
         ) : null}
-        {showPrice ? (
+        {style.showPrice ? (
           <p
             className={`${typography.itemDescription} mt-1 font-medium wrap-break-word`}
             style={{

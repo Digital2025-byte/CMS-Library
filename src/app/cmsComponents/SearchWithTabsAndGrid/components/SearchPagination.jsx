@@ -8,17 +8,14 @@ export default function SearchPagination({
   onPrev,
   onNext,
   onGoToPage,
-  showArrows = DEFAULT_SEARCH_GRID_STYLE.showArrows,
-  showDots = DEFAULT_SEARCH_GRID_STYLE.showDots,
-  navColor = DEFAULT_SEARCH_GRID_STYLE.navColor,
-  dotColor = DEFAULT_SEARCH_GRID_STYLE.dotColor,
+  style = DEFAULT_SEARCH_GRID_STYLE,
 }) {
-  if (pageCount <= 1 || (!showArrows && !showDots)) {
+  if (pageCount <= 1 || (!style.showArrows && !style.showDots)) {
     return null;
   }
 
-  const arrowCss = getThemeColorCss(navColor, "white");
-  const dotCss = getThemeColorCss(dotColor, "primary-2");
+  const arrowCss = getThemeColorCss(style.navColor, "white");
+  const dotCss = getThemeColorCss(style.dotColor, "primary-2");
 
   return (
     <div
@@ -27,7 +24,7 @@ export default function SearchPagination({
       role="navigation"
       aria-label="Results pagination"
     >
-      {showArrows ? (
+      {style.showArrows ? (
         <button
           type="button"
           onClick={onPrev}
@@ -40,7 +37,7 @@ export default function SearchPagination({
         </button>
       ) : null}
 
-      {showDots ? (
+      {style.showDots ? (
         <div className="flex gap-2">
           {Array.from({ length: pageCount }, (_, index) => (
             <button
@@ -58,7 +55,7 @@ export default function SearchPagination({
         </div>
       ) : null}
 
-      {showArrows ? (
+      {style.showArrows ? (
         <button
           type="button"
           onClick={onNext}

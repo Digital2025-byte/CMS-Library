@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import DestinationsCities from "@/app/cmsComponents/DestinationsCities";
-import DestinationsCitiesContainer from "@/app/cmsComponents/DestinationsCities/components/DestinationsCitiesContainer";
+import { DestinationsCitiesSection } from "@/app/cmsComponents/DestinationsCities";
 import DestinationsCitiesPropsForm from "@/app/cmsComponents/DestinationsCities/docs/DestinationsCitiesPropsForm";
 import {
   getDestinationsCitiesEditorContent,
@@ -36,41 +35,13 @@ export default function DestinationsCitiesExamples({
 
   return (
     <div>
-      <DestinationsCitiesContainer lang={lang} dir={dir}>
-        <DestinationsCities
-          lang={lang}
-          data={wrapDestinationsCitiesContent(content, lang)}
-          posParams="gb"
-          showTitle={style.showTitle}
-          showDescription={style.showDescription}
-          showSectionBg={style.showSectionBg}
-          showCardImage={style.showCardImage}
-          showCity={style.showCity}
-          showOrigin={style.showOrigin}
-          showNew={style.showNew}
-          showFlights={style.showFlights}
-          showDuration={style.showDuration}
-          showCardDescription={style.showCardDescription}
-          showPanel={style.showPanel}
-          showInactiveDim={style.showInactiveDim}
-          showButton={style.showButton}
-          sectionBg={style.sectionBg}
-          sectionPadding={style.sectionPadding}
-          titleAlign={style.titleAlign}
-          titleColor={style.titleColor}
-          descriptionColor={style.descriptionColor}
-          cardRadius={style.cardRadius}
-          cityColor={style.cityColor}
-          originColor={style.originColor}
-          originBg={style.originBg}
-          metaColor={style.metaColor}
-          bodyColor={style.bodyColor}
-          panelBg={style.panelBg}
-          overlayColor={style.overlayColor}
-          buttonBg={style.buttonBg}
-          buttonText={style.buttonText}
-        />
-      </DestinationsCitiesContainer>
+      <DestinationsCitiesSection
+        lang={lang}
+        dir={dir}
+        data={wrapDestinationsCitiesContent(content, lang)}
+        style={style}
+        posParams="gb"
+      />
 
       <Drawer
         isOpen={drawer.isOpen}

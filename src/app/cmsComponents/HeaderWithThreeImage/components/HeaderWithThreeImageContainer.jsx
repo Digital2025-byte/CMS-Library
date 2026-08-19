@@ -2,10 +2,11 @@ export default function HeaderWithThreeImageContainer({
   lang,
   dir,
   children,
+  className = "",
 }) {
   return (
     <div
-      className="w-full"
+      className={`w-full ${className}`.trim()}
       lang={lang}
       dir={dir || (lang === "ar" ? "rtl" : "ltr")}
     >

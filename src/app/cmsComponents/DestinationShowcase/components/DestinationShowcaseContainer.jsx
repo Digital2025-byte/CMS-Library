@@ -11,22 +11,22 @@ import {
 export default function DestinationShowcaseContainer({
   lang,
   dir,
-  background = DEFAULT_DESTINATION_SHOWCASE_STYLE.sectionBg,
-  showBackground = DEFAULT_DESTINATION_SHOWCASE_STYLE.showSectionBg,
-  padding = DEFAULT_DESTINATION_SHOWCASE_STYLE.sectionPadding,
+  style = DEFAULT_DESTINATION_SHOWCASE_STYLE,
   children,
+  className = "",
 }) {
   const paddingClass =
-    SECTION_PADDING_CLASS[padding] ?? SECTION_PADDING_CLASS.default;
+    SECTION_PADDING_CLASS[style.sectionPadding] ??
+    SECTION_PADDING_CLASS.default;
 
   return (
     <section
-      className={`w-full overflow-x-hidden ${paddingClass}`}
+      className={`w-full overflow-x-hidden ${paddingClass} ${className}`.trim()}
       lang={lang}
       dir={dir || (lang === "ar" ? "rtl" : "ltr")}
       style={
-        showBackground
-          ? { backgroundColor: getThemeColorCss(background, "50") }
+        style.showSectionBg
+          ? { backgroundColor: getThemeColorCss(style.sectionBg, "50") }
           : undefined
       }
     >

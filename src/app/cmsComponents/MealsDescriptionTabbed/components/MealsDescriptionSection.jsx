@@ -13,7 +13,7 @@ export default function MealsDescriptionSection({
   sectionIndex = 0,
   isOpen = true,
   onToggle,
-  accordionStyle = {},
+  style = DEFAULT_MEALS_TABBED_STYLE,
 }) {
   const reactId = useId();
   const panelId = `${reactId}-panel`;
@@ -28,20 +28,11 @@ export default function MealsDescriptionSection({
   const hasGroups = groups.length > 0;
   const hasBody = hasGroups || items.length > 0;
   const radius =
-    CARD_RADIUS_CLASS[accordionStyle.accordionRadius] ??
+    CARD_RADIUS_CLASS[style.accordionRadius] ??
     CARD_RADIUS_CLASS[DEFAULT_MEALS_TABBED_STYLE.accordionRadius];
-  const headerBgCss = getThemeColorCss(
-    accordionStyle.headerBg || DEFAULT_MEALS_TABBED_STYLE.headerBg,
-    "primary-1"
-  );
-  const headerTextCss = getThemeColorCss(
-    accordionStyle.headerText || DEFAULT_MEALS_TABBED_STYLE.headerText,
-    "white"
-  );
-  const bodyBgCss = getThemeColorCss(
-    accordionStyle.bodyBg || DEFAULT_MEALS_TABBED_STYLE.bodyBg,
-    "100"
-  );
+  const headerBgCss = getThemeColorCss(style.headerBg, "primary-1");
+  const headerTextCss = getThemeColorCss(style.headerText, "white");
+  const bodyBgCss = getThemeColorCss(style.bodyBg, "100");
 
   return (
     <div className={`mb-3 overflow-hidden shadow-xs ${radius}`}>
@@ -88,7 +79,7 @@ export default function MealsDescriptionSection({
                     key={`${group.title || "group"}-${groupIndex}`}
                     group={group}
                     groupIndex={groupIndex}
-                    accordionStyle={accordionStyle}
+                    style={style}
                   />
                 ))
               : items.map((item, itemIndex) => (
@@ -96,11 +87,8 @@ export default function MealsDescriptionSection({
                     key={`${item.title || "item"}-${itemIndex}`}
                     item={item}
                     striped={itemIndex % 2 === 1}
-                    titleColor={
-                      accordionStyle.itemTitleColor ||
-                      DEFAULT_MEALS_TABBED_STYLE.itemTitleColor
-                    }
-                    accordionStyle={accordionStyle}
+                    titleColor={style.itemTitleColor}
+                    style={style}
                   />
                 ))}
           </div>

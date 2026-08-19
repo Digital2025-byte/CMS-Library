@@ -67,6 +67,13 @@ export const DEFAULT_GRID_INFO_STYLE = {
   iconColor: "primary-2",
 };
 
+export function resolveGridInfoStyle(style = {}) {
+  return {
+    ...DEFAULT_GRID_INFO_STYLE,
+    ...style,
+  };
+}
+
 export const GRID_INFO_STYLE_RESET_KEYS = {
   layout: [
     "showTitle",

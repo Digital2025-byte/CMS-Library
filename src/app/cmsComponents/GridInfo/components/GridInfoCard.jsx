@@ -71,30 +71,21 @@ function renderLabel(label) {
 export default function GridInfoCard({
   item,
   lang = "en",
-  showName = DEFAULT_GRID_INFO_STYLE.showName,
-  showAddress = DEFAULT_GRID_INFO_STYLE.showAddress,
-  showPhone = DEFAULT_GRID_INFO_STYLE.showPhone,
-  showEmail = DEFAULT_GRID_INFO_STYLE.showEmail,
-  showHours = DEFAULT_GRID_INFO_STYLE.showHours,
-  showCardBg = DEFAULT_GRID_INFO_STYLE.showCardBg,
-  cardRadius = DEFAULT_GRID_INFO_STYLE.cardRadius,
-  cardBg = DEFAULT_GRID_INFO_STYLE.cardBg,
-  nameColor = DEFAULT_GRID_INFO_STYLE.nameColor,
-  bodyColor = DEFAULT_GRID_INFO_STYLE.bodyColor,
-  iconColor = DEFAULT_GRID_INFO_STYLE.iconColor,
+  style = DEFAULT_GRID_INFO_STYLE,
 }) {
   if (!item) {
     return null;
   }
 
-  const iconCss = getThemeColorCss(iconColor, "primary-2");
-  const bodyCss = getThemeColorCss(bodyColor, "secondary-2");
-  const nameCss = getThemeColorCss(nameColor, "main");
-  const radiusClass = CARD_RADIUS_CLASS[cardRadius] ?? CARD_RADIUS_CLASS.sm;
+  const iconCss = getThemeColorCss(style.iconColor, "primary-2");
+  const bodyCss = getThemeColorCss(style.bodyColor, "secondary-2");
+  const nameCss = getThemeColorCss(style.nameColor, "main");
+  const radiusClass =
+    CARD_RADIUS_CLASS[style.cardRadius] ?? CARD_RADIUS_CLASS.sm;
   const iconClassName = "mt-0.5 size-5 shrink-0";
 
   const contactInfo = [
-    showAddress
+    style.showAddress
       ? {
           icon: (
             <MapPinIcon className={iconClassName} style={{ color: iconCss }} />
@@ -103,7 +94,7 @@ export default function GridInfoCard({
           isMultiLine: true,
         }
       : null,
-    showPhone
+    style.showPhone
       ? {
           icon: (
             <PhoneIcon
@@ -114,7 +105,7 @@ export default function GridInfoCard({
           label: item.phone,
         }
       : null,
-    showEmail
+    style.showEmail
       ? {
           icon: (
             <EnvelopeIcon className={iconClassName} style={{ color: iconCss }} />
@@ -122,7 +113,7 @@ export default function GridInfoCard({
           label: item.email,
         }
       : null,
-    showHours
+    style.showHours
       ? {
           icon: (
             <ClockIcon className={iconClassName} style={{ color: iconCss }} />
@@ -133,7 +124,7 @@ export default function GridInfoCard({
       : null,
   ].filter((info) => info?.label);
 
-  const showHeading = showName && item.name;
+  const showHeading = style.showName && item.name;
 
   if (!showHeading && contactInfo.length === 0) {
     return null;
@@ -143,8 +134,8 @@ export default function GridInfoCard({
     <div
       className={`flex flex-col gap-3 ${radiusClass} p-5 shadow-sm`}
       style={{
-        backgroundColor: showCardBg
-          ? getThemeColorCss(cardBg, "white")
+        backgroundColor: style.showCardBg
+          ? getThemeColorCss(style.cardBg, "white")
           : "transparent",
       }}
     >

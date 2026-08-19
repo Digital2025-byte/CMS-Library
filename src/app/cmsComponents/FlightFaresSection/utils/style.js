@@ -55,6 +55,13 @@ export const DEFAULT_FLIGHT_FARES_STYLE = {
   badgeText: "white",
 };
 
+export function resolveFlightFaresStyle(style = {}) {
+  return {
+    ...DEFAULT_FLIGHT_FARES_STYLE,
+    ...style,
+  };
+}
+
 export const FLIGHT_FARES_STYLE_RESET_KEYS = {
   layout: ["showTitle", "showSectionBg", "sectionBg", "sectionPadding"],
   title: ["titleAlign", "titleColor"],

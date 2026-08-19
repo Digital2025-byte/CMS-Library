@@ -9,11 +9,10 @@ export default function FilterTabs({
   activeFilter,
   onFilterChange,
   allLabel = "All",
-  chipColor = DEFAULT_SEARCH_GRID_STYLE.chipColor,
-  chipActiveText = DEFAULT_SEARCH_GRID_STYLE.chipActiveText,
+  style = DEFAULT_SEARCH_GRID_STYLE,
 }) {
-  const chipCss = getThemeColorCss(chipColor, "white");
-  const activeTextCss = getThemeColorCss(chipActiveText, "main");
+  const chipCss = getThemeColorCss(style.chipColor, "white");
+  const activeTextCss = getThemeColorCss(style.chipActiveText, "main");
 
   return (
     <div className="flex flex-wrap gap-2" role="tablist" aria-label="Sight filters">

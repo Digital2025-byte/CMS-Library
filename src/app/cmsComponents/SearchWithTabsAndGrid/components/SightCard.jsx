@@ -18,20 +18,7 @@ export default function SightCard({
   cId,
   exploreLabel = "Explore",
   exploreMagazineLabel = "Explore as magazine",
-  showCardImage = DEFAULT_SEARCH_GRID_STYLE.showCardImage,
-  showCity = DEFAULT_SEARCH_GRID_STYLE.showCity,
-  showName = DEFAULT_SEARCH_GRID_STYLE.showName,
-  showTag = DEFAULT_SEARCH_GRID_STYLE.showTag,
-  showOverlay = DEFAULT_SEARCH_GRID_STYLE.showOverlay,
-  showButtons = DEFAULT_SEARCH_GRID_STYLE.showButtons,
-  cardRadius = DEFAULT_SEARCH_GRID_STYLE.cardRadius,
-  overlayColor = DEFAULT_SEARCH_GRID_STYLE.overlayColor,
-  cityColor = DEFAULT_SEARCH_GRID_STYLE.cityColor,
-  nameColor = DEFAULT_SEARCH_GRID_STYLE.nameColor,
-  tagColor = DEFAULT_SEARCH_GRID_STYLE.tagColor,
-  primaryBg = DEFAULT_SEARCH_GRID_STYLE.primaryBg,
-  primaryText = DEFAULT_SEARCH_GRID_STYLE.primaryText,
-  secondaryText = DEFAULT_SEARCH_GRID_STYLE.secondaryText,
+  style = DEFAULT_SEARCH_GRID_STYLE,
 }) {
   const isRtl = lang === "ar";
   const slug = String(card?.slug || "").startsWith("/")
@@ -39,15 +26,16 @@ export default function SightCard({
     : `/${card?.slug || ""}`;
   const stackedHref = `/${posParams}/${lang}/sights${slug}?template=stacked`;
   const magazineHref = `/${posParams}/${lang}/sights${slug}`;
-  const radiusClass = CARD_RADIUS_CLASS[cardRadius] ?? CARD_RADIUS_CLASS.full;
-  const overlayCss = getThemeColorCss(overlayColor, "900");
-  const cityCss = getThemeColorCss(cityColor, "white");
-  const nameCss = getThemeColorCss(nameColor, "white");
-  const tagCss = getThemeColorCss(tagColor, "white");
-  const primaryPill = getThemeColorCss(primaryBg, "primary-2");
-  const primaryFg = getThemeColorCss(primaryText, "white");
-  const secondaryFg = getThemeColorCss(secondaryText, "white");
-  const canShowImage = showCardImage && isUsableImageSrc(card?.image);
+  const radiusClass =
+    CARD_RADIUS_CLASS[style.cardRadius] ?? CARD_RADIUS_CLASS.full;
+  const overlayCss = getThemeColorCss(style.overlayColor, "900");
+  const cityCss = getThemeColorCss(style.cityColor, "white");
+  const nameCss = getThemeColorCss(style.nameColor, "white");
+  const tagCss = getThemeColorCss(style.tagColor, "white");
+  const primaryPill = getThemeColorCss(style.primaryBg, "primary-2");
+  const primaryFg = getThemeColorCss(style.primaryText, "white");
+  const secondaryFg = getThemeColorCss(style.secondaryText, "white");
+  const canShowImage = style.showCardImage && isUsableImageSrc(card?.image);
 
   return (
     <article
@@ -67,7 +55,7 @@ export default function SightCard({
         <div className="absolute inset-0 bg-surface-2" aria-hidden />
       )}
 
-      {showOverlay ? (
+      {style.showOverlay ? (
         <div
           className="pointer-events-none absolute inset-0 top-70"
           style={{
@@ -77,7 +65,7 @@ export default function SightCard({
         />
       ) : null}
 
-      {showCity && card?.cityName ? (
+      {style.showCity && card?.cityName ? (
         <p
           className={`${typography.body} absolute top-10 ${isRtl ? "right-5" : "left-5"} font-semibold`}
           style={{ color: cityCss, textShadow: "0 2px 8px rgba(0,0,0,0.45)" }}
@@ -89,7 +77,7 @@ export default function SightCard({
       <div
         className="absolute inset-x-5 bottom-15 flex items-end justify-between gap-3 transition-all duration-500 group-hover:translate-y-3 group-hover:opacity-0"
       >
-        {showName && card?.name ? (
+        {style.showName && card?.name ? (
           <h3
             className={`${typography.itemTitle} font-semibold`}
             style={{ color: nameCss, textShadow: "0 2px 8px rgba(0,0,0,0.45)" }}
@@ -97,7 +85,7 @@ export default function SightCard({
             {card.name}
           </h3>
         ) : null}
-        {showTag && card?.tag ? (
+        {style.showTag && card?.tag ? (
           <span
             className={`${typography.body} shrink-0 font-medium`}
             style={{ color: tagCss, textShadow: "0 2px 8px rgba(0,0,0,0.45)" }}
@@ -107,7 +95,7 @@ export default function SightCard({
         ) : null}
       </div>
 
-      {showButtons ? (
+      {style.showButtons ? (
         <div className="absolute inset-x-5 bottom-5 flex translate-y-4 flex-col items-center opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
           <Button
             label={exploreLabel}

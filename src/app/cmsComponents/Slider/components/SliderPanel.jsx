@@ -1,25 +1,34 @@
+"use client";
+
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import "../slider-hero.css";
 import SliderTrack from "./SliderTrack";
+import { mergeSliderSettings } from "../utils/sliderSettings";
+import {
+  sliderStyleToImageOverlay,
+  sliderStyleToSettings,
+} from "../utils/style";
 
 export default function SliderPanel({
   lang = "en",
   posParams = "gb",
   cId,
-  slides = [],
-  settings = {},
-  showArrows = true,
-  showSlideText = true,
-  showTitleText = true,
-  showSubtitleText = true,
-  showDescriptionText = true,
-  showButton = true,
-  theme,
-  imageOverlay,
-  titleAlign = "left",
-  titleColor = "white",
-  subtitleColor = "white",
-  descriptionColor = "white",
-  buttonVariant = "primary",
+  content,
+  style,
 }) {
+  const slides = content.slides || [];
+  const settings = mergeSliderSettings(sliderStyleToSettings(style));
+
+  if (slides.length <= 1) {
+    settings.infinite = false;
+    settings.autoplay = false;
+    settings.dots = false;
+    settings.swipe = false;
+    settings.arrows = false;
+  }
+
+  const arrowsVisible = settings.arrows !== false && slides.length > 1;
   const sliderKey = [
     lang,
     settings.fade,
@@ -44,19 +53,9 @@ export default function SliderPanel({
         posParams={posParams}
         cId={cId}
         sliderKey={sliderKey}
-        showArrows={showArrows}
-        showSlideText={showSlideText}
-        showTitleText={showTitleText}
-        showSubtitleText={showSubtitleText}
-        showDescriptionText={showDescriptionText}
-        showButton={showButton}
-        theme={theme}
-        imageOverlay={imageOverlay}
-        titleAlign={titleAlign}
-        titleColor={titleColor}
-        subtitleColor={subtitleColor}
-        descriptionColor={descriptionColor}
-        buttonVariant={buttonVariant}
+        style={style}
+        showArrows={arrowsVisible}
+        imageOverlay={sliderStyleToImageOverlay(style)}
       />
     </section>
   );

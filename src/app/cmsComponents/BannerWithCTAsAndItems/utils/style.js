@@ -26,6 +26,13 @@ export const DEFAULT_BANNER_WITH_CTAS_STYLE = {
   secondaryText: "white",
 };
 
+export function resolveBannerWithCTAsStyle(style = {}) {
+  return {
+    ...DEFAULT_BANNER_WITH_CTAS_STYLE,
+    ...style,
+  };
+}
+
 export const BANNER_WITH_CTAS_STYLE_RESET_KEYS = {
   layout: ["showTitle", "showDescription", "showItems"],
   title: ["titleAlign", "titleColor", "descriptionColor"],

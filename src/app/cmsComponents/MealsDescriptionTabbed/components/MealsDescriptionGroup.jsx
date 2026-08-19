@@ -6,21 +6,15 @@ import { DEFAULT_MEALS_TABBED_STYLE } from "../utils/style";
 export default function MealsDescriptionGroup({
   group,
   groupIndex = 0,
-  accordionStyle = {},
+  style = DEFAULT_MEALS_TABBED_STYLE,
 }) {
   if (!group) {
     return null;
   }
 
   const items = Array.isArray(group.items) ? group.items : [];
-  const titleCss = getThemeColorCss(
-    accordionStyle.groupTitleColor || DEFAULT_MEALS_TABBED_STYLE.groupTitleColor,
-    "primary-1"
-  );
-  const itemBgCss = getThemeColorCss(
-    accordionStyle.itemBg || DEFAULT_MEALS_TABBED_STYLE.itemBg,
-    "white"
-  );
+  const titleCss = getThemeColorCss(style.groupTitleColor, "primary-1");
+  const itemBgCss = getThemeColorCss(style.itemBg, "white");
 
   return (
     <div>
@@ -40,11 +34,8 @@ export default function MealsDescriptionGroup({
           key={`${group.title || groupIndex}-${item.title || "item"}-${itemIndex}`}
           item={item}
           striped={itemIndex % 2 === 1}
-          titleColor={
-            accordionStyle.groupItemTitleColor ||
-            DEFAULT_MEALS_TABBED_STYLE.groupItemTitleColor
-          }
-          accordionStyle={accordionStyle}
+          titleColor={style.groupItemTitleColor}
+          style={style}
         />
       ))}
     </div>

@@ -11,14 +11,12 @@ export default function MealsDescriptionTabs({
   onTabChange,
   idPrefix = "meals-tabs",
   isRtl = false,
-  tabActive = DEFAULT_MEALS_TABBED_STYLE.tabActive,
-  tabIdle = DEFAULT_MEALS_TABBED_STYLE.tabIdle,
-  tabBorder = DEFAULT_MEALS_TABBED_STYLE.tabBorder,
+  style = DEFAULT_MEALS_TABBED_STYLE,
 }) {
   const tabRefs = useRef([]);
-  const activeCss = getThemeColorCss(tabActive, "primary-1");
-  const idleCss = getThemeColorCss(tabIdle, "500");
-  const borderCss = getThemeColorCss(tabBorder, "surface-2");
+  const activeCss = getThemeColorCss(style.tabActive, "primary-1");
+  const idleCss = getThemeColorCss(style.tabIdle, "500");
+  const borderCss = getThemeColorCss(style.tabBorder, "surface-2");
 
   const focusTab = useCallback((index) => {
     tabRefs.current[index]?.focus();

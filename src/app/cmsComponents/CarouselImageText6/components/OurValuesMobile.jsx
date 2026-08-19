@@ -6,21 +6,13 @@ import { ArrowLeft, ArrowRight } from "@phosphor-icons/react";
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
 import { isUsableImageSrc } from "../utils/helpers";
-import { DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE } from "../utils/style";
 import "slick-carousel/slick/slick.css";
 import styles from "./OurValuesMobile.module.css";
 
 export default function OurValuesMobile({
   lang = "en",
   items = [],
-  showItemTitle = true,
-  showItemDescription = true,
-  showOverlay = DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE.showOverlay,
-  overlayColor = DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE.overlayColor,
-  showCardBg = DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE.showCardBg,
-  cardBg = DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE.cardBg,
-  itemTitleColor = DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE.itemTitleColor,
-  itemBodyColor = DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE.itemBodyColor,
+  style,
 }) {
   const sliderRef = useRef(null);
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -34,8 +26,8 @@ export default function OurValuesMobile({
   const canLoop = items.length > 1;
   const canShowActiveImage = isUsableImageSrc(activeItem.imageUrl);
   const radiusClass = "rounded-2xl md:rounded-none";
-  const overlayCss = getThemeColorCss(overlayColor, "secondary-2");
-  const cardBgCss = getThemeColorCss(cardBg, "secondary-2");
+  const overlayCss = getThemeColorCss(style.overlayColor, "secondary-2");
+  const cardBgCss = getThemeColorCss(style.cardBg, "secondary-2");
 
   const settings = {
     dots: false,
@@ -81,7 +73,7 @@ export default function OurValuesMobile({
           />
           <div className={styles.bgTint} />
         </div>
-      ) : showOverlay ? (
+      ) : style.showOverlay ? (
         <div
           className="absolute inset-0 z-0"
           style={{ backgroundColor: overlayCss }}
@@ -102,7 +94,7 @@ export default function OurValuesMobile({
                       ? "scale-100 opacity-100"
                       : "scale-[0.94] opacity-80"
                   }`}
-                  style={showCardBg ? { backgroundColor: cardBgCss } : undefined}
+                  style={style.showCardBg ? { backgroundColor: cardBgCss } : undefined}
                   dir={isRtl ? "rtl" : "ltr"}
                 >
                   <div className="relative aspect-[3/4] w-full overflow-hidden sm:aspect-[4/5]">
@@ -113,7 +105,7 @@ export default function OurValuesMobile({
                         className="h-full w-full object-cover"
                         draggable={false}
                       />
-                    ) : showOverlay ? (
+                    ) : style.showOverlay ? (
                       <div
                         className="h-full w-full"
                         style={{ backgroundColor: overlayCss }}
@@ -124,25 +116,25 @@ export default function OurValuesMobile({
 
                     <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/35 via-transparent to-transparent" />
 
-                    {showItemTitle && item.title ? (
+                    {style.showItemTitle && item.title ? (
                       <h3
                         className={`${typography.itemTitle} absolute top-5 start-5 z-10 max-w-[70%] font-medium sm:top-6 sm:start-6`}
                         style={{
-                          color: getThemeColorCss(itemTitleColor, "white"),
+                          color: getThemeColorCss(style.itemTitleColor, "white"),
                         }}
                       >
                         {item.title}
                       </h3>
                     ) : null}
 
-                    {showItemDescription && item.description ? (
+                    {style.showItemDescription && item.description ? (
                       <div
                         className={`${styles.descriptionPanel} absolute inset-x-0 bottom-0 z-10 px-5 py-5 sm:px-6 sm:py-6`}
                       >
                         <p
                           className={`${typography.body} leading-relaxed`}
                           style={{
-                            color: getThemeColorCss(itemBodyColor, "white"),
+                            color: getThemeColorCss(style.itemBodyColor, "white"),
                           }}
                         >
                           {item.description}

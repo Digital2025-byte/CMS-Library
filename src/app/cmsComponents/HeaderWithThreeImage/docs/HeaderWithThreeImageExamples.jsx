@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import HeaderWithThreeImage from "@/app/cmsComponents/HeaderWithThreeImage";
-import HeaderWithThreeImageContainer from "@/app/cmsComponents/HeaderWithThreeImage/components/HeaderWithThreeImageContainer";
+import { HeaderWithThreeImageSection } from "@/app/cmsComponents/HeaderWithThreeImage";
 import HeaderWithThreeImagePropsForm from "@/app/cmsComponents/HeaderWithThreeImage/docs/HeaderWithThreeImagePropsForm";
 import {
   getHeaderWithThreeImageEditorContent,
@@ -36,20 +35,12 @@ export default function HeaderWithThreeImageExamples({
 
   return (
     <div>
-      <HeaderWithThreeImageContainer lang={lang} dir={dir}>
-        <HeaderWithThreeImage
-          lang={lang}
-          data={wrapHeaderWithThreeImageContent(content, lang)}
-          showTitle={style.showTitle}
-          showDescription={style.showDescription}
-          showHeroImage={style.showHeroImage}
-          showOverlay={style.showOverlay}
-          titleAlign={style.titleAlign}
-          titleColor={style.titleColor}
-          descriptionColor={style.descriptionColor}
-          overlayColor={style.overlayColor}
-        />
-      </HeaderWithThreeImageContainer>
+      <HeaderWithThreeImageSection
+        lang={lang}
+        dir={dir}
+        data={wrapHeaderWithThreeImageContent(content, lang)}
+        style={style}
+      />
 
       <Drawer
         isOpen={drawer.isOpen}

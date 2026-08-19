@@ -8,22 +8,24 @@ import {
 export default function GridInfoContainer({
   lang,
   dir,
-  background = DEFAULT_GRID_INFO_STYLE.sectionBg,
-  showBackground = DEFAULT_GRID_INFO_STYLE.showSectionBg,
-  padding = DEFAULT_GRID_INFO_STYLE.sectionPadding,
+  style = DEFAULT_GRID_INFO_STYLE,
   children,
+  className = "",
 }) {
   const paddingClass =
-    SECTION_PADDING_CLASS[padding] ?? SECTION_PADDING_CLASS.default;
+    SECTION_PADDING_CLASS[style.sectionPadding] ??
+    SECTION_PADDING_CLASS.default;
 
   return (
     <div
-      className="w-full"
+      className={`w-full ${className}`.trim()}
       lang={lang}
       dir={dir || (lang === "ar" ? "rtl" : "ltr")}
       style={
-        showBackground
-          ? { backgroundColor: getThemeColorCss(background, "surface-2") }
+        style.showSectionBg
+          ? {
+              backgroundColor: getThemeColorCss(style.sectionBg, "surface-2"),
+            }
           : undefined
       }
     >

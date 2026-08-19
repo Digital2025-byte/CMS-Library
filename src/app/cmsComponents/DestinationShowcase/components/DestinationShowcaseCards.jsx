@@ -22,12 +22,10 @@ export default function DestinationShowcaseCards({
   jumping,
   lang = "en",
   onCardClick,
-  cardRadius = DEFAULT_DESTINATION_SHOWCASE_STYLE.cardRadius,
-  showCardOverlay = DEFAULT_DESTINATION_SHOWCASE_STYLE.showCardOverlay,
-  cardOverlayColor = DEFAULT_DESTINATION_SHOWCASE_STYLE.cardOverlayColor,
+  style = DEFAULT_DESTINATION_SHOWCASE_STYLE,
 }) {
-  const radiusClass = CARD_RADIUS_CLASS[cardRadius] ?? CARD_RADIUS_CLASS.lg;
-  const overlayCss = getThemeColorCss(cardOverlayColor, "main");
+  const radiusClass = CARD_RADIUS_CLASS[style.cardRadius] ?? CARD_RADIUS_CLASS.lg;
+  const overlayCss = getThemeColorCss(style.cardOverlayColor, "main");
 
   return (
     <div className="relative mt-12 flex w-full items-center justify-start overflow-hidden py-4 md:mt-0">
@@ -85,7 +83,7 @@ export default function DestinationShowcaseCards({
                 ) : (
                   <div className="absolute inset-0 bg-primary-700" aria-hidden />
                 )}
-                {showCardOverlay ? (
+                {style.showCardOverlay ? (
                   <div
                     className="absolute inset-0"
                     style={{

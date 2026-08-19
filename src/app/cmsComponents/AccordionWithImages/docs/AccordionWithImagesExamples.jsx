@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import AccordionWithImages from "@/app/cmsComponents/AccordionWithImages";
-import AccordionImagesContainer from "@/app/cmsComponents/AccordionWithImages/components/AccordionImagesContainer";
+import { AccordionWithImagesSection } from "@/app/cmsComponents/AccordionWithImages";
 import AccordionWithImagesPropsForm from "@/app/cmsComponents/AccordionWithImages/docs/AccordionWithImagesPropsForm";
 import {
   getAccordionImagesEditorContent,
@@ -29,33 +28,12 @@ export default function AccordionWithImagesExamples({
 
   return (
     <div>
-      <AccordionImagesContainer lang={lang} dir={dir} background={style.sectionBg}>
-        <AccordionWithImages
-          data={wrapAccordionImagesContent(content)}
-          showTitleDescription={style.showTitleDescription}
-          showDescription={style.showDescription}
-          showTitleBorder={style.showTitleBorder}
-          showImagePanel={style.showImagePanel}
-          titleAlign={style.titleAlign}
-          titleColor={style.titleColor}
-          descriptionColor={style.descriptionColor}
-          itemLook={style.itemLook}
-          itemBg={style.itemBg}
-          itemRadius={style.itemRadius}
-          itemGap={style.itemGap}
-          itemPadding={style.itemPadding}
-          showItemDivider={style.showItemDivider}
-          itemTitleColor={style.itemTitleColor}
-          itemOpenColor={style.itemOpenColor}
-          itemBodyColor={style.itemBodyColor}
-          imagePosition={style.imagePosition}
-          imageRadius={style.imageRadius}
-          imageBg={style.imageBg}
-          toggleBg={style.toggleBg}
-          toggleBorder={style.toggleBorder}
-          toggleIcon={style.toggleIcon}
-        />
-      </AccordionImagesContainer>
+      <AccordionWithImagesSection
+        lang={lang}
+        dir={dir}
+        data={wrapAccordionImagesContent(content)}
+        style={style}
+      />
 
       <Drawer
         isOpen={drawer.isOpen}

@@ -7,15 +7,14 @@ export default function BannerWithCtaButton({
   href,
   icon,
   cId,
-  buttonBg = DEFAULT_BANNER_WITH_CTA_STYLE.buttonBg,
-  buttonText = DEFAULT_BANNER_WITH_CTA_STYLE.buttonText,
+  style = DEFAULT_BANNER_WITH_CTA_STYLE,
 }) {
   if (!label) {
     return null;
   }
 
-  const pillCss = getThemeColorCss(buttonBg, "primary-2");
-  const labelCss = getThemeColorCss(buttonText, "white");
+  const pillCss = getThemeColorCss(style.buttonBg, "primary-2");
+  const labelCss = getThemeColorCss(style.buttonText, "white");
 
   return (
     <Button

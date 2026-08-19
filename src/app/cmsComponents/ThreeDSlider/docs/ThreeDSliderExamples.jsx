@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import ThreeDSlider from "@/app/cmsComponents/ThreeDSlider";
+import { ThreeDSliderSection } from "@/app/cmsComponents/ThreeDSlider";
 import ThreeDSliderPropsForm from "@/app/cmsComponents/ThreeDSlider/docs/ThreeDSliderPropsForm";
 import {
   getThreeDSliderEditorContent,
@@ -27,23 +27,10 @@ export default function ThreeDSliderExamples({ ctx, name = "ThreeDSlider" }) {
 
   return (
     <div>
-      <ThreeDSlider
+      <ThreeDSliderSection
         lang={lang}
         data={wrapThreeDSliderContent(content, lang)}
-        showDots={style.showDots}
-        showCardImage={style.showCardImage}
-        showCardTitle={style.showCardTitle}
-        showNumber={style.showNumber}
-        showOverlay={style.showOverlay}
-        sectionBg={style.sectionBg}
-        sectionHeight={style.sectionHeight}
-        cardRadius={style.cardRadius}
-        cardTitleColor={style.cardTitleColor}
-        numberColor={style.numberColor}
-        overlayColor={style.overlayColor}
-        dotsColor={style.dotsColor}
-        wheelSpeed={style.wheelSpeed}
-        dragSpeed={style.dragSpeed}
+        style={style}
       />
 
       <Drawer

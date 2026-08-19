@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Slider from "@/app/cmsComponents/Slider";
-import SliderContainer from "@/app/cmsComponents/Slider/components/SliderContainer";
+import { SliderSection } from "@/app/cmsComponents/Slider";
 import SliderPropsForm from "@/app/cmsComponents/Slider/docs/SliderPropsForm";
 import {
   getSliderContent,
@@ -53,49 +52,12 @@ export default function SliderExamples({ ctx, name = "Slider" }) {
 
   return (
     <div>
-      <SliderContainer lang={lang}>
-        <Slider
-          lang={lang}
-          data={wrapSliderContent(content, lang)}
-          posParams="gb"
-          theme={style.theme}
-          imageOverlay={{
-            enabled: style.overlayEnabled,
-            color: style.overlayColor,
-            fromOpacity: Number(style.overlayFromOpacity),
-            viaOpacity: Number(style.overlayViaOpacity),
-            to: style.overlayTo,
-            direction: style.overlayDirection,
-          }}
-          settings={{
-            autoplay: Boolean(style.autoplay),
-            autoplaySpeed: Number(style.autoplaySpeed),
-            fade: Boolean(style.fade),
-            infinite: Boolean(style.infinite),
-            speed: Number(style.speed),
-            cssEase: style.cssEase,
-            pauseOnHover: Boolean(style.pauseOnHover),
-            pauseOnFocus: Boolean(style.pauseOnFocus),
-            waitForAnimate: Boolean(style.waitForAnimate),
-            swipe: Boolean(style.swipe),
-            draggable: Boolean(style.draggable),
-            touchThreshold: Number(style.touchThreshold) || 8,
-            adaptiveHeight: Boolean(style.adaptiveHeight),
-          }}
-          showSlideText={style.showSlideText}
-          showTitleText={style.showTitleText}
-          showSubtitleText={style.showSubtitleText}
-          showDescriptionText={style.showDescriptionText}
-          showButton={style.showButton}
-          showArrows={style.showArrows}
-          showProgress={style.showProgress}
-          titleAlign={style.titleAlign}
-          titleColor={style.titleColor}
-          subtitleColor={style.subtitleColor}
-          descriptionColor={style.descriptionColor}
-          buttonVariant={style.buttonVariant}
-        />
-      </SliderContainer>
+      <SliderSection
+        lang={lang}
+        data={wrapSliderContent(content, lang)}
+        posParams="gb"
+        style={style}
+      />
 
       <Drawer
         isOpen={drawer.isOpen}

@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import CarouselImageText6 from "@/app/cmsComponents/CarouselImageText6";
-import CarouselImageText6Container from "@/app/cmsComponents/CarouselImageText6/components/CarouselImageText6Container";
+import { CarouselImageText6Section } from "@/app/cmsComponents/CarouselImageText6";
 import CarouselImageText6PropsForm from "@/app/cmsComponents/CarouselImageText6/docs/CarouselImageText6PropsForm";
 import {
   getCarouselImageText6EditorContent,
@@ -29,29 +28,12 @@ export default function CarouselImageText6Examples({
 
   return (
     <div>
-      <CarouselImageText6Container lang={lang} dir={dir}>
-        <CarouselImageText6
-          lang={lang}
-          data={wrapCarouselImageText6Content(content, lang)}
-          showTitle={style.showTitle}
-          showItemTitle={style.showItemTitle}
-          showItemDescription={style.showItemDescription}
-          grayscaleInactive={style.grayscaleInactive}
-          openOn={style.openOn}
-          showSectionBg={style.showSectionBg}
-          sectionBg={style.sectionBg}
-          titleAlign={style.titleAlign}
-          titleColor={style.titleColor}
-          showOverlay={style.showOverlay}
-          overlayColor={style.overlayColor}
-          showPanelBg={style.showPanelBg}
-          panelColor={style.panelColor}
-          showCardBg={style.showCardBg}
-          cardBg={style.cardBg}
-          itemTitleColor={style.itemTitleColor}
-          itemBodyColor={style.itemBodyColor}
-        />
-      </CarouselImageText6Container>
+      <CarouselImageText6Section
+        lang={lang}
+        dir={dir}
+        data={wrapCarouselImageText6Content(content, lang)}
+        style={style}
+      />
 
       <Drawer
         isOpen={drawer.isOpen}

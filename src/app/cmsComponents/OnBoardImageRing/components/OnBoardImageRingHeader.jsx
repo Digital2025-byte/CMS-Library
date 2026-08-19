@@ -10,23 +10,19 @@ import {
 export default function OnBoardImageRingHeader({
   title,
   description,
-  showTitle = DEFAULT_ON_BOARD_IMAGE_RING_STYLE.showTitle,
-  showDescription = DEFAULT_ON_BOARD_IMAGE_RING_STYLE.showDescription,
-  titleAlign = DEFAULT_ON_BOARD_IMAGE_RING_STYLE.titleAlign,
-  titleColor = DEFAULT_ON_BOARD_IMAGE_RING_STYLE.titleColor,
-  descriptionColor = DEFAULT_ON_BOARD_IMAGE_RING_STYLE.descriptionColor,
-  sectionPadding = DEFAULT_ON_BOARD_IMAGE_RING_STYLE.sectionPadding,
+  style = DEFAULT_ON_BOARD_IMAGE_RING_STYLE,
 }) {
-  const showHeading = showTitle && title;
-  const showBody = showDescription && description;
+  const showHeading = style.showTitle && title;
+  const showBody = style.showDescription && description;
 
   if (!showHeading && !showBody) return null;
 
   const paddingClass =
-    SECTION_PADDING_CLASS[sectionPadding] ?? SECTION_PADDING_CLASS.default;
+    SECTION_PADDING_CLASS[style.sectionPadding] ??
+    SECTION_PADDING_CLASS.default;
   const alignClass =
-    TITLE_ALIGN_CLASS[titleAlign] ?? TITLE_ALIGN_CLASS.left;
-  const isCenter = titleAlign === "center";
+    TITLE_ALIGN_CLASS[style.titleAlign] ?? TITLE_ALIGN_CLASS.left;
+  const isCenter = style.titleAlign === "center";
 
   return (
     <PageContentContainer className={paddingClass}>
@@ -36,7 +32,7 @@ export default function OnBoardImageRingHeader({
         {showHeading ? (
           <h2
             className={`${typography.sectionTitle} shrink-0 font-semibold`}
-            style={{ color: getThemeColorCss(titleColor, "50") }}
+            style={{ color: getThemeColorCss(style.titleColor, "50") }}
           >
             {title}
           </h2>
@@ -47,7 +43,7 @@ export default function OnBoardImageRingHeader({
               isCenter ? "md:text-center" : "md:text-start"
             }`}
             style={{
-              color: `color-mix(in srgb, ${getThemeColorCss(descriptionColor, "50")} 90%, transparent)`,
+              color: `color-mix(in srgb, ${getThemeColorCss(style.descriptionColor, "50")} 90%, transparent)`,
             }}
           >
             {description}

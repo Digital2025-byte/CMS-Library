@@ -84,6 +84,13 @@ export const DEFAULT_ACCORDION_STYLE = {
   buttonWidth: "auto",
 };
 
+export function resolveAccordionStyle(style = {}) {
+  return {
+    ...DEFAULT_ACCORDION_STYLE,
+    ...style,
+  };
+}
+
 export const ACCORDION_STYLE_RESET_KEYS = {
   layout: [
     "showTitleDescription",

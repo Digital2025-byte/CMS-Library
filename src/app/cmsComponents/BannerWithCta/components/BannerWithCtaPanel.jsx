@@ -11,32 +11,19 @@ function titleWash(overlayCss) {
 }
 
 export default function BannerWithCtaPanel({
-  title,
-  description,
-  ctaLabel,
-  ctaHref,
-  backgroundImage,
-  imageAlt = "",
-  showTitle = DEFAULT_BANNER_WITH_CTA_STYLE.showTitle,
-  showDescription = DEFAULT_BANNER_WITH_CTA_STYLE.showDescription,
-  showButton = DEFAULT_BANNER_WITH_CTA_STYLE.showButton,
-  showHeroImage = DEFAULT_BANNER_WITH_CTA_STYLE.showHeroImage,
-  showOverlay = DEFAULT_BANNER_WITH_CTA_STYLE.showOverlay,
-  titleAlign = DEFAULT_BANNER_WITH_CTA_STYLE.titleAlign,
-  titleColor = DEFAULT_BANNER_WITH_CTA_STYLE.titleColor,
-  descriptionColor = DEFAULT_BANNER_WITH_CTA_STYLE.descriptionColor,
-  overlayColor = DEFAULT_BANNER_WITH_CTA_STYLE.overlayColor,
-  bannerRadius = DEFAULT_BANNER_WITH_CTA_STYLE.bannerRadius,
-  buttonBg = DEFAULT_BANNER_WITH_CTA_STYLE.buttonBg,
-  buttonText = DEFAULT_BANNER_WITH_CTA_STYLE.buttonText,
+  lang = "en",
+  content,
+  style = DEFAULT_BANNER_WITH_CTA_STYLE,
 }) {
-  const overlayCss = getThemeColorCss(overlayColor, "primary-1");
+  const overlayCss = getThemeColorCss(style.overlayColor, "primary-1");
   const heroSrc =
-    showHeroImage && isUsableImageSrc(backgroundImage) ? backgroundImage : "";
+    style.showHeroImage && isUsableImageSrc(content.backgroundImage)
+      ? content.backgroundImage
+      : "";
   const radiusClass =
-    BANNER_RADIUS_CLASS[bannerRadius] ?? BANNER_RADIUS_CLASS.lg;
+    BANNER_RADIUS_CLASS[style.bannerRadius] ?? BANNER_RADIUS_CLASS.lg;
   const backgroundLayers = [
-    showOverlay ? titleWash(overlayCss) : null,
+    style.showOverlay ? titleWash(overlayCss) : null,
     heroSrc ? `url(${heroSrc})` : null,
   ]
     .filter(Boolean)
@@ -45,31 +32,16 @@ export default function BannerWithCtaPanel({
   return (
     <div
       className={`flex min-h-62.5 w-full items-center md:min-h-80 lg:min-h-103.75 ${radiusClass}`}
-      aria-label={imageAlt || title || undefined}
+      aria-label={content.imageAlt || content.title || undefined}
       style={{
         backgroundImage: backgroundLayers || undefined,
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
-        backgroundColor: heroSrc
-          ? undefined
-          : overlayCss,
+        backgroundColor: heroSrc ? undefined : overlayCss,
       }}
     >
-      <BannerWithCtaContent
-        title={title}
-        description={description}
-        ctaLabel={ctaLabel}
-        ctaHref={ctaHref}
-        showTitle={showTitle}
-        showDescription={showDescription}
-        showButton={showButton}
-        titleAlign={titleAlign}
-        titleColor={titleColor}
-        descriptionColor={descriptionColor}
-        buttonBg={buttonBg}
-        buttonText={buttonText}
-      />
+      <BannerWithCtaContent content={content} style={style} />
     </div>
   );
 }

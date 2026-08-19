@@ -39,37 +39,26 @@ function Tile({ icon: Icon, title, value, labelCss, valueCss }) {
  */
 export default function CityInfoCard({
   lang = "en",
-  weatherTitle,
-  description,
-  weather,
-  localTime,
-  duration,
-  numberOfFlightPerWeek,
-  nextFlight,
-  labels = {},
+  content,
+  style = DEFAULT_HEADER_WITH_CITY_INFO_STYLE,
   className = "",
-  showHeading = DEFAULT_HEADER_WITH_CITY_INFO_STYLE.showCardHeading,
-  showDescription = DEFAULT_HEADER_WITH_CITY_INFO_STYLE.showCardDescription,
-  showTiles = DEFAULT_HEADER_WITH_CITY_INFO_STYLE.showTiles,
-  showNextFlight = DEFAULT_HEADER_WITH_CITY_INFO_STYLE.showNextFlight,
-  cardRadius = DEFAULT_HEADER_WITH_CITY_INFO_STYLE.cardRadius,
-  headingColor = DEFAULT_HEADER_WITH_CITY_INFO_STYLE.cardHeadingColor,
-  bodyColor = DEFAULT_HEADER_WITH_CITY_INFO_STYLE.cardBodyColor,
-  tileLabelColor = DEFAULT_HEADER_WITH_CITY_INFO_STYLE.tileLabelColor,
-  tileValueColor = DEFAULT_HEADER_WITH_CITY_INFO_STYLE.tileValueColor,
-  nextFlightColor = DEFAULT_HEADER_WITH_CITY_INFO_STYLE.nextFlightColor,
 }) {
   const isRtl = lang === "ar";
-  const radiusClass = CARD_RADIUS_CLASS[cardRadius] ?? CARD_RADIUS_CLASS.lg;
-  const headingCss = getThemeColorCss(headingColor, "white");
-  const bodyCss = getThemeColorCss(bodyColor, "white");
-  const tileLabelCss = getThemeColorCss(tileLabelColor, "white");
-  const tileValueCss = getThemeColorCss(tileValueColor, "white");
-  const accentCss = getThemeColorCss(nextFlightColor, "primary-100");
-  const showHeader = (showHeading && weatherTitle) || (showDescription && description);
-  const showFooter = showNextFlight && (labels.nextFlight || nextFlight);
+  const labels = content.labels || {};
+  const radiusClass =
+    CARD_RADIUS_CLASS[style.cardRadius] ?? CARD_RADIUS_CLASS.lg;
+  const headingCss = getThemeColorCss(style.cardHeadingColor, "white");
+  const bodyCss = getThemeColorCss(style.cardBodyColor, "white");
+  const tileLabelCss = getThemeColorCss(style.tileLabelColor, "white");
+  const tileValueCss = getThemeColorCss(style.tileValueColor, "white");
+  const accentCss = getThemeColorCss(style.nextFlightColor, "primary-100");
+  const showHeader =
+    (style.showCardHeading && content.weatherTitle) ||
+    (style.showCardDescription && content.description);
+  const showFooter =
+    style.showNextFlight && (labels.nextFlight || content.nextFlight);
 
-  if (!showHeader && !showTiles && !showFooter) {
+  if (!showHeader && !style.showTiles && !showFooter) {
     return null;
   }
 
@@ -86,54 +75,54 @@ export default function CityInfoCard({
     >
       {showHeader ? (
         <div className="mb-5">
-          {showHeading && weatherTitle ? (
+          {style.showCardHeading && content.weatherTitle ? (
             <h3
               className={`${typography.itemTitle} font-normal leading-none`}
               style={{ color: headingCss }}
             >
-              {weatherTitle}
+              {content.weatherTitle}
             </h3>
           ) : null}
-          {showDescription && description ? (
+          {style.showCardDescription && content.description ? (
             <p
               className={`${typography.caption} mt-1.5 leading-snug`}
               style={{
                 color: `color-mix(in srgb, ${bodyCss} 65%, transparent)`,
               }}
             >
-              {description}
+              {content.description}
             </p>
           ) : null}
         </div>
       ) : null}
 
-      {showTiles ? (
+      {style.showTiles ? (
         <div className="grid grid-cols-2 gap-3">
           <Tile
             icon={CloudSun}
             title={labels.weather}
-            value={weather || "N/A"}
+            value={content.weather || "N/A"}
             labelCss={tileLabelCss}
             valueCss={tileValueCss}
           />
           <Tile
             icon={Clock}
             title={labels.localTime}
-            value={localTime || "N/A"}
+            value={content.localTime || "N/A"}
             labelCss={tileLabelCss}
             valueCss={tileValueCss}
           />
           <Tile
             icon={Timer}
             title={labels.flightDuration}
-            value={duration || "N/A"}
+            value={content.duration || "N/A"}
             labelCss={tileLabelCss}
             valueCss={tileValueCss}
           />
           <Tile
             icon={CalendarCheck}
             title={labels.flightsPerWeek}
-            value={numberOfFlightPerWeek || "N/A"}
+            value={content.numberOfFlightPerWeek || "N/A"}
             labelCss={tileLabelCss}
             valueCss={tileValueCss}
           />
@@ -156,7 +145,7 @@ export default function CityInfoCard({
               className={`${typography.body} font-medium`}
               style={{ color: accentCss }}
             >
-              {nextFlight || "N/A"}
+              {content.nextFlight || "N/A"}
             </span>
           </div>
         </>

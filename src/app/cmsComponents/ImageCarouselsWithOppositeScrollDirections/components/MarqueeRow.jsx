@@ -6,10 +6,7 @@ export default function MarqueeRow({
   items,
   direction = "left",
   duration = 15,
-  cardSize = "mixed",
-  showCardTitles = true,
-  showOverlay = true,
-  cardTitleColor = "white",
+  style,
 }) {
   const safeItems = Array.isArray(items) ? items : [];
 
@@ -29,7 +26,7 @@ export default function MarqueeRow({
       >
         {loopItems.map((item, idx) => {
           const originalIndex = idx % safeItems.length;
-          const { w, h } = getCardSizeByIndex(originalIndex, cardSize);
+          const { w, h } = getCardSizeByIndex(originalIndex, style.cardSize);
 
           return (
             <DestinationImageCard
@@ -37,9 +34,7 @@ export default function MarqueeRow({
               item={item}
               w={w}
               h={h}
-              showTitle={showCardTitles}
-              showOverlay={showOverlay}
-              titleColor={cardTitleColor}
+              style={style}
             />
           );
         })}

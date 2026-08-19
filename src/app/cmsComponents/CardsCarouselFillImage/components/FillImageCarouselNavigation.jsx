@@ -2,7 +2,6 @@
 
 import { ArrowLeftIcon, ArrowRightIcon } from "@phosphor-icons/react";
 import { getThemeColorCss } from "@/styles/themeColors";
-import { DEFAULT_FILL_IMAGE_STYLE } from "../utils/style";
 
 const baseButtonClasses =
   "flex h-11 w-11 items-center justify-center rounded-full border transition-all duration-200 focus:outline-none sm:h-10 sm:w-10";
@@ -40,7 +39,7 @@ export default function FillImageCarouselNavigation({
   currentIndex,
   totalSlides,
   showNavigation = true,
-  navColor = DEFAULT_FILL_IMAGE_STYLE.navColor,
+  style,
 }) {
   if (!showNavigation) {
     return null;
@@ -48,7 +47,7 @@ export default function FillImageCarouselNavigation({
 
   const isRtl = lang === "ar";
   const slideLabel = `${currentIndex + 1} of ${totalSlides}`;
-  const accentCss = getThemeColorCss(navColor, "primary-1");
+  const accentCss = getThemeColorCss(style.navColor, "primary-1");
 
   return (
     <div

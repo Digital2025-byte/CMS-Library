@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import AccordionWithContent from "@/app/cmsComponents/AccordionWithContent";
-import AccordionContainer from "@/app/cmsComponents/AccordionWithContent/container/AccordionContainer";
+import { AccordionWithContentSection } from "@/app/cmsComponents/AccordionWithContent";
 import AccordionWithContentPropsForm from "@/app/cmsComponents/AccordionWithContent/docs/AccordionWithContentPropsForm";
 import {
   getAccordionContent,
@@ -42,34 +41,12 @@ export default function AccordionWithContentExamples({
 
   return (
     <div>
-      <AccordionContainer
+      <AccordionWithContentSection
         lang={lang}
         dir={dir}
-        background={style.sectionBg}
-        showBackground={style.showSectionBg}
-      >
-        <AccordionWithContent
-          data={wrapAccordionContent(content)}
-          showTitleDescription={style.showTitleDescription}
-          showDescription={style.showDescription}
-          showButton={style.showButton}
-          titleAlign={style.titleAlign}
-          titleColor={style.titleColor}
-          descriptionColor={style.descriptionColor}
-          itemLook={style.itemLook}
-          showItemBg={style.showItemBg}
-          itemBg={style.itemBg}
-          itemRadius={style.itemRadius}
-          itemGap={style.itemGap}
-          itemPadding={style.itemPadding}
-          itemTitleColor={style.itemTitleColor}
-          itemOpenColor={style.itemOpenColor}
-          itemBodyColor={style.itemBodyColor}
-          buttonPosition={style.buttonPosition}
-          buttonVariant={style.buttonVariant}
-          buttonWidth={style.buttonWidth}
-        />
-      </AccordionContainer>
+        data={wrapAccordionContent(content)}
+        style={style}
+      />
 
       <Drawer
         isOpen={drawer.isOpen}

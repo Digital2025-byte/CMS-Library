@@ -14,19 +14,7 @@ export default function SimpleGridCard({
   prefix = "",
   chip = "",
   cId,
-  showIcon = DEFAULT_SIMPLE_GRID_STYLE.showIcon,
-  showPrefix = DEFAULT_SIMPLE_GRID_STYLE.showPrefix,
-  showChip = DEFAULT_SIMPLE_GRID_STYLE.showChip,
-  showUserName = DEFAULT_SIMPLE_GRID_STYLE.showUserName,
-  showArrow = DEFAULT_SIMPLE_GRID_STYLE.showArrow,
-  showCardBg = DEFAULT_SIMPLE_GRID_STYLE.showCardBg,
-  cardRadius = DEFAULT_SIMPLE_GRID_STYLE.cardRadius,
-  cardBg = DEFAULT_SIMPLE_GRID_STYLE.cardBg,
-  nameColor = DEFAULT_SIMPLE_GRID_STYLE.nameColor,
-  chipBg = DEFAULT_SIMPLE_GRID_STYLE.chipBg,
-  chipText = DEFAULT_SIMPLE_GRID_STYLE.chipText,
-  userNameColor = DEFAULT_SIMPLE_GRID_STYLE.userNameColor,
-  arrowColor = DEFAULT_SIMPLE_GRID_STYLE.arrowColor,
+  style = DEFAULT_SIMPLE_GRID_STYLE,
 }) {
   if (!item) {
     return null;
@@ -35,10 +23,11 @@ export default function SimpleGridCard({
   const { title, link, userName, iconSrc } = item;
   const href = withCampaignPath(link, cId);
   const ArrowIcon = lang === "ar" ? ArrowUpLeftIcon : ArrowUpRightIcon;
-  const radiusClass = CARD_RADIUS_CLASS[cardRadius] ?? CARD_RADIUS_CLASS.sm;
-  const chipCss = getThemeColorCss(chipBg, "secondary-100");
-  const chipTextCss = getThemeColorCss(chipText, "primary-2");
-  const showHeading = title || (showPrefix && prefix);
+  const radiusClass =
+    CARD_RADIUS_CLASS[style.cardRadius] ?? CARD_RADIUS_CLASS.sm;
+  const chipCss = getThemeColorCss(style.chipBg, "secondary-100");
+  const chipTextCss = getThemeColorCss(style.chipText, "primary-2");
+  const showHeading = title || (style.showPrefix && prefix);
 
   return (
     <a
@@ -47,12 +36,12 @@ export default function SimpleGridCard({
       rel="noopener noreferrer"
       className={`flex items-stretch gap-4 ${radiusClass} px-4 py-5 no-underline transition-shadow`}
       style={{
-        backgroundColor: showCardBg
-          ? getThemeColorCss(cardBg, "white")
+        backgroundColor: style.showCardBg
+          ? getThemeColorCss(style.cardBg, "white")
           : "transparent",
       }}
     >
-      {showIcon ? (
+      {style.showIcon ? (
         <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full">
           {iconSrc ? (
             <Image
@@ -70,13 +59,13 @@ export default function SimpleGridCard({
         {showHeading ? (
           <h4
             className={`${typography.itemDescription} truncate font-semibold`}
-            style={{ color: getThemeColorCss(nameColor, "secondary-2") }}
+            style={{ color: getThemeColorCss(style.nameColor, "secondary-2") }}
           >
-            {showPrefix && prefix ? `${prefix} ` : ""}
+            {style.showPrefix && prefix ? `${prefix} ` : ""}
             {title}
           </h4>
         ) : null}
-        {showChip && chip ? (
+        {style.showChip && chip ? (
           <div className="mt-1.5 mb-1.5">
             <span
               className={`${typography.caption} inline-flex rounded-full px-2.5 py-0.5 font-medium`}
@@ -89,21 +78,21 @@ export default function SimpleGridCard({
             </span>
           </div>
         ) : null}
-        {showUserName && userName ? (
+        {style.showUserName && userName ? (
           <p
             className={typography.caption}
-            style={{ color: getThemeColorCss(userNameColor, "icon") }}
+            style={{ color: getThemeColorCss(style.userNameColor, "icon") }}
           >
             {userName}
           </p>
         ) : null}
       </div>
 
-      {showArrow ? (
+      {style.showArrow ? (
         <ArrowIcon
           size={20}
           className="mt-auto shrink-0"
-          style={{ color: getThemeColorCss(arrowColor, "primary-1") }}
+          style={{ color: getThemeColorCss(style.arrowColor, "primary-1") }}
         />
       ) : null}
     </a>

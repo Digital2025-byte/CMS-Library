@@ -8,20 +8,17 @@ import {
 export default function DestinationsCitiesIntro({
   title = "",
   description = "",
-  showTitle = DEFAULT_DESTINATIONS_CITIES_STYLE.showTitle,
-  showDescription = DEFAULT_DESTINATIONS_CITIES_STYLE.showDescription,
-  align = DEFAULT_DESTINATIONS_CITIES_STYLE.titleAlign,
-  titleColor = DEFAULT_DESTINATIONS_CITIES_STYLE.titleColor,
-  descriptionColor = DEFAULT_DESTINATIONS_CITIES_STYLE.descriptionColor,
+  style = DEFAULT_DESTINATIONS_CITIES_STYLE,
 }) {
-  const showHeading = showTitle && title;
-  const showBody = showDescription && description;
+  const showHeading = style.showTitle && title;
+  const showBody = style.showDescription && description;
 
   if (!showHeading && !showBody) {
     return null;
   }
 
-  const alignClass = TITLE_ALIGN_CLASS[align] ?? TITLE_ALIGN_CLASS.left;
+  const alignClass =
+    TITLE_ALIGN_CLASS[style.titleAlign] ?? TITLE_ALIGN_CLASS.left;
 
   return (
     <div
@@ -30,7 +27,7 @@ export default function DestinationsCitiesIntro({
       {showHeading ? (
         <h2
           className={`${typography.sectionTitle} mt-4 font-semibold whitespace-pre-line`}
-          style={{ color: getThemeColorCss(titleColor, "50") }}
+          style={{ color: getThemeColorCss(style.titleColor, "50") }}
         >
           {title}
         </h2>
@@ -39,7 +36,7 @@ export default function DestinationsCitiesIntro({
         <p
           className={`${typography.sectionDescription} mt-6`}
           style={{
-            color: `color-mix(in srgb, ${getThemeColorCss(descriptionColor, "50")} 80%, transparent)`,
+            color: `color-mix(in srgb, ${getThemeColorCss(style.descriptionColor, "50")} 80%, transparent)`,
           }}
         >
           {description}

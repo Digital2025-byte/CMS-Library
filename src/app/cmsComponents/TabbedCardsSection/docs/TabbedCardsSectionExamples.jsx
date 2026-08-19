@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import TabbedCardsSection from "@/app/cmsComponents/TabbedCardsSection";
-import TabbedCardsContainer from "@/app/cmsComponents/TabbedCardsSection/components/TabbedCardsContainer";
+import { TabbedCardsSectionSection } from "@/app/cmsComponents/TabbedCardsSection";
 import TabbedCardsSectionPropsForm from "@/app/cmsComponents/TabbedCardsSection/docs/TabbedCardsSectionPropsForm";
 import {
   getTabbedCardsEditorContent,
@@ -36,37 +35,12 @@ export default function TabbedCardsSectionExamples({
 
   return (
     <div>
-      <TabbedCardsContainer
+      <TabbedCardsSectionSection
         lang={lang}
         dir={dir}
-        background={style.sectionBg}
-        showBackground={style.showSectionBg}
-        padding={style.sectionPadding}
-      >
-        <TabbedCardsSection
-          lang={lang}
-          data={wrapTabbedCardsContent(content, lang)}
-          showTitle={style.showTitle}
-          showDescription={style.showDescription}
-          showTabs={style.showTabs}
-          showImage={style.showImage}
-          showCardTitle={style.showCardTitle}
-          showCardDescription={style.showCardDescription}
-          showCardBg={style.showCardBg}
-          titleAlign={style.titleAlign}
-          titleColor={style.titleColor}
-          descriptionColor={style.descriptionColor}
-          tabTrack={style.tabTrack}
-          tabActiveBg={style.tabActiveBg}
-          tabActiveText={style.tabActiveText}
-          tabIdleText={style.tabIdleText}
-          cardRadius={style.cardRadius}
-          cardGap={style.cardGap}
-          cardBg={style.cardBg}
-          nameColor={style.nameColor}
-          bodyColor={style.bodyColor}
-        />
-      </TabbedCardsContainer>
+        data={wrapTabbedCardsContent(content, lang)}
+        style={style}
+      />
 
       <Drawer
         isOpen={drawer.isOpen}

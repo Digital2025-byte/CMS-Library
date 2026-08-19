@@ -650,10 +650,12 @@ export const SECTION_COMPONENTS = {
             <Comp.default
               lang={lang}
               data={dualImageTextData}
-              blueLayer
-              animate
-              bgColor="bg-200"
-              showExploreButton
+              style={{
+                blueLayer: true,
+                animate: true,
+                bgColor: "bg-200",
+                showExploreButton: true,
+              }}
             />
           </Cont.default>
         );
@@ -673,10 +675,12 @@ export const SECTION_COMPONENTS = {
             <Comp.default
               lang={lang}
               data={dualImageTrainingData}
-              underlineFirstWord
-              bgColor="bg-100"
-              showFirstSection
-              showExtraImage
+              style={{
+                underlineFirstWord: true,
+                bgColor: "bg-100",
+                showFirstSection: true,
+                showExtraImage: true,
+              }}
               extraImagePositions={[
                 { bottom: -50, start: 0, horizontal: 60 },
                 { bottom: -50, end: 0, horizontal: -60 },

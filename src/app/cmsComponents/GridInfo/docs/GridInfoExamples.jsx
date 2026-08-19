@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import GridInfo from "@/app/cmsComponents/GridInfo";
-import GridInfoContainer from "@/app/cmsComponents/GridInfo/components/GridInfoContainer";
+import { GridInfoSection } from "@/app/cmsComponents/GridInfo";
 import GridInfoPropsForm from "@/app/cmsComponents/GridInfo/docs/GridInfoPropsForm";
 import {
   getGridInfoEditorContent,
@@ -33,39 +32,12 @@ export default function GridInfoExamples({ ctx, name = "GridInfo" }) {
 
   return (
     <div>
-      <GridInfoContainer
+      <GridInfoSection
         lang={lang}
         dir={dir}
-        background={style.sectionBg}
-        showBackground={style.showSectionBg}
-        padding={style.sectionPadding}
-      >
-        <GridInfo
-          lang={lang}
-          data={wrapGridInfoContent(content, lang)}
-          showTitle={style.showTitle}
-          showDescription={style.showDescription}
-          showFilter={style.showFilter}
-          showName={style.showName}
-          showAddress={style.showAddress}
-          showPhone={style.showPhone}
-          showEmail={style.showEmail}
-          showHours={style.showHours}
-          showCardBg={style.showCardBg}
-          titleAlign={style.titleAlign}
-          titleColor={style.titleColor}
-          descriptionColor={style.descriptionColor}
-          chipColor={style.chipColor}
-          chipActiveText={style.chipActiveText}
-          chipIdleBg={style.chipIdleBg}
-          cardRadius={style.cardRadius}
-          cardGap={style.cardGap}
-          cardBg={style.cardBg}
-          nameColor={style.nameColor}
-          bodyColor={style.bodyColor}
-          iconColor={style.iconColor}
-        />
-      </GridInfoContainer>
+        data={wrapGridInfoContent(content, lang)}
+        style={style}
+      />
 
       <Drawer
         isOpen={drawer.isOpen}

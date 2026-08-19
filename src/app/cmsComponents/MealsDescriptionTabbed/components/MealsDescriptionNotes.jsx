@@ -5,13 +5,13 @@ import { DEFAULT_MEALS_TABBED_STYLE } from "../utils/style";
 
 export default function MealsDescriptionNotes({
   notes = [],
-  notesColor = DEFAULT_MEALS_TABBED_STYLE.notesColor,
+  style = DEFAULT_MEALS_TABBED_STYLE,
 }) {
   if (!notes.length) {
     return null;
   }
 
-  const colorCss = getThemeColorCss(notesColor, "primary-1");
+  const colorCss = getThemeColorCss(style.notesColor, "primary-1");
 
   return (
     <aside

@@ -65,6 +65,13 @@ export const DEFAULT_SIMPLE_GRID_STYLE = {
   arrowColor: "primary-1",
 };
 
+export function resolveSimpleGridStyle(style = {}) {
+  return {
+    ...DEFAULT_SIMPLE_GRID_STYLE,
+    ...style,
+  };
+}
+
 export const SIMPLE_GRID_STYLE_RESET_KEYS = {
   layout: [
     "showTitle",

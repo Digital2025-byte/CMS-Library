@@ -61,12 +61,7 @@ export default function OnBoardImageRingTrack({
   captions = [],
   lang = "en",
   imageGap = CARD_GAP_PX,
-  showCaptions = DEFAULT_ON_BOARD_IMAGE_RING_STYLE.showCaptions,
-  showOverlay = DEFAULT_ON_BOARD_IMAGE_RING_STYLE.showOverlay,
-  showCardImage = DEFAULT_ON_BOARD_IMAGE_RING_STYLE.showCardImage,
-  cardRadius = DEFAULT_ON_BOARD_IMAGE_RING_STYLE.cardRadius,
-  captionColor = DEFAULT_ON_BOARD_IMAGE_RING_STYLE.captionColor,
-  overlayColor = DEFAULT_ON_BOARD_IMAGE_RING_STYLE.overlayColor,
+  style = DEFAULT_ON_BOARD_IMAGE_RING_STYLE,
 }) {
   void lang;
 
@@ -155,9 +150,10 @@ export default function OnBoardImageRingTrack({
 
   if (!count) return null;
 
-  const radiusClass = CARD_RADIUS_CLASS[cardRadius] ?? CARD_RADIUS_CLASS.none;
-  const overlayCss = getThemeColorCss(overlayColor, "foreground");
-  const captionCss = getThemeColorCss(captionColor, "white");
+  const radiusClass =
+    CARD_RADIUS_CLASS[style.cardRadius] ?? CARD_RADIUS_CLASS.none;
+  const overlayCss = getThemeColorCss(style.overlayColor, "foreground");
+  const captionCss = getThemeColorCss(style.captionColor, "white");
 
   return (
     <div
@@ -198,11 +194,11 @@ export default function OnBoardImageRingTrack({
               className={`absolute inset-0 overflow-hidden bg-cover bg-center bg-no-repeat ${radiusClass}`}
               style={{
                 backgroundImage:
-                  showCardImage && isUsableImageSrc(imageUrl)
+                  style.showCardImage && isUsableImageSrc(imageUrl)
                     ? `url(${imageUrl})`
                     : undefined,
                 backgroundColor:
-                  showCardImage && isUsableImageSrc(imageUrl)
+                  style.showCardImage && isUsableImageSrc(imageUrl)
                     ? undefined
                     : "var(--color-primary-700)",
                 transformStyle: "preserve-3d",
@@ -211,7 +207,7 @@ export default function OnBoardImageRingTrack({
                 transform: `rotateY(${index * angle}deg) translateZ(${-radius}px)`,
               }}
             >
-              {showOverlay ? (
+              {style.showOverlay ? (
                 <div
                   className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3"
                   style={{
@@ -219,7 +215,7 @@ export default function OnBoardImageRingTrack({
                   }}
                 />
               ) : null}
-              {showCaptions && captions[index] ? (
+              {style.showCaptions && captions[index] ? (
                 <p
                   className={`${typography.itemTitle} pointer-events-none absolute bottom-4 start-4 z-10 font-medium drop-shadow-[0_2px_4px_rgba(0,0,0,0.7)] md:bottom-5 md:start-5`}
                   style={{ color: captionCss }}

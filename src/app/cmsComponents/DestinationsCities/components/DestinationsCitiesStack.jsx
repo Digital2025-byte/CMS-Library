@@ -13,26 +13,7 @@ export default function DestinationsCitiesStack({
   cities = [],
   lang = "en",
   posParams = "gb",
-  showCardImage = DEFAULT_DESTINATIONS_CITIES_STYLE.showCardImage,
-  showCity = DEFAULT_DESTINATIONS_CITIES_STYLE.showCity,
-  showOrigin = DEFAULT_DESTINATIONS_CITIES_STYLE.showOrigin,
-  showNew = DEFAULT_DESTINATIONS_CITIES_STYLE.showNew,
-  showFlights = DEFAULT_DESTINATIONS_CITIES_STYLE.showFlights,
-  showDuration = DEFAULT_DESTINATIONS_CITIES_STYLE.showDuration,
-  showCardDescription = DEFAULT_DESTINATIONS_CITIES_STYLE.showCardDescription,
-  showPanel = DEFAULT_DESTINATIONS_CITIES_STYLE.showPanel,
-  showInactiveDim = DEFAULT_DESTINATIONS_CITIES_STYLE.showInactiveDim,
-  showButton = DEFAULT_DESTINATIONS_CITIES_STYLE.showButton,
-  cardRadius = DEFAULT_DESTINATIONS_CITIES_STYLE.cardRadius,
-  cityColor = DEFAULT_DESTINATIONS_CITIES_STYLE.cityColor,
-  originColor = DEFAULT_DESTINATIONS_CITIES_STYLE.originColor,
-  originBg = DEFAULT_DESTINATIONS_CITIES_STYLE.originBg,
-  metaColor = DEFAULT_DESTINATIONS_CITIES_STYLE.metaColor,
-  bodyColor = DEFAULT_DESTINATIONS_CITIES_STYLE.bodyColor,
-  panelBg = DEFAULT_DESTINATIONS_CITIES_STYLE.panelBg,
-  overlayColor = DEFAULT_DESTINATIONS_CITIES_STYLE.overlayColor,
-  buttonBg = DEFAULT_DESTINATIONS_CITIES_STYLE.buttonBg,
-  buttonText = DEFAULT_DESTINATIONS_CITIES_STYLE.buttonText,
+  style = DEFAULT_DESTINATIONS_CITIES_STYLE,
 }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [direction, setDirection] = useState(0);
@@ -65,9 +46,11 @@ export default function DestinationsCitiesStack({
     return null;
   }
 
-  const radiusClass = CARD_RADIUS_CLASS[cardRadius] ?? CARD_RADIUS_CLASS.full;
+  const radiusClass =
+    CARD_RADIUS_CLASS[style.cardRadius] ?? CARD_RADIUS_CLASS.full;
   const panelRadiusClass =
-    CARD_RADIUS_BOTTOM_CLASS[cardRadius] ?? CARD_RADIUS_BOTTOM_CLASS.full;
+    CARD_RADIUS_BOTTOM_CLASS[style.cardRadius] ??
+    CARD_RADIUS_BOTTOM_CLASS.full;
 
   return (
     <div className="flex w-full min-w-0 flex-col items-center justify-center gap-6">
@@ -117,25 +100,25 @@ export default function DestinationsCitiesStack({
                 onDragEnd={handleDragEnd}
                 posParams={posParams}
                 lang={lang}
-                showImage={showCardImage}
-                showCity={showCity}
-                showOrigin={showOrigin}
-                showNew={showNew}
-                showFlights={showFlights}
-                showDuration={showDuration}
-                showDescription={showCardDescription}
-                showPanel={showPanel}
-                showInactiveDim={showInactiveDim}
-                showButton={showButton}
-                cityColor={cityColor}
-                originColor={originColor}
-                originBg={originBg}
-                metaColor={metaColor}
-                bodyColor={bodyColor}
-                panelBg={panelBg}
-                overlayColor={overlayColor}
-                buttonBg={buttonBg}
-                buttonText={buttonText}
+                showImage={style.showCardImage}
+                showCity={style.showCity}
+                showOrigin={style.showOrigin}
+                showNew={style.showNew}
+                showFlights={style.showFlights}
+                showDuration={style.showDuration}
+                showDescription={style.showCardDescription}
+                showPanel={style.showPanel}
+                showInactiveDim={style.showInactiveDim}
+                showButton={style.showButton}
+                cityColor={style.cityColor}
+                originColor={style.originColor}
+                originBg={style.originBg}
+                metaColor={style.metaColor}
+                bodyColor={style.bodyColor}
+                panelBg={style.panelBg}
+                overlayColor={style.overlayColor}
+                buttonBg={style.buttonBg}
+                buttonText={style.buttonText}
                 cardRadiusClass={radiusClass}
                 panelRadiusClass={panelRadiusClass}
               />

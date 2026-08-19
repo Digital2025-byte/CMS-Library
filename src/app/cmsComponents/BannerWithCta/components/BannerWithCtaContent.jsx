@@ -7,25 +7,18 @@ import {
 import BannerWithCtaButton from "./BannerWithCtaButton";
 
 export default function BannerWithCtaContent({
-  title,
-  description,
-  ctaLabel,
-  ctaHref,
-  showTitle = DEFAULT_BANNER_WITH_CTA_STYLE.showTitle,
-  showDescription = DEFAULT_BANNER_WITH_CTA_STYLE.showDescription,
-  showButton = DEFAULT_BANNER_WITH_CTA_STYLE.showButton,
-  titleAlign = DEFAULT_BANNER_WITH_CTA_STYLE.titleAlign,
-  titleColor = DEFAULT_BANNER_WITH_CTA_STYLE.titleColor,
-  descriptionColor = DEFAULT_BANNER_WITH_CTA_STYLE.descriptionColor,
-  buttonBg = DEFAULT_BANNER_WITH_CTA_STYLE.buttonBg,
-  buttonText = DEFAULT_BANNER_WITH_CTA_STYLE.buttonText,
+  content,
+  style = DEFAULT_BANNER_WITH_CTA_STYLE,
 }) {
-  const showHeading = showTitle && title;
-  const showCopy = showDescription && description;
-  const showCta = showButton && ctaLabel;
-  const alignClass = TITLE_ALIGN_CLASS[titleAlign] ?? TITLE_ALIGN_CLASS.left;
-  const titleCss = getThemeColorCss(titleColor, "white");
-  const descriptionCss = getThemeColorCss(descriptionColor, "white");
+  const title = content.title;
+  const description = content.description;
+  const showHeading = style.showTitle && title;
+  const showCopy = style.showDescription && description;
+  const showCta = style.showButton && content.ctaLabel;
+  const alignClass =
+    TITLE_ALIGN_CLASS[style.titleAlign] ?? TITLE_ALIGN_CLASS.left;
+  const titleCss = getThemeColorCss(style.titleColor, "white");
+  const descriptionCss = getThemeColorCss(style.descriptionColor, "white");
 
   if (!showHeading && !showCopy && !showCta) {
     return null;
@@ -55,10 +48,9 @@ export default function BannerWithCtaContent({
 
       {showCta ? (
         <BannerWithCtaButton
-          label={ctaLabel}
-          href={ctaHref}
-          buttonBg={buttonBg}
-          buttonText={buttonText}
+          label={content.ctaLabel}
+          href={content.ctaHref}
+          style={style}
         />
       ) : null}
     </div>

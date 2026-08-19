@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import ServiceCardsSlider from "@/app/cmsComponents/ServiceCardsSlider";
-import ServiceCardsSliderContainer from "@/app/cmsComponents/ServiceCardsSlider/components/ServiceCardsSliderContainer";
+import { ServiceCardsSliderSection } from "@/app/cmsComponents/ServiceCardsSlider";
 import ServiceCardsSliderPropsForm from "@/app/cmsComponents/ServiceCardsSlider/docs/ServiceCardsSliderPropsForm";
 import {
   getServiceCardsSliderEditorContent,
@@ -62,32 +61,13 @@ export default function ServiceCardsSliderExamples({
 
   return (
     <div>
-      <ServiceCardsSliderContainer lang={lang} dir={dir}>
-        <ServiceCardsSlider
-          lang={lang}
-          data={wrapServiceCardsSliderContent(content, lang)}
-          posParams="gb"
-          showTitle={style.showTitle}
-          showDescription={style.showDescription}
-          showItemTitle={style.showItemTitle}
-          showItemDescription={style.showItemDescription}
-          showIcon={style.showIcon}
-          showArrow={style.showArrow}
-          sectionBg={style.sectionBg}
-          sectionPadding={style.sectionPadding}
-          titleAlign={style.titleAlign}
-          titleColor={style.titleColor}
-          descriptionColor={style.descriptionColor}
-          cardBg={style.cardBg}
-          cardRadius={style.cardRadius}
-          cardPadding={style.cardPadding}
-          cardGap={style.cardGap}
-          iconBg={style.iconBg}
-          itemTitleColor={style.itemTitleColor}
-          itemBodyColor={style.itemBodyColor}
-          arrowColor={style.arrowColor}
-        />
-      </ServiceCardsSliderContainer>
+      <ServiceCardsSliderSection
+        lang={lang}
+        dir={dir}
+        data={wrapServiceCardsSliderContent(content, lang)}
+        posParams="gb"
+        style={style}
+      />
 
       <Drawer
         isOpen={drawer.isOpen}

@@ -84,6 +84,44 @@ export const BUTTON_VARIANT_OPTIONS = [
   { value: "outline", label: "Outline" },
 ];
 
+export function resolveSliderStyle(style = {}) {
+  return {
+    ...DEFAULT_SLIDER_STYLE,
+    ...style,
+  };
+}
+
+export function sliderStyleToSettings(style = DEFAULT_SLIDER_STYLE) {
+  return {
+    autoplay: Boolean(style.autoplay),
+    autoplaySpeed: Number(style.autoplaySpeed),
+    fade: Boolean(style.fade),
+    infinite: Boolean(style.infinite),
+    speed: Number(style.speed),
+    cssEase: style.cssEase,
+    pauseOnHover: Boolean(style.pauseOnHover),
+    pauseOnFocus: Boolean(style.pauseOnFocus),
+    waitForAnimate: Boolean(style.waitForAnimate),
+    swipe: Boolean(style.swipe),
+    draggable: Boolean(style.draggable),
+    touchThreshold: Number(style.touchThreshold) || 8,
+    adaptiveHeight: Boolean(style.adaptiveHeight),
+    arrows: style.showArrows !== false,
+    dots: style.showProgress !== false,
+  };
+}
+
+export function sliderStyleToImageOverlay(style = DEFAULT_SLIDER_STYLE) {
+  return {
+    enabled: style.overlayEnabled,
+    color: style.overlayColor,
+    fromOpacity: Number(style.overlayFromOpacity),
+    viaOpacity: Number(style.overlayViaOpacity),
+    to: style.overlayTo,
+    direction: style.overlayDirection,
+  };
+}
+
 export const DEFAULT_SLIDER_STYLE = {
   showSlideText: true,
   showTitleText: true,

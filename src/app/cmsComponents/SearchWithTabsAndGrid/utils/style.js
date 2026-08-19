@@ -67,6 +67,13 @@ export const DEFAULT_SEARCH_GRID_STYLE = {
   dotColor: "primary-2",
 };
 
+export function resolveSearchGridStyle(style = {}) {
+  return {
+    ...DEFAULT_SEARCH_GRID_STYLE,
+    ...style,
+  };
+}
+
 export const SEARCH_GRID_STYLE_RESET_KEYS = {
   layout: [
     "showTitle",

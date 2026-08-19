@@ -30,29 +30,12 @@ export default function DestinationShowcaseBanner({
   onPrev,
   onNext,
   onCardClick,
-  showButton = true,
-  showHeroImage = DEFAULT_DESTINATION_SHOWCASE_STYLE.showHeroImage,
-  showOverlay = DEFAULT_DESTINATION_SHOWCASE_STYLE.showOverlay,
-  showDestinationName = DEFAULT_DESTINATION_SHOWCASE_STYLE.showDestinationName,
-  showDestinationDescription = DEFAULT_DESTINATION_SHOWCASE_STYLE.showDestinationDescription,
-  showCards = DEFAULT_DESTINATION_SHOWCASE_STYLE.showCards,
-  showCardOverlay = DEFAULT_DESTINATION_SHOWCASE_STYLE.showCardOverlay,
-  showArrows = DEFAULT_DESTINATION_SHOWCASE_STYLE.showArrows,
-  showDots = DEFAULT_DESTINATION_SHOWCASE_STYLE.showDots,
-  bannerRadius = DEFAULT_DESTINATION_SHOWCASE_STYLE.bannerRadius,
-  overlayColor = DEFAULT_DESTINATION_SHOWCASE_STYLE.overlayColor,
-  destNameColor = DEFAULT_DESTINATION_SHOWCASE_STYLE.destNameColor,
-  destBodyColor = DEFAULT_DESTINATION_SHOWCASE_STYLE.destBodyColor,
-  cardRadius = DEFAULT_DESTINATION_SHOWCASE_STYLE.cardRadius,
-  cardOverlayColor = DEFAULT_DESTINATION_SHOWCASE_STYLE.cardOverlayColor,
-  buttonBg = DEFAULT_DESTINATION_SHOWCASE_STYLE.buttonBg,
-  buttonText = DEFAULT_DESTINATION_SHOWCASE_STYLE.buttonText,
-  navColor = DEFAULT_DESTINATION_SHOWCASE_STYLE.navColor,
+  style = DEFAULT_DESTINATION_SHOWCASE_STYLE,
 }) {
   if (!current) return null;
 
   const radiusClass =
-    BANNER_RADIUS_CLASS[bannerRadius] ?? BANNER_RADIUS_CLASS.sm;
+    BANNER_RADIUS_CLASS[style.bannerRadius] ?? BANNER_RADIUS_CLASS.sm;
   const heroSrc = current.imageUrl;
 
   return (
@@ -67,7 +50,7 @@ export default function DestinationShowcaseBanner({
             transition={{ duration: 0.3, ease: "circOut", delay: 0.01 }}
             className="absolute inset-0"
           >
-            {showHeroImage && isUsableImageSrc(heroSrc) ? (
+            {style.showHeroImage && isUsableImageSrc(heroSrc) ? (
               <Image
                 src={heroSrc}
                 alt={current.imageAlt || current.name || "Destination"}
@@ -85,8 +68,8 @@ export default function DestinationShowcaseBanner({
             )}
           </motion.div>
         </AnimatePresence>
-        {showOverlay ? (
-          <DestinationShowcaseBlueLayer color={overlayColor} />
+        {style.showOverlay ? (
+          <DestinationShowcaseBlueLayer color={style.overlayColor} />
         ) : null}
       </div>
 
@@ -98,21 +81,16 @@ export default function DestinationShowcaseBanner({
               description={current.description}
               activeIndex={activeIndex}
               direction={direction}
-              showName={showDestinationName}
-              showDescription={showDestinationDescription}
-              nameColor={destNameColor}
-              bodyColor={destBodyColor}
+              style={style}
             />
             <DestinationShowcaseNav
               exploreLabel={exploreLabel}
               exploreHref={current.exploreLink}
-              showButton={showButton}
-              buttonBg={buttonBg}
-              buttonText={buttonText}
+              style={style}
             />
           </div>
 
-          {showCards ? (
+          {style.showCards ? (
             <div className="relative z-20 w-full min-w-0 max-w-full overflow-hidden md:flex md:w-[min(100%,560px)] md:shrink-0 md:items-end md:self-end lg:w-[min(100%,640px)]">
               <DestinationShowcaseCards
                 infiniteList={infiniteList}
@@ -121,9 +99,7 @@ export default function DestinationShowcaseBanner({
                 jumping={jumping}
                 lang={lang}
                 onCardClick={onCardClick}
-                cardRadius={cardRadius}
-                showCardOverlay={showCardOverlay}
-                cardOverlayColor={cardOverlayColor}
+                style={style}
               />
             </div>
           ) : null}
@@ -137,9 +113,7 @@ export default function DestinationShowcaseBanner({
             onPrev={onPrev}
             onNext={onNext}
             onDotClick={onCardClick}
-            showArrows={showArrows}
-            showDots={showDots}
-            navColor={navColor}
+            style={style}
           />
         </div>
       </div>

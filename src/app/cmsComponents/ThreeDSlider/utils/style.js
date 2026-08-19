@@ -48,6 +48,13 @@ export const DRAG_SPEED_VALUE = {
   snappy: -0.25,
 };
 
+export function resolveThreeDSliderStyle(style = {}) {
+  return {
+    ...DEFAULT_THREE_D_SLIDER_STYLE,
+    ...style,
+  };
+}
+
 export const DEFAULT_THREE_D_SLIDER_STYLE = {
   showDots: true,
   showCardImage: true,

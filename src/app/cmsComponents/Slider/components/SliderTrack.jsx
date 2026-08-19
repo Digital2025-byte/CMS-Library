@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 import SliderSlide from "./SliderSlide";
 import SliderArrowNav from "./SliderArrow";
 import SliderProgressNav from "./SliderProgressNav";
-import { DEFAULT_THEME, resolveTheme } from "../utils/themes";
+import { resolveTheme } from "../utils/themes";
 
 const ReactSlick = dynamic(() => import("react-slick"), { ssr: false });
 
@@ -16,24 +16,14 @@ export default function SliderTrack({
   posParams = "gb",
   cId,
   sliderKey,
+  style,
   showArrows = true,
-  showSlideText = true,
-  showTitleText = true,
-  showSubtitleText = true,
-  showDescriptionText = true,
-  showButton = true,
-  theme = DEFAULT_THEME,
   imageOverlay,
-  titleAlign = "left",
-  titleColor = "white",
-  subtitleColor = "white",
-  descriptionColor = "white",
-  buttonVariant = "primary",
 }) {
   const sliderRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-  const colors = resolveTheme(theme);
+  const colors = resolveTheme(style.theme);
 
   if (!slides.length) {
     return null;
@@ -140,16 +130,7 @@ export default function SliderTrack({
               imageOverlay={imageOverlay}
               isActive={index === activeIndex}
               isPaused={isPaused}
-              showSlideText={showSlideText}
-              showTitleText={showTitleText}
-              showSubtitleText={showSubtitleText}
-              showDescriptionText={showDescriptionText}
-              showButton={showButton}
-              titleAlign={titleAlign}
-              titleColor={titleColor}
-              subtitleColor={subtitleColor}
-              descriptionColor={descriptionColor}
-              buttonVariant={buttonVariant}
+              style={style}
               adaptiveHeight={useAdaptiveHeight}
             />
           </div>
@@ -160,7 +141,7 @@ export default function SliderTrack({
         <SliderArrowNav
           onPrev={() => sliderRef.current?.slickPrev()}
           onNext={() => sliderRef.current?.slickNext()}
-          theme={theme}
+          theme={style.theme}
         />
       ) : null}
 
@@ -172,7 +153,7 @@ export default function SliderTrack({
           isPaused={isPaused}
           onTogglePause={togglePause}
           onGoTo={(index) => sliderRef.current?.slickGoTo?.(index)}
-          theme={theme}
+          theme={style.theme}
         />
       ) : null}
     </div>

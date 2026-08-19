@@ -66,17 +66,7 @@ export default function CarouselSlider({
   activeIndex = 0,
   slidesToShow = 2,
   onKeyDown,
-  showCardImage,
-  showCardTitle,
-  showCardDescription,
-  showButton,
-  cardBg,
-  cardRadius,
-  cardTitleColor,
-  cardBodyColor,
-  buttonBg,
-  buttonText,
-  buttonOnFill,
+  style,
 }) {
   const isRtl = lang === "ar";
   const fullyVisible = Math.max(1, Math.floor(slidesToShow));
@@ -103,17 +93,7 @@ export default function CarouselSlider({
                     card={card}
                     lang={lang}
                     cId={cId}
-                    showCardImage={showCardImage}
-                    showCardTitle={showCardTitle}
-                    showCardDescription={showCardDescription}
-                    showButton={showButton}
-                    cardBg={cardBg}
-                    cardRadius={cardRadius}
-                    cardTitleColor={cardTitleColor}
-                    cardBodyColor={cardBodyColor}
-                    buttonBg={buttonBg}
-                    buttonText={buttonText}
-                    buttonOnFill={buttonOnFill}
+                    style={style}
                   />
                 </div>
               </div>

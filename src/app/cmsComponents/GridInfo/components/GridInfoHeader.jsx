@@ -8,27 +8,24 @@ import {
 export default function GridInfoHeader({
   title,
   description,
-  showTitle = DEFAULT_GRID_INFO_STYLE.showTitle,
-  showDescription = DEFAULT_GRID_INFO_STYLE.showDescription,
-  titleAlign = DEFAULT_GRID_INFO_STYLE.titleAlign,
-  titleColor = DEFAULT_GRID_INFO_STYLE.titleColor,
-  descriptionColor = DEFAULT_GRID_INFO_STYLE.descriptionColor,
+  style = DEFAULT_GRID_INFO_STYLE,
 }) {
-  const showHeading = showTitle && title;
-  const showCopy = showDescription && description;
+  const showHeading = style.showTitle && title;
+  const showCopy = style.showDescription && description;
 
   if (!showHeading && !showCopy) {
     return null;
   }
 
-  const alignClass = TITLE_ALIGN_CLASS[titleAlign] ?? TITLE_ALIGN_CLASS.left;
+  const alignClass =
+    TITLE_ALIGN_CLASS[style.titleAlign] ?? TITLE_ALIGN_CLASS.left;
 
   return (
     <div className={`mb-4 ${alignClass}`}>
       {showHeading ? (
         <h2
           className={`${typography.sectionTitle} mb-4 font-bold`}
-          style={{ color: getThemeColorCss(titleColor, "primary-1") }}
+          style={{ color: getThemeColorCss(style.titleColor, "primary-1") }}
         >
           {title}
         </h2>
@@ -36,7 +33,9 @@ export default function GridInfoHeader({
       {showCopy ? (
         <p
           className={typography.sectionDescription}
-          style={{ color: getThemeColorCss(descriptionColor, "primary-1") }}
+          style={{
+            color: getThemeColorCss(style.descriptionColor, "primary-1"),
+          }}
         >
           {description}
         </p>

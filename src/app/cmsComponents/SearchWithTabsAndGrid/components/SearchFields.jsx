@@ -6,11 +6,10 @@ export default function SearchFields({
   placeholder = "",
   searchQuery = "",
   onSearchQueryChange,
-  searchBg = DEFAULT_SEARCH_GRID_STYLE.searchBg,
-  searchText = DEFAULT_SEARCH_GRID_STYLE.searchText,
+  style = DEFAULT_SEARCH_GRID_STYLE,
 }) {
-  const fillCss = getThemeColorCss(searchBg, "white");
-  const textCss = getThemeColorCss(searchText, "white");
+  const fillCss = getThemeColorCss(style.searchBg, "white");
+  const textCss = getThemeColorCss(style.searchText, "white");
 
   return (
     <div className="w-full">

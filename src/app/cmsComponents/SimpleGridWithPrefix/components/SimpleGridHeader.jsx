@@ -8,27 +8,24 @@ import {
 export default function SimpleGridHeader({
   title,
   description,
-  showTitle = DEFAULT_SIMPLE_GRID_STYLE.showTitle,
-  showDescription = DEFAULT_SIMPLE_GRID_STYLE.showDescription,
-  titleAlign = DEFAULT_SIMPLE_GRID_STYLE.titleAlign,
-  titleColor = DEFAULT_SIMPLE_GRID_STYLE.titleColor,
-  descriptionColor = DEFAULT_SIMPLE_GRID_STYLE.descriptionColor,
+  style = DEFAULT_SIMPLE_GRID_STYLE,
 }) {
-  const showHeading = showTitle && title;
-  const showCopy = showDescription && description;
+  const showHeading = style.showTitle && title;
+  const showCopy = style.showDescription && description;
 
   if (!showHeading && !showCopy) {
     return null;
   }
 
-  const alignClass = TITLE_ALIGN_CLASS[titleAlign] ?? TITLE_ALIGN_CLASS.left;
+  const alignClass =
+    TITLE_ALIGN_CLASS[style.titleAlign] ?? TITLE_ALIGN_CLASS.left;
 
   return (
     <div className={`mb-4 ${alignClass}`}>
       {showHeading ? (
         <h2
           className={`${typography.sectionTitle} mb-2 font-bold`}
-          style={{ color: getThemeColorCss(titleColor, "primary-1") }}
+          style={{ color: getThemeColorCss(style.titleColor, "primary-1") }}
         >
           {title}
         </h2>
@@ -36,7 +33,9 @@ export default function SimpleGridHeader({
       {showCopy ? (
         <p
           className={`${typography.sectionDescription} px-1`}
-          style={{ color: getThemeColorCss(descriptionColor, "primary-1") }}
+          style={{
+            color: getThemeColorCss(style.descriptionColor, "primary-1"),
+          }}
         >
           {description}
         </p>

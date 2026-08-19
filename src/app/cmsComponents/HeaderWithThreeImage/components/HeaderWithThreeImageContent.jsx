@@ -8,22 +8,20 @@ import {
 
 export default function HeaderWithThreeImageContent({
   lang = "en",
-  title,
-  description,
-  showTitle = DEFAULT_HEADER_WITH_THREE_IMAGE_STYLE.showTitle,
-  showDescription = DEFAULT_HEADER_WITH_THREE_IMAGE_STYLE.showDescription,
-  titleAlign = DEFAULT_HEADER_WITH_THREE_IMAGE_STYLE.titleAlign,
-  titleColor = DEFAULT_HEADER_WITH_THREE_IMAGE_STYLE.titleColor,
-  descriptionColor = DEFAULT_HEADER_WITH_THREE_IMAGE_STYLE.descriptionColor,
+  content,
+  style = DEFAULT_HEADER_WITH_THREE_IMAGE_STYLE,
 }) {
-  const showHeading = showTitle && title;
-  const showCopy = showDescription && description;
+  const title = content.title;
+  const description = content.description;
+  const showHeading = style.showTitle && title;
+  const showCopy = style.showDescription && description;
 
   if (!showHeading && !showCopy) {
     return null;
   }
 
-  const alignClass = TITLE_ALIGN_CLASS[titleAlign] ?? TITLE_ALIGN_CLASS.left;
+  const alignClass =
+    TITLE_ALIGN_CLASS[style.titleAlign] ?? TITLE_ALIGN_CLASS.left;
 
   return (
     <PageContentContainer
@@ -34,7 +32,7 @@ export default function HeaderWithThreeImageContent({
         {showHeading ? (
           <h1
             className={`${typography.pageTitle} mt-2 font-semibold`}
-            style={{ color: getThemeColorCss(titleColor, "50") }}
+            style={{ color: getThemeColorCss(style.titleColor, "50") }}
           >
             {title}
           </h1>
@@ -42,7 +40,7 @@ export default function HeaderWithThreeImageContent({
         {showCopy ? (
           <p
             className={`${typography.sectionDescription} mt-2 max-w-sm text-justify leading-relaxed`}
-            style={{ color: getThemeColorCss(descriptionColor, "50") }}
+            style={{ color: getThemeColorCss(style.descriptionColor, "50") }}
           >
             {description}
           </p>

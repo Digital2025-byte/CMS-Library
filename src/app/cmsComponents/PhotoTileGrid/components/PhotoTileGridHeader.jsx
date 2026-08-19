@@ -8,15 +8,14 @@ import {
 export default function PhotoTileGridHeader({
   lang = "en",
   title,
-  showTitle = DEFAULT_PHOTO_TILE_GRID_STYLE.showTitle,
-  titleAlign = DEFAULT_PHOTO_TILE_GRID_STYLE.titleAlign,
-  titleColor = DEFAULT_PHOTO_TILE_GRID_STYLE.titleColor,
+  style = DEFAULT_PHOTO_TILE_GRID_STYLE,
 }) {
-  if (!showTitle || !title) {
+  if (!style.showTitle || !title) {
     return null;
   }
 
-  const alignClass = TITLE_ALIGN_CLASS[titleAlign] ?? TITLE_ALIGN_CLASS.left;
+  const alignClass =
+    TITLE_ALIGN_CLASS[style.titleAlign] ?? TITLE_ALIGN_CLASS.left;
 
   return (
     <div
@@ -25,7 +24,7 @@ export default function PhotoTileGridHeader({
     >
       <h2
         className={`${typography.sectionTitle} w-full font-bold`}
-        style={{ color: getThemeColorCss(titleColor, "white") }}
+        style={{ color: getThemeColorCss(style.titleColor, "white") }}
       >
         {title}
       </h2>

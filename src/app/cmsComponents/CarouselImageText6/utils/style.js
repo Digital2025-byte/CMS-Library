@@ -13,6 +13,13 @@ export const TITLE_ALIGN_CLASS = {
   center: "text-center",
 };
 
+export function resolveCarouselImageTextStyle(style = {}) {
+  return {
+    ...DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE,
+    ...style,
+  };
+}
+
 export const DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE = {
   showTitle: true,
   showSectionBg: true,

@@ -6,17 +6,15 @@ export default function GridInfoCityFilter({
   cities,
   selectedCity,
   onCityChange,
-  chipColor = DEFAULT_GRID_INFO_STYLE.chipColor,
-  chipActiveText = DEFAULT_GRID_INFO_STYLE.chipActiveText,
-  chipIdleBg = DEFAULT_GRID_INFO_STYLE.chipIdleBg,
+  style = DEFAULT_GRID_INFO_STYLE,
 }) {
   if (!Array.isArray(cities) || cities.length <= 1) {
     return null;
   }
 
-  const brandCss = getThemeColorCss(chipColor, "primary-1");
-  const activeTextCss = getThemeColorCss(chipActiveText, "white");
-  const idleBgCss = getThemeColorCss(chipIdleBg, "white");
+  const brandCss = getThemeColorCss(style.chipColor, "primary-1");
+  const activeTextCss = getThemeColorCss(style.chipActiveText, "white");
+  const idleBgCss = getThemeColorCss(style.chipIdleBg, "white");
 
   return (
     <div className="mb-6 flex flex-wrap gap-3">

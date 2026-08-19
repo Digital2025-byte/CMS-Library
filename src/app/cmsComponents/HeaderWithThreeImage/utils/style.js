@@ -19,6 +19,13 @@ export const DEFAULT_HEADER_WITH_THREE_IMAGE_STYLE = {
   overlayColor: "main",
 };
 
+export function resolveHeaderWithThreeImageStyle(style = {}) {
+  return {
+    ...DEFAULT_HEADER_WITH_THREE_IMAGE_STYLE,
+    ...style,
+  };
+}
+
 export const HEADER_WITH_THREE_IMAGE_STYLE_RESET_KEYS = {
   layout: ["showTitle", "showDescription"],
   title: ["titleAlign", "titleColor", "descriptionColor"],

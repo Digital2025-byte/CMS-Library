@@ -13,18 +13,13 @@ export default function DestinationShowcaseHeader({
   viewAllLabel,
   viewAllHref,
   lang = "en",
-  showTitle = DEFAULT_DESTINATION_SHOWCASE_STYLE.showTitle,
-  showDescription = DEFAULT_DESTINATION_SHOWCASE_STYLE.showDescription,
-  showViewAll = DEFAULT_DESTINATION_SHOWCASE_STYLE.showViewAll,
-  titleAlign = DEFAULT_DESTINATION_SHOWCASE_STYLE.titleAlign,
-  titleColor = DEFAULT_DESTINATION_SHOWCASE_STYLE.titleColor,
-  descriptionColor = DEFAULT_DESTINATION_SHOWCASE_STYLE.descriptionColor,
-  viewAllColor = DEFAULT_DESTINATION_SHOWCASE_STYLE.viewAllColor,
+  style = DEFAULT_DESTINATION_SHOWCASE_STYLE,
 }) {
-  const showHeading = showTitle && title;
-  const showBody = showDescription && description;
-  const showViewAllLink = showViewAll && viewAllLabel && viewAllHref;
-  const alignClass = TITLE_ALIGN_CLASS[titleAlign] ?? TITLE_ALIGN_CLASS.left;
+  const showHeading = style.showTitle && title;
+  const showBody = style.showDescription && description;
+  const showViewAllLink = style.showViewAll && viewAllLabel && viewAllHref;
+  const alignClass =
+    TITLE_ALIGN_CLASS[style.titleAlign] ?? TITLE_ALIGN_CLASS.left;
 
   if (!showHeading && !showBody && !showViewAllLink) return null;
 
@@ -33,7 +28,7 @@ export default function DestinationShowcaseHeader({
       {showHeading ? (
         <h2
           className={`${typography.sectionTitle} font-semibold`}
-          style={{ color: getThemeColorCss(titleColor, "primary-1") }}
+          style={{ color: getThemeColorCss(style.titleColor, "primary-1") }}
         >
           {title}
         </h2>
@@ -44,9 +39,9 @@ export default function DestinationShowcaseHeader({
           {showBody ? (
             <p
               className={`${typography.sectionDescription} max-w-2xl ${
-                titleAlign === "center" ? "mx-auto sm:mx-0" : ""
+                style.titleAlign === "center" ? "mx-auto sm:mx-0" : ""
               }`}
-              style={{ color: getThemeColorCss(descriptionColor, "700") }}
+              style={{ color: getThemeColorCss(style.descriptionColor, "700") }}
             >
               {description}
             </p>
@@ -58,7 +53,7 @@ export default function DestinationShowcaseHeader({
             <Link
               href={viewAllHref}
               className={`${typography.button} inline-flex shrink-0 items-center gap-2 font-semibold hover:opacity-80`}
-              style={{ color: getThemeColorCss(viewAllColor, "secondary-2") }}
+              style={{ color: getThemeColorCss(style.viewAllColor, "secondary-2") }}
             >
               {viewAllLabel}
               {lang === "ar" ? (

@@ -23,23 +23,20 @@ export default function DestinationShowcaseContent({
   description,
   activeIndex,
   direction,
-  showName = DEFAULT_DESTINATION_SHOWCASE_STYLE.showDestinationName,
-  showDescription = DEFAULT_DESTINATION_SHOWCASE_STYLE.showDestinationDescription,
-  nameColor = DEFAULT_DESTINATION_SHOWCASE_STYLE.destNameColor,
-  bodyColor = DEFAULT_DESTINATION_SHOWCASE_STYLE.destBodyColor,
+  style = DEFAULT_DESTINATION_SHOWCASE_STYLE,
 }) {
   const slideDirection = direction === 0 ? 1 : direction;
-  const nameCss = getThemeColorCss(nameColor, "50");
-  const bodyCss = getThemeColorCss(bodyColor, "50");
+  const nameCss = getThemeColorCss(style.destNameColor, "50");
+  const bodyCss = getThemeColorCss(style.destBodyColor, "50");
 
-  if (!showName && !(showDescription && description)) {
+  if (!style.showDestinationName && !(style.showDestinationDescription && description)) {
     return null;
   }
 
   return (
     <div className="flex min-h-0 flex-1 flex-col justify-center overflow-hidden">
       <div className="relative z-20">
-        {showName ? (
+        {style.showDestinationName ? (
           <div className="relative mb-4 overflow-hidden md:mb-6">
             <h3
               className="invisible text-4xl font-bold sm:text-4xl md:text-4xl lg:text-5xl"
@@ -73,7 +70,7 @@ export default function DestinationShowcaseContent({
           </div>
         ) : null}
 
-        {showDescription && description ? (
+        {style.showDestinationDescription && description ? (
           <p
             className={`${typography.body} mb-6 max-w-lg md:mb-6`}
             style={{

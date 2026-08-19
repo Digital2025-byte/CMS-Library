@@ -3,23 +3,16 @@ import PageContentContainer from "@/components/layout/PageContentContainer";
 import { getThemeColorCss } from "@/styles/themeColors";
 import { TITLE_ALIGN_CLASS } from "../utils/style";
 
-export default function OppositeScrollHeader({
-  title,
-  description,
-  align = "center",
-  titleColor = "white",
-  descriptionColor = "white",
-  showTitle = true,
-  showDescription = true,
-}) {
-  const showHeading = showTitle && title;
-  const showBody = showDescription && description;
+export default function OppositeScrollHeader({ title, description, style }) {
+  const showHeading = style.showTitleDescription && title;
+  const showBody = style.showDescription && description;
 
   if (!showHeading && !showBody) {
     return null;
   }
 
-  const alignClass = TITLE_ALIGN_CLASS[align] ?? TITLE_ALIGN_CLASS.center;
+  const alignClass =
+    TITLE_ALIGN_CLASS[style.titleAlign] ?? TITLE_ALIGN_CLASS.center;
 
   return (
     <PageContentContainer
@@ -28,7 +21,7 @@ export default function OppositeScrollHeader({
       {showHeading ? (
         <h2
           className={`${typography.sectionTitle} font-bold`}
-          style={{ color: getThemeColorCss(titleColor, "white") }}
+          style={{ color: getThemeColorCss(style.titleColor, "white") }}
         >
           {title}
         </h2>
@@ -36,9 +29,9 @@ export default function OppositeScrollHeader({
       {showBody ? (
         <p
           className={`${typography.sectionDescription} mt-1 font-normal ${
-            align === "center" ? "mx-auto max-w-3xl" : "max-w-3xl"
+            style.titleAlign === "center" ? "mx-auto max-w-3xl" : "max-w-3xl"
           }`}
-          style={{ color: getThemeColorCss(descriptionColor, "white") }}
+          style={{ color: getThemeColorCss(style.descriptionColor, "white") }}
         >
           {description}
         </p>

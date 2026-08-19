@@ -65,18 +65,7 @@ export default function FillImageCarouselSlider({
   cId,
   onKeyDown,
   edgePad = 16,
-  showCardImage,
-  showCardTitle,
-  showCardDescription,
-  showOverlay,
-  showButton,
-  cardRadius,
-  cardTitleColor,
-  cardBodyColor,
-  overlayColor,
-  buttonBg,
-  buttonText,
-  buttonOnFill,
+  style,
 }) {
   const isRtl = lang === "ar";
 
@@ -95,18 +84,7 @@ export default function FillImageCarouselSlider({
                 card={card}
                 lang={lang}
                 cId={cId}
-                showCardImage={showCardImage}
-                showCardTitle={showCardTitle}
-                showCardDescription={showCardDescription}
-                showOverlay={showOverlay}
-                showButton={showButton}
-                cardRadius={cardRadius}
-                cardTitleColor={cardTitleColor}
-                cardBodyColor={cardBodyColor}
-                overlayColor={overlayColor}
-                buttonBg={buttonBg}
-                buttonText={buttonText}
-                buttonOnFill={buttonOnFill}
+                style={style}
               />
             </div>
           ))}

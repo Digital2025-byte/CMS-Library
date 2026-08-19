@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import HeaderWithCityInfo from "@/app/cmsComponents/HeaderWithCityInfo";
-import HeaderWithCityInfoContainer from "@/app/cmsComponents/HeaderWithCityInfo/components/HeaderWithCityInfoContainer";
+import { HeaderWithCityInfoSection } from "@/app/cmsComponents/HeaderWithCityInfo";
 import HeaderWithCityInfoPropsForm from "@/app/cmsComponents/HeaderWithCityInfo/docs/HeaderWithCityInfoPropsForm";
 import {
   getHeaderWithCityInfoEditorContent,
@@ -36,31 +35,12 @@ export default function HeaderWithCityInfoExamples({
 
   return (
     <div>
-      <HeaderWithCityInfoContainer lang={lang} dir={dir}>
-        <HeaderWithCityInfo
-          lang={lang}
-          data={wrapHeaderWithCityInfoContent(content, lang)}
-          showTitle={style.showTitle}
-          showDescription={style.showDescription}
-          showCityCard={style.showCityCard}
-          showHeroImage={style.showHeroImage}
-          showOverlay={style.showOverlay}
-          showCardHeading={style.showCardHeading}
-          showCardDescription={style.showCardDescription}
-          showTiles={style.showTiles}
-          showNextFlight={style.showNextFlight}
-          titleAlign={style.titleAlign}
-          titleColor={style.titleColor}
-          descriptionColor={style.descriptionColor}
-          overlayColor={style.overlayColor}
-          cardRadius={style.cardRadius}
-          cardHeadingColor={style.cardHeadingColor}
-          cardBodyColor={style.cardBodyColor}
-          tileLabelColor={style.tileLabelColor}
-          tileValueColor={style.tileValueColor}
-          nextFlightColor={style.nextFlightColor}
-        />
-      </HeaderWithCityInfoContainer>
+      <HeaderWithCityInfoSection
+        lang={lang}
+        dir={dir}
+        data={wrapHeaderWithCityInfoContent(content, lang)}
+        style={style}
+      />
 
       <Drawer
         isOpen={drawer.isOpen}

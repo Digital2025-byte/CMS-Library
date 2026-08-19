@@ -72,6 +72,13 @@ export const DEFAULT_DESTINATION_SHOWCASE_STYLE = {
   navColor: "50",
 };
 
+export function resolveDestinationShowcaseStyle(style = {}) {
+  return {
+    ...DEFAULT_DESTINATION_SHOWCASE_STYLE,
+    ...style,
+  };
+}
+
 export const DESTINATION_SHOWCASE_STYLE_RESET_KEYS = {
   layout: [
     "showTitle",

@@ -58,6 +58,13 @@ export const DEFAULT_ON_BOARD_IMAGE_RING_STYLE = {
   overlayColor: "foreground",
 };
 
+export function resolveOnBoardImageRingStyle(style = {}) {
+  return {
+    ...DEFAULT_ON_BOARD_IMAGE_RING_STYLE,
+    ...style,
+  };
+}
+
 export const ON_BOARD_IMAGE_RING_STYLE_RESET_KEYS = {
   layout: [
     "showTitle",

@@ -9,28 +9,15 @@ export default function PhotoTileGridCards({
   lang = "en",
   destinations = [],
   cId,
-  showCardImage = DEFAULT_PHOTO_TILE_GRID_STYLE.showCardImage,
-  showCity = DEFAULT_PHOTO_TILE_GRID_STYLE.showCity,
-  showIata = DEFAULT_PHOTO_TILE_GRID_STYLE.showIata,
-  showCountry = DEFAULT_PHOTO_TILE_GRID_STYLE.showCountry,
-  showOverlay = DEFAULT_PHOTO_TILE_GRID_STYLE.showOverlay,
-  showHoverDim = DEFAULT_PHOTO_TILE_GRID_STYLE.showHoverDim,
-  showButton = DEFAULT_PHOTO_TILE_GRID_STYLE.showButton,
-  cardRadius = DEFAULT_PHOTO_TILE_GRID_STYLE.cardRadius,
-  cardGap = DEFAULT_PHOTO_TILE_GRID_STYLE.cardGap,
-  cityColor = DEFAULT_PHOTO_TILE_GRID_STYLE.cityColor,
-  countryColor = DEFAULT_PHOTO_TILE_GRID_STYLE.countryColor,
-  overlayColor = DEFAULT_PHOTO_TILE_GRID_STYLE.overlayColor,
-  buttonBg = DEFAULT_PHOTO_TILE_GRID_STYLE.buttonBg,
-  buttonText = DEFAULT_PHOTO_TILE_GRID_STYLE.buttonText,
+  style = DEFAULT_PHOTO_TILE_GRID_STYLE,
 }) {
   if (!destinations.length) {
     return null;
   }
 
-  const gapClass = CARD_GAP_CLASS[cardGap] ?? CARD_GAP_CLASS.default;
+  const gapClass = CARD_GAP_CLASS[style.cardGap] ?? CARD_GAP_CLASS.default;
   const radiusClass =
-    CARD_RADIUS_CLASS[cardRadius] ?? CARD_RADIUS_CLASS.lg;
+    CARD_RADIUS_CLASS[style.cardRadius] ?? CARD_RADIUS_CLASS.lg;
 
   return (
     <div className={`mt-4 grid w-full grid-cols-1 py-4 sm:grid-cols-2 lg:grid-cols-3 ${gapClass}`}>
@@ -46,19 +33,19 @@ export default function PhotoTileGridCards({
           imageAlt={card.imageAlt}
           lang={lang}
           cId={cId}
-          showImage={showCardImage}
-          showCity={showCity}
-          showIata={showIata}
-          showCountry={showCountry}
-          showButton={showButton}
-          gradient={showOverlay}
-          showHoverDim={showHoverDim}
+          showImage={style.showCardImage}
+          showCity={style.showCity}
+          showIata={style.showIata}
+          showCountry={style.showCountry}
+          showButton={style.showButton}
+          gradient={style.showOverlay}
+          showHoverDim={style.showHoverDim}
           cardRadiusClass={`${radiusClass} shadow-lg`}
-          cityColor={cityColor}
-          countryColor={countryColor}
-          overlayColor={overlayColor}
-          buttonBg={buttonBg}
-          buttonText={buttonText}
+          cityColor={style.cityColor}
+          countryColor={style.countryColor}
+          overlayColor={style.overlayColor}
+          buttonBg={style.buttonBg}
+          buttonText={style.buttonText}
         />
       ))}
     </div>

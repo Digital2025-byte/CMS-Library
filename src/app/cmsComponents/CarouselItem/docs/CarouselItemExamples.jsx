@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import CarouselItem from "@/app/cmsComponents/CarouselItem";
-import CarouselItemContainer from "@/app/cmsComponents/CarouselItem/components/CarouselItemContainer";
+import { CarouselItemSection } from "@/app/cmsComponents/CarouselItem";
 import CarouselItemPropsForm from "@/app/cmsComponents/CarouselItem/docs/CarouselItemPropsForm";
 import {
   getCarouselItemEditorContent,
@@ -50,36 +49,13 @@ export default function CarouselItemExamples({
 
   return (
     <div>
-      <CarouselItemContainer lang={lang} dir={dir}>
-        <CarouselItem
-          lang={lang}
-          data={wrapCarouselItemContent(content, lang)}
-          posParams="gb"
-          showTitle={style.showTitle}
-          showArrows={style.showArrows}
-          showDots={style.showDots}
-          showSectionBg={style.showSectionBg}
-          showCardImage={style.showCardImage}
-          showCity={style.showCity}
-          showIata={style.showIata}
-          showCountry={style.showCountry}
-          showOverlay={style.showOverlay}
-          showHoverDim={style.showHoverDim}
-          showButton={style.showButton}
-          sectionBg={style.sectionBg}
-          sectionPadding={style.sectionPadding}
-          titleAlign={style.titleAlign}
-          titleColor={style.titleColor}
-          cardRadius={style.cardRadius}
-          cityColor={style.cityColor}
-          countryColor={style.countryColor}
-          overlayColor={style.overlayColor}
-          buttonBg={style.buttonBg}
-          buttonText={style.buttonText}
-          navColor={style.navColor}
-          dotColor={style.dotColor}
-        />
-      </CarouselItemContainer>
+      <CarouselItemSection
+        lang={lang}
+        dir={dir}
+        data={wrapCarouselItemContent(content, lang)}
+        posParams="gb"
+        style={style}
+      />
 
       <Drawer
         isOpen={drawer.isOpen}

@@ -65,6 +65,13 @@ export const DEFAULT_TABBED_CARDS_STYLE = {
   bodyColor: "600",
 };
 
+export function resolveTabbedCardsStyle(style = {}) {
+  return {
+    ...DEFAULT_TABBED_CARDS_STYLE,
+    ...style,
+  };
+}
+
 export const TABBED_CARDS_STYLE_RESET_KEYS = {
   layout: [
     "showTitle",

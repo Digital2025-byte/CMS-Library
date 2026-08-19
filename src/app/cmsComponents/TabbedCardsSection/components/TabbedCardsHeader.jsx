@@ -8,20 +8,17 @@ import {
 export default function TabbedCardsHeader({
   title,
   subtitle,
-  showTitle = DEFAULT_TABBED_CARDS_STYLE.showTitle,
-  showDescription = DEFAULT_TABBED_CARDS_STYLE.showDescription,
-  titleAlign = DEFAULT_TABBED_CARDS_STYLE.titleAlign,
-  titleColor = DEFAULT_TABBED_CARDS_STYLE.titleColor,
-  descriptionColor = DEFAULT_TABBED_CARDS_STYLE.descriptionColor,
+  style = DEFAULT_TABBED_CARDS_STYLE,
 }) {
-  const showHeading = showTitle && title;
-  const showCopy = showDescription && subtitle;
+  const showHeading = style.showTitle && title;
+  const showCopy = style.showDescription && subtitle;
 
   if (!showHeading && !showCopy) {
     return null;
   }
 
-  const alignClass = TITLE_ALIGN_CLASS[titleAlign] ?? TITLE_ALIGN_CLASS.center;
+  const alignClass =
+    TITLE_ALIGN_CLASS[style.titleAlign] ?? TITLE_ALIGN_CLASS.center;
 
   return (
     <div className={`mb-5 flex flex-col justify-center ${alignClass}`}>
@@ -29,7 +26,7 @@ export default function TabbedCardsHeader({
         {showHeading ? (
           <h2
             className={`${typography.sectionTitle} font-semibold wrap-break-word`}
-            style={{ color: getThemeColorCss(titleColor, "primary-1") }}
+            style={{ color: getThemeColorCss(style.titleColor, "primary-1") }}
           >
             {title}
           </h2>
@@ -37,7 +34,9 @@ export default function TabbedCardsHeader({
         {showCopy ? (
           <p
             className={`${typography.sectionDescription} mt-2 wrap-break-word`}
-            style={{ color: getThemeColorCss(descriptionColor, "primary-1") }}
+            style={{
+              color: getThemeColorCss(style.descriptionColor, "primary-1"),
+            }}
           >
             {subtitle}
           </p>

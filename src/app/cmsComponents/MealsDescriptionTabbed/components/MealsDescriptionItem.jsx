@@ -6,30 +6,20 @@ export default function MealsDescriptionItem({
   item,
   striped = false,
   titleColor = DEFAULT_MEALS_TABBED_STYLE.itemTitleColor,
-  accordionStyle = {},
+  style = DEFAULT_MEALS_TABBED_STYLE,
 }) {
-  const showTitle =
-    accordionStyle.showItemTitle !== false && Boolean(item?.title);
+  const showTitle = style.showItemTitle !== false && Boolean(item?.title);
   const showDescription =
-    accordionStyle.showItemDescription !== false && Boolean(item?.description);
+    style.showItemDescription !== false && Boolean(item?.description);
 
   if (!showTitle && !showDescription) {
     return null;
   }
 
-  const stripeCss = getThemeColorCss(
-    accordionStyle.stripeColor || DEFAULT_MEALS_TABBED_STYLE.stripeColor,
-    "primary-2"
-  );
-  const itemBgCss = getThemeColorCss(
-    accordionStyle.itemBg || DEFAULT_MEALS_TABBED_STYLE.itemBg,
-    "white"
-  );
+  const stripeCss = getThemeColorCss(style.stripeColor, "primary-2");
+  const itemBgCss = getThemeColorCss(style.itemBg, "white");
   const titleCss = getThemeColorCss(titleColor, "primary-1");
-  const bodyCss = getThemeColorCss(
-    accordionStyle.itemBodyColor || DEFAULT_MEALS_TABBED_STYLE.itemBodyColor,
-    "600"
-  );
+  const bodyCss = getThemeColorCss(style.itemBodyColor, "600");
 
   return (
     <div

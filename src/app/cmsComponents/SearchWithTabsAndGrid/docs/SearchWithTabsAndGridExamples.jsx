@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import SearchWithTabsAndGrid from "@/app/cmsComponents/SearchWithTabsAndGrid";
+import { SearchWithTabsAndGridSection } from "@/app/cmsComponents/SearchWithTabsAndGrid";
 import SearchWithTabsAndGridPropsForm from "@/app/cmsComponents/SearchWithTabsAndGrid/docs/SearchWithTabsAndGridPropsForm";
 import {
   getSearchWithTabsAndGridEditorContent,
@@ -22,7 +22,7 @@ export default function SearchWithTabsAndGridExamples({
   ctx,
   name = "SearchWithTabsAndGrid",
 }) {
-  const { lang, searchWithTabsAndGridData } = ctx;
+  const { lang, dir, searchWithTabsAndGridData } = ctx;
   const drawer = useDrawer();
   const [style, setStyle] = useState(DEFAULT_SEARCH_GRID_STYLE);
   const [content, setContent] = useState(() =>
@@ -35,40 +35,12 @@ export default function SearchWithTabsAndGridExamples({
 
   return (
     <div>
-      <SearchWithTabsAndGrid
+      <SearchWithTabsAndGridSection
         lang={lang}
+        dir={dir}
         data={wrapSearchWithTabsAndGridContent(content, lang)}
+        style={style}
         posParams="gb"
-        showTitle={style.showTitle}
-        showSearch={style.showSearch}
-        showTabs={style.showTabs}
-        showSectionBg={style.showSectionBg}
-        showCardImage={style.showCardImage}
-        showCity={style.showCity}
-        showName={style.showName}
-        showTag={style.showTag}
-        showOverlay={style.showOverlay}
-        showButtons={style.showButtons}
-        showArrows={style.showArrows}
-        showDots={style.showDots}
-        sectionBg={style.sectionBg}
-        sectionPadding={style.sectionPadding}
-        titleAlign={style.titleAlign}
-        titleColor={style.titleColor}
-        searchBg={style.searchBg}
-        searchText={style.searchText}
-        chipColor={style.chipColor}
-        chipActiveText={style.chipActiveText}
-        cardRadius={style.cardRadius}
-        overlayColor={style.overlayColor}
-        cityColor={style.cityColor}
-        nameColor={style.nameColor}
-        tagColor={style.tagColor}
-        primaryBg={style.primaryBg}
-        primaryText={style.primaryText}
-        secondaryText={style.secondaryText}
-        navColor={style.navColor}
-        dotColor={style.dotColor}
       />
 
       <Drawer

@@ -70,6 +70,13 @@ export const DEFAULT_MEALS_TABBED_STYLE = {
   imageRadius: "full",
 };
 
+export function resolveMealsTabbedStyle(style = {}) {
+  return {
+    ...DEFAULT_MEALS_TABBED_STYLE,
+    ...style,
+  };
+}
+
 export const MEALS_TABBED_STYLE_RESET_KEYS = {
   layout: [
     "showTitle",

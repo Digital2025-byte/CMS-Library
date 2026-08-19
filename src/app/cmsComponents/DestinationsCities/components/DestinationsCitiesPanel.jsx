@@ -11,54 +11,30 @@ import {
 
 export default function DestinationsCitiesPanel({
   lang = "en",
-  title = "",
-  description = "",
-  cities = [],
+  content,
+  style = DEFAULT_DESTINATIONS_CITIES_STYLE,
   posParams = "gb",
-  showTitle = DEFAULT_DESTINATIONS_CITIES_STYLE.showTitle,
-  showDescription = DEFAULT_DESTINATIONS_CITIES_STYLE.showDescription,
-  showSectionBg = DEFAULT_DESTINATIONS_CITIES_STYLE.showSectionBg,
-  showCardImage = DEFAULT_DESTINATIONS_CITIES_STYLE.showCardImage,
-  showCity = DEFAULT_DESTINATIONS_CITIES_STYLE.showCity,
-  showOrigin = DEFAULT_DESTINATIONS_CITIES_STYLE.showOrigin,
-  showNew = DEFAULT_DESTINATIONS_CITIES_STYLE.showNew,
-  showFlights = DEFAULT_DESTINATIONS_CITIES_STYLE.showFlights,
-  showDuration = DEFAULT_DESTINATIONS_CITIES_STYLE.showDuration,
-  showCardDescription = DEFAULT_DESTINATIONS_CITIES_STYLE.showCardDescription,
-  showPanel = DEFAULT_DESTINATIONS_CITIES_STYLE.showPanel,
-  showInactiveDim = DEFAULT_DESTINATIONS_CITIES_STYLE.showInactiveDim,
-  showButton = DEFAULT_DESTINATIONS_CITIES_STYLE.showButton,
-  sectionBg = DEFAULT_DESTINATIONS_CITIES_STYLE.sectionBg,
-  sectionPadding = DEFAULT_DESTINATIONS_CITIES_STYLE.sectionPadding,
-  titleAlign = DEFAULT_DESTINATIONS_CITIES_STYLE.titleAlign,
-  titleColor = DEFAULT_DESTINATIONS_CITIES_STYLE.titleColor,
-  descriptionColor = DEFAULT_DESTINATIONS_CITIES_STYLE.descriptionColor,
-  cardRadius = DEFAULT_DESTINATIONS_CITIES_STYLE.cardRadius,
-  cityColor = DEFAULT_DESTINATIONS_CITIES_STYLE.cityColor,
-  originColor = DEFAULT_DESTINATIONS_CITIES_STYLE.originColor,
-  originBg = DEFAULT_DESTINATIONS_CITIES_STYLE.originBg,
-  metaColor = DEFAULT_DESTINATIONS_CITIES_STYLE.metaColor,
-  bodyColor = DEFAULT_DESTINATIONS_CITIES_STYLE.bodyColor,
-  panelBg = DEFAULT_DESTINATIONS_CITIES_STYLE.panelBg,
-  overlayColor = DEFAULT_DESTINATIONS_CITIES_STYLE.overlayColor,
-  buttonBg = DEFAULT_DESTINATIONS_CITIES_STYLE.buttonBg,
-  buttonText = DEFAULT_DESTINATIONS_CITIES_STYLE.buttonText,
 }) {
+  const title = content.title || "";
+  const description = content.description || "";
+  const cities = content.cities || [];
+
   if (!title && !description && !cities.length) {
     return null;
   }
 
   const paddingClass =
-    SECTION_PADDING_CLASS[sectionPadding] ?? SECTION_PADDING_CLASS.default;
-  const showIntro = showTitle || showDescription;
+    SECTION_PADDING_CLASS[style.sectionPadding] ??
+    SECTION_PADDING_CLASS.default;
+  const showIntro = style.showTitle || style.showDescription;
 
   return (
     <section
       className={`overflow-hidden ${paddingClass}`}
       dir={lang === "ar" ? "rtl" : "ltr"}
       style={{
-        backgroundColor: showSectionBg
-          ? getThemeColorCss(sectionBg, "primary-800")
+        backgroundColor: style.showSectionBg
+          ? getThemeColorCss(style.sectionBg, "primary-800")
           : "transparent",
       }}
     >
@@ -67,11 +43,7 @@ export default function DestinationsCitiesPanel({
           <DestinationsCitiesIntro
             title={title}
             description={description}
-            showTitle={showTitle}
-            showDescription={showDescription}
-            align={titleAlign}
-            titleColor={titleColor}
-            descriptionColor={descriptionColor}
+            style={style}
           />
         ) : (
           <div className="hidden lg:block" />
@@ -80,26 +52,7 @@ export default function DestinationsCitiesPanel({
           cities={cities}
           lang={lang}
           posParams={posParams}
-          showCardImage={showCardImage}
-          showCity={showCity}
-          showOrigin={showOrigin}
-          showNew={showNew}
-          showFlights={showFlights}
-          showDuration={showDuration}
-          showCardDescription={showCardDescription}
-          showPanel={showPanel}
-          showInactiveDim={showInactiveDim}
-          showButton={showButton}
-          cardRadius={cardRadius}
-          cityColor={cityColor}
-          originColor={originColor}
-          originBg={originBg}
-          metaColor={metaColor}
-          bodyColor={bodyColor}
-          panelBg={panelBg}
-          overlayColor={overlayColor}
-          buttonBg={buttonBg}
-          buttonText={buttonText}
+          style={style}
         />
       </PageContentContainer>
     </section>

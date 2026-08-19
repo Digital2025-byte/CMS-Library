@@ -2,7 +2,6 @@
 
 import { ArrowLeftIcon, ArrowRightIcon } from "@phosphor-icons/react";
 import { getThemeColorCss } from "@/styles/themeColors";
-import { DEFAULT_RELATED_CONTENT_STYLE } from "../utils/style";
 
 const baseButtonClasses =
   "flex h-11 w-11 shrink-0 items-center justify-center rounded-full border transition-all duration-200 focus:outline-none sm:h-10 sm:w-10";
@@ -17,8 +16,7 @@ export default function CarouselNavigation({
   totalSlides,
   progress = 0,
   showNavigation = true,
-  navColor = DEFAULT_RELATED_CONTENT_STYLE.navColor,
-  navTrack = DEFAULT_RELATED_CONTENT_STYLE.navTrack,
+  style,
 }) {
   if (!showNavigation) {
     return null;
@@ -27,8 +25,8 @@ export default function CarouselNavigation({
   const isRtl = lang === "ar";
   const slideLabel = `${currentIndex + 1} of ${totalSlides}`;
   const progressPct = Math.min(100, Math.max(0, progress * 100));
-  const accentCss = getThemeColorCss(navColor, "primary-1");
-  const trackCss = getThemeColorCss(navTrack, "200");
+  const accentCss = getThemeColorCss(style.navColor, "primary-1");
+  const trackCss = getThemeColorCss(style.navTrack, "200");
 
   return (
     <div

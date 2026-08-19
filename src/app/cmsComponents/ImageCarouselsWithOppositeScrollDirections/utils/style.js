@@ -60,6 +60,13 @@ export const SECTION_PADDING_CLASS = {
   loose: "py-14 sm:py-16 lg:py-20",
 };
 
+export function resolveOppositeScrollStyle(style = {}) {
+  return {
+    ...DEFAULT_OPPOSITE_SCROLL_STYLE,
+    ...style,
+  };
+}
+
 export const DEFAULT_OPPOSITE_SCROLL_STYLE = {
   showTitleDescription: true,
   showDescription: true,

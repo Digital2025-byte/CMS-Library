@@ -52,6 +52,13 @@ export const DEFAULT_BANNER_WITH_CTA_STYLE = {
   buttonText: "white",
 };
 
+export function resolveBannerWithCtaStyle(style = {}) {
+  return {
+    ...DEFAULT_BANNER_WITH_CTA_STYLE,
+    ...style,
+  };
+}
+
 export const BANNER_WITH_CTA_STYLE_RESET_KEYS = {
   layout: [
     "showTitle",

@@ -12,22 +12,22 @@ import {
 export default function CardsCarouselFillImageContainer({
   lang,
   dir,
-  background = DEFAULT_FILL_IMAGE_STYLE.sectionBg,
-  showBackground = DEFAULT_FILL_IMAGE_STYLE.showSectionBg,
-  padding = DEFAULT_FILL_IMAGE_STYLE.sectionPadding,
+  style = DEFAULT_FILL_IMAGE_STYLE,
   children,
+  className = "",
 }) {
   const paddingClass =
-    SECTION_PADDING_CLASS[padding] ?? SECTION_PADDING_CLASS.default;
+    SECTION_PADDING_CLASS[style.sectionPadding] ??
+    SECTION_PADDING_CLASS.default;
 
   return (
     <section
-      className="w-full overflow-x-hidden"
+      className={`w-full overflow-x-hidden ${className}`.trim()}
       lang={lang}
       dir={dir || (lang === "ar" ? "rtl" : "ltr")}
       style={
-        showBackground
-          ? { backgroundColor: getThemeColorCss(background, "200") }
+        style.showSectionBg
+          ? { backgroundColor: getThemeColorCss(style.sectionBg, "200") }
           : undefined
       }
     >

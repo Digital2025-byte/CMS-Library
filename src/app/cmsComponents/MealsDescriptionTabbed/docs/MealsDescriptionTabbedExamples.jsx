@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import MealsDescriptionTabbed from "@/app/cmsComponents/MealsDescriptionTabbed";
-import MealsDescriptionTabbedContainer from "@/app/cmsComponents/MealsDescriptionTabbed/components/MealsDescriptionTabbedContainer";
+import { MealsDescriptionTabbedSection } from "@/app/cmsComponents/MealsDescriptionTabbed";
 import MealsDescriptionTabbedPropsForm from "@/app/cmsComponents/MealsDescriptionTabbed/docs/MealsDescriptionTabbedPropsForm";
 import {
   getMealsDescriptionTabbedEditorContent,
@@ -36,38 +35,12 @@ export default function MealsDescriptionTabbedExamples({
 
   return (
     <div>
-      <MealsDescriptionTabbedContainer lang={lang} dir={dir}>
-        <MealsDescriptionTabbed
-          lang={lang}
-          data={wrapMealsDescriptionTabbedContent(content, lang)}
-          showTitle={style.showTitle}
-          showTabs={style.showTabs}
-          showImage={style.showImage}
-          showNotes={style.showNotes}
-          showSectionBg={style.showSectionBg}
-          showItemTitle={style.showItemTitle}
-          showItemDescription={style.showItemDescription}
-          sectionBg={style.sectionBg}
-          sectionPadding={style.sectionPadding}
-          titleAlign={style.titleAlign}
-          titleColor={style.titleColor}
-          tabActive={style.tabActive}
-          tabIdle={style.tabIdle}
-          tabBorder={style.tabBorder}
-          accordionRadius={style.accordionRadius}
-          headerBg={style.headerBg}
-          headerText={style.headerText}
-          bodyBg={style.bodyBg}
-          groupTitleColor={style.groupTitleColor}
-          itemTitleColor={style.itemTitleColor}
-          groupItemTitleColor={style.groupItemTitleColor}
-          itemBodyColor={style.itemBodyColor}
-          itemBg={style.itemBg}
-          stripeColor={style.stripeColor}
-          notesColor={style.notesColor}
-          imageRadius={style.imageRadius}
-        />
-      </MealsDescriptionTabbedContainer>
+      <MealsDescriptionTabbedSection
+        lang={lang}
+        dir={dir}
+        data={wrapMealsDescriptionTabbedContent(content, lang)}
+        style={style}
+      />
 
       <Drawer
         isOpen={drawer.isOpen}

@@ -1,21 +1,24 @@
 import PageContentContainer from "@/components/layout/PageContentContainer";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { DEFAULT_ACCORDION_STYLE } from "../utils/style";
 
 export default function AccordionContainer({
   lang,
   dir,
-  background = "100",
-  showBackground = true,
+  style = DEFAULT_ACCORDION_STYLE,
   children,
+  className = "",
 }) {
   return (
     <div
-      className="w-full"
+      className={`w-full ${className}`.trim()}
       lang={lang}
       dir={dir || (lang === "ar" ? "rtl" : "ltr")}
       style={
-        showBackground
-          ? { backgroundColor: getThemeColorCss(background, "100") }
+        style.showSectionBg
+          ? {
+              backgroundColor: getThemeColorCss(style.sectionBg, "100"),
+            }
           : undefined
       }
     >

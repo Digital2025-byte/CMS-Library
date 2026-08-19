@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import BannerWithCta from "@/app/cmsComponents/BannerWithCta";
-import BannerWithCtaContainer from "@/app/cmsComponents/BannerWithCta/components/BannerWithCtaContainer";
+import { BannerWithCtaSection } from "@/app/cmsComponents/BannerWithCta";
 import BannerWithCtaPropsForm from "@/app/cmsComponents/BannerWithCta/docs/BannerWithCtaPropsForm";
 import {
   getBannerWithCtaEditorContent,
@@ -59,31 +58,13 @@ export default function BannerWithCtaExamples({
 
   return (
     <div>
-      <BannerWithCtaContainer
+      <BannerWithCtaSection
         lang={lang}
         dir={dir}
-        background={style.sectionBg}
-        showBackground={style.showSectionBg}
-        padding={style.sectionPadding}
-      >
-        <BannerWithCta
-          lang={lang}
-          data={wrapBannerWithCtaContent(content, lang)}
-          posParams="gb"
-          showTitle={style.showTitle}
-          showDescription={style.showDescription}
-          showButton={style.showButton}
-          showHeroImage={style.showHeroImage}
-          showOverlay={style.showOverlay}
-          titleAlign={style.titleAlign}
-          titleColor={style.titleColor}
-          descriptionColor={style.descriptionColor}
-          overlayColor={style.overlayColor}
-          bannerRadius={style.bannerRadius}
-          buttonBg={style.buttonBg}
-          buttonText={style.buttonText}
-        />
-      </BannerWithCtaContainer>
+        data={wrapBannerWithCtaContent(content, lang)}
+        style={style}
+        posParams="gb"
+      />
 
       <Drawer
         isOpen={drawer.isOpen}
