@@ -22,6 +22,13 @@ export const DEFAULT_FULL_HEIGHT_HEADER_STYLE = {
   buttonText: "white",
 };
 
+export function resolveFullHeightHeaderStyle(style = {}) {
+  return {
+    ...DEFAULT_FULL_HEIGHT_HEADER_STYLE,
+    ...style,
+  };
+}
+
 export const FULL_HEIGHT_HEADER_STYLE_RESET_KEYS = {
   layout: ["showTitle", "showDescription"],
   banner: ["showHeroImage", "showOverlay", "overlayColor"],

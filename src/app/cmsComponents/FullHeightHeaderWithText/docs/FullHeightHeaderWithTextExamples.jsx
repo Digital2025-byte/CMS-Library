@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import FullHeightHeaderWithText from "@/app/cmsComponents/FullHeightHeaderWithText";
-import FullHeightHeaderWithTextContainer from "@/app/cmsComponents/FullHeightHeaderWithText/components/FullHeightHeaderWithTextContainer";
+import { FullHeightHeaderWithTextSection } from "@/app/cmsComponents/FullHeightHeaderWithText";
 import FullHeightHeaderWithTextPropsForm from "@/app/cmsComponents/FullHeightHeaderWithText/docs/FullHeightHeaderWithTextPropsForm";
 import {
   getFullHeightHeaderWithTextEditorContent,
@@ -59,24 +58,13 @@ export default function FullHeightHeaderWithTextExamples({
 
   return (
     <div>
-      <FullHeightHeaderWithTextContainer lang={lang} dir={dir}>
-        <FullHeightHeaderWithText
-          lang={lang}
-          data={wrapFullHeightHeaderWithTextContent(content, lang)}
-          posParams="gb"
-          showTitle={style.showTitle}
-          showDescription={style.showDescription}
-          showButton={style.showButton}
-          showHeroImage={style.showHeroImage}
-          showOverlay={style.showOverlay}
-          titleAlign={style.titleAlign}
-          titleColor={style.titleColor}
-          descriptionColor={style.descriptionColor}
-          overlayColor={style.overlayColor}
-          buttonBg={style.buttonBg}
-          buttonText={style.buttonText}
-        />
-      </FullHeightHeaderWithTextContainer>
+      <FullHeightHeaderWithTextSection
+        lang={lang}
+        dir={dir}
+        data={wrapFullHeightHeaderWithTextContent(content, lang)}
+        style={style}
+        posParams="gb"
+      />
 
       <Drawer
         isOpen={drawer.isOpen}

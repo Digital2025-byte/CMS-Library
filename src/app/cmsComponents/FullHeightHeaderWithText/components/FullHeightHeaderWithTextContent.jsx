@@ -9,31 +9,27 @@ import {
 
 export default function FullHeightHeaderWithTextContent({
   lang = "en",
-  title = "",
-  description = "",
-  buttonLabel = "",
-  ctaHref = "",
+  content,
+  style = DEFAULT_FULL_HEIGHT_HEADER_STYLE,
   cId,
-  showTitle = DEFAULT_FULL_HEIGHT_HEADER_STYLE.showTitle,
-  showDescription = DEFAULT_FULL_HEIGHT_HEADER_STYLE.showDescription,
-  showButton = DEFAULT_FULL_HEIGHT_HEADER_STYLE.showButton,
-  titleAlign = DEFAULT_FULL_HEIGHT_HEADER_STYLE.titleAlign,
-  titleColor = DEFAULT_FULL_HEIGHT_HEADER_STYLE.titleColor,
-  descriptionColor = DEFAULT_FULL_HEIGHT_HEADER_STYLE.descriptionColor,
-  buttonBg = DEFAULT_FULL_HEIGHT_HEADER_STYLE.buttonBg,
-  buttonText = DEFAULT_FULL_HEIGHT_HEADER_STYLE.buttonText,
 }) {
   const isRtl = lang === "ar";
   const ArrowIcon = isRtl ? ArrowLeftIcon : ArrowRightIcon;
-  const showHeading = showTitle && title;
-  const showCopy = showDescription && description;
-  const showCta = showButton && buttonLabel;
+  const title = content.title;
+  const description = content.description;
+  const buttonLabel = content.buttonText;
+  const showHeading = style.showTitle && title;
+  const showCopy = style.showDescription && description;
+  const showCta = style.showButton && buttonLabel;
   const alignClass =
-    TITLE_ALIGN_CLASS[titleAlign] ?? TITLE_ALIGN_CLASS.left;
-  const titleCss = getThemeColorCss(titleColor, "secondary-100");
-  const descriptionCss = getThemeColorCss(descriptionColor, "secondary-100");
-  const pillCss = getThemeColorCss(buttonBg, "primary-2");
-  const labelCss = getThemeColorCss(buttonText, "white");
+    TITLE_ALIGN_CLASS[style.titleAlign] ?? TITLE_ALIGN_CLASS.left;
+  const titleCss = getThemeColorCss(style.titleColor, "secondary-100");
+  const descriptionCss = getThemeColorCss(
+    style.descriptionColor,
+    "secondary-100"
+  );
+  const pillCss = getThemeColorCss(style.buttonBg, "primary-2");
+  const labelCss = getThemeColorCss(style.buttonText, "white");
 
   if (!showHeading && !showCopy && !showCta) {
     return null;
@@ -63,7 +59,7 @@ export default function FullHeightHeaderWithTextContent({
         <div className="mt-5 sm:mt-6">
           <Button
             label={buttonLabel}
-            href={ctaHref || undefined}
+            href={content.ctaHref || undefined}
             cId={cId}
             variant="primary"
             icon={<ArrowIcon size={20} weight="regular" aria-hidden />}
