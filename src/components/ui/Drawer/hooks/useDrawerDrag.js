@@ -109,15 +109,31 @@ export default function useDrawerDrag({ onOpen, onClose, side = "left" }) {
 
   const onTriggerPointerDown = useCallback(
     (event) => {
-      onOpen();
-      beginDrag(event, 0);
+      if (event.button != null && event.button !== 0) return;
+
+      const startX = event.clientX;
+      const onMove = (moveEvent) => {
+        if (Math.abs(moveEvent.clientX - startX) < 8) return;
+        document.removeEventListener("pointermove", onMove);
+        document.removeEventListener("pointerup", onUp);
+        commitWidth(clampWidth(lastOpenWidthRef.current));
+        onOpen();
+        beginDrag(moveEvent, 0);
+      };
+      const onUp = () => {
+        document.removeEventListener("pointermove", onMove);
+        document.removeEventListener("pointerup", onUp);
+      };
+
+      document.addEventListener("pointermove", onMove);
+      document.addEventListener("pointerup", onUp);
     },
-    [beginDrag, onOpen]
+    [beginDrag, commitWidth, onOpen]
   );
 
   const onTriggerClick = useCallback(
     (event) => {
-      if (event.detail > 0) return;
+      event.stopPropagation();
       commitWidth(clampWidth(lastOpenWidthRef.current));
       onOpen();
     },

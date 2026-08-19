@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import { createPortal } from "react-dom";
 import DrawerHeader from "./components/DrawerHeader";
 import DrawerPanel from "./components/DrawerPanel";
 import DrawerTrigger from "./components/DrawerTrigger";
@@ -38,7 +39,7 @@ export default function Drawer({
     triggerRef,
   });
 
-  return (
+  const drawer = (
     <>
       <DrawerTrigger
         triggerRef={triggerRef}
@@ -65,6 +66,12 @@ export default function Drawer({
       </DrawerPanel>
     </>
   );
+
+  if (typeof document === "undefined") {
+    return drawer;
+  }
+
+  return createPortal(drawer, document.body);
 }
 
 export { default as useDrawer } from "./hooks/useDrawer";

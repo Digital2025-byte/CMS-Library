@@ -24,7 +24,7 @@ export default function DrawerTrigger({
       aria-label={label}
       title={label}
       className={[
-        "fixed top-1/2 z-40 -translate-y-1/2 cursor-pointer touch-none border border-200 bg-50 p-2.5 text-main shadow-sm",
+        "fixed top-1/2 z-[70] -translate-y-1/2 cursor-pointer touch-none border border-200 bg-50 p-2.5 text-main shadow-sm",
         "hover:bg-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-1",
         SIDE_CLASSES[side] ?? SIDE_CLASSES.left,
       ].join(" ")}
