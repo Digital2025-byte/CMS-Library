@@ -1,20 +1,38 @@
 import { typography } from "@/styles/typography";
+import { getThemeColorCss } from "@/styles/themeColors";
+import { DEFAULT_MAP_INFO_STYLE, TITLE_ALIGN_CLASS } from "../utils/style";
 
-export default function MapInfoHeader({ title, description }) {
-  if (!title && !description) {
+export default function MapInfoHeader({
+  title,
+  description,
+  style = DEFAULT_MAP_INFO_STYLE,
+}) {
+  const showHeading = style.showTitle && title;
+  const showCopy = style.showDescription && description;
+
+  if (!showHeading && !showCopy) {
     return null;
   }
 
+  const alignClass =
+    TITLE_ALIGN_CLASS[style.titleAlign] ?? TITLE_ALIGN_CLASS.left;
+
   return (
-    <div className="p-2 pt-4">
-      {title ? (
-        <h2 className={`${typography.sectionTitle} font-bold text-main`}>
+    <div className={`p-2 pt-4 ${alignClass}`}>
+      {showHeading ? (
+        <h2
+          className={`${typography.sectionTitle} font-bold`}
+          style={{ color: getThemeColorCss(style.titleColor, "main") }}
+        >
           {title}
         </h2>
       ) : null}
-      {description ? (
+      {showCopy ? (
         <p
-          className={`${typography.sectionDescription} mb-3 mt-2 px-0.5 text-main`}
+          className={`${typography.sectionDescription} mb-3 mt-2 px-0.5`}
+          style={{
+            color: getThemeColorCss(style.descriptionColor, "main"),
+          }}
         >
           {description}
         </p>

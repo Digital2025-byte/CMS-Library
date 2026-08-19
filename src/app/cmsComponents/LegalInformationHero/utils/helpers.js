@@ -25,3 +25,28 @@ export function getLegalInformationHeroContent(data, lang = "en") {
     hasContent: Boolean(title || description),
   };
 }
+
+export function getLegalInformationHeroEditorContent(data, lang = "en") {
+  const content = getLegalInformationHeroContent(data, lang);
+
+  return {
+    title: content.title || "",
+    description: content.description || "",
+    patternUrl: content.patternUrl || "",
+  };
+}
+
+export function wrapLegalInformationHeroContent(content = {}, lang = "en") {
+  return {
+    translations: [
+      {
+        languageCode: lang,
+        content: {
+          title: content.title || "",
+          description: content.description || "",
+          patternUrl: content.patternUrl || "",
+        },
+      },
+    ],
+  };
+}

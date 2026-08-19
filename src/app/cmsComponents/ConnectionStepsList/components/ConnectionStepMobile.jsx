@@ -1,20 +1,22 @@
 import Image from "next/image";
 import { typography } from "@/styles/typography";
+import { getThemeColorCss } from "@/styles/themeColors";
 import { CONNECTION_STEPS_MOBILE_LAYOUT } from "../utils/layoutMobile";
+import { isUsableImageSrc } from "../utils/helpers";
+import { DEFAULT_CONNECTION_STEPS_STYLE } from "../utils/style";
 
-/**
- * Mobile step: circle centered on layout leftX/rightX,
- * text sitting beside it (same coords as the dashed path).
- */
 export default function ConnectionStepMobile({
   step,
   stepLabel,
   imageOnLeft = true,
   circleSize = CONNECTION_STEPS_MOBILE_LAYOUT.circleSize,
   centerX,
+  theme = DEFAULT_CONNECTION_STEPS_STYLE,
 }) {
   const { path } = CONNECTION_STEPS_MOBILE_LAYOUT;
   const x = centerX ?? (imageOnLeft ? path.leftX : path.rightX);
+  const canShowImage =
+    theme.showImages && isUsableImageSrc(step?.imageUrl);
 
   return (
     <div
@@ -22,7 +24,7 @@ export default function ConnectionStepMobile({
       style={{ left: `${x}%`, width: circleSize, height: circleSize }}
     >
       <div className="relative h-full w-full overflow-hidden rounded-full bg-100">
-        {step?.imageUrl ? (
+        {canShowImage ? (
           <Image
             src={step.imageUrl}
             alt={step.imageAlt || stepLabel || ""}
@@ -44,14 +46,18 @@ export default function ConnectionStepMobile({
       >
         {stepLabel ? (
           <p
-            className={`${typography.itemTitle} italic font-medium leading-tight text-secondary-2`}
+            className={`${typography.itemTitle} italic font-medium leading-tight`}
+            style={{ color: getThemeColorCss(theme.labelColor, "secondary-2") }}
           >
             {stepLabel}
           </p>
         ) : null}
-        {step?.description ? (
+        {theme.showDescription && step?.description ? (
           <p
-            className={`${typography.caption} mt-1.5 leading-snug text-secondary-2`}
+            className={`${typography.caption} mt-1.5 leading-snug`}
+            style={{
+              color: getThemeColorCss(theme.descriptionColor, "secondary-2"),
+            }}
           >
             {step.description}
           </p>

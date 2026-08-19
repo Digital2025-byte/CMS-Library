@@ -62,3 +62,60 @@ export function getFormFooterContent(data, lang = "en") {
     ),
   };
 }
+
+export function getFormFooterEditorContent(data, lang = "en") {
+  const content = getFormFooterContent(data, lang);
+
+  return {
+    followTitle: content.followTitle || "",
+    followDescription: content.followDescription || "",
+    contactTitle: content.contactTitle || "",
+    email: content.email || "",
+    website: content.website || "",
+    copyright: content.copyright || "",
+    phone: content.phone || "",
+    phoneHref: content.phoneHref || "",
+    transportPhone: content.transportPhone || "",
+    transportPhoneHref: content.transportPhoneHref || "",
+    isTransportationSurvey: Boolean(content.isTransportationSurvey),
+    socialLinks: (Array.isArray(content.socialLinks)
+      ? content.socialLinks
+      : []
+    ).map((item) => ({
+      href: item?.href || "",
+      alt: item?.alt || "",
+      src: item?.src || "",
+    })),
+  };
+}
+
+export function wrapFormFooterContent(content = {}, lang = "en") {
+  return {
+    translations: [
+      {
+        languageCode: lang,
+        content: {
+          followTitle: content.followTitle || "",
+          followDescription: content.followDescription || "",
+          contactTitle: content.contactTitle || "",
+          email: content.email || "",
+          website: content.website || "",
+          copyright: content.copyright || "",
+          phone: content.phone || "",
+          phoneHref: content.phoneHref || "",
+          transportPhone: content.transportPhone || "",
+          transportPhoneHref: content.transportPhoneHref || "",
+          isTransportationSurvey: Boolean(content.isTransportationSurvey),
+          socialLinks: (Array.isArray(content.socialLinks)
+            ? content.socialLinks
+            : []
+          ).map((item) => ({
+            href: item?.href || "",
+            alt: item?.alt || "",
+            src: item?.src || "",
+          })),
+        },
+      },
+    ],
+  };
+}

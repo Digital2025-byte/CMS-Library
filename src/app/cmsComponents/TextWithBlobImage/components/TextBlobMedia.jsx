@@ -1,40 +1,47 @@
 import Image from "next/image";
 import blobMask from "@/assets/blob-mask.png";
 import blobTicks from "@/assets/blob-ticks.png";
-import blobImage from "@/assets/Text-With-Blob-Image.webp";
+import { isUsableImageSrc } from "../utils/helpers";
 
 const blobMaskUrl = typeof blobMask === "string" ? blobMask : blobMask.src;
 
-export default function TextBlobMedia() {
+export default function TextBlobMedia({ imageSrc, imageAlt = "" }) {
+  const maskUrl = isUsableImageSrc(blobMaskUrl) ? blobMaskUrl : "";
+  const canShowImage = isUsableImageSrc(imageSrc);
+
   return (
     <div className="relative flex justify-center lg:justify-end">
       <div className="relative h-[260px] w-[260px] sm:h-80 sm:w-80 md:h-[400px] md:w-[400px] lg:h-[440px] lg:w-[440px]">
-        {/* Real image clipped to the solid blob shape */}
-        <div
-          className="absolute inset-0"
-          style={{
-            WebkitMaskImage: `url(${blobMaskUrl})`,
-            maskImage: `url(${blobMaskUrl})`,
-            WebkitMaskSize: "contain",
-            maskSize: "contain",
-            WebkitMaskRepeat: "no-repeat",
-            maskRepeat: "no-repeat",
-            WebkitMaskPosition: "center",
-            maskPosition: "center",
-          }}
-        >
-          <Image
-            src={blobImage}
-            alt=""
-            fill
-            quality={75}
-            priority
-            className="object-cover object-center"
-            sizes="(max-width: 640px) 260px, (max-width: 768px) 320px, (max-width: 1024px) 400px, 440px"
-          />
-        </div>
+        {canShowImage ? (
+          <div
+            className="absolute inset-0"
+            style={
+              maskUrl
+                ? {
+                    WebkitMaskImage: `url(${maskUrl})`,
+                    maskImage: `url(${maskUrl})`,
+                    WebkitMaskSize: "contain",
+                    maskSize: "contain",
+                    WebkitMaskRepeat: "no-repeat",
+                    maskRepeat: "no-repeat",
+                    WebkitMaskPosition: "center",
+                    maskPosition: "center",
+                  }
+                : undefined
+            }
+          >
+            <Image
+              src={imageSrc}
+              alt={imageAlt}
+              fill
+              quality={75}
+              priority
+              className="object-cover object-center"
+              sizes="(max-width: 640px) 260px, (max-width: 768px) 320px, (max-width: 1024px) 400px, 440px"
+            />
+          </div>
+        ) : null}
 
-        {/* Accent dashes (extracted from the blob artwork, no outline) */}
         <Image
           src={blobTicks}
           alt=""

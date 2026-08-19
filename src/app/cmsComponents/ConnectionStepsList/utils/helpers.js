@@ -1,3 +1,31 @@
+function toImageSrc(value) {
+  if (!value) {
+    return "";
+  }
+  if (typeof value === "string") {
+    return value;
+  }
+  return value.src || value.fileUrl || value.url || "";
+}
+
+export function isUsableImageSrc(src) {
+  const value = String(toImageSrc(src) || "").trim();
+  if (!value) {
+    return false;
+  }
+
+  if (value.startsWith("/") && !value.startsWith("//")) {
+    return true;
+  }
+
+  try {
+    const url = new URL(value.startsWith("//") ? `https:${value}` : value);
+    return url.protocol === "http:" || url.protocol === "https:";
+  } catch {
+    return false;
+  }
+}
+
 function normalizeImage(image, fallbackAlt = "Step image") {
   if (!image) {
     return { fileUrl: "", alt: fallbackAlt };
@@ -8,7 +36,7 @@ function normalizeImage(image, fallbackAlt = "Step image") {
   }
 
   return {
-    fileUrl: image.fileUrl || image.url || image.src || "",
+    fileUrl: toImageSrc(image.fileUrl || image.url || image.src || image),
     alt: image.alt || fallbackAlt,
   };
 }
@@ -53,5 +81,42 @@ export function getConnectionStepsListContent(data, lang = "en") {
     steps,
     stepLabel: content?.stepLabel || "",
     hasContent: Boolean(title || steps.length),
+  };
+}
+
+export function getConnectionStepsListEditorContent(data, lang = "en") {
+  const content = getConnectionStepsListContent(data, lang);
+
+  return {
+    title: content.title || "",
+    stepLabel: content.stepLabel || "",
+    items: content.steps.map((step) => ({
+      description: step.description || "",
+      imageUrl: step.imageUrl || "",
+      imageAlt: step.imageAlt || "",
+    })),
+  };
+}
+
+export function wrapConnectionStepsListContent(content = {}, lang = "en") {
+  return {
+    translations: [
+      {
+        languageCode: lang,
+        content: {
+          title: content.title || "",
+          stepLabel: content.stepLabel || "",
+          steps: (Array.isArray(content.items) ? content.items : []).map(
+            (item) => ({
+              description: item?.description || "",
+              image: {
+                fileUrl: item?.imageUrl || "",
+                alt: item?.imageAlt || "",
+              },
+            })
+          ),
+        },
+      },
+    ],
   };
 }

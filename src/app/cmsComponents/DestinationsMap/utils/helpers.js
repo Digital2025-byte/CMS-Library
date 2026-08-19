@@ -43,6 +43,93 @@ export function getDestinationsMapContent(data, lang = "en") {
   };
 }
 
+function normalizeCity(city = {}) {
+  const imageUrl = Array.isArray(city.imageUrl)
+    ? city.imageUrl[0] || ""
+    : city.imageUrl || "";
+
+  return {
+    cityId: city.cityId || "",
+    cityName: city.cityName || "",
+    countryName: city.countryName || "",
+    IATACode: city.IATACode || "",
+    latitude: city.latitude ?? "",
+    longitude: city.longitude ?? "",
+    isNewCity: Boolean(city.isNewCity),
+    price: city.price ?? "",
+    currency: city.currency || "",
+    numberOfFlightsPerWeek: city.numberOfFlightsPerWeek ?? "",
+    duration: city.duration ?? "",
+    flightType: city.flightType || "",
+    imageUrl,
+  };
+}
+
+export function getDestinationsMapEditorContent(data, lang = "en") {
+  const result = getDestinationsMapContent(data, lang);
+  const cities = result.cities || [];
+  const routes = result.routes || [];
+  const labels = result.labels || {};
+
+  return {
+    fromLabel: labels?.from || "",
+    toLabel: labels?.to || "",
+    resetLabel: labels?.reset || "",
+    bookNowLabel: labels?.bookNow || "",
+    newRoutesLabel: labels?.newRoutes || "",
+    ourNetworkLabel: labels?.ourNetwork || "",
+    cities: (Array.isArray(cities) ? cities : []).map(normalizeCity),
+    routes: (Array.isArray(routes) ? routes : []).map((route) => ({
+      fromCityId: route?.fromCityId || "",
+      toCityId: route?.toCityId || "",
+    })),
+  };
+}
+
+export function wrapDestinationsMapContent(content = {}, lang = "en") {
+  return {
+    type: "DestinationsMap",
+    translations: [
+      {
+        languageCode: lang,
+        content: {
+          labels: {
+            from: content.fromLabel || "",
+            to: content.toLabel || "",
+            reset: content.resetLabel || "",
+            bookNow: content.bookNowLabel || "",
+            newRoutes: content.newRoutesLabel || "",
+            ourNetwork: content.ourNetworkLabel || "",
+          },
+          cities: (Array.isArray(content.cities) ? content.cities : []).map(
+            (city) => ({
+              cityId: city?.cityId || "",
+              cityName: city?.cityName || "",
+              countryName: city?.countryName || "",
+              IATACode: city?.IATACode || "",
+              latitude: city?.latitude ?? "",
+              longitude: city?.longitude ?? "",
+              isNewCity: Boolean(city?.isNewCity),
+              price: city?.price ?? "",
+              currency: city?.currency || "",
+              numberOfFlightsPerWeek: city?.numberOfFlightsPerWeek ?? "",
+              duration: city?.duration ?? "",
+              flightType: city?.flightType || "",
+              imageUrl: city?.imageUrl ? [city.imageUrl] : [],
+            })
+          ),
+          routes: (Array.isArray(content.routes) ? content.routes : []).map(
+            (route) => ({
+              fromCityId: route?.fromCityId || "",
+              toCityId: route?.toCityId || "",
+            })
+          ),
+        },
+      },
+    ],
+  };
+}
+
 export function transformDestinationData(backendCities) {
   if (!backendCities || !Array.isArray(backendCities)) return [];
 

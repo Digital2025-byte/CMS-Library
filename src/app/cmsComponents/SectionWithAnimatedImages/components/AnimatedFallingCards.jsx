@@ -5,6 +5,7 @@ import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { pageContentPadding } from "@/styles/layout";
 import { fallingCardEasing } from "../utils/easing";
+import { isUsableImageSrc } from "../utils/helpers";
 
 export default function AnimatedFallingCards({ images = [] }) {
   const [activeCards, setActiveCards] = useState([]);
@@ -110,15 +111,17 @@ export default function AnimatedFallingCards({ images = [] }) {
                   onAnimationComplete={() => removeCard(card.id)}
                 >
                   <div className="h-36 w-28 overflow-hidden rounded-4xl bg-background shadow-xl md:h-48 md:w-36 lg:h-52 lg:w-40">
-                    <Image
-                      src={card.image?.src}
-                      alt={card.image?.alt || "Travel experience"}
-                      width={160}
-                      height={208}
-                      className="h-full w-full object-cover"
-                      sizes="160px"
-                      quality={75}
-                    />
+                    {isUsableImageSrc(card.image?.src) ? (
+                      <Image
+                        src={card.image.src}
+                        alt={card.image?.alt || "Travel experience"}
+                        width={160}
+                        height={208}
+                        className="h-full w-full object-cover"
+                        sizes="160px"
+                        quality={75}
+                      />
+                    ) : null}
                   </div>
                 </motion.div>
               </div>

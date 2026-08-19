@@ -1,25 +1,52 @@
 import { typography } from "@/styles/typography";
+import { getThemeColorCss } from "@/styles/themeColors";
+import {
+  DEFAULT_TWO_COLUMN_SUB_SECTIONS_STYLE,
+  TITLE_ALIGN_CLASS,
+} from "../utils/style";
 
-export default function SubSectionsHeader({ sectionLabel, title, description }) {
+export default function SubSectionsHeader({
+  sectionLabel,
+  title,
+  description,
+  style = DEFAULT_TWO_COLUMN_SUB_SECTIONS_STYLE,
+}) {
+  const showLabel = style.showSectionLabel && sectionLabel;
+  const showHeading = style.showTitle && title;
+  const showCopy = style.showDescription && description;
+  const alignClass =
+    TITLE_ALIGN_CLASS[style.titleAlign] ?? TITLE_ALIGN_CLASS.left;
+
+  if (!showLabel && !showHeading && !showCopy) {
+    return null;
+  }
+
   return (
-    <div className="space-y-3 sm:space-y-4">
-      {sectionLabel ? (
-        <p className={`${typography.caption} font-medium text-secondary-2`}>
+    <div className={`space-y-3 sm:space-y-4 ${alignClass}`}>
+      {showLabel ? (
+        <p
+          className={`${typography.caption} font-medium`}
+          style={{ color: getThemeColorCss(style.labelColor, "secondary-2") }}
+        >
           {sectionLabel}
         </p>
       ) : null}
 
-      {title ? (
+      {showHeading ? (
         <h2
-          className={`${typography.sectionTitle} font-medium italic text-primary-1`}
+          className={`${typography.sectionTitle} font-medium italic`}
+          style={{ color: getThemeColorCss(style.titleColor, "primary-1") }}
         >
           {title}
         </h2>
       ) : null}
 
-      {description ? (
+      {showCopy ? (
         <p
-          className={`${typography.sectionDescription} font-normal text-600`}
+          className={`${typography.sectionDescription} font-normal`}
+          style={{
+            color: getThemeColorCss(style.descriptionColor, "600"),
+          }}
         >
           {description}
         </p>

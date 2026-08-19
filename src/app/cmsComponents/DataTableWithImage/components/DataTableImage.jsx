@@ -1,10 +1,11 @@
 import Image from "next/image";
+import { isUsableImageSrc } from "../utils/helpers";
 
 export default function DataTableImage({
   imageSrc = "",
   imageAlt = "",
 }) {
-  if (!imageSrc) {
+  if (!isUsableImageSrc(imageSrc)) {
     return null;
   }
 

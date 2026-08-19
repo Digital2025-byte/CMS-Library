@@ -1,15 +1,33 @@
 import Image from "next/image";
 import { typography } from "@/styles/typography";
+import { getThemeColorCss } from "@/styles/themeColors";
 import ServiceBenefitItem from "./ServiceBenefitItem";
+import { isUsableImageSrc } from "../utils/helpers";
+import {
+  CARD_RADIUS_CLASS,
+  DEFAULT_SERVICE_BENEFITS_STYLE,
+  TITLE_ALIGN_CLASS,
+} from "../utils/style";
 
 export default function ServiceBenefitsPanel({
   mainTitle,
   backgroundImage,
   benefits = [],
+  style = DEFAULT_SERVICE_BENEFITS_STYLE,
 }) {
+  const radiusClass =
+    CARD_RADIUS_CLASS[style.cardRadius] ?? CARD_RADIUS_CLASS.sm;
+  const alignClass =
+    TITLE_ALIGN_CLASS[style.titleAlign] ?? TITLE_ALIGN_CLASS.center;
+  const canShowImage =
+    style.showBackgroundImage && isUsableImageSrc(backgroundImage);
+  const overlayColor = getThemeColorCss(style.overlayColor, "secondary-2");
+
   return (
-    <div className="relative w-full overflow-hidden rounded-xl md:min-h-64 lg:min-h-72">
-      {backgroundImage ? (
+    <div
+      className={`relative w-full overflow-hidden md:min-h-64 lg:min-h-72 ${radiusClass}`}
+    >
+      {canShowImage ? (
         <Image
           src={backgroundImage}
           alt=""
@@ -21,16 +39,21 @@ export default function ServiceBenefitsPanel({
         />
       ) : null}
 
-      <div
-        className="absolute inset-0"
-        style={{ backgroundColor: "color-mix(in srgb, var(--color-secondary-2) 70%, transparent)" }}
-        aria-hidden
-      />
+      {style.showOverlay ? (
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundColor: `color-mix(in srgb, ${overlayColor} 70%, transparent)`,
+          }}
+          aria-hidden
+        />
+      ) : null}
 
-      <div className="relative z-10 flex h-full flex-col justify-center px-5 py-8 text-white sm:px-8 sm:py-10 md:px-8 md:py-12 lg:px-14 lg:py-14 mb-4 md:mb-0">
-        {mainTitle ? (
+      <div className="relative z-10 mb-4 flex h-full flex-col justify-center px-5 py-8 sm:px-8 sm:py-10 md:mb-0 md:px-8 md:py-12 lg:px-14 lg:py-14">
+        {style.showTitle && mainTitle ? (
           <h2
-            className={`${typography.sectionTitle} text-center font-semibold text-white`}
+            className={`${typography.sectionTitle} font-semibold ${alignClass}`}
+            style={{ color: getThemeColorCss(style.titleColor, "white") }}
           >
             {mainTitle}
           </h2>
@@ -44,6 +67,7 @@ export default function ServiceBenefitsPanel({
                 title={benefit?.title}
                 description={benefit?.description}
                 icon={benefit?.icon}
+                style={style}
               />
             ))}
           </div>

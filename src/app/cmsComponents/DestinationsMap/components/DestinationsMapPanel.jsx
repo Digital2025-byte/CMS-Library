@@ -12,6 +12,10 @@ import {
   getPlaneDirection,
   transformDestinationData,
 } from "../utils/helpers";
+import {
+  DEFAULT_DESTINATIONS_MAP_STYLE,
+  MAP_RADIUS_CLASS,
+} from "../utils/style";
 
 const DestinationsMapCanvas = dynamic(() => import("./DestinationsMapCanvas"), {
   ssr: false,
@@ -27,6 +31,7 @@ export default function DestinationsMapPanel({
   cities = [],
   routes = [],
   labels = {},
+  style,
 }) {
   const OurDestinationsData = useMemo(
     () => transformDestinationData(cities),
@@ -250,10 +255,14 @@ export default function DestinationsMapPanel({
     return null;
   }
 
+  const resolvedStyle = style || DEFAULT_DESTINATIONS_MAP_STYLE;
+  const radiusClass =
+    MAP_RADIUS_CLASS[resolvedStyle.mapRadius] ?? MAP_RADIUS_CLASS.sm;
+
   return (
-    <section className="relative flex items-center justify-center bg-primary-800 py-8">
+    <section className="relative flex items-center justify-center">
       <PageContentContainer>
-        <div className="relative z-0 h-[500px] overflow-hidden rounded-lg">
+        <div className={`relative z-0 h-[500px] overflow-hidden ${radiusClass}`}>
         <DestinationsMapCanvas
           mapTarget={mapTarget}
           onMoveEnd={() => {
@@ -276,6 +285,7 @@ export default function DestinationsMapPanel({
 
         <DestinationsMapOverlays
           labels={labels}
+          style={resolvedStyle}
           fromValue={fromValue}
           toValue={toValue}
           fromDestination={fromDestination}

@@ -90,3 +90,53 @@ export function getContactFieldLabels(t) {
     mapUnavailable: t("mapInfo.labels.mapUnavailable"),
   };
 }
+
+export function getMapInfoEditorContent(data, lang = "en") {
+  const content = getMapInfoContent(data, lang);
+
+  return {
+    title: content.title || "",
+    description: content.description || "",
+    branches: content.branches.map((branch) => ({
+      id: branch.id || "",
+      name: branch.name || "",
+      country: branch.country || "",
+      city: branch.city || "",
+      address: branch.address || "",
+      phone: branch.phone || "",
+      email: branch.email || "",
+      workingHours: branch.workingHours || "",
+      latitude: branch.latitude || "",
+      longitude: branch.longitude || "",
+    })),
+  };
+}
+
+export function wrapMapInfoContent(content = {}, lang = "en") {
+  return {
+    translations: [
+      {
+        languageCode: lang,
+        content: {
+          title: content.title || "",
+          description: content.description || "",
+          branches: (Array.isArray(content.branches)
+            ? content.branches
+            : []
+          ).map((branch, index) => ({
+            id: branch?.id || `branch-${index + 1}`,
+            name: branch?.name || "",
+            country: branch?.country || "",
+            city: branch?.city || "",
+            address: branch?.address || "",
+            phone: branch?.phone || "",
+            email: branch?.email || "",
+            workingHours: branch?.workingHours || "",
+            latitude: branch?.latitude || "",
+            longitude: branch?.longitude || "",
+          })),
+        },
+      },
+    ],
+  };
+}

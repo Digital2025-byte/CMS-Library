@@ -112,6 +112,9 @@ export default function CoolSlideGallery({
   showDots = true,
   showCounter = false,
   showBadge = true,
+  showCardImage = true,
+  titleCss,
+  subtitleCss,
   clickable = true,
   draggable = true,
   dragThreshold = 45,
@@ -308,22 +311,24 @@ export default function CoolSlideGallery({
               aria-label={slide.title ?? slide.alt ?? `Slide ${index + 1}`}
               aria-hidden={!visible}
             >
-              <img
-                src={slide.src}
-                alt={slide.alt ?? slide.title ?? `Slide ${index + 1}`}
-                draggable={false}
-                loading="lazy"
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                  display: "block",
-                  userSelect: "none",
-                  pointerEvents: "none",
-                }}
-              />
+              {showCardImage ? (
+                <img
+                  src={slide.src}
+                  alt={slide.alt ?? slide.title ?? `Slide ${index + 1}`}
+                  draggable={false}
+                  loading="lazy"
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    display: "block",
+                    userSelect: "none",
+                    pointerEvents: "none",
+                  }}
+                />
+              ) : null}
 
               {showTitle && (slide.title || slide.subtitle) ? (
                 <>
@@ -343,13 +348,14 @@ export default function CoolSlideGallery({
                     ) : null}
                     {slide.title ? (
                       <p
-                        className="font-bold text-white"
+                        className={titleCss ? "font-bold" : "font-bold text-white"}
                         style={{
                           fontSize: "clamp(18px, 2.5vw, 26px)",
                           letterSpacing: "-0.02em",
                           lineHeight: 1.15,
                           textShadow: "0 2px 12px rgba(0,0,0,0.5)",
                           whiteSpace: "pre-line",
+                          color: titleCss,
                         }}
                       >
                         {slide.title}
@@ -357,11 +363,16 @@ export default function CoolSlideGallery({
                     ) : null}
                     {slide.subtitle ? (
                       <p
-                        className="mt-1 font-medium text-white/75"
+                        className={
+                          subtitleCss
+                            ? "mt-1 font-medium"
+                            : "mt-1 font-medium text-white/75"
+                        }
                         style={{
                           fontSize: "clamp(11px, 1.2vw, 14px)",
                           letterSpacing: "0.01em",
                           textShadow: "0 1px 6px rgba(0,0,0,0.4)",
+                          color: subtitleCss,
                         }}
                       >
                         {slide.subtitle}

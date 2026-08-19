@@ -3,10 +3,29 @@
  */
 export function getImageUrl(img) {
   if (!img) return "";
-  if (typeof img === "string") return img;
-  if (img?.src) return img.src;
-  if (img?.default) return img.default;
+  if (typeof img === "string") return img.trim();
+  if (img?.src) return String(img.src).trim();
+  if (img?.default) return getImageUrl(img.default);
+  if (img?.fileUrl || img?.fileURL) return getImageUrl(img.fileUrl || img.fileURL);
   return "";
+}
+
+export function isUsableImageSrc(src) {
+  const value = getImageUrl(src);
+  if (!value) {
+    return false;
+  }
+
+  if (value.startsWith("/") && !value.startsWith("//")) {
+    return true;
+  }
+
+  try {
+    const url = new URL(value.startsWith("//") ? `https:${value}` : value);
+    return url.protocol === "http:" || url.protocol === "https:";
+  } catch {
+    return false;
+  }
 }
 
 /**
@@ -51,7 +70,8 @@ export function getVerticalImageSliceContent(data, lang = "en") {
   const matchedTranslation =
     translations.find(
       (translation) =>
-        translation?.languageCode?.toLowerCase() === normalizedLang
+        String(translation?.languageCode || "").toLowerCase() ===
+        normalizedLang
     ) || translations[0];
 
   const content = matchedTranslation?.content || {};
@@ -81,5 +101,36 @@ export function getVerticalImageSliceContent(data, lang = "en") {
     imageAlt:
       imageAsset?.alt || legacyImage?.alt || title || "Travel experience",
     hasContent: Boolean(title || description || imageSrc),
+  };
+}
+
+export function getVerticalImageSliceEditorContent(data, lang = "en") {
+  const content = getVerticalImageSliceContent(data, lang);
+
+  return {
+    title: content.title || "",
+    highlightPhrase: content.highlightPhrase || "",
+    description: content.description || "",
+    imageUrl: content.imageSrc || "",
+    imageAlt: content.imageAlt || "",
+  };
+}
+
+export function wrapVerticalImageSliceContent(content = {}, lang = "en") {
+  return {
+    translations: [
+      {
+        languageCode: lang,
+        content: {
+          title: content.title || "",
+          highlightPhrase: content.highlightPhrase || "",
+          description: content.description || "",
+          SliceImage: {
+            fileUrl: content.imageUrl || "",
+            alt: content.imageAlt || "",
+          },
+        },
+      },
+    ],
   };
 }

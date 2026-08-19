@@ -1,11 +1,17 @@
+import { getThemeColorCss } from "@/styles/themeColors";
+import { DEFAULT_MAP_INFO_STYLE } from "../utils/style";
+
 export default function MapInfoOfficeTabs({
   offices,
   selectedOfficeIndex,
   onOfficeChange,
+  style = DEFAULT_MAP_INFO_STYLE,
 }) {
   if (!Array.isArray(offices) || offices.length <= 1) {
     return null;
   }
+
+  const tabCss = getThemeColorCss(style.tabColor, "primary-1");
 
   return (
     <div className="mx-auto mb-6 max-w-7xl px-2">
@@ -21,11 +27,18 @@ export default function MapInfoOfficeTabs({
                 key={`${office.id || office.name || index}-${index}`}
                 type="button"
                 onClick={() => onOfficeChange(index)}
-                className={`cursor-pointer py-2 text-xs font-medium transition-colors md:text-sm ${
+                className="cursor-pointer py-2 text-xs font-medium transition-colors md:text-sm"
+                style={
                   isActive
-                    ? "border-b-2 border-main text-primary-1"
-                    : "border-b-2 border-transparent text-muted hover:text-primary-1"
-                }`}
+                    ? {
+                        borderBottom: `2px solid ${tabCss}`,
+                        color: tabCss,
+                      }
+                    : {
+                        borderBottom: "2px solid transparent",
+                        color: "var(--color-500)",
+                      }
+                }
               >
                 {label}
               </button>

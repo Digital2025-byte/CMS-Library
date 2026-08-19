@@ -1,6 +1,12 @@
 import { typography } from "@/styles/typography";
+import { getThemeColorCss } from "@/styles/themeColors";
+import { DEFAULT_CALL_US_STYLE } from "../utils/style";
 
-export default function CallUsPhone({ phoneText, href }) {
+export default function CallUsPhone({
+  phoneText,
+  href,
+  style = DEFAULT_CALL_US_STYLE,
+}) {
   if (!phoneText) {
     return null;
   }
@@ -9,7 +15,8 @@ export default function CallUsPhone({ phoneText, href }) {
     <a
       dir="ltr"
       href={href || "#"}
-      className={`${typography.pageTitle} tracking-wide text-white no-underline hover:opacity-90`}
+      className={`${typography.pageTitle} tracking-wide no-underline hover:opacity-90`}
+      style={{ color: getThemeColorCss(style.phoneColor, "white") }}
     >
       +{phoneText}
     </a>

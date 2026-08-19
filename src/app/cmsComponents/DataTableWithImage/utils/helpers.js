@@ -1,8 +1,36 @@
+function toImageSrc(value) {
+  if (!value) {
+    return "";
+  }
+  if (typeof value === "string") {
+    return value;
+  }
+  return value.src || value.fileUrl || value.url || "";
+}
+
+export function isUsableImageSrc(src) {
+  const value = String(toImageSrc(src) || "").trim();
+  if (!value) {
+    return false;
+  }
+
+  if (value.startsWith("/") && !value.startsWith("//")) {
+    return true;
+  }
+
+  try {
+    const url = new URL(value.startsWith("//") ? `https:${value}` : value);
+    return url.protocol === "http:" || url.protocol === "https:";
+  } catch {
+    return false;
+  }
+}
+
 function normalizeHeader(item) {
   if (typeof item === "string") {
     return item;
   }
-  return item?.header || item?.title || "";
+  return item?.header || item?.title || item?.text || "";
 }
 
 function normalizeRow(row) {
@@ -65,12 +93,15 @@ export function getDataTableWithImageContent(data, lang = "en") {
     content?.note ||
     "";
 
-  const imageSrc =
+  const imageSrc = toImageSrc(
     content?.illustrationImage?.fileUrl ||
-    content?.illustrationImage?.url ||
-    "";
+      content?.illustrationImage?.url ||
+      content?.imageUrl ||
+      ""
+  );
   const imageAlt =
     content?.illustrationImage?.alt ||
+    content?.imageAlt ||
     (lang === "ar" ? "رسم توضيحي لحجم الأمتعة" : "Baggage size illustration");
 
   return {
@@ -81,5 +112,47 @@ export function getDataTableWithImageContent(data, lang = "en") {
     imageSrc,
     imageAlt,
     hasContent: Boolean(title || rows.length || imageSrc),
+  };
+}
+
+export function getDataTableWithImageEditorContent(data, lang = "en") {
+  const content = getDataTableWithImageContent(data, lang);
+
+  return {
+    title: content.title || "",
+    note: content.note || "",
+    headers: content.headers.map((text) => ({ text })),
+    rows: content.rows.map((cells) => ({ cells })),
+    imageUrl: content.imageSrc || "",
+    imageAlt: content.imageAlt || "",
+  };
+}
+
+export function wrapDataTableWithImageContent(content = {}, lang = "en") {
+  return {
+    translations: [
+      {
+        languageCode: lang,
+        content: {
+          sectionTitle: content.title || "",
+          tableHeaders: (Array.isArray(content.headers)
+            ? content.headers
+            : []
+          ).map((header) => header?.text || ""),
+          tableRows: (Array.isArray(content.rows) ? content.rows : []).map(
+            (row) => ({
+              row: Array.isArray(row?.cells) ? row.cells : [],
+            })
+          ),
+          infoNote: {
+            text: content.note || "",
+          },
+          illustrationImage: {
+            fileUrl: content.imageUrl || "",
+            alt: content.imageAlt || "",
+          },
+        },
+      },
+    ],
   };
 }

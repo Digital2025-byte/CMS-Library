@@ -1,13 +1,20 @@
 import { typography } from "@/styles/typography";
+import { getThemeColorCss } from "@/styles/themeColors";
+import { DEFAULT_MAP_INFO_STYLE } from "../utils/style";
 
 export default function MapInfoCountryTabs({
   countries,
   selectedCountry,
   onCountryChange,
+  style = DEFAULT_MAP_INFO_STYLE,
 }) {
   if (!Array.isArray(countries) || countries.length === 0) {
     return null;
   }
+
+  const brandCss = getThemeColorCss(style.chipColor, "primary-1");
+  const activeTextCss = getThemeColorCss(style.chipActiveText, "white");
+  const idleBgCss = getThemeColorCss(style.chipIdleBg, "white");
 
   return (
     <div className="mb-6 flex flex-wrap gap-3 px-2">
@@ -19,11 +26,20 @@ export default function MapInfoCountryTabs({
             key={country}
             type="button"
             onClick={() => onCountryChange(country)}
-            className={`${typography.button} cursor-pointer rounded-lg px-5 py-2 font-medium transition-all ${
+            className={`${typography.button} cursor-pointer rounded-lg px-5 py-2 font-medium transition-all`}
+            style={
               isActive
-                ? "bg-primary-1 text-white"
-                : "border border-primary-1 bg-white text-primary-1 hover:bg-primary-1/5"
-            }`}
+                ? {
+                    backgroundColor: brandCss,
+                    border: `1px solid ${brandCss}`,
+                    color: activeTextCss,
+                  }
+                : {
+                    backgroundColor: idleBgCss,
+                    border: `1px solid ${brandCss}`,
+                    color: brandCss,
+                  }
+            }
           >
             {country}
           </button>

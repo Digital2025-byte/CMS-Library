@@ -75,3 +75,90 @@ export function getLegalBodyTermsContent(data, lang = "en") {
 
   return { content, hasContent };
 }
+
+export function getLegalBodyTermsEditorContent(data, lang = "en") {
+  const { content } = getLegalBodyTermsContent(data, lang);
+  const parsed = content || {};
+
+  return {
+    effectiveDate: parsed.cover?.effectiveDate || "",
+    effectiveDateLabel: parsed.effectiveDateLabel || "",
+    coverTitle: parsed.cover?.title || "",
+    coverDescription: parsed.cover?.description || "",
+    acceptanceTitle: parsed.acceptance?.title || "",
+    acceptanceMessage: parsed.acceptance?.message || "",
+    limitationTitle: parsed.limitationTitle || "",
+    contactTitle: parsed.contactTitle || parsed.contact?.title || "",
+    contactDescription:
+      parsed.contactDescription || parsed.contact?.description || "",
+    company: parsed.contact?.company || "",
+    department: parsed.contact?.department || "",
+    email: parsed.contact?.email || "",
+    phone: parsed.contact?.phone || "",
+    address: parsed.contact?.address || "",
+    sections: (Array.isArray(parsed.sections) ? parsed.sections : []).map(
+      (section) => ({
+        title: section?.title || "",
+        intro: section?.intro || "",
+        variant: section?.variant || "",
+        items: (Array.isArray(section?.items) ? section.items : []).map(
+          (item) => ({
+            title: item?.title || "",
+            description: item?.description || "",
+          })
+        ),
+      })
+    ),
+  };
+}
+
+export function wrapLegalBodyTermsContent(content = {}, lang = "en") {
+  const body = {
+    limitationTitle: content.limitationTitle || "",
+    effectiveDateLabel: content.effectiveDateLabel || "",
+    cover: {
+      title: content.coverTitle || "",
+      description: content.coverDescription || "",
+      effectiveDate: content.effectiveDate || "",
+    },
+    acceptance: {
+      title: content.acceptanceTitle || "",
+      message: content.acceptanceMessage || "",
+    },
+    sections: (Array.isArray(content.sections) ? content.sections : []).map(
+      (section) => ({
+        title: section?.title || "",
+        intro: section?.intro || "",
+        variant: section?.variant || "",
+        items: (Array.isArray(section?.items) ? section.items : []).map(
+          (item) => ({
+            title: item?.title || "",
+            description: item?.description || "",
+          })
+        ),
+      })
+    ),
+    contactTitle: content.contactTitle || "",
+    contactDescription: content.contactDescription || "",
+    contact: {
+      title: content.contactTitle || "",
+      description: content.contactDescription || "",
+      company: content.company || "",
+      department: content.department || "",
+      email: content.email || "",
+      phone: content.phone || "",
+      address: content.address || "",
+    },
+  };
+
+  return {
+    translations: [
+      {
+        languageCode: lang,
+        content: {
+          body: JSON.stringify(body),
+        },
+      },
+    ],
+  };
+}

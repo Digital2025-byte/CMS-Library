@@ -1,6 +1,10 @@
-import PageContentContainer from "@/components/layout/PageContentContainer";
 import { typography } from "@/styles/typography";
+import { getThemeColorCss } from "@/styles/themeColors";
 import { CONNECTION_STEPS_LAYOUT } from "../utils/layout";
+import {
+  DEFAULT_CONNECTION_STEPS_STYLE,
+  TITLE_ALIGN_CLASS,
+} from "../utils/style";
 import ConnectionStep1 from "./ConnectionStep1";
 import ConnectionStep2 from "./ConnectionStep2";
 import ConnectionStep3 from "./ConnectionStep3";
@@ -20,58 +24,57 @@ export default function ConnectionStepsListPanel({
   title,
   steps = [],
   stepLabelPrefix = "Step",
+  style = DEFAULT_CONNECTION_STEPS_STYLE,
 }) {
   const isRtl = lang === "ar";
+  const alignClass =
+    TITLE_ALIGN_CLASS[style.titleAlign] ?? TITLE_ALIGN_CLASS.left;
 
   return (
-    <section
-      className="w-full overflow-visible bg-100 py-8 lg:py-14"
-      dir={isRtl ? "rtl" : "ltr"}
-    >
-      <PageContentContainer>
-        {title ? (
-          <h2
-            className={`${typography.sectionTitle} mb-8 font-semibold text-primary-1 md:mb-12`}
-          >
-            {title}
-          </h2>
-        ) : null}
-
-        {/* Small screens — zigzag + dashed connectors */}
-        <ConnectionStepsListMobile
-          steps={steps}
-          stepLabelPrefix={stepLabelPrefix}
-          isRtl={isRtl}
-        />
-
-        {/* Desktop — horizontal wave (unchanged) */}
-        <div
-          className="relative hidden w-full overflow-visible md:block"
-          style={{ height: CONNECTION_STEPS_LAYOUT.trackHeight }}
+    <div className="w-full overflow-visible" dir={isRtl ? "rtl" : "ltr"}>
+      {style.showTitle && title ? (
+        <h2
+          className={`${typography.sectionTitle} mb-8 font-semibold md:mb-12 ${alignClass}`}
+          style={{ color: getThemeColorCss(style.titleColor, "primary-1") }}
         >
-          <div className="absolute inset-0 z-0">
-            <ConnectionStepsPath isRtl={isRtl} />
-          </div>
+          {title}
+        </h2>
+      ) : null}
 
-          <ol className="absolute inset-0 z-10 list-none">
-            {STEP_COMPONENTS.map((StepComponent, index) => {
-              const step = steps[index];
-              if (!step) {
-                return null;
-              }
+      <ConnectionStepsListMobile
+        steps={steps}
+        stepLabelPrefix={stepLabelPrefix}
+        isRtl={isRtl}
+        style={style}
+      />
 
-              return (
-                <StepComponent
-                  key={`d-${step.description || index}`}
-                  step={step}
-                  stepLabel={`${stepLabelPrefix} ${index + 1}`}
-                  isRtl={isRtl}
-                />
-              );
-            })}
-          </ol>
+      <div
+        className="relative hidden w-full overflow-visible md:block"
+        style={{ height: CONNECTION_STEPS_LAYOUT.trackHeight }}
+      >
+        <div className="absolute inset-0 z-0">
+          <ConnectionStepsPath isRtl={isRtl} />
         </div>
-      </PageContentContainer>
-    </section>
+
+        <ol className="absolute inset-0 z-10 list-none">
+          {STEP_COMPONENTS.map((StepComponent, index) => {
+            const step = steps[index];
+            if (!step) {
+              return null;
+            }
+
+            return (
+              <StepComponent
+                key={`d-${step.description || index}`}
+                step={step}
+                stepLabel={`${stepLabelPrefix} ${index + 1}`}
+                isRtl={isRtl}
+                theme={style}
+              />
+            );
+          })}
+        </ol>
+      </div>
+    </div>
   );
 }

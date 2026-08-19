@@ -1,39 +1,57 @@
-"use client";
+import { typography } from "@/styles/typography";
+import { getThemeColorCss } from "@/styles/themeColors";
+import PageContentContainer from "@/components/layout/PageContentContainer";
+import {
+  DEFAULT_THREE_D_IMAGE_RING_STYLE,
+  SECTION_PADDING_CLASS,
+  TITLE_ALIGN_CLASS,
+} from "./utils/style";
 
-import React from "react";
+export default function TitleDescription({
+  title,
+  description,
+  style = DEFAULT_THREE_D_IMAGE_RING_STYLE,
+}) {
+  const showHeading = style.showTitle && title;
+  const showBody = style.showDescription && description;
 
-/**
- * TitleDescription Component
- * Displays title and description for the 3D Image Ring section
- * 
- * @param {Object} props
- * @param {string} props.title - Section title
- * @param {string} props.description - Section description
- * @param {string} props.backgroundColor - Background color
- */
-const TitleDescription = ({ title, description, backgroundColor }) => {
-  if (!title && !description) {
+  if (!showHeading && !showBody) {
     return null;
   }
 
-  return (
-    <div className="w-full" style={{ backgroundColor: backgroundColor }}>
-      <div className="w-full px-4 md:px-6 lg:px-8 pt-8 md:pt-12 lg:pt-16 z-20">
-        <div className="flex flex-col md:flex-row md:justify-evenly md:items-center gap-4 md:gap-8">
-          {title && (
-            <h2 className="text-2xl md:text-3xl font-bold text-white text-center md:text-start md:whitespace-nowrap">
-              {title}
-            </h2>
-          )}
-          {description && (
-            <p className="text-start text-base md:text-base text-white/90 max-w-3xl">
-              {description}
-            </p>
-          )}
-        </div>
-      </div>
-    </div>
-  );
-};
+  const paddingClass =
+    SECTION_PADDING_CLASS[style.sectionPadding] ??
+    SECTION_PADDING_CLASS.default;
+  const alignClass =
+    TITLE_ALIGN_CLASS[style.titleAlign] ?? TITLE_ALIGN_CLASS.left;
+  const isCenter = style.titleAlign === "center";
 
-export default TitleDescription;
+  return (
+    <PageContentContainer className={paddingClass}>
+      <div
+        className={`flex flex-col gap-4 md:flex-row md:items-center md:justify-evenly md:gap-8 ${alignClass}`}
+      >
+        {showHeading ? (
+          <h2
+            className={`${typography.sectionTitle} shrink-0 font-semibold md:whitespace-nowrap`}
+            style={{ color: getThemeColorCss(style.titleColor, "white") }}
+          >
+            {title}
+          </h2>
+        ) : null}
+        {showBody ? (
+          <p
+            className={`${typography.sectionDescription} max-w-3xl ${
+              isCenter ? "md:text-center" : "md:text-start"
+            }`}
+            style={{
+              color: `color-mix(in srgb, ${getThemeColorCss(style.descriptionColor, "white")} 90%, transparent)`,
+            }}
+          >
+            {description}
+          </p>
+        ) : null}
+      </div>
+    </PageContentContainer>
+  );
+}

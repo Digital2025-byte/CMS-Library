@@ -1,37 +1,57 @@
 import { typography } from "@/styles/typography";
+import { getThemeColorCss } from "@/styles/themeColors";
 import TwoColumnCta from "./TwoColumnCta";
+import {
+  DEFAULT_TWO_COLUMN_INTRO_STYLE,
+  TITLE_ALIGN_CLASS,
+} from "../utils/style";
 
 export default function TwoColumnContent({
   title,
   description,
   ctaButton,
   ctaHref,
+  style = DEFAULT_TWO_COLUMN_INTRO_STYLE,
+  cId,
 }) {
-  if (!title && !description && !ctaButton) {
+  const showTitle = style.showTitle && title;
+  const showDescription = style.showDescription && description;
+  const showCta = style.showCta && ctaButton;
+  const alignClass =
+    TITLE_ALIGN_CLASS[style.titleAlign] ?? TITLE_ALIGN_CLASS.left;
+
+  if (!showTitle && !showDescription && !showCta) {
     return null;
   }
 
   return (
-    <div className="flex w-full flex-col justify-center">
-      {title ? (
+    <div className={`flex w-full flex-col justify-center ${alignClass}`}>
+      {showTitle ? (
         <h2
-          className={`${typography.sectionTitle} font-semibold leading-snug text-primary-1`}
+          className={`${typography.sectionTitle} font-semibold leading-snug wrap-break-word`}
+          style={{ color: getThemeColorCss(style.titleColor, "primary-1") }}
         >
           {title}
         </h2>
       ) : null}
 
-      {description ? (
+      {showDescription ? (
         <p
-          className={`${typography.sectionDescription} mt-4 leading-relaxed text-700 sm:mt-5 lg:mt-6`}
+          className={`${typography.sectionDescription} mt-4 leading-relaxed wrap-break-word sm:mt-5 lg:mt-6`}
+          style={{ color: getThemeColorCss(style.descriptionColor, "700") }}
         >
           {description}
         </p>
       ) : null}
 
-      {ctaButton ? (
+      {showCta ? (
         <div className="mt-6 sm:mt-8">
-          <TwoColumnCta label={ctaButton} href={ctaHref} />
+          <TwoColumnCta
+            label={ctaButton}
+            href={ctaHref}
+            cId={cId}
+            style={style}
+          />
         </div>
       ) : null}
     </div>

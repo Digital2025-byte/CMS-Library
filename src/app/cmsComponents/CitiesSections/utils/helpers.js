@@ -68,10 +68,11 @@ export function getCitiesSectionsContent(data, lang = "en") {
   const image2 = getFileUrl(files[1]);
 
   const isCTA = Boolean(content?.isCTA);
-  const slug = content?.slug || "";
+  const slug = content?.slug || content?.ctaHref || "";
   const ctaLabel =
     content?.ctaLabel ||
     (lang === "ar" ? "اكتشف المزيد" : "Explore more");
+  const ctaHref = content?.ctaHref || "";
 
   return {
     title,
@@ -82,6 +83,63 @@ export function getCitiesSectionsContent(data, lang = "en") {
     isCTA,
     slug,
     ctaLabel,
+    ctaHref,
     hasContent: Boolean(title || description || image1 || image2),
+  };
+}
+
+export function isUsableImageSrc(src) {
+  const value = String(src || "").trim();
+  if (!value) {
+    return false;
+  }
+
+  if (value.startsWith("/") && !value.startsWith("//")) {
+    return true;
+  }
+
+  try {
+    const url = new URL(value.startsWith("//") ? `https:${value}` : value);
+    return url.protocol === "http:" || url.protocol === "https:";
+  } catch {
+    return false;
+  }
+}
+
+export function getCitiesSectionsEditorContent(data, lang = "en") {
+  const content = getCitiesSectionsContent(data, lang);
+
+  return {
+    title: content.title || "",
+    description: content.description || "",
+    ctaLabel: content.ctaLabel || "",
+    ctaHref: content.ctaHref || content.slug || "",
+    ctaLinkType: "internal",
+    image1Url: content.image1 || "",
+    image1Alt: content.title || "",
+    image2Url: content.image2 || "",
+    image2Alt: content.title || "",
+  };
+}
+
+export function wrapCitiesSectionsContent(content = {}, lang = "en") {
+  return {
+    translations: [
+      {
+        languageCode: lang,
+        content: {
+          title: content.title || "",
+          description: content.description || "",
+          isCTA: Boolean(content.ctaLabel),
+          ctaLabel: content.ctaLabel || "",
+          ctaHref: content.ctaHref || "",
+          slug: content.ctaHref || "",
+          files: [
+            { fileUrl: content.image1Url || "", alt: content.image1Alt || "" },
+            { fileUrl: content.image2Url || "", alt: content.image2Alt || "" },
+          ],
+        },
+      },
+    ],
   };
 }

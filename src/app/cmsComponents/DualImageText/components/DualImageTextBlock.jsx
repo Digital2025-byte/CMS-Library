@@ -1,27 +1,30 @@
 import Image from "next/image";
 import Button from "@/components/ui/Button";
 import { typography } from "@/styles/typography";
+import { getThemeColorCss } from "@/styles/themeColors";
 import {
   DEFAULT_EXTRA_IMAGE_POSITION,
   imageSrc,
+  isUsableImageSrc,
   resolveExtraImagePosition,
 } from "../utils/helpers";
 import DualImageTextTitle from "./DualImageTextTitle";
+import {
+  DEFAULT_DUAL_IMAGE_TEXT_STYLE,
+  TITLE_ALIGN_CLASS,
+} from "../utils/style";
 
 export default function DualImageTextBlock({
   item,
   reverse = false,
   priority = false,
-  blueLayer = false,
-  underlineFirstWord = false,
-  showExploreButton = false,
-  exploreButtonLabel = "Explore more",
-  exploreButtonHref = "explore",
-  showExtraImage = false,
   extraImageUrl = "",
   extraImageAlt = "",
   extraImagePosition = DEFAULT_EXTRA_IMAGE_POSITION,
+  exploreButtonLabel = "Explore more",
+  exploreButtonHref = "explore",
   cId,
+  style = DEFAULT_DUAL_IMAGE_TEXT_STYLE,
 }) {
   if (!item?.title && !item?.description && !item?.imageUrl) {
     return null;
@@ -33,8 +36,15 @@ export default function DualImageTextBlock({
 
   const buttonLabel = item.buttonText || exploreButtonLabel;
   const buttonHref = item.ctaHref || exploreButtonHref;
-  const hasExtraImage = showExtraImage && Boolean(extraImageUrl);
+  const hasExtraImage =
+    style.showExtraImage && isUsableImageSrc(extraImageUrl);
   const { overlayStyle } = resolveExtraImagePosition(extraImagePosition);
+  const alignClass =
+    TITLE_ALIGN_CLASS[style.titleAlign] ?? TITLE_ALIGN_CLASS.left;
+  const buttonBg = getThemeColorCss(style.buttonBg, "primary-2");
+  const buttonText = getThemeColorCss(style.buttonText, "white");
+  const mainSrc = imageSrc(item.imageUrl);
+  const extraSrc = imageSrc(extraImageUrl);
 
   return (
     <div className="grid grid-cols-1 items-center gap-5 lg:grid-cols-2 lg:gap-12 xl:gap-16">
@@ -43,14 +53,14 @@ export default function DualImageTextBlock({
           reverse ? "lg:order-1" : "lg:order-2"
         }`}
       >
-        {item.imageUrl ? (
+        {isUsableImageSrc(mainSrc) ? (
           <Image
-            src={imageSrc(item.imageUrl)}
+            src={mainSrc}
             alt={item.imageAlt || item.title || "Section image"}
             width={1000}
             height={750}
             className={`relative z-0 aspect-4/3 h-auto w-full object-cover ${
-              blueLayer ? shadowClass : "rounded-2xl"
+              style.blueLayer ? shadowClass : "rounded-2xl"
             }`}
             priority={priority}
             quality={75}
@@ -61,7 +71,7 @@ export default function DualImageTextBlock({
         {hasExtraImage ? (
           <div className="absolute z-10" style={overlayStyle}>
             <Image
-              src={imageSrc(extraImageUrl)}
+              src={extraSrc}
               alt={extraImageAlt || item.imageAlt || "Detail image"}
               width={640}
               height={480}
@@ -74,34 +84,47 @@ export default function DualImageTextBlock({
       </div>
 
       <div
-        className={`flex flex-col justify-center ${
+        className={`flex flex-col justify-center ${alignClass} ${
           reverse ? "lg:order-2" : "lg:order-1"
         }`}
       >
-        <DualImageTextTitle
-          text={item.title}
-          underlineFirstWord={underlineFirstWord}
-        />
-        {(item.descriptions?.length
-          ? item.descriptions
-          : item.description
-            ? [item.description]
-            : []
-        ).map((paragraph, index) => (
-          <p
-            key={`${item.title}-p-${index}`}
-            className={`${typography.sectionDescription} mt-4 leading-relaxed text-700 text-start lg:mt-6 lg:text-justify`}
-          >
-            {paragraph}
-          </p>
-        ))}
-        {showExploreButton && buttonLabel ? (
+        {style.showTitle ? (
+          <DualImageTextTitle
+            text={item.title}
+            underlineFirstWord={style.underlineFirstWord}
+            style={style}
+          />
+        ) : null}
+        {style.showDescription
+          ? (item.descriptions?.length
+              ? item.descriptions
+              : item.description
+                ? [item.description]
+                : []
+            ).map((paragraph, index) => (
+              <p
+                key={`${item.title}-p-${index}`}
+                className={`${typography.sectionDescription} mt-4 leading-relaxed wrap-break-word text-start lg:mt-6 lg:text-justify`}
+                style={{
+                  color: getThemeColorCss(style.descriptionColor, "700"),
+                }}
+              >
+                {paragraph}
+              </p>
+            ))
+          : null}
+        {style.showExploreButton && buttonLabel ? (
           <div className="mt-5 sm:mt-6">
             <Button
               label={buttonLabel}
               href={buttonHref}
               cId={cId}
               variant="primary"
+              style={{
+                backgroundColor: buttonBg,
+                borderColor: buttonBg,
+                color: buttonText,
+              }}
             />
           </div>
         ) : null}

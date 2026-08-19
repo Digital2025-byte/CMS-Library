@@ -1,19 +1,35 @@
 import Image from "next/image";
+import { isUsableImageSrc } from "../utils/helpers";
+import {
+  DEFAULT_TWO_COLUMN_SUB_SECTIONS_STYLE,
+  IMAGE_RADIUS_CLASS,
+  OVERLAY_RADIUS_CLASS,
+} from "../utils/style";
 
 export default function SubSectionsMedia({
   mainImage,
   mainImageAlt,
   overlayImage,
   overlayImageAlt,
+  style = DEFAULT_TWO_COLUMN_SUB_SECTIONS_STYLE,
 }) {
-  if (!mainImage) {
+  const canShowMain = isUsableImageSrc(mainImage);
+  const canShowOverlay = isUsableImageSrc(overlayImage);
+  const mainRadius =
+    IMAGE_RADIUS_CLASS[style.imageRadius] ?? IMAGE_RADIUS_CLASS.lg;
+  const overlayRadius =
+    OVERLAY_RADIUS_CLASS[style.imageRadius] ?? OVERLAY_RADIUS_CLASS.lg;
+
+  if (!canShowMain) {
     return null;
   }
 
   return (
     <div className="relative w-full pb-[14%] lg:w-[52%] lg:pb-[12%] ">
       <div className="relative w-[88%]">
-        <div className="relative aspect-4/3 w-full overflow-hidden rounded-3xl sm:rounded-4xl">
+        <div
+          className={`relative aspect-4/3 w-full overflow-hidden ${mainRadius}`}
+        >
           <Image
             src={mainImage}
             alt={mainImageAlt}
@@ -25,8 +41,10 @@ export default function SubSectionsMedia({
           />
         </div>
 
-        {overlayImage ? (
-          <div className="absolute -bottom-[10%] -end-[8%] z-10 aspect-square w-[42%] overflow-hidden rounded-2xl shadow-2xl ring-1 ring-black/5 sm:rounded-3xl">
+        {canShowOverlay ? (
+          <div
+            className={`absolute -bottom-[10%] -end-[8%] z-10 aspect-square w-[42%] overflow-hidden shadow-2xl ring-1 ring-black/5 ${overlayRadius}`}
+          >
             <Image
               src={overlayImage}
               alt={overlayImageAlt}

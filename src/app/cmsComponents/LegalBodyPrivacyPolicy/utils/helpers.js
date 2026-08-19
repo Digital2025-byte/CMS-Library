@@ -61,3 +61,61 @@ export function getLegalBodyPrivacyPolicyContent(data, lang = "en") {
     ),
   };
 }
+
+export function getLegalBodyPrivacyPolicyEditorContent(data, lang = "en") {
+  const { content } = getLegalBodyPrivacyPolicyContent(data, lang);
+  const parsed = content || {};
+
+  return {
+    effectiveDate: parsed.effectiveDate || "",
+    introTitle: parsed.introduction?.title || "",
+    introContent: parsed.introduction?.content || "",
+    tocTitle: parsed.tocTitle || "",
+    infoCollectedLabel: parsed.infoCollectedLabel || "",
+    shareSituationsLabel: parsed.shareSituationsLabel || "",
+    summaryPoints: (Array.isArray(parsed.summaryPoints)
+      ? parsed.summaryPoints
+      : []
+    ).map((item) => ({
+      question: item?.question || "",
+      answer: item?.answer || "",
+    })),
+    sections: parsed.sections || {},
+  };
+}
+
+export function wrapLegalBodyPrivacyPolicyContent(content = {}, lang = "en") {
+  const body = {
+    cover: {
+      title: content.introTitle || "",
+      description: content.introContent || "",
+    },
+    effectiveDate: content.effectiveDate || "",
+    introduction: {
+      title: content.introTitle || "",
+      content: content.introContent || "",
+    },
+    tocTitle: content.tocTitle || "",
+    infoCollectedLabel: content.infoCollectedLabel || "",
+    shareSituationsLabel: content.shareSituationsLabel || "",
+    summaryPoints: (Array.isArray(content.summaryPoints)
+      ? content.summaryPoints
+      : []
+    ).map((item) => ({
+      question: item?.question || "",
+      answer: item?.answer || "",
+    })),
+    sections: content.sections || {},
+  };
+
+  return {
+    translations: [
+      {
+        languageCode: lang,
+        content: {
+          body: JSON.stringify(body),
+        },
+      },
+    ],
+  };
+}

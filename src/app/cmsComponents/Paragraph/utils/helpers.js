@@ -26,3 +26,26 @@ export function getParagraphContent(data, lang = "en") {
     hasContent: Boolean(title || description),
   };
 }
+
+export function getParagraphEditorContent(data, lang = "en") {
+  const content = getParagraphContent(data, lang);
+
+  return {
+    title: content.title || "",
+    description: content.description || "",
+  };
+}
+
+export function wrapParagraphContent(content = {}, lang = "en") {
+  return {
+    translations: [
+      {
+        languageCode: lang,
+        content: {
+          title: content.title || "",
+          description: content.description || "",
+        },
+      },
+    ],
+  };
+}

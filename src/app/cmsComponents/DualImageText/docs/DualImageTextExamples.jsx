@@ -1,15 +1,53 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { DualImageTextSection } from "@/app/cmsComponents/DualImageText";
 import DualImageTextPropsForm from "@/app/cmsComponents/DualImageText/docs/DualImageTextPropsForm";
+import {
+  getDualImageTextEditorContent,
+  wrapDualImageTextContent,
+} from "@/app/cmsComponents/DualImageText/utils/helpers";
 import { DEFAULT_DUAL_IMAGE_TEXT_STYLE } from "@/app/cmsComponents/DualImageText/utils/style";
+import {
+  InspectorFooter,
+  InspectorSubmitButton,
+  isExternalHref,
+  isInternalPage,
+  resolveEditorLink,
+} from "@/components/inspector";
 import Drawer, { useDrawer } from "@/components/ui/Drawer";
 
-const OFFSET_EXTRA_POSITIONS = [
-  { bottom: -50, start: 0, horizontal: 60 },
-  { bottom: -50, end: 0, horizontal: -60 },
-];
+function toEditorLink(href) {
+  if (!href || href === "#") {
+    return { type: "external", href: href || "" };
+  }
+  if (isExternalHref(href) || isInternalPage(href)) {
+    return resolveEditorLink(href);
+  }
+  if (String(href).startsWith("/")) {
+    return { type: "external", href };
+  }
+  return resolveEditorLink(href);
+}
+
+function toEditorContent(data, lang) {
+  const content = getDualImageTextEditorContent(data, lang);
+  const explore = toEditorLink(content.exploreHref);
+
+  return {
+    ...content,
+    exploreHref: explore.href,
+    exploreLinkType: explore.type,
+    items: (content.items || []).map((item) => {
+      const link = toEditorLink(item.buttonHref);
+      return {
+        ...item,
+        buttonHref: link.href,
+        buttonLinkType: link.type,
+      };
+    }),
+  };
+}
 
 export default function DualImageTextExamples({
   ctx,
@@ -17,38 +55,23 @@ export default function DualImageTextExamples({
   variant = "towards",
 }) {
   const { lang, dir } = ctx;
-  const drawer = useDrawer();
-  const [style, setStyle] = useState({
-    ...DEFAULT_DUAL_IMAGE_TEXT_STYLE,
-    offsetExtraImage: false,
-  });
-
-  const toggle = (key) => {
-    setStyle((current) => {
-      const next = { ...current, [key]: !current[key] };
-      if (key === "showExtraImage" && !next.showExtraImage) {
-        next.offsetExtraImage = false;
-      }
-      if (key === "offsetExtraImage" && next.offsetExtraImage) {
-        next.showExtraImage = true;
-      }
-      return next;
-    });
-  };
-
   const data =
     variant === "training" ? ctx.dualImageTrainingData : ctx.dualImageTextData;
+  const drawer = useDrawer();
+  const [style, setStyle] = useState(DEFAULT_DUAL_IMAGE_TEXT_STYLE);
+  const [content, setContent] = useState(() => toEditorContent(data, lang));
+
+  useEffect(() => {
+    setContent(toEditorContent(data, lang));
+  }, [data, lang]);
 
   return (
     <div>
       <DualImageTextSection
         lang={lang}
         dir={dir}
-        data={data}
+        data={wrapDualImageTextContent(content, lang)}
         style={style}
-        extraImagePositions={
-          style.offsetExtraImage ? OFFSET_EXTRA_POSITIONS : undefined
-        }
       />
 
       <Drawer
@@ -59,12 +82,20 @@ export default function DualImageTextExamples({
         panelRef={drawer.panelRef}
         titleId={drawer.titleId}
         title={name}
+        footer={
+          <InspectorFooter>
+            <InspectorSubmitButton
+              onClick={() => console.log("DualImageText", { content, style })}
+            />
+          </InspectorFooter>
+        }
       >
         <DualImageTextPropsForm
-          flags={style}
-          toggle={toggle}
-          bgColor={style.bgColor}
-          setBgColor={(bgColor) => setStyle((current) => ({ ...current, bgColor }))}
+          content={content}
+          onContentChange={setContent}
+          contentDefaults={toEditorContent(data, lang)}
+          style={style}
+          onStyleChange={setStyle}
         />
       </Drawer>
     </div>

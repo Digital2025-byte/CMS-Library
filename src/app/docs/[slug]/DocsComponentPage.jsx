@@ -13,29 +13,56 @@ import AccordionWithContentExamples from "@/app/cmsComponents/AccordionWithConte
 import AccordionWithImagesExamples from "@/app/cmsComponents/AccordionWithImages/docs/AccordionWithImagesExamples";
 import BannerWithCtaExamples from "@/app/cmsComponents/BannerWithCta/docs/BannerWithCtaExamples";
 import BannerWithCTAsAndItemsExamples from "@/app/cmsComponents/BannerWithCTAsAndItems/docs/BannerWithCTAsAndItemsExamples";
+import CallUsExamples from "@/app/cmsComponents/CallUs/docs/CallUsExamples";
 import CardsCarouselFillImageExamples from "@/app/cmsComponents/CardsCarouselFillImage/docs/CardsCarouselFillImageExamples";
 import CarouselImageText6Examples from "@/app/cmsComponents/CarouselImageText6/docs/CarouselImageText6Examples";
 import CarouselItemExamples from "@/app/cmsComponents/CarouselItem/docs/CarouselItemExamples";
+import CitiesSectionsExamples from "@/app/cmsComponents/CitiesSections/docs/CitiesSectionsExamples";
+import ConnectionStepsListExamples from "@/app/cmsComponents/ConnectionStepsList/docs/ConnectionStepsListExamples";
+import CoolSlideGalleryExamples from "@/app/cmsComponents/CoolSlideGallery/docs/CoolSlideGalleryExamples";
+import DataTableWithImageExamples from "@/app/cmsComponents/DataTableWithImage/docs/DataTableWithImageExamples";
 import DestinationShowcaseExamples from "@/app/cmsComponents/DestinationShowcase/docs/DestinationShowcaseExamples";
 import DestinationsCitiesExamples from "@/app/cmsComponents/DestinationsCities/docs/DestinationsCitiesExamples";
+import DestinationsMapExamples from "@/app/cmsComponents/DestinationsMap/docs/DestinationsMapExamples";
+import Draggable3DImageRingExamples from "@/app/cmsComponents/Draggable3DImageRing/docs/Draggable3DImageRingExamples";
 import DualImageTextExamples from "@/app/cmsComponents/DualImageText/docs/DualImageTextExamples";
-import FullHeightHeaderWithTextExamples from "@/app/cmsComponents/FullHeightHeaderWithText/docs/FullHeightHeaderWithTextExamples";
 import FlightFaresSectionExamples from "@/app/cmsComponents/FlightFaresSection/docs/FlightFaresSectionExamples";
+import FormFooterExamples from "@/app/cmsComponents/FormFooter/docs/FormFooterExamples";
+import FormHeaderExamples from "@/app/cmsComponents/FormHeader/docs/FormHeaderExamples";
+import FullHeightHeaderWithTextExamples from "@/app/cmsComponents/FullHeightHeaderWithText/docs/FullHeightHeaderWithTextExamples";
 import GridInfoExamples from "@/app/cmsComponents/GridInfo/docs/GridInfoExamples";
 import HeaderWithCityInfoExamples from "@/app/cmsComponents/HeaderWithCityInfo/docs/HeaderWithCityInfoExamples";
-import PhotoTileGridExamples from "@/app/cmsComponents/PhotoTileGrid/docs/PhotoTileGridExamples";
-import SearchWithTabsAndGridExamples from "@/app/cmsComponents/SearchWithTabsAndGrid/docs/SearchWithTabsAndGridExamples";
-import SimpleGridWithPrefixExamples from "@/app/cmsComponents/SimpleGridWithPrefix/docs/SimpleGridWithPrefixExamples";
 import HeaderWithThreeImageExamples from "@/app/cmsComponents/HeaderWithThreeImage/docs/HeaderWithThreeImageExamples";
 import OppositeScrollExamples from "@/app/cmsComponents/ImageCarouselsWithOppositeScrollDirections/docs/OppositeScrollExamples";
-import RelatedContentCarouselExamples from "@/app/cmsComponents/RelatedContentCarousel/docs/RelatedContentCarouselExamples";
-import ServiceCardsSliderExamples from "@/app/cmsComponents/ServiceCardsSlider/docs/ServiceCardsSliderExamples";
-import SliderExamples from "@/app/cmsComponents/Slider/docs/SliderExamples";
+import LegalBodyCookiesExamples from "@/app/cmsComponents/LegalBodyCookies/docs/LegalBodyCookiesExamples";
+import LegalBodyPrivacyPolicyExamples from "@/app/cmsComponents/LegalBodyPrivacyPolicy/docs/LegalBodyPrivacyPolicyExamples";
+import LegalBodyTermsExamples from "@/app/cmsComponents/LegalBodyTerms/docs/LegalBodyTermsExamples";
+import LegalInformationCardsExamples from "@/app/cmsComponents/LegalInformationCards/docs/LegalInformationCardsExamples";
+import LegalInformationHeroExamples from "@/app/cmsComponents/LegalInformationHero/docs/LegalInformationHeroExamples";
+import MapInfoExamples from "@/app/cmsComponents/MapInfo/docs/MapInfoExamples";
 import MealsDescriptionTabbedExamples from "@/app/cmsComponents/MealsDescriptionTabbed/docs/MealsDescriptionTabbedExamples";
 import MixedRightThreeImagesExamples from "@/app/cmsComponents/MixedRightThreeImages/docs/MixedRightThreeImagesExamples";
-import TabbedCardsSectionExamples from "@/app/cmsComponents/TabbedCardsSection/docs/TabbedCardsSectionExamples";
-import ThreeDSliderExamples from "@/app/cmsComponents/ThreeDSlider/docs/ThreeDSliderExamples";
 import OnBoardImageRingExamples from "@/app/cmsComponents/OnBoardImageRing/docs/OnBoardImageRingExamples";
+import ParagraphExamples from "@/app/cmsComponents/Paragraph/docs/ParagraphExamples";
+import PhotoTileGridExamples from "@/app/cmsComponents/PhotoTileGrid/docs/PhotoTileGridExamples";
+import RelatedContentCarouselExamples from "@/app/cmsComponents/RelatedContentCarousel/docs/RelatedContentCarouselExamples";
+import ScrollCarouselExamples from "@/app/cmsComponents/ScrollCarousel/docs/ScrollCarouselExamples";
+import SearchWithTabsAndGridExamples from "@/app/cmsComponents/SearchWithTabsAndGrid/docs/SearchWithTabsAndGridExamples";
+import SectionWithAnimatedImagesExamples from "@/app/cmsComponents/SectionWithAnimatedImages/docs/SectionWithAnimatedImagesExamples";
+import ServiceBenefitsListExamples from "@/app/cmsComponents/ServiceBenefitsList/docs/ServiceBenefitsListExamples";
+import ServiceCardsSliderExamples from "@/app/cmsComponents/ServiceCardsSlider/docs/ServiceCardsSliderExamples";
+import SimpleGridWithPrefixExamples from "@/app/cmsComponents/SimpleGridWithPrefix/docs/SimpleGridWithPrefixExamples";
+import SliderExamples from "@/app/cmsComponents/Slider/docs/SliderExamples";
+import SplitTextOnlyExamples from "@/app/cmsComponents/SplitTextOnly/docs/SplitTextOnlyExamples";
+import SplitWithImageExamples from "@/app/cmsComponents/SplitWithImage/docs/SplitWithImageExamples";
+import TabbedCardsSectionExamples from "@/app/cmsComponents/TabbedCardsSection/docs/TabbedCardsSectionExamples";
+import TextWithBlobImageExamples from "@/app/cmsComponents/TextWithBlobImage/docs/TextWithBlobImageExamples";
+import ThreeDImageRingSectionExamples from "@/app/cmsComponents/ThreeDImageRingSection/docs/ThreeDImageRingSectionExamples";
+import ThreeDSliderExamples from "@/app/cmsComponents/ThreeDSlider/docs/ThreeDSliderExamples";
+import TitleWithListExamples from "@/app/cmsComponents/TitleWithList/docs/TitleWithListExamples";
+import TwoColumnIntroWithTwoImageExamples from "@/app/cmsComponents/TwoColumnIntroWithTwoImage/docs/TwoColumnIntroWithTwoImageExamples";
+import TwoColumnWithSubSectionsExamples from "@/app/cmsComponents/TwoColumnWithSubSections/docs/TwoColumnWithSubSectionsExamples";
+import VerticalImageSliceTextSectionExamples from "@/app/cmsComponents/VerticalImageSliceTextSection/docs/VerticalImageSliceTextSectionExamples";
 import { COMPONENT_NAV_ITEMS } from "@/components/ui/ComponentNav";
 import PageContentContainer from "@/components/layout/PageContentContainer";
 import { typography } from "@/styles/typography";
@@ -120,6 +147,77 @@ const DOCS_EXAMPLES = {
   ),
   "mixed-right-three-images": (ctx, label) => (
     <MixedRightThreeImagesExamples ctx={ctx} name={label} />
+  ),
+  "cities-sections": (ctx, label) => (
+    <CitiesSectionsExamples ctx={ctx} name={label} />
+  ),
+  "text-with-blob-image": (ctx, label) => (
+    <TextWithBlobImageExamples ctx={ctx} name={label} />
+  ),
+  "two-column-intro-with-two-image": (ctx, label) => (
+    <TwoColumnIntroWithTwoImageExamples ctx={ctx} name={label} />
+  ),
+  "vertical-image-slice-text-section": (ctx, label) => (
+    <VerticalImageSliceTextSectionExamples ctx={ctx} name={label} />
+  ),
+  "split-with-image": (ctx, label) => (
+    <SplitWithImageExamples ctx={ctx} name={label} />
+  ),
+  "section-with-animated-images": (ctx, label) => (
+    <SectionWithAnimatedImagesExamples ctx={ctx} name={label} />
+  ),
+  paragraph: (ctx, label) => <ParagraphExamples ctx={ctx} name={label} />,
+  "split-text-only": (ctx, label) => (
+    <SplitTextOnlyExamples ctx={ctx} name={label} />
+  ),
+  "two-column-with-sub-sections": (ctx, label) => (
+    <TwoColumnWithSubSectionsExamples ctx={ctx} name={label} />
+  ),
+  "service-benefits-list": (ctx, label) => (
+    <ServiceBenefitsListExamples ctx={ctx} name={label} />
+  ),
+  "connection-steps-list": (ctx, label) => (
+    <ConnectionStepsListExamples ctx={ctx} name={label} />
+  ),
+  "title-with-list": (ctx, label) => (
+    <TitleWithListExamples ctx={ctx} name={label} />
+  ),
+  "call-us": (ctx, label) => <CallUsExamples ctx={ctx} name={label} />,
+  "data-table-with-image": (ctx, label) => (
+    <DataTableWithImageExamples ctx={ctx} name={label} />
+  ),
+  "map-info": (ctx, label) => <MapInfoExamples ctx={ctx} name={label} />,
+  "destinations-map": (ctx, label) => (
+    <DestinationsMapExamples ctx={ctx} name={label} />
+  ),
+  "form-header": (ctx, label) => <FormHeaderExamples ctx={ctx} name={label} />,
+  "form-footer": (ctx, label) => <FormFooterExamples ctx={ctx} name={label} />,
+  "legal-information-hero": (ctx, label) => (
+    <LegalInformationHeroExamples ctx={ctx} name={label} />
+  ),
+  "legal-information-cards": (ctx, label) => (
+    <LegalInformationCardsExamples ctx={ctx} name={label} />
+  ),
+  "legal-body-terms": (ctx, label) => (
+    <LegalBodyTermsExamples ctx={ctx} name={label} />
+  ),
+  "legal-body-cookies": (ctx, label) => (
+    <LegalBodyCookiesExamples ctx={ctx} name={label} />
+  ),
+  "legal-body-privacy-policy": (ctx, label) => (
+    <LegalBodyPrivacyPolicyExamples ctx={ctx} name={label} />
+  ),
+  "cool-slide-gallery": (ctx, label) => (
+    <CoolSlideGalleryExamples ctx={ctx} name={label} />
+  ),
+  "scroll-carousel": (ctx, label) => (
+    <ScrollCarouselExamples ctx={ctx} name={label} />
+  ),
+  "three-d-image-ring-section": (ctx, label) => (
+    <ThreeDImageRingSectionExamples ctx={ctx} name={label} />
+  ),
+  "draggable-3d-image-ring": (ctx, label) => (
+    <Draggable3DImageRingExamples ctx={ctx} name={label} />
   ),
 };
 

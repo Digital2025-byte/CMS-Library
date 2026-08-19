@@ -1,0 +1,144 @@
+import {
+  InspectorChoose,
+  InspectorColor,
+  InspectorSection,
+  InspectorSwitch,
+  InspectorTabs,
+  applyInspectorReset,
+} from "@/components/inspector";
+import SplitWithImageContentForm from "./SplitWithImageContentForm";
+import {
+  DEFAULT_SPLIT_WITH_IMAGE_STYLE,
+  IMAGE_SIDE_OPTIONS,
+  SPACING_OPTIONS,
+  SPLIT_WITH_IMAGE_STYLE_RESET_KEYS,
+  TITLE_ALIGN_OPTIONS,
+} from "../utils/style";
+
+function SplitWithImageStyleForm({ style, onChange }) {
+  const update = (key, value) => onChange({ ...style, [key]: value });
+  const toggle = (key) => onChange({ ...style, [key]: !style[key] });
+  const reset = (keys) =>
+    onChange(
+      applyInspectorReset(style, DEFAULT_SPLIT_WITH_IMAGE_STYLE, keys)
+    );
+
+  return (
+    <div>
+      <InspectorSection
+        title="Layout"
+        onReset={() => reset(SPLIT_WITH_IMAGE_STYLE_RESET_KEYS.layout)}
+      >
+        <InspectorSwitch
+          checked={style.showTitle}
+          onChange={() => toggle("showTitle")}
+          label="Title"
+          hint="Show the heading"
+        />
+        <InspectorSwitch
+          checked={style.showDescription}
+          onChange={() => toggle("showDescription")}
+          label="Description"
+          hint="Show text under the title"
+        />
+        <InspectorChoose
+          label="Image"
+          name="imageSide"
+          value={style.imageSide}
+          options={IMAGE_SIDE_OPTIONS}
+          onChange={(value) => update("imageSide", value)}
+        />
+        <InspectorSwitch
+          checked={style.showSectionBg}
+          onChange={() => toggle("showSectionBg")}
+          label="Background"
+          hint="Color wash over the photo"
+        />
+        {style.showSectionBg ? (
+          <InspectorColor
+            label="Section background"
+            value={style.sectionBg}
+            onChange={(value) => update("sectionBg", value)}
+          />
+        ) : null}
+        <InspectorChoose
+          label="Padding"
+          name="sectionPadding"
+          value={style.sectionPadding}
+          options={SPACING_OPTIONS}
+          onChange={(value) => update("sectionPadding", value)}
+        />
+      </InspectorSection>
+
+      {style.showTitle || style.showDescription ? (
+        <InspectorSection
+          title="Title"
+          onReset={() => reset(SPLIT_WITH_IMAGE_STYLE_RESET_KEYS.title)}
+        >
+          <InspectorChoose
+            label="Alignment"
+            name="titleAlign"
+            value={style.titleAlign}
+            options={TITLE_ALIGN_OPTIONS}
+            onChange={(value) => update("titleAlign", value)}
+          />
+          {style.showTitle ? (
+            <InspectorColor
+              label="Title color"
+              value={style.titleColor}
+              onChange={(value) => update("titleColor", value)}
+            />
+          ) : null}
+          {style.showDescription ? (
+            <InspectorColor
+              label="Description color"
+              value={style.descriptionColor}
+              onChange={(value) => update("descriptionColor", value)}
+            />
+          ) : null}
+        </InspectorSection>
+      ) : null}
+
+      <InspectorSection
+        title="Images"
+        onReset={() => reset(SPLIT_WITH_IMAGE_STYLE_RESET_KEYS.images)}
+      >
+        <InspectorSwitch
+          checked={style.showBackgroundImage}
+          onChange={() => toggle("showBackgroundImage")}
+          label="Background photo"
+          hint="Full-bleed sky image"
+        />
+        <InspectorSwitch
+          checked={style.showImage}
+          onChange={() => toggle("showImage")}
+          label="Foreground photo"
+          hint="The aircraft image"
+        />
+      </InspectorSection>
+    </div>
+  );
+}
+
+export default function SplitWithImagePropsForm({
+  content,
+  onContentChange,
+  contentDefaults,
+  style,
+  onStyleChange,
+}) {
+  return (
+    <InspectorTabs
+      content={
+        <SplitWithImageContentForm
+          content={content}
+          onChange={onContentChange}
+          defaults={contentDefaults}
+        />
+      }
+      style={
+        <SplitWithImageStyleForm style={style} onChange={onStyleChange} />
+      }
+    />
+  );
+}

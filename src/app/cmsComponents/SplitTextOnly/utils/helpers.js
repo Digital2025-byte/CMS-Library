@@ -8,6 +8,34 @@ export function toCssUrl(url = "") {
     .replace(/\)/g, "%29");
 }
 
+function toImageSrc(value) {
+  if (!value) {
+    return "";
+  }
+  if (typeof value === "string") {
+    return value;
+  }
+  return value.src || value.fileUrl || value.url || "";
+}
+
+export function isUsableImageSrc(src) {
+  const value = String(toImageSrc(src) || "").trim();
+  if (!value) {
+    return false;
+  }
+
+  if (value.startsWith("/") && !value.startsWith("//")) {
+    return true;
+  }
+
+  try {
+    const url = new URL(value.startsWith("//") ? `https:${value}` : value);
+    return url.protocol === "http:" || url.protocol === "https:";
+  } catch {
+    return false;
+  }
+}
+
 export function getSplitTextOnlyContent(data, lang = "en") {
   const translations = Array.isArray(data?.translations) ? data.translations : [];
 
@@ -16,6 +44,7 @@ export function getSplitTextOnlyContent(data, lang = "en") {
       title: "",
       description: "",
       backgroundImage: "",
+      backgroundImageAlt: "",
       hasContent: false,
     };
   }
@@ -30,16 +59,46 @@ export function getSplitTextOnlyContent(data, lang = "en") {
   const content = matchedTranslation?.content || {};
   const title = content?.title || "";
   const description = content?.description || content?.subtitle || "";
-  const backgroundImageRaw = content?.backgroundImage?.fileUrl || "";
-  const backgroundImage =
-    typeof backgroundImageRaw === "string"
-      ? toCssUrl(backgroundImageRaw)
-      : backgroundImageRaw;
+  const backgroundImage = toImageSrc(
+    content?.backgroundImage?.fileUrl || content?.backgroundImage || ""
+  );
+  const backgroundImageAlt =
+    content?.backgroundImage?.alt || content?.imageAlt || title || "";
 
   return {
     title,
     description,
     backgroundImage,
+    backgroundImageAlt,
     hasContent: Boolean(title || description || backgroundImage),
+  };
+}
+
+export function getSplitTextOnlyEditorContent(data, lang = "en") {
+  const content = getSplitTextOnlyContent(data, lang);
+
+  return {
+    title: content.title || "",
+    description: content.description || "",
+    backgroundImageUrl: content.backgroundImage || "",
+    backgroundImageAlt: content.backgroundImageAlt || "",
+  };
+}
+
+export function wrapSplitTextOnlyContent(content = {}, lang = "en") {
+  return {
+    translations: [
+      {
+        languageCode: lang,
+        content: {
+          title: content.title || "",
+          description: content.description || "",
+          backgroundImage: {
+            fileUrl: content.backgroundImageUrl || "",
+            alt: content.backgroundImageAlt || "",
+          },
+        },
+      },
+    ],
   };
 }

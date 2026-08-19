@@ -176,27 +176,52 @@ function useFeatureAnimations(
   ]);
 }
 
-function FeatureCard({ feature, cardRef }) {
+function FeatureCard({
+  feature,
+  cardRef,
+  showTitle = true,
+  showDescription = true,
+  showCardImage = true,
+  showOverlay = true,
+  cardRadiusClass = "rounded-[28px]",
+  titleCss,
+  descriptionCss,
+}) {
   return (
     <div
       ref={cardRef}
       className="feature-card relative w-[85vw] shrink-0 sm:w-[340px] lg:w-[380px]"
     >
-      <div className="relative aspect-[4/3] overflow-hidden rounded-[28px]">
-        <img
-          src={feature.image || FALLBACK_IMAGE}
-          alt=""
-          className="absolute inset-0 h-full w-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent" />
+      <div
+        className={cn(
+          "relative aspect-[4/3] overflow-hidden",
+          cardRadiusClass
+        )}
+      >
+        {showCardImage ? (
+          <img
+            src={feature.image || FALLBACK_IMAGE}
+            alt=""
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+        ) : null}
+        {showOverlay ? (
+          <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent" />
+        ) : null}
         <div className="absolute right-6 bottom-6 left-6 text-white">
-          {feature.title ? (
-            <h3 className="text-[22px] leading-tight font-semibold tracking-tight lg:text-2xl">
+          {showTitle && feature.title ? (
+            <h3
+              className="text-[22px] leading-tight font-semibold tracking-tight lg:text-2xl"
+              style={titleCss ? { color: titleCss } : undefined}
+            >
               {feature.title}
             </h3>
           ) : null}
-          {feature.description ? (
-            <p className="mt-1.5 text-sm leading-snug text-white/80">
+          {showDescription && feature.description ? (
+            <p
+              className="mt-1.5 text-sm leading-snug text-white/80"
+              style={descriptionCss ? { color: descriptionCss } : undefined}
+            >
               {feature.description}
             </p>
           ) : null}
@@ -211,7 +236,22 @@ function FeatureCard({ feature, cardRef }) {
  * @see https://lightswind.com/components/scroll-carousel
  */
 export const ScrollCarousel = forwardRef(function ScrollCarousel(
-  { features = [], className, maxScrollHeight },
+  {
+    features = [],
+    className,
+    maxScrollHeight,
+    showTitle = true,
+    showDescription = true,
+    showCardImage = true,
+    showOverlay = true,
+    showProgress = true,
+    showDots = true,
+    cardRadiusClass = "rounded-[28px]",
+    stageBgCss,
+    dotsColorCss,
+    titleCss,
+    descriptionCss,
+  },
   ref
 ) {
   const containerRef = useRef(null);
@@ -259,17 +299,36 @@ export const ScrollCarousel = forwardRef(function ScrollCarousel(
       <FeatureCard
         key={`${feature.title}-${index}`}
         feature={feature}
+        showTitle={showTitle}
+        showDescription={showDescription}
+        showCardImage={showCardImage}
+        showOverlay={showOverlay}
+        cardRadiusClass={cardRadiusClass}
+        titleCss={titleCss}
+        descriptionCss={descriptionCss}
         cardRef={(el) => {
           if (el) refs.current[index] = el;
         }}
       />
     ));
 
+  const dotsCss = dotsColorCss || "rgba(255,255,255,0.14)";
+
   return (
     <section
       ref={setPinnedRef}
       className={cn("relative isolate w-full", className)}
-      style={PIN_BACKGROUND}
+      style={{
+        backgroundColor: stageBgCss || PIN_BACKGROUND.backgroundColor,
+        backgroundImage: showDots
+          ? `radial-gradient(circle, ${
+              dotsColorCss
+                ? `color-mix(in srgb, ${dotsColorCss} 14%, transparent)`
+                : dotsCss
+            } 1px, transparent 1.2px)`
+          : "none",
+        backgroundSize: showDots ? PIN_BACKGROUND.backgroundSize : undefined,
+      }}
     >
       <div className="relative flex w-full flex-col justify-center gap-4 overflow-hidden py-16 md:h-screen md:gap-5 md:py-0 lg:[mask-image:linear-gradient(to_right,transparent_0%,black_8%,black_92%,transparent_100%)]">
         <div
@@ -286,7 +345,7 @@ export const ScrollCarousel = forwardRef(function ScrollCarousel(
           {renderFeatureCards(features2, cardRefs2)}
         </div>
 
-        {isDesktop ? (
+        {isDesktop && showProgress ? (
           <div className="absolute bottom-8 left-1/2 h-1 w-40 -translate-x-1/2 overflow-hidden rounded-full bg-white/15">
             <div
               ref={progressBarRef}

@@ -33,6 +33,7 @@ export function ThreeDImageRing({
   inertiaPower = 0.8,
   inertiaTimeConstant = 300,
   inertiaVelocityMultiplier = 20,
+  showCardImage = true,
 }) {
   void ease;
 
@@ -217,7 +218,10 @@ export function ThreeDImageRing({
                     )}
                     style={{
                       transformStyle: "preserve-3d",
-                      backgroundImage: `url(${imageUrl})`,
+                      backgroundImage:
+                        showCardImage && imageUrl
+                          ? `url(${imageUrl})`
+                          : undefined,
                       backgroundSize: "cover",
                       backgroundRepeat: "no-repeat",
                       backfaceVisibility: "hidden",

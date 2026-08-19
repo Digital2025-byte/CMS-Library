@@ -1,20 +1,18 @@
 import DualImageTextBlock from "./DualImageTextBlock";
 import { DEFAULT_EXTRA_IMAGE_POSITION } from "../utils/helpers";
+import { DEFAULT_DUAL_IMAGE_TEXT_STYLE } from "../utils/style";
 
 export default function DualImageTextContent({
   items = [],
   firstSection = null,
   showFirstSection = false,
-  blueLayer = false,
-  underlineFirstWord = false,
-  showExploreButton = false,
-  exploreButtonLabel = "Explore more",
-  exploreButtonHref = "explore",
-  showExtraImage = false,
   extraImageUrl = "",
   extraImageAlt = "",
   extraImagePositions = [],
+  exploreButtonLabel = "Explore more",
+  exploreButtonHref = "explore",
   cId,
+  style = DEFAULT_DUAL_IMAGE_TEXT_STYLE,
 }) {
   const first = items[0] || {};
   const second = items[1] || {};
@@ -30,10 +28,19 @@ export default function DualImageTextContent({
           item={firstSection}
           reverse
           priority
-          blueLayer={false}
-          underlineFirstWord={false}
-          showExploreButton={false}
-          showExtraImage={false}
+          extraImageUrl={extraImageUrl}
+          extraImageAlt={extraImageAlt}
+          extraImagePosition={firstPosition}
+          exploreButtonLabel={exploreButtonLabel}
+          exploreButtonHref={exploreButtonHref}
+          cId={cId}
+          style={{
+            ...style,
+            blueLayer: false,
+            underlineFirstWord: false,
+            showExploreButton: false,
+            showExtraImage: false,
+          }}
         />
       ) : null}
 
@@ -41,30 +48,24 @@ export default function DualImageTextContent({
         item={first}
         reverse={false}
         priority={!showFirstSection}
-        blueLayer={blueLayer}
-        underlineFirstWord={underlineFirstWord}
-        showExploreButton={showExploreButton}
-        exploreButtonLabel={exploreButtonLabel}
-        exploreButtonHref={exploreButtonHref}
-        showExtraImage={showExtraImage}
         extraImageUrl={extraImageUrl}
         extraImageAlt={extraImageAlt}
         extraImagePosition={firstPosition}
+        exploreButtonLabel={exploreButtonLabel}
+        exploreButtonHref={exploreButtonHref}
         cId={cId}
+        style={style}
       />
       <DualImageTextBlock
         item={second}
         reverse
-        blueLayer={blueLayer}
-        underlineFirstWord={underlineFirstWord}
-        showExploreButton={showExploreButton}
-        exploreButtonLabel={exploreButtonLabel}
-        exploreButtonHref={exploreButtonHref}
-        showExtraImage={showExtraImage}
         extraImageUrl={extraImageUrl}
         extraImageAlt={extraImageAlt}
         extraImagePosition={secondPosition}
+        exploreButtonLabel={exploreButtonLabel}
+        exploreButtonHref={exploreButtonHref}
         cId={cId}
+        style={style}
       />
     </div>
   );

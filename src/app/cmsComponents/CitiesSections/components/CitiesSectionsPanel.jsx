@@ -1,62 +1,72 @@
 import Button from "@/components/ui/Button";
 import PageContentContainer from "@/components/layout/PageContentContainer";
+import { getThemeColorCss } from "@/styles/themeColors";
 import CitiesSectionsImages from "./CitiesSectionsImages";
 import CitiesSectionsText from "./CitiesSectionsText";
+import {
+  DEFAULT_CITIES_SECTIONS_STYLE,
+  SECTION_PADDING_CLASS,
+} from "../utils/style";
 
 export default function CitiesSectionsPanel({
   lang = "en",
   cId,
-  title = "",
-  description = "",
-  /** "right" = images on the right; "left" = images on the left */
-  side = "right",
-  image1 = "",
-  image2 = "",
-  isCTA = false,
-  ctaLabel = "",
-  ctaHref = "",
+  content,
+  style = DEFAULT_CITIES_SECTIONS_STYLE,
 }) {
   const isRtl = lang === "ar";
-  const imagesOnRight = side !== "left";
-
+  const imagesOnRight = style.imageSide !== "left";
   const textOrder = imagesOnRight ? "order-1" : "order-1 lg:order-2";
   const imagesOrder = imagesOnRight ? "order-2" : "order-2 lg:order-1";
-  const showMobileCta = isCTA && ctaLabel && ctaHref;
+  const showMobileCta =
+    style.showCta && content.isCTA && content.ctaLabel && content.ctaHref;
+  const paddingClass =
+    SECTION_PADDING_CLASS[style.sectionPadding] ??
+    SECTION_PADDING_CLASS.default;
+  const buttonBg = getThemeColorCss(style.buttonBg, "primary-2");
+  const buttonText = getThemeColorCss(style.buttonText, "white");
 
   return (
     <section
-      className="relative bg-primary-800"
+      className="relative"
       dir={isRtl ? "rtl" : "ltr"}
+      style={
+        style.showSectionBg
+          ? {
+              backgroundColor: getThemeColorCss(style.sectionBg, "primary-800"),
+            }
+          : undefined
+      }
     >
-      <PageContentContainer className="py-12 lg:py-20">
-        {/*
-          Default align-items:stretch so the text column matches the tall
-          images column — required for position:sticky to pin while images scroll.
-          Mobile order: text → images → CTA
-        */}
+      <PageContentContainer className={paddingClass}>
         <div className="grid w-full grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-14 xl:gap-20">
           <div className={`${textOrder} min-h-0`}>
             <CitiesSectionsText
-              title={title}
-              description={description}
-              isCTA={isCTA}
-              ctaLabel={ctaLabel}
-              ctaHref={ctaHref}
+              content={content}
+              style={style}
               cId={cId}
             />
           </div>
 
-          <div className={imagesOrder}>
-            <CitiesSectionsImages
-              image1={image1}
-              image2={image2}
-              title={title}
-            />
-          </div>
+          {style.showImages ? (
+            <div className={imagesOrder}>
+              <CitiesSectionsImages content={content} style={style} />
+            </div>
+          ) : null}
 
           {showMobileCta ? (
             <div className="order-3 lg:hidden">
-              <Button label={ctaLabel} href={ctaHref} cId={cId} />
+              <Button
+                label={content.ctaLabel}
+                href={content.ctaHref}
+                cId={cId}
+                variant="primary"
+                style={{
+                  backgroundColor: buttonBg,
+                  borderColor: buttonBg,
+                  color: buttonText,
+                }}
+              />
             </div>
           ) : null}
         </div>

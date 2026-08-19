@@ -78,16 +78,51 @@ function normalizeItem(rawItem) {
     title: item?.title || "",
     description: descriptions[0] || "",
     descriptions,
-    imageUrl: image?.fileUrl || image?.url || image?.src || "",
+    imageUrl: getImageSrc(image?.fileUrl || image?.url || image?.src),
     imageAlt: image?.alt || item?.title || "Section image",
     buttonText: cta?.label || cta?.content || item?.buttonText || "",
     ctaHref: cta?.href || cta?.slug || item?.ctaHref || "",
   };
 }
 
+export function getImageSrc(src) {
+  if (!src) {
+    return "";
+  }
+  if (typeof src === "string") {
+    return src.trim();
+  }
+  if (typeof src === "object") {
+    const nested = src.src || src.default || src.fileUrl || src.url || "";
+    if (nested && nested !== src) {
+      return getImageSrc(nested);
+    }
+  }
+  return "";
+}
+
+export function isUsableImageSrc(src) {
+  const value = getImageSrc(src);
+  if (!value) {
+    return false;
+  }
+
+  if (value.startsWith("/") && !value.startsWith("//")) {
+    return true;
+  }
+
+  try {
+    const url = new URL(value.startsWith("//") ? `https:${value}` : value);
+    return url.protocol === "http:" || url.protocol === "https:";
+  } catch {
+    return false;
+  }
+}
+
 export function imageSrc(url) {
-  if (!url) return "";
-  return String(url).startsWith("http") ? encodeURI(url) : url;
+  const value = getImageSrc(url);
+  if (!value) return "";
+  return value.startsWith("http") ? encodeURI(value) : value;
 }
 
 export function getDualImageTextContent(data, lang = "en") {
@@ -136,9 +171,88 @@ export function getDualImageTextContent(data, lang = "en") {
     exploreButtonLabel:
       exploreCta?.label || exploreCta?.content || "Explore more",
     exploreButtonHref: exploreCta?.href || exploreCta?.slug || "explore",
-    extraImageUrl:
-      extraImage?.fileUrl || extraImage?.url || extraImage?.src || "",
+    extraImageUrl: getImageSrc(
+      extraImage?.fileUrl || extraImage?.url || extraImage?.src
+    ),
     extraImageAlt: extraImage?.alt || "",
     hasContent: items.length > 0 || hasFirstSection,
+  };
+}
+
+export function getDualImageTextEditorContent(data, lang = "en") {
+  const content = getDualImageTextContent(data, lang);
+  const first = content.firstSection || {};
+
+  return {
+    firstSectionTitle: first.title || "",
+    firstSectionDescription: first.description || first.descriptions?.[0] || "",
+    firstSectionImageUrl: first.imageUrl || "",
+    firstSectionImageAlt: first.imageAlt || "",
+    exploreLabel: content.exploreButtonLabel || "",
+    exploreHref: content.exploreButtonHref || "",
+    exploreLinkType: "internal",
+    extraImageUrl: content.extraImageUrl || "",
+    extraImageAlt: content.extraImageAlt || "",
+    items: (content.items || []).map((item) => ({
+      title: item.title || "",
+      description: item.description || item.descriptions?.[0] || "",
+      imageUrl: item.imageUrl || "",
+      imageAlt: item.imageAlt || "",
+      buttonLabel: item.buttonText || "",
+      buttonHref: item.ctaHref || "",
+      buttonLinkType: "internal",
+    })),
+  };
+}
+
+export function wrapDualImageTextContent(content = {}, lang = "en") {
+  const firstHasContent = Boolean(
+    content.firstSectionTitle ||
+      content.firstSectionDescription ||
+      content.firstSectionImageUrl
+  );
+
+  return {
+    translations: [
+      {
+        languageCode: lang,
+        content: {
+          exploreButton: {
+            label: content.exploreLabel || "",
+            href: content.exploreHref || "",
+          },
+          extraImage: {
+            fileUrl: content.extraImageUrl || "",
+            alt: content.extraImageAlt || "",
+          },
+          firstSection: firstHasContent
+            ? {
+                title: content.firstSectionTitle || "",
+                description: content.firstSectionDescription || "",
+                image: {
+                  fileUrl: content.firstSectionImageUrl || "",
+                  alt: content.firstSectionImageAlt || "",
+                },
+              }
+            : null,
+          items: (Array.isArray(content.items) ? content.items : []).map(
+            (item) => ({
+              item: {
+                title: item?.title || "",
+                description: item?.description || "",
+                image: {
+                  fileUrl: item?.imageUrl || "",
+                  alt: item?.imageAlt || "",
+                },
+                ctaButton: {
+                  label: item?.buttonLabel || "",
+                  href: item?.buttonHref || "",
+                },
+              },
+            })
+          ),
+        },
+      },
+    ],
   };
 }

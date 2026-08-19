@@ -47,3 +47,40 @@ export function getLegalInformationCardsContent(data, lang = "en") {
     hasContent: cards.length > 0,
   };
 }
+
+export function getLegalInformationCardsEditorContent(data, lang = "en") {
+  const { cards } = getLegalInformationCardsContent(data, lang);
+
+  return {
+    cards: cards.map((card) => ({
+      title: card.title || "",
+      description: card.description || "",
+      icon: card.icon || "document",
+      ctaLabel: card.ctaLabel || "",
+      slug: card.slug || "",
+    })),
+  };
+}
+
+export function wrapLegalInformationCardsContent(content = {}, lang = "en") {
+  return {
+    translations: [
+      {
+        languageCode: lang,
+        content: {
+          cards: (Array.isArray(content.cards) ? content.cards : []).map(
+            (card) => ({
+              title: card?.title || "",
+              description: card?.description || "",
+              icon: card?.icon || "document",
+              ctaButton: {
+                content: card?.ctaLabel || "",
+                slug: card?.slug || "",
+              },
+            })
+          ),
+        },
+      },
+    ],
+  };
+}

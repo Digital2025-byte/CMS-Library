@@ -1,4 +1,11 @@
-export default function SubSectionBlock({ title, description }) {
+import { getThemeColorCss } from "@/styles/themeColors";
+import { DEFAULT_TWO_COLUMN_SUB_SECTIONS_STYLE } from "../utils/style";
+
+export default function SubSectionBlock({
+  title,
+  description,
+  style = DEFAULT_TWO_COLUMN_SUB_SECTIONS_STYLE,
+}) {
   if (!title && !description) {
     return null;
   }
@@ -6,12 +13,22 @@ export default function SubSectionBlock({ title, description }) {
   return (
     <div className="min-w-0 flex-1">
       {title ? (
-        <h3 className="mb-2 text-sm font-medium text-secondary-2 sm:text-base">
+        <h3
+          className="mb-2 text-sm font-medium sm:text-base"
+          style={{
+            color: getThemeColorCss(style.itemTitleColor, "secondary-2"),
+          }}
+        >
           {title}
         </h3>
       ) : null}
       {description ? (
-        <p className="text-sm leading-6 text-600">{description}</p>
+        <p
+          className="text-sm leading-6"
+          style={{ color: getThemeColorCss(style.itemBodyColor, "600") }}
+        >
+          {description}
+        </p>
       ) : null}
     </div>
   );

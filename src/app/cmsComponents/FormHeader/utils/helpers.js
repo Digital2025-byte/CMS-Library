@@ -37,3 +37,39 @@ export function getFormHeaderContent(data, lang = "en") {
     hasContent: Boolean(content.title || content.headerImageSrc),
   };
 }
+
+export function getFormHeaderEditorContent(data, lang = "en") {
+  const content = getFormHeaderContent(data, lang);
+
+  return {
+    title: content.title || "",
+    subtitle: content.subtitle || "",
+    ctaLabel: content.ctaLabel || "",
+    headerImageSrc: content.headerImageSrc || "",
+    promoImageSrc: content.promoImageSrc || "",
+    promoHref: content.promoHref || "",
+    promoAlt: content.promoAlt || "",
+    promoLinkType: "external",
+    isTransportationSurvey: Boolean(content.isTransportationSurvey),
+  };
+}
+
+export function wrapFormHeaderContent(content = {}, lang = "en") {
+  return {
+    translations: [
+      {
+        languageCode: lang,
+        content: {
+          title: content.title || "",
+          subtitle: content.subtitle || "",
+          ctaLabel: content.ctaLabel || "",
+          headerImageSrc: content.headerImageSrc || "",
+          promoImageSrc: content.promoImageSrc || "",
+          promoHref: content.promoHref || "",
+          promoAlt: content.promoAlt || "",
+          isTransportationSurvey: Boolean(content.isTransportationSurvey),
+        },
+      },
+    ],
+  };
+}

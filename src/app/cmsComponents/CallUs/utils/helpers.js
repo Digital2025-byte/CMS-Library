@@ -13,8 +13,30 @@ export function getPhoneHref(phoneText) {
   return digits ? `tel:+${digits}` : "#";
 }
 
-export function getCallUsContent(data) {
-  const content = data?.translations?.[0]?.content || {};
+export function getCallUsContent(data, lang = "en") {
+  const translations = Array.isArray(data?.translations)
+    ? data.translations
+    : [];
+
+  if (!translations.length) {
+    return {
+      upperText: "",
+      mainText: "",
+      bottomText: "",
+      phoneHref: "#",
+      hasContent: false,
+    };
+  }
+
+  const normalizedLang = String(lang || "").toLowerCase();
+  const matchedTranslation =
+    translations.find(
+      (translation) =>
+        String(translation?.languageCode || "").toLowerCase() ===
+        normalizedLang
+    ) || translations[0];
+
+  const content = matchedTranslation?.content || {};
 
   const upperText = content?.["upper-text"] || content?.upperText || "";
   const mainText = content?.["main-text"] || content?.mainText || "";
@@ -27,5 +49,30 @@ export function getCallUsContent(data) {
     bottomText,
     phoneHref: getPhoneHref(normalizedMainText),
     hasContent: Boolean(upperText || normalizedMainText || bottomText),
+  };
+}
+
+export function getCallUsEditorContent(data, lang = "en") {
+  const content = getCallUsContent(data, lang);
+
+  return {
+    upperText: content.upperText || "",
+    mainText: content.mainText || "",
+    bottomText: content.bottomText || "",
+  };
+}
+
+export function wrapCallUsContent(content = {}, lang = "en") {
+  return {
+    translations: [
+      {
+        languageCode: lang,
+        content: {
+          upperText: content.upperText || "",
+          mainText: content.mainText || "",
+          bottomText: content.bottomText || "",
+        },
+      },
+    ],
   };
 }

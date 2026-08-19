@@ -1,26 +1,137 @@
-export function getTwoColumnIntroContent(data) {
-  const content = data?.translations?.[0]?.content || {};
+export function getImageSrc(src) {
+  if (!src) {
+    return "";
+  }
+  if (typeof src === "string") {
+    return src.trim();
+  }
+  if (typeof src === "object") {
+    const nested = src.src || src.default || src.fileUrl || src.url || "";
+    if (nested && nested !== src) {
+      return getImageSrc(nested);
+    }
+  }
+  return "";
+}
+
+export function isUsableImageSrc(src) {
+  const value = getImageSrc(src);
+  if (!value) {
+    return false;
+  }
+
+  if (value.startsWith("/") && !value.startsWith("//")) {
+    return true;
+  }
+
+  try {
+    const url = new URL(value.startsWith("//") ? `https:${value}` : value);
+    return url.protocol === "http:" || url.protocol === "https:";
+  } catch {
+    return false;
+  }
+}
+
+export function getTwoColumnIntroContent(data, lang = "en") {
+  const translations = Array.isArray(data?.translations)
+    ? data.translations
+    : [];
+
+  if (!translations.length) {
+    return {
+      title: "",
+      description: "",
+      ctaButton: "",
+      ctaHref: "",
+      mainImage: "",
+      mainImageAlt: "Main illustration",
+      overlayImage: "",
+      overlayImageAlt: "Overlay illustration",
+      hasContent: false,
+    };
+  }
+
+  const normalizedLang = String(lang || "").toLowerCase();
+  const matchedTranslation =
+    translations.find(
+      (translation) =>
+        String(translation?.languageCode || "").toLowerCase() ===
+        normalizedLang
+    ) || translations[0];
+
+  const content = matchedTranslation?.content || {};
   const style = data?.style || {};
-  const directionLayout = String(style?.directionLayout || "Left").toLowerCase();
+  const title = content?.title || "";
+  const description = content?.description || "";
+  const mainImage = getImageSrc(
+    content?.illustrationImages?.mainImage?.fileUrl ||
+      content?.illustrationImages?.mainImage?.url
+  );
+  const overlayImage = getImageSrc(
+    content?.illustrationImages?.overlayImage?.fileUrl ||
+      content?.illustrationImages?.overlayImage?.url
+  );
 
   return {
-    title: content?.title || "",
-    description: content?.description || "",
+    title,
+    description,
     ctaButton:
-      content?.ctaButton?.content ||
-      content?.ctaButton?.label ||
-      "",
+      content?.ctaButton?.content || content?.ctaButton?.label || "",
     ctaHref: content?.ctaButton?.href || style?.ctaButton?.slug || "",
-    mainImage: content?.illustrationImages?.mainImage?.fileUrl || "",
+    mainImage,
     mainImageAlt:
       content?.illustrationImages?.mainImage?.alt ||
-      content?.title ||
+      title ||
       "Main illustration",
-    overlayImage: content?.illustrationImages?.overlayImage?.fileUrl || "",
+    overlayImage,
     overlayImageAlt:
       content?.illustrationImages?.overlayImage?.alt ||
-      content?.title ||
+      title ||
       "Overlay illustration",
-    isReversed: directionLayout === "right",
+    hasContent: Boolean(title || description || mainImage || overlayImage),
+  };
+}
+
+export function getTwoColumnIntroEditorContent(data, lang = "en") {
+  const content = getTwoColumnIntroContent(data, lang);
+
+  return {
+    title: content.title || "",
+    description: content.description || "",
+    ctaLabel: content.ctaButton || "",
+    ctaHref: content.ctaHref || "",
+    ctaLinkType: "internal",
+    mainImageUrl: content.mainImage || "",
+    mainImageAlt: content.mainImageAlt || "",
+    overlayImageUrl: content.overlayImage || "",
+    overlayImageAlt: content.overlayImageAlt || "",
+  };
+}
+
+export function wrapTwoColumnIntroContent(content = {}, lang = "en") {
+  return {
+    translations: [
+      {
+        languageCode: lang,
+        content: {
+          title: content.title || "",
+          description: content.description || "",
+          ctaButton: {
+            label: content.ctaLabel || "",
+            href: content.ctaHref || "",
+          },
+          illustrationImages: {
+            mainImage: {
+              fileUrl: content.mainImageUrl || "",
+              alt: content.mainImageAlt || "",
+            },
+            overlayImage: {
+              fileUrl: content.overlayImageUrl || "",
+              alt: content.overlayImageAlt || "",
+            },
+          },
+        },
+      },
+    ],
   };
 }

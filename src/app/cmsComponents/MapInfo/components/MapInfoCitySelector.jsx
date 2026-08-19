@@ -1,15 +1,20 @@
 import { typography } from "@/styles/typography";
+import { getThemeColorCss } from "@/styles/themeColors";
 import { CITY_TABS_LIMIT } from "../utils/helpers";
+import { DEFAULT_MAP_INFO_STYLE } from "../utils/style";
 
 export default function MapInfoCitySelector({
   cities,
   selectedCity,
   onCityChange,
   cityLabel,
+  style = DEFAULT_MAP_INFO_STYLE,
 }) {
   if (!Array.isArray(cities) || cities.length <= 1) {
     return null;
   }
+
+  const tabCss = getThemeColorCss(style.tabColor, "primary-1");
 
   if (cities.length > CITY_TABS_LIMIT) {
     return (
@@ -21,7 +26,8 @@ export default function MapInfoCitySelector({
           <select
             value={selectedCity || ""}
             onChange={(event) => onCityChange(event.target.value)}
-            className={`${typography.button} min-w-55 cursor-pointer rounded-lg border border-gray-200 bg-white px-4 py-2 text-primary-1 focus:outline-none focus:ring-2 focus:ring-primary-1/20`}
+            className={`${typography.button} min-w-55 cursor-pointer rounded-lg border border-gray-200 bg-white px-4 py-2 focus:outline-none`}
+            style={{ color: tabCss }}
           >
             {cities.map((city) => (
               <option key={city} value={city}>
@@ -46,11 +52,18 @@ export default function MapInfoCitySelector({
                 key={city}
                 type="button"
                 onClick={() => onCityChange(city)}
-                className={`cursor-pointer py-2 text-xs font-medium transition-colors md:text-sm ${
+                className="cursor-pointer py-2 text-xs font-medium transition-colors md:text-sm"
+                style={
                   isActive
-                    ? "border-b-2 border-main text-primary-1"
-                    : "border-b-2 border-transparent text-muted hover:text-primary-1"
-                }`}
+                    ? {
+                        borderBottom: `2px solid ${tabCss}`,
+                        color: tabCss,
+                      }
+                    : {
+                        borderBottom: "2px solid transparent",
+                        color: "var(--color-500)",
+                      }
+                }
               >
                 {city}
               </button>

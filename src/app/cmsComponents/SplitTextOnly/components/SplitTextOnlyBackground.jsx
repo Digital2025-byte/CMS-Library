@@ -1,3 +1,6 @@
+import { getThemeColorCss } from "@/styles/themeColors";
+import { DEFAULT_SPLIT_TEXT_ONLY_STYLE } from "../utils/style";
+
 const MOBILE_GRADIENT =
   "linear-gradient(180deg, rgba(5, 78, 114, 0.15) 0%, rgba(5, 78, 114, 0.55) 55%, rgba(5, 78, 114, 0.85) 100%)";
 
@@ -8,15 +11,18 @@ export default function SplitTextOnlyBackground({
   imageUrl,
   mobileGradient = true,
   desktopGradient = true,
+  style = DEFAULT_SPLIT_TEXT_ONLY_STYLE,
   className = "",
   children,
 }) {
+  const fallbackBg = getThemeColorCss(style.sectionBg, "main");
+
   return (
     <div
       className={`relative w-full overflow-hidden bg-cover bg-center bg-no-repeat ${className}`}
       style={{
         backgroundImage: imageUrl ? `url(${imageUrl})` : undefined,
-        backgroundColor: imageUrl ? undefined : "#054e72",
+        backgroundColor: imageUrl ? undefined : fallbackBg,
       }}
     >
       {mobileGradient ? (

@@ -8,6 +8,7 @@ export default function ConnectionStep2({
   step,
   stepLabel,
   isRtl = false,
+  theme,
 }) {
   const layout = CONNECTION_STEPS_LAYOUT.steps[SLOT];
   const x = isRtl ? 100 - layout.x : layout.x;
@@ -22,6 +23,7 @@ export default function ConnectionStep2({
         description={step?.description}
         imageUrl={step?.imageUrl}
         imageAlt={step?.imageAlt}
+        theme={theme}
         labelStyle={{
           top: layout.label.top,
           left: layout.label.left,
