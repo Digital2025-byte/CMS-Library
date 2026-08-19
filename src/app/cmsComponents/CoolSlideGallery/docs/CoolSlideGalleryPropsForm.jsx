@@ -11,6 +11,7 @@ import {
   CARD_RADIUS_OPTIONS,
   COOL_SLIDE_GALLERY_STYLE_RESET_KEYS,
   DEFAULT_COOL_SLIDE_GALLERY_STYLE,
+  OVERLAY_POSITION_OPTIONS,
 } from "../utils/style";
 
 function CoolSlideGalleryStyleForm({ style, onChange }) {
@@ -20,6 +21,9 @@ function CoolSlideGalleryStyleForm({ style, onChange }) {
     onChange(
       applyInspectorReset(style, DEFAULT_COOL_SLIDE_GALLERY_STYLE, keys)
     );
+  const showOverlay =
+    style.showTitle || style.showSubtitle || style.showBadge;
+  const showControls = style.showArrows || style.showDots;
 
   return (
     <div>
@@ -27,18 +31,6 @@ function CoolSlideGalleryStyleForm({ style, onChange }) {
         title="Layout"
         onReset={() => reset(COOL_SLIDE_GALLERY_STYLE_RESET_KEYS.layout)}
       >
-        <InspectorSwitch
-          checked={style.showArrows}
-          onChange={() => toggle("showArrows")}
-          label="Arrows"
-          hint="Previous and next controls"
-        />
-        <InspectorSwitch
-          checked={style.showDots}
-          onChange={() => toggle("showDots")}
-          label="Dots"
-          hint="Slide indicators under the gallery"
-        />
         <InspectorSwitch
           checked={style.showSectionBg}
           onChange={() => toggle("showSectionBg")}
@@ -52,6 +44,25 @@ function CoolSlideGalleryStyleForm({ style, onChange }) {
             onChange={(value) => update("sectionBg", value)}
           />
         ) : null}
+        <InspectorChoose
+          label="Corners"
+          name="cardRadius"
+          value={style.cardRadius}
+          options={CARD_RADIUS_OPTIONS}
+          onChange={(value) => update("cardRadius", value)}
+        />
+      </InspectorSection>
+
+      <InspectorSection
+        title="Controls"
+        onReset={() => reset(COOL_SLIDE_GALLERY_STYLE_RESET_KEYS.controls)}
+      >
+        <InspectorSwitch
+          checked={style.showArrows}
+          onChange={() => toggle("showArrows")}
+          label="Arrows"
+          hint="Previous and next controls"
+        />
         {style.showArrows ? (
           <InspectorColor
             label="Arrows color"
@@ -59,6 +70,12 @@ function CoolSlideGalleryStyleForm({ style, onChange }) {
             onChange={(value) => update("arrowsColor", value)}
           />
         ) : null}
+        <InspectorSwitch
+          checked={style.showDots}
+          onChange={() => toggle("showDots")}
+          label="Dots"
+          hint="Slide indicators under the gallery"
+        />
         {style.showDots ? (
           <InspectorColor
             label="Dots color"
@@ -66,7 +83,7 @@ function CoolSlideGalleryStyleForm({ style, onChange }) {
             onChange={(value) => update("dotsColor", value)}
           />
         ) : null}
-        {style.showArrows || style.showDots ? (
+        {showControls ? (
           <InspectorColor
             label="Controls background"
             value={style.controlsBg}
@@ -76,33 +93,14 @@ function CoolSlideGalleryStyleForm({ style, onChange }) {
       </InspectorSection>
 
       <InspectorSection
-        title="Items"
-        onReset={() => reset(COOL_SLIDE_GALLERY_STYLE_RESET_KEYS.cards)}
+        title="Overlay"
+        onReset={() => reset(COOL_SLIDE_GALLERY_STYLE_RESET_KEYS.overlay)}
       >
         <InspectorSwitch
           checked={style.showTitle}
           onChange={() => toggle("showTitle")}
           label="Title"
           hint="Title on each slide"
-        />
-        <InspectorSwitch
-          checked={style.showSubtitle}
-          onChange={() => toggle("showSubtitle")}
-          label="Subtitle"
-          hint="Subtitle under the title"
-        />
-        <InspectorSwitch
-          checked={style.showBadge}
-          onChange={() => toggle("showBadge")}
-          label="Badges"
-          hint="Small label above the title"
-        />
-        <InspectorChoose
-          label="Corners"
-          name="cardRadius"
-          value={style.cardRadius}
-          options={CARD_RADIUS_OPTIONS}
-          onChange={(value) => update("cardRadius", value)}
         />
         {style.showTitle ? (
           <InspectorColor
@@ -111,6 +109,12 @@ function CoolSlideGalleryStyleForm({ style, onChange }) {
             onChange={(value) => update("titleColor", value)}
           />
         ) : null}
+        <InspectorSwitch
+          checked={style.showSubtitle}
+          onChange={() => toggle("showSubtitle")}
+          label="Subtitle"
+          hint="Subtitle under the title"
+        />
         {style.showSubtitle ? (
           <InspectorColor
             label="Subtitle color"
@@ -118,13 +122,12 @@ function CoolSlideGalleryStyleForm({ style, onChange }) {
             onChange={(value) => update("subtitleColor", value)}
           />
         ) : null}
-        {style.showTitle || style.showSubtitle || style.showBadge ? (
-          <InspectorColor
-            label="Gradient color"
-            value={style.overlayColor}
-            onChange={(value) => update("overlayColor", value)}
-          />
-        ) : null}
+        <InspectorSwitch
+          checked={style.showBadge}
+          onChange={() => toggle("showBadge")}
+          label="Chip"
+          hint="Small label above the title"
+        />
         {style.showBadge ? (
           <>
             <InspectorColor
@@ -136,6 +139,22 @@ function CoolSlideGalleryStyleForm({ style, onChange }) {
               label="Chip text"
               value={style.chipText}
               onChange={(value) => update("chipText", value)}
+            />
+          </>
+        ) : null}
+        {showOverlay ? (
+          <>
+            <InspectorChoose
+              label="Position"
+              name="overlayPosition"
+              value={style.overlayPosition}
+              options={OVERLAY_POSITION_OPTIONS}
+              onChange={(value) => update("overlayPosition", value)}
+            />
+            <InspectorColor
+              label="Gradient color"
+              value={style.overlayColor}
+              onChange={(value) => update("overlayColor", value)}
             />
           </>
         ) : null}

@@ -53,12 +53,10 @@ const EASING_MAP = {
 function getTitleStyles(position) {
   const base = { position: "absolute", pointerEvents: "none" };
   switch (position) {
-    case "bottom-right":
-      return { ...base, bottom: 0, right: 0, textAlign: "right" };
     case "top-left":
-      return { ...base, top: 0, left: 0, right: 0 };
+      return { ...base, top: 0, left: 0, right: 0, textAlign: "start" };
     case "top-right":
-      return { ...base, top: 0, right: 0, textAlign: "right" };
+      return { ...base, top: 0, left: 0, right: 0, textAlign: "end" };
     case "center":
       return {
         ...base,
@@ -68,9 +66,11 @@ function getTitleStyles(position) {
         textAlign: "center",
         width: "100%",
       };
+    case "bottom-right":
+      return { ...base, bottom: 0, left: 0, right: 0, textAlign: "end" };
     case "bottom-left":
     default:
-      return { ...base, bottom: 0, left: 0, right: 0 };
+      return { ...base, bottom: 0, left: 0, right: 0, textAlign: "start" };
   }
 }
 

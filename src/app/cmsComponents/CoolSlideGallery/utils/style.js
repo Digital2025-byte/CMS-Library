@@ -1,3 +1,11 @@
+export const OVERLAY_POSITION_OPTIONS = [
+  { value: "top-left", label: "Top start" },
+  { value: "top-right", label: "Top end" },
+  { value: "center", label: "Center" },
+  { value: "bottom-left", label: "Bottom start" },
+  { value: "bottom-right", label: "Bottom end" },
+];
+
 export const CARD_RADIUS_OPTIONS = [
   { value: "none", label: "Square" },
   { value: "sm", label: "Small" },
@@ -30,7 +38,6 @@ export const GALLERY_EXTRAS = {
   depth: 230,
   scaleStep: 0.15,
   perspective: 1500,
-  titlePosition: "bottom-left",
 };
 
 export const DEFAULT_COOL_SLIDE_GALLERY_STYLE = {
@@ -49,6 +56,7 @@ export const DEFAULT_COOL_SLIDE_GALLERY_STYLE = {
   arrowsColor: "white",
   dotsColor: "white",
   controlsBg: "white",
+  overlayPosition: "bottom-left",
   cardRadius: "sm",
 };
 
@@ -60,24 +68,23 @@ export function resolveCoolSlideGalleryStyle(style = {}) {
 }
 
 export const COOL_SLIDE_GALLERY_STYLE_RESET_KEYS = {
-  layout: [
+  layout: ["showSectionBg", "sectionBg", "cardRadius"],
+  controls: [
     "showArrows",
     "showDots",
-    "showSectionBg",
-    "sectionBg",
     "arrowsColor",
     "dotsColor",
     "controlsBg",
   ],
-  cards: [
+  overlay: [
     "showTitle",
     "showSubtitle",
     "showBadge",
-    "cardRadius",
     "titleColor",
     "subtitleColor",
     "chipBg",
     "chipText",
     "overlayColor",
+    "overlayPosition",
   ],
 };

@@ -23,7 +23,7 @@ export default function CoolSlideGalleryPanel({ content, style }) {
       showTitle={style.showTitle}
       showSubtitle={style.showSubtitle}
       showBadge={style.showBadge}
-      titlePosition={GALLERY_EXTRAS.titlePosition}
+      titlePosition={style.overlayPosition || "bottom-left"}
       showArrows={style.showArrows}
       showDots={style.showDots}
       showCounter={GALLERY_EXTRAS.showCounter}
