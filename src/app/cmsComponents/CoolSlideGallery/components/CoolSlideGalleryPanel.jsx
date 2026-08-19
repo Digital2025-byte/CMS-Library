@@ -21,12 +21,13 @@ export default function CoolSlideGalleryPanel({ content, style }) {
       gap={GALLERY_EXTRAS.gap}
       dimOpacity={GALLERY_EXTRAS.dimOpacity}
       showTitle={style.showTitle}
+      showSubtitle={style.showSubtitle}
       showBadge={style.showBadge}
       titlePosition={GALLERY_EXTRAS.titlePosition}
       showArrows={style.showArrows}
       showDots={style.showDots}
       showCounter={GALLERY_EXTRAS.showCounter}
-      showCardImage={style.showCardImage}
+      showCardImage={true}
       clickable={GALLERY_EXTRAS.clickable}
       draggable={GALLERY_EXTRAS.draggable}
       keyboardNavigation={GALLERY_EXTRAS.keyboardNavigation}

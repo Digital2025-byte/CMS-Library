@@ -35,10 +35,10 @@ export const GALLERY_EXTRAS = {
 
 export const DEFAULT_COOL_SLIDE_GALLERY_STYLE = {
   showTitle: true,
+  showSubtitle: true,
   showBadge: true,
   showArrows: true,
   showDots: true,
-  showCardImage: true,
   showSectionBg: true,
   sectionBg: "foreground",
   titleColor: "white",
@@ -70,8 +70,8 @@ export const COOL_SLIDE_GALLERY_STYLE_RESET_KEYS = {
     "controlsBg",
   ],
   cards: [
-    "showCardImage",
     "showTitle",
+    "showSubtitle",
     "showBadge",
     "cardRadius",
     "titleColor",

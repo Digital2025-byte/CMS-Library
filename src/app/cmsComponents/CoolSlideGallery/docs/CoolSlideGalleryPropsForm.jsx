@@ -80,16 +80,16 @@ function CoolSlideGalleryStyleForm({ style, onChange }) {
         onReset={() => reset(COOL_SLIDE_GALLERY_STYLE_RESET_KEYS.cards)}
       >
         <InspectorSwitch
-          checked={style.showCardImage}
-          onChange={() => toggle("showCardImage")}
-          label="Image"
-          hint="Photo filling each slide"
-        />
-        <InspectorSwitch
           checked={style.showTitle}
           onChange={() => toggle("showTitle")}
-          label="Titles"
-          hint="Title and subtitle on each slide"
+          label="Title"
+          hint="Title on each slide"
+        />
+        <InspectorSwitch
+          checked={style.showSubtitle}
+          onChange={() => toggle("showSubtitle")}
+          label="Subtitle"
+          hint="Subtitle under the title"
         />
         <InspectorSwitch
           checked={style.showBadge}
@@ -105,23 +105,25 @@ function CoolSlideGalleryStyleForm({ style, onChange }) {
           onChange={(value) => update("cardRadius", value)}
         />
         {style.showTitle ? (
-          <>
-            <InspectorColor
-              label="Title color"
-              value={style.titleColor}
-              onChange={(value) => update("titleColor", value)}
-            />
-            <InspectorColor
-              label="Subtitle color"
-              value={style.subtitleColor}
-              onChange={(value) => update("subtitleColor", value)}
-            />
-            <InspectorColor
-              label="Gradient color"
-              value={style.overlayColor}
-              onChange={(value) => update("overlayColor", value)}
-            />
-          </>
+          <InspectorColor
+            label="Title color"
+            value={style.titleColor}
+            onChange={(value) => update("titleColor", value)}
+          />
+        ) : null}
+        {style.showSubtitle ? (
+          <InspectorColor
+            label="Subtitle color"
+            value={style.subtitleColor}
+            onChange={(value) => update("subtitleColor", value)}
+          />
+        ) : null}
+        {style.showTitle || style.showSubtitle || style.showBadge ? (
+          <InspectorColor
+            label="Gradient color"
+            value={style.overlayColor}
+            onChange={(value) => update("overlayColor", value)}
+          />
         ) : null}
         {style.showBadge ? (
           <>

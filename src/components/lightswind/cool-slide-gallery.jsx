@@ -108,6 +108,7 @@ export default function CoolSlideGallery({
   animationDuration = 0.6,
   easing = "smooth",
   showTitle = true,
+  showSubtitle = true,
   titlePosition = "bottom-left",
   showArrows = true,
   showDots = true,
@@ -337,7 +338,9 @@ export default function CoolSlideGallery({
                 />
               ) : null}
 
-              {showTitle && (slide.title || slide.subtitle) ? (
+              {(showTitle && slide.title) ||
+              (showSubtitle && slide.subtitle) ||
+              (showBadge && slide.badge) ? (
                 <>
                   <div
                     style={{
@@ -364,7 +367,7 @@ export default function CoolSlideGallery({
                         {slide.badge}
                       </span>
                     ) : null}
-                    {slide.title ? (
+                    {showTitle && slide.title ? (
                       <p
                         className={titleCss ? "font-bold" : "font-bold text-white"}
                         style={{
@@ -379,7 +382,7 @@ export default function CoolSlideGallery({
                         {slide.title}
                       </p>
                     ) : null}
-                    {slide.subtitle ? (
+                    {showSubtitle && slide.subtitle ? (
                       <p
                         className={
                           subtitleCss
@@ -415,6 +418,7 @@ export default function CoolSlideGallery({
         })}
       </div>
 
+      {showArrows || showDots || showCounter ? (
       <div
         className="mt-6 flex items-center gap-3 rounded-full border px-4 py-2 backdrop-blur-md"
         style={{
@@ -498,6 +502,7 @@ export default function CoolSlideGallery({
           </motion.button>
         ) : null}
       </div>
+      ) : null}
     </div>
   );
 }
