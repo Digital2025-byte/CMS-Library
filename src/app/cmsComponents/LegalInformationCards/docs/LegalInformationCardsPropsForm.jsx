@@ -58,7 +58,7 @@ function LegalInformationCardsStyleForm({ style, onChange }) {
       </InspectorSection>
 
       <InspectorSection
-        title="Cards"
+        title="Items"
         onReset={() => reset(LEGAL_INFORMATION_CARDS_STYLE_RESET_KEYS.cards)}
       >
         <InspectorSwitch

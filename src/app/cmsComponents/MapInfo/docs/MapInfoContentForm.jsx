@@ -41,14 +41,12 @@ export default function MapInfoContentForm({ content, onChange, defaults }) {
         onReset={() => reset(TITLE_KEYS)}
       />
 
-      <InspectorSection title="Branches" onReset={() => reset(BRANCH_KEYS)}>
+      <InspectorSection title="Items" onReset={() => reset(BRANCH_KEYS)}>
         <InspectorRepeater
           items={content.branches || []}
           createItem={emptyBranch}
-          itemLabel={(item, index) =>
-            item.name || item.city || `Branch ${index + 1}`
-          }
-          addLabel="Add Branch"
+          itemLabel={(_item, index) => `Item ${index + 1}`}
+          addLabel="Add Item"
           onChange={(branches) => onChange({ ...content, branches })}
         >
           {(item, { index, update }) => (

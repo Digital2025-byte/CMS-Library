@@ -76,7 +76,7 @@ function PhotoTileGridStyleForm({ style, onChange }) {
       ) : null}
 
       <InspectorSection
-        title="Cards"
+        title="Items"
         onReset={() => reset(PHOTO_TILE_GRID_STYLE_RESET_KEYS.cards)}
       >
         <InspectorSwitch

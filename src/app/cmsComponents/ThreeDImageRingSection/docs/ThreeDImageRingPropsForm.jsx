@@ -95,7 +95,7 @@ function ThreeDImageRingStyleForm({ style, onChange }) {
       ) : null}
 
       <InspectorSection
-        title="Cards"
+        title="Items"
         onReset={() => reset(THREE_D_IMAGE_RING_STYLE_RESET_KEYS.cards)}
       >
         <InspectorSwitch

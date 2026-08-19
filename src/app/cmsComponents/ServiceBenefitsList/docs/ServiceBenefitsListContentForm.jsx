@@ -51,8 +51,8 @@ export default function ServiceBenefitsListContentForm({
         <InspectorRepeater
           items={content.items || []}
           createItem={() => ({ title: "", description: "", icon: "Star" })}
-          itemLabel={(item, index) => item.title || `Benefit ${index + 1}`}
-          addLabel="Add Benefit"
+          itemLabel={(_item, index) => `Item ${index + 1}`}
+          addLabel="Add Item"
           onChange={(items) => onChange({ ...content, items })}
         >
           {(item, { index, update }) => (

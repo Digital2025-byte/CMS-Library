@@ -91,7 +91,7 @@ function RelatedContentCarouselStyleForm({ style, onChange }) {
       ) : null}
 
       <InspectorSection
-        title="Cards"
+        title="Items"
         onReset={() => reset(RELATED_CONTENT_STYLE_RESET_KEYS.cards)}
       >
         <InspectorSwitch

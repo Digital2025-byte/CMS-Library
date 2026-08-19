@@ -111,8 +111,8 @@ export default function FormFooterContentForm({
         <InspectorRepeater
           items={content.socialLinks || []}
           createItem={emptyLink}
-          itemLabel={(item, index) => item.alt || `Link ${index + 1}`}
-          addLabel="Add Link"
+          itemLabel={(_item, index) => `Item ${index + 1}`}
+          addLabel="Add Item"
           onChange={(socialLinks) => onChange({ ...content, socialLinks })}
         >
           {(item, { index, update }) => (

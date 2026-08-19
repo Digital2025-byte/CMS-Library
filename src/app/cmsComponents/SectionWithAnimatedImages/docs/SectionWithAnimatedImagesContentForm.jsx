@@ -66,8 +66,8 @@ export default function SectionWithAnimatedImagesContentForm({
         <InspectorRepeater
           items={content.images || []}
           createItem={emptyImage}
-          itemLabel={(item, index) => item.alt || `Image ${index + 1}`}
-          addLabel="Add Image"
+          itemLabel={(_item, index) => `Item ${index + 1}`}
+          addLabel="Add Item"
           onChange={(images) => onChange({ ...content, images })}
         >
           {(item, { index, update }) => (

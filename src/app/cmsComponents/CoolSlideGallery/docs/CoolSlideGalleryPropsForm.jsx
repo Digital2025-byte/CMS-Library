@@ -68,7 +68,7 @@ function CoolSlideGalleryStyleForm({ style, onChange }) {
       </InspectorSection>
 
       <InspectorSection
-        title="Cards"
+        title="Items"
         onReset={() => reset(COOL_SLIDE_GALLERY_STYLE_RESET_KEYS.cards)}
       >
         <InspectorSwitch

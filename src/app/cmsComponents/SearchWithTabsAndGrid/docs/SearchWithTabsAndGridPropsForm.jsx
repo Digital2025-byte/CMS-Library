@@ -124,7 +124,7 @@ function SearchWithTabsAndGridStyleForm({ style, onChange }) {
       ) : null}
 
       <InspectorSection
-        title="Cards"
+        title="Items"
         onReset={() => reset(SEARCH_GRID_STYLE_RESET_KEYS.cards)}
       >
         <InspectorSwitch

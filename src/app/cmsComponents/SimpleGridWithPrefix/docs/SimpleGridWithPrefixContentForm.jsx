@@ -60,14 +60,12 @@ export default function SimpleGridWithPrefixContentForm({
         />
       </InspectorSection>
 
-      <InspectorSection title="Channels" onReset={() => reset(ITEM_KEYS)}>
+      <InspectorSection title="Items" onReset={() => reset(ITEM_KEYS)}>
         <InspectorRepeater
           items={content.items || []}
           createItem={emptyItem}
-          itemLabel={(item, index) =>
-            item.title || item.userName || `Channel ${index + 1}`
-          }
-          addLabel="Add Channel"
+          itemLabel={(_item, index) => `Item ${index + 1}`}
+          addLabel="Add Item"
           onChange={(items) => onChange({ ...content, items })}
         >
           {(item, { index, update }) => (

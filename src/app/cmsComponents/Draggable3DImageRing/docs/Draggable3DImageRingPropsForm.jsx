@@ -86,7 +86,7 @@ function Draggable3DImageRingStyleForm({ style, onChange }) {
       </InspectorSection>
 
       <InspectorSection
-        title="Cards"
+        title="Items"
         onReset={() => reset(DRAGGABLE_3D_IMAGE_RING_STYLE_RESET_KEYS.cards)}
       >
         <InspectorSwitch

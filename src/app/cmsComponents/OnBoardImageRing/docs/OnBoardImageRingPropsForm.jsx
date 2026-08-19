@@ -95,7 +95,7 @@ function OnBoardImageRingStyleForm({ style, onChange }) {
       ) : null}
 
       <InspectorSection
-        title="Cards"
+        title="Items"
         onReset={() => reset(ON_BOARD_IMAGE_RING_STYLE_RESET_KEYS.cards)}
       >
         <InspectorSwitch

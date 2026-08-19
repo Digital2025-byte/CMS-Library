@@ -125,7 +125,7 @@ function TabbedCardsSectionStyleForm({ style, onChange }) {
       ) : null}
 
       <InspectorSection
-        title="Cards"
+        title="Items"
         onReset={() => reset(TABBED_CARDS_STYLE_RESET_KEYS.cards)}
       >
         <InspectorSwitch

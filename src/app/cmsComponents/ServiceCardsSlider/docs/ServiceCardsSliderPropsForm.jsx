@@ -85,7 +85,7 @@ function ServiceCardsSliderStyleForm({ style, onChange }) {
       ) : null}
 
       <InspectorSection
-        title="Cards"
+        title="Items"
         onReset={() => reset(SERVICE_CARDS_STYLE_RESET_KEYS.cards)}
       >
         <InspectorSwitch

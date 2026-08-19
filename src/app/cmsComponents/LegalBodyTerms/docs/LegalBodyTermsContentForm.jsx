@@ -95,8 +95,8 @@ export default function LegalBodyTermsContentForm({
         <InspectorRepeater
           items={content.sections || []}
           createItem={emptySection}
-          itemLabel={(item, index) => item.title || `Section ${index + 1}`}
-          addLabel="Add Section"
+          itemLabel={(_item, index) => `Item ${index + 1}`}
+          addLabel="Add Item"
           onChange={(sections) => onChange({ ...content, sections })}
         >
           {(section, { index, update }) => (
@@ -117,10 +117,8 @@ export default function LegalBodyTermsContentForm({
               <InspectorRepeater
                 items={section.items || []}
                 createItem={emptyItem}
-                itemLabel={(item, itemIndex) =>
-                  item.title || `Row ${itemIndex + 1}`
-                }
-                addLabel="Add Row"
+                itemLabel={(_item, itemIndex) => `Item ${itemIndex + 1}`}
+                addLabel="Add Item"
                 onChange={(items) => update("items", items)}
               >
                 {(item, { index: itemIndex, update: updateItem }) => (

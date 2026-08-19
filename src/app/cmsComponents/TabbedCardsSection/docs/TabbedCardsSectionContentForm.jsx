@@ -65,10 +65,8 @@ export default function TabbedCardsSectionContentForm({
               <InspectorRepeater
                 items={item.cards || []}
                 createItem={emptyCard}
-                itemLabel={(card, cardIndex) =>
-                  card.title || `Card ${cardIndex + 1}`
-                }
-                addLabel="Add Card"
+                itemLabel={(_card, cardIndex) => `Item ${cardIndex + 1}`}
+                addLabel="Add Item"
                 onChange={(cards) => update("cards", cards)}
               >
                 {(card, { index: cardIndex, update: updateCard }) => (

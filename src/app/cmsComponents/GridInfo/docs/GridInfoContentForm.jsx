@@ -37,14 +37,12 @@ export default function GridInfoContentForm({ content, onChange, defaults }) {
         onReset={() => reset(TITLE_KEYS)}
       />
 
-      <InspectorSection title="Branches" onReset={() => reset(ITEM_KEYS)}>
+      <InspectorSection title="Items" onReset={() => reset(ITEM_KEYS)}>
         <InspectorRepeater
           items={content.items || []}
           createItem={emptyItem}
-          itemLabel={(item, index) =>
-            item.name || item.city || `Branch ${index + 1}`
-          }
-          addLabel="Add Branch"
+          itemLabel={(_item, index) => `Item ${index + 1}`}
+          addLabel="Add Item"
           onChange={(items) => onChange({ ...content, items })}
         >
           {(item, { index, update }) => (

@@ -70,8 +70,8 @@ export default function TwoColumnWithSubSectionsContentForm({
         <InspectorRepeater
           items={content.items || []}
           createItem={() => ({ title: "", description: "" })}
-          itemLabel={(item, index) => item.title || `Subsection ${index + 1}`}
-          addLabel="Add Subsection"
+          itemLabel={(_item, index) => `Item ${index + 1}`}
+          addLabel="Add Item"
           onChange={(items) => onChange({ ...content, items })}
         >
           {(item, { index, update }) => (

@@ -29,7 +29,7 @@ function RowRepeater({
     <InspectorRepeater
       items={items}
       createItem={emptyCard}
-      itemLabel={(item, index) => item.title || `Item ${index + 1}`}
+      itemLabel={(_item, index) => `Item ${index + 1}`}
       onChange={onChange}
     >
       {(item, { index, update }) => (

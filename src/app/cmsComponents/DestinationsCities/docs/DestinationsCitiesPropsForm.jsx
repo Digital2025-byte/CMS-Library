@@ -95,7 +95,7 @@ function DestinationsCitiesStyleForm({ style, onChange }) {
       ) : null}
 
       <InspectorSection
-        title="Cards"
+        title="Items"
         onReset={() => reset(DESTINATIONS_CITIES_STYLE_RESET_KEYS.cards)}
       >
         <InspectorSwitch

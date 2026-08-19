@@ -90,16 +90,14 @@ export default function DestinationsMapContentForm({
       </InspectorSection>
 
       <InspectorSection
-        title="Cities"
+        title="Items"
         onReset={() => reset(["cities"])}
       >
         <InspectorRepeater
           items={content.cities || []}
           createItem={emptyCity}
-          itemLabel={(item, index) =>
-            item.cityName || item.cityId || `City ${index + 1}`
-          }
-          addLabel="Add City"
+          itemLabel={(_item, index) => `Item ${index + 1}`}
+          addLabel="Add Item"
           onChange={(cities) => onChange({ ...content, cities })}
         >
           {(item, { index, update }) => (
@@ -191,12 +189,8 @@ export default function DestinationsMapContentForm({
         <InspectorRepeater
           items={content.routes || []}
           createItem={emptyRoute}
-          itemLabel={(item, index) =>
-            item.fromCityId && item.toCityId
-              ? `${item.fromCityId} → ${item.toCityId}`
-              : `Route ${index + 1}`
-          }
-          addLabel="Add Route"
+          itemLabel={(_item, index) => `Item ${index + 1}`}
+          addLabel="Add Item"
           onChange={(routes) => onChange({ ...content, routes })}
         >
           {(item, { index, update }) => (

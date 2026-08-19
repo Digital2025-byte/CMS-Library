@@ -35,7 +35,7 @@ export default function TitleWithListContentForm({
         <InspectorRepeater
           items={content.items || []}
           createItem={() => ({ text: "" })}
-          itemLabel={(item, index) => item.text || `Item ${index + 1}`}
+          itemLabel={(_item, index) => `Item ${index + 1}`}
           addLabel="Add Item"
           onChange={(items) => onChange({ ...content, items })}
         >

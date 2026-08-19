@@ -65,14 +65,12 @@ export default function FlightFaresSectionContentForm({
         />
       </InspectorSection>
 
-      <InspectorSection title="Cities" onReset={() => reset(ITEM_KEYS)}>
+      <InspectorSection title="Items" onReset={() => reset(ITEM_KEYS)}>
         <InspectorRepeater
           items={content.items || []}
           createItem={emptyItem}
-          itemLabel={(item, index) =>
-            item.cityName || item.IATACode || `City ${index + 1}`
-          }
-          addLabel="Add City"
+          itemLabel={(_item, index) => `Item ${index + 1}`}
+          addLabel="Add Item"
           onChange={(items) => onChange({ ...content, items })}
         >
           {(item, { index, update }) => (

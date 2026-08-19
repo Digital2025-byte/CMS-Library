@@ -104,7 +104,7 @@ function OppositeScrollStyleForm({ style, onChange }) {
       ) : null}
 
       <InspectorSection
-        title="Cards"
+        title="Items"
         onReset={() => reset(OPPOSITE_SCROLL_STYLE_RESET_KEYS.cards)}
       >
         <InspectorSwitch

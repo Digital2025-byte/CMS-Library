@@ -73,13 +73,11 @@ export default function DestinationShowcaseContentForm({
         />
       </InspectorSection>
 
-      <InspectorSection title="Destinations" onReset={() => reset(ITEM_KEYS)}>
+      <InspectorSection title="Items" onReset={() => reset(ITEM_KEYS)}>
         <InspectorRepeater
           items={content.items || []}
           createItem={emptyItem}
-          itemLabel={(item, index) =>
-            item.cityName || item.slug || `Destination ${index + 1}`
-          }
+          itemLabel={(_item, index) => `Item ${index + 1}`}
           onChange={(items) => onChange({ ...content, items })}
         >
           {(item, { index, update }) => (

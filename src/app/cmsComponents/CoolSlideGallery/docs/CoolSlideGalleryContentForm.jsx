@@ -26,11 +26,11 @@ export default function CoolSlideGalleryContentForm({
 
   return (
     <div>
-      <InspectorSection title="Slides" onReset={() => reset(ITEM_KEYS)}>
+      <InspectorSection title="Items" onReset={() => reset(ITEM_KEYS)}>
         <InspectorRepeater
           items={content.items || []}
           createItem={emptyItem}
-          itemLabel={(item, index) => item.title || `Slide ${index + 1}`}
+          itemLabel={(_item, index) => `Item ${index + 1}`}
           onChange={(items) => onChange({ ...content, items })}
         >
           {(item, { index, update }) => (

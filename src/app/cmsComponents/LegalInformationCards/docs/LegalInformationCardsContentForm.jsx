@@ -31,12 +31,12 @@ export default function LegalInformationCardsContentForm({
 
   return (
     <div>
-      <InspectorSection title="Cards" onReset={() => reset(["cards"])}>
+      <InspectorSection title="Items" onReset={() => reset(["cards"])}>
         <InspectorRepeater
           items={content.cards || []}
           createItem={emptyCard}
-          itemLabel={(item, index) => item.title || `Card ${index + 1}`}
-          addLabel="Add Card"
+          itemLabel={(_item, index) => `Item ${index + 1}`}
+          addLabel="Add Item"
           onChange={(cards) => onChange({ ...content, cards })}
         >
           {(item, { index, update }) => (

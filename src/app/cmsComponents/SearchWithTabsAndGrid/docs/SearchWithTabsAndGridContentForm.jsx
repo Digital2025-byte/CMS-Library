@@ -120,14 +120,12 @@ export default function SearchWithTabsAndGridContentForm({
         </InspectorRepeater>
       </InspectorSection>
 
-      <InspectorSection title="Sights" onReset={() => reset(ITEM_KEYS)}>
+      <InspectorSection title="Items" onReset={() => reset(ITEM_KEYS)}>
         <InspectorRepeater
           items={content.items || []}
           createItem={emptyItem}
-          itemLabel={(item, index) =>
-            item.name || item.cityName || `Sight ${index + 1}`
-          }
-          addLabel="Add Sight"
+          itemLabel={(_item, index) => `Item ${index + 1}`}
+          addLabel="Add Item"
           onChange={(items) => onChange({ ...content, items })}
         >
           {(item, { index, update }) => (

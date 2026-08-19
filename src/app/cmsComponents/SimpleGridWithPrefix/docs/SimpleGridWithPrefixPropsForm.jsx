@@ -93,7 +93,7 @@ function SimpleGridWithPrefixStyleForm({ style, onChange }) {
       ) : null}
 
       <InspectorSection
-        title="Cards"
+        title="Items"
         onReset={() => reset(SIMPLE_GRID_STYLE_RESET_KEYS.cards)}
       >
         <InspectorSwitch

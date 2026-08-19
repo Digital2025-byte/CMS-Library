@@ -81,8 +81,8 @@ export default function LegalBodyCookiesContentForm({
         <InspectorRepeater
           items={content.types || []}
           createItem={emptyPair}
-          itemLabel={(item, index) => item.title || `Type ${index + 1}`}
-          addLabel="Add Type"
+          itemLabel={(_item, index) => `Item ${index + 1}`}
+          addLabel="Add Item"
           onChange={(types) => onChange({ ...content, types })}
         >
           {(item, { index, update }) => (
@@ -127,8 +127,8 @@ export default function LegalBodyCookiesContentForm({
         <InspectorRepeater
           items={content.providers || []}
           createItem={emptyText}
-          itemLabel={(item, index) => item.text || `Provider ${index + 1}`}
-          addLabel="Add Provider"
+          itemLabel={(_item, index) => `Item ${index + 1}`}
+          addLabel="Add Item"
           onChange={(providers) => onChange({ ...content, providers })}
         >
           {(item, { index, update }) => (
@@ -169,8 +169,8 @@ export default function LegalBodyCookiesContentForm({
         <InspectorRepeater
           items={content.methods || []}
           createItem={emptyPair}
-          itemLabel={(item, index) => item.title || `Method ${index + 1}`}
-          addLabel="Add Method"
+          itemLabel={(_item, index) => `Item ${index + 1}`}
+          addLabel="Add Item"
           onChange={(methods) => onChange({ ...content, methods })}
         >
           {(item, { index, update }) => (
@@ -222,7 +222,7 @@ export default function LegalBodyCookiesContentForm({
         <InspectorRepeater
           items={content.lifespanItems || []}
           createItem={emptyPair}
-          itemLabel={(item, index) => item.title || `Item ${index + 1}`}
+          itemLabel={(_item, index) => `Item ${index + 1}`}
           addLabel="Add Item"
           onChange={(lifespanItems) => onChange({ ...content, lifespanItems })}
         >

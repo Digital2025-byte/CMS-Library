@@ -60,7 +60,7 @@ function ScrollCarouselStyleForm({ style, onChange }) {
       </InspectorSection>
 
       <InspectorSection
-        title="Cards"
+        title="Items"
         onReset={() => reset(SCROLL_CAROUSEL_STYLE_RESET_KEYS.cards)}
       >
         <InspectorSwitch

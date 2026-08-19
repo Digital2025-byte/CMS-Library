@@ -70,7 +70,7 @@ function CarouselImageText6StyleForm({ style, onChange }) {
       ) : null}
 
       <InspectorSection
-        title="Cards"
+        title="Items"
         onReset={() => reset(CAROUSEL_IMAGE_TEXT_STYLE_RESET_KEYS.cards)}
       >
         <InspectorSwitch

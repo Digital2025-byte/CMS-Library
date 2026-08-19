@@ -166,7 +166,7 @@ function DestinationShowcaseStyleForm({ style, onChange }) {
       </InspectorSection>
 
       <InspectorSection
-        title="Cards"
+        title="Items"
         onReset={() => reset(DESTINATION_SHOWCASE_STYLE_RESET_KEYS.cards)}
       >
         <InspectorSwitch

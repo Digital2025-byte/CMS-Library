@@ -37,7 +37,7 @@ export default function ConnectionStepsListContentForm({
         />
       </InspectorSection>
 
-      <InspectorSection title="Steps" onReset={() => reset(ITEM_KEYS)}>
+      <InspectorSection title="Items" onReset={() => reset(ITEM_KEYS)}>
         <InspectorRepeater
           items={content.items || []}
           createItem={() => ({
@@ -45,10 +45,8 @@ export default function ConnectionStepsListContentForm({
             imageUrl: "",
             imageAlt: "",
           })}
-          itemLabel={(item, index) =>
-            item.description || `Step ${index + 1}`
-          }
-          addLabel="Add Step"
+          itemLabel={(_item, index) => `Item ${index + 1}`}
+          addLabel="Add Item"
           onChange={(items) => onChange({ ...content, items })}
         >
           {(item, { index, update }) => (

@@ -75,7 +75,7 @@ export default function DualImageTextContentForm({
         <InspectorRepeater
           items={content.items || []}
           createItem={emptyItem}
-          itemLabel={(item, index) => item.title || `Item ${index + 1}`}
+          itemLabel={(_item, index) => `Item ${index + 1}`}
           addLabel="Add Item"
           onChange={(items) => onChange({ ...content, items })}
         >

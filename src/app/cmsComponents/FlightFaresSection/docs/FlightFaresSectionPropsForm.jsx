@@ -76,7 +76,7 @@ function FlightFaresSectionStyleForm({ style, onChange }) {
       ) : null}
 
       <InspectorSection
-        title="Cards"
+        title="Items"
         onReset={() => reset(FLIGHT_FARES_STYLE_RESET_KEYS.cards)}
       >
         <InspectorSwitch

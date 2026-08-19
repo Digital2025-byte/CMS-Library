@@ -78,7 +78,7 @@ export default function BannerWithCTAsAndItemsContentForm({
         <InspectorRepeater
           items={content.items || []}
           createItem={() => ({ text: "" })}
-          itemLabel={(item, index) => item.text || `Item ${index + 1}`}
+          itemLabel={(_item, index) => `Item ${index + 1}`}
           onChange={(items) => onChange({ ...content, items })}
         >
           {(item, { index, update }) => (

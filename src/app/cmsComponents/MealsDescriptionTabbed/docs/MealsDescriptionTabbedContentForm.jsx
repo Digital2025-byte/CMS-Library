@@ -97,9 +97,7 @@ export default function MealsDescriptionTabbedContentForm({
                     <InspectorRepeater
                       items={section.items || []}
                       createItem={emptyItem}
-                      itemLabel={(item, itemIndex) =>
-                        item.title || `Item ${itemIndex + 1}`
-                      }
+                      itemLabel={(_item, itemIndex) => `Item ${itemIndex + 1}`}
                       addLabel="Add Item"
                       onChange={(items) => updateSection("items", items)}
                     >
@@ -143,9 +141,7 @@ export default function MealsDescriptionTabbedContentForm({
                           <InspectorRepeater
                             items={group.items || []}
                             createItem={emptyItem}
-                            itemLabel={(item, itemIndex) =>
-                              item.title || `Item ${itemIndex + 1}`
-                            }
+                            itemLabel={(_item, itemIndex) => `Item ${itemIndex + 1}`}
                             addLabel="Add Item"
                             onChange={(items) => updateGroup("items", items)}
                           >
@@ -189,8 +185,8 @@ export default function MealsDescriptionTabbedContentForm({
         <InspectorRepeater
           items={content.notes || []}
           createItem={emptyNote}
-          itemLabel={(item, index) => item.text || `Note ${index + 1}`}
-          addLabel="Add Note"
+          itemLabel={(_item, index) => `Item ${index + 1}`}
+          addLabel="Add Item"
           onChange={(notes) => onChange({ ...content, notes })}
         >
           {(item, { index, update }) => (

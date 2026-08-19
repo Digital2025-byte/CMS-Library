@@ -27,9 +27,7 @@ export default function Draggable3DImageRingContentForm({
         <InspectorRepeater
           items={content.items || []}
           createItem={emptyItem}
-          itemLabel={(item, index) =>
-            item.imageAlt || `Image ${index + 1}`
-          }
+          itemLabel={(_item, index) => `Item ${index + 1}`}
           onChange={(items) => onChange({ ...content, items })}
         >
           {(item, { index, update }) => (

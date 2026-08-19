@@ -79,8 +79,8 @@ export default function LegalBodyPrivacyPolicyContentForm({
         <InspectorRepeater
           items={content.summaryPoints || []}
           createItem={emptyPoint}
-          itemLabel={(item, index) => item.question || `Point ${index + 1}`}
-          addLabel="Add Point"
+          itemLabel={(_item, index) => `Item ${index + 1}`}
+          addLabel="Add Item"
           onChange={(summaryPoints) => onChange({ ...content, summaryPoints })}
         >
           {(item, { index, update }) => (

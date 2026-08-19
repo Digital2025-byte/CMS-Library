@@ -122,7 +122,7 @@ function GridInfoStyleForm({ style, onChange }) {
       ) : null}
 
       <InspectorSection
-        title="Cards"
+        title="Items"
         onReset={() => reset(GRID_INFO_STYLE_RESET_KEYS.cards)}
       >
         <InspectorSwitch
