@@ -95,6 +95,25 @@ function CoolSlideGalleryStyleForm({ style, onChange }) {
               value={style.subtitleColor}
               onChange={(value) => update("subtitleColor", value)}
             />
+            <InspectorColor
+              label="Gradient color"
+              value={style.overlayColor}
+              onChange={(value) => update("overlayColor", value)}
+            />
+          </>
+        ) : null}
+        {style.showBadge ? (
+          <>
+            <InspectorColor
+              label="Chip background"
+              value={style.chipBg}
+              onChange={(value) => update("chipBg", value)}
+            />
+            <InspectorColor
+              label="Chip text"
+              value={style.chipText}
+              onChange={(value) => update("chipText", value)}
+            />
           </>
         ) : null}
       </InspectorSection>

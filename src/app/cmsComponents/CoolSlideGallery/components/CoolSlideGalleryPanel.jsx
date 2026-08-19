@@ -47,6 +47,17 @@ export default function CoolSlideGalleryPanel({ content, style }) {
           ? getThemeColorCss(style.subtitleColor, "white")
           : undefined
       }
+      overlayCss={
+        style.overlayColor
+          ? getThemeColorCss(style.overlayColor, "foreground")
+          : undefined
+      }
+      badgeBgCss={
+        style.chipBg ? getThemeColorCss(style.chipBg, "white") : undefined
+      }
+      badgeTextCss={
+        style.chipText ? getThemeColorCss(style.chipText, "white") : undefined
+      }
     />
   );
 }

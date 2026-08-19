@@ -74,17 +74,18 @@ function getTitleStyles(position) {
   }
 }
 
-function getGradientForPosition(position) {
+function getGradientForPosition(position, overlayCss) {
+  const color = overlayCss || "#000000";
   switch (position) {
     case "top-left":
     case "top-right":
-      return "linear-gradient(180deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0) 60%)";
+      return `linear-gradient(180deg, color-mix(in srgb, ${color} 75%, transparent) 0%, transparent 60%)`;
     case "center":
-      return "radial-gradient(ellipse at center, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 70%)";
+      return `radial-gradient(ellipse at center, color-mix(in srgb, ${color} 60%, transparent) 0%, transparent 70%)`;
     case "bottom-left":
     case "bottom-right":
     default:
-      return "linear-gradient(0deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 65%)";
+      return `linear-gradient(0deg, color-mix(in srgb, ${color} 80%, transparent) 0%, transparent 65%)`;
   }
 }
 
@@ -115,6 +116,9 @@ export default function CoolSlideGallery({
   showCardImage = true,
   titleCss,
   subtitleCss,
+  overlayCss,
+  badgeBgCss,
+  badgeTextCss,
   clickable = true,
   draggable = true,
   dragThreshold = 45,
@@ -336,13 +340,24 @@ export default function CoolSlideGallery({
                     style={{
                       position: "absolute",
                       inset: 0,
-                      background: getGradientForPosition(titlePosition),
+                      background: getGradientForPosition(titlePosition, overlayCss),
                       pointerEvents: "none",
                     }}
                   />
                   <div style={{ ...getTitleStyles(titlePosition), padding: "20px 22px" }}>
                     {slide.badge && showBadge ? (
-                      <span className="mb-2 inline-block rounded-full border border-white/30 bg-white/20 px-2 py-0.5 text-[10px] font-bold tracking-widest text-white uppercase backdrop-blur-sm">
+                      <span
+                        className="mb-2 inline-block rounded-full border px-2 py-0.5 text-[10px] font-bold tracking-widest uppercase backdrop-blur-sm"
+                        style={{
+                          color: badgeTextCss || "#ffffff",
+                          backgroundColor: badgeBgCss
+                            ? `color-mix(in srgb, ${badgeBgCss} 20%, transparent)`
+                            : "rgba(255,255,255,0.2)",
+                          borderColor: badgeBgCss
+                            ? `color-mix(in srgb, ${badgeBgCss} 30%, transparent)`
+                            : "rgba(255,255,255,0.3)",
+                        }}
+                      >
                         {slide.badge}
                       </span>
                     ) : null}

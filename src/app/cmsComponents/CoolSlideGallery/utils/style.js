@@ -43,6 +43,9 @@ export const DEFAULT_COOL_SLIDE_GALLERY_STYLE = {
   sectionBg: "foreground",
   titleColor: "white",
   subtitleColor: "white",
+  chipBg: "white",
+  chipText: "white",
+  overlayColor: "foreground",
   cardRadius: "sm",
 };
 
@@ -67,5 +70,8 @@ export const COOL_SLIDE_GALLERY_STYLE_RESET_KEYS = {
     "cardRadius",
     "titleColor",
     "subtitleColor",
+    "chipBg",
+    "chipText",
+    "overlayColor",
   ],
 };
