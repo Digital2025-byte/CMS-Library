@@ -1,9 +1,11 @@
 import HeaderWithThreeImageSlice from "./HeaderWithThreeImageSlice";
 import { getHeaderClipPaths } from "../utils/clipPaths";
+import { HEIGHT_CLASS } from "../utils/style";
 
 export default function HeaderWithThreeImageBackground({
-  lang = "en",
   content,
+  heightClass = HEIGHT_CLASS.default,
+  direction = "right",
 }) {
   const {
     LEFT_W,
@@ -13,15 +15,16 @@ export default function HeaderWithThreeImageBackground({
     midClipPath,
     rightClipPath,
     overlapStyle,
-  } = getHeaderClipPaths(lang);
+  } = getHeaderClipPaths(direction);
 
   return (
-    <div className="absolute inset-0 flex w-full">
+    <div className={`absolute inset-0 flex w-full ${heightClass}`}>
       <HeaderWithThreeImageSlice
         width={LEFT_W}
         clipPath={leftClipPath}
         desktopImage={content.imageOne}
         mobileImage={content.mobileImageOne}
+        heightClass={heightClass}
         priority
       />
       <HeaderWithThreeImageSlice
@@ -30,6 +33,7 @@ export default function HeaderWithThreeImageBackground({
         clipPath={midClipPath}
         desktopImage={content.imageTwo}
         mobileImage={content.mobileImageTwo}
+        heightClass={heightClass}
       />
       <HeaderWithThreeImageSlice
         width={RIGHT_W}
@@ -37,6 +41,7 @@ export default function HeaderWithThreeImageBackground({
         clipPath={rightClipPath}
         desktopImage={content.imageThree}
         mobileImage={content.mobileImageThree}
+        heightClass={heightClass}
       />
     </div>
   );

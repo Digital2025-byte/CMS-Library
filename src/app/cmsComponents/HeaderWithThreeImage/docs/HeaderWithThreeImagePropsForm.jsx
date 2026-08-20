@@ -10,7 +10,10 @@ import HeaderWithThreeImageContentForm from "./HeaderWithThreeImageContentForm";
 import {
   DEFAULT_HEADER_WITH_THREE_IMAGE_STYLE,
   HEADER_WITH_THREE_IMAGE_STYLE_RESET_KEYS,
+  HEIGHT_OPTIONS,
+  IMAGE_DIRECTION_OPTIONS,
   TITLE_ALIGN_OPTIONS,
+  VERTICAL_ALIGN_OPTIONS,
 } from "../utils/style";
 
 function HeaderWithThreeImageStyleForm({ style, onChange }) {
@@ -34,20 +37,11 @@ function HeaderWithThreeImageStyleForm({ style, onChange }) {
           hint="Show the heading"
         />
         {style.showTitle ? (
-          <>
-            <InspectorChoose
-              label="Alignment"
-              name="titleAlign"
-              value={style.titleAlign}
-              options={TITLE_ALIGN_OPTIONS}
-              onChange={(value) => update("titleAlign", value)}
-            />
-            <InspectorColor
-              label="Title color"
-              value={style.titleColor}
-              onChange={(value) => update("titleColor", value)}
-            />
-          </>
+          <InspectorColor
+            label="Title color"
+            value={style.titleColor}
+            onChange={(value) => update("titleColor", value)}
+          />
         ) : null}
         <InspectorSwitch
           checked={style.showDescription}
@@ -62,6 +56,44 @@ function HeaderWithThreeImageStyleForm({ style, onChange }) {
             onChange={(value) => update("descriptionColor", value)}
           />
         ) : null}
+        {style.showTitle || style.showDescription ? (
+          <>
+            <InspectorChoose
+              label="Alignment"
+              name="titleAlign"
+              value={style.titleAlign}
+              options={TITLE_ALIGN_OPTIONS}
+              onChange={(value) => update("titleAlign", value)}
+            />
+            <InspectorChoose
+              label="Vertical"
+              name="verticalAlign"
+              value={style.verticalAlign}
+              options={VERTICAL_ALIGN_OPTIONS}
+              onChange={(value) => update("verticalAlign", value)}
+            />
+          </>
+        ) : null}
+        <InspectorChoose
+          label="Height"
+          name="sectionHeight"
+          value={style.sectionHeight}
+          options={HEIGHT_OPTIONS}
+          onChange={(value) => update("sectionHeight", value)}
+        />
+        <InspectorSwitch
+          checked={style.showSectionBg}
+          onChange={() => toggle("showSectionBg")}
+          label="Background"
+          hint="Solid fill behind the header"
+        />
+        {style.showSectionBg ? (
+          <InspectorColor
+            label="Section background"
+            value={style.sectionBg}
+            onChange={(value) => update("sectionBg", value)}
+          />
+        ) : null}
       </InspectorSection>
 
       <InspectorSection
@@ -74,6 +106,15 @@ function HeaderWithThreeImageStyleForm({ style, onChange }) {
           label="Images"
           hint="Three background photo slices"
         />
+        {style.showHeroImage ? (
+          <InspectorChoose
+            label="Direction"
+            name="imageDirection"
+            value={style.imageDirection}
+            options={IMAGE_DIRECTION_OPTIONS}
+            onChange={(value) => update("imageDirection", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.showOverlay}
           onChange={() => toggle("showOverlay")}

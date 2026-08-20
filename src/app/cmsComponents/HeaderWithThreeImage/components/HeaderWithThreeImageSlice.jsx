@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { isUsableImageSrc } from "../utils/helpers";
+import { HEIGHT_CLASS } from "../utils/style";
 
 export default function HeaderWithThreeImageSlice({
   width,
@@ -7,6 +8,7 @@ export default function HeaderWithThreeImageSlice({
   clipPath,
   desktopImage,
   mobileImage,
+  heightClass = HEIGHT_CLASS.default,
   priority = false,
 }) {
   const desktopSrc = isUsableImageSrc(desktopImage?.fileUrl)
@@ -19,7 +21,7 @@ export default function HeaderWithThreeImageSlice({
     return (
       <div
         style={{ width, ...overlapStyle }}
-        className="relative h-[51vh] shrink-0"
+        className={`relative shrink-0 ${heightClass}`}
       />
     );
   }
@@ -27,7 +29,7 @@ export default function HeaderWithThreeImageSlice({
   return (
     <div
       style={{ width, ...overlapStyle }}
-      className="relative h-[51vh] shrink-0"
+      className={`relative shrink-0 ${heightClass}`}
     >
       <div className="absolute inset-0 will-change-transform" style={{ clipPath }}>
         {desktopSrc ? (

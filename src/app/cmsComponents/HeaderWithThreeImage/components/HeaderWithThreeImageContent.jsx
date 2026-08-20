@@ -4,6 +4,8 @@ import { getThemeColorCss } from "@/styles/themeColors";
 import {
   DEFAULT_HEADER_WITH_THREE_IMAGE_STYLE,
   TITLE_ALIGN_CLASS,
+  TITLE_ITEMS_CLASS,
+  TITLE_JUSTIFY_CLASS,
 } from "../utils/style";
 
 export default function HeaderWithThreeImageContent({
@@ -20,15 +22,18 @@ export default function HeaderWithThreeImageContent({
     return null;
   }
 
-  const alignClass =
-    TITLE_ALIGN_CLASS[style.titleAlign] ?? TITLE_ALIGN_CLASS.left;
+  const alignKey = style.titleAlign in TITLE_ALIGN_CLASS ? style.titleAlign : "left";
+  const isCenter = alignKey === "center";
+  const alignClass = TITLE_ALIGN_CLASS[alignKey];
+  const justifyClass = TITLE_JUSTIFY_CLASS[alignKey];
+  const itemsClass = TITLE_ITEMS_CLASS[alignKey];
 
   return (
     <PageContentContainer
-      className="relative z-10 flex items-start justify-start lg:items-center"
+      className={`relative z-10 flex w-full ${justifyClass}`}
       dir={lang === "ar" ? "rtl" : "ltr"}
     >
-      <div className={`py-1 ${alignClass}`}>
+      <div className={`flex max-w-xl flex-col py-6 sm:py-8 ${alignClass} ${itemsClass}`}>
         {showHeading ? (
           <h1
             className={`${typography.pageTitle} mt-2 font-semibold`}
@@ -39,7 +44,9 @@ export default function HeaderWithThreeImageContent({
         ) : null}
         {showCopy ? (
           <p
-            className={`${typography.sectionDescription} mt-2 max-w-sm text-justify leading-relaxed`}
+            className={`${typography.sectionDescription} mt-2 max-w-sm leading-relaxed ${
+              isCenter ? "text-center" : alignKey === "right" ? "text-end" : "text-justify"
+            }`}
             style={{ color: getThemeColorCss(style.descriptionColor, "50") }}
           >
             {description}

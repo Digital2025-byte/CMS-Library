@@ -1,5 +1,9 @@
 import { getThemeColorCss } from "@/styles/themeColors";
-import { DEFAULT_HEADER_WITH_THREE_IMAGE_STYLE } from "../utils/style";
+import {
+  DEFAULT_HEADER_WITH_THREE_IMAGE_STYLE,
+  HEIGHT_CLASS,
+  VERTICAL_ALIGN_CLASS,
+} from "../utils/style";
 import HeaderWithThreeImageBackground from "./HeaderWithThreeImageBackground";
 import HeaderWithThreeImageContent from "./HeaderWithThreeImageContent";
 
@@ -9,18 +13,29 @@ export default function HeaderWithThreeImagePanel({
   style = DEFAULT_HEADER_WITH_THREE_IMAGE_STYLE,
 }) {
   const overlayCss = getThemeColorCss(style.overlayColor, "main");
+  const sectionBgCss = getThemeColorCss(style.sectionBg, "main");
+  const heightClass =
+    HEIGHT_CLASS[style.sectionHeight] ?? HEIGHT_CLASS.default;
+  const verticalClass =
+    VERTICAL_ALIGN_CLASS[style.verticalAlign] ?? VERTICAL_ALIGN_CLASS.center;
+
+  const fallbackBg = style.showSectionBg
+    ? sectionBgCss
+    : style.showHeroImage
+      ? undefined
+      : overlayCss;
 
   return (
     <section
-      className="relative flex min-h-[50vh] w-full items-center justify-center overflow-hidden"
-      style={
-        style.showHeroImage
-          ? undefined
-          : { backgroundColor: overlayCss }
-      }
+      className={`relative flex w-full overflow-hidden ${heightClass} ${verticalClass}`}
+      style={fallbackBg ? { backgroundColor: fallbackBg } : undefined}
     >
       {style.showHeroImage ? (
-        <HeaderWithThreeImageBackground lang={lang} content={content} />
+        <HeaderWithThreeImageBackground
+          content={content}
+          heightClass={heightClass}
+          direction={style.imageDirection}
+        />
       ) : null}
 
       <HeaderWithThreeImageContent
