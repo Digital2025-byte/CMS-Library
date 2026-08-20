@@ -1,6 +1,9 @@
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
-import { DEFAULT_GRID_INFO_STYLE } from "../utils/style";
+import {
+  DEFAULT_GRID_INFO_STYLE,
+  TITLE_JUSTIFY_CLASS,
+} from "../utils/style";
 
 export default function GridInfoCityFilter({
   cities,
@@ -15,9 +18,12 @@ export default function GridInfoCityFilter({
   const brandCss = getThemeColorCss(style.chipColor, "primary-1");
   const activeTextCss = getThemeColorCss(style.chipActiveText, "white");
   const idleBgCss = getThemeColorCss(style.chipIdleBg, "white");
+  const alignKey =
+    style.titleAlign in TITLE_JUSTIFY_CLASS ? style.titleAlign : "left";
+  const justifyClass = TITLE_JUSTIFY_CLASS[alignKey];
 
   return (
-    <div className="mb-6 flex flex-wrap gap-3">
+    <div className={`mb-6 flex flex-wrap gap-3 ${justifyClass}`}>
       {cities.map((city) => {
         const isActive = selectedCity === city;
 

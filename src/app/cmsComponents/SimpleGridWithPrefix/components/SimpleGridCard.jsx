@@ -11,8 +11,6 @@ import { withCampaignPath } from "../utils/withCampaignPath";
 export default function SimpleGridCard({
   lang = "en",
   item,
-  prefix = "",
-  chip = "",
   cId,
   style = DEFAULT_SIMPLE_GRID_STYLE,
 }) {
@@ -20,7 +18,7 @@ export default function SimpleGridCard({
     return null;
   }
 
-  const { title, link, userName, iconSrc } = item;
+  const { title, link, userName, iconSrc, prefix = "", chip = "" } = item;
   const href = withCampaignPath(link, cId);
   const ArrowIcon = lang === "ar" ? ArrowUpLeftIcon : ArrowUpRightIcon;
   const radiusClass =

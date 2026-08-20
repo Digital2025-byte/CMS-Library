@@ -3,6 +3,8 @@
  */
 export function buildSimpleGridWithPrefixData(t, lang = "en") {
   const channels = t("simpleGridWithPrefix.channels", { returnObjects: true });
+  const prefix = t("simpleGridWithPrefix.prefix");
+  const chip = t("simpleGridWithPrefix.chip");
 
   return {
     translations: [
@@ -11,8 +13,6 @@ export function buildSimpleGridWithPrefixData(t, lang = "en") {
         content: {
           title: t("simpleGridWithPrefix.title"),
           description: t("simpleGridWithPrefix.description"),
-          prefix: t("simpleGridWithPrefix.prefix"),
-          chip: t("simpleGridWithPrefix.chip"),
           channels: Array.isArray(channels)
             ? channels.map((channel) => ({
                 grid: {
@@ -20,6 +20,8 @@ export function buildSimpleGridWithPrefixData(t, lang = "en") {
                   userName: channel?.userName || "",
                   link: channel?.link || "#",
                   icon: channel?.icon || "",
+                  prefix: channel?.prefix || prefix,
+                  chip: channel?.chip || chip,
                 },
               }))
             : [],

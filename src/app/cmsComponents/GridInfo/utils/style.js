@@ -1,6 +1,7 @@
 export const TITLE_ALIGN_OPTIONS = [
   { value: "left", label: "Start" },
   { value: "center", label: "Center" },
+  { value: "right", label: "End" },
 ];
 
 export const CARD_RADIUS_OPTIONS = [
@@ -19,6 +20,19 @@ export const SPACING_OPTIONS = [
 export const TITLE_ALIGN_CLASS = {
   left: "text-start",
   center: "text-center",
+  right: "text-end",
+};
+
+export const TITLE_ITEMS_CLASS = {
+  left: "items-start",
+  center: "items-center",
+  right: "items-end",
+};
+
+export const TITLE_JUSTIFY_CLASS = {
+  left: "justify-start",
+  center: "justify-center",
+  right: "justify-end",
 };
 
 export const CARD_RADIUS_CLASS = {
@@ -82,8 +96,9 @@ export const GRID_INFO_STYLE_RESET_KEYS = {
     "showSectionBg",
     "sectionBg",
     "sectionPadding",
+    "titleAlign",
   ],
-  title: ["titleAlign", "titleColor", "descriptionColor"],
+  title: ["titleColor", "descriptionColor"],
   filter: ["chipColor", "chipActiveText", "chipIdleBg"],
   cards: [
     "showName",

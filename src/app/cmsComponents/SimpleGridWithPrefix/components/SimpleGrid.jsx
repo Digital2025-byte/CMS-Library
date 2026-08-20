@@ -6,8 +6,6 @@ import SimpleGridCard from "./SimpleGridCard";
 
 export default function SimpleGrid({
   items,
-  prefix,
-  chip,
   lang,
   cId,
   style = DEFAULT_SIMPLE_GRID_STYLE,
@@ -24,8 +22,6 @@ export default function SimpleGrid({
         <SimpleGridCard
           key={`${item.title}-${item.userName}-${index}`}
           item={item}
-          prefix={prefix}
-          chip={item.chip || chip}
           lang={lang}
           cId={cId}
           style={style}

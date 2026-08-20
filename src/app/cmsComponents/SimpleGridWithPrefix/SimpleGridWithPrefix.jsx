@@ -12,7 +12,7 @@ export default function SimpleGridWithPrefix({
   cId,
 }) {
   const resolvedStyle = resolveSimpleGridStyle(style);
-  const { title, description, prefix, chip, items, hasContent } =
+  const { title, description, items, hasContent } =
     getSimpleGridWithPrefixContent(data, lang);
 
   if (!hasContent) {
@@ -28,8 +28,6 @@ export default function SimpleGridWithPrefix({
       />
       <SimpleGrid
         items={items}
-        prefix={prefix}
-        chip={chip}
         lang={lang}
         cId={cId}
         style={resolvedStyle}

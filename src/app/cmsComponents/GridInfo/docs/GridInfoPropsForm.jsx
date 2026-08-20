@@ -34,20 +34,11 @@ function GridInfoStyleForm({ style, onChange }) {
           hint="Show the section heading"
         />
         {style.showTitle ? (
-          <>
-            <InspectorChoose
-              label="Alignment"
-              name="titleAlign"
-              value={style.titleAlign}
-              options={TITLE_ALIGN_OPTIONS}
-              onChange={(value) => update("titleAlign", value)}
-            />
-            <InspectorColor
-              label="Title color"
-              value={style.titleColor}
-              onChange={(value) => update("titleColor", value)}
-            />
-          </>
+          <InspectorColor
+            label="Title color"
+            value={style.titleColor}
+            onChange={(value) => update("titleColor", value)}
+          />
         ) : null}
         <InspectorSwitch
           checked={style.showDescription}
@@ -60,6 +51,15 @@ function GridInfoStyleForm({ style, onChange }) {
             label="Description color"
             value={style.descriptionColor}
             onChange={(value) => update("descriptionColor", value)}
+          />
+        ) : null}
+        {style.showTitle || style.showDescription ? (
+          <InspectorChoose
+            label="Alignment"
+            name="titleAlign"
+            value={style.titleAlign}
+            options={TITLE_ALIGN_OPTIONS}
+            onChange={(value) => update("titleAlign", value)}
           />
         ) : null}
         <InspectorSwitch

@@ -3,6 +3,7 @@ import { getThemeColorCss } from "@/styles/themeColors";
 import {
   DEFAULT_GRID_INFO_STYLE,
   TITLE_ALIGN_CLASS,
+  TITLE_ITEMS_CLASS,
 } from "../utils/style";
 
 export default function GridInfoHeader({
@@ -17,11 +18,13 @@ export default function GridInfoHeader({
     return null;
   }
 
-  const alignClass =
-    TITLE_ALIGN_CLASS[style.titleAlign] ?? TITLE_ALIGN_CLASS.left;
+  const alignKey =
+    style.titleAlign in TITLE_ALIGN_CLASS ? style.titleAlign : "left";
+  const alignClass = TITLE_ALIGN_CLASS[alignKey];
+  const itemsClass = TITLE_ITEMS_CLASS[alignKey];
 
   return (
-    <div className={`mb-4 ${alignClass}`}>
+    <div className={`mb-4 flex w-full flex-col ${alignClass} ${itemsClass}`}>
       {showHeading ? (
         <h2
           className={`${typography.sectionTitle} mb-4 font-bold`}
@@ -32,7 +35,7 @@ export default function GridInfoHeader({
       ) : null}
       {showCopy ? (
         <p
-          className={typography.sectionDescription}
+          className={`${typography.sectionDescription} max-w-3xl`}
           style={{
             color: getThemeColorCss(style.descriptionColor, "primary-1"),
           }}

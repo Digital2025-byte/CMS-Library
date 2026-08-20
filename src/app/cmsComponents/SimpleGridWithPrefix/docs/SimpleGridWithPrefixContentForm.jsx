@@ -11,7 +11,6 @@ import {
 import { ICON_OPTIONS } from "../utils/icons";
 
 const TITLE_KEYS = ["title", "description"];
-const PREFIX_KEYS = ["prefix", "chip"];
 const ITEM_KEYS = ["items"];
 
 const emptyItem = () => ({
@@ -19,6 +18,7 @@ const emptyItem = () => ({
   userName: "",
   link: "",
   icon: "",
+  prefix: "",
   chip: "",
 });
 
@@ -45,21 +45,6 @@ export default function SimpleGridWithPrefixContentForm({
         onReset={() => reset(TITLE_KEYS)}
       />
 
-      <InspectorSection title="Prefix" onReset={() => reset(PREFIX_KEYS)}>
-        <InspectorField
-          id="simple-grid-prefix"
-          label="Prefix"
-          value={content.prefix || ""}
-          onChange={(value) => updateField("prefix", value)}
-        />
-        <InspectorField
-          id="simple-grid-chip"
-          label="Chip"
-          value={content.chip || ""}
-          onChange={(value) => updateField("chip", value)}
-        />
-      </InspectorSection>
-
       <InspectorSection title="Items" onReset={() => reset(ITEM_KEYS)}>
         <InspectorRepeater
           items={content.items || []}
@@ -75,6 +60,18 @@ export default function SimpleGridWithPrefixContentForm({
                 label="Title"
                 value={item.title || ""}
                 onChange={(value) => update("title", value)}
+              />
+              <InspectorField
+                id={`simple-grid-${index}-prefix`}
+                label="Prefix"
+                value={item.prefix || ""}
+                onChange={(value) => update("prefix", value)}
+              />
+              <InspectorField
+                id={`simple-grid-${index}-chip`}
+                label="Chip"
+                value={item.chip || ""}
+                onChange={(value) => update("chip", value)}
               />
               <InspectorField
                 id={`simple-grid-${index}-user`}
@@ -94,12 +91,6 @@ export default function SimpleGridWithPrefixContentForm({
                 value={item.icon || ""}
                 options={iconOptions}
                 onChange={(value) => update("icon", value)}
-              />
-              <InspectorField
-                id={`simple-grid-${index}-chip`}
-                label="Chip override"
-                value={item.chip || ""}
-                onChange={(value) => update("chip", value)}
               />
             </>
           )}

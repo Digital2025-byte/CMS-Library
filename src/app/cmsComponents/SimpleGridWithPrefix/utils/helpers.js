@@ -1,6 +1,6 @@
 import { getIconSrc } from "./icons";
 
-export function normalizeSimpleGridItem(item) {
+export function normalizeSimpleGridItem(item, defaults = {}) {
   const grid = item?.grid || {};
 
   return {
@@ -9,7 +9,8 @@ export function normalizeSimpleGridItem(item) {
     userName: grid?.userName || item?.userName || "",
     icon: grid?.icon || item?.icon || "",
     iconSrc: getIconSrc(grid?.icon || item?.icon),
-    chip: grid?.chip || item?.chip || "",
+    prefix: grid?.prefix || item?.prefix || defaults.prefix || "",
+    chip: grid?.chip || item?.chip || defaults.chip || "",
   };
 }
 
@@ -22,8 +23,6 @@ export function getSimpleGridWithPrefixContent(data, lang = "en") {
     return {
       title: "",
       description: "",
-      prefix: "",
-      chip: "",
       items: [],
       hasContent: false,
     };
@@ -39,18 +38,18 @@ export function getSimpleGridWithPrefixContent(data, lang = "en") {
   const content = matchedTranslation?.content || {};
   const title = content?.title || "";
   const description = content?.description || "";
-  const prefix = content?.prefix || "";
-  const chip = content?.chip || "";
+  const defaults = {
+    prefix: content?.prefix || "",
+    chip: content?.chip || "",
+  };
   const rawItems = content?.channels || content?.items || [];
   const items = Array.isArray(rawItems)
-    ? rawItems.map(normalizeSimpleGridItem)
+    ? rawItems.map((item) => normalizeSimpleGridItem(item, defaults))
     : [];
 
   return {
     title,
     description,
-    prefix,
-    chip,
     items,
     hasContent: Boolean(title || items.length),
   };
@@ -62,13 +61,12 @@ export function getSimpleGridWithPrefixEditorContent(data, lang = "en") {
   return {
     title: content.title || "",
     description: content.description || "",
-    prefix: content.prefix || "",
-    chip: content.chip || "",
     items: content.items.map((item) => ({
       title: item.title || "",
       userName: item.userName || "",
       link: item.link === "#" ? "" : item.link || "",
       icon: item.icon || "",
+      prefix: item.prefix || "",
       chip: item.chip || "",
     })),
   };
@@ -82,8 +80,6 @@ export function wrapSimpleGridWithPrefixContent(content = {}, lang = "en") {
         content: {
           title: content.title || "",
           description: content.description || "",
-          prefix: content.prefix || "",
-          chip: content.chip || "",
           channels: (Array.isArray(content.items) ? content.items : []).map(
             (item) => ({
               grid: {
@@ -91,6 +87,7 @@ export function wrapSimpleGridWithPrefixContent(content = {}, lang = "en") {
                 userName: item?.userName || "",
                 link: item?.link || "",
                 icon: item?.icon || "",
+                prefix: item?.prefix || "",
                 chip: item?.chip || "",
               },
             })
