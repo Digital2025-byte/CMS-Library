@@ -16,6 +16,11 @@ export const HEIGHT_OPTIONS = [
   { value: "tall", label: "Tall" },
 ];
 
+export const IMAGE_COUNT_OPTIONS = [
+  { value: "2", label: "Two" },
+  { value: "3", label: "Three" },
+];
+
 export const IMAGE_DIRECTION_OPTIONS = [
   { value: "left", label: "Left" },
   { value: "none", label: "None" },
@@ -55,17 +60,21 @@ export const HEIGHT_CLASS = {
 export const DEFAULT_HEADER_WITH_THREE_IMAGE_STYLE = {
   showTitle: true,
   showDescription: true,
+  showButton: false,
   showHeroImage: true,
   showOverlay: true,
   showSectionBg: false,
   titleAlign: "left",
   verticalAlign: "center",
   sectionHeight: "default",
+  imageCount: "3",
   imageDirection: "right",
   titleColor: "50",
   descriptionColor: "50",
   overlayColor: "main",
   sectionBg: "main",
+  buttonBg: "primary-2",
+  buttonText: "white",
 };
 
 export function resolveHeaderWithThreeImageStyle(style = {}) {
@@ -73,6 +82,10 @@ export function resolveHeaderWithThreeImageStyle(style = {}) {
     ...DEFAULT_HEADER_WITH_THREE_IMAGE_STYLE,
     ...style,
   };
+}
+
+export function getImageCount(style = {}) {
+  return Number(style.imageCount) === 2 ? 2 : 3;
 }
 
 export const HEADER_WITH_THREE_IMAGE_STYLE_RESET_KEYS = {
@@ -87,8 +100,10 @@ export const HEADER_WITH_THREE_IMAGE_STYLE_RESET_KEYS = {
   ],
   banner: [
     "showHeroImage",
+    "imageCount",
     "imageDirection",
     "showOverlay",
     "overlayColor",
   ],
+  button: ["showButton", "buttonBg", "buttonText"],
 };

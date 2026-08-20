@@ -32,7 +32,9 @@ export default function HeaderWithThreeImagePanel({
     >
       {style.showHeroImage ? (
         <HeaderWithThreeImageBackground
+          lang={lang}
           content={content}
+          style={style}
           heightClass={heightClass}
           direction={style.imageDirection}
         />

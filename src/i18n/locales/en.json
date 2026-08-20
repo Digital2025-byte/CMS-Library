@@ -477,6 +477,7 @@
   "headerWithThreeImage": {
     "title": "Fly further with Fly cham",
     "description": "From takeoff to landing, discover destinations shaped by comfort, culture, and unforgettable views.",
+    "buttonText": "Explore destinations",
     "imageOneAlt": "Airplane wing above the clouds",
     "imageTwoAlt": "Traveler exploring the city",
     "imageThreeAlt": "Tropical beach destination"

@@ -31,6 +31,16 @@ export function isUsableImageSrc(src) {
   }
 }
 
+function resolveCtaHref({ href, slug }) {
+  if (href && String(href).startsWith("/")) {
+    return href;
+  }
+  if (href && /^https?:\/\//i.test(String(href))) {
+    return href;
+  }
+  return href || slug || "";
+}
+
 export function getHeaderWithThreeImageContent(data, lang = "en") {
   const translations = Array.isArray(data?.translations)
     ? data.translations
@@ -40,6 +50,8 @@ export function getHeaderWithThreeImageContent(data, lang = "en") {
     return {
       title: "",
       description: "",
+      buttonText: "",
+      ctaHref: "",
       imageOne: { fileUrl: "", alt: "" },
       imageTwo: { fileUrl: "", alt: "" },
       imageThree: { fileUrl: "", alt: "" },
@@ -61,6 +73,15 @@ export function getHeaderWithThreeImageContent(data, lang = "en") {
   const content = matchedTranslation?.content || {};
   const title = content?.title || "";
   const description = content?.description || "";
+  const buttonText =
+    content?.ctaButton?.content ||
+    content?.ctaButton?.label ||
+    content?.buttonText ||
+    "";
+  const ctaHref = resolveCtaHref({
+    href: content?.ctaButton?.href,
+    slug: content?.ctaButton?.slug || content?.ctaSlug,
+  });
 
   const imageOne = normalizeImage(
     content?.backgroundImageOne,
@@ -91,6 +112,8 @@ export function getHeaderWithThreeImageContent(data, lang = "en") {
   return {
     title,
     description,
+    buttonText,
+    ctaHref,
     imageOne,
     imageTwo,
     imageThree,
@@ -100,6 +123,7 @@ export function getHeaderWithThreeImageContent(data, lang = "en") {
     hasContent: Boolean(
       title ||
         description ||
+        buttonText ||
         imageOne.fileUrl ||
         imageTwo.fileUrl ||
         imageThree.fileUrl
@@ -121,6 +145,9 @@ export function getHeaderWithThreeImageEditorContent(data, lang = "en") {
   return {
     title: content.title || "",
     description: content.description || "",
+    buttonLabel: content.buttonText || "",
+    buttonHref: content.ctaHref || "",
+    buttonLinkType: "internal",
     images: [
       toImageFields(content.imageOne, content.mobileImageOne),
       toImageFields(content.imageTwo, content.mobileImageTwo),
@@ -156,6 +183,13 @@ export function wrapHeaderWithThreeImageContent(content = {}, lang = "en") {
         content: {
           title: content.title || "",
           description: content.description || "",
+          buttonText: content.buttonLabel || "",
+          ctaButton: {
+            content: content.buttonLabel || "",
+            label: content.buttonLabel || "",
+            href: content.buttonHref || "",
+            slug: content.buttonHref || "",
+          },
           backgroundImageOne: one,
           backgroundImageTwo: two,
           backgroundImageThree: three,

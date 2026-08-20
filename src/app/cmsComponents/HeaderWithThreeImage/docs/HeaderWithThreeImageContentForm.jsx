@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  InspectorButtonSection,
   InspectorField,
   InspectorSection,
   InspectorTitleSection,
@@ -8,6 +9,7 @@ import {
 } from "@/components/inspector";
 
 const TITLE_KEYS = ["title", "description"];
+const BUTTON_KEYS = ["buttonLabel", "buttonHref", "buttonLinkType"];
 const IMAGE_KEYS = ["images"];
 
 const emptyImage = () => ({
@@ -32,8 +34,10 @@ export default function HeaderWithThreeImageContentForm({
   content,
   onChange,
   defaults,
+  imageCount = 3,
 }) {
-  const images = ensureImages(content.images);
+  const visibleCount = Number(imageCount) === 2 ? 2 : 3;
+  const images = ensureImages(content.images).slice(0, visibleCount);
   const updateField = (key, value) => {
     onChange({ ...content, [key]: value });
   };
@@ -53,6 +57,22 @@ export default function HeaderWithThreeImageContentForm({
         onTitleChange={(value) => updateField("title", value)}
         onDescriptionChange={(value) => updateField("description", value)}
         onReset={() => reset(TITLE_KEYS)}
+      />
+
+      <InspectorButtonSection
+        idPrefix="header-three-image-button"
+        label={content.buttonLabel}
+        href={content.buttonHref}
+        linkType={content.buttonLinkType}
+        onLabelChange={(value) => updateField("buttonLabel", value)}
+        onLinkChange={({ type, href }) =>
+          onChange({
+            ...content,
+            buttonLinkType: type,
+            buttonHref: href,
+          })
+        }
+        onReset={() => reset(BUTTON_KEYS)}
       />
 
       <InspectorSection title="Images" onReset={() => reset(IMAGE_KEYS)}>

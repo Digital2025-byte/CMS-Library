@@ -9,6 +9,13 @@ export function buildHeaderWithThreeImageData(t, lang = "en") {
         content: {
           title: t("headerWithThreeImage.title"),
           description: t("headerWithThreeImage.description"),
+          buttonText: t("headerWithThreeImage.buttonText"),
+          ctaButton: {
+            content: t("headerWithThreeImage.buttonText"),
+            label: t("headerWithThreeImage.buttonText"),
+            href: "/destinations",
+            slug: "destinations",
+          },
           backgroundImageOne: {
             fileUrl:
               "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1200&q=80",

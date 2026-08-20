@@ -11,6 +11,7 @@ import {
   DEFAULT_HEADER_WITH_THREE_IMAGE_STYLE,
   HEADER_WITH_THREE_IMAGE_STYLE_RESET_KEYS,
   HEIGHT_OPTIONS,
+  IMAGE_COUNT_OPTIONS,
   IMAGE_DIRECTION_OPTIONS,
   TITLE_ALIGN_OPTIONS,
   VERTICAL_ALIGN_OPTIONS,
@@ -56,7 +57,7 @@ function HeaderWithThreeImageStyleForm({ style, onChange }) {
             onChange={(value) => update("descriptionColor", value)}
           />
         ) : null}
-        {style.showTitle || style.showDescription ? (
+        {style.showTitle || style.showDescription || style.showButton ? (
           <>
             <InspectorChoose
               label="Alignment"
@@ -104,16 +105,25 @@ function HeaderWithThreeImageStyleForm({ style, onChange }) {
           checked={style.showHeroImage}
           onChange={() => toggle("showHeroImage")}
           label="Images"
-          hint="Three background photo slices"
+          hint="Background photo slices"
         />
         {style.showHeroImage ? (
-          <InspectorChoose
-            label="Direction"
-            name="imageDirection"
-            value={style.imageDirection}
-            options={IMAGE_DIRECTION_OPTIONS}
-            onChange={(value) => update("imageDirection", value)}
-          />
+          <>
+            <InspectorChoose
+              label="Count"
+              name="imageCount"
+              value={String(style.imageCount)}
+              options={IMAGE_COUNT_OPTIONS}
+              onChange={(value) => update("imageCount", value)}
+            />
+            <InspectorChoose
+              label="Direction"
+              name="imageDirection"
+              value={style.imageDirection}
+              options={IMAGE_DIRECTION_OPTIONS}
+              onChange={(value) => update("imageDirection", value)}
+            />
+          </>
         ) : null}
         <InspectorSwitch
           checked={style.showOverlay}
@@ -127,6 +137,32 @@ function HeaderWithThreeImageStyleForm({ style, onChange }) {
             value={style.overlayColor}
             onChange={(value) => update("overlayColor", value)}
           />
+        ) : null}
+      </InspectorSection>
+
+      <InspectorSection
+        title="Button"
+        onReset={() => reset(HEADER_WITH_THREE_IMAGE_STYLE_RESET_KEYS.button)}
+      >
+        <InspectorSwitch
+          checked={style.showButton}
+          onChange={() => toggle("showButton")}
+          label="CTA"
+          hint="Show the call-to-action button"
+        />
+        {style.showButton ? (
+          <>
+            <InspectorColor
+              label="Background"
+              value={style.buttonBg}
+              onChange={(value) => update("buttonBg", value)}
+            />
+            <InspectorColor
+              label="Text"
+              value={style.buttonText}
+              onChange={(value) => update("buttonText", value)}
+            />
+          </>
         ) : null}
       </InspectorSection>
     </div>
@@ -147,6 +183,7 @@ export default function HeaderWithThreeImagePropsForm({
           content={content}
           onChange={onContentChange}
           defaults={contentDefaults}
+          imageCount={style?.imageCount}
         />
       }
       style={
