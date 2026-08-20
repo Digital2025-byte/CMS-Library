@@ -3,6 +3,7 @@ import AnimatedImagesCta from "./AnimatedImagesCta";
 import PageContentContainer from "@/components/layout/PageContentContainer";
 import { getThemeColorCss } from "@/styles/themeColors";
 import { getFontWeightValue } from "@/styles/fontWeight";
+import { LinkedText } from "@/app/cmsComponents/shared/backlinks";
 import {
   DEFAULT_ANIMATED_IMAGES_STYLE,
   SECTION_PADDING_CLASS,
@@ -12,6 +13,7 @@ import {
 export default function AnimatedImagesContent({
   preTitle,
   title,
+  links = [],
   buttonText,
   buttonLink,
   iconType,
@@ -38,7 +40,12 @@ export default function AnimatedImagesContent({
           style={{ color: getThemeColorCss(style.descriptionColor, "primary-1"), fontWeight: getFontWeightValue(style.descriptionFontWeight),
           }}
         >
-          {preTitle}
+          <LinkedText
+            text={preTitle}
+            links={links}
+            style={style}
+            enabled={style.showLinks !== false}
+          />
         </p>
       ) : null}
 

@@ -7,6 +7,7 @@ import {
   InspectorTabs,
   applyInspectorReset,
 } from "@/components/inspector";
+import { BacklinksStyleSection } from "@/app/cmsComponents/shared/backlinks";
 import SimpleGridWithPrefixContentForm from "./SimpleGridWithPrefixContentForm";
 import {
   CARD_RADIUS_OPTIONS,
@@ -206,6 +207,13 @@ function SimpleGridWithPrefixStyleForm({ style, onChange }) {
             onChange={(value) => update("nameFontWeight", value)}
           />
       </InspectorSection>
+
+      <BacklinksStyleSection
+        style={style}
+        onChange={onChange}
+        onReset={() => reset(SIMPLE_GRID_STYLE_RESET_KEYS.links)}
+        defaults={DEFAULT_SIMPLE_GRID_STYLE}
+      />
     </div>
   );
 }

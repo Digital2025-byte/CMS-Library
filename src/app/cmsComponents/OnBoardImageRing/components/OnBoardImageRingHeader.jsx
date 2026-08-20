@@ -1,6 +1,7 @@
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
 import { getFontWeightValue } from "@/styles/fontWeight";
+import { LinkedText } from "@/app/cmsComponents/shared/backlinks";
 import PageContentContainer from "@/components/layout/PageContentContainer";
 import {
   DEFAULT_ON_BOARD_IMAGE_RING_STYLE,
@@ -11,6 +12,7 @@ import {
 export default function OnBoardImageRingHeader({
   title,
   description,
+  links = [],
   style = DEFAULT_ON_BOARD_IMAGE_RING_STYLE,
 }) {
   const showHeading = style.showTitle && title;
@@ -47,7 +49,12 @@ export default function OnBoardImageRingHeader({
               color: `color-mix(in srgb, ${getThemeColorCss(style.descriptionColor, "50")} 90%, transparent)`,
             }}
           >
-            {description}
+            <LinkedText
+              text={description}
+              links={links}
+              style={style}
+              enabled={style.showLinks !== false}
+            />
           </p>
         ) : null}
       </div>

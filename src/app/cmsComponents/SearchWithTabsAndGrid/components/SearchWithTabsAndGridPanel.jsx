@@ -64,6 +64,7 @@ export default function SearchWithTabsAndGridPanel({
               posParams={posParams}
               cId={cId}
               gridTitle={content.gridTitle}
+              links={content.links || []}
               exploreLabel={content.exploreLabel}
               exploreMagazineLabel={content.exploreMagazineLabel}
               paginatedCards={search.paginatedCards}

@@ -3,6 +3,7 @@
 import SubSectionsContent from "./components/SubSectionsContent";
 import SubSectionsMedia from "./components/SubSectionsMedia";
 import SubSectionsMobile from "./components/SubSectionsMobile";
+import { buildItemBacklinkParts } from "@/app/cmsComponents/shared/backlinks";
 import { getTwoColumnWithSubSectionsContent } from "./utils/helpers";
 import { resolveTwoColumnWithSubSectionsStyle } from "./utils/style";
 
@@ -14,13 +15,22 @@ export default function TwoColumnWithSubSections({ lang = "en", data, style }) {
     return null;
   }
 
+  const showLinks = resolvedStyle.showLinks !== false;
+  const subItems = [content.firstSubSection, content.secondSubSection];
+  const itemLinkParts = showLinks
+    ? buildItemBacklinkParts(subItems, content.links)
+    : null;
+
   const shared = {
     lang,
     sectionLabel: content.sectionLabel,
     title: content.title,
     description: content.description,
+    links: content.links,
     firstSubSection: content.firstSubSection,
     secondSubSection: content.secondSubSection,
+    firstSubParts: itemLinkParts?.[0],
+    secondSubParts: itemLinkParts?.[1],
     ctaButton: content.ctaButton,
     ctaHref: content.ctaHref,
     style: resolvedStyle,

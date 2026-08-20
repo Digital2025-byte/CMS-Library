@@ -5,6 +5,7 @@ import defaultPattern from "@/assets/legal/pattern.webp";
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
 import { getFontWeightValue } from "@/styles/fontWeight";
+import { LinkedText } from "@/app/cmsComponents/shared/backlinks";
 import {
   DEFAULT_LEGAL_INFORMATION_HERO_STYLE,
   TITLE_ALIGN_CLASS,
@@ -14,6 +15,7 @@ export default function LegalInformationHeroPanel({
   lang = "en",
   title = "",
   description = "",
+  links = [],
   patternUrl,
   style = DEFAULT_LEGAL_INFORMATION_HERO_STYLE,
 }) {
@@ -65,7 +67,12 @@ export default function LegalInformationHeroPanel({
               opacity: 0.9,
             }}
           >
-            {description}
+            <LinkedText
+              text={description}
+              links={links}
+              style={style}
+              enabled={style.showLinks !== false}
+            />
           </p>
         ) : null}
       </div>

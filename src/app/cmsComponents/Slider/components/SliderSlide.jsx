@@ -8,6 +8,7 @@ import { resolveImageOverlay } from "../utils/imageOverlay";
 
 export default function SliderSlide({
   slide,
+  descriptionParts,
   lang = "en",
   posParams = "gb",
   cId,
@@ -107,6 +108,7 @@ export default function SliderSlide({
             title={slide.title}
             subtitle={slide.subtitle}
             description={slide.description}
+            descriptionParts={descriptionParts}
             buttonText={slide.buttonText}
             ctaHref={slide.ctaHref}
             style={style}

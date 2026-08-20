@@ -7,6 +7,10 @@ import {
   InspectorTitleSection,
   applyInspectorReset,
 } from "@/components/inspector";
+import {
+  BacklinksEditor,
+  joinItemBacklinkSourceText,
+} from "@/app/cmsComponents/shared/backlinks";
 
 const TITLE_KEYS = ["title", "description"];
 const ITEM_KEYS = ["items"];
@@ -18,6 +22,7 @@ const emptyItem = () => ({
   numberOfFlightsPerWeek: "",
   duration: "",
   description: "",
+  links: [],
   imageUrl: "",
   imageAlt: "",
   buttonLabel: "",
@@ -108,10 +113,31 @@ export default function DestinationsCitiesContentForm({
                 value={item.buttonLabel || ""}
                 onChange={(value) => update("buttonLabel", value)}
               />
+              <BacklinksEditor
+                idPrefix={`destinations-cities-item-${index}-link`}
+                title="Item backlinks"
+                links={item.links || []}
+                sourceText={item.description || ""}
+                defaults={[]}
+                onChange={(links) => update("links", links)}
+                showReset={false}
+              />
             </>
           )}
         </InspectorRepeater>
       </InspectorSection>
+
+      <BacklinksEditor
+        idPrefix="destinations-cities-link"
+        title="Backlinks"
+        links={content.links || []}
+        sourceText={joinItemBacklinkSourceText({
+          description: content.description,
+          items: content.items,
+        })}
+        defaults={defaults?.links || []}
+        onChange={(links) => onChange({ ...content, links })}
+      />
     </div>
   );
 }

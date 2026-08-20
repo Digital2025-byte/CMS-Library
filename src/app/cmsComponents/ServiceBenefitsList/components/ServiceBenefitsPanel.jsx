@@ -14,6 +14,7 @@ export default function ServiceBenefitsPanel({
   mainTitle,
   backgroundImage,
   benefits = [],
+  itemLinkParts = null,
   style = DEFAULT_SERVICE_BENEFITS_STYLE,
 }) {
   const radiusClass =
@@ -67,6 +68,8 @@ export default function ServiceBenefitsPanel({
                 key={`${benefit?.title || "benefit"}-${index}`}
                 title={benefit?.title}
                 description={benefit?.description}
+                titleParts={itemLinkParts?.[index]?.titleParts}
+                bodyParts={itemLinkParts?.[index]?.bodyParts}
                 icon={benefit?.icon}
                 style={style}
               />

@@ -21,6 +21,7 @@ export default function ConnectionStep2({
       <ConnectionStep
         stepLabel={stepLabel}
         description={step?.description}
+        bodyParts={step?.bodyParts}
         imageUrl={step?.imageUrl}
         imageAlt={step?.imageAlt}
         theme={theme}

@@ -6,6 +6,7 @@ import {
   InspectorTitleSection,
   applyInspectorReset,
 } from "@/components/inspector";
+import { BacklinksEditor } from "@/app/cmsComponents/shared/backlinks";
 
 const TITLE_KEYS = ["title", "description"];
 
@@ -41,6 +42,15 @@ export default function LegalInformationHeroContentForm({
           onChange={(value) => updateField("patternUrl", value)}
         />
       </InspectorSection>
+
+      <BacklinksEditor
+        idPrefix="legal-information-hero-link"
+        links={content.links || []}
+        sourceText={content.description || ""}
+        defaults={defaults?.links || []}
+        onChange={(links) => onChange({ ...content, links })}
+        showReset
+      />
     </div>
   );
 }

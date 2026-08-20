@@ -2,6 +2,7 @@ import { CalendarCheck, Clock, CloudSun, Timer } from "@phosphor-icons/react";
 import { getThemeColorCss } from "@/styles/themeColors";
 import { getFontWeightValue } from "@/styles/fontWeight";
 import { typography } from "@/styles/typography";
+import { LinkedText } from "@/app/cmsComponents/shared/backlinks";
 import {
   CARD_RADIUS_CLASS,
   DEFAULT_HEADER_WITH_CITY_INFO_STYLE,
@@ -87,7 +88,12 @@ export default function CityInfoCard({
                 color: `color-mix(in srgb, ${bodyCss} 65%, transparent)`,
               }}
             >
-              {content.description}
+              <LinkedText
+                text={content.description}
+                links={content.links || []}
+                style={style}
+                enabled={style.showLinks !== false}
+              />
             </p>
           ) : null}
         </div>

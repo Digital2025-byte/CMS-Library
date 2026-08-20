@@ -8,6 +8,7 @@ import {
   InspectorTabs,
   applyInspectorReset,
 } from "@/components/inspector";
+import { BacklinksStyleSection } from "@/app/cmsComponents/shared/backlinks";
 import SliderContentForm from "./SliderContentForm";
 import {
   AUTOPLAY_SPEED_OPTIONS,
@@ -307,6 +308,13 @@ function SliderStyleForm({ style, onChange }) {
           hint="Resize the track to each slide"
         />
       </InspectorSection>
+
+      <BacklinksStyleSection
+        style={style}
+        onChange={onChange}
+        onReset={() => reset(SLIDER_STYLE_RESET_KEYS.links)}
+        defaults={DEFAULT_SLIDER_STYLE}
+      />
     </div>
   );
 }

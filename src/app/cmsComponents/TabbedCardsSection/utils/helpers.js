@@ -1,3 +1,8 @@
+import {
+  normalizeBacklinks,
+  toEditorBacklinks,
+} from "@/app/cmsComponents/shared/backlinks";
+
 export function isUsableImageSrc(src) {
   const value = String(src || "").trim();
   if (!value) {
@@ -27,6 +32,7 @@ function normalizeCard(card) {
   return {
     title: card?.title || "",
     description: card?.description || "",
+    links: normalizeBacklinks(card?.links),
     imageSrc,
     imageAlt: card?.imageAlt || card?.image?.alt || card?.title || "",
   };
@@ -39,6 +45,7 @@ export function getTabbedCardsContent(data, lang = "en") {
     return {
       title: "",
       subtitle: "",
+      links: [],
       tabs: [],
       hasContent: false,
     };
@@ -65,6 +72,7 @@ export function getTabbedCardsContent(data, lang = "en") {
   return {
     title,
     subtitle,
+    links: normalizeBacklinks(content?.links),
     tabs,
     hasContent: Boolean(title || subtitle || tabs.length),
   };
@@ -76,11 +84,13 @@ export function getTabbedCardsEditorContent(data, lang = "en") {
   return {
     title: content.title || "",
     description: content.subtitle || "",
+    links: toEditorBacklinks(content.links),
     items: content.tabs.map((tab) => ({
       label: tab.label || "",
       cards: (tab.cards || []).map((card) => ({
         title: card.title || "",
         description: card.description || "",
+        links: toEditorBacklinks(card.links),
         imageUrl: card.imageSrc || "",
         imageAlt: card.imageAlt || "",
       })),
@@ -96,6 +106,7 @@ export function wrapTabbedCardsContent(content = {}, lang = "en") {
         content: {
           title: content.title || "",
           subtitle: content.description || "",
+          links: normalizeBacklinks(content.links),
           tabs: (Array.isArray(content.items) ? content.items : []).map(
             (tab) => ({
               label: tab?.label || "",
@@ -103,6 +114,7 @@ export function wrapTabbedCardsContent(content = {}, lang = "en") {
                 (card) => ({
                   title: card?.title || "",
                   description: card?.description || "",
+                  links: normalizeBacklinks(card?.links),
                   image: {
                     fileUrl: card?.imageUrl || "",
                     alt: card?.imageAlt || card?.title || "",

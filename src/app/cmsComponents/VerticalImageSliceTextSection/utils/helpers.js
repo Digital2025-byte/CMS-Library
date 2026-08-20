@@ -1,3 +1,8 @@
+import {
+  normalizeBacklinks,
+  toEditorBacklinks,
+} from "@/app/cmsComponents/shared/backlinks";
+
 /**
  * Resolves an image value that may be a string URL or a Next.js static import.
  */
@@ -60,6 +65,7 @@ export function getVerticalImageSliceContent(data, lang = "en") {
       highlightPart: "",
       restPart: "",
       description: "",
+      links: [],
       imageSrc: "",
       imageAlt: "Travel experience",
       hasContent: false,
@@ -83,6 +89,7 @@ export function getVerticalImageSliceContent(data, lang = "en") {
     highlightPhrase
   );
   const description = content?.description || "";
+  const links = normalizeBacklinks(content?.links);
 
   const sliceImage = content?.SliceImage ?? content?.sliceImage ?? null;
   const legacyImage = content?.image ?? null;
@@ -97,6 +104,7 @@ export function getVerticalImageSliceContent(data, lang = "en") {
     highlightPart,
     restPart,
     description,
+    links,
     imageSrc,
     imageAlt:
       imageAsset?.alt || legacyImage?.alt || title || "Travel experience",
@@ -111,6 +119,7 @@ export function getVerticalImageSliceEditorContent(data, lang = "en") {
     title: content.title || "",
     highlightPhrase: content.highlightPhrase || "",
     description: content.description || "",
+    links: toEditorBacklinks(content.links),
     imageUrl: content.imageSrc || "",
     imageAlt: content.imageAlt || "",
   };
@@ -125,6 +134,7 @@ export function wrapVerticalImageSliceContent(content = {}, lang = "en") {
           title: content.title || "",
           highlightPhrase: content.highlightPhrase || "",
           description: content.description || "",
+          links: normalizeBacklinks(content.links),
           SliceImage: {
             fileUrl: content.imageUrl || "",
             alt: content.imageAlt || "",

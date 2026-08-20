@@ -1,3 +1,8 @@
+import {
+  normalizeBacklinks,
+  toEditorBacklinks,
+} from "@/app/cmsComponents/shared/backlinks";
+
 /**
  * Escapes spaces and parentheses so a URL is safe inside CSS url().
  */
@@ -31,6 +36,7 @@ export function getBannerWithCtaContent(data, lang = "en", posParams) {
     return {
       title: "",
       description: "",
+      links: [],
       ctaLabel: "",
       ctaHref: "#",
       backgroundImage: "",
@@ -49,6 +55,7 @@ export function getBannerWithCtaContent(data, lang = "en", posParams) {
   const content = matchedTranslation?.content || {};
   const title = content?.title || "";
   const description = content?.description || "";
+  const links = normalizeBacklinks(content?.links);
   const ctaLabel =
     content?.ctaButton?.content || content?.ctaButton?.label || "";
   const ctaSlug = content?.ctaButton?.slug || "";
@@ -62,6 +69,7 @@ export function getBannerWithCtaContent(data, lang = "en", posParams) {
   return {
     title,
     description,
+    links,
     ctaLabel,
     ctaHref: getBannerCtaHref({
       ctaHref: ctaHrefRaw,
@@ -81,6 +89,7 @@ export function getBannerWithCtaEditorContent(data, lang = "en", posParams) {
   return {
     title: content.title || "",
     description: content.description || "",
+    links: toEditorBacklinks(content.links),
     buttonLabel: content.ctaLabel || "",
     buttonHref: content.ctaHref === "#" ? "" : content.ctaHref || "",
     buttonLinkType: "internal",
@@ -97,6 +106,7 @@ export function wrapBannerWithCtaContent(content = {}, lang = "en") {
         content: {
           title: content.title || "",
           description: content.description || "",
+          links: normalizeBacklinks(content.links),
           imageAlt: content.imageAlt || "",
           ctaButton: {
             content: content.buttonLabel || "",

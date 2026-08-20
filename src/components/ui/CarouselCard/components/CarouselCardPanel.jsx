@@ -12,6 +12,9 @@ export default function CarouselCardPanel({
   numberOfFlightsPerWeek,
   duration,
   description,
+  descriptionParts,
+  linkStyle,
+  showLinks = true,
   buttonLabel,
   showCity = true,
   showOrigin = true,
@@ -88,6 +91,9 @@ export default function CarouselCardPanel({
           duration={duration}
           lang={lang}
           description={description}
+          descriptionParts={descriptionParts}
+          linkStyle={linkStyle}
+          showLinks={showLinks}
           showNew={showNew}
           showFlights={showFlights}
           showDuration={showDuration}

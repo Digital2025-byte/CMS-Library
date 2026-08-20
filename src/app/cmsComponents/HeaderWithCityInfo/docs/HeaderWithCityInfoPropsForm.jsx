@@ -7,6 +7,7 @@ import {
   InspectorTabs,
   applyInspectorReset,
 } from "@/components/inspector";
+import { BacklinksStyleSection } from "@/app/cmsComponents/shared/backlinks";
 import HeaderWithCityInfoContentForm from "./HeaderWithCityInfoContentForm";
 import {
   CARD_RADIUS_OPTIONS,
@@ -174,6 +175,13 @@ function HeaderWithCityInfoStyleForm({ style, onChange }) {
           />
         </InspectorSection>
       ) : null}
+
+      <BacklinksStyleSection
+        style={style}
+        onChange={onChange}
+        onReset={() => reset(HEADER_WITH_CITY_INFO_STYLE_RESET_KEYS.links)}
+        defaults={DEFAULT_HEADER_WITH_CITY_INFO_STYLE}
+      />
     </div>
   );
 }

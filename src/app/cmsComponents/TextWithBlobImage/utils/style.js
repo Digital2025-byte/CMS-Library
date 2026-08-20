@@ -1,3 +1,9 @@
+import {
+  BACKLINK_STYLE_RESET_KEYS,
+  DEFAULT_BACKLINK_STYLE,
+  resolveBacklinkStyle,
+} from "@/app/cmsComponents/shared/backlinks";
+
 export const TITLE_ALIGN_OPTIONS = [
   { value: "left", label: "Start" },
   { value: "center", label: "Center" },
@@ -38,13 +44,14 @@ export const DEFAULT_TEXT_WITH_BLOB_STYLE = {
   descriptionColor: "700",
   titleFontWeight: "semibold",
   descriptionFontWeight: "normal",
+  ...DEFAULT_BACKLINK_STYLE,
 };
 
 export function resolveTextWithBlobStyle(style = {}) {
-  return {
-    ...DEFAULT_TEXT_WITH_BLOB_STYLE,
-    ...style,
-  };
+  return resolveBacklinkStyle(
+    { ...DEFAULT_TEXT_WITH_BLOB_STYLE, ...style },
+    DEFAULT_TEXT_WITH_BLOB_STYLE
+  );
 }
 
 export const TEXT_WITH_BLOB_STYLE_RESET_KEYS = {
@@ -58,4 +65,5 @@ export const TEXT_WITH_BLOB_STYLE_RESET_KEYS = {
   ],
   title: ["titleAlign", "titleColor", "titleFontWeight", "descriptionColor", "descriptionFontWeight"],
   images: ["showImage"],
+  links: [...BACKLINK_STYLE_RESET_KEYS],
 };

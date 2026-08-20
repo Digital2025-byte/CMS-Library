@@ -7,10 +7,15 @@ import {
   InspectorSection,
   applyInspectorReset,
 } from "@/components/inspector";
+import {
+  BacklinksEditor,
+  joinItemBacklinkSourceText,
+} from "@/app/cmsComponents/shared/backlinks";
 
 const FIRST_KEYS = [
   "firstSectionTitle",
   "firstSectionDescription",
+  "firstSectionLinks",
   "firstSectionImageUrl",
   "firstSectionImageAlt",
 ];
@@ -21,6 +26,7 @@ const ITEM_KEYS = ["items"];
 const emptyItem = () => ({
   title: "",
   description: "",
+  links: [],
   imageUrl: "",
   imageAlt: "",
   buttonLabel: "",
@@ -68,6 +74,15 @@ export default function DualImageTextContentForm({
           label="Image alt"
           value={content.firstSectionImageAlt || ""}
           onChange={(value) => updateField("firstSectionImageAlt", value)}
+        />
+        <BacklinksEditor
+          idPrefix="dual-image-first-link"
+          title="Item backlinks"
+          links={content.firstSectionLinks || []}
+          sourceText={content.firstSectionDescription || ""}
+          defaults={[]}
+          onChange={(links) => updateField("firstSectionLinks", links)}
+          showReset={false}
         />
       </InspectorSection>
 
@@ -118,6 +133,15 @@ export default function DualImageTextContentForm({
                 value={item.buttonHref || ""}
                 onChange={(value) => update("buttonHref", value)}
               />
+              <BacklinksEditor
+                idPrefix={`dual-image-item-${index}-link`}
+                title="Item backlinks"
+                links={item.links || []}
+                sourceText={item.description || ""}
+                defaults={[]}
+                onChange={(links) => update("links", links)}
+                showReset={false}
+              />
             </>
           )}
         </InspectorRepeater>
@@ -154,6 +178,18 @@ export default function DualImageTextContentForm({
           onChange={(value) => updateField("extraImageAlt", value)}
         />
       </InspectorSection>
+
+      <BacklinksEditor
+        idPrefix="dual-image-link"
+        title="Backlinks"
+        links={content.links || []}
+        sourceText={joinItemBacklinkSourceText({
+          description: content.firstSectionDescription,
+          items: content.items,
+        })}
+        defaults={defaults?.links || []}
+        onChange={(links) => onChange({ ...content, links })}
+      />
     </div>
   );
 }

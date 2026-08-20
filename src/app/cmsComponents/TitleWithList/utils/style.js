@@ -1,3 +1,9 @@
+import {
+  BACKLINK_STYLE_RESET_KEYS,
+  DEFAULT_BACKLINK_STYLE,
+  resolveBacklinkStyle,
+} from "@/app/cmsComponents/shared/backlinks";
+
 export const TITLE_ALIGN_OPTIONS = [
   { value: "left", label: "Start" },
   { value: "center", label: "Center" },
@@ -35,13 +41,14 @@ export const DEFAULT_TITLE_WITH_LIST_STYLE = {
   iconColor: "primary-1",
   titleFontWeight: "semibold",
   descriptionFontWeight: "normal",
+  ...DEFAULT_BACKLINK_STYLE,
 };
 
 export function resolveTitleWithListStyle(style = {}) {
-  return {
-    ...DEFAULT_TITLE_WITH_LIST_STYLE,
-    ...style,
-  };
+  return resolveBacklinkStyle(
+    { ...DEFAULT_TITLE_WITH_LIST_STYLE, ...style },
+    DEFAULT_TITLE_WITH_LIST_STYLE
+  );
 }
 
 export const TITLE_WITH_LIST_STYLE_RESET_KEYS = {
@@ -55,4 +62,5 @@ export const TITLE_WITH_LIST_STYLE_RESET_KEYS = {
     "sectionPadding",
   ],
   title: ["titleAlign", "titleColor", "titleFontWeight", "descriptionColor", "descriptionFontWeight", "bulletColor", "iconColor"],
+  links: [...BACKLINK_STYLE_RESET_KEYS],
 };

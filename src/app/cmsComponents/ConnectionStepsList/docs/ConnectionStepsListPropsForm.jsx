@@ -7,6 +7,7 @@ import {
   InspectorTabs,
   applyInspectorReset,
 } from "@/components/inspector";
+import { BacklinksStyleSection } from "@/app/cmsComponents/shared/backlinks";
 import ConnectionStepsListContentForm from "./ConnectionStepsListContentForm";
 import {
   CONNECTION_STEPS_STYLE_RESET_KEYS,
@@ -112,6 +113,13 @@ function ConnectionStepsListStyleForm({ style, onChange }) {
           onChange={(value) => update("sectionPadding", value)}
         />
       </InspectorSection>
+
+      <BacklinksStyleSection
+        style={style}
+        onChange={onChange}
+        onReset={() => reset(CONNECTION_STEPS_STYLE_RESET_KEYS.links)}
+        defaults={DEFAULT_CONNECTION_STEPS_STYLE}
+      />
     </div>
   );
 }

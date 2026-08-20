@@ -1,16 +1,19 @@
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { LinkedText } from "@/app/cmsComponents/shared/backlinks";
 import { DEFAULT_MEALS_TABBED_STYLE } from "../utils/style";
 
 export default function MealsDescriptionItem({
   item,
   striped = false,
   titleColor = DEFAULT_MEALS_TABBED_STYLE.itemTitleColor,
+  links = [],
   style = DEFAULT_MEALS_TABBED_STYLE,
 }) {
   const showTitle = style.showItemTitle !== false && Boolean(item?.title);
   const showDescription =
     style.showItemDescription !== false && Boolean(item?.description);
+  const showLinks = style.showLinks !== false;
 
   if (!showTitle && !showDescription) {
     return null;
@@ -43,7 +46,12 @@ export default function MealsDescriptionItem({
           className={`${typography.body} mt-1 leading-relaxed wrap-break-word`}
           style={{ color: bodyCss }}
         >
-          {item.description}
+          <LinkedText
+            text={item.description}
+            links={links}
+            style={style}
+            enabled={showLinks}
+          />
         </p>
       ) : null}
     </div>

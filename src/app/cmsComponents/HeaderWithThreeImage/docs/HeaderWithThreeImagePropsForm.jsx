@@ -7,6 +7,7 @@ import {
   InspectorTabs,
   applyInspectorReset,
 } from "@/components/inspector";
+import { BacklinksStyleSection } from "@/app/cmsComponents/shared/backlinks";
 import HeaderWithThreeImageContentForm from "./HeaderWithThreeImageContentForm";
 import {
   DEFAULT_HEADER_WITH_THREE_IMAGE_STYLE,
@@ -182,6 +183,13 @@ function HeaderWithThreeImageStyleForm({ style, onChange }) {
           </>
         ) : null}
       </InspectorSection>
+
+      <BacklinksStyleSection
+        style={style}
+        onChange={onChange}
+        onReset={() => reset(HEADER_WITH_THREE_IMAGE_STYLE_RESET_KEYS.links)}
+        defaults={DEFAULT_HEADER_WITH_THREE_IMAGE_STYLE}
+      />
     </div>
   );
 }

@@ -2,6 +2,7 @@ import PageContentContainer from "@/components/layout/PageContentContainer";
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
 import { getFontWeightValue } from "@/styles/fontWeight";
+import { buildItemBacklinkParts, LinkedText } from "@/app/cmsComponents/shared/backlinks";
 import ServiceCard from "./ServiceCard";
 import {
   CARD_GAP_CLASS,
@@ -14,7 +15,7 @@ export default function ServiceCardsSliderPanel({
   content,
   style,
 }) {
-  const { title, description, services = [] } = content;
+  const { title, description, links = [], services = [] } = content;
   const isRtl = lang === "ar";
   const alignClass =
     TITLE_ALIGN_CLASS[style.titleAlign] ?? TITLE_ALIGN_CLASS.left;
@@ -24,6 +25,10 @@ export default function ServiceCardsSliderPanel({
   const gapClass = CARD_GAP_CLASS[style.cardGap] ?? CARD_GAP_CLASS.default;
   const showHeading =
     (style.showTitle && title) || (style.showDescription && description);
+  const showLinks = style.showLinks !== false;
+  const itemLinkParts = showLinks
+    ? buildItemBacklinkParts(services, links)
+    : null;
 
   if (!services.length && !showHeading) {
     return null;
@@ -54,7 +59,12 @@ export default function ServiceCardsSliderPanel({
                 style={{ color: getThemeColorCss(style.descriptionColor, "secondary-2"), fontWeight: getFontWeightValue(style.descriptionFontWeight),
                 }}
               >
-                {description}
+                <LinkedText
+                  text={description}
+                  links={links}
+                  style={style}
+                  enabled={showLinks}
+                />
               </p>
             ) : null}
           </div>
@@ -68,6 +78,8 @@ export default function ServiceCardsSliderPanel({
               <ServiceCard
                 key={`${service.title}-${index}`}
                 service={service}
+                titleParts={itemLinkParts?.[index]?.titleParts}
+                bodyParts={itemLinkParts?.[index]?.bodyParts}
                 isRtl={isRtl}
                 style={style}
               />

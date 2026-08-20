@@ -3,6 +3,7 @@ import Button from "@/components/ui/Button";
 import { getThemeColorCss } from "@/styles/themeColors";
 import { getFontWeightValue } from "@/styles/fontWeight";
 import { typography } from "@/styles/typography";
+import { LinkedText } from "@/app/cmsComponents/shared/backlinks";
 import {
   DEFAULT_FULL_HEIGHT_HEADER_STYLE,
   TITLE_ALIGN_CLASS,
@@ -18,6 +19,7 @@ export default function FullHeightHeaderWithTextContent({
   const ArrowIcon = isRtl ? ArrowLeftIcon : ArrowRightIcon;
   const title = content.title;
   const description = content.description;
+  const links = content.links || [];
   const buttonLabel = content.buttonText;
   const showHeading = style.showTitle && title;
   const showCopy = style.showDescription && description;
@@ -57,7 +59,12 @@ export default function FullHeightHeaderWithTextContent({
           className={`${typography.sectionDescription} mt-3 max-w-md leading-relaxed sm:mt-4`}
           style={{ color: descriptionCss, fontWeight: getFontWeightValue(style.descriptionFontWeight) }}
         >
-          {description}
+          <LinkedText
+            text={description}
+            links={links}
+            style={style}
+            enabled={style.showLinks !== false}
+          />
         </p>
       ) : null}
 

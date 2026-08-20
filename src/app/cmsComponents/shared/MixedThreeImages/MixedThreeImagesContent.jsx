@@ -1,6 +1,7 @@
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
 import { getFontWeightValue } from "@/styles/fontWeight";
+import { LinkedText } from "@/app/cmsComponents/shared/backlinks";
 import MixedThreeImagesCtas from "./MixedThreeImagesCtas";
 import {
   DEFAULT_MIXED_THREE_IMAGES_STYLE,
@@ -11,6 +12,7 @@ export default function MixedThreeImagesContent({
   lang = "en",
   title,
   description,
+  links = [],
   primaryCta,
   secondaryCta,
   className = "",
@@ -46,7 +48,12 @@ export default function MixedThreeImagesContent({
             color: `color-mix(in srgb, ${descriptionCss} 90%, transparent)`,
           }}
         >
-          {description}
+          <LinkedText
+            text={description}
+            links={links}
+            style={style}
+            enabled={style.showLinks !== false}
+          />
         </p>
       ) : null}
 

@@ -1,3 +1,9 @@
+import {
+  BACKLINK_STYLE_RESET_KEYS,
+  DEFAULT_BACKLINK_STYLE,
+  resolveBacklinkStyle,
+} from "@/app/cmsComponents/shared/backlinks";
+
 export const TITLE_ALIGN_OPTIONS = [
   { value: "left", label: "Start" },
   { value: "center", label: "Center" },
@@ -39,13 +45,14 @@ export const DEFAULT_SPLIT_WITH_IMAGE_STYLE = {
   descriptionColor: "secondary-2",
   titleFontWeight: "semibold",
   descriptionFontWeight: "normal",
+  ...DEFAULT_BACKLINK_STYLE,
 };
 
 export function resolveSplitWithImageStyle(style = {}) {
-  return {
-    ...DEFAULT_SPLIT_WITH_IMAGE_STYLE,
-    ...style,
-  };
+  return resolveBacklinkStyle(
+    { ...DEFAULT_SPLIT_WITH_IMAGE_STYLE, ...style },
+    DEFAULT_SPLIT_WITH_IMAGE_STYLE
+  );
 }
 
 export const SPLIT_WITH_IMAGE_STYLE_RESET_KEYS = {
@@ -59,4 +66,5 @@ export const SPLIT_WITH_IMAGE_STYLE_RESET_KEYS = {
   ],
   title: ["titleAlign", "titleColor", "titleFontWeight", "descriptionColor", "descriptionFontWeight"],
   images: ["showImage", "showBackgroundImage"],
+  links: [...BACKLINK_STYLE_RESET_KEYS],
 };

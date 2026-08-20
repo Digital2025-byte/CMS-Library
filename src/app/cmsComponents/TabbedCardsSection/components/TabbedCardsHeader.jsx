@@ -1,6 +1,7 @@
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
 import { getFontWeightValue } from "@/styles/fontWeight";
+import { LinkedText } from "@/app/cmsComponents/shared/backlinks";
 import {
   DEFAULT_TABBED_CARDS_STYLE,
   TITLE_ALIGN_CLASS,
@@ -9,10 +10,12 @@ import {
 export default function TabbedCardsHeader({
   title,
   subtitle,
+  links = [],
   style = DEFAULT_TABBED_CARDS_STYLE,
 }) {
   const showHeading = style.showTitle && title;
   const showCopy = style.showDescription && subtitle;
+  const showLinks = style.showLinks !== false;
 
   if (!showHeading && !showCopy) {
     return null;
@@ -38,7 +41,12 @@ export default function TabbedCardsHeader({
             style={{ color: getThemeColorCss(style.descriptionColor, "primary-1"), fontWeight: getFontWeightValue(style.descriptionFontWeight),
             }}
           >
-            {subtitle}
+            <LinkedText
+              text={subtitle}
+              links={links}
+              style={style}
+              enabled={showLinks}
+            />
           </p>
         ) : null}
       </div>

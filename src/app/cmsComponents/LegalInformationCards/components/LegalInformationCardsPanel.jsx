@@ -1,6 +1,7 @@
 "use client";
 
 import PageContentContainer from "@/components/layout/PageContentContainer";
+import { buildItemBacklinkParts } from "@/app/cmsComponents/shared/backlinks";
 import LegalInformationCard from "./LegalInformationCard";
 import {
   CARD_GAP_CLASS,
@@ -10,6 +11,7 @@ import {
 
 export default function LegalInformationCardsPanel({
   lang = "en",
+  links = [],
   cards = [],
   posParams = "gb",
   cId,
@@ -19,6 +21,10 @@ export default function LegalInformationCardsPanel({
     SECTION_PADDING_CLASS[style.sectionPadding] ??
     SECTION_PADDING_CLASS.default;
   const gapClass = CARD_GAP_CLASS[style.cardGap] ?? CARD_GAP_CLASS.default;
+  const showLinks = style.showLinks !== false;
+  const cardLinkParts = showLinks
+    ? buildItemBacklinkParts(cards, links)
+    : null;
 
   return (
     <section className={paddingClass} dir={lang === "ar" ? "rtl" : "ltr"}>
@@ -28,6 +34,7 @@ export default function LegalInformationCardsPanel({
             <LegalInformationCard
               key={`${card.slug || card.title}-${index}`}
               card={card}
+              bodyParts={cardLinkParts?.[index]?.bodyParts}
               lang={lang}
               posParams={posParams}
               cId={cId}

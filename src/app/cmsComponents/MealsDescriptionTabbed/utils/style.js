@@ -1,3 +1,9 @@
+import {
+  BACKLINK_STYLE_RESET_KEYS,
+  DEFAULT_BACKLINK_STYLE,
+  resolveBacklinkStyle,
+} from "@/app/cmsComponents/shared/backlinks";
+
 export const TITLE_ALIGN_OPTIONS = [
   { value: "left", label: "Start" },
   { value: "center", label: "Center" },
@@ -70,13 +76,14 @@ export const DEFAULT_MEALS_TABBED_STYLE = {
   imageRadius: "full",
   titleFontWeight: "semibold",
   itemTitleFontWeight: "semibold",
+  ...DEFAULT_BACKLINK_STYLE,
 };
 
 export function resolveMealsTabbedStyle(style = {}) {
-  return {
-    ...DEFAULT_MEALS_TABBED_STYLE,
-    ...style,
-  };
+  return resolveBacklinkStyle(
+    { ...DEFAULT_MEALS_TABBED_STYLE, ...style },
+    DEFAULT_MEALS_TABBED_STYLE
+  );
 }
 
 export const MEALS_TABBED_STYLE_RESET_KEYS = {
@@ -107,4 +114,5 @@ export const MEALS_TABBED_STYLE_RESET_KEYS = {
   ],
   notes: ["notesColor"],
   image: ["imageRadius"],
+  links: [...BACKLINK_STYLE_RESET_KEYS],
 };

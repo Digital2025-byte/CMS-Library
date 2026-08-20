@@ -3,6 +3,7 @@ import Button from "@/components/ui/Button";
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
 import { getFontWeightValue } from "@/styles/fontWeight";
+import { LinkedText } from "@/app/cmsComponents/shared/backlinks";
 import {
   DEFAULT_EXTRA_IMAGE_POSITION,
   imageSrc,
@@ -17,6 +18,8 @@ import {
 
 export default function DualImageTextBlock({
   item,
+  titleParts,
+  bodyParts,
   reverse = false,
   priority = false,
   extraImageUrl = "",
@@ -46,6 +49,7 @@ export default function DualImageTextBlock({
   const buttonText = getThemeColorCss(style.buttonText, "white");
   const mainSrc = imageSrc(item.imageUrl);
   const extraSrc = imageSrc(extraImageUrl);
+  const showLinks = style.showLinks !== false;
 
   return (
     <div className="grid grid-cols-1 items-center gap-5 lg:grid-cols-2 lg:gap-12 xl:gap-16">
@@ -92,6 +96,7 @@ export default function DualImageTextBlock({
         {style.showTitle ? (
           <DualImageTextTitle
             text={item.title}
+            titleParts={titleParts}
             underlineFirstWord={style.underlineFirstWord}
             style={style}
           />
@@ -109,7 +114,13 @@ export default function DualImageTextBlock({
                 style={{ color: getThemeColorCss(style.descriptionColor, "700"), fontWeight: getFontWeightValue(style.descriptionFontWeight),
                 }}
               >
-                {paragraph}
+                <LinkedText
+                  text={paragraph}
+                  parts={index === 0 ? bodyParts : undefined}
+                  links={index === 0 ? undefined : item.links || []}
+                  style={style}
+                  enabled={showLinks}
+                />
               </p>
             ))
           : null}

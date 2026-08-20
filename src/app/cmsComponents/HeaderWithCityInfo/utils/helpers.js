@@ -1,3 +1,8 @@
+import {
+  normalizeBacklinks,
+  toEditorBacklinks,
+} from "@/app/cmsComponents/shared/backlinks";
+
 function toCssUrl(url = "") {
   return String(url)
     .replace(/\s/g, "%20")
@@ -43,6 +48,7 @@ export function getHeaderWithCityInfoContent(data, lang = "en") {
       countryName: "",
       weatherTitle: "",
       description: "",
+      links: [],
       weather: "",
       localTime: "",
       duration: "",
@@ -84,6 +90,7 @@ export function getHeaderWithCityInfoContent(data, lang = "en") {
     countryName,
     weatherTitle,
     description,
+    links: normalizeBacklinks(content?.links),
     weather,
     localTime,
     duration,
@@ -127,6 +134,7 @@ export function getHeaderWithCityInfoEditorContent(data, lang = "en") {
     countryName: content.countryName || "",
     weatherTitle: content.weatherTitle || "",
     description: content.description || "",
+    links: toEditorBacklinks(content.links),
     weather: content.weather || "",
     localTime: content.localTime || "",
     duration: content.duration || "",
@@ -156,6 +164,7 @@ export function wrapHeaderWithCityInfoContent(content = {}, lang = "en") {
           countryName: content.countryName || "",
           weatherTitle: content.weatherTitle || "",
           description: content.description || "",
+          links: normalizeBacklinks(content.links),
           weather: content.weather || "",
           localTime: content.localTime || "",
           duration: content.duration || "",

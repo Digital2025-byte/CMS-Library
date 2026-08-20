@@ -75,6 +75,7 @@ export default function MealsDescriptionTabbedPanel({
           <MealsDescriptionSections
             sections={activeSections}
             notes={style.showNotes ? content.notes : []}
+            links={content.links || []}
             isSectionOpen={isSectionOpen}
             onToggleSection={toggleSection}
             panelId={panelId}

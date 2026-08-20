@@ -13,6 +13,7 @@ export default function MealsDescriptionSection({
   sectionIndex = 0,
   isOpen = true,
   onToggle,
+  links = [],
   style = DEFAULT_MEALS_TABBED_STYLE,
 }) {
   const reactId = useId();
@@ -79,6 +80,7 @@ export default function MealsDescriptionSection({
                     key={`${group.title || "group"}-${groupIndex}`}
                     group={group}
                     groupIndex={groupIndex}
+                    links={links}
                     style={style}
                   />
                 ))
@@ -88,6 +90,7 @@ export default function MealsDescriptionSection({
                     item={item}
                     striped={itemIndex % 2 === 1}
                     titleColor={style.itemTitleColor}
+                    links={links}
                     style={style}
                   />
                 ))}

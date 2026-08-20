@@ -8,6 +8,7 @@ import {
   InspectorTitleSection,
   applyInspectorReset,
 } from "@/components/inspector";
+import { BacklinksEditor } from "@/app/cmsComponents/shared/backlinks";
 import { ICON_OPTIONS } from "../utils/icons";
 
 const TITLE_KEYS = ["title", "description"];
@@ -96,6 +97,15 @@ export default function SimpleGridWithPrefixContentForm({
           )}
         </InspectorRepeater>
       </InspectorSection>
+
+      <BacklinksEditor
+        idPrefix="simple-grid-link"
+        links={content.links || []}
+        sourceText={content.description || ""}
+        defaults={defaults?.links || []}
+        onChange={(links) => onChange({ ...content, links })}
+        showReset
+      />
     </div>
   );
 }

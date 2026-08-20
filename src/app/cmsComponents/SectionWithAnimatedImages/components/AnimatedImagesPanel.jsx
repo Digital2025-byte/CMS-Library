@@ -32,6 +32,7 @@ export default function AnimatedImagesPanel({
       <AnimatedImagesContent
         preTitle={content.preTitle}
         title={content.title}
+        links={content.links || []}
         buttonText={content.buttonText}
         buttonLink={content.buttonLink}
         iconType={content.iconType}

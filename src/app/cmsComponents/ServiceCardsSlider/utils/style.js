@@ -1,3 +1,9 @@
+import {
+  BACKLINK_STYLE_RESET_KEYS,
+  DEFAULT_BACKLINK_STYLE,
+  resolveBacklinkStyle,
+} from "@/app/cmsComponents/shared/backlinks";
+
 export const TITLE_ALIGN_OPTIONS = [
   { value: "left", label: "Start" },
   { value: "center", label: "Center" },
@@ -47,10 +53,10 @@ export const SECTION_PADDING_CLASS = {
 };
 
 export function resolveServiceCardsStyle(style = {}) {
-  return {
-    ...DEFAULT_SERVICE_CARDS_STYLE,
-    ...style,
-  };
+  return resolveBacklinkStyle(
+    { ...DEFAULT_SERVICE_CARDS_STYLE, ...style },
+    DEFAULT_SERVICE_CARDS_STYLE
+  );
 }
 
 export const DEFAULT_SERVICE_CARDS_STYLE = {
@@ -76,6 +82,7 @@ export const DEFAULT_SERVICE_CARDS_STYLE = {
   titleFontWeight: "semibold",
   descriptionFontWeight: "normal",
   itemTitleFontWeight: "semibold",
+  ...DEFAULT_BACKLINK_STYLE,
 };
 
 export const SERVICE_CARDS_STYLE_RESET_KEYS = {
@@ -100,4 +107,5 @@ export const SERVICE_CARDS_STYLE_RESET_KEYS = {
     "itemBodyColor",
     "arrowColor",
   ],
+  links: [...BACKLINK_STYLE_RESET_KEYS],
 };

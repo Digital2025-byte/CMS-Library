@@ -1,10 +1,21 @@
+import {
+  normalizeBacklinks,
+  toEditorBacklinks,
+} from "@/app/cmsComponents/shared/backlinks";
+
 export function getDestinationsCitiesContent(data, lang = "en") {
   const translations = Array.isArray(data?.translations)
     ? data.translations
     : [];
 
   if (!translations.length) {
-    return { title: "", description: "", cities: [], hasContent: false };
+    return {
+      title: "",
+      description: "",
+      links: [],
+      cities: [],
+      hasContent: false,
+    };
   }
 
   const normalized = String(lang || "").toLowerCase();
@@ -36,6 +47,7 @@ export function getDestinationsCitiesContent(data, lang = "en") {
         cityName,
         numberOfFlightsPerWeek: city?.numberOfFlightsPerWeek ?? "",
         description,
+        links: normalizeBacklinks(city?.links),
         imageUrl,
         imageAlt: city?.imageAlt || city?.image?.alt || cityName || "",
         duration: city?.duration || "",
@@ -51,13 +63,14 @@ export function getDestinationsCitiesContent(data, lang = "en") {
   return {
     title: content.title || "",
     description: content.description || "",
+    links: normalizeBacklinks(content?.links),
     cities,
     hasContent: Boolean(content.title || content.description || cities.length),
   };
 }
 
 export function getDestinationsCitiesEditorContent(data, lang = "en") {
-  const { title, description, cities } = getDestinationsCitiesContent(
+  const { title, description, links, cities } = getDestinationsCitiesContent(
     data,
     lang
   );
@@ -65,6 +78,7 @@ export function getDestinationsCitiesEditorContent(data, lang = "en") {
   return {
     title,
     description,
+    links: toEditorBacklinks(links),
     items: cities.map((city) => ({
       cityName: city.cityName || "",
       IATACode: city.IATACode || "",
@@ -72,6 +86,7 @@ export function getDestinationsCitiesEditorContent(data, lang = "en") {
       numberOfFlightsPerWeek: String(city.numberOfFlightsPerWeek ?? ""),
       duration: city.duration || "",
       description: city.description || "",
+      links: toEditorBacklinks(city.links),
       imageUrl: city.imageUrl || "",
       imageAlt: city.imageAlt || "",
       buttonLabel: city.buttonLabel || "",
@@ -87,6 +102,7 @@ export function wrapDestinationsCitiesContent(content = {}, lang = "en") {
         content: {
           title: content.title || "",
           description: content.description || "",
+          links: normalizeBacklinks(content.links),
           cities: (Array.isArray(content.items) ? content.items : []).map(
             (item) => ({
               cityName: item?.cityName || "",
@@ -95,6 +111,7 @@ export function wrapDestinationsCitiesContent(content = {}, lang = "en") {
               numberOfFlightsPerWeek: item?.numberOfFlightsPerWeek || "",
               duration: item?.duration || "",
               description: item?.description || "",
+              links: normalizeBacklinks(item?.links),
               imageUrl: item?.imageUrl || "",
               imageAlt: item?.imageAlt || item?.cityName || "",
               buttonLabel: item?.buttonLabel || "",

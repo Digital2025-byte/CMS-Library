@@ -11,6 +11,7 @@ import {
 
 export default function DestinationsCitiesStack({
   cities = [],
+  cityLinkParts = null,
   lang = "en",
   posParams = "gb",
   style = DEFAULT_DESTINATIONS_CITIES_STYLE,
@@ -73,6 +74,9 @@ export default function DestinationsCitiesStack({
                 cityName={card.cityName}
                 numberOfFlightsPerWeek={card.numberOfFlightsPerWeek}
                 description={card.description}
+                descriptionParts={cityLinkParts?.[index]?.bodyParts}
+                linkStyle={style}
+                showLinks={style.showLinks !== false}
                 imageUrl={card.imageUrl}
                 imageAlt={card.imageAlt}
                 duration={card.duration}

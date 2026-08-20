@@ -7,6 +7,7 @@ import {
   InspectorTabs,
   applyInspectorReset,
 } from "@/components/inspector";
+import { BacklinksStyleSection } from "@/app/cmsComponents/shared/backlinks";
 import SplitWithImageContentForm from "./SplitWithImageContentForm";
 import {
   DEFAULT_SPLIT_WITH_IMAGE_STYLE,
@@ -127,6 +128,13 @@ function SplitWithImageStyleForm({ style, onChange }) {
           hint="The aircraft image"
         />
       </InspectorSection>
+
+      <BacklinksStyleSection
+        style={style}
+        onChange={onChange}
+        onReset={() => reset(SPLIT_WITH_IMAGE_STYLE_RESET_KEYS.links)}
+        defaults={DEFAULT_SPLIT_WITH_IMAGE_STYLE}
+      />
     </div>
   );
 }

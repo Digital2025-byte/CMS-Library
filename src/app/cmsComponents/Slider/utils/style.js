@@ -1,3 +1,9 @@
+import {
+  BACKLINK_STYLE_RESET_KEYS,
+  DEFAULT_BACKLINK_STYLE,
+  resolveBacklinkStyle,
+} from "@/app/cmsComponents/shared/backlinks";
+
 export const THEME_OPTIONS = [
   { value: "primary-1", label: "Primary 1" },
   { value: "primary-2", label: "Primary 2" },
@@ -85,10 +91,10 @@ export const BUTTON_VARIANT_OPTIONS = [
 ];
 
 export function resolveSliderStyle(style = {}) {
-  return {
-    ...DEFAULT_SLIDER_STYLE,
-    ...style,
-  };
+  return resolveBacklinkStyle(
+    { ...DEFAULT_SLIDER_STYLE, ...style },
+    DEFAULT_SLIDER_STYLE
+  );
 }
 
 export function sliderStyleToSettings(style = DEFAULT_SLIDER_STYLE) {
@@ -158,6 +164,7 @@ export const DEFAULT_SLIDER_STYLE = {
   titleFontWeight: "semibold",
   descriptionFontWeight: "normal",
   subtitleFontWeight: "medium",
+  ...DEFAULT_BACKLINK_STYLE,
 };
 
 export const SLIDER_STYLE_RESET_KEYS = {
@@ -196,4 +203,5 @@ export const SLIDER_STYLE_RESET_KEYS = {
     "touchThreshold",
     "adaptiveHeight",
   ],
+  links: [...BACKLINK_STYLE_RESET_KEYS],
 };

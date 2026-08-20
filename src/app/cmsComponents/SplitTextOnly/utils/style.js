@@ -1,3 +1,9 @@
+import {
+  BACKLINK_STYLE_RESET_KEYS,
+  DEFAULT_BACKLINK_STYLE,
+  resolveBacklinkStyle,
+} from "@/app/cmsComponents/shared/backlinks";
+
 export const TITLE_ALIGN_OPTIONS = [
   { value: "left", label: "Start" },
   { value: "center", label: "Center" },
@@ -26,13 +32,14 @@ export const DEFAULT_SPLIT_TEXT_ONLY_STYLE = {
   descriptionColor: "secondary-100",
   titleFontWeight: "semibold",
   descriptionFontWeight: "normal",
+  ...DEFAULT_BACKLINK_STYLE,
 };
 
 export function resolveSplitTextOnlyStyle(style = {}) {
-  return {
-    ...DEFAULT_SPLIT_TEXT_ONLY_STYLE,
-    ...style,
-  };
+  return resolveBacklinkStyle(
+    { ...DEFAULT_SPLIT_TEXT_ONLY_STYLE, ...style },
+    DEFAULT_SPLIT_TEXT_ONLY_STYLE
+  );
 }
 
 export const SPLIT_TEXT_ONLY_STYLE_RESET_KEYS = {
@@ -45,4 +52,5 @@ export const SPLIT_TEXT_ONLY_STYLE_RESET_KEYS = {
     "showOverlay",
   ],
   title: ["titleAlign", "titleColor", "titleFontWeight", "descriptionColor", "descriptionFontWeight"],
+  links: [...BACKLINK_STYLE_RESET_KEYS],
 };

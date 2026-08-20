@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { BookOpenTextIcon } from "@phosphor-icons/react";
 import Button from "@/components/ui/Button";
+import { LinkedText } from "@/app/cmsComponents/shared/backlinks";
 import { getThemeColorCss } from "@/styles/themeColors";
 import { getFontWeightValue } from "@/styles/fontWeight";
 import { typography } from "@/styles/typography";
@@ -14,6 +15,7 @@ import {
 
 export default function SightCard({
   card,
+  bodyParts,
   lang = "en",
   posParams = "gb",
   cId,
@@ -37,6 +39,7 @@ export default function SightCard({
   const primaryFg = getThemeColorCss(style.primaryText, "white");
   const secondaryFg = getThemeColorCss(style.secondaryText, "white");
   const canShowImage = style.showCardImage && isUsableImageSrc(card?.image);
+  const showLinks = style.showLinks !== false;
 
   return (
     <article
@@ -78,14 +81,29 @@ export default function SightCard({
       <div
         className="absolute inset-x-5 bottom-15 flex items-end justify-between gap-3 transition-all duration-500 group-hover:translate-y-3 group-hover:opacity-0"
       >
-        {style.showName && card?.name ? (
-          <h3
-            className={`${typography.itemTitle} font-semibold`}
-            style={{ color: nameCss, fontWeight: getFontWeightValue(style.nameFontWeight), textShadow: "0 2px 8px rgba(0,0,0,0.45)" }}
-          >
-            {card.name}
-          </h3>
-        ) : null}
+        <div className="min-w-0 flex-1">
+          {style.showName && card?.name ? (
+            <h3
+              className={`${typography.itemTitle} font-semibold`}
+              style={{ color: nameCss, fontWeight: getFontWeightValue(style.nameFontWeight), textShadow: "0 2px 8px rgba(0,0,0,0.45)" }}
+            >
+              {card.name}
+            </h3>
+          ) : null}
+          {card?.description ? (
+            <p
+              className={`${typography.caption} mt-1 line-clamp-2`}
+              style={{ color: nameCss, textShadow: "0 2px 8px rgba(0,0,0,0.45)" }}
+            >
+              <LinkedText
+                text={card.description}
+                parts={bodyParts}
+                style={style}
+                enabled={showLinks}
+              />
+            </p>
+          ) : null}
+        </div>
         {style.showTag && card?.tag ? (
           <span
             className={`${typography.body} shrink-0 font-medium`}

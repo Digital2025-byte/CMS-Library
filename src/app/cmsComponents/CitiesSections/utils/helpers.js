@@ -1,3 +1,8 @@
+import {
+  normalizeBacklinks,
+  toEditorBacklinks,
+} from "@/app/cmsComponents/shared/backlinks";
+
 function getFileUrl(file) {
   if (!file) {
     return "";
@@ -23,6 +28,7 @@ export function getCitiesSectionsContent(data, lang = "en") {
     return {
       title: "",
       description: "",
+      links: [],
       template: "right",
       image1: "",
       image2: "",
@@ -77,6 +83,7 @@ export function getCitiesSectionsContent(data, lang = "en") {
   return {
     title,
     description,
+    links: normalizeBacklinks(content?.links),
     template: template === "left" ? "left" : "right",
     image1,
     image2,
@@ -112,6 +119,7 @@ export function getCitiesSectionsEditorContent(data, lang = "en") {
   return {
     title: content.title || "",
     description: content.description || "",
+    links: toEditorBacklinks(content.links),
     ctaLabel: content.ctaLabel || "",
     ctaHref: content.ctaHref || content.slug || "",
     ctaLinkType: "internal",
@@ -130,6 +138,7 @@ export function wrapCitiesSectionsContent(content = {}, lang = "en") {
         content: {
           title: content.title || "",
           description: content.description || "",
+          links: normalizeBacklinks(content.links),
           isCTA: Boolean(content.ctaLabel),
           ctaLabel: content.ctaLabel || "",
           ctaHref: content.ctaHref || "",

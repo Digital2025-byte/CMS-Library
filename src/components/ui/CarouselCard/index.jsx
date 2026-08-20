@@ -13,6 +13,9 @@ export default function CarouselCard({
   duration,
   cityName,
   description,
+  descriptionParts,
+  linkStyle,
+  showLinks = true,
   subtitle,
   buttonLabel,
   isActive,
@@ -81,6 +84,9 @@ export default function CarouselCard({
           numberOfFlightsPerWeek={numberOfFlightsPerWeek}
           duration={duration}
           description={description}
+          descriptionParts={descriptionParts}
+          linkStyle={linkStyle}
+          showLinks={showLinks}
           buttonLabel={buttonLabel}
           showCity={showCity}
           showOrigin={showOrigin}

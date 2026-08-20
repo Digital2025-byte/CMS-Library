@@ -8,6 +8,7 @@ export default function MixedLeftThreeImagesPanel({
   lang = "en",
   title,
   description,
+  links = [],
   primaryCta,
   secondaryCta,
   largeImage,
@@ -24,6 +25,7 @@ export default function MixedLeftThreeImagesPanel({
             lang={lang}
             title={title}
             description={description}
+            links={links}
             primaryCta={primaryCta}
             secondaryCta={secondaryCta}
             className="order-1 lg:order-2 lg:col-start-2 lg:row-start-1"

@@ -8,6 +8,10 @@ import {
   InspectorTitleSection,
   applyInspectorReset,
 } from "@/components/inspector";
+import {
+  BacklinksEditor,
+  joinItemBacklinkSourceText,
+} from "@/app/cmsComponents/shared/backlinks";
 
 const TITLE_KEYS = ["title", "description"];
 const ITEM_KEYS = ["items"];
@@ -15,6 +19,7 @@ const ITEM_KEYS = ["items"];
 const emptyItem = () => ({
   title: "",
   description: "",
+  links: [],
   imageUrl: "",
   imageAlt: "",
   buttonHref: "",
@@ -90,10 +95,31 @@ export default function ServiceCardsSliderContentForm({
                   onChange({ ...content, items });
                 }}
               />
+              <BacklinksEditor
+                idPrefix={`service-cards-item-${index}-backlink`}
+                title="Item backlinks"
+                links={item.links || []}
+                sourceText={item.description || ""}
+                defaults={[]}
+                onChange={(links) => update("links", links)}
+                showReset={false}
+              />
             </>
           )}
         </InspectorRepeater>
       </InspectorSection>
+
+      <BacklinksEditor
+        idPrefix="service-cards-link"
+        title="Backlinks"
+        links={content.links || []}
+        sourceText={joinItemBacklinkSourceText({
+          description: content.description,
+          items: content.items,
+        })}
+        defaults={defaults?.links || []}
+        onChange={(links) => onChange({ ...content, links })}
+      />
     </div>
   );
 }

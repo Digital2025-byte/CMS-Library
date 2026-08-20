@@ -8,6 +8,7 @@ import {
   InspectorTitleSection,
   applyInspectorReset,
 } from "@/components/inspector";
+import { BacklinksEditor } from "@/app/cmsComponents/shared/backlinks";
 
 const TITLE_KEYS = ["title", "description"];
 const CTA_KEYS = ["ctaLabel", "ctaHref", "ctaLinkType", "iconType"];
@@ -88,6 +89,15 @@ export default function SectionWithAnimatedImagesContentForm({
           )}
         </InspectorRepeater>
       </InspectorSection>
+
+      <BacklinksEditor
+        idPrefix="animated-images-link"
+        links={content.links || []}
+        sourceText={content.description || ""}
+        defaults={defaults?.links || []}
+        onChange={(links) => onChange({ ...content, links })}
+        showReset
+      />
     </div>
   );
 }

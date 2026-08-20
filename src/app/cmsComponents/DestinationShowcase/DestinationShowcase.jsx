@@ -1,6 +1,7 @@
 "use client";
 
 import DestinationShowcasePanel from "./components/DestinationShowcasePanel";
+import { buildItemBacklinkParts } from "@/app/cmsComponents/shared/backlinks";
 import { getDestinationShowcaseContent } from "./utils/helpers";
 import { resolveDestinationShowcaseStyle } from "./utils/style";
 
@@ -18,10 +19,22 @@ export default function DestinationShowcase({
     return null;
   }
 
+  const showLinks = resolvedStyle.showLinks !== false;
+  const itemLinkParts = showLinks
+    ? buildItemBacklinkParts(content.destinations, content.links, {
+        titleKey: "name",
+      })
+    : null;
+  const destinations = content.destinations.map((dest, index) => ({
+    ...dest,
+    titleParts: itemLinkParts?.[index]?.titleParts,
+    bodyParts: itemLinkParts?.[index]?.bodyParts,
+  }));
+
   return (
     <DestinationShowcasePanel
       lang={lang}
-      content={content}
+      content={{ ...content, destinations }}
       style={resolvedStyle}
     />
   );

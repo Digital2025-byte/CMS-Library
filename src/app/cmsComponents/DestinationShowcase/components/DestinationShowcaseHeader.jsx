@@ -3,6 +3,7 @@ import { CaretLeftIcon, CaretRightIcon } from "@phosphor-icons/react";
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
 import { getFontWeightValue } from "@/styles/fontWeight";
+import { LinkedText } from "@/app/cmsComponents/shared/backlinks";
 import {
   DEFAULT_DESTINATION_SHOWCASE_STYLE,
   TITLE_ALIGN_CLASS,
@@ -11,6 +12,7 @@ import {
 export default function DestinationShowcaseHeader({
   title,
   description,
+  links = [],
   viewAllLabel,
   viewAllHref,
   lang = "en",
@@ -21,6 +23,7 @@ export default function DestinationShowcaseHeader({
   const showViewAllLink = style.showViewAll && viewAllLabel && viewAllHref;
   const alignClass =
     TITLE_ALIGN_CLASS[style.titleAlign] ?? TITLE_ALIGN_CLASS.left;
+  const showLinks = style.showLinks !== false;
 
   if (!showHeading && !showBody && !showViewAllLink) return null;
 
@@ -44,7 +47,12 @@ export default function DestinationShowcaseHeader({
               }`}
               style={{ color: getThemeColorCss(style.descriptionColor, "700"), fontWeight: getFontWeightValue(style.descriptionFontWeight) }}
             >
-              {description}
+              <LinkedText
+                text={description}
+                links={links}
+                style={style}
+                enabled={showLinks}
+              />
             </p>
           ) : (
             <span />

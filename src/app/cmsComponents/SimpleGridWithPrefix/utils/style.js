@@ -1,3 +1,9 @@
+import {
+  BACKLINK_STYLE_RESET_KEYS,
+  DEFAULT_BACKLINK_STYLE,
+  resolveBacklinkStyle,
+} from "@/app/cmsComponents/shared/backlinks";
+
 export const TITLE_ALIGN_OPTIONS = [
   { value: "left", label: "Start" },
   { value: "center", label: "Center" },
@@ -68,13 +74,14 @@ export const DEFAULT_SIMPLE_GRID_STYLE = {
   nameFontWeight: "semibold",
   userNameFontWeight: "medium",
   chipTextFontWeight: "medium",
+  ...DEFAULT_BACKLINK_STYLE,
 };
 
 export function resolveSimpleGridStyle(style = {}) {
-  return {
-    ...DEFAULT_SIMPLE_GRID_STYLE,
-    ...style,
-  };
+  return resolveBacklinkStyle(
+    { ...DEFAULT_SIMPLE_GRID_STYLE, ...style },
+    DEFAULT_SIMPLE_GRID_STYLE
+  );
 }
 
 export const SIMPLE_GRID_STYLE_RESET_KEYS = {
@@ -102,4 +109,5 @@ export const SIMPLE_GRID_STYLE_RESET_KEYS = {
     "userNameColor", "userNameFontWeight",
     "arrowColor",
   ],
+  links: [...BACKLINK_STYLE_RESET_KEYS],
 };

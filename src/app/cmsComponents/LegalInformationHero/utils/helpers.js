@@ -1,10 +1,21 @@
+import {
+  normalizeBacklinks,
+  toEditorBacklinks,
+} from "@/app/cmsComponents/shared/backlinks";
+
 export function getLegalInformationHeroContent(data, lang = "en") {
   const translations = Array.isArray(data?.translations)
     ? data.translations
     : [];
 
   if (!translations.length) {
-    return { title: "", description: "", patternUrl: "", hasContent: false };
+    return {
+      title: "",
+      description: "",
+      links: [],
+      patternUrl: "",
+      hasContent: false,
+    };
   }
 
   const normalized = String(lang || "").toLowerCase();
@@ -21,6 +32,7 @@ export function getLegalInformationHeroContent(data, lang = "en") {
   return {
     title,
     description,
+    links: normalizeBacklinks(content.links),
     patternUrl,
     hasContent: Boolean(title || description),
   };
@@ -32,6 +44,7 @@ export function getLegalInformationHeroEditorContent(data, lang = "en") {
   return {
     title: content.title || "",
     description: content.description || "",
+    links: toEditorBacklinks(content.links),
     patternUrl: content.patternUrl || "",
   };
 }
@@ -44,6 +57,7 @@ export function wrapLegalInformationHeroContent(content = {}, lang = "en") {
         content: {
           title: content.title || "",
           description: content.description || "",
+          links: normalizeBacklinks(content.links),
           patternUrl: content.patternUrl || "",
         },
       },

@@ -5,6 +5,7 @@ import { DEFAULT_MEALS_TABBED_STYLE } from "../utils/style";
 export default function MealsDescriptionSections({
   sections = [],
   notes = [],
+  links = [],
   isSectionOpen,
   onToggleSection,
   panelId,
@@ -30,10 +31,11 @@ export default function MealsDescriptionSections({
           sectionIndex={sectionIndex}
           isOpen={isSectionOpen?.(sectionIndex)}
           onToggle={() => onToggleSection?.(sectionIndex)}
+          links={links}
           style={style}
         />
       ))}
-      <MealsDescriptionNotes notes={notes} style={style} />
+      <MealsDescriptionNotes notes={notes} links={links} style={style} />
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import { CalendarCheckIcon, ClockIcon, StarIcon } from "@phosphor-icons/react";
+import { LinkedText } from "@/app/cmsComponents/shared/backlinks";
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
 
@@ -7,6 +8,9 @@ export default function CarouselCardMeta({
   duration,
   lang,
   description,
+  descriptionParts,
+  linkStyle,
+  showLinks = true,
   showNew = true,
   showFlights = true,
   showDuration = true,
@@ -77,7 +81,12 @@ export default function CarouselCardMeta({
           className={`${typography.caption} min-h-0 flex-1 overflow-hidden text-start leading-snug font-light [overflow-wrap:anywhere] line-clamp-2 sm:line-clamp-3 lg:line-clamp-4`}
           style={{ color: bodyCss }}
         >
-          {description}
+          <LinkedText
+            text={description}
+            parts={descriptionParts}
+            style={linkStyle}
+            enabled={showLinks}
+          />
         </p>
       ) : null}
     </div>

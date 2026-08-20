@@ -1,3 +1,9 @@
+import {
+  BACKLINK_STYLE_RESET_KEYS,
+  DEFAULT_BACKLINK_STYLE,
+  resolveBacklinkStyle,
+} from "@/app/cmsComponents/shared/backlinks";
+
 export const TITLE_ALIGN_OPTIONS = [
   { value: "left", label: "Start" },
   { value: "center", label: "Center" },
@@ -48,13 +54,14 @@ export const DEFAULT_HEADER_WITH_CITY_INFO_STYLE = {
   tileLabelFontWeight: "medium",
   tileValueFontWeight: "semibold",
   nextFlightFontWeight: "semibold",
+  ...DEFAULT_BACKLINK_STYLE,
 };
 
 export function resolveHeaderWithCityInfoStyle(style = {}) {
-  return {
-    ...DEFAULT_HEADER_WITH_CITY_INFO_STYLE,
-    ...style,
-  };
+  return resolveBacklinkStyle(
+    { ...DEFAULT_HEADER_WITH_CITY_INFO_STYLE, ...style },
+    DEFAULT_HEADER_WITH_CITY_INFO_STYLE
+  );
 }
 
 export const HEADER_WITH_CITY_INFO_STYLE_RESET_KEYS = {
@@ -72,4 +79,5 @@ export const HEADER_WITH_CITY_INFO_STYLE_RESET_KEYS = {
     "tileValueColor", "tileValueFontWeight",
     "nextFlightColor", "nextFlightFontWeight",
   ],
+  links: [...BACKLINK_STYLE_RESET_KEYS],
 };

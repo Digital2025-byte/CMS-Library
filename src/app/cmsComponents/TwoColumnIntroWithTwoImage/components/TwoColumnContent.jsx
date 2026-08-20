@@ -1,6 +1,7 @@
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
 import { getFontWeightValue } from "@/styles/fontWeight";
+import { LinkedText } from "@/app/cmsComponents/shared/backlinks";
 import TwoColumnCta from "./TwoColumnCta";
 import {
   DEFAULT_TWO_COLUMN_INTRO_STYLE,
@@ -10,6 +11,7 @@ import {
 export default function TwoColumnContent({
   title,
   description,
+  links = [],
   ctaButton,
   ctaHref,
   style = DEFAULT_TWO_COLUMN_INTRO_STYLE,
@@ -41,7 +43,12 @@ export default function TwoColumnContent({
           className={`${typography.sectionDescription} mt-4 leading-relaxed wrap-break-word sm:mt-5 lg:mt-6`}
           style={{ color: getThemeColorCss(style.descriptionColor, "700"), fontWeight: getFontWeightValue(style.descriptionFontWeight) }}
         >
-          {description}
+          <LinkedText
+            text={description}
+            links={links}
+            style={style}
+            enabled={style.showLinks !== false}
+          />
         </p>
       ) : null}
 

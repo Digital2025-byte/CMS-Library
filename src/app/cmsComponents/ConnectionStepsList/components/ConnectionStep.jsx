@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { LinkedText } from "@/app/cmsComponents/shared/backlinks";
 import { CONNECTION_STEPS_LAYOUT } from "../utils/layout";
 import { isUsableImageSrc } from "../utils/helpers";
 import { DEFAULT_CONNECTION_STEPS_STYLE } from "../utils/style";
@@ -8,6 +9,7 @@ import { DEFAULT_CONNECTION_STEPS_STYLE } from "../utils/style";
 export default function ConnectionStep({
   stepLabel,
   description,
+  bodyParts,
   imageUrl,
   imageAlt = "",
   labelStyle,
@@ -24,6 +26,7 @@ export default function ConnectionStep({
     theme.descriptionColor,
     "secondary-2"
   );
+  const showLinks = theme.showLinks !== false;
 
   return (
     <div
@@ -71,7 +74,12 @@ export default function ConnectionStep({
           }
           style={{ color: descriptionColor }}
         >
-          {description}
+          <LinkedText
+            text={description}
+            parts={bodyParts}
+            style={theme}
+            enabled={showLinks}
+          />
         </p>
       ) : null}
     </div>

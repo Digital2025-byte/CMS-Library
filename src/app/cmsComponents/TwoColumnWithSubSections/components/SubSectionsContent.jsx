@@ -10,8 +10,11 @@ export default function SubSectionsContent({
   sectionLabel,
   title,
   description,
+  links = [],
   firstSubSection,
   secondSubSection,
+  firstSubParts,
+  secondSubParts,
   ctaButton,
   ctaHref,
   cId,
@@ -27,6 +30,7 @@ export default function SubSectionsContent({
         sectionLabel={sectionLabel}
         title={title}
         description={description}
+        links={links}
         style={style}
       />
 
@@ -35,6 +39,8 @@ export default function SubSectionsContent({
           <SubSectionBlock
             title={firstSubSection?.title}
             description={firstSubSection?.description}
+            titleParts={firstSubParts?.titleParts}
+            bodyParts={firstSubParts?.bodyParts}
             style={style}
           />
 
@@ -48,6 +54,8 @@ export default function SubSectionsContent({
           <SubSectionBlock
             title={secondSubSection?.title}
             description={secondSubSection?.description}
+            titleParts={secondSubParts?.titleParts}
+            bodyParts={secondSubParts?.bodyParts}
             style={style}
           />
         </div>

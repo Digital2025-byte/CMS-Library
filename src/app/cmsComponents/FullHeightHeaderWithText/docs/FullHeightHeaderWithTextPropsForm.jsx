@@ -7,6 +7,7 @@ import {
   InspectorTabs,
   applyInspectorReset,
 } from "@/components/inspector";
+import { BacklinksStyleSection } from "@/app/cmsComponents/shared/backlinks";
 import FullHeightHeaderWithTextContentForm from "./FullHeightHeaderWithTextContentForm";
 import {
   DEFAULT_FULL_HEIGHT_HEADER_STYLE,
@@ -129,6 +130,13 @@ function FullHeightHeaderWithTextStyleForm({ style, onChange }) {
           </>
         ) : null}
       </InspectorSection>
+
+      <BacklinksStyleSection
+        style={style}
+        onChange={onChange}
+        onReset={() => reset(FULL_HEIGHT_HEADER_STYLE_RESET_KEYS.links)}
+        defaults={DEFAULT_FULL_HEIGHT_HEADER_STYLE}
+      />
     </div>
   );
 }

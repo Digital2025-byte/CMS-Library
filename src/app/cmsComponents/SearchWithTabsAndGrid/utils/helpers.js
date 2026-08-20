@@ -1,3 +1,8 @@
+import {
+  normalizeBacklinks,
+  toEditorBacklinks,
+} from "@/app/cmsComponents/shared/backlinks";
+
 function normalizeSight(raw, index) {
   const image =
     raw?.image ||
@@ -13,6 +18,7 @@ function normalizeSight(raw, index) {
     tag: raw?.tag || "",
     slug: raw?.slug || "",
     description: raw?.description || "",
+    links: normalizeBacklinks(raw?.links),
     image: typeof image === "string" ? image : image?.src || "",
   };
 }
@@ -26,6 +32,7 @@ export function getSearchWithTabsAndGridContent(data, lang = "en") {
     return {
       searchPlaceholder: "",
       gridTitle: "",
+      links: [],
       tags: [],
       sights: [],
       allLabel: "All",
@@ -76,6 +83,7 @@ export function getSearchWithTabsAndGridContent(data, lang = "en") {
       search?.namePlaceholder ||
       "",
     gridTitle,
+    links: normalizeBacklinks(content?.links),
     tags,
     sights,
     allLabel: content?.allLabel || (lang === "ar" ? "الكل" : "All"),
@@ -111,6 +119,7 @@ export function getSearchWithTabsAndGridEditorContent(data, lang = "en") {
   return {
     searchPlaceholder: content.searchPlaceholder || "",
     gridTitle: content.gridTitle || "",
+    links: toEditorBacklinks(content.links),
     allLabel: content.allLabel || "",
     exploreLabel: content.exploreLabel || "",
     exploreMagazineLabel: content.exploreMagazineLabel || "",
@@ -124,6 +133,7 @@ export function getSearchWithTabsAndGridEditorContent(data, lang = "en") {
       tag: sight.tag || "",
       slug: sight.slug || "",
       description: sight.description || "",
+      links: toEditorBacklinks(sight.links),
       imageUrl: sight.image || "",
     })),
   };
@@ -135,6 +145,7 @@ export function wrapSearchWithTabsAndGridContent(content = {}, lang = "en") {
       {
         languageCode: lang,
         content: {
+          links: normalizeBacklinks(content.links),
           Search: {
             placeholder: content.searchPlaceholder || "",
           },
@@ -158,6 +169,7 @@ export function wrapSearchWithTabsAndGridContent(content = {}, lang = "en") {
                 tag: item?.tag || "",
                 slug: item?.slug || "",
                 description: item?.description || "",
+                links: normalizeBacklinks(item?.links),
                 image: item?.imageUrl || "",
               })
             ),

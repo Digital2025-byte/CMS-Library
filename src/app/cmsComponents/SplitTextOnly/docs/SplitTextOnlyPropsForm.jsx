@@ -7,6 +7,7 @@ import {
   InspectorTabs,
   applyInspectorReset,
 } from "@/components/inspector";
+import { BacklinksStyleSection } from "@/app/cmsComponents/shared/backlinks";
 import SplitTextOnlyContentForm from "./SplitTextOnlyContentForm";
 import {
   DEFAULT_SPLIT_TEXT_ONLY_STYLE,
@@ -103,6 +104,13 @@ function SplitTextOnlyStyleForm({ style, onChange }) {
           />
         ) : null}
       </InspectorSection>
+
+      <BacklinksStyleSection
+        style={style}
+        onChange={onChange}
+        onReset={() => reset(SPLIT_TEXT_ONLY_STYLE_RESET_KEYS.links)}
+        defaults={DEFAULT_SPLIT_TEXT_ONLY_STYLE}
+      />
     </div>
   );
 }

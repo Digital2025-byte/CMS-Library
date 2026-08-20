@@ -1,3 +1,9 @@
+import {
+  joinBacklinkSourceText,
+  normalizeBacklinks,
+  toEditorBacklinks,
+} from "@/app/cmsComponents/shared/backlinks";
+
 function normalizeImage(image, fallbackAlt = "Meal image") {
   if (!image) {
     return { fileUrl: "", alt: fallbackAlt };
@@ -67,13 +73,42 @@ function normalizeTab(raw) {
   };
 }
 
+function collectDescriptionChunks(tabs = [], notes = []) {
+  const chunks = [];
+
+  for (const tab of tabs) {
+    for (const section of tab.sections || []) {
+      for (const item of section.items || []) {
+        chunks.push(item?.description);
+      }
+      for (const group of section.groups || []) {
+        for (const item of group.items || []) {
+          chunks.push(item?.description);
+        }
+      }
+    }
+  }
+
+  for (const note of notes) {
+    chunks.push(typeof note === "string" ? note : note?.text);
+  }
+
+  return chunks;
+}
+
+export function joinMealsBacklinkSourceText(content = {}) {
+  const tabs = content.items || content.tabs || [];
+  const notes = content.notes || [];
+  return joinBacklinkSourceText(...collectDescriptionChunks(tabs, notes));
+}
+
 export function getMealsDescriptionTabbedContent(data, lang = "en") {
   const translations = Array.isArray(data?.translations)
     ? data.translations
     : [];
 
   if (!translations.length) {
-    return { title: "", tabs: [], notes: [], hasContent: false };
+    return { title: "", links: [], tabs: [], notes: [], hasContent: false };
   }
 
   const normalizedLang = String(lang || "").toLowerCase();
@@ -95,6 +130,7 @@ export function getMealsDescriptionTabbedContent(data, lang = "en") {
 
   return {
     title,
+    links: normalizeBacklinks(content?.links),
     tabs,
     notes,
     hasContent: Boolean(title || tabs.length),
@@ -124,6 +160,7 @@ export function getMealsDescriptionTabbedEditorContent(data, lang = "en") {
 
   return {
     title: content.title || "",
+    links: toEditorBacklinks(content.links),
     notes: (content.notes || []).map((note) => ({
       text: note || "",
     })),
@@ -156,6 +193,7 @@ export function wrapMealsDescriptionTabbedContent(content = {}, lang = "en") {
         languageCode: lang,
         content: {
           title: content.title || "",
+          links: normalizeBacklinks(content.links),
           notes: (Array.isArray(content.notes) ? content.notes : [])
             .map((note) => (typeof note === "string" ? note : note?.text || ""))
             .filter(Boolean),

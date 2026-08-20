@@ -7,6 +7,7 @@ import {
   InspectorTabs,
   applyInspectorReset,
 } from "@/components/inspector";
+import { BacklinksStyleSection } from "@/app/cmsComponents/shared/backlinks";
 import TabbedCardsSectionContentForm from "./TabbedCardsSectionContentForm";
 import {
   CARD_RADIUS_OPTIONS,
@@ -203,6 +204,13 @@ function TabbedCardsSectionStyleForm({ style, onChange }) {
           onChange={(value) => update("cardGap", value)}
         />
       </InspectorSection>
+
+      <BacklinksStyleSection
+        style={style}
+        onChange={onChange}
+        onReset={() => reset(TABBED_CARDS_STYLE_RESET_KEYS.links)}
+        defaults={DEFAULT_TABBED_CARDS_STYLE}
+      />
     </div>
   );
 }

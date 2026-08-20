@@ -1,3 +1,9 @@
+import {
+  BACKLINK_STYLE_RESET_KEYS,
+  DEFAULT_BACKLINK_STYLE,
+  resolveBacklinkStyle,
+} from "@/app/cmsComponents/shared/backlinks";
+
 export const TITLE_ALIGN_OPTIONS = [
   { value: "left", label: "Start" },
   { value: "center", label: "Center" },
@@ -67,13 +73,14 @@ export const DEFAULT_TABBED_CARDS_STYLE = {
   descriptionFontWeight: "normal",
   nameFontWeight: "semibold",
   bodyFontWeight: "normal",
+  ...DEFAULT_BACKLINK_STYLE,
 };
 
 export function resolveTabbedCardsStyle(style = {}) {
-  return {
-    ...DEFAULT_TABBED_CARDS_STYLE,
-    ...style,
-  };
+  return resolveBacklinkStyle(
+    { ...DEFAULT_TABBED_CARDS_STYLE, ...style },
+    DEFAULT_TABBED_CARDS_STYLE
+  );
 }
 
 export const TABBED_CARDS_STYLE_RESET_KEYS = {
@@ -98,4 +105,5 @@ export const TABBED_CARDS_STYLE_RESET_KEYS = {
     "nameColor", "nameFontWeight",
     "bodyColor", "bodyFontWeight",
   ],
+  links: [...BACKLINK_STYLE_RESET_KEYS],
 };

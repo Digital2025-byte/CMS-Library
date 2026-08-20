@@ -1,6 +1,7 @@
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
 import { getFontWeightValue } from "@/styles/fontWeight";
+import { LinkedText } from "@/app/cmsComponents/shared/backlinks";
 import {
   DEFAULT_VERTICAL_IMAGE_SLICE_STYLE,
   TITLE_ALIGN_CLASS,
@@ -11,6 +12,7 @@ export default function VerticalImageSliceText({
   highlightPart,
   restPart,
   description,
+  links = [],
   style = DEFAULT_VERTICAL_IMAGE_SLICE_STYLE,
 }) {
   const showTitle =
@@ -64,7 +66,12 @@ export default function VerticalImageSliceText({
           className={`${typography.sectionDescription} max-w-xl leading-relaxed wrap-break-word sm:leading-loose`}
           style={{ color: getThemeColorCss(style.descriptionColor, "700"), fontWeight: getFontWeightValue(style.descriptionFontWeight) }}
         >
-          {description}
+          <LinkedText
+            text={description}
+            links={links}
+            style={style}
+            enabled={style.showLinks !== false}
+          />
         </p>
       ) : null}
     </div>

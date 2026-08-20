@@ -7,6 +7,7 @@ import {
   InspectorTabs,
   applyInspectorReset,
 } from "@/components/inspector";
+import { BacklinksStyleSection } from "@/app/cmsComponents/shared/backlinks";
 import TwoColumnWithSubSectionsContentForm from "./TwoColumnWithSubSectionsContentForm";
 import {
   CARD_RADIUS_OPTIONS,
@@ -197,6 +198,13 @@ function TwoColumnWithSubSectionsStyleForm({ style, onChange }) {
           onChange={(value) => update("imageRadius", value)}
         />
       </InspectorSection>
+
+      <BacklinksStyleSection
+        style={style}
+        onChange={onChange}
+        onReset={() => reset(TWO_COLUMN_SUB_SECTIONS_STYLE_RESET_KEYS.links)}
+        defaults={DEFAULT_TWO_COLUMN_SUB_SECTIONS_STYLE}
+      />
     </div>
   );
 }

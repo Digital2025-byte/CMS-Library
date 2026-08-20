@@ -1,3 +1,9 @@
+import {
+  BACKLINK_STYLE_RESET_KEYS,
+  DEFAULT_BACKLINK_STYLE,
+  resolveBacklinkStyle,
+} from "@/app/cmsComponents/shared/backlinks";
+
 export const TITLE_ALIGN_OPTIONS = [
   { value: "left", label: "Start" },
   { value: "center", label: "Center" },
@@ -74,13 +80,14 @@ export const DEFAULT_DESTINATIONS_CITIES_STYLE = {
   descriptionFontWeight: "normal",
   bodyFontWeight: "normal",
   buttonTextFontWeight: "semibold",
+  ...DEFAULT_BACKLINK_STYLE,
 };
 
 export function resolveDestinationsCitiesStyle(style = {}) {
-  return {
-    ...DEFAULT_DESTINATIONS_CITIES_STYLE,
-    ...style,
-  };
+  return resolveBacklinkStyle(
+    { ...DEFAULT_DESTINATIONS_CITIES_STYLE, ...style },
+    DEFAULT_DESTINATIONS_CITIES_STYLE
+  );
 }
 
 export const DESTINATIONS_CITIES_STYLE_RESET_KEYS = {
@@ -112,4 +119,5 @@ export const DESTINATIONS_CITIES_STYLE_RESET_KEYS = {
     "overlayColor",
   ],
   button: ["showButton", "buttonBg", "buttonText", "buttonTextFontWeight"],
+  links: [...BACKLINK_STYLE_RESET_KEYS],
 };

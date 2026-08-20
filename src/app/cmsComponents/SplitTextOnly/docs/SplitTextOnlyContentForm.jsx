@@ -6,6 +6,7 @@ import {
   InspectorTitleSection,
   applyInspectorReset,
 } from "@/components/inspector";
+import { BacklinksEditor } from "@/app/cmsComponents/shared/backlinks";
 
 const TITLE_KEYS = ["title", "description"];
 const IMAGE_KEYS = ["backgroundImageUrl", "backgroundImageAlt"];
@@ -45,6 +46,14 @@ export default function SplitTextOnlyContentForm({
           onChange={(value) => updateField("backgroundImageAlt", value)}
         />
       </InspectorSection>
+
+      <BacklinksEditor
+        idPrefix="split-text-only-link"
+        links={content.links || []}
+        sourceText={content.description || ""}
+        defaults={defaults?.links || []}
+        onChange={(links) => onChange({ ...content, links })}
+      />
     </div>
   );
 }

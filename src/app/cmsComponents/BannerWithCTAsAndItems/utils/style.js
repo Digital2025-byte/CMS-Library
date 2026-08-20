@@ -1,3 +1,9 @@
+import {
+  BACKLINK_STYLE_RESET_KEYS,
+  DEFAULT_BACKLINK_STYLE,
+  resolveBacklinkStyle,
+} from "@/app/cmsComponents/shared/backlinks";
+
 export const TITLE_ALIGN_OPTIONS = [
   { value: "left", label: "Start" },
   { value: "center", label: "Center" },
@@ -71,13 +77,14 @@ export const DEFAULT_BANNER_WITH_CTAS_STYLE = {
   itemFontWeight: "medium",
   primaryTextFontWeight: "semibold",
   secondaryTextFontWeight: "semibold",
+  ...DEFAULT_BACKLINK_STYLE,
 };
 
 export function resolveBannerWithCTAsStyle(style = {}) {
-  return {
-    ...DEFAULT_BANNER_WITH_CTAS_STYLE,
-    ...style,
-  };
+  return resolveBacklinkStyle(
+    { ...DEFAULT_BANNER_WITH_CTAS_STYLE, ...style },
+    DEFAULT_BANNER_WITH_CTAS_STYLE
+  );
 }
 
 export const BANNER_WITH_CTAS_STYLE_RESET_KEYS = {
@@ -100,4 +107,5 @@ export const BANNER_WITH_CTAS_STYLE_RESET_KEYS = {
     "primaryText", "primaryTextFontWeight",
     "secondaryText", "secondaryTextFontWeight",
   ],
+  links: [...BACKLINK_STYLE_RESET_KEYS],
 };

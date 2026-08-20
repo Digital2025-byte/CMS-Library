@@ -1,3 +1,9 @@
+import {
+  BACKLINK_STYLE_RESET_KEYS,
+  DEFAULT_BACKLINK_STYLE,
+  resolveBacklinkStyle,
+} from "@/app/cmsComponents/shared/backlinks";
+
 export const TITLE_ALIGN_OPTIONS = [
   { value: "left", label: "Start" },
   { value: "center", label: "Center" },
@@ -78,13 +84,14 @@ export const DEFAULT_HEADER_WITH_THREE_IMAGE_STYLE = {
   titleFontWeight: "semibold",
   descriptionFontWeight: "normal",
   buttonTextFontWeight: "semibold",
+  ...DEFAULT_BACKLINK_STYLE,
 };
 
 export function resolveHeaderWithThreeImageStyle(style = {}) {
-  return {
-    ...DEFAULT_HEADER_WITH_THREE_IMAGE_STYLE,
-    ...style,
-  };
+  return resolveBacklinkStyle(
+    { ...DEFAULT_HEADER_WITH_THREE_IMAGE_STYLE, ...style },
+    DEFAULT_HEADER_WITH_THREE_IMAGE_STYLE
+  );
 }
 
 export function getImageCount(style = {}) {
@@ -109,4 +116,5 @@ export const HEADER_WITH_THREE_IMAGE_STYLE_RESET_KEYS = {
     "overlayColor",
   ],
   button: ["showButton", "buttonBg", "buttonText", "buttonTextFontWeight"],
+  links: [...BACKLINK_STYLE_RESET_KEYS],
 };

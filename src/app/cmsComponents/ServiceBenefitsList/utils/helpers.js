@@ -1,3 +1,8 @@
+import {
+  normalizeBacklinks,
+  toEditorBacklinks,
+} from "@/app/cmsComponents/shared/backlinks";
+
 function toImageSrc(value) {
   if (!value) {
     return "";
@@ -36,6 +41,7 @@ export function getServiceBenefitsContent(data, lang = "en") {
       mainTitle: "",
       backgroundImage: "",
       backgroundImageAlt: "",
+      links: [],
       benefits: [],
       hasContent: false,
     };
@@ -58,6 +64,7 @@ export function getServiceBenefitsContent(data, lang = "en") {
     ? content.benefits.map((benefit) => ({
         title: benefit?.title || "",
         description: benefit?.description || "",
+        links: normalizeBacklinks(benefit?.links),
         icon: benefit?.icon || "Star",
       }))
     : [];
@@ -66,6 +73,7 @@ export function getServiceBenefitsContent(data, lang = "en") {
     mainTitle,
     backgroundImage,
     backgroundImageAlt,
+    links: normalizeBacklinks(content?.links),
     benefits,
     hasContent: Boolean(mainTitle || benefits.length || backgroundImage),
   };
@@ -78,9 +86,11 @@ export function getServiceBenefitsEditorContent(data, lang = "en") {
     title: content.mainTitle || "",
     backgroundImageUrl: content.backgroundImage || "",
     backgroundImageAlt: content.backgroundImageAlt || "",
+    links: toEditorBacklinks(content.links),
     items: content.benefits.map((benefit) => ({
       title: benefit.title || "",
       description: benefit.description || "",
+      links: toEditorBacklinks(benefit.links),
       icon: benefit.icon || "Star",
     })),
   };
@@ -93,6 +103,7 @@ export function wrapServiceBenefitsContent(content = {}, lang = "en") {
         languageCode: lang,
         content: {
           mainTitle: content.title || "",
+          links: normalizeBacklinks(content.links),
           backgroundImage: {
             fileUrl: content.backgroundImageUrl || "",
             alt: content.backgroundImageAlt || "",
@@ -101,6 +112,7 @@ export function wrapServiceBenefitsContent(content = {}, lang = "en") {
             (item) => ({
               title: item?.title || "",
               description: item?.description || "",
+              links: normalizeBacklinks(item?.links),
               icon: item?.icon || "Star",
             })
           ),

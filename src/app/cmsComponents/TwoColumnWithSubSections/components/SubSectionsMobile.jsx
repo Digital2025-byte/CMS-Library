@@ -16,12 +16,15 @@ export default function SubSectionsMobile({
   sectionLabel,
   title,
   description,
+  links = [],
   mainImage,
   mainImageAlt,
   overlayImage,
   overlayImageAlt,
   firstSubSection,
   secondSubSection,
+  firstSubParts,
+  secondSubParts,
   ctaButton,
   ctaHref,
   ctaIcon,
@@ -43,6 +46,7 @@ export default function SubSectionsMobile({
         sectionLabel={sectionLabel}
         title={title}
         description={description}
+        links={links}
         style={style}
       />
 
@@ -67,6 +71,8 @@ export default function SubSectionsMobile({
             <SubSectionBlock
               title={secondSubSection?.title}
               description={secondSubSection?.description}
+              titleParts={secondSubParts?.titleParts}
+              bodyParts={secondSubParts?.bodyParts}
               style={style}
             />
           ) : null}
@@ -91,6 +97,8 @@ export default function SubSectionsMobile({
             <SubSectionBlock
               title={firstSubSection?.title}
               description={firstSubSection?.description}
+              titleParts={firstSubParts?.titleParts}
+              bodyParts={firstSubParts?.bodyParts}
               style={style}
             />
           ) : null}

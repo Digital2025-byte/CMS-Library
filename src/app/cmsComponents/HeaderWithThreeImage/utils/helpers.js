@@ -1,3 +1,8 @@
+import {
+  normalizeBacklinks,
+  toEditorBacklinks,
+} from "@/app/cmsComponents/shared/backlinks";
+
 function normalizeImage(image, fallbackAlt = "Background image") {
   if (!image) {
     return { fileUrl: "", alt: fallbackAlt };
@@ -50,6 +55,7 @@ export function getHeaderWithThreeImageContent(data, lang = "en") {
     return {
       title: "",
       description: "",
+      links: [],
       buttonText: "",
       ctaHref: "",
       imageOne: { fileUrl: "", alt: "" },
@@ -73,6 +79,7 @@ export function getHeaderWithThreeImageContent(data, lang = "en") {
   const content = matchedTranslation?.content || {};
   const title = content?.title || "";
   const description = content?.description || "";
+  const links = normalizeBacklinks(content?.links);
   const buttonText =
     content?.ctaButton?.content ||
     content?.ctaButton?.label ||
@@ -112,6 +119,7 @@ export function getHeaderWithThreeImageContent(data, lang = "en") {
   return {
     title,
     description,
+    links,
     buttonText,
     ctaHref,
     imageOne,
@@ -145,6 +153,7 @@ export function getHeaderWithThreeImageEditorContent(data, lang = "en") {
   return {
     title: content.title || "",
     description: content.description || "",
+    links: toEditorBacklinks(content.links),
     buttonLabel: content.buttonText || "",
     buttonHref: content.ctaHref || "",
     buttonLinkType: "internal",
@@ -183,6 +192,7 @@ export function wrapHeaderWithThreeImageContent(content = {}, lang = "en") {
         content: {
           title: content.title || "",
           description: content.description || "",
+          links: normalizeBacklinks(content.links),
           buttonText: content.buttonLabel || "",
           ctaButton: {
             content: content.buttonLabel || "",

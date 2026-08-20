@@ -7,6 +7,7 @@ import {
   InspectorTabs,
   applyInspectorReset,
 } from "@/components/inspector";
+import { BacklinksStyleSection } from "@/app/cmsComponents/shared/backlinks";
 import TitleWithListContentForm from "./TitleWithListContentForm";
 import {
   DEFAULT_TITLE_WITH_LIST_STYLE,
@@ -117,6 +118,13 @@ function TitleWithListStyleForm({ style, onChange }) {
           onChange={(value) => update("sectionPadding", value)}
         />
       </InspectorSection>
+
+      <BacklinksStyleSection
+        style={style}
+        onChange={onChange}
+        onReset={() => reset(TITLE_WITH_LIST_STYLE_RESET_KEYS.links)}
+        defaults={DEFAULT_TITLE_WITH_LIST_STYLE}
+      />
     </div>
   );
 }

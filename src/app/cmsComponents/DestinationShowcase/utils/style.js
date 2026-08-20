@@ -1,3 +1,9 @@
+import {
+  BACKLINK_STYLE_RESET_KEYS,
+  DEFAULT_BACKLINK_STYLE,
+  resolveBacklinkStyle,
+} from "@/app/cmsComponents/shared/backlinks";
+
 export const TITLE_ALIGN_OPTIONS = [
   { value: "left", label: "Start" },
   { value: "center", label: "Center" },
@@ -73,13 +79,14 @@ export const DEFAULT_DESTINATION_SHOWCASE_STYLE = {
   titleFontWeight: "semibold",
   descriptionFontWeight: "normal",
   buttonTextFontWeight: "semibold",
+  ...DEFAULT_BACKLINK_STYLE,
 };
 
 export function resolveDestinationShowcaseStyle(style = {}) {
-  return {
-    ...DEFAULT_DESTINATION_SHOWCASE_STYLE,
-    ...style,
-  };
+  return resolveBacklinkStyle(
+    { ...DEFAULT_DESTINATION_SHOWCASE_STYLE, ...style },
+    DEFAULT_DESTINATION_SHOWCASE_STYLE
+  );
 }
 
 export const DESTINATION_SHOWCASE_STYLE_RESET_KEYS = {
@@ -110,4 +117,5 @@ export const DESTINATION_SHOWCASE_STYLE_RESET_KEYS = {
   ],
   button: ["showButton", "buttonBg", "buttonText", "buttonTextFontWeight"],
   nav: ["showArrows", "showDots", "navColor"],
+  links: [...BACKLINK_STYLE_RESET_KEYS],
 };

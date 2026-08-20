@@ -12,7 +12,7 @@ export default function SimpleGridWithPrefix({
   cId,
 }) {
   const resolvedStyle = resolveSimpleGridStyle(style);
-  const { title, description, items, hasContent } =
+  const { title, description, links = [], items, hasContent } =
     getSimpleGridWithPrefixContent(data, lang);
 
   if (!hasContent) {
@@ -24,6 +24,7 @@ export default function SimpleGridWithPrefix({
       <SimpleGridHeader
         title={title}
         description={description}
+        links={links}
         style={resolvedStyle}
       />
       <SimpleGrid

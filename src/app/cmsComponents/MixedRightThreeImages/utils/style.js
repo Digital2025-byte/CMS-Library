@@ -1,3 +1,9 @@
+import {
+  BACKLINK_STYLE_RESET_KEYS,
+  DEFAULT_BACKLINK_STYLE,
+  resolveBacklinkStyle,
+} from "@/app/cmsComponents/shared/backlinks";
+
 export const TITLE_ALIGN_OPTIONS = [
   { value: "left", label: "Start" },
   { value: "center", label: "Center" },
@@ -61,13 +67,14 @@ export const DEFAULT_MIXED_THREE_IMAGES_STYLE = {
   descriptionFontWeight: "normal",
   primaryTextFontWeight: "semibold",
   secondaryTextFontWeight: "semibold",
+  ...DEFAULT_BACKLINK_STYLE,
 };
 
 export function resolveMixedThreeImagesStyle(style = {}) {
-  return {
-    ...DEFAULT_MIXED_THREE_IMAGES_STYLE,
-    ...style,
-  };
+  return resolveBacklinkStyle(
+    { ...DEFAULT_MIXED_THREE_IMAGES_STYLE, ...style },
+    DEFAULT_MIXED_THREE_IMAGES_STYLE
+  );
 }
 
 export const MIXED_THREE_IMAGES_LAYOUT_CLASS = {
@@ -97,4 +104,5 @@ export const MIXED_THREE_IMAGES_STYLE_RESET_KEYS = {
   title: ["titleAlign", "titleColor", "titleFontWeight", "descriptionColor", "descriptionFontWeight"],
   images: ["showLargeImage", "showSmallImages", "imageRadius"],
   button: ["showPrimary", "showSecondary", "primaryBg", "primaryText", "primaryTextFontWeight", "secondaryText", "secondaryTextFontWeight"],
+  links: [...BACKLINK_STYLE_RESET_KEYS],
 };

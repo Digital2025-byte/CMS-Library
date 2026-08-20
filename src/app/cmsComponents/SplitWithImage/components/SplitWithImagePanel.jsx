@@ -8,34 +8,13 @@ import PageContentContainer from "@/components/layout/PageContentContainer";
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
 import { getFontWeightValue } from "@/styles/fontWeight";
+import { LinkedText } from "@/app/cmsComponents/shared/backlinks";
 import { isUsableImageSrc } from "../utils/helpers";
 import {
   DEFAULT_SPLIT_WITH_IMAGE_STYLE,
   SECTION_PADDING_CLASS,
   TITLE_ALIGN_CLASS,
 } from "../utils/style";
-
-const containerVariants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.035,
-    },
-  },
-};
-
-const wordVariants = {
-  hidden: {
-    opacity: 0,
-  },
-  visible: {
-    opacity: 1,
-    transition: {
-      duration: 0.15,
-      ease: "easeOut",
-    },
-  },
-};
 
 export default function SplitWithImagePanel({
   lang = "en",
@@ -44,9 +23,6 @@ export default function SplitWithImagePanel({
 }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { amount: 0.5, once: false });
-  const words = String(content.description || "")
-    .split(/\s+/)
-    .filter(Boolean);
   const imagesOnRight = style.imageSide !== "left";
   const textOrder = imagesOnRight ? "order-2 lg:order-1" : "order-2 lg:order-2";
   const imageOrder = imagesOnRight ? "order-1 lg:order-2" : "order-1 lg:order-1";
@@ -88,7 +64,7 @@ export default function SplitWithImagePanel({
                   {content.title}
                 </h2>
               ) : null}
-              {style.showDescription ? (
+              {style.showDescription && content.description ? (
                 <motion.p
                   className={`${typography.sectionDescription} text-start font-medium leading-9 wrap-break-word`}
                   style={{
@@ -96,20 +72,18 @@ export default function SplitWithImagePanel({
                       style.descriptionColor,
                       "secondary-2"
                     ),
+                    fontWeight: getFontWeightValue(style.descriptionFontWeight),
                   }}
-                  variants={containerVariants}
-                  initial="hidden"
-                  animate={isInView ? "visible" : "hidden"}
+                  initial={{ opacity: 0 }}
+                  animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
                 >
-                  {words.map((wordText, index) => (
-                    <motion.span
-                      key={`${wordText}-${index}`}
-                      variants={wordVariants}
-                      className="me-1 inline-block"
-                    >
-                      {wordText}
-                    </motion.span>
-                  ))}
+                  <LinkedText
+                    text={content.description}
+                    links={content.links}
+                    style={style}
+                    enabled={style.showLinks !== false}
+                  />
                 </motion.p>
               ) : null}
             </div>

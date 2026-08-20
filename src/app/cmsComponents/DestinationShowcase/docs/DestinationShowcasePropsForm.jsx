@@ -7,6 +7,7 @@ import {
   InspectorTabs,
   applyInspectorReset,
 } from "@/components/inspector";
+import { BacklinksStyleSection } from "@/app/cmsComponents/shared/backlinks";
 import DestinationShowcaseContentForm from "./DestinationShowcaseContentForm";
 import {
   CARD_RADIUS_OPTIONS,
@@ -258,6 +259,13 @@ function DestinationShowcaseStyleForm({ style, onChange }) {
           />
         ) : null}
       </InspectorSection>
+
+      <BacklinksStyleSection
+        style={style}
+        onChange={onChange}
+        onReset={() => reset(DESTINATION_SHOWCASE_STYLE_RESET_KEYS.links)}
+        defaults={DEFAULT_DESTINATION_SHOWCASE_STYLE}
+      />
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { LinkedText } from "@/app/cmsComponents/shared/backlinks";
 import { CONNECTION_STEPS_MOBILE_LAYOUT } from "../utils/layoutMobile";
 import { isUsableImageSrc } from "../utils/helpers";
 import { DEFAULT_CONNECTION_STEPS_STYLE } from "../utils/style";
@@ -17,6 +18,7 @@ export default function ConnectionStepMobile({
   const x = centerX ?? (imageOnLeft ? path.leftX : path.rightX);
   const canShowImage =
     theme.showImages && isUsableImageSrc(step?.imageUrl);
+  const showLinks = theme.showLinks !== false;
 
   return (
     <div
@@ -59,7 +61,12 @@ export default function ConnectionStepMobile({
               color: getThemeColorCss(theme.descriptionColor, "secondary-2"),
             }}
           >
-            {step.description}
+            <LinkedText
+              text={step.description}
+              parts={step.bodyParts}
+              style={theme}
+              enabled={showLinks}
+            />
           </p>
         ) : null}
       </div>

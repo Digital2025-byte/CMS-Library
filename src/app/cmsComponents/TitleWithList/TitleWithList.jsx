@@ -6,7 +6,10 @@ import { resolveTitleWithListStyle } from "./utils/style";
 
 export default function TitleWithList({ lang = "en", data, style }) {
   const resolvedStyle = resolveTitleWithListStyle(style);
-  const { title, items, hasContent } = getTitleWithListContent(data, lang);
+  const { title, links, items, hasContent } = getTitleWithListContent(
+    data,
+    lang
+  );
 
   if (!hasContent) {
     return null;
@@ -16,6 +19,7 @@ export default function TitleWithList({ lang = "en", data, style }) {
     <TitleWithListPanel
       lang={lang}
       title={title}
+      links={links}
       items={items}
       style={resolvedStyle}
     />

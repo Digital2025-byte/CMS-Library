@@ -2,6 +2,7 @@ import Button from "@/components/ui/Button";
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
 import { getFontWeightValue } from "@/styles/fontWeight";
+import { LinkedText } from "@/app/cmsComponents/shared/backlinks";
 import {
   DEFAULT_CITIES_SECTIONS_STYLE,
   TITLE_ALIGN_CLASS,
@@ -20,6 +21,7 @@ export default function CitiesSectionsText({
     TITLE_ALIGN_CLASS[style.titleAlign] ?? TITLE_ALIGN_CLASS.left;
   const buttonBg = getThemeColorCss(style.buttonBg, "primary-2");
   const buttonText = getThemeColorCss(style.buttonText, "white");
+  const links = content.links || [];
 
   if (!showHeading && !showCopy && !showCta) {
     return null;
@@ -41,7 +43,12 @@ export default function CitiesSectionsText({
           className={`${typography.sectionDescription} mt-4 max-w-md leading-relaxed wrap-break-word`}
           style={{ color: getThemeColorCss(style.descriptionColor, "white"), fontWeight: getFontWeightValue(style.descriptionFontWeight) }}
         >
-          {content.description}
+          <LinkedText
+            text={content.description}
+            links={links}
+            style={style}
+            enabled={style.showLinks !== false}
+          />
         </p>
       ) : null}
 

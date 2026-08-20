@@ -5,6 +5,7 @@ import {
   InspectorSection,
   applyInspectorReset,
 } from "@/components/inspector";
+import { BacklinksEditor } from "@/app/cmsComponents/shared/backlinks";
 
 const TITLE_KEYS = ["title", "countryName"];
 const IMAGE_KEYS = ["imageUrl", "imageAlt"];
@@ -143,6 +144,15 @@ export default function HeaderWithCityInfoContentForm({
           onChange={(value) => updateField("nextFlight", value)}
         />
       </InspectorSection>
+
+      <BacklinksEditor
+        idPrefix="header-city-info-link"
+        links={content.links || []}
+        sourceText={content.description || ""}
+        defaults={defaults?.links || []}
+        onChange={(links) => onChange({ ...content, links })}
+        showReset
+      />
     </div>
   );
 }

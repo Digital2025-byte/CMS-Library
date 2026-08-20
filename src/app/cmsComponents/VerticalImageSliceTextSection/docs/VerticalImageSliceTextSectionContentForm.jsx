@@ -6,6 +6,7 @@ import {
   InspectorTitleSection,
   applyInspectorReset,
 } from "@/components/inspector";
+import { BacklinksEditor } from "@/app/cmsComponents/shared/backlinks";
 
 const TITLE_KEYS = ["title", "description"];
 const IMAGE_KEYS = ["imageUrl", "imageAlt"];
@@ -54,6 +55,14 @@ export default function VerticalImageSliceTextSectionContentForm({
           onChange={(value) => updateField("imageAlt", value)}
         />
       </InspectorSection>
+
+      <BacklinksEditor
+        idPrefix="vertical-image-slice-link"
+        links={content.links || []}
+        sourceText={content.description || ""}
+        defaults={defaults?.links || []}
+        onChange={(links) => onChange({ ...content, links })}
+      />
     </div>
   );
 }

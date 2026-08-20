@@ -11,6 +11,7 @@ const ReactSlick = dynamic(() => import("react-slick"), { ssr: false });
 
 export default function SliderTrack({
   slides = [],
+  slideLinkParts = null,
   settings = {},
   lang = "en",
   posParams = "gb",
@@ -123,6 +124,7 @@ export default function SliderTrack({
           <div key={slide.id || `slide-${index}`}>
             <SliderSlide
               slide={slide}
+              descriptionParts={slideLinkParts?.[index]?.bodyParts}
               lang={lang}
               posParams={posParams}
               cId={cId}

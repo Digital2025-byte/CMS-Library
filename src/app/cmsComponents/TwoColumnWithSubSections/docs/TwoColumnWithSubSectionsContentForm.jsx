@@ -8,6 +8,10 @@ import {
   InspectorTitleSection,
   applyInspectorReset,
 } from "@/components/inspector";
+import {
+  BacklinksEditor,
+  joinItemBacklinkSourceText,
+} from "@/app/cmsComponents/shared/backlinks";
 
 const TITLE_KEYS = ["sectionLabel", "title", "description"];
 const CTA_KEYS = ["ctaLabel", "ctaHref", "ctaLinkType"];
@@ -69,7 +73,7 @@ export default function TwoColumnWithSubSectionsContentForm({
       <InspectorSection title="Subsections" onReset={() => reset(ITEM_KEYS)}>
         <InspectorRepeater
           items={content.items || []}
-          createItem={() => ({ title: "", description: "" })}
+          createItem={() => ({ title: "", description: "", links: [] })}
           itemLabel={(_item, index) => `Item ${index + 1}`}
           addLabel="Add Item"
           onChange={(items) => onChange({ ...content, items })}
@@ -88,6 +92,15 @@ export default function TwoColumnWithSubSectionsContentForm({
                 value={item.description || ""}
                 onChange={(value) => update("description", value)}
                 multiline
+              />
+              <BacklinksEditor
+                idPrefix={`two-column-sub-${index}-link`}
+                title="Item backlinks"
+                links={item.links || []}
+                sourceText={item.description || ""}
+                defaults={[]}
+                onChange={(links) => update("links", links)}
+                showReset={false}
               />
             </>
           )}
@@ -120,6 +133,18 @@ export default function TwoColumnWithSubSectionsContentForm({
           onChange={(value) => updateField("overlayImageAlt", value)}
         />
       </InspectorSection>
+
+      <BacklinksEditor
+        idPrefix="two-column-sub-link"
+        title="Backlinks"
+        links={content.links || []}
+        sourceText={joinItemBacklinkSourceText({
+          description: content.description,
+          items: content.items,
+        })}
+        defaults={defaults?.links || []}
+        onChange={(links) => onChange({ ...content, links })}
+      />
     </div>
   );
 }

@@ -22,6 +22,7 @@ export default function DestinationShowcasePanel({
         <DestinationShowcaseHeader
           title={content.title}
           description={content.description}
+          links={content.links}
           viewAllLabel={content.viewAllLabel}
           viewAllHref={content.viewAllHref}
           lang={lang}

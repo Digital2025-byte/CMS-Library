@@ -1,4 +1,8 @@
 import { PANEL_COUNT, RING_COPIES } from "./constants";
+import {
+  normalizeBacklinks,
+  toEditorBacklinks,
+} from "@/app/cmsComponents/shared/backlinks";
 
 function resolveImageUrl(image) {
   if (!image) return "";
@@ -66,6 +70,7 @@ export function getOnBoardImageRingContent(data, lang = "en") {
     return {
       title: "",
       description: "",
+      links: [],
       images: [],
       captions: [],
       hasContent: false,
@@ -99,6 +104,7 @@ export function getOnBoardImageRingContent(data, lang = "en") {
   return {
     title: content.title || "",
     description: content.description || "",
+    links: normalizeBacklinks(content.links),
     images: items.map((item) => item.imageUrl),
     captions: items.map((item) => item.caption),
     hasContent: Boolean(
@@ -108,13 +114,14 @@ export function getOnBoardImageRingContent(data, lang = "en") {
 }
 
 export function getOnBoardImageRingEditorContent(data, lang = "en") {
-  const { title, description, images, captions } =
+  const { title, description, links, images, captions } =
     getOnBoardImageRingContent(data, lang);
   const items = collapseRepeatingItems(toItems(images, captions));
 
   return {
     title,
     description,
+    links: toEditorBacklinks(links),
     items,
   };
 }
@@ -145,6 +152,7 @@ export function wrapOnBoardImageRingContent(content = {}, lang = "en") {
         content: {
           title: content.title || "",
           description: content.description || "",
+          links: normalizeBacklinks(content.links),
           images,
           captions,
         },

@@ -19,6 +19,7 @@ export default function MixedRightThreeImagesPanel({
     lang,
     title: content.title,
     description: content.description,
+    links: content.links || [],
     primaryCta: content.primaryCta,
     secondaryCta: content.secondaryCta,
     style,

@@ -7,6 +7,7 @@ import {
   InspectorTitleSection,
   applyInspectorReset,
 } from "@/components/inspector";
+import { BacklinksEditor } from "@/app/cmsComponents/shared/backlinks";
 
 const TITLE_KEYS = ["title", "description"];
 const PRIMARY_KEYS = ["primaryLabel", "primaryHref", "primaryLinkType"];
@@ -113,6 +114,15 @@ export default function MixedRightThreeImagesContentForm({
           onChange={(value) => updateField("smallImageTwoAlt", value)}
         />
       </InspectorSection>
+
+      <BacklinksEditor
+        idPrefix="mixed-three-images-link"
+        links={content.links || []}
+        sourceText={content.description || ""}
+        defaults={defaults?.links || []}
+        onChange={(links) => onChange({ ...content, links })}
+        showReset
+      />
     </div>
   );
 }

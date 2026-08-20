@@ -1,3 +1,8 @@
+import {
+  normalizeBacklinks,
+  toEditorBacklinks,
+} from "@/app/cmsComponents/shared/backlinks";
+
 function getFileUrl(image) {
   if (!image) {
     return "";
@@ -37,6 +42,7 @@ export function getFullHeightHeaderWithTextContent(
     return {
       title: "",
       description: "",
+      links: [],
       buttonText: "",
       ctaHref: "",
       backgroundImage: "",
@@ -56,6 +62,7 @@ export function getFullHeightHeaderWithTextContent(
   const content = matchedTranslation?.content || {};
   const title = content?.title || "";
   const description = content?.description || "";
+  const links = normalizeBacklinks(content?.links);
   const buttonText =
     content?.ctaButton?.content ||
     content?.ctaButton?.label ||
@@ -76,6 +83,7 @@ export function getFullHeightHeaderWithTextContent(
   return {
     title,
     description,
+    links,
     buttonText,
     ctaHref,
     backgroundImage,
@@ -94,6 +102,7 @@ export function getFullHeightHeaderWithTextEditorContent(
   return {
     title: content.title || "",
     description: content.description || "",
+    links: toEditorBacklinks(content.links),
     buttonLabel: content.buttonText || "",
     buttonHref: content.ctaHref || "",
     buttonLinkType: "internal",
@@ -110,6 +119,7 @@ export function wrapFullHeightHeaderWithTextContent(content = {}, lang = "en") {
         content: {
           title: content.title || "",
           description: content.description || "",
+          links: normalizeBacklinks(content.links),
           buttonText: content.buttonLabel || "",
           imageAlt: content.imageAlt || "",
           ctaButton: {

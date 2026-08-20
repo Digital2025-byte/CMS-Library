@@ -7,6 +7,7 @@ import {
   InspectorTabs,
   applyInspectorReset,
 } from "@/components/inspector";
+import { BacklinksStyleSection } from "@/app/cmsComponents/shared/backlinks";
 import SectionWithAnimatedImagesContentForm from "./SectionWithAnimatedImagesContentForm";
 import {
   ANIMATED_IMAGES_STYLE_RESET_KEYS,
@@ -145,6 +146,13 @@ function SectionWithAnimatedImagesStyleForm({ style, onChange }) {
           </>
         ) : null}
       </InspectorSection>
+
+      <BacklinksStyleSection
+        style={style}
+        onChange={onChange}
+        onReset={() => reset(ANIMATED_IMAGES_STYLE_RESET_KEYS.links)}
+        defaults={DEFAULT_ANIMATED_IMAGES_STYLE}
+      />
     </div>
   );
 }

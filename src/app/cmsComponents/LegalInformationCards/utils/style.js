@@ -1,3 +1,9 @@
+import {
+  BACKLINK_STYLE_RESET_KEYS,
+  DEFAULT_BACKLINK_STYLE,
+  resolveBacklinkStyle,
+} from "@/app/cmsComponents/shared/backlinks";
+
 export const CARD_RADIUS_OPTIONS = [
   { value: "none", label: "Square" },
   { value: "sm", label: "Small" },
@@ -49,13 +55,14 @@ export const DEFAULT_LEGAL_INFORMATION_CARDS_STYLE = {
   ctaColor: "50",
   titleFontWeight: "semibold",
   descriptionFontWeight: "normal",
+  ...DEFAULT_BACKLINK_STYLE,
 };
 
 export function resolveLegalInformationCardsStyle(style = {}) {
-  return {
-    ...DEFAULT_LEGAL_INFORMATION_CARDS_STYLE,
-    ...style,
-  };
+  return resolveBacklinkStyle(
+    { ...DEFAULT_LEGAL_INFORMATION_CARDS_STYLE, ...style },
+    DEFAULT_LEGAL_INFORMATION_CARDS_STYLE
+  );
 }
 
 export const LEGAL_INFORMATION_CARDS_STYLE_RESET_KEYS = {
@@ -79,4 +86,5 @@ export const LEGAL_INFORMATION_CARDS_STYLE_RESET_KEYS = {
     "descriptionColor", "descriptionFontWeight",
     "ctaColor",
   ],
+  links: [...BACKLINK_STYLE_RESET_KEYS],
 };

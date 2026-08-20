@@ -3,6 +3,7 @@
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "../slider-hero.css";
+import { buildItemBacklinkParts } from "@/app/cmsComponents/shared/backlinks";
 import SliderTrack from "./SliderTrack";
 import { mergeSliderSettings } from "../utils/sliderSettings";
 import {
@@ -18,6 +19,11 @@ export default function SliderPanel({
   style,
 }) {
   const slides = content.slides || [];
+  const links = content.links || [];
+  const showLinks = style.showLinks !== false;
+  const slideLinkParts = showLinks
+    ? buildItemBacklinkParts(slides, links)
+    : null;
   const settings = mergeSliderSettings(sliderStyleToSettings(style));
 
   if (slides.length <= 1) {
@@ -48,6 +54,7 @@ export default function SliderPanel({
       <SliderTrack
         key={sliderKey}
         slides={slides}
+        slideLinkParts={slideLinkParts}
         settings={settings}
         lang={lang}
         posParams={posParams}

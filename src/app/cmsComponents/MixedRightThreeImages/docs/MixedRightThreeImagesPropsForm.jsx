@@ -7,6 +7,7 @@ import {
   InspectorTabs,
   applyInspectorReset,
 } from "@/components/inspector";
+import { BacklinksStyleSection } from "@/app/cmsComponents/shared/backlinks";
 import MixedRightThreeImagesContentForm from "./MixedRightThreeImagesContentForm";
 import {
   CARD_RADIUS_OPTIONS,
@@ -180,6 +181,13 @@ function MixedRightThreeImagesStyleForm({ style, onChange }) {
           />
         ) : null}
       </InspectorSection>
+
+      <BacklinksStyleSection
+        style={style}
+        onChange={onChange}
+        onReset={() => reset(MIXED_THREE_IMAGES_STYLE_RESET_KEYS.links)}
+        defaults={DEFAULT_MIXED_THREE_IMAGES_STYLE}
+      />
     </div>
   );
 }

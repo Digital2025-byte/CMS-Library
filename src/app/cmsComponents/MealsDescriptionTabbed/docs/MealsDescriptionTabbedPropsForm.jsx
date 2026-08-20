@@ -7,6 +7,7 @@ import {
   InspectorTabs,
   applyInspectorReset,
 } from "@/components/inspector";
+import { BacklinksStyleSection } from "@/app/cmsComponents/shared/backlinks";
 import MealsDescriptionTabbedContentForm from "./MealsDescriptionTabbedContentForm";
 import {
   CARD_RADIUS_OPTIONS,
@@ -206,6 +207,13 @@ function MealsDescriptionTabbedStyleForm({ style, onChange }) {
           onChange={(value) => update("stripeColor", value)}
         />
       </InspectorSection>
+
+      <BacklinksStyleSection
+        style={style}
+        onChange={onChange}
+        onReset={() => reset(MEALS_TABBED_STYLE_RESET_KEYS.links)}
+        defaults={DEFAULT_MEALS_TABBED_STYLE}
+      />
     </div>
   );
 }

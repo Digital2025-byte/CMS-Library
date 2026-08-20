@@ -2,15 +2,19 @@ import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
 import { getFontWeightValue } from "@/styles/fontWeight";
 import { getIconByName } from "@/constants/Icons";
+import { LinkedText } from "@/app/cmsComponents/shared/backlinks";
 import { DEFAULT_SERVICE_BENEFITS_STYLE } from "../utils/style";
 
 export default function ServiceBenefitItem({
   title,
   description,
+  titleParts,
+  bodyParts,
   icon,
   style = DEFAULT_SERVICE_BENEFITS_STYLE,
 }) {
   const Icon = getIconByName(icon) || getIconByName("Star");
+  const showLinks = style.showLinks !== false;
 
   return (
     <div className="flex items-start gap-3 md:gap-3 lg:gap-4">
@@ -33,7 +37,12 @@ export default function ServiceBenefitItem({
             style={{ color: getThemeColorCss(style.itemTitleColor, "white"), fontWeight: getFontWeightValue(style.itemTitleFontWeight),
             }}
           >
-            {title}
+            <LinkedText
+              text={title}
+              parts={titleParts}
+              style={style}
+              enabled={showLinks}
+            />
           </h3>
         ) : null}
         {style.showDescription && description ? (
@@ -43,7 +52,12 @@ export default function ServiceBenefitItem({
               opacity: 0.9,
             }}
           >
-            {description}
+            <LinkedText
+              text={description}
+              parts={bodyParts}
+              style={style}
+              enabled={showLinks}
+            />
           </p>
         ) : null}
       </div>

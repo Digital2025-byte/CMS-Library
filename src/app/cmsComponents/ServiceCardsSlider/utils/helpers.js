@@ -1,4 +1,8 @@
 import { withCampaignPath } from "@/utils/withCampaignPath";
+import {
+  normalizeBacklinks,
+  toEditorBacklinks,
+} from "@/app/cmsComponents/shared/backlinks";
 
 export function isUsableImageSrc(src) {
   const value = String(src || "").trim();
@@ -36,6 +40,7 @@ function normalizeService(raw, lang, posParams, cId) {
   return {
     title: item?.title || "",
     description: item?.description || "",
+    links: normalizeBacklinks(item?.links),
     imageUrl:
       item?.imageUrl || image?.fileUrl || image?.url || image?.src || "",
     imageAlt: image?.alt || item?.imageAlt || item?.title || "Service",
@@ -57,6 +62,7 @@ export function getServiceCardsSliderContent(
     return {
       title: "",
       description: "",
+      links: [],
       services: [],
       hasContent: false,
     };
@@ -80,6 +86,7 @@ export function getServiceCardsSliderContent(
   return {
     title,
     description,
+    links: normalizeBacklinks(content?.links),
     services,
     hasContent: Boolean(title || description || services.length),
   };
@@ -91,7 +98,7 @@ export function getServiceCardsSliderEditorContent(
   posParams,
   cId
 ) {
-  const { title, description, services } = getServiceCardsSliderContent(
+  const { title, description, links, services } = getServiceCardsSliderContent(
     data,
     lang,
     posParams,
@@ -101,9 +108,11 @@ export function getServiceCardsSliderEditorContent(
   return {
     title,
     description,
+    links: toEditorBacklinks(links),
     items: services.map((service) => ({
       title: service.title || "",
       description: service.description || "",
+      links: toEditorBacklinks(service.links),
       imageUrl: service.imageUrl || "",
       imageAlt: service.imageAlt || "",
       buttonHref: service.href || "",
@@ -120,10 +129,12 @@ export function wrapServiceCardsSliderContent(content = {}, lang = "en") {
         content: {
           title: content.title || "",
           description: content.description || "",
+          links: normalizeBacklinks(content.links),
           services: (Array.isArray(content.items) ? content.items : []).map(
             (item) => ({
               title: item?.title || "",
               description: item?.description || "",
+              links: normalizeBacklinks(item?.links),
               image: {
                 fileUrl: item?.imageUrl || "",
                 alt: item?.imageAlt || item?.title || "Service",

@@ -7,6 +7,7 @@ import {
   InspectorTabs,
   applyInspectorReset,
 } from "@/components/inspector";
+import { BacklinksStyleSection } from "@/app/cmsComponents/shared/backlinks";
 import LegalInformationCardsContentForm from "./LegalInformationCardsContentForm";
 import {
   CARD_RADIUS_OPTIONS,
@@ -158,6 +159,13 @@ function LegalInformationCardsStyleForm({ style, onChange }) {
           onChange={(value) => update("cardRadius", value)}
         />
       </InspectorSection>
+
+      <BacklinksStyleSection
+        style={style}
+        onChange={onChange}
+        onReset={() => reset(LEGAL_INFORMATION_CARDS_STYLE_RESET_KEYS.links)}
+        defaults={DEFAULT_LEGAL_INFORMATION_CARDS_STYLE}
+      />
     </div>
   );
 }

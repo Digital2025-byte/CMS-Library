@@ -1,3 +1,9 @@
+import {
+  BACKLINK_STYLE_RESET_KEYS,
+  DEFAULT_BACKLINK_STYLE,
+  resolveBacklinkStyle,
+} from "@/app/cmsComponents/shared/backlinks";
+
 export const TITLE_ALIGN_OPTIONS = [
   { value: "left", label: "Start" },
   { value: "center", label: "Center" },
@@ -40,6 +46,7 @@ export const DEFAULT_DUAL_IMAGE_TEXT_STYLE = {
   titleFontWeight: "semibold",
   descriptionFontWeight: "normal",
   buttonTextFontWeight: "semibold",
+  ...DEFAULT_BACKLINK_STYLE,
 };
 
 export function resolveDualImageTextStyle(style = {}) {
@@ -52,7 +59,7 @@ export function resolveDualImageTextStyle(style = {}) {
     merged.sectionBg = String(style.bgColor).replace(/^bg-/, "");
   }
 
-  return merged;
+  return resolveBacklinkStyle(merged, DEFAULT_DUAL_IMAGE_TEXT_STYLE);
 }
 
 export const DUAL_IMAGE_TEXT_STYLE_RESET_KEYS = {
@@ -68,4 +75,5 @@ export const DUAL_IMAGE_TEXT_STYLE_RESET_KEYS = {
   title: ["titleAlign", "titleColor", "titleFontWeight", "descriptionColor", "descriptionFontWeight", "underlineFirstWord"],
   images: ["blueLayer", "showExtraImage"],
   button: ["showExploreButton", "buttonBg", "buttonText", "buttonTextFontWeight"],
+  links: [...BACKLINK_STYLE_RESET_KEYS],
 };

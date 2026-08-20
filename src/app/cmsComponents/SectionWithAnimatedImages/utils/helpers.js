@@ -1,3 +1,8 @@
+import {
+  normalizeBacklinks,
+  toEditorBacklinks,
+} from "@/app/cmsComponents/shared/backlinks";
+
 export function getImageSrc(src) {
   if (!src) {
     return "";
@@ -41,6 +46,7 @@ export function getSectionWithAnimatedImagesContent(data, lang = "en") {
     return {
       preTitle: "",
       title: "",
+      links: [],
       buttonText: "",
       buttonLink: "",
       iconType: "Instagram",
@@ -100,6 +106,7 @@ export function getSectionWithAnimatedImagesContent(data, lang = "en") {
   return {
     preTitle,
     title,
+    links: normalizeBacklinks(content?.links),
     buttonText,
     buttonLink,
     iconType,
@@ -114,6 +121,7 @@ export function getSectionWithAnimatedImagesEditorContent(data, lang = "en") {
   return {
     title: content.title || "",
     description: content.preTitle || "",
+    links: toEditorBacklinks(content.links),
     ctaLabel: content.buttonText || "",
     ctaHref: content.buttonLink || "",
     ctaLinkType: "external",
@@ -133,6 +141,7 @@ export function wrapSectionWithAnimatedImagesContent(content = {}, lang = "en") 
         content: {
           title: content.title || "",
           preTitle: content.description || "",
+          links: normalizeBacklinks(content.links),
           buttonText: content.ctaLabel || "",
           buttonLink: content.ctaHref || "",
           iconType: content.iconType || "Instagram",

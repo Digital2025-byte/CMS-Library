@@ -1,4 +1,8 @@
 import { getIconSrc } from "./icons";
+import {
+  normalizeBacklinks,
+  toEditorBacklinks,
+} from "@/app/cmsComponents/shared/backlinks";
 
 export function normalizeSimpleGridItem(item, defaults = {}) {
   const grid = item?.grid || {};
@@ -23,6 +27,7 @@ export function getSimpleGridWithPrefixContent(data, lang = "en") {
     return {
       title: "",
       description: "",
+      links: [],
       items: [],
       hasContent: false,
     };
@@ -50,6 +55,7 @@ export function getSimpleGridWithPrefixContent(data, lang = "en") {
   return {
     title,
     description,
+    links: normalizeBacklinks(content?.links),
     items,
     hasContent: Boolean(title || items.length),
   };
@@ -61,6 +67,7 @@ export function getSimpleGridWithPrefixEditorContent(data, lang = "en") {
   return {
     title: content.title || "",
     description: content.description || "",
+    links: toEditorBacklinks(content.links),
     items: content.items.map((item) => ({
       title: item.title || "",
       userName: item.userName || "",
@@ -80,6 +87,7 @@ export function wrapSimpleGridWithPrefixContent(content = {}, lang = "en") {
         content: {
           title: content.title || "",
           description: content.description || "",
+          links: normalizeBacklinks(content.links),
           channels: (Array.isArray(content.items) ? content.items : []).map(
             (item) => ({
               grid: {

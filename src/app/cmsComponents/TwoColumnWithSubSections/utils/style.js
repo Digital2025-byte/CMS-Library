@@ -1,3 +1,9 @@
+import {
+  BACKLINK_STYLE_RESET_KEYS,
+  DEFAULT_BACKLINK_STYLE,
+  resolveBacklinkStyle,
+} from "@/app/cmsComponents/shared/backlinks";
+
 export const TITLE_ALIGN_OPTIONS = [
   { value: "left", label: "Start" },
   { value: "center", label: "Center" },
@@ -66,13 +72,14 @@ export const DEFAULT_TWO_COLUMN_SUB_SECTIONS_STYLE = {
   itemTitleFontWeight: "semibold",
   buttonTextFontWeight: "semibold",
   labelFontWeight: "medium",
+  ...DEFAULT_BACKLINK_STYLE,
 };
 
 export function resolveTwoColumnWithSubSectionsStyle(style = {}) {
-  return {
-    ...DEFAULT_TWO_COLUMN_SUB_SECTIONS_STYLE,
-    ...style,
-  };
+  return resolveBacklinkStyle(
+    { ...DEFAULT_TWO_COLUMN_SUB_SECTIONS_STYLE, ...style },
+    DEFAULT_TWO_COLUMN_SUB_SECTIONS_STYLE
+  );
 }
 
 export const TWO_COLUMN_SUB_SECTIONS_STYLE_RESET_KEYS = {
@@ -95,4 +102,5 @@ export const TWO_COLUMN_SUB_SECTIONS_STYLE_RESET_KEYS = {
   items: ["itemTitleColor", "itemTitleFontWeight", "itemBodyColor", "dividerColor"],
   images: ["showImages", "imageRadius"],
   button: ["showCta", "buttonBg", "buttonText", "buttonTextFontWeight"],
+  links: [...BACKLINK_STYLE_RESET_KEYS],
 };

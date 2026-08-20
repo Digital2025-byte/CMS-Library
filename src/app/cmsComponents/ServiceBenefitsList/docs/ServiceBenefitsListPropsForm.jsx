@@ -7,6 +7,7 @@ import {
   InspectorTabs,
   applyInspectorReset,
 } from "@/components/inspector";
+import { BacklinksStyleSection } from "@/app/cmsComponents/shared/backlinks";
 import ServiceBenefitsListContentForm from "./ServiceBenefitsListContentForm";
 import {
   CARD_RADIUS_OPTIONS,
@@ -161,6 +162,13 @@ function ServiceBenefitsListStyleForm({ style, onChange }) {
           onChange={(value) => update("cardRadius", value)}
         />
       </InspectorSection>
+
+      <BacklinksStyleSection
+        style={style}
+        onChange={onChange}
+        onReset={() => reset(SERVICE_BENEFITS_STYLE_RESET_KEYS.links)}
+        defaults={DEFAULT_SERVICE_BENEFITS_STYLE}
+      />
     </div>
   );
 }

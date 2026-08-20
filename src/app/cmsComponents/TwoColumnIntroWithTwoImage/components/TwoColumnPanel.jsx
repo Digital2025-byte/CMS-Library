@@ -21,6 +21,7 @@ export default function TwoColumnPanel({
       <TwoColumnContent
         title={content.title}
         description={content.description}
+        links={content.links}
         ctaButton={content.ctaButton}
         ctaHref={content.ctaHref}
         style={style}

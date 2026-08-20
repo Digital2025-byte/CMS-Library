@@ -7,6 +7,10 @@ import {
   InspectorSelect,
   applyInspectorReset,
 } from "@/components/inspector";
+import {
+  BacklinksEditor,
+  joinItemBacklinkSourceText,
+} from "@/app/cmsComponents/shared/backlinks";
 
 const ICON_OPTIONS = [
   { value: "shield", label: "Shield" },
@@ -17,6 +21,7 @@ const ICON_OPTIONS = [
 const emptyCard = () => ({
   title: "",
   description: "",
+  links: [],
   icon: "document",
   ctaLabel: "",
   slug: "",
@@ -73,10 +78,30 @@ export default function LegalInformationCardsContentForm({
                 value={item.slug || ""}
                 onChange={(value) => update("slug", value)}
               />
+              <BacklinksEditor
+                idPrefix={`legal-cards-item-${index}-link`}
+                title="Item backlinks"
+                links={item.links || []}
+                sourceText={item.description || ""}
+                defaults={[]}
+                onChange={(links) => update("links", links)}
+                showReset={false}
+              />
             </>
           )}
         </InspectorRepeater>
       </InspectorSection>
+
+      <BacklinksEditor
+        idPrefix="legal-cards-link"
+        title="Backlinks"
+        links={content.links || []}
+        sourceText={joinItemBacklinkSourceText({
+          items: content.cards,
+        })}
+        defaults={defaults?.links || []}
+        onChange={(links) => onChange({ ...content, links })}
+      />
     </div>
   );
 }

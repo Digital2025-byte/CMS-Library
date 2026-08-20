@@ -21,6 +21,7 @@ export default function TextBlobPanel({
         <TextBlobContent
           title={content.title}
           description={content.description}
+          links={content.links}
           style={style}
         />
       </div>

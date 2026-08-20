@@ -8,6 +8,10 @@ import {
   InspectorTitleSection,
   applyInspectorReset,
 } from "@/components/inspector";
+import {
+  BacklinksEditor,
+  joinItemBacklinkSourceText,
+} from "@/app/cmsComponents/shared/backlinks";
 
 const TITLE_KEYS = ["title", "description"];
 const VIEW_ALL_KEYS = ["viewAllLabel", "viewAllHref", "viewAllLinkType"];
@@ -18,6 +22,7 @@ const emptyItem = () => ({
   cityName: "",
   countryName: "",
   description: "",
+  links: [],
   slug: "",
   imageUrl: "",
   imageAlt: "",
@@ -119,10 +124,32 @@ export default function DestinationShowcaseContentForm({
                 value={item.imageAlt || ""}
                 onChange={(value) => update("imageAlt", value)}
               />
+              <BacklinksEditor
+                idPrefix={`destination-showcase-${index}-link`}
+                title="Item backlinks"
+                links={item.links || []}
+                sourceText={item.description || ""}
+                defaults={[]}
+                onChange={(links) => update("links", links)}
+                showReset={false}
+              />
             </>
           )}
         </InspectorRepeater>
       </InspectorSection>
+
+      <BacklinksEditor
+        idPrefix="destination-showcase-link"
+        title="Backlinks"
+        links={content.links || []}
+        sourceText={joinItemBacklinkSourceText({
+          description: content.description,
+          items: content.items,
+          titleKey: "cityName",
+        })}
+        defaults={defaults?.links || []}
+        onChange={(links) => onChange({ ...content, links })}
+      />
     </div>
   );
 }

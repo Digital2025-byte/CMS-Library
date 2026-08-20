@@ -28,6 +28,7 @@ export default function DualImageTextPanel({
       items={content.items}
       firstSection={content.firstSection}
       showFirstSection={style.showFirstSection}
+      links={content.links}
       extraImageUrl={content.extraImageUrl}
       extraImageAlt={content.extraImageAlt}
       extraImagePositions={extraImagePositions}

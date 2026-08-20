@@ -1,6 +1,7 @@
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
 import { getFontWeightValue } from "@/styles/fontWeight";
+import { buildItemBacklinkParts } from "@/app/cmsComponents/shared/backlinks";
 import { CARDS_PER_PAGE } from "../utils/constants";
 import {
   DEFAULT_SEARCH_GRID_STYLE,
@@ -13,6 +14,7 @@ export default function SightCardsGrid({
   posParams = "gb",
   cId,
   gridTitle = "",
+  links = [],
   exploreLabel,
   exploreMagazineLabel,
   paginatedCards = [],
@@ -21,6 +23,10 @@ export default function SightCardsGrid({
 }) {
   const alignClass =
     TITLE_ALIGN_CLASS[style.titleAlign] ?? TITLE_ALIGN_CLASS.left;
+  const showLinks = style.showLinks !== false;
+  const cardLinkParts = showLinks
+    ? buildItemBacklinkParts(paginatedCards, links)
+    : null;
 
   return (
     <div className="space-y-4">
@@ -41,6 +47,7 @@ export default function SightCardsGrid({
               `${card?.name || "card"}-${index + activePageIndex * CARDS_PER_PAGE}`
             }
             card={card}
+            bodyParts={cardLinkParts?.[index]?.bodyParts}
             lang={lang}
             posParams={posParams}
             cId={cId}

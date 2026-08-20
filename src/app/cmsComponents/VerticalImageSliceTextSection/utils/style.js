@@ -1,3 +1,9 @@
+import {
+  BACKLINK_STYLE_RESET_KEYS,
+  DEFAULT_BACKLINK_STYLE,
+  resolveBacklinkStyle,
+} from "@/app/cmsComponents/shared/backlinks";
+
 export const TITLE_ALIGN_OPTIONS = [
   { value: "left", label: "Start" },
   { value: "center", label: "Center" },
@@ -40,13 +46,14 @@ export const DEFAULT_VERTICAL_IMAGE_SLICE_STYLE = {
   titleFontWeight: "semibold",
   descriptionFontWeight: "normal",
   highlightFontWeight: "bold",
+  ...DEFAULT_BACKLINK_STYLE,
 };
 
 export function resolveVerticalImageSliceStyle(style = {}) {
-  return {
-    ...DEFAULT_VERTICAL_IMAGE_SLICE_STYLE,
-    ...style,
-  };
+  return resolveBacklinkStyle(
+    { ...DEFAULT_VERTICAL_IMAGE_SLICE_STYLE, ...style },
+    DEFAULT_VERTICAL_IMAGE_SLICE_STYLE
+  );
 }
 
 export const VERTICAL_IMAGE_SLICE_STYLE_RESET_KEYS = {
@@ -60,4 +67,5 @@ export const VERTICAL_IMAGE_SLICE_STYLE_RESET_KEYS = {
   ],
   title: ["titleAlign", "titleColor", "titleFontWeight", "highlightColor", "highlightFontWeight", "descriptionColor", "descriptionFontWeight"],
   images: ["showImage"],
+  links: [...BACKLINK_STYLE_RESET_KEYS],
 };

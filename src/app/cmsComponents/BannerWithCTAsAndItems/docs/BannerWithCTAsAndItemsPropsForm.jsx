@@ -7,6 +7,7 @@ import {
   InspectorTabs,
   applyInspectorReset,
 } from "@/components/inspector";
+import { BacklinksStyleSection } from "@/app/cmsComponents/shared/backlinks";
 import BannerWithCTAsAndItemsContentForm from "./BannerWithCTAsAndItemsContentForm";
 import {
   BANNER_WITH_CTAS_STYLE_RESET_KEYS,
@@ -204,6 +205,13 @@ function BannerWithCTAsAndItemsStyleForm({ style, onChange }) {
           />
         ) : null}
       </InspectorSection>
+
+      <BacklinksStyleSection
+        style={style}
+        onChange={onChange}
+        onReset={() => reset(BANNER_WITH_CTAS_STYLE_RESET_KEYS.links)}
+        defaults={DEFAULT_BANNER_WITH_CTAS_STYLE}
+      />
     </div>
   );
 }

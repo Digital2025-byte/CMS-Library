@@ -1,3 +1,9 @@
+import {
+  BACKLINK_STYLE_RESET_KEYS,
+  DEFAULT_BACKLINK_STYLE,
+  resolveBacklinkStyle,
+} from "@/app/cmsComponents/shared/backlinks";
+
 export const TITLE_ALIGN_OPTIONS = [
   { value: "left", label: "Start" },
   { value: "center", label: "Center" },
@@ -34,13 +40,14 @@ export const DEFAULT_CONNECTION_STEPS_STYLE = {
   titleFontWeight: "semibold",
   descriptionFontWeight: "normal",
   labelFontWeight: "medium",
+  ...DEFAULT_BACKLINK_STYLE,
 };
 
 export function resolveConnectionStepsListStyle(style = {}) {
-  return {
-    ...DEFAULT_CONNECTION_STEPS_STYLE,
-    ...style,
-  };
+  return resolveBacklinkStyle(
+    { ...DEFAULT_CONNECTION_STEPS_STYLE, ...style },
+    DEFAULT_CONNECTION_STEPS_STYLE
+  );
 }
 
 export const CONNECTION_STEPS_STYLE_RESET_KEYS = {
@@ -53,4 +60,5 @@ export const CONNECTION_STEPS_STYLE_RESET_KEYS = {
     "sectionPadding",
   ],
   title: ["titleAlign", "titleColor", "titleFontWeight", "labelColor", "labelFontWeight", "descriptionColor", "descriptionFontWeight"],
+  links: [...BACKLINK_STYLE_RESET_KEYS],
 };

@@ -8,6 +8,10 @@ import {
   InspectorTitleSection,
   applyInspectorReset,
 } from "@/components/inspector";
+import {
+  BacklinksEditor,
+  joinItemBacklinkSourceText,
+} from "@/app/cmsComponents/shared/backlinks";
 
 const TITLE_KEYS = ["title", "description"];
 const PRIMARY_KEYS = ["primaryLabel", "primaryHref", "primaryLinkType"];
@@ -77,17 +81,28 @@ export default function BannerWithCTAsAndItemsContentForm({
       <InspectorSection title="Items" onReset={() => reset(ITEM_KEYS)}>
         <InspectorRepeater
           items={content.items || []}
-          createItem={() => ({ text: "" })}
+          createItem={() => ({ text: "", links: [] })}
           itemLabel={(_item, index) => `Item ${index + 1}`}
           onChange={(items) => onChange({ ...content, items })}
         >
           {(item, { index, update }) => (
-            <InspectorField
-              id={`banner-ctas-item-${index}`}
-              label="Text"
-              value={item.text || ""}
-              onChange={(value) => update("text", value)}
-            />
+            <>
+              <InspectorField
+                id={`banner-ctas-item-${index}`}
+                label="Text"
+                value={item.text || ""}
+                onChange={(value) => update("text", value)}
+              />
+              <BacklinksEditor
+                idPrefix={`banner-ctas-item-${index}-link`}
+                title="Item backlinks"
+                links={item.links || []}
+                sourceText={item.text || ""}
+                defaults={[]}
+                onChange={(links) => update("links", links)}
+                showReset={false}
+              />
+            </>
           )}
         </InspectorRepeater>
       </InspectorSection>
@@ -106,6 +121,20 @@ export default function BannerWithCTAsAndItemsContentForm({
           onChange={(value) => updateField("imageAlt", value)}
         />
       </InspectorSection>
+
+      <BacklinksEditor
+        idPrefix="banner-ctas-link"
+        title="Backlinks"
+        links={content.links || []}
+        sourceText={joinItemBacklinkSourceText({
+          description: content.description,
+          items: (content.items || []).map((item) => ({
+            description: item.text,
+          })),
+        })}
+        defaults={defaults?.links || []}
+        onChange={(links) => onChange({ ...content, links })}
+      />
     </div>
   );
 }

@@ -6,6 +6,10 @@ import {
   InspectorSection,
   applyInspectorReset,
 } from "@/components/inspector";
+import {
+  BacklinksEditor,
+  joinItemBacklinkSourceText,
+} from "@/app/cmsComponents/shared/backlinks";
 
 const TITLE_KEYS = ["title"];
 const IMAGE_KEYS = ["backgroundImageUrl", "backgroundImageAlt"];
@@ -50,7 +54,12 @@ export default function ServiceBenefitsListContentForm({
       <InspectorSection title="Benefits" onReset={() => reset(ITEM_KEYS)}>
         <InspectorRepeater
           items={content.items || []}
-          createItem={() => ({ title: "", description: "", icon: "Star" })}
+          createItem={() => ({
+            title: "",
+            description: "",
+            links: [],
+            icon: "Star",
+          })}
           itemLabel={(_item, index) => `Item ${index + 1}`}
           addLabel="Add Item"
           onChange={(items) => onChange({ ...content, items })}
@@ -76,10 +85,30 @@ export default function ServiceBenefitsListContentForm({
                 value={item.icon || ""}
                 onChange={(value) => update("icon", value)}
               />
+              <BacklinksEditor
+                idPrefix={`service-benefits-${index}-link`}
+                title="Item backlinks"
+                links={item.links || []}
+                sourceText={item.description || ""}
+                defaults={[]}
+                onChange={(links) => update("links", links)}
+                showReset={false}
+              />
             </>
           )}
         </InspectorRepeater>
       </InspectorSection>
+
+      <BacklinksEditor
+        idPrefix="service-benefits-link"
+        title="Backlinks"
+        links={content.links || []}
+        sourceText={joinItemBacklinkSourceText({
+          items: content.items,
+        })}
+        defaults={defaults?.links || []}
+        onChange={(links) => onChange({ ...content, links })}
+      />
     </div>
   );
 }

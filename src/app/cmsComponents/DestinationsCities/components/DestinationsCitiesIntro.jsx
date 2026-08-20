@@ -1,6 +1,7 @@
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
 import { getFontWeightValue } from "@/styles/fontWeight";
+import { LinkedText } from "@/app/cmsComponents/shared/backlinks";
 import {
   DEFAULT_DESTINATIONS_CITIES_STYLE,
   TITLE_ALIGN_CLASS,
@@ -9,10 +10,12 @@ import {
 export default function DestinationsCitiesIntro({
   title = "",
   description = "",
+  links = [],
   style = DEFAULT_DESTINATIONS_CITIES_STYLE,
 }) {
   const showHeading = style.showTitle && title;
   const showBody = style.showDescription && description;
+  const showLinks = style.showLinks !== false;
 
   if (!showHeading && !showBody) {
     return null;
@@ -38,9 +41,15 @@ export default function DestinationsCitiesIntro({
           className={`${typography.sectionDescription} mt-6`}
           style={{
             color: `color-mix(in srgb, ${getThemeColorCss(style.descriptionColor, "50")} 80%, transparent)`,
+            fontWeight: getFontWeightValue(style.descriptionFontWeight),
           }}
         >
-          {description}
+          <LinkedText
+            text={description}
+            links={links}
+            style={style}
+            enabled={showLinks}
+          />
         </p>
       ) : null}
     </div>

@@ -6,6 +6,7 @@ import { DEFAULT_MEALS_TABBED_STYLE } from "../utils/style";
 export default function MealsDescriptionGroup({
   group,
   groupIndex = 0,
+  links = [],
   style = DEFAULT_MEALS_TABBED_STYLE,
 }) {
   if (!group) {
@@ -35,6 +36,7 @@ export default function MealsDescriptionGroup({
           item={item}
           striped={itemIndex % 2 === 1}
           titleColor={style.groupItemTitleColor}
+          links={links}
           style={style}
         />
       ))}

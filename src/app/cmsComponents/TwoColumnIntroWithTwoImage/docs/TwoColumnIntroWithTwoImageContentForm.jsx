@@ -7,6 +7,7 @@ import {
   InspectorTitleSection,
   applyInspectorReset,
 } from "@/components/inspector";
+import { BacklinksEditor } from "@/app/cmsComponents/shared/backlinks";
 
 const TITLE_KEYS = ["title", "description"];
 const CTA_KEYS = ["ctaLabel", "ctaHref", "ctaLinkType"];
@@ -81,6 +82,14 @@ export default function TwoColumnIntroWithTwoImageContentForm({
           onChange={(value) => updateField("overlayImageAlt", value)}
         />
       </InspectorSection>
+
+      <BacklinksEditor
+        idPrefix="two-column-intro-link"
+        links={content.links || []}
+        sourceText={content.description || ""}
+        defaults={defaults?.links || []}
+        onChange={(links) => onChange({ ...content, links })}
+      />
     </div>
   );
 }

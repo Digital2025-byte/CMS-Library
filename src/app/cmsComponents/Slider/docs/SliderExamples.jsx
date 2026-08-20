@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { SliderSection } from "@/app/cmsComponents/Slider";
 import SliderPropsForm from "@/app/cmsComponents/Slider/docs/SliderPropsForm";
 import {
-  getSliderContent,
+  getSliderEditorContent,
   wrapSliderContent,
 } from "@/app/cmsComponents/Slider/utils/helpers";
 import { DEFAULT_SLIDER_STYLE } from "@/app/cmsComponents/Slider/utils/style";
@@ -16,21 +16,15 @@ import {
 import Drawer, { useDrawer } from "@/components/ui/Drawer";
 
 function toEditorContent(data, lang) {
-  const { slides } = getSliderContent(data, lang);
+  const content = getSliderEditorContent(data, lang);
 
   return {
-    slides: slides.map((slide) => {
-      const link = resolveEditorLink(slide.ctaHref);
+    ...content,
+    slides: content.slides.map((slide) => {
+      const link = resolveEditorLink(slide.buttonHref);
 
       return {
-        id: slide.id,
-        title: slide.title,
-        subtitle: slide.subtitle,
-        description: slide.description,
-        imageUrl: slide.image,
-        videoUrl: slide.video,
-        imageAlt: slide.alt,
-        buttonText: slide.buttonText,
+        ...slide,
         buttonHref: link.href,
         buttonLinkType: link.type,
       };

@@ -1,6 +1,7 @@
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
 import { getFontWeightValue } from "@/styles/fontWeight";
+import { LinkedText } from "@/app/cmsComponents/shared/backlinks";
 import {
   DEFAULT_TWO_COLUMN_SUB_SECTIONS_STYLE,
   TITLE_ALIGN_CLASS,
@@ -10,6 +11,7 @@ export default function SubSectionsHeader({
   sectionLabel,
   title,
   description,
+  links = [],
   style = DEFAULT_TWO_COLUMN_SUB_SECTIONS_STYLE,
 }) {
   const showLabel = style.showSectionLabel && sectionLabel;
@@ -17,6 +19,7 @@ export default function SubSectionsHeader({
   const showCopy = style.showDescription && description;
   const alignClass =
     TITLE_ALIGN_CLASS[style.titleAlign] ?? TITLE_ALIGN_CLASS.left;
+  const showLinks = style.showLinks !== false;
 
   if (!showLabel && !showHeading && !showCopy) {
     return null;
@@ -48,7 +51,12 @@ export default function SubSectionsHeader({
           style={{ color: getThemeColorCss(style.descriptionColor, "600"), fontWeight: getFontWeightValue(style.descriptionFontWeight),
           }}
         >
-          {description}
+          <LinkedText
+            text={description}
+            links={links}
+            style={style}
+            enabled={showLinks}
+          />
         </p>
       ) : null}
     </div>

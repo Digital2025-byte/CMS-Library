@@ -1,4 +1,30 @@
 import { withCampaignPath } from "@/utils/withCampaignPath";
+import {
+  normalizeBacklinks,
+  toEditorBacklinks,
+} from "@/app/cmsComponents/shared/backlinks";
+
+function normalizeListItem(entry) {
+  if (typeof entry === "string") {
+    return entry ? { text: entry, links: [] } : null;
+  }
+
+  const text =
+    entry?.item?.content ||
+    entry?.content ||
+    entry?.text ||
+    entry?.item ||
+    "";
+
+  if (!text) {
+    return null;
+  }
+
+  return {
+    text: String(text),
+    links: normalizeBacklinks(entry?.links),
+  };
+}
 
 export function getBannerWithCTAsAndItemsContent(
   data,
@@ -14,6 +40,7 @@ export function getBannerWithCTAsAndItemsContent(
     return {
       title: "",
       description: "",
+      links: [],
       backgroundImage: "",
       imageAlt: "",
       primaryLabel: "",
@@ -72,15 +99,14 @@ export function getBannerWithCTAsAndItemsContent(
     return withCampaignPath(`/${segments.join("/")}`, cId);
   };
 
-  const itemsFromCms = Array.isArray(content?.items)
-    ? content.items
-        .map((entry) => entry?.item?.content || entry?.content || entry || "")
-        .filter(Boolean)
-    : [];
+  const itemsFromCms = (Array.isArray(content?.items) ? content.items : [])
+    .map(normalizeListItem)
+    .filter(Boolean);
 
   return {
     title,
     description,
+    links: normalizeBacklinks(content?.links),
     backgroundImage,
     imageAlt,
     primaryLabel,
@@ -117,6 +143,7 @@ export function getBannerWithCTAsAndItemsEditorContent(
   return {
     title: content.title || "",
     description: content.description || "",
+    links: toEditorBacklinks(content.links),
     imageUrl: content.backgroundImage || "",
     imageAlt: content.imageAlt || "",
     primaryLabel: content.primaryLabel || "",
@@ -125,7 +152,10 @@ export function getBannerWithCTAsAndItemsEditorContent(
     secondaryLabel: content.secondaryLabel || "",
     secondaryHref: normalizeHref(content.secondaryHref),
     secondaryLinkType: "internal",
-    items: (content.items || []).map((text) => ({ text })),
+    items: (content.items || []).map((item) => ({
+      text: item.text || "",
+      links: toEditorBacklinks(item.links),
+    })),
   };
 }
 
@@ -137,6 +167,7 @@ export function wrapBannerWithCTAsAndItemsContent(content = {}, lang = "en") {
         content: {
           title: content.title || "",
           description: content.description || "",
+          links: normalizeBacklinks(content.links),
           imageAlt: content.imageAlt || "",
           backgroundImage: {
             fileUrl: content.imageUrl || "",
@@ -155,10 +186,18 @@ export function wrapBannerWithCTAsAndItemsContent(content = {}, lang = "en") {
             slug: content.secondaryHref || "",
           },
           items: (Array.isArray(content.items) ? content.items : [])
-            .map((item) => ({
-              content: typeof item === "string" ? item : item?.text || "",
-            }))
-            .filter((item) => item.content),
+            .map((item) => {
+              const text =
+                typeof item === "string" ? item : item?.text || "";
+              if (!text) {
+                return null;
+              }
+              return {
+                content: text,
+                links: normalizeBacklinks(item?.links),
+              };
+            })
+            .filter(Boolean),
         },
       },
     ],

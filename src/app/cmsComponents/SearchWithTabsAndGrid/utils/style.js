@@ -1,3 +1,9 @@
+import {
+  BACKLINK_STYLE_RESET_KEYS,
+  DEFAULT_BACKLINK_STYLE,
+  resolveBacklinkStyle,
+} from "@/app/cmsComponents/shared/backlinks";
+
 export const TITLE_ALIGN_OPTIONS = [
   { value: "left", label: "Start" },
   { value: "center", label: "Center" },
@@ -70,13 +76,14 @@ export const DEFAULT_SEARCH_GRID_STYLE = {
   chipActiveTextFontWeight: "medium",
   primaryTextFontWeight: "semibold",
   secondaryTextFontWeight: "semibold",
+  ...DEFAULT_BACKLINK_STYLE,
 };
 
 export function resolveSearchGridStyle(style = {}) {
-  return {
-    ...DEFAULT_SEARCH_GRID_STYLE,
-    ...style,
-  };
+  return resolveBacklinkStyle(
+    { ...DEFAULT_SEARCH_GRID_STYLE, ...style },
+    DEFAULT_SEARCH_GRID_STYLE
+  );
 }
 
 export const SEARCH_GRID_STYLE_RESET_KEYS = {
@@ -105,4 +112,5 @@ export const SEARCH_GRID_STYLE_RESET_KEYS = {
   ],
   button: ["showButtons", "primaryBg", "primaryText", "primaryTextFontWeight", "secondaryText", "secondaryTextFontWeight"],
   nav: ["showArrows", "showDots", "navColor", "dotColor"],
+  links: [...BACKLINK_STYLE_RESET_KEYS],
 };

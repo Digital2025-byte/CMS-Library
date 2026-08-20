@@ -7,6 +7,10 @@ import {
   InspectorSection,
   applyInspectorReset,
 } from "@/components/inspector";
+import {
+  BacklinksEditor,
+  joinItemBacklinkSourceText,
+} from "@/app/cmsComponents/shared/backlinks";
 
 const SLIDE_KEYS = ["slides"];
 
@@ -14,6 +18,7 @@ const emptySlide = () => ({
   title: "",
   subtitle: "",
   description: "",
+  links: [],
   imageUrl: "",
   videoUrl: "",
   imageAlt: "",
@@ -94,10 +99,30 @@ export default function SliderContentForm({ content, onChange, defaults }) {
                   onChange({ ...content, slides });
                 }}
               />
+              <BacklinksEditor
+                idPrefix={`slider-slide-${index}-backlink`}
+                title="Item backlinks"
+                links={item.links || []}
+                sourceText={item.description || ""}
+                defaults={[]}
+                onChange={(links) => update("links", links)}
+                showReset={false}
+              />
             </>
           )}
         </InspectorRepeater>
       </InspectorSection>
+
+      <BacklinksEditor
+        idPrefix="slider-link"
+        title="Backlinks"
+        links={content.links || []}
+        sourceText={joinItemBacklinkSourceText({
+          items: content.slides,
+        })}
+        defaults={defaults?.links || []}
+        onChange={(links) => onChange({ ...content, links })}
+      />
     </div>
   );
 }

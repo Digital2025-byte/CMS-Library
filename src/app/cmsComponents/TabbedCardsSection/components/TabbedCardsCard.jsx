@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { LinkedText } from "@/app/cmsComponents/shared/backlinks";
 import { isUsableImageSrc } from "../utils/helpers";
 import { CARD_RADIUS_CLASS, DEFAULT_TABBED_CARDS_STYLE } from "../utils/style";
 
@@ -23,6 +24,7 @@ export default function TabbedCardsCard({
   const mobileBodyCss = style.showCardBg
     ? "color-mix(in srgb, #ffffff 90%, transparent)"
     : bodyCss;
+  const showLinks = style.showLinks !== false;
 
   return (
     <article
@@ -62,14 +64,24 @@ export default function TabbedCardsCard({
           <h3
             className={`${typography.itemTitle} font-semibold wrap-break-word lg:font-medium [color:var(--card-title-mobile)] lg:[color:var(--card-title)]`}
           >
-            {card.title}
+            <LinkedText
+              text={card.title}
+              parts={card.titleParts}
+              style={style}
+              enabled={showLinks}
+            />
           </h3>
         ) : null}
         {style.showCardDescription && card.description ? (
           <p
             className={`${typography.itemDescription} font-normal leading-relaxed wrap-break-word [color:var(--card-body-mobile)] lg:[color:var(--card-body)]`}
           >
-            {card.description}
+            <LinkedText
+              text={card.description}
+              parts={card.bodyParts}
+              style={style}
+              enabled={showLinks}
+            />
           </p>
         ) : null}
       </div>

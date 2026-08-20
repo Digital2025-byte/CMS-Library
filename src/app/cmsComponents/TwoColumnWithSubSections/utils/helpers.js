@@ -1,3 +1,8 @@
+import {
+  normalizeBacklinks,
+  toEditorBacklinks,
+} from "@/app/cmsComponents/shared/backlinks";
+
 function toImageSrc(value) {
   if (!value) {
     return "";
@@ -56,6 +61,7 @@ export function getTwoColumnWithSubSectionsContent(data, lang = "en") {
     sectionLabel: content?.sectionLabel || "",
     title: content?.title || "",
     description: content?.description || "",
+    links: normalizeBacklinks(content?.links),
     mainImage,
     mainImageAlt:
       content?.illustrationImages?.mainImage?.alt ||
@@ -71,10 +77,12 @@ export function getTwoColumnWithSubSectionsContent(data, lang = "en") {
     firstSubSection: {
       title: content?.firstSubSection?.title || "",
       description: content?.firstSubSection?.description || "",
+      links: normalizeBacklinks(content?.firstSubSection?.links),
     },
     secondSubSection: {
       title: content?.secondSubSection?.title || "",
       description: content?.secondSubSection?.description || "",
+      links: normalizeBacklinks(content?.secondSubSection?.links),
     },
     ctaButton:
       content?.ctaButton?.content ||
@@ -99,6 +107,7 @@ export function getTwoColumnWithSubSectionsEditorContent(data, lang = "en") {
     sectionLabel: content.sectionLabel || "",
     title: content.title || "",
     description: content.description || "",
+    links: toEditorBacklinks(content.links),
     ctaLabel: content.ctaButton || "",
     ctaHref: content.ctaHref || "",
     ctaLinkType: "internal",
@@ -109,6 +118,7 @@ export function getTwoColumnWithSubSectionsEditorContent(data, lang = "en") {
     items: [content.firstSubSection, content.secondSubSection].map((item) => ({
       title: item?.title || "",
       description: item?.description || "",
+      links: toEditorBacklinks(item?.links),
     })),
   };
 }
@@ -124,13 +134,16 @@ export function wrapTwoColumnWithSubSectionsContent(content = {}, lang = "en") {
           sectionLabel: content.sectionLabel || "",
           title: content.title || "",
           description: content.description || "",
+          links: normalizeBacklinks(content.links),
           firstSubSection: {
             title: items[0]?.title || "",
             description: items[0]?.description || "",
+            links: normalizeBacklinks(items[0]?.links),
           },
           secondSubSection: {
             title: items[1]?.title || "",
             description: items[1]?.description || "",
+            links: normalizeBacklinks(items[1]?.links),
           },
           ctaButton: {
             label: content.ctaLabel || "",

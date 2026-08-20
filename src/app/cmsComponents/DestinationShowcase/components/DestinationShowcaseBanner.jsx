@@ -79,6 +79,8 @@ export default function DestinationShowcaseBanner({
             <DestinationShowcaseContent
               name={current.name}
               description={current.description}
+              titleParts={current.titleParts}
+              bodyParts={current.bodyParts}
               activeIndex={activeIndex}
               direction={direction}
               style={style}

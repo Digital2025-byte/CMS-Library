@@ -1,17 +1,28 @@
+import {
+  normalizeBacklinks,
+  toEditorBacklinks,
+} from "@/app/cmsComponents/shared/backlinks";
+
 function normalizeItem(entry) {
+  let text = "";
   if (typeof entry === "string") {
-    return entry;
+    text = entry;
+  } else if (typeof entry?.item === "string") {
+    text = entry.item;
+  } else if (typeof entry?.content === "string") {
+    text = entry.content;
+  } else if (typeof entry?.text === "string") {
+    text = entry.text;
   }
-  if (typeof entry?.item === "string") {
-    return entry.item;
+
+  if (!text) {
+    return null;
   }
-  if (typeof entry?.content === "string") {
-    return entry.content;
-  }
-  if (typeof entry?.text === "string") {
-    return entry.text;
-  }
-  return "";
+
+  return {
+    text,
+    links: normalizeBacklinks(entry?.links),
+  };
 }
 
 export function getTitleWithListContent(data, lang = "en") {
@@ -20,7 +31,7 @@ export function getTitleWithListContent(data, lang = "en") {
     : [];
 
   if (!translations.length) {
-    return { title: "", items: [], hasContent: false };
+    return { title: "", links: [], items: [], hasContent: false };
   }
 
   const normalizedLang = String(lang || "").toLowerCase();
@@ -39,6 +50,7 @@ export function getTitleWithListContent(data, lang = "en") {
 
   return {
     title,
+    links: normalizeBacklinks(content?.links),
     items,
     hasContent: Boolean(title || items.length),
   };
@@ -49,7 +61,11 @@ export function getTitleWithListEditorContent(data, lang = "en") {
 
   return {
     title: content.title || "",
-    items: content.items.map((text) => ({ text })),
+    links: toEditorBacklinks(content.links),
+    items: content.items.map((item) => ({
+      text: item.text || "",
+      links: toEditorBacklinks(item.links),
+    })),
   };
 }
 
@@ -60,9 +76,11 @@ export function wrapTitleWithListContent(content = {}, lang = "en") {
         languageCode: lang,
         content: {
           title: content.title || "",
+          links: normalizeBacklinks(content.links),
           items: (Array.isArray(content.items) ? content.items : []).map(
             (item) => ({
               item: item?.text || item?.item || "",
+              links: normalizeBacklinks(item?.links),
             })
           ),
         },

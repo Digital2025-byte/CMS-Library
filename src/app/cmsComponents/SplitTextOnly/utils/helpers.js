@@ -1,3 +1,8 @@
+import {
+  normalizeBacklinks,
+  toEditorBacklinks,
+} from "@/app/cmsComponents/shared/backlinks";
+
 /**
  * Escapes spaces and parentheses so a URL is safe inside CSS url().
  */
@@ -43,6 +48,7 @@ export function getSplitTextOnlyContent(data, lang = "en") {
     return {
       title: "",
       description: "",
+      links: [],
       backgroundImage: "",
       backgroundImageAlt: "",
       hasContent: false,
@@ -59,6 +65,7 @@ export function getSplitTextOnlyContent(data, lang = "en") {
   const content = matchedTranslation?.content || {};
   const title = content?.title || "";
   const description = content?.description || content?.subtitle || "";
+  const links = normalizeBacklinks(content?.links);
   const backgroundImage = toImageSrc(
     content?.backgroundImage?.fileUrl || content?.backgroundImage || ""
   );
@@ -68,6 +75,7 @@ export function getSplitTextOnlyContent(data, lang = "en") {
   return {
     title,
     description,
+    links,
     backgroundImage,
     backgroundImageAlt,
     hasContent: Boolean(title || description || backgroundImage),
@@ -80,6 +88,7 @@ export function getSplitTextOnlyEditorContent(data, lang = "en") {
   return {
     title: content.title || "",
     description: content.description || "",
+    links: toEditorBacklinks(content.links),
     backgroundImageUrl: content.backgroundImage || "",
     backgroundImageAlt: content.backgroundImageAlt || "",
   };
@@ -93,6 +102,7 @@ export function wrapSplitTextOnlyContent(content = {}, lang = "en") {
         content: {
           title: content.title || "",
           description: content.description || "",
+          links: normalizeBacklinks(content.links),
           backgroundImage: {
             fileUrl: content.backgroundImageUrl || "",
             alt: content.backgroundImageAlt || "",

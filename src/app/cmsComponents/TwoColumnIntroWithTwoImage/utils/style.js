@@ -1,3 +1,9 @@
+import {
+  BACKLINK_STYLE_RESET_KEYS,
+  DEFAULT_BACKLINK_STYLE,
+  resolveBacklinkStyle,
+} from "@/app/cmsComponents/shared/backlinks";
+
 export const TITLE_ALIGN_OPTIONS = [
   { value: "left", label: "Start" },
   { value: "center", label: "Center" },
@@ -58,6 +64,7 @@ export const DEFAULT_TWO_COLUMN_INTRO_STYLE = {
   titleFontWeight: "semibold",
   descriptionFontWeight: "normal",
   buttonTextFontWeight: "semibold",
+  ...DEFAULT_BACKLINK_STYLE,
 };
 
 export function resolveTwoColumnIntroStyle(style = {}, data) {
@@ -66,11 +73,14 @@ export function resolveTwoColumnIntroStyle(style = {}, data) {
   ).toLowerCase();
   const dataSide = directionLayout === "right" ? "left" : "right";
 
-  return {
-    ...DEFAULT_TWO_COLUMN_INTRO_STYLE,
-    imageSide: dataSide,
-    ...style,
-  };
+  return resolveBacklinkStyle(
+    {
+      ...DEFAULT_TWO_COLUMN_INTRO_STYLE,
+      imageSide: dataSide,
+      ...style,
+    },
+    DEFAULT_TWO_COLUMN_INTRO_STYLE
+  );
 }
 
 export const TWO_COLUMN_INTRO_STYLE_RESET_KEYS = {
@@ -85,4 +95,5 @@ export const TWO_COLUMN_INTRO_STYLE_RESET_KEYS = {
   title: ["titleAlign", "titleColor", "titleFontWeight", "descriptionColor", "descriptionFontWeight"],
   images: ["showMainImage", "showOverlayImage", "imageRadius"],
   button: ["showCta", "buttonBg", "buttonText", "buttonTextFontWeight"],
+  links: [...BACKLINK_STYLE_RESET_KEYS],
 };

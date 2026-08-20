@@ -1,3 +1,9 @@
+import {
+  BACKLINK_STYLE_RESET_KEYS,
+  DEFAULT_BACKLINK_STYLE,
+  resolveBacklinkStyle,
+} from "@/app/cmsComponents/shared/backlinks";
+
 export const TITLE_ALIGN_OPTIONS = [
   { value: "left", label: "Start" },
   { value: "center", label: "Center" },
@@ -57,14 +63,18 @@ export const DEFAULT_CITIES_SECTIONS_STYLE = {
   titleFontWeight: "semibold",
   descriptionFontWeight: "normal",
   buttonTextFontWeight: "semibold",
+  ...DEFAULT_BACKLINK_STYLE,
 };
 
 export function resolveCitiesSectionsStyle(style = {}, { side } = {}) {
-  return {
-    ...DEFAULT_CITIES_SECTIONS_STYLE,
-    ...style,
-    ...(side != null ? { imageSide: side } : {}),
-  };
+  return resolveBacklinkStyle(
+    {
+      ...DEFAULT_CITIES_SECTIONS_STYLE,
+      ...style,
+      ...(side != null ? { imageSide: side } : {}),
+    },
+    DEFAULT_CITIES_SECTIONS_STYLE
+  );
 }
 
 export const CITIES_SECTIONS_STYLE_RESET_KEYS = {
@@ -79,4 +89,5 @@ export const CITIES_SECTIONS_STYLE_RESET_KEYS = {
   title: ["titleAlign", "titleColor", "titleFontWeight", "descriptionColor", "descriptionFontWeight"],
   images: ["showImages", "imageRadius"],
   button: ["showCta", "buttonBg", "buttonText", "buttonTextFontWeight"],
+  links: [...BACKLINK_STYLE_RESET_KEYS],
 };

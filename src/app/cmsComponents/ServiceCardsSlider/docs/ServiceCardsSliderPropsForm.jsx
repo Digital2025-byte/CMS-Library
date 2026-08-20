@@ -7,6 +7,7 @@ import {
   InspectorTabs,
   applyInspectorReset,
 } from "@/components/inspector";
+import { BacklinksStyleSection } from "@/app/cmsComponents/shared/backlinks";
 import ServiceCardsSliderContentForm from "./ServiceCardsSliderContentForm";
 import {
   CARD_RADIUS_OPTIONS,
@@ -174,6 +175,13 @@ function ServiceCardsSliderStyleForm({ style, onChange }) {
           onChange={(value) => update("cardBg", value)}
         />
       </InspectorSection>
+
+      <BacklinksStyleSection
+        style={style}
+        onChange={onChange}
+        onReset={() => reset(SERVICE_CARDS_STYLE_RESET_KEYS.links)}
+        defaults={DEFAULT_SERVICE_CARDS_STYLE}
+      />
     </div>
   );
 }

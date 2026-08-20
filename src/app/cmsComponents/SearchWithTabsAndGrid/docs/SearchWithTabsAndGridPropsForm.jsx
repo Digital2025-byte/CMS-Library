@@ -7,6 +7,7 @@ import {
   InspectorTabs,
   applyInspectorReset,
 } from "@/components/inspector";
+import { BacklinksStyleSection } from "@/app/cmsComponents/shared/backlinks";
 import SearchWithTabsAndGridContentForm from "./SearchWithTabsAndGridContentForm";
 import {
   CARD_RADIUS_OPTIONS,
@@ -265,6 +266,13 @@ function SearchWithTabsAndGridStyleForm({ style, onChange }) {
           />
         ) : null}
       </InspectorSection>
+
+      <BacklinksStyleSection
+        style={style}
+        onChange={onChange}
+        onReset={() => reset(SEARCH_GRID_STYLE_RESET_KEYS.links)}
+        defaults={DEFAULT_SEARCH_GRID_STYLE}
+      />
     </div>
   );
 }

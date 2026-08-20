@@ -1,3 +1,8 @@
+import {
+  normalizeBacklinks,
+  toEditorBacklinks,
+} from "@/app/cmsComponents/shared/backlinks";
+
 export function getImageSrc(src) {
   if (!src) {
     return "";
@@ -41,6 +46,7 @@ export function getSplitWithImageContent(data, lang = "en") {
     return {
       title: "",
       description: "",
+      links: [],
       backgroundImageUrl: "",
       imageUrl: "",
       imageAlt: "",
@@ -59,6 +65,7 @@ export function getSplitWithImageContent(data, lang = "en") {
   const content = matchedTranslation?.content || {};
   const title = content?.title || "";
   const description = content?.description || "";
+  const links = normalizeBacklinks(content?.links);
   const backgroundImageUrl = getImageSrc(
     content?.backgroundImage?.fileUrl ||
       content?.backgroundImage?.url ||
@@ -71,6 +78,7 @@ export function getSplitWithImageContent(data, lang = "en") {
   return {
     title,
     description,
+    links,
     backgroundImageUrl,
     imageUrl,
     imageAlt,
@@ -84,6 +92,7 @@ export function getSplitWithImageEditorContent(data, lang = "en") {
   return {
     title: content.title || "",
     description: content.description || "",
+    links: toEditorBacklinks(content.links),
     backgroundImageUrl: content.backgroundImageUrl || "",
     backgroundImageAlt: "",
     imageUrl: content.imageUrl || "",
@@ -99,6 +108,7 @@ export function wrapSplitWithImageContent(content = {}, lang = "en") {
         content: {
           title: content.title || "",
           description: content.description || "",
+          links: normalizeBacklinks(content.links),
           backgroundImage: {
             fileUrl: content.backgroundImageUrl || "",
             alt: content.backgroundImageAlt || "",

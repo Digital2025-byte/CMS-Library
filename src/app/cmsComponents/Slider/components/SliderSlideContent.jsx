@@ -1,4 +1,5 @@
 import Button from "@/components/ui/Button";
+import { LinkedText } from "@/app/cmsComponents/shared/backlinks";
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
 import { getFontWeightValue } from "@/styles/fontWeight";
@@ -9,6 +10,7 @@ export default function SliderSlideContent({
   title = "",
   subtitle = "",
   description = "",
+  descriptionParts,
   buttonText = "",
   ctaHref = "",
   posParams = "gb",
@@ -29,6 +31,7 @@ export default function SliderSlideContent({
     style.showSlideText && style.showDescriptionText && description;
   const showCopy = canShowSubtitle || canShowTitle || canShowDescription;
   const showCta = style.showButton && buttonText && resolvedHref;
+  const showLinks = style.showLinks !== false;
   const alignJustify =
     TITLE_ALIGN_JUSTIFY[style.titleAlign] ?? TITLE_ALIGN_JUSTIFY.left;
   const alignText = TITLE_ALIGN_TEXT[style.titleAlign] ?? TITLE_ALIGN_TEXT.left;
@@ -68,7 +71,12 @@ export default function SliderSlideContent({
             className={`${typography.sectionDescription} mt-2 sm:mt-3`}
             style={{ color: getThemeColorCss(style.descriptionColor, "white"), fontWeight: getFontWeightValue(style.descriptionFontWeight) }}
           >
-            {description}
+            <LinkedText
+              text={description}
+              parts={descriptionParts}
+              style={style}
+              enabled={showLinks}
+            />
           </p>
         ) : null}
 

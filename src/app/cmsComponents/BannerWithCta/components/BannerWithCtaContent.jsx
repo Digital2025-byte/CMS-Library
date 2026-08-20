@@ -1,6 +1,7 @@
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
 import { getFontWeightValue } from "@/styles/fontWeight";
+import { LinkedText } from "@/app/cmsComponents/shared/backlinks";
 import {
   DEFAULT_BANNER_WITH_CTA_STYLE,
   TITLE_ALIGN_CLASS,
@@ -15,6 +16,7 @@ export default function BannerWithCtaContent({
 }) {
   const title = content.title;
   const description = content.description;
+  const links = content.links || [];
   const showHeading = style.showTitle && title;
   const showCopy = style.showDescription && description;
   const showCta = style.showButton && content.ctaLabel;
@@ -49,9 +51,15 @@ export default function BannerWithCtaContent({
             className={`${typography.sectionDescription} mt-3 max-w-145`}
             style={{
               color: `color-mix(in srgb, ${descriptionCss} 90%, transparent)`,
+              fontWeight: getFontWeightValue(style.descriptionFontWeight),
             }}
           >
-            {description}
+            <LinkedText
+              text={description}
+              links={links}
+              style={style}
+              enabled={style.showLinks !== false}
+            />
           </p>
         ) : null}
 

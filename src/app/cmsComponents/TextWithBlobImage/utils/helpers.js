@@ -1,3 +1,8 @@
+import {
+  normalizeBacklinks,
+  toEditorBacklinks,
+} from "@/app/cmsComponents/shared/backlinks";
+
 export function getImageSrc(src) {
   if (!src) {
     return "";
@@ -39,6 +44,7 @@ export function getTextWithBlobContent(data, lang = "en") {
     return {
       title: "",
       description: "",
+      links: [],
       imageSrc: "",
       imageAlt: "Blob image",
       hasContent: false,
@@ -57,11 +63,13 @@ export function getTextWithBlobContent(data, lang = "en") {
   const image = content?.image || {};
   const title = content?.title || "";
   const description = content?.description || "";
+  const links = normalizeBacklinks(content?.links);
   const imageSrc = getImageSrc(image?.fileUrl || image?.url || image?.src);
 
   return {
     title,
     description,
+    links,
     imageSrc,
     imageAlt: image?.alt || title || "Blob image",
     hasContent: Boolean(title || description),
@@ -74,6 +82,7 @@ export function getTextWithBlobEditorContent(data, lang = "en") {
   return {
     title: content.title || "",
     description: content.description || "",
+    links: toEditorBacklinks(content.links),
     imageUrl: content.imageSrc || "",
     imageAlt: content.imageAlt || "",
   };
@@ -87,6 +96,7 @@ export function wrapTextWithBlobContent(content = {}, lang = "en") {
         content: {
           title: content.title || "",
           description: content.description || "",
+          links: normalizeBacklinks(content.links),
           image: {
             fileUrl: content.imageUrl || "",
             alt: content.imageAlt || "",

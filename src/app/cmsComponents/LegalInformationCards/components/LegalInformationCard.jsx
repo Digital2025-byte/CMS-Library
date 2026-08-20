@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowLeftIcon, ArrowRightIcon } from "@phosphor-icons/react";
+import { LinkedText } from "@/app/cmsComponents/shared/backlinks";
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
 import { getFontWeightValue } from "@/styles/fontWeight";
@@ -12,6 +13,7 @@ import {
 
 export default function LegalInformationCard({
   card,
+  bodyParts,
   lang = "en",
   posParams = "gb",
   cId,
@@ -26,6 +28,7 @@ export default function LegalInformationCard({
   );
   const radiusClass =
     CARD_RADIUS_CLASS[style.cardRadius] ?? CARD_RADIUS_CLASS.lg;
+  const showLinks = style.showLinks !== false;
 
   return (
     <article
@@ -64,7 +67,12 @@ export default function LegalInformationCard({
           className={`${typography.itemDescription} mb-6 flex-1`}
           style={{ color: getThemeColorCss(style.descriptionColor, "50"), fontWeight: getFontWeightValue(style.descriptionFontWeight) }}
         >
-          {card.description}
+          <LinkedText
+            text={card.description}
+            parts={bodyParts}
+            style={style}
+            enabled={showLinks}
+          />
         </p>
       ) : null}
 

@@ -6,6 +6,8 @@ import {
   InspectorSection,
   applyInspectorReset,
 } from "@/components/inspector";
+import { BacklinksEditor } from "@/app/cmsComponents/shared/backlinks";
+import { joinMealsBacklinkSourceText } from "../utils/helpers";
 
 const TITLE_KEYS = ["title"];
 const NOTE_KEYS = ["notes"];
@@ -200,6 +202,15 @@ export default function MealsDescriptionTabbedContentForm({
           )}
         </InspectorRepeater>
       </InspectorSection>
+
+      <BacklinksEditor
+        idPrefix="meals-tabbed-link"
+        title="Backlinks"
+        links={content.links || []}
+        sourceText={joinMealsBacklinkSourceText(content)}
+        defaults={defaults?.links || []}
+        onChange={(links) => onChange({ ...content, links })}
+      />
     </div>
   );
 }

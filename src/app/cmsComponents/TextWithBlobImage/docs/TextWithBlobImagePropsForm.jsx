@@ -7,6 +7,7 @@ import {
   InspectorTabs,
   applyInspectorReset,
 } from "@/components/inspector";
+import { BacklinksStyleSection } from "@/app/cmsComponents/shared/backlinks";
 import TextWithBlobImageContentForm from "./TextWithBlobImageContentForm";
 import {
   DEFAULT_TEXT_WITH_BLOB_STYLE,
@@ -121,6 +122,13 @@ function TextWithBlobImageStyleForm({ style, onChange }) {
           hint="Blob-clipped image"
         />
       </InspectorSection>
+
+      <BacklinksStyleSection
+        style={style}
+        onChange={onChange}
+        onReset={() => reset(TEXT_WITH_BLOB_STYLE_RESET_KEYS.links)}
+        defaults={DEFAULT_TEXT_WITH_BLOB_STYLE}
+      />
     </div>
   );
 }

@@ -7,6 +7,7 @@ import {
   InspectorTitleSection,
   applyInspectorReset,
 } from "@/components/inspector";
+import { BacklinksEditor } from "@/app/cmsComponents/shared/backlinks";
 
 const TITLE_KEYS = ["title", "description"];
 const BUTTON_KEYS = ["buttonLabel", "buttonHref", "buttonLinkType"];
@@ -63,6 +64,14 @@ export default function BannerWithCtaContentForm({
           onChange={(value) => updateField("imageAlt", value)}
         />
       </InspectorSection>
+
+      <BacklinksEditor
+        idPrefix="banner-with-cta-link"
+        links={content.links || []}
+        sourceText={content.description || ""}
+        defaults={defaults?.links || []}
+        onChange={(links) => onChange({ ...content, links })}
+      />
     </div>
   );
 }

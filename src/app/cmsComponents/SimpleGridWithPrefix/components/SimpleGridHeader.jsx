@@ -1,6 +1,7 @@
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
 import { getFontWeightValue } from "@/styles/fontWeight";
+import { LinkedText } from "@/app/cmsComponents/shared/backlinks";
 import {
   DEFAULT_SIMPLE_GRID_STYLE,
   TITLE_ALIGN_CLASS,
@@ -9,6 +10,7 @@ import {
 export default function SimpleGridHeader({
   title,
   description,
+  links = [],
   style = DEFAULT_SIMPLE_GRID_STYLE,
 }) {
   const showHeading = style.showTitle && title;
@@ -37,7 +39,12 @@ export default function SimpleGridHeader({
           style={{ color: getThemeColorCss(style.descriptionColor, "primary-1"), fontWeight: getFontWeightValue(style.descriptionFontWeight),
           }}
         >
-          {description}
+          <LinkedText
+            text={description}
+            links={links}
+            style={style}
+            enabled={style.showLinks !== false}
+          />
         </p>
       ) : null}
     </div>

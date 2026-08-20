@@ -1,4 +1,8 @@
 import { withCampaignPath } from "@/utils/withCampaignPath";
+import {
+  normalizeBacklinks,
+  toEditorBacklinks,
+} from "@/app/cmsComponents/shared/backlinks";
 
 function resolveImageUrl(image) {
   if (!image) return "";
@@ -42,6 +46,7 @@ export function getDestinationShowcaseContent(
     return {
       title: "",
       description: "",
+      links: [],
       viewAllLabel: "",
       viewAllHref: "",
       exploreLabel: "",
@@ -83,6 +88,7 @@ export function getDestinationShowcaseContent(
       description:
         city.description ||
         [city.cityName, city.countryName].filter(Boolean).join(" — "),
+      links: normalizeBacklinks(city.links),
       slug,
       imageUrl,
       imageAlt: city.imageAlt || city.cityName || "",
@@ -100,6 +106,7 @@ export function getDestinationShowcaseContent(
   return {
     title: content.title || "",
     description: content.description || "",
+    links: normalizeBacklinks(content.links),
     viewAllLabel:
       content?.ctaButton?.content ||
       content?.viewAllLabel ||
@@ -121,6 +128,7 @@ export function getDestinationShowcaseEditorContent(
   return {
     title: content.title || "",
     description: content.description || "",
+    links: toEditorBacklinks(content.links),
     viewAllLabel: content.viewAllLabel || "",
     viewAllHref: content.viewAllHref || "",
     viewAllLinkType: "internal",
@@ -129,6 +137,7 @@ export function getDestinationShowcaseEditorContent(
       cityName: dest.name || "",
       countryName: dest.countryName || "",
       description: dest.description || "",
+      links: toEditorBacklinks(dest.links),
       slug: dest.slug || "",
       imageUrl: dest.imageUrl || "",
       imageAlt: dest.imageAlt || "",
@@ -144,6 +153,7 @@ export function wrapDestinationShowcaseContent(content = {}, lang = "en") {
         content: {
           title: content.title || "",
           description: content.description || "",
+          links: normalizeBacklinks(content.links),
           viewAllLabel: content.viewAllLabel || "",
           exploreLabel: content.exploreLabel || "",
           ctaButton: {
@@ -155,6 +165,7 @@ export function wrapDestinationShowcaseContent(content = {}, lang = "en") {
               cityName: item?.cityName || "",
               countryName: item?.countryName || "",
               description: item?.description || "",
+              links: normalizeBacklinks(item?.links),
               slug: item?.slug || toSlug(item?.cityName),
               imageAlt: item?.imageAlt || item?.cityName || "",
               heroImageUrl: item?.imageUrl || "",

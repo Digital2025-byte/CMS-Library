@@ -1,3 +1,8 @@
+import {
+  normalizeBacklinks,
+  toEditorBacklinks,
+} from "@/app/cmsComponents/shared/backlinks";
+
 export function getImageSrc(src) {
   if (!src) {
     return "";
@@ -41,6 +46,7 @@ export function getTwoColumnIntroContent(data, lang = "en") {
     return {
       title: "",
       description: "",
+      links: [],
       ctaButton: "",
       ctaHref: "",
       mainImage: "",
@@ -63,6 +69,7 @@ export function getTwoColumnIntroContent(data, lang = "en") {
   const style = data?.style || {};
   const title = content?.title || "";
   const description = content?.description || "";
+  const links = normalizeBacklinks(content?.links);
   const mainImage = getImageSrc(
     content?.illustrationImages?.mainImage?.fileUrl ||
       content?.illustrationImages?.mainImage?.url
@@ -75,6 +82,7 @@ export function getTwoColumnIntroContent(data, lang = "en") {
   return {
     title,
     description,
+    links,
     ctaButton:
       content?.ctaButton?.content || content?.ctaButton?.label || "",
     ctaHref: content?.ctaButton?.href || style?.ctaButton?.slug || "",
@@ -98,6 +106,7 @@ export function getTwoColumnIntroEditorContent(data, lang = "en") {
   return {
     title: content.title || "",
     description: content.description || "",
+    links: toEditorBacklinks(content.links),
     ctaLabel: content.ctaButton || "",
     ctaHref: content.ctaHref || "",
     ctaLinkType: "internal",
@@ -116,6 +125,7 @@ export function wrapTwoColumnIntroContent(content = {}, lang = "en") {
         content: {
           title: content.title || "",
           description: content.description || "",
+          links: normalizeBacklinks(content.links),
           ctaButton: {
             label: content.ctaLabel || "",
             href: content.ctaHref || "",

@@ -1,3 +1,7 @@
+import {
+  normalizeBacklinks,
+  toEditorBacklinks,
+} from "@/app/cmsComponents/shared/backlinks";
 import { DEFAULT_LEGAL_ICON, LEGAL_ICON_MAP } from "./constants";
 
 export function getLegalIcon(iconName) {
@@ -17,6 +21,7 @@ function normalizeCard(card) {
   return {
     title: card?.title || "",
     description: card?.description || "",
+    links: normalizeBacklinks(card?.links),
     icon: card?.icon || "document",
     ctaLabel: card?.ctaButton?.content || card?.ctaLabel || "",
     slug: card?.ctaButton?.slug || card?.slug || "",
@@ -29,7 +34,7 @@ export function getLegalInformationCardsContent(data, lang = "en") {
     : [];
 
   if (!translations.length) {
-    return { cards: [], hasContent: false };
+    return { links: [], cards: [], hasContent: false };
   }
 
   const normalized = String(lang || "").toLowerCase();
@@ -43,18 +48,21 @@ export function getLegalInformationCardsContent(data, lang = "en") {
   const cards = rawCards.map(normalizeCard).filter((card) => card.title);
 
   return {
+    links: normalizeBacklinks(content?.links),
     cards,
     hasContent: cards.length > 0,
   };
 }
 
 export function getLegalInformationCardsEditorContent(data, lang = "en") {
-  const { cards } = getLegalInformationCardsContent(data, lang);
+  const { links, cards } = getLegalInformationCardsContent(data, lang);
 
   return {
+    links: toEditorBacklinks(links),
     cards: cards.map((card) => ({
       title: card.title || "",
       description: card.description || "",
+      links: toEditorBacklinks(card.links),
       icon: card.icon || "document",
       ctaLabel: card.ctaLabel || "",
       slug: card.slug || "",
@@ -68,10 +76,12 @@ export function wrapLegalInformationCardsContent(content = {}, lang = "en") {
       {
         languageCode: lang,
         content: {
+          links: normalizeBacklinks(content.links),
           cards: (Array.isArray(content.cards) ? content.cards : []).map(
             (card) => ({
               title: card?.title || "",
               description: card?.description || "",
+              links: normalizeBacklinks(card?.links),
               icon: card?.icon || "document",
               ctaButton: {
                 content: card?.ctaLabel || "",

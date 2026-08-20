@@ -1,3 +1,9 @@
+import {
+  BACKLINK_STYLE_RESET_KEYS,
+  DEFAULT_BACKLINK_STYLE,
+  resolveBacklinkStyle,
+} from "@/app/cmsComponents/shared/backlinks";
+
 export const TITLE_ALIGN_OPTIONS = [
   { value: "left", label: "Start" },
   { value: "center", label: "Center" },
@@ -36,13 +42,14 @@ export const DEFAULT_ANIMATED_IMAGES_STYLE = {
   titleFontWeight: "semibold",
   descriptionFontWeight: "normal",
   buttonTextFontWeight: "semibold",
+  ...DEFAULT_BACKLINK_STYLE,
 };
 
 export function resolveAnimatedImagesStyle(style = {}) {
-  return {
-    ...DEFAULT_ANIMATED_IMAGES_STYLE,
-    ...style,
-  };
+  return resolveBacklinkStyle(
+    { ...DEFAULT_ANIMATED_IMAGES_STYLE, ...style },
+    DEFAULT_ANIMATED_IMAGES_STYLE
+  );
 }
 
 export const ANIMATED_IMAGES_STYLE_RESET_KEYS = {
@@ -56,4 +63,5 @@ export const ANIMATED_IMAGES_STYLE_RESET_KEYS = {
   title: ["titleAlign", "titleColor", "titleFontWeight", "descriptionColor", "descriptionFontWeight"],
   images: ["showImages"],
   button: ["showCta", "buttonBg", "buttonText", "buttonTextFontWeight"],
+  links: [...BACKLINK_STYLE_RESET_KEYS],
 };

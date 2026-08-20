@@ -1,3 +1,8 @@
+import {
+  normalizeBacklinks,
+  toEditorBacklinks,
+} from "@/app/cmsComponents/shared/backlinks";
+
 /** Preset corners (still supported as string shortcuts). */
 export const EXTRA_IMAGE_POSITIONS = {
   "bottom-start": { bottom: 0, start: 0 },
@@ -78,6 +83,7 @@ function normalizeItem(rawItem) {
     title: item?.title || "",
     description: descriptions[0] || "",
     descriptions,
+    links: normalizeBacklinks(item?.links),
     imageUrl: getImageSrc(image?.fileUrl || image?.url || image?.src),
     imageAlt: image?.alt || item?.title || "Section image",
     buttonText: cta?.label || cta?.content || item?.buttonText || "",
@@ -132,6 +138,7 @@ export function getDualImageTextContent(data, lang = "en") {
 
   if (!translations.length) {
     return {
+      links: [],
       items: [],
       firstSection: null,
       exploreButtonLabel: "",
@@ -166,6 +173,7 @@ export function getDualImageTextContent(data, lang = "en") {
   );
 
   return {
+    links: normalizeBacklinks(content?.links),
     items,
     firstSection: hasFirstSection ? firstSection : null,
     exploreButtonLabel:
@@ -184,8 +192,10 @@ export function getDualImageTextEditorContent(data, lang = "en") {
   const first = content.firstSection || {};
 
   return {
+    links: toEditorBacklinks(content.links),
     firstSectionTitle: first.title || "",
     firstSectionDescription: first.description || first.descriptions?.[0] || "",
+    firstSectionLinks: toEditorBacklinks(first.links),
     firstSectionImageUrl: first.imageUrl || "",
     firstSectionImageAlt: first.imageAlt || "",
     exploreLabel: content.exploreButtonLabel || "",
@@ -196,6 +206,7 @@ export function getDualImageTextEditorContent(data, lang = "en") {
     items: (content.items || []).map((item) => ({
       title: item.title || "",
       description: item.description || item.descriptions?.[0] || "",
+      links: toEditorBacklinks(item.links),
       imageUrl: item.imageUrl || "",
       imageAlt: item.imageAlt || "",
       buttonLabel: item.buttonText || "",
@@ -217,6 +228,7 @@ export function wrapDualImageTextContent(content = {}, lang = "en") {
       {
         languageCode: lang,
         content: {
+          links: normalizeBacklinks(content.links),
           exploreButton: {
             label: content.exploreLabel || "",
             href: content.exploreHref || "",
@@ -229,6 +241,7 @@ export function wrapDualImageTextContent(content = {}, lang = "en") {
             ? {
                 title: content.firstSectionTitle || "",
                 description: content.firstSectionDescription || "",
+                links: normalizeBacklinks(content.firstSectionLinks),
                 image: {
                   fileUrl: content.firstSectionImageUrl || "",
                   alt: content.firstSectionImageAlt || "",
@@ -240,6 +253,7 @@ export function wrapDualImageTextContent(content = {}, lang = "en") {
               item: {
                 title: item?.title || "",
                 description: item?.description || "",
+                links: normalizeBacklinks(item?.links),
                 image: {
                   fileUrl: item?.imageUrl || "",
                   alt: item?.imageAlt || "",

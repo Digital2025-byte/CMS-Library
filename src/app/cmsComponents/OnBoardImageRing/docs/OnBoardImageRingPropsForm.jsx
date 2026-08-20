@@ -7,6 +7,7 @@ import {
   InspectorTabs,
   applyInspectorReset,
 } from "@/components/inspector";
+import { BacklinksStyleSection } from "@/app/cmsComponents/shared/backlinks";
 import OnBoardImageRingContentForm from "./OnBoardImageRingContentForm";
 import {
   CARD_RADIUS_OPTIONS,
@@ -152,6 +153,13 @@ function OnBoardImageRingStyleForm({ style, onChange }) {
           onChange={(value) => update("cardGap", value)}
         />
       </InspectorSection>
+
+      <BacklinksStyleSection
+        style={style}
+        onChange={onChange}
+        onReset={() => reset(ON_BOARD_IMAGE_RING_STYLE_RESET_KEYS.links)}
+        defaults={DEFAULT_ON_BOARD_IMAGE_RING_STYLE}
+      />
     </div>
   );
 }

@@ -25,6 +25,7 @@ export default function VerticalImageSlicePanel({
           highlightPart={content.highlightPart}
           restPart={content.restPart}
           description={content.description}
+          links={content.links}
           style={style}
         />
       </div>

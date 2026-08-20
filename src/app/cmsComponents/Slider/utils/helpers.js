@@ -1,3 +1,8 @@
+import {
+  normalizeBacklinks,
+  toEditorBacklinks,
+} from "@/app/cmsComponents/shared/backlinks";
+
 function getFileUrl(media) {
   if (!media) {
     return "";
@@ -44,6 +49,7 @@ function normalizeSlide(raw, index, shared = {}) {
     title: raw?.title ?? shared.title ?? "",
     subtitle: raw?.subtitle ?? raw?.kicker ?? shared.subtitle ?? "",
     description: raw?.description ?? shared.description ?? "",
+    links: normalizeBacklinks(raw?.links),
     buttonText:
       raw?.buttonText ||
       raw?.ctaButton?.content ||
@@ -67,6 +73,7 @@ export function getSliderContent(data, lang = "en") {
 
   if (!translations.length) {
     return {
+      links: [],
       slides: [],
       hasContent: false,
     };
@@ -129,8 +136,30 @@ export function getSliderContent(data, lang = "en") {
     );
 
   return {
+    links: normalizeBacklinks(content?.links),
     slides,
     hasContent: slides.length > 0,
+  };
+}
+
+export function getSliderEditorContent(data, lang = "en") {
+  const { links, slides } = getSliderContent(data, lang);
+
+  return {
+    links: toEditorBacklinks(links),
+    slides: slides.map((slide) => ({
+      id: slide.id,
+      title: slide.title || "",
+      subtitle: slide.subtitle || "",
+      description: slide.description || "",
+      links: toEditorBacklinks(slide.links),
+      imageUrl: slide.image || "",
+      videoUrl: slide.video || "",
+      imageAlt: slide.alt || "",
+      buttonText: slide.buttonText || "",
+      buttonHref: slide.ctaHref || "/",
+      buttonLinkType: "internal",
+    })),
   };
 }
 
@@ -142,11 +171,13 @@ export function wrapSliderContent(content = {}, lang = "en") {
       {
         languageCode: lang,
         content: {
+          links: normalizeBacklinks(content.links),
           slides: slides.map((slide, index) => ({
             id: slide?.id || `slide-${index + 1}`,
             title: slide?.title || "",
             subtitle: slide?.subtitle || "",
             description: slide?.description || "",
+            links: normalizeBacklinks(slide?.links),
             alt: slide?.imageAlt || slide?.title || `Slide ${index + 1}`,
             buttonText: slide?.buttonText || "",
             ctaHref: slide?.buttonHref || "",

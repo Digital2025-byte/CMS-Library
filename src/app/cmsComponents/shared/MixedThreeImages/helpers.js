@@ -1,3 +1,8 @@
+import {
+  normalizeBacklinks,
+  toEditorBacklinks,
+} from "@/app/cmsComponents/shared/backlinks";
+
 export function isUsableImageSrc(src) {
   const value = String(src || "").trim();
   if (!value) {
@@ -57,6 +62,7 @@ export function getMixedThreeImagesContent(data, lang = "en") {
     return {
       title: "",
       description: "",
+      links: [],
       primaryCta: { label: "", href: "/" },
       secondaryCta: { label: "", href: "/" },
       largeImage: { fileUrl: "", alt: "" },
@@ -106,6 +112,7 @@ export function getMixedThreeImagesContent(data, lang = "en") {
   return {
     title,
     description,
+    links: normalizeBacklinks(content?.links),
     primaryCta,
     secondaryCta,
     largeImage,
@@ -120,3 +127,5 @@ export function getMixedThreeImagesContent(data, lang = "en") {
     ),
   };
 }
+
+export { toEditorBacklinks, normalizeBacklinks };

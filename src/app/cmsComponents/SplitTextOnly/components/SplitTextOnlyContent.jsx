@@ -1,6 +1,7 @@
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
 import { getFontWeightValue } from "@/styles/fontWeight";
+import { LinkedText } from "@/app/cmsComponents/shared/backlinks";
 import {
   DEFAULT_SPLIT_TEXT_ONLY_STYLE,
   TITLE_ALIGN_CLASS,
@@ -9,6 +10,7 @@ import {
 export default function SplitTextOnlyContent({
   title,
   description,
+  links = [],
   style = DEFAULT_SPLIT_TEXT_ONLY_STYLE,
 }) {
   const showHeading = style.showTitle && title;
@@ -39,7 +41,12 @@ export default function SplitTextOnlyContent({
           style={{ color: getThemeColorCss(style.descriptionColor, "secondary-100"), fontWeight: getFontWeightValue(style.descriptionFontWeight),
           }}
         >
-          {description}
+          <LinkedText
+            text={description}
+            links={links}
+            style={style}
+            enabled={style.showLinks !== false}
+          />
         </p>
       ) : null}
     </div>

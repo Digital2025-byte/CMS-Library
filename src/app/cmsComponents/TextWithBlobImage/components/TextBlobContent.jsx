@@ -1,6 +1,7 @@
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
 import { getFontWeightValue } from "@/styles/fontWeight";
+import { LinkedText } from "@/app/cmsComponents/shared/backlinks";
 import {
   DEFAULT_TEXT_WITH_BLOB_STYLE,
   TITLE_ALIGN_CLASS,
@@ -9,6 +10,7 @@ import {
 export default function TextBlobContent({
   title,
   description,
+  links = [],
   style = DEFAULT_TEXT_WITH_BLOB_STYLE,
 }) {
   const showTitle = style.showTitle && title;
@@ -35,7 +37,12 @@ export default function TextBlobContent({
           className={`${typography.sectionDescription} mt-4 leading-relaxed wrap-break-word`}
           style={{ color: getThemeColorCss(style.descriptionColor, "700"), fontWeight: getFontWeightValue(style.descriptionFontWeight) }}
         >
-          {description}
+          <LinkedText
+            text={description}
+            links={links}
+            style={style}
+            enabled={style.showLinks !== false}
+          />
         </p>
       ) : null}
     </div>

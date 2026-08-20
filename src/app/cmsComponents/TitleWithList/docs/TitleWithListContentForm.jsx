@@ -6,6 +6,10 @@ import {
   InspectorSection,
   applyInspectorReset,
 } from "@/components/inspector";
+import {
+  BacklinksEditor,
+  joinItemBacklinkSourceText,
+} from "@/app/cmsComponents/shared/backlinks";
 
 const TITLE_KEYS = ["title"];
 const ITEM_KEYS = ["items"];
@@ -34,22 +38,46 @@ export default function TitleWithListContentForm({
       <InspectorSection title="Items" onReset={() => reset(ITEM_KEYS)}>
         <InspectorRepeater
           items={content.items || []}
-          createItem={() => ({ text: "" })}
+          createItem={() => ({ text: "", links: [] })}
           itemLabel={(_item, index) => `Item ${index + 1}`}
           addLabel="Add Item"
           onChange={(items) => onChange({ ...content, items })}
         >
           {(item, { index, update }) => (
-            <InspectorField
-              id={`title-with-list-item-${index}`}
-              label="Text"
-              value={item.text || ""}
-              onChange={(value) => update("text", value)}
-              multiline
-            />
+            <>
+              <InspectorField
+                id={`title-with-list-item-${index}`}
+                label="Text"
+                value={item.text || ""}
+                onChange={(value) => update("text", value)}
+                multiline
+              />
+              <BacklinksEditor
+                idPrefix={`title-with-list-item-${index}-link`}
+                title="Item backlinks"
+                links={item.links || []}
+                sourceText={item.text || ""}
+                defaults={[]}
+                onChange={(links) => update("links", links)}
+                showReset={false}
+              />
+            </>
           )}
         </InspectorRepeater>
       </InspectorSection>
+
+      <BacklinksEditor
+        idPrefix="title-with-list-link"
+        title="Backlinks"
+        links={content.links || []}
+        sourceText={joinItemBacklinkSourceText({
+          items: (content.items || []).map((item) => ({
+            description: item.text,
+          })),
+        })}
+        defaults={defaults?.links || []}
+        onChange={(links) => onChange({ ...content, links })}
+      />
     </div>
   );
 }

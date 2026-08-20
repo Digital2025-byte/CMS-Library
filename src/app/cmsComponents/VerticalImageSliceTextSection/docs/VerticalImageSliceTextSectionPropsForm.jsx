@@ -7,6 +7,7 @@ import {
   InspectorTabs,
   applyInspectorReset,
 } from "@/components/inspector";
+import { BacklinksStyleSection } from "@/app/cmsComponents/shared/backlinks";
 import VerticalImageSliceTextSectionContentForm from "./VerticalImageSliceTextSectionContentForm";
 import {
   DEFAULT_VERTICAL_IMAGE_SLICE_STYLE,
@@ -132,6 +133,13 @@ function VerticalImageSliceTextSectionStyleForm({ style, onChange }) {
           hint="Masked slice image"
         />
       </InspectorSection>
+
+      <BacklinksStyleSection
+        style={style}
+        onChange={onChange}
+        onReset={() => reset(VERTICAL_IMAGE_SLICE_STYLE_RESET_KEYS.links)}
+        defaults={DEFAULT_VERTICAL_IMAGE_SLICE_STYLE}
+      />
     </div>
   );
 }

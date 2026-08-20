@@ -1,3 +1,9 @@
+import {
+  BACKLINK_STYLE_RESET_KEYS,
+  DEFAULT_BACKLINK_STYLE,
+  resolveBacklinkStyle,
+} from "@/app/cmsComponents/shared/backlinks";
+
 export const TITLE_ALIGN_OPTIONS = [
   { value: "left", label: "Start" },
   { value: "center", label: "Center" },
@@ -23,13 +29,14 @@ export const DEFAULT_FULL_HEIGHT_HEADER_STYLE = {
   titleFontWeight: "semibold",
   descriptionFontWeight: "normal",
   buttonTextFontWeight: "semibold",
+  ...DEFAULT_BACKLINK_STYLE,
 };
 
 export function resolveFullHeightHeaderStyle(style = {}) {
-  return {
-    ...DEFAULT_FULL_HEIGHT_HEADER_STYLE,
-    ...style,
-  };
+  return resolveBacklinkStyle(
+    { ...DEFAULT_FULL_HEIGHT_HEADER_STYLE, ...style },
+    DEFAULT_FULL_HEIGHT_HEADER_STYLE
+  );
 }
 
 export const FULL_HEIGHT_HEADER_STYLE_RESET_KEYS = {
@@ -37,4 +44,5 @@ export const FULL_HEIGHT_HEADER_STYLE_RESET_KEYS = {
   banner: ["showHeroImage", "showOverlay", "overlayColor"],
   title: ["titleAlign", "titleColor", "titleFontWeight", "descriptionColor", "descriptionFontWeight"],
   button: ["showButton", "buttonBg", "buttonText", "buttonTextFontWeight"],
+  links: [...BACKLINK_STYLE_RESET_KEYS],
 };

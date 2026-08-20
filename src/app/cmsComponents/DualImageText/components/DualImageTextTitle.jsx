@@ -1,10 +1,12 @@
 import { UnderlinedFirstWord } from "@/utils/UnderlinedFirstWord";
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { LinkedText } from "@/app/cmsComponents/shared/backlinks";
 import { DEFAULT_DUAL_IMAGE_TEXT_STYLE } from "../utils/style";
 
 export default function DualImageTextTitle({
   text = "",
+  titleParts,
   underlineFirstWord = false,
   style = DEFAULT_DUAL_IMAGE_TEXT_STYLE,
 }) {
@@ -15,6 +17,7 @@ export default function DualImageTextTitle({
   const titleStyle = {
     color: getThemeColorCss(style.titleColor, "primary-1"),
   };
+  const showLinks = style.showLinks !== false;
 
   if (underlineFirstWord) {
     return (
@@ -29,7 +32,12 @@ export default function DualImageTextTitle({
       className={`${typography.sectionTitle} font-semibold wrap-break-word`}
       style={titleStyle}
     >
-      {text}
+      <LinkedText
+        text={text}
+        parts={titleParts}
+        style={style}
+        enabled={showLinks}
+      />
     </h2>
   );
 }

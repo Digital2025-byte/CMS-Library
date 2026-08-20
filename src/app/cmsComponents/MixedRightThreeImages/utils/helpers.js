@@ -1,4 +1,8 @@
-import { getMixedThreeImagesContent } from "@/app/cmsComponents/shared/MixedThreeImages/helpers";
+import {
+  getMixedThreeImagesContent,
+  normalizeBacklinks,
+  toEditorBacklinks,
+} from "@/app/cmsComponents/shared/MixedThreeImages/helpers";
 
 export { getMixedThreeImagesContent as getMixedRightThreeImagesContent } from "@/app/cmsComponents/shared/MixedThreeImages/helpers";
 export { isUsableImageSrc } from "@/app/cmsComponents/shared/MixedThreeImages/helpers";
@@ -9,6 +13,7 @@ export function getMixedRightThreeImagesEditorContent(data, lang = "en") {
   return {
     title: content.title || "",
     description: content.description || "",
+    links: toEditorBacklinks(content.links),
     primaryLabel: content.primaryCta?.label || "",
     primaryHref:
       content.primaryCta?.href === "/" ? "" : content.primaryCta?.href || "",
@@ -34,6 +39,7 @@ export function wrapMixedRightThreeImagesContent(content = {}, lang = "en") {
         content: {
           title: content.title || "",
           description: content.description || "",
+          links: normalizeBacklinks(content.links),
           primaryCta: {
             label: content.primaryLabel || "",
             href: content.primaryHref || "",

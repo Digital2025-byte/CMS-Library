@@ -7,6 +7,7 @@ import {
   InspectorTabs,
   applyInspectorReset,
 } from "@/components/inspector";
+import { BacklinksStyleSection } from "@/app/cmsComponents/shared/backlinks";
 import TwoColumnIntroWithTwoImageContentForm from "./TwoColumnIntroWithTwoImageContentForm";
 import {
   CARD_RADIUS_OPTIONS,
@@ -167,6 +168,13 @@ function TwoColumnIntroWithTwoImageStyleForm({ style, onChange }) {
           </>
         ) : null}
       </InspectorSection>
+
+      <BacklinksStyleSection
+        style={style}
+        onChange={onChange}
+        onReset={() => reset(TWO_COLUMN_INTRO_STYLE_RESET_KEYS.links)}
+        defaults={DEFAULT_TWO_COLUMN_INTRO_STYLE}
+      />
     </div>
   );
 }

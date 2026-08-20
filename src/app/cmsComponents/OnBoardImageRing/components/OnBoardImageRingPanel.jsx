@@ -33,6 +33,7 @@ export default function OnBoardImageRingPanel({
       <OnBoardImageRingHeader
         title={content.title}
         description={content.description}
+        links={content.links || []}
         style={style}
       />
 

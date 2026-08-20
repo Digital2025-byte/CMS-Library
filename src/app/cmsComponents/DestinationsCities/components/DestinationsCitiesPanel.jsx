@@ -1,6 +1,7 @@
 "use client";
 
 import PageContentContainer from "@/components/layout/PageContentContainer";
+import { buildItemBacklinkParts } from "@/app/cmsComponents/shared/backlinks";
 import { getThemeColorCss } from "@/styles/themeColors";
 import DestinationsCitiesIntro from "./DestinationsCitiesIntro";
 import DestinationsCitiesStack from "./DestinationsCitiesStack";
@@ -17,7 +18,12 @@ export default function DestinationsCitiesPanel({
 }) {
   const title = content.title || "";
   const description = content.description || "";
+  const links = content.links || [];
   const cities = content.cities || [];
+  const showLinks = style.showLinks !== false;
+  const cityLinkParts = showLinks
+    ? buildItemBacklinkParts(cities, links)
+    : null;
 
   if (!title && !description && !cities.length) {
     return null;
@@ -43,6 +49,7 @@ export default function DestinationsCitiesPanel({
           <DestinationsCitiesIntro
             title={title}
             description={description}
+            links={links}
             style={style}
           />
         ) : (
@@ -50,6 +57,7 @@ export default function DestinationsCitiesPanel({
         )}
         <DestinationsCitiesStack
           cities={cities}
+          cityLinkParts={cityLinkParts}
           lang={lang}
           posParams={posParams}
           style={style}

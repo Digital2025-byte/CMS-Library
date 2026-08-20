@@ -15,7 +15,10 @@ export default function LegalInformationCards({
   cId,
 }) {
   const resolvedStyle = resolveLegalInformationCardsStyle(style);
-  const { cards, hasContent } = getLegalInformationCardsContent(data, lang);
+  const { links, cards, hasContent } = getLegalInformationCardsContent(
+    data,
+    lang
+  );
 
   if (!hasContent) {
     return null;
@@ -24,6 +27,7 @@ export default function LegalInformationCards({
   return (
     <LegalInformationCardsPanel
       lang={lang}
+      links={links}
       cards={cards}
       posParams={posParams}
       cId={cId}

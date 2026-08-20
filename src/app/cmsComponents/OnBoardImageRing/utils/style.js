@@ -1,3 +1,9 @@
+import {
+  BACKLINK_STYLE_RESET_KEYS,
+  DEFAULT_BACKLINK_STYLE,
+  resolveBacklinkStyle,
+} from "@/app/cmsComponents/shared/backlinks";
+
 export const TITLE_ALIGN_OPTIONS = [
   { value: "left", label: "Start" },
   { value: "center", label: "Center" },
@@ -58,13 +64,14 @@ export const DEFAULT_ON_BOARD_IMAGE_RING_STYLE = {
   overlayColor: "foreground",
   titleFontWeight: "semibold",
   descriptionFontWeight: "normal",
+  ...DEFAULT_BACKLINK_STYLE,
 };
 
 export function resolveOnBoardImageRingStyle(style = {}) {
-  return {
-    ...DEFAULT_ON_BOARD_IMAGE_RING_STYLE,
-    ...style,
-  };
+  return resolveBacklinkStyle(
+    { ...DEFAULT_ON_BOARD_IMAGE_RING_STYLE, ...style },
+    DEFAULT_ON_BOARD_IMAGE_RING_STYLE
+  );
 }
 
 export const ON_BOARD_IMAGE_RING_STYLE_RESET_KEYS = {
@@ -85,4 +92,5 @@ export const ON_BOARD_IMAGE_RING_STYLE_RESET_KEYS = {
     "captionColor",
     "overlayColor",
   ],
+  links: [...BACKLINK_STYLE_RESET_KEYS],
 };

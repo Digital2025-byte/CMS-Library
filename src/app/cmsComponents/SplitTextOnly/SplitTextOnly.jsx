@@ -9,7 +9,7 @@ import { resolveSplitTextOnlyStyle } from "./utils/style";
 
 export default function SplitTextOnly({ lang = "en", data, style }) {
   const resolvedStyle = resolveSplitTextOnlyStyle(style);
-  const { title, description, backgroundImage, hasContent } =
+  const { title, description, links, backgroundImage, hasContent } =
     getSplitTextOnlyContent(data, lang);
   const ref = useRef(null);
   const isInView = useInView(ref, { amount: 0.5, once: false });
@@ -42,6 +42,7 @@ export default function SplitTextOnly({ lang = "en", data, style }) {
             <SplitTextOnlyContent
               title={title}
               description={description}
+              links={links}
               style={resolvedStyle}
             />
           </motion.div>

@@ -4,10 +4,17 @@ import { CaretLeftIcon, CaretRightIcon } from "@phosphor-icons/react";
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
 import { getFontWeightValue } from "@/styles/fontWeight";
+import { LinkedText } from "@/app/cmsComponents/shared/backlinks";
 import { isUsableImageSrc } from "../utils/helpers";
 import { CARD_PADDING_CLASS, CARD_RADIUS_CLASS } from "../utils/style";
 
-export default function ServiceCard({ service, isRtl = false, style }) {
+export default function ServiceCard({
+  service,
+  titleParts,
+  bodyParts,
+  isRtl = false,
+  style,
+}) {
   if (!service) {
     return null;
   }
@@ -19,6 +26,7 @@ export default function ServiceCard({ service, isRtl = false, style }) {
   const paddingClass =
     CARD_PADDING_CLASS[style.cardPadding] ?? CARD_PADDING_CLASS.default;
   const canShowImage = style.showIcon && isUsableImageSrc(imageUrl);
+  const showLinks = style.showLinks !== false;
 
   const card = (
     <article
@@ -54,7 +62,12 @@ export default function ServiceCard({ service, isRtl = false, style }) {
             className={`${typography.itemTitle} font-semibold`}
             style={{ color: getThemeColorCss(style.itemTitleColor, "secondary-2"), fontWeight: getFontWeightValue(style.itemTitleFontWeight) }}
           >
-            {title}
+            <LinkedText
+              text={title}
+              parts={titleParts}
+              style={style}
+              enabled={showLinks}
+            />
           </h3>
         ) : null}
 
@@ -63,7 +76,12 @@ export default function ServiceCard({ service, isRtl = false, style }) {
             className={`${typography.caption} mt-1 line-clamp-3 leading-relaxed`}
             style={{ color: getThemeColorCss(style.itemBodyColor, "icon") }}
           >
-            {description}
+            <LinkedText
+              text={description}
+              parts={bodyParts}
+              style={style}
+              enabled={showLinks}
+            />
           </p>
         ) : null}
       </div>

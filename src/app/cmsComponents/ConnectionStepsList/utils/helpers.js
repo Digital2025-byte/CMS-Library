@@ -1,3 +1,8 @@
+import {
+  normalizeBacklinks,
+  toEditorBacklinks,
+} from "@/app/cmsComponents/shared/backlinks";
+
 function toImageSrc(value) {
   if (!value) {
     return "";
@@ -48,6 +53,7 @@ function normalizeStep(raw, index) {
 
   return {
     description: step?.description || "",
+    links: normalizeBacklinks(step?.links),
     imageUrl: image.fileUrl,
     imageAlt: image.alt || fallbackAlt,
   };
@@ -59,7 +65,7 @@ export function getConnectionStepsListContent(data, lang = "en") {
     : [];
 
   if (!translations.length) {
-    return { title: "", steps: [], stepLabel: "", hasContent: false };
+    return { title: "", links: [], steps: [], stepLabel: "", hasContent: false };
   }
 
   const normalizedLang = String(lang || "").toLowerCase();
@@ -78,6 +84,7 @@ export function getConnectionStepsListContent(data, lang = "en") {
 
   return {
     title,
+    links: normalizeBacklinks(content?.links),
     steps,
     stepLabel: content?.stepLabel || "",
     hasContent: Boolean(title || steps.length),
@@ -90,8 +97,10 @@ export function getConnectionStepsListEditorContent(data, lang = "en") {
   return {
     title: content.title || "",
     stepLabel: content.stepLabel || "",
+    links: toEditorBacklinks(content.links),
     items: content.steps.map((step) => ({
       description: step.description || "",
+      links: toEditorBacklinks(step.links),
       imageUrl: step.imageUrl || "",
       imageAlt: step.imageAlt || "",
     })),
@@ -106,9 +115,11 @@ export function wrapConnectionStepsListContent(content = {}, lang = "en") {
         content: {
           title: content.title || "",
           stepLabel: content.stepLabel || "",
+          links: normalizeBacklinks(content.links),
           steps: (Array.isArray(content.items) ? content.items : []).map(
             (item) => ({
               description: item?.description || "",
+              links: normalizeBacklinks(item?.links),
               image: {
                 fileUrl: item?.imageUrl || "",
                 alt: item?.imageAlt || "",

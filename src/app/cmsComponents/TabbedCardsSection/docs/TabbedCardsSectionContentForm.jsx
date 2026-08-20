@@ -7,6 +7,10 @@ import {
   InspectorTitleSection,
   applyInspectorReset,
 } from "@/components/inspector";
+import {
+  BacklinksEditor,
+  joinItemBacklinkSourceText,
+} from "@/app/cmsComponents/shared/backlinks";
 
 const TITLE_KEYS = ["title", "description"];
 const ITEM_KEYS = ["items"];
@@ -14,6 +18,7 @@ const ITEM_KEYS = ["items"];
 const emptyCard = () => ({
   title: "",
   description: "",
+  links: [],
   imageUrl: "",
   imageAlt: "",
 });
@@ -96,6 +101,15 @@ export default function TabbedCardsSectionContentForm({
                       value={card.imageAlt || ""}
                       onChange={(value) => updateCard("imageAlt", value)}
                     />
+                    <BacklinksEditor
+                      idPrefix={`tabbed-cards-${index}-${cardIndex}-link`}
+                      title="Item backlinks"
+                      links={card.links || []}
+                      sourceText={card.description || ""}
+                      defaults={[]}
+                      onChange={(links) => updateCard("links", links)}
+                      showReset={false}
+                    />
                   </>
                 )}
               </InspectorRepeater>
@@ -103,6 +117,18 @@ export default function TabbedCardsSectionContentForm({
           )}
         </InspectorRepeater>
       </InspectorSection>
+
+      <BacklinksEditor
+        idPrefix="tabbed-cards-link"
+        title="Backlinks"
+        links={content.links || []}
+        sourceText={joinItemBacklinkSourceText({
+          description: content.description,
+          items: (content.items || []).flatMap((tab) => tab.cards || []),
+        })}
+        defaults={defaults?.links || []}
+        onChange={(links) => onChange({ ...content, links })}
+      />
     </div>
   );
 }

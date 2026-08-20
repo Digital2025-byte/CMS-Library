@@ -20,6 +20,7 @@ export default function LegalInformationHero({
   const title = titleProp || content.title;
   const description = descriptionProp || content.description;
   const patternUrl = patternUrlProp || content.patternUrl;
+  const links = content.links || [];
 
   if (!title && !description) {
     return null;
@@ -30,6 +31,7 @@ export default function LegalInformationHero({
       lang={lang}
       title={title}
       description={description}
+      links={links}
       patternUrl={patternUrl}
       style={resolvedStyle}
     />
