@@ -16,6 +16,7 @@ export function buildParagraphData(t, lang = "en") {
               text: isAr ? "فلاي شام" : "FlyCham",
               type: "internal",
               href: "/gb/en/about",
+              occurrence: "first",
             },
           ],
         },

@@ -6,10 +6,14 @@ import {
   InspectorLink,
   InspectorRepeater,
   InspectorSection,
+  InspectorSelect,
   InspectorTitleSection,
   applyInspectorReset,
 } from "@/components/inspector";
-import { getWordSuggestionsFromText } from "../utils/helpers";
+import {
+  getOccurrenceOptions,
+  getWordSuggestionsFromText,
+} from "../utils/helpers";
 
 const TITLE_KEYS = ["title", "description"];
 const LINK_KEYS = ["links"];
@@ -18,6 +22,7 @@ const emptyLink = () => ({
   text: "",
   type: "internal",
   href: "/gb/en",
+  occurrence: "first",
 });
 
 export default function ParagraphContentForm({ content, onChange, defaults }) {
@@ -50,29 +55,48 @@ export default function ParagraphContentForm({ content, onChange, defaults }) {
           addLabel="Add Backlink"
           onChange={(links) => onChange({ ...content, links })}
         >
-          {(item, { index, update }) => (
-            <>
-              <InspectorAutocompleteField
-                id={`paragraph-link-${index}-text`}
-                label="Word or phrase"
-                value={item.text || ""}
-                onChange={(value) => update("text", value)}
-                suggestions={wordSuggestions}
-                placeholder="Type a word, then press Tab"
-              />
-              <InspectorLink
-                id={`paragraph-link-${index}`}
-                type={item.type || "internal"}
-                href={item.href || ""}
-                onChange={({ type, href }) => {
-                  const links = (content.links || []).map((link, linkIndex) =>
-                    linkIndex === index ? { ...link, type, href } : link
-                  );
-                  onChange({ ...content, links });
-                }}
-              />
-            </>
-          )}
+          {(item, { index, update }) => {
+            const occurrenceOptions = getOccurrenceOptions(
+              content.description || "",
+              item.text || ""
+            );
+            const occurrenceValue = occurrenceOptions.some(
+              (option) => option.value === String(item.occurrence || "first")
+            )
+              ? String(item.occurrence || "first")
+              : "first";
+
+            return (
+              <>
+                <InspectorAutocompleteField
+                  id={`paragraph-link-${index}-text`}
+                  label="Word or phrase"
+                  value={item.text || ""}
+                  onChange={(value) => update("text", value)}
+                  suggestions={wordSuggestions}
+                  placeholder="Type a word, then press Tab"
+                />
+                <InspectorSelect
+                  id={`paragraph-link-${index}-occurrence`}
+                  label="Which match"
+                  value={occurrenceValue}
+                  options={occurrenceOptions}
+                  onChange={(value) => update("occurrence", value)}
+                />
+                <InspectorLink
+                  id={`paragraph-link-${index}`}
+                  type={item.type || "internal"}
+                  href={item.href || ""}
+                  onChange={({ type, href }) => {
+                    const links = (content.links || []).map((link, linkIndex) =>
+                      linkIndex === index ? { ...link, type, href } : link
+                    );
+                    onChange({ ...content, links });
+                  }}
+                />
+              </>
+            );
+          }}
         </InspectorRepeater>
       </InspectorSection>
     </div>
