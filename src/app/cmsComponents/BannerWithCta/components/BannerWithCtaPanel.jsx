@@ -3,6 +3,9 @@ import { isUsableImageSrc } from "../utils/helpers";
 import {
   BANNER_RADIUS_CLASS,
   DEFAULT_BANNER_WITH_CTA_STYLE,
+  HEIGHT_CLASS,
+  SECTION_PADDING_CLASS,
+  VERTICAL_ALIGN_CLASS,
 } from "../utils/style";
 import BannerWithCtaContent from "./BannerWithCtaContent";
 
@@ -22,6 +25,12 @@ export default function BannerWithCtaPanel({
       : "";
   const radiusClass =
     BANNER_RADIUS_CLASS[style.bannerRadius] ?? BANNER_RADIUS_CLASS.lg;
+  const paddingClass =
+    SECTION_PADDING_CLASS[style.sectionPadding] ?? SECTION_PADDING_CLASS.default;
+  const verticalClass =
+    VERTICAL_ALIGN_CLASS[style.verticalAlign] ?? VERTICAL_ALIGN_CLASS.center;
+  const heightClass =
+    HEIGHT_CLASS[style.bannerHeight] ?? HEIGHT_CLASS.default;
   const backgroundLayers = [
     style.showOverlay ? titleWash(overlayCss) : null,
     heroSrc ? `url(${heroSrc})` : null,
@@ -31,7 +40,7 @@ export default function BannerWithCtaPanel({
 
   return (
     <div
-      className={`flex min-h-62.5 w-full items-center md:min-h-80 lg:min-h-103.75 ${radiusClass}`}
+      className={`flex w-full ${heightClass} ${verticalClass} ${paddingClass} ${radiusClass}`}
       aria-label={content.imageAlt || content.title || undefined}
       style={{
         backgroundImage: backgroundLayers || undefined,

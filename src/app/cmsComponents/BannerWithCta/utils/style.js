@@ -1,6 +1,19 @@
 export const TITLE_ALIGN_OPTIONS = [
   { value: "left", label: "Start" },
   { value: "center", label: "Center" },
+  { value: "right", label: "End" },
+];
+
+export const VERTICAL_ALIGN_OPTIONS = [
+  { value: "top", label: "Top" },
+  { value: "center", label: "Center" },
+  { value: "bottom", label: "Bottom" },
+];
+
+export const HEIGHT_OPTIONS = [
+  { value: "compact", label: "Compact" },
+  { value: "default", label: "Default" },
+  { value: "tall", label: "Tall" },
 ];
 
 export const CARD_RADIUS_OPTIONS = [
@@ -19,6 +32,19 @@ export const SPACING_OPTIONS = [
 export const TITLE_ALIGN_CLASS = {
   left: "text-start",
   center: "text-center",
+  right: "text-end",
+};
+
+export const TITLE_JUSTIFY_CLASS = {
+  left: "justify-start",
+  center: "justify-center",
+  right: "justify-end",
+};
+
+export const TITLE_ITEMS_CLASS = {
+  left: "items-start",
+  center: "items-center",
+  right: "items-end",
 };
 
 export const BANNER_RADIUS_CLASS = {
@@ -34,6 +60,18 @@ export const SECTION_PADDING_CLASS = {
   loose: "py-10 sm:py-12 lg:py-16",
 };
 
+export const VERTICAL_ALIGN_CLASS = {
+  top: "items-start",
+  center: "items-center",
+  bottom: "items-end",
+};
+
+export const HEIGHT_CLASS = {
+  compact: "min-h-52 md:min-h-64 lg:min-h-72",
+  default: "min-h-62.5 md:min-h-80 lg:min-h-103.75",
+  tall: "min-h-72 md:min-h-96 lg:min-h-[32rem]",
+};
+
 export const DEFAULT_BANNER_WITH_CTA_STYLE = {
   showTitle: true,
   showDescription: true,
@@ -44,6 +82,8 @@ export const DEFAULT_BANNER_WITH_CTA_STYLE = {
   sectionBg: "100",
   sectionPadding: "default",
   titleAlign: "left",
+  verticalAlign: "center",
+  bannerHeight: "default",
   titleColor: "white",
   descriptionColor: "white",
   overlayColor: "primary-1",
@@ -66,8 +106,11 @@ export const BANNER_WITH_CTA_STYLE_RESET_KEYS = {
     "showSectionBg",
     "sectionBg",
     "sectionPadding",
+    "titleAlign",
+    "verticalAlign",
+    "bannerHeight",
   ],
-  title: ["titleAlign", "titleColor", "descriptionColor"],
+  title: ["titleColor", "descriptionColor"],
   banner: ["showHeroImage", "showOverlay", "overlayColor", "bannerRadius"],
   button: ["showButton", "buttonBg", "buttonText"],
 };

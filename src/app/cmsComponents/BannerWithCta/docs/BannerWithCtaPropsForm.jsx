@@ -11,8 +11,10 @@ import {
   BANNER_WITH_CTA_STYLE_RESET_KEYS,
   CARD_RADIUS_OPTIONS,
   DEFAULT_BANNER_WITH_CTA_STYLE,
+  HEIGHT_OPTIONS,
   SPACING_OPTIONS,
   TITLE_ALIGN_OPTIONS,
+  VERTICAL_ALIGN_OPTIONS,
 } from "../utils/style";
 
 function BannerWithCtaStyleForm({ style, onChange }) {
@@ -34,20 +36,11 @@ function BannerWithCtaStyleForm({ style, onChange }) {
           hint="Show the heading"
         />
         {style.showTitle ? (
-          <>
-            <InspectorChoose
-              label="Alignment"
-              name="titleAlign"
-              value={style.titleAlign}
-              options={TITLE_ALIGN_OPTIONS}
-              onChange={(value) => update("titleAlign", value)}
-            />
-            <InspectorColor
-              label="Title color"
-              value={style.titleColor}
-              onChange={(value) => update("titleColor", value)}
-            />
-          </>
+          <InspectorColor
+            label="Title color"
+            value={style.titleColor}
+            onChange={(value) => update("titleColor", value)}
+          />
         ) : null}
         <InspectorSwitch
           checked={style.showDescription}
@@ -61,6 +54,24 @@ function BannerWithCtaStyleForm({ style, onChange }) {
             value={style.descriptionColor}
             onChange={(value) => update("descriptionColor", value)}
           />
+        ) : null}
+        {style.showTitle || style.showDescription || style.showButton ? (
+          <>
+            <InspectorChoose
+              label="Alignment"
+              name="titleAlign"
+              value={style.titleAlign}
+              options={TITLE_ALIGN_OPTIONS}
+              onChange={(value) => update("titleAlign", value)}
+            />
+            <InspectorChoose
+              label="Vertical"
+              name="verticalAlign"
+              value={style.verticalAlign}
+              options={VERTICAL_ALIGN_OPTIONS}
+              onChange={(value) => update("verticalAlign", value)}
+            />
+          </>
         ) : null}
         <InspectorSwitch
           checked={style.showSectionBg}
@@ -81,6 +92,13 @@ function BannerWithCtaStyleForm({ style, onChange }) {
           value={style.sectionPadding}
           options={SPACING_OPTIONS}
           onChange={(value) => update("sectionPadding", value)}
+        />
+        <InspectorChoose
+          label="Height"
+          name="bannerHeight"
+          value={style.bannerHeight}
+          options={HEIGHT_OPTIONS}
+          onChange={(value) => update("bannerHeight", value)}
         />
       </InspectorSection>
 
