@@ -1,3 +1,8 @@
+import {
+  DEFAULT_BACKLINK_STYLE,
+  resolveBacklinkUnderline,
+} from "@/app/cmsComponents/shared/backlinks";
+
 export const TITLE_ALIGN_OPTIONS = [
   { value: "left", label: "Start" },
   { value: "center", label: "Center" },
@@ -86,12 +91,19 @@ export const DEFAULT_ACCORDION_STYLE = {
   descriptionFontWeight: "normal",
   itemTitleFontWeight: "semibold",
   itemBodyFontWeight: "normal",
+  ...DEFAULT_BACKLINK_STYLE,
 };
 
 export function resolveAccordionStyle(style = {}) {
+  const { linkUnderline, ...rest } = style;
+
   return {
     ...DEFAULT_ACCORDION_STYLE,
-    ...style,
+    ...rest,
+    linkUnderline: resolveBacklinkUnderline(
+      linkUnderline,
+      DEFAULT_ACCORDION_STYLE.linkUnderline
+    ),
   };
 }
 
@@ -103,7 +115,13 @@ export const ACCORDION_STYLE_RESET_KEYS = {
     "showSectionBg",
     "sectionBg",
   ],
-  title: ["titleAlign", "titleColor", "titleFontWeight", "descriptionColor", "descriptionFontWeight"],
+  title: [
+    "titleAlign",
+    "titleColor",
+    "titleFontWeight",
+    "descriptionColor",
+    "descriptionFontWeight",
+  ],
   items: [
     "itemLook",
     "showItemBg",
@@ -111,9 +129,19 @@ export const ACCORDION_STYLE_RESET_KEYS = {
     "itemRadius",
     "itemGap",
     "itemPadding",
-    "itemTitleColor", "itemTitleFontWeight",
+    "itemTitleColor",
+    "itemTitleFontWeight",
     "itemOpenColor",
     "itemBodyColor",
+    "itemBodyFontWeight",
   ],
   button: ["buttonPosition", "buttonVariant", "buttonWidth"],
+  links: [
+    "showLinks",
+    "linkColor",
+    "linkHoverColor",
+    "linkFontWeight",
+    "linkUnderline",
+    "linkItalic",
+  ],
 };

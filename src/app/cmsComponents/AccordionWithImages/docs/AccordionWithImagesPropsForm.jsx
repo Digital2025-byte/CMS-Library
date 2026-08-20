@@ -7,6 +7,7 @@ import {
   InspectorTabs,
   applyInspectorReset,
 } from "@/components/inspector";
+import { BacklinksStyleSection } from "@/app/cmsComponents/shared/backlinks";
 import AccordionWithImagesContentForm from "./AccordionWithImagesContentForm";
 import {
   ACCORDION_IMAGES_STYLE_RESET_KEYS,
@@ -56,12 +57,12 @@ function AccordionWithImagesStyleForm({ style, onChange }) {
               value={style.titleColor}
               onChange={(value) => update("titleColor", value)}
             />
-          <InspectorFontWeight
-            id="titleColor-weight"
-            label="Title weight"
-            value={style.titleFontWeight}
-            onChange={(value) => update("titleFontWeight", value)}
-          />
+            <InspectorFontWeight
+              id="titleColor-weight"
+              label="Title weight"
+              value={style.titleFontWeight}
+              onChange={(value) => update("titleFontWeight", value)}
+            />
           </>
         ) : null}
         <InspectorSwitch
@@ -72,18 +73,18 @@ function AccordionWithImagesStyleForm({ style, onChange }) {
         />
         {style.showDescription ? (
           <>
-          <InspectorColor
-            label="Description color"
-            value={style.descriptionColor}
-            onChange={(value) => update("descriptionColor", value)}
-          />
-          <InspectorFontWeight
-            id="descriptionColor-weight"
-            label="Description weight"
-            value={style.descriptionFontWeight}
-            onChange={(value) => update("descriptionFontWeight", value)}
-          />
-        </>
+            <InspectorColor
+              label="Description color"
+              value={style.descriptionColor}
+              onChange={(value) => update("descriptionColor", value)}
+            />
+            <InspectorFontWeight
+              id="descriptionColor-weight"
+              label="Description weight"
+              value={style.descriptionFontWeight}
+              onChange={(value) => update("descriptionFontWeight", value)}
+            />
+          </>
         ) : null}
         <InspectorSwitch
           checked={style.showImagePanel}
@@ -221,6 +222,13 @@ function AccordionWithImagesStyleForm({ style, onChange }) {
           onChange={(value) => update("toggleIcon", value)}
         />
       </InspectorSection>
+
+      <BacklinksStyleSection
+        style={style}
+        onChange={onChange}
+        onReset={() => reset(ACCORDION_IMAGES_STYLE_RESET_KEYS.links)}
+        defaults={DEFAULT_ACCORDION_IMAGES_STYLE}
+      />
     </div>
   );
 }

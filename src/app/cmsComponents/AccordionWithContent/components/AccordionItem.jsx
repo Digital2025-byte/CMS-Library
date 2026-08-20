@@ -2,6 +2,7 @@ import { CaretDownIcon, CaretUpIcon } from "@phosphor-icons/react";
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
 import { getFontWeightValue } from "@/styles/fontWeight";
+import { LinkedText } from "@/app/cmsComponents/shared/backlinks";
 import { ITEM_PADDING_CLASS, ITEM_RADIUS_CLASS } from "../utils/style";
 
 export default function AccordionItem({
@@ -18,6 +19,8 @@ export default function AccordionItem({
   bodyColor = "700",
   titleFontWeight = "semibold",
   bodyFontWeight = "normal",
+  linkStyle,
+  showLinks = true,
 }) {
   const radiusClass = ITEM_RADIUS_CLASS[radius] ?? ITEM_RADIUS_CLASS.lg;
   const paddingClass = ITEM_PADDING_CLASS[padding] ?? ITEM_PADDING_CLASS.default;
@@ -76,7 +79,12 @@ export default function AccordionItem({
             fontWeight: getFontWeightValue(bodyFontWeight),
           }}
         >
-          {item.description}
+          <LinkedText
+            text={item.description}
+            links={item.links}
+            style={linkStyle}
+            enabled={showLinks}
+          />
         </p>
       </div>
     </div>

@@ -8,8 +8,11 @@ import {
   InspectorTitleSection,
   applyInspectorReset,
 } from "@/components/inspector";
+import {
+  BacklinksEditor,
+} from "@/app/cmsComponents/shared/backlinks";
 
-const TITLE_KEYS = ["title", "description"];
+const TITLE_KEYS = ["title", "description", "links"];
 const BUTTON_KEYS = ["buttonLabel", "buttonHref", "buttonLinkType"];
 const ITEM_KEYS = ["items"];
 
@@ -34,6 +37,18 @@ export default function AccordionWithContentContentForm({
         onReset={() => reset(TITLE_KEYS)}
       />
 
+      <BacklinksEditor
+        idPrefix="accordion-link"
+        title="Backlinks"
+        links={content.links || []}
+        sourceText={[
+          content.description || "",
+          ...(content.items || []).map((item) => item.description || ""),
+        ].join("\n")}
+        defaults={defaults?.links || []}
+        onChange={(links) => onChange({ ...content, links })}
+      />
+
       <InspectorButtonSection
         idPrefix="accordion-button"
         label={content.buttonLabel}
@@ -53,7 +68,7 @@ export default function AccordionWithContentContentForm({
       <InspectorSection title="Items" onReset={() => reset(ITEM_KEYS)}>
         <InspectorRepeater
           items={content.items}
-          createItem={() => ({ title: "", description: "" })}
+          createItem={() => ({ title: "", description: "", links: [] })}
           onChange={(items) => onChange({ ...content, items })}
         >
           {(item, { index, update }) => (
@@ -70,6 +85,15 @@ export default function AccordionWithContentContentForm({
                 value={item.description}
                 onChange={(value) => update("description", value)}
                 multiline
+              />
+              <BacklinksEditor
+                idPrefix={`accordion-item-${index}-link`}
+                title="Item backlinks"
+                links={item.links || []}
+                sourceText={item.description || ""}
+                defaults={[]}
+                onChange={(links) => update("links", links)}
+                showReset={false}
               />
             </>
           )}

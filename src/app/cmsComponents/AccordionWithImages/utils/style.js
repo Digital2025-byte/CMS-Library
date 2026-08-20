@@ -1,3 +1,8 @@
+import {
+  DEFAULT_BACKLINK_STYLE,
+  resolveBacklinkUnderline,
+} from "@/app/cmsComponents/shared/backlinks";
+
 export const TITLE_ALIGN_OPTIONS = [
   { value: "left", label: "Start" },
   { value: "center", label: "Center" },
@@ -78,12 +83,19 @@ export const DEFAULT_ACCORDION_IMAGES_STYLE = {
   descriptionFontWeight: "normal",
   itemTitleFontWeight: "semibold",
   itemBodyFontWeight: "normal",
+  ...DEFAULT_BACKLINK_STYLE,
 };
 
 export function resolveAccordionImagesStyle(style = {}) {
+  const { linkUnderline, ...rest } = style;
+
   return {
     ...DEFAULT_ACCORDION_IMAGES_STYLE,
-    ...style,
+    ...rest,
+    linkUnderline: resolveBacklinkUnderline(
+      linkUnderline,
+      DEFAULT_ACCORDION_IMAGES_STYLE.linkUnderline
+    ),
   };
 }
 
@@ -94,7 +106,14 @@ export const ACCORDION_IMAGES_STYLE_RESET_KEYS = {
     "showImagePanel",
     "sectionBg",
   ],
-  title: ["titleAlign", "showTitleBorder", "titleColor", "titleFontWeight", "descriptionColor", "descriptionFontWeight"],
+  title: [
+    "titleAlign",
+    "showTitleBorder",
+    "titleColor",
+    "titleFontWeight",
+    "descriptionColor",
+    "descriptionFontWeight",
+  ],
   items: [
     "itemLook",
     "itemBg",
@@ -102,10 +121,20 @@ export const ACCORDION_IMAGES_STYLE_RESET_KEYS = {
     "itemGap",
     "itemPadding",
     "showItemDivider",
-    "itemTitleColor", "itemTitleFontWeight",
+    "itemTitleColor",
+    "itemTitleFontWeight",
     "itemOpenColor",
     "itemBodyColor",
+    "itemBodyFontWeight",
   ],
   image: ["imagePosition", "imageRadius", "imageBg"],
   toggle: ["toggleBg", "toggleBorder", "toggleIcon"],
+  links: [
+    "showLinks",
+    "linkColor",
+    "linkHoverColor",
+    "linkFontWeight",
+    "linkUnderline",
+    "linkItalic",
+  ],
 };

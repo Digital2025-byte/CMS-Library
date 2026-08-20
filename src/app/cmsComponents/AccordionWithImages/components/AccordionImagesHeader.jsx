@@ -1,11 +1,14 @@
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
 import { getFontWeightValue } from "@/styles/fontWeight";
+import { LinkedText } from "@/app/cmsComponents/shared/backlinks";
 import { TITLE_ALIGN_CLASS } from "../utils/style";
 
 export default function AccordionImagesHeader({
   title,
   description,
+  links = [],
+  linkStyle,
   align = "left",
   titleColor = "primary-1",
   descriptionColor = "700",
@@ -13,6 +16,7 @@ export default function AccordionImagesHeader({
   descriptionFontWeight = "normal",
   showDescription = true,
   showTitleBorder = true,
+  showLinks = true,
 }) {
   if (!title && !(showDescription && description)) {
     return null;
@@ -45,7 +49,12 @@ export default function AccordionImagesHeader({
             fontWeight: getFontWeightValue(descriptionFontWeight),
           }}
         >
-          {description}
+          <LinkedText
+            text={description}
+            links={links}
+            style={linkStyle}
+            enabled={showLinks}
+          />
         </p>
       ) : null}
     </div>

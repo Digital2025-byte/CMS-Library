@@ -7,6 +7,7 @@ import {
   InspectorTabs,
   applyInspectorReset,
 } from "@/components/inspector";
+import { BacklinksStyleSection } from "@/app/cmsComponents/shared/backlinks";
 import AccordionWithContentContentForm from "./AccordionWithContentContentForm";
 import {
   ACCORDION_STYLE_RESET_KEYS,
@@ -52,12 +53,12 @@ function AccordionWithContentStyleForm({ style, onChange }) {
               value={style.titleColor}
               onChange={(value) => update("titleColor", value)}
             />
-          <InspectorFontWeight
-            id="titleColor-weight"
-            label="Title weight"
-            value={style.titleFontWeight}
-            onChange={(value) => update("titleFontWeight", value)}
-          />
+            <InspectorFontWeight
+              id="titleColor-weight"
+              label="Title weight"
+              value={style.titleFontWeight}
+              onChange={(value) => update("titleFontWeight", value)}
+            />
           </>
         ) : null}
         <InspectorSwitch
@@ -68,18 +69,18 @@ function AccordionWithContentStyleForm({ style, onChange }) {
         />
         {style.showDescription ? (
           <>
-          <InspectorColor
-            label="Description color"
-            value={style.descriptionColor}
-            onChange={(value) => update("descriptionColor", value)}
-          />
-          <InspectorFontWeight
-            id="descriptionColor-weight"
-            label="Description weight"
-            value={style.descriptionFontWeight}
-            onChange={(value) => update("descriptionFontWeight", value)}
-          />
-        </>
+            <InspectorColor
+              label="Description color"
+              value={style.descriptionColor}
+              onChange={(value) => update("descriptionColor", value)}
+            />
+            <InspectorFontWeight
+              id="descriptionColor-weight"
+              label="Description weight"
+              value={style.descriptionFontWeight}
+              onChange={(value) => update("descriptionFontWeight", value)}
+            />
+          </>
         ) : null}
         <InspectorSwitch
           checked={style.showButton}
@@ -208,6 +209,13 @@ function AccordionWithContentStyleForm({ style, onChange }) {
           />
         </InspectorSection>
       ) : null}
+
+      <BacklinksStyleSection
+        style={style}
+        onChange={onChange}
+        onReset={() => reset(ACCORDION_STYLE_RESET_KEYS.links)}
+        defaults={DEFAULT_ACCORDION_STYLE}
+      />
     </div>
   );
 }

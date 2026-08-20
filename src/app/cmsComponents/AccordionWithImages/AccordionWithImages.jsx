@@ -12,10 +12,11 @@ import {
 
 export default function AccordionWithImages({ data, style }) {
   const resolved = resolveAccordionImagesStyle(style);
-  const { title, description, items } = getAccordionImagesContent(data);
+  const { title, description, links, items } = getAccordionImagesContent(data);
   const { openIndex, panelIndex, containerRef, setItemRef, toggleAccordion } =
     useAccordionImages(items);
   const gapClass = ITEM_GAP_CLASS[resolved.itemGap] ?? ITEM_GAP_CLASS.tight;
+  const showLinks = resolved.showLinks !== false;
 
   return (
     <>
@@ -23,6 +24,9 @@ export default function AccordionWithImages({ data, style }) {
         <AccordionImagesHeader
           title={resolved.showTitleDescription ? title : ""}
           description={description}
+          links={links}
+          linkStyle={resolved}
+          showLinks={showLinks}
           align={resolved.titleAlign}
           titleColor={resolved.titleColor}
           descriptionColor={resolved.descriptionColor}
@@ -47,7 +51,10 @@ export default function AccordionWithImages({ data, style }) {
               {items.map((item, index) => (
                 <AccordionImagesItem
                   key={index}
-                  item={item}
+                  item={{
+                    ...item,
+                    links: [...(links || []), ...(item.links || [])],
+                  }}
                   isOpen={openIndex === index}
                   onToggle={() => toggleAccordion(index)}
                   itemRef={(element) => setItemRef(index, element)}
@@ -64,6 +71,8 @@ export default function AccordionWithImages({ data, style }) {
                   toggleBg={resolved.toggleBg}
                   toggleBorder={resolved.toggleBorder}
                   toggleIcon={resolved.toggleIcon}
+                  linkStyle={resolved}
+                  showLinks={showLinks}
                 />
               ))}
             </div>

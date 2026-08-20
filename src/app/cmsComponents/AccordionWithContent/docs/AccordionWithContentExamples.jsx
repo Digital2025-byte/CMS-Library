@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { AccordionWithContentSection } from "@/app/cmsComponents/AccordionWithContent";
 import AccordionWithContentPropsForm from "@/app/cmsComponents/AccordionWithContent/docs/AccordionWithContentPropsForm";
 import {
-  getAccordionContent,
+  getAccordionEditorContent,
   wrapAccordionContent,
 } from "@/app/cmsComponents/AccordionWithContent/utils/helpers";
 import { DEFAULT_ACCORDION_STYLE } from "@/app/cmsComponents/AccordionWithContent/utils/style";
@@ -16,7 +16,7 @@ import {
 import Drawer, { useDrawer } from "@/components/ui/Drawer";
 
 function toEditorContent(data) {
-  const content = getAccordionContent(data);
+  const content = getAccordionEditorContent(data);
   const link = resolveEditorLink(content.buttonHref);
 
   return {

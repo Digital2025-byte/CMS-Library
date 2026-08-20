@@ -7,8 +7,9 @@ import {
   InspectorTitleSection,
   applyInspectorReset,
 } from "@/components/inspector";
+import { BacklinksEditor } from "@/app/cmsComponents/shared/backlinks";
 
-const TITLE_KEYS = ["title", "description"];
+const TITLE_KEYS = ["title", "description", "links"];
 const ITEM_KEYS = ["items"];
 
 export default function AccordionWithImagesContentForm({
@@ -32,12 +33,25 @@ export default function AccordionWithImagesContentForm({
         onReset={() => reset(TITLE_KEYS)}
       />
 
+      <BacklinksEditor
+        idPrefix="accordion-images-link"
+        title="Backlinks"
+        links={content.links || []}
+        sourceText={[
+          content.description || "",
+          ...(content.items || []).map((item) => item.description || ""),
+        ].join("\n")}
+        defaults={defaults?.links || []}
+        onChange={(links) => onChange({ ...content, links })}
+      />
+
       <InspectorSection title="Items" onReset={() => reset(ITEM_KEYS)}>
         <InspectorRepeater
           items={content.items}
           createItem={() => ({
             title: "",
             description: "",
+            links: [],
             imageUrl: "",
             imageAlt: "",
           })}
@@ -57,6 +71,15 @@ export default function AccordionWithImagesContentForm({
                 value={item.description}
                 onChange={(value) => update("description", value)}
                 multiline
+              />
+              <BacklinksEditor
+                idPrefix={`accordion-images-item-${index}-link`}
+                title="Item backlinks"
+                links={item.links || []}
+                sourceText={item.description || ""}
+                defaults={[]}
+                onChange={(links) => update("links", links)}
+                showReset={false}
               />
               <InspectorField
                 id={`accordion-images-item-${index}-image`}

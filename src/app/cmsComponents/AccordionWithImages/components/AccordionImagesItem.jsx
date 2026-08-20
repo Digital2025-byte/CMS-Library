@@ -2,6 +2,7 @@
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
 import { getFontWeightValue } from "@/styles/fontWeight";
+import { LinkedText } from "@/app/cmsComponents/shared/backlinks";
 import { ITEM_PADDING_CLASS, ITEM_RADIUS_CLASS } from "../utils/style";
 
 export default function AccordionImagesItem({
@@ -22,6 +23,8 @@ export default function AccordionImagesItem({
   toggleBg = "primary-1",
   toggleBorder = "secondary-1",
   toggleIcon = "white",
+  linkStyle,
+  showLinks = true,
 }) {
   const radiusClass = ITEM_RADIUS_CLASS[radius] ?? ITEM_RADIUS_CLASS.none;
   const paddingClass = ITEM_PADDING_CLASS[padding] ?? ITEM_PADDING_CLASS.tight;
@@ -76,7 +79,12 @@ export default function AccordionImagesItem({
                   fontWeight: getFontWeightValue(bodyFontWeight),
                 }}
               >
-                {item.content}
+                <LinkedText
+                  text={item.content}
+                  links={item.links}
+                  style={linkStyle}
+                  enabled={showLinks}
+                />
               </p>
             </div>
           </div>

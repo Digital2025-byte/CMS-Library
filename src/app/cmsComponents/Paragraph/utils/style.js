@@ -1,3 +1,11 @@
+import {
+  DEFAULT_BACKLINK_STYLE,
+  LINK_UNDERLINE_OPTIONS,
+  resolveBacklinkUnderline,
+} from "@/app/cmsComponents/shared/backlinks";
+
+export { LINK_UNDERLINE_OPTIONS };
+
 export const TITLE_ALIGN_OPTIONS = [
   { value: "left", label: "Start" },
   { value: "center", label: "Center" },
@@ -7,12 +15,6 @@ export const SPACING_OPTIONS = [
   { value: "tight", label: "Tight" },
   { value: "default", label: "Default" },
   { value: "loose", label: "Loose" },
-];
-
-export const LINK_UNDERLINE_OPTIONS = [
-  { value: "none", label: "None" },
-  { value: "always", label: "Always" },
-  { value: "hover", label: "On hover" },
 ];
 
 export const TITLE_ALIGN_CLASS = {
@@ -29,36 +31,27 @@ export const SECTION_PADDING_CLASS = {
 export const DEFAULT_PARAGRAPH_STYLE = {
   showTitle: true,
   showDescription: true,
-  showLinks: true,
   showSectionBg: true,
   sectionBg: "background",
   sectionPadding: "default",
   titleAlign: "left",
   titleColor: "primary-1",
   descriptionColor: "700",
-  linkColor: "primary-1",
-  linkHoverColor: "primary-2",
-  linkFontWeight: "semibold",
-  linkUnderline: "always",
-  linkItalic: false,
   titleFontWeight: "semibold",
   descriptionFontWeight: "normal",
+  ...DEFAULT_BACKLINK_STYLE,
 };
 
 export function resolveParagraphStyle(style = {}) {
   const { linkUnderline, ...rest } = style;
 
-  let resolvedUnderline = DEFAULT_PARAGRAPH_STYLE.linkUnderline;
-  if (linkUnderline === true) resolvedUnderline = "always";
-  else if (linkUnderline === false) resolvedUnderline = "none";
-  else if (LINK_UNDERLINE_OPTIONS.some((option) => option.value === linkUnderline)) {
-    resolvedUnderline = linkUnderline;
-  }
-
   return {
     ...DEFAULT_PARAGRAPH_STYLE,
     ...rest,
-    linkUnderline: resolvedUnderline,
+    linkUnderline: resolveBacklinkUnderline(
+      linkUnderline,
+      DEFAULT_PARAGRAPH_STYLE.linkUnderline
+    ),
   };
 }
 

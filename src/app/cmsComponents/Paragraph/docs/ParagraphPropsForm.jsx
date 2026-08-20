@@ -7,10 +7,10 @@ import {
   InspectorTabs,
   applyInspectorReset,
 } from "@/components/inspector";
+import { BacklinksStyleSection } from "@/app/cmsComponents/shared/backlinks";
 import ParagraphContentForm from "./ParagraphContentForm";
 import {
   DEFAULT_PARAGRAPH_STYLE,
-  LINK_UNDERLINE_OPTIONS,
   PARAGRAPH_STYLE_RESET_KEYS,
   SPACING_OPTIONS,
   TITLE_ALIGN_OPTIONS,
@@ -83,7 +83,7 @@ function ParagraphStyleForm({ style, onChange }) {
           checked={style.showSectionBg}
           onChange={() => toggle("showSectionBg")}
           label="Background"
-          hint="Fill color behind the whole section"
+          hint="Fill color behind the section"
         />
         {style.showSectionBg ? (
           <InspectorColor
@@ -101,50 +101,12 @@ function ParagraphStyleForm({ style, onChange }) {
         />
       </InspectorSection>
 
-      <InspectorSection
-        title="Backlinks"
+      <BacklinksStyleSection
+        style={style}
+        onChange={onChange}
         onReset={() => reset(PARAGRAPH_STYLE_RESET_KEYS.links)}
-      >
-        <InspectorSwitch
-          checked={style.showLinks}
-          onChange={() => toggle("showLinks")}
-          label="Backlinks"
-          hint="Turn chosen words into links"
-        />
-        {style.showLinks ? (
-          <>
-            <InspectorColor
-              label="Color"
-              value={style.linkColor}
-              onChange={(value) => update("linkColor", value)}
-            />
-            <InspectorColor
-              label="Hover color"
-              value={style.linkHoverColor}
-              onChange={(value) => update("linkHoverColor", value)}
-            />
-            <InspectorFontWeight
-              id="linkColor-weight"
-              label="Weight"
-              value={style.linkFontWeight}
-              onChange={(value) => update("linkFontWeight", value)}
-            />
-            <InspectorChoose
-              label="Underline"
-              name="linkUnderline"
-              value={style.linkUnderline}
-              options={LINK_UNDERLINE_OPTIONS}
-              onChange={(value) => update("linkUnderline", value)}
-            />
-            <InspectorSwitch
-              checked={style.linkItalic}
-              onChange={() => toggle("linkItalic")}
-              label="Italic"
-              hint="Italic linked words"
-            />
-          </>
-        ) : null}
-      </InspectorSection>
+        defaults={DEFAULT_PARAGRAPH_STYLE}
+      />
     </div>
   );
 }

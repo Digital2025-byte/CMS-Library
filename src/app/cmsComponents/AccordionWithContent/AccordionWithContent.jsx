@@ -9,10 +9,11 @@ import { ITEM_GAP_CLASS, resolveAccordionStyle } from "./utils/style";
 
 export default function AccordionWithContent({ data, style }) {
   const resolved = resolveAccordionStyle(style);
-  const { title, description, buttonLabel, buttonHref, items } =
+  const { title, description, links, buttonLabel, buttonHref, items } =
     getAccordionContent(data);
   const { isOpen, toggleAccordion } = useAccordion();
   const gapClass = ITEM_GAP_CLASS[resolved.itemGap] ?? ITEM_GAP_CLASS.default;
+  const showLinks = resolved.showLinks !== false;
 
   return (
     <>
@@ -20,6 +21,9 @@ export default function AccordionWithContent({ data, style }) {
         <AccordionHeader
           title={resolved.showTitleDescription ? title : ""}
           description={description}
+          links={links}
+          linkStyle={resolved}
+          showLinks={showLinks}
           align={resolved.titleAlign}
           titleColor={resolved.titleColor}
           descriptionColor={resolved.descriptionColor}
@@ -33,7 +37,11 @@ export default function AccordionWithContent({ data, style }) {
         {items.map((item, index) => (
           <AccordionItem
             key={index}
-            item={item}
+            item={{
+              ...item,
+              // Section backlinks apply to item bodies too (FAQ copy lives here)
+              links: [...(links || []), ...(item.links || [])],
+            }}
             isOpen={isOpen(index)}
             onToggle={() => toggleAccordion(index)}
             look={resolved.itemLook}
@@ -46,6 +54,8 @@ export default function AccordionWithContent({ data, style }) {
             bodyColor={resolved.itemBodyColor}
             titleFontWeight={resolved.itemTitleFontWeight}
             bodyFontWeight={resolved.itemBodyFontWeight}
+            linkStyle={resolved}
+            showLinks={showLinks}
           />
         ))}
       </div>
