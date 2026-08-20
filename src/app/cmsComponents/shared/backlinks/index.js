@@ -1,12 +1,19 @@
 export {
+  buildAccordionItemLinkParts,
   buildLinkedTextParts,
   countPhraseOccurrences,
   emptyBacklink,
+  findNextPhraseIndex,
+  getMatchCheckboxOptions,
+  getMatchCheckboxOptionsByCount,
   getOccurrenceOptions,
+  getSelectedMatchIndexes,
   getWordSuggestionsFromText,
   normalizeBacklinks,
   normalizeOccurrence,
   normalizeParagraphLinks,
+  occurrenceIncludes,
+  serializeOccurrence,
   toEditorBacklinks,
 } from "./helpers";
 export {

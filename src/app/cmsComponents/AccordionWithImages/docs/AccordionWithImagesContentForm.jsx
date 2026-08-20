@@ -39,7 +39,10 @@ export default function AccordionWithImagesContentForm({
         links={content.links || []}
         sourceText={[
           content.description || "",
-          ...(content.items || []).map((item) => item.description || ""),
+          ...(content.items || []).flatMap((item) => [
+            item.title || "",
+            item.description || "",
+          ]),
         ].join("\n")}
         defaults={defaults?.links || []}
         onChange={(links) => onChange({ ...content, links })}

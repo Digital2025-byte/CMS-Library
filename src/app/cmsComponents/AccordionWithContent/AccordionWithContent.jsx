@@ -4,6 +4,7 @@ import AccordionButton from "./components/AccordionButton";
 import AccordionHeader from "./components/AccordionHeader";
 import AccordionItem from "./components/AccordionItem";
 import { useAccordion } from "./hooks/useAccordion";
+import { buildAccordionItemLinkParts } from "@/app/cmsComponents/shared/backlinks";
 import { getAccordionContent } from "./utils/helpers";
 import { ITEM_GAP_CLASS, resolveAccordionStyle } from "./utils/style";
 
@@ -14,6 +15,12 @@ export default function AccordionWithContent({ data, style }) {
   const { isOpen, toggleAccordion } = useAccordion();
   const gapClass = ITEM_GAP_CLASS[resolved.itemGap] ?? ITEM_GAP_CLASS.default;
   const showLinks = resolved.showLinks !== false;
+  const itemLinkParts = showLinks
+    ? buildAccordionItemLinkParts(items, links)
+    : items.map((item) => ({
+        titleParts: [{ type: "text", value: item.title || "" }],
+        bodyParts: [{ type: "text", value: item.description || "" }],
+      }));
 
   return (
     <>
@@ -37,11 +44,9 @@ export default function AccordionWithContent({ data, style }) {
         {items.map((item, index) => (
           <AccordionItem
             key={index}
-            item={{
-              ...item,
-              // Section backlinks apply to item bodies too (FAQ copy lives here)
-              links: [...(links || []), ...(item.links || [])],
-            }}
+            item={item}
+            titleParts={itemLinkParts[index]?.titleParts}
+            bodyParts={itemLinkParts[index]?.bodyParts}
             isOpen={isOpen(index)}
             onToggle={() => toggleAccordion(index)}
             look={resolved.itemLook}

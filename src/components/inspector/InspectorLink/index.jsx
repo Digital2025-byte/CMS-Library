@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect } from "react";
 import InspectorChoose from "../InspectorChoose";
 import InspectorField from "../InspectorField";
 import InspectorSelect from "../InspectorSelect";
@@ -23,6 +26,15 @@ export default function InspectorLink({
   const fallbackHref = pages[0]?.href || "/";
   const isInternal = type === "internal";
   const hrefInPages = isPageHref(href, pages);
+
+  // Keep stored href in sync with what the Page select displays
+  useEffect(() => {
+    if (!isInternal || hrefInPages || !fallbackHref) return;
+    if (href === fallbackHref) return;
+    onChange({ type: "internal", href: fallbackHref });
+    // intentionally omit onChange — callers often pass an inline function
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- sync empty internal href once
+  }, [isInternal, hrefInPages, href, fallbackHref]);
 
   const setType = (nextType) => {
     if (nextType === "internal") {

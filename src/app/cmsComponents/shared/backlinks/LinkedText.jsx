@@ -6,11 +6,13 @@ import { DEFAULT_BACKLINK_STYLE } from "./style";
 export default function LinkedText({
   text,
   links,
+  parts: partsProp,
   style = DEFAULT_BACKLINK_STYLE,
   enabled = true,
 }) {
-  const parts =
-    enabled && Array.isArray(links) && links.length
+  const parts = Array.isArray(partsProp)
+    ? partsProp
+    : enabled && Array.isArray(links) && links.length
       ? buildLinkedTextParts(text, links)
       : [{ type: "text", value: text }];
 
@@ -35,6 +37,13 @@ export default function LinkedText({
           ? "no-underline hover:underline hover:underline-offset-2"
           : "no-underline";
 
+    const underlineStyle =
+      underline === "always"
+        ? { textDecorationLine: "underline", textUnderlineOffset: "2px" }
+        : underline === "none"
+          ? { textDecorationLine: "none" }
+          : undefined;
+
     return (
       <a
         key={`link-${index}-${part.href}`}
@@ -49,15 +58,23 @@ export default function LinkedText({
         style={{
           color: linkColor,
           fontWeight: linkWeight,
+          ...underlineStyle,
         }}
         onClick={(event) => {
           event.stopPropagation();
         }}
         onMouseEnter={(event) => {
           event.currentTarget.style.color = linkHoverColor;
+          if (underline === "hover") {
+            event.currentTarget.style.textDecorationLine = "underline";
+            event.currentTarget.style.textUnderlineOffset = "2px";
+          }
         }}
         onMouseLeave={(event) => {
           event.currentTarget.style.color = linkColor;
+          if (underline === "hover") {
+            event.currentTarget.style.textDecorationLine = "none";
+          }
         }}
         target={isExternal ? "_blank" : undefined}
         rel={isExternal ? "noopener noreferrer" : undefined}

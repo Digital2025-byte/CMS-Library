@@ -7,6 +7,8 @@ import { ITEM_PADDING_CLASS, ITEM_RADIUS_CLASS } from "../utils/style";
 
 export default function AccordionItem({
   item,
+  titleParts,
+  bodyParts,
   isOpen,
   onToggle,
   look = "filled",
@@ -50,7 +52,16 @@ export default function AccordionItem({
             fontWeight: getFontWeightValue(titleFontWeight),
           }}
         >
-          {item.title}
+          {showLinks ? (
+            <LinkedText
+              text={item.title}
+              parts={titleParts}
+              style={linkStyle}
+              enabled={showLinks}
+            />
+          ) : (
+            item.title
+          )}
         </h3>
         {isOpen ? (
           <CaretUpIcon
@@ -81,7 +92,7 @@ export default function AccordionItem({
         >
           <LinkedText
             text={item.description}
-            links={item.links}
+            parts={bodyParts}
             style={linkStyle}
             enabled={showLinks}
           />

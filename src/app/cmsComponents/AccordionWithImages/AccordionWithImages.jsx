@@ -4,6 +4,7 @@ import AccordionImagesHeader from "./components/AccordionImagesHeader";
 import AccordionImagesItem from "./components/AccordionImagesItem";
 import AccordionImagesPanel from "./components/AccordionImagesPanel";
 import { useAccordionImages } from "./hooks/useAccordionImages";
+import { buildAccordionItemLinkParts } from "@/app/cmsComponents/shared/backlinks";
 import { getAccordionImagesContent } from "./utils/helpers";
 import {
   ITEM_GAP_CLASS,
@@ -17,6 +18,12 @@ export default function AccordionWithImages({ data, style }) {
     useAccordionImages(items);
   const gapClass = ITEM_GAP_CLASS[resolved.itemGap] ?? ITEM_GAP_CLASS.tight;
   const showLinks = resolved.showLinks !== false;
+  const itemLinkParts = showLinks
+    ? buildAccordionItemLinkParts(items, links)
+    : items.map((item) => ({
+        titleParts: [{ type: "text", value: item.title || "" }],
+        bodyParts: [{ type: "text", value: item.content || "" }],
+      }));
 
   return (
     <>
@@ -51,10 +58,9 @@ export default function AccordionWithImages({ data, style }) {
               {items.map((item, index) => (
                 <AccordionImagesItem
                   key={index}
-                  item={{
-                    ...item,
-                    links: [...(links || []), ...(item.links || [])],
-                  }}
+                  item={item}
+                  titleParts={itemLinkParts[index]?.titleParts}
+                  bodyParts={itemLinkParts[index]?.bodyParts}
                   isOpen={openIndex === index}
                   onToggle={() => toggleAccordion(index)}
                   itemRef={(element) => setItemRef(index, element)}

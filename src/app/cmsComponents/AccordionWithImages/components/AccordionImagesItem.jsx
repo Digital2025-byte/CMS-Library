@@ -7,6 +7,8 @@ import { ITEM_PADDING_CLASS, ITEM_RADIUS_CLASS } from "../utils/style";
 
 export default function AccordionImagesItem({
   item,
+  titleParts,
+  bodyParts,
   isOpen,
   onToggle,
   itemRef,
@@ -61,7 +63,16 @@ export default function AccordionImagesItem({
               fontWeight: getFontWeightValue(titleFontWeight),
             }}
           >
-            {item.title}
+            {showLinks ? (
+              <LinkedText
+                text={item.title}
+                parts={titleParts}
+                style={linkStyle}
+                enabled={showLinks}
+              />
+            ) : (
+              item.title
+            )}
           </h3>
 
           <div
@@ -81,7 +92,7 @@ export default function AccordionImagesItem({
               >
                 <LinkedText
                   text={item.content}
-                  links={item.links}
+                  parts={bodyParts}
                   style={linkStyle}
                   enabled={showLinks}
                 />
