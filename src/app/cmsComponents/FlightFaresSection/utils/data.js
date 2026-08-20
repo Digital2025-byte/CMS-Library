@@ -34,7 +34,12 @@ export function buildFlightFaresData(t, lang = "en") {
         content: {
           title: t("flightFares.title"),
           items: rawItems.map((item, index) => {
-            const title = item?.title || item?.cityName || "";
+            const baseTitle = item?.title || item?.cityName || "";
+            const iata = item?.IATACode || item?.iataCode || "";
+            const title =
+              iata && baseTitle && !baseTitle.includes(`(${iata})`)
+                ? `${baseTitle} (${iata})`
+                : baseTitle;
             const price = item?.price || "";
             const currency = item?.currency || "";
             const subtitle =
@@ -46,7 +51,6 @@ export function buildFlightFaresData(t, lang = "en") {
               cityId: item?.cityId || item?.id || index + 1,
               title,
               cityName: title,
-              IATACode: item?.IATACode || "",
               countryName: item?.countryName || "",
               price,
               currency,

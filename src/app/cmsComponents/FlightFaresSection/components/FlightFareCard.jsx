@@ -113,7 +113,6 @@ export default function FlightFareCard({
             style={{ color: titleCss }}
           >
             {itemTitle}
-            {item.IATACode ? ` (${item.IATACode})` : ""}
           </h3>
         ) : null}
         {style.showSubtitle && subtitle ? (

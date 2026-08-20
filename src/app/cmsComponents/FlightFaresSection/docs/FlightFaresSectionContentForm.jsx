@@ -18,7 +18,6 @@ const emptyItem = () => ({
   subtitle: "",
   hasExtraBadge: false,
   extraBadge: "",
-  IATACode: "",
   imageUrl: "",
   imageAlt: "",
 });
@@ -48,7 +47,7 @@ export default function FlightFaresSectionContentForm({
         <InspectorRepeater
           items={content.items || []}
           createItem={emptyItem}
-          itemLabel={(item, index) => item?.title || `Item ${index + 1}`}
+          itemLabel={(_item, index) => `Item ${index + 1}`}
           addLabel="Add Item"
           onChange={(items) => onChange({ ...content, items })}
         >
@@ -94,12 +93,6 @@ export default function FlightFaresSectionContentForm({
                   onChange={(value) => update("extraBadge", value)}
                 />
               ) : null}
-              <InspectorField
-                id={`flight-fares-${index}-iata`}
-                label="IATA"
-                value={item.IATACode || ""}
-                onChange={(value) => update("IATACode", value)}
-              />
               <InspectorField
                 id={`flight-fares-${index}-image`}
                 label="Image URL"

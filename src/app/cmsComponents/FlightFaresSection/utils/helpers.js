@@ -79,7 +79,12 @@ export function normalizeFareItem(item, defaults = {}) {
         .filter((image) => image.url)
     : [];
 
-  const title = item?.title || item?.cityName || "";
+  const baseTitle = item?.title || item?.cityName || "";
+  const iata = item?.IATACode || item?.iataCode || "";
+  const title =
+    iata && baseTitle && !baseTitle.includes(`(${iata})`)
+      ? `${baseTitle} (${iata})`
+      : baseTitle;
   const topBadge =
     item?.topBadge || item?.oneWayLabel || defaults.topBadge || "";
   const subtitle =
@@ -96,7 +101,6 @@ export function normalizeFareItem(item, defaults = {}) {
     cityId: item?.cityId ?? item?.id ?? null,
     title,
     cityName: title,
-    IATACode: item?.IATACode || item?.iataCode || "",
     countryName: item?.countryName || "",
     price: item?.price || "",
     currency: item?.currency || "",
@@ -219,7 +223,6 @@ export function getFlightFaresEditorContent(data, lang = "en") {
       subtitle: item.subtitle || "",
       hasExtraBadge: Boolean(item.hasExtraBadge),
       extraBadge: item.extraBadge || "",
-      IATACode: item.IATACode || "",
       imageUrl: item.images?.[0]?.url || "",
       imageAlt: item.images?.[0]?.alt || item.title || "",
     })),
@@ -237,7 +240,6 @@ export function wrapFlightFaresContent(content = {}, lang = "en") {
             (item, index) => ({
               id: item?.id ?? item?.cityId ?? index + 1,
               title: item?.title || "",
-              IATACode: item?.IATACode || item?.iataCode || "",
               hasTopBadge: Boolean(item?.hasTopBadge),
               topBadge: item?.topBadge || "",
               subtitle: item?.subtitle || "",
