@@ -14,6 +14,7 @@ export default function OppositeScrollPanel({ content, style, cId }) {
   const {
     title,
     description,
+    links = [],
     exploreLabel,
     exploreHref,
     topRow,
@@ -46,6 +47,7 @@ export default function OppositeScrollPanel({ content, style, cId }) {
         <OppositeScrollHeader
           title={title}
           description={description}
+          links={links}
           style={style}
         />
 

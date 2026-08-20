@@ -7,6 +7,7 @@ import {
   InspectorTabs,
   applyInspectorReset,
 } from "@/components/inspector";
+import { BacklinksStyleSection } from "@/app/cmsComponents/shared/backlinks";
 import RelatedContentCarouselContentForm from "./RelatedContentCarouselContentForm";
 import {
   CARD_RADIUS_OPTIONS,
@@ -191,6 +192,13 @@ function RelatedContentCarouselStyleForm({ style, onChange }) {
           </>
         ) : null}
       </InspectorSection>
+
+      <BacklinksStyleSection
+        style={style}
+        onChange={onChange}
+        onReset={() => reset(RELATED_CONTENT_STYLE_RESET_KEYS.links)}
+        defaults={DEFAULT_RELATED_CONTENT_STYLE}
+      />
     </div>
   );
 }

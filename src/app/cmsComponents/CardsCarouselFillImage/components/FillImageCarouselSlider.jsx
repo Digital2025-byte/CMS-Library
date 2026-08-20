@@ -61,6 +61,7 @@ export default function FillImageCarouselSlider({
   sliderRef,
   settings,
   cards,
+  itemLinkParts,
   lang,
   cId,
   onKeyDown,
@@ -85,6 +86,8 @@ export default function FillImageCarouselSlider({
                 lang={lang}
                 cId={cId}
                 style={style}
+                titleParts={itemLinkParts?.[index]?.titleParts}
+                bodyParts={itemLinkParts?.[index]?.bodyParts}
               />
             </div>
           ))}

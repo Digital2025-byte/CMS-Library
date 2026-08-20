@@ -13,6 +13,7 @@ import {
   isAtLastStep,
   usePeekSlideWidth,
 } from "../hooks/usePeekSlideWidth";
+import { buildItemBacklinkParts } from "@/app/cmsComponents/shared/backlinks";
 
 export default function CardsCarouselFillImagePanel({
   lang = "en",
@@ -23,7 +24,11 @@ export default function CardsCarouselFillImagePanel({
   const sliderRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const { edgePad, visibleCount } = usePeekSlideWidth();
-  const { title, description, cards } = content;
+  const { title, description, links = [], cards } = content;
+  const showLinks = style.showLinks !== false;
+  const itemLinkParts = showLinks
+    ? buildItemBacklinkParts(cards, links)
+    : null;
 
   const maxIndex = getMaxSlideIndex(cards.length, visibleCount);
   const atStart = activeIndex <= 0;
@@ -96,7 +101,12 @@ export default function CardsCarouselFillImagePanel({
   return (
     <div aria-label={title || "Cards carousel"}>
       <CardsCarouselFillImageInset>
-        <CarouselHeader title={title} description={description} style={style} />
+        <CarouselHeader
+          title={title}
+          description={description}
+          links={links}
+          style={style}
+        />
       </CardsCarouselFillImageInset>
 
       <div className="m-0 w-screen max-w-[100vw] ms-[calc(50%-50vw)] px-0">
@@ -105,6 +115,7 @@ export default function CardsCarouselFillImagePanel({
           sliderRef={sliderRef}
           settings={settings}
           cards={cards}
+          itemLinkParts={itemLinkParts}
           lang={lang}
           cId={cId}
           onKeyDown={handleKeyDown}

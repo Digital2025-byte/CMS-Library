@@ -6,12 +6,17 @@ import {
   InspectorSection,
   applyInspectorReset,
 } from "@/components/inspector";
+import {
+  BacklinksEditor,
+  joinItemBacklinkSourceText,
+} from "@/app/cmsComponents/shared/backlinks";
 
 const ITEM_KEYS = ["items"];
 
 const emptyItem = () => ({
   title: "",
   description: "",
+  links: [],
   imageUrl: "",
 });
 
@@ -52,10 +57,30 @@ export default function ScrollCarouselContentForm({
                 value={item.imageUrl || ""}
                 onChange={(value) => update("imageUrl", value)}
               />
+              <BacklinksEditor
+                idPrefix={`scroll-carousel-item-${index}-link`}
+                title="Item backlinks"
+                links={item.links || []}
+                sourceText={item.description || ""}
+                defaults={[]}
+                onChange={(links) => update("links", links)}
+                showReset={false}
+              />
             </>
           )}
         </InspectorRepeater>
       </InspectorSection>
+
+      <BacklinksEditor
+        idPrefix="scroll-carousel-link"
+        title="Backlinks"
+        links={content.links || []}
+        sourceText={joinItemBacklinkSourceText({
+          items: content.items,
+        })}
+        defaults={defaults?.links || []}
+        onChange={(links) => onChange({ ...content, links })}
+      />
     </div>
   );
 }

@@ -7,6 +7,7 @@ import {
   InspectorTabs,
   applyInspectorReset,
 } from "@/components/inspector";
+import { BacklinksStyleSection } from "@/app/cmsComponents/shared/backlinks";
 import CarouselImageText6ContentForm from "./CarouselImageText6ContentForm";
 import {
   CAROUSEL_IMAGE_TEXT_STYLE_RESET_KEYS,
@@ -155,6 +156,13 @@ function CarouselImageText6StyleForm({ style, onChange }) {
           />
         ) : null}
       </InspectorSection>
+
+      <BacklinksStyleSection
+        style={style}
+        onChange={onChange}
+        onReset={() => reset(CAROUSEL_IMAGE_TEXT_STYLE_RESET_KEYS.links)}
+        defaults={DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE}
+      />
     </div>
   );
 }

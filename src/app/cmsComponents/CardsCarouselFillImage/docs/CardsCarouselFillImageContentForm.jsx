@@ -8,6 +8,10 @@ import {
   InspectorTitleSection,
   applyInspectorReset,
 } from "@/components/inspector";
+import {
+  BacklinksEditor,
+  joinItemBacklinkSourceText,
+} from "@/app/cmsComponents/shared/backlinks";
 
 const TITLE_KEYS = ["title", "description"];
 const ITEM_KEYS = ["items"];
@@ -15,6 +19,7 @@ const ITEM_KEYS = ["items"];
 const emptyItem = () => ({
   title: "",
   description: "",
+  links: [],
   imageUrl: "",
   imageAlt: "",
   imageWidth: 0,
@@ -86,7 +91,7 @@ export default function CardsCarouselFillImageContentForm({
                 onChange={(value) => update("buttonText", value)}
               />
               <InspectorLink
-                id={`fill-image-item-${index}-link`}
+                id={`fill-image-item-${index}-btn-link`}
                 type={item.buttonLinkType}
                 href={item.buttonHref}
                 onChange={({ type, href }) => {
@@ -98,10 +103,31 @@ export default function CardsCarouselFillImageContentForm({
                   onChange({ ...content, items });
                 }}
               />
+              <BacklinksEditor
+                idPrefix={`fill-image-item-${index}-link`}
+                title="Item backlinks"
+                links={item.links || []}
+                sourceText={item.description || ""}
+                defaults={[]}
+                onChange={(links) => update("links", links)}
+                showReset={false}
+              />
             </>
           )}
         </InspectorRepeater>
       </InspectorSection>
+
+      <BacklinksEditor
+        idPrefix="fill-image-link"
+        title="Backlinks"
+        links={content.links || []}
+        sourceText={joinItemBacklinkSourceText({
+          description: content.description,
+          items: content.items,
+        })}
+        defaults={defaults?.links || []}
+        onChange={(links) => onChange({ ...content, links })}
+      />
     </div>
   );
 }

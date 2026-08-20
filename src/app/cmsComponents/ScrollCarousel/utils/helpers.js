@@ -1,3 +1,7 @@
+import {
+  normalizeBacklinks,
+  toEditorBacklinks,
+} from "@/app/cmsComponents/shared/backlinks";
 import { features as defaultFeatures } from "./data";
 
 export function isUsableImageSrc(src) {
@@ -38,6 +42,7 @@ function normalizeFeature(item) {
   return {
     title: item?.title || "",
     description: item?.description || "",
+    links: normalizeBacklinks(item?.links),
     imageUrl: isUsableImageSrc(imageUrl) ? imageUrl : "",
     image: isUsableImageSrc(imageUrl) ? imageUrl : "",
     icon: item?.icon,
@@ -54,6 +59,7 @@ export function getScrollCarouselContent(data, lang = "en") {
   const items = source.map((item) => normalizeFeature(item));
 
   return {
+    links: normalizeBacklinks(content?.links),
     items,
     features: items,
     hasContent: items.length > 0,
@@ -61,12 +67,14 @@ export function getScrollCarouselContent(data, lang = "en") {
 }
 
 export function getScrollCarouselEditorContent(data, lang = "en") {
-  const { items } = getScrollCarouselContent(data, lang);
+  const { links, items } = getScrollCarouselContent(data, lang);
 
   return {
+    links: toEditorBacklinks(links),
     items: items.map((item) => ({
       title: item.title || "",
       description: item.description || "",
+      links: toEditorBacklinks(item.links),
       imageUrl: item.imageUrl || item.image || "",
     })),
   };
@@ -78,10 +86,12 @@ export function wrapScrollCarouselContent(content = {}, lang = "en") {
       {
         languageCode: lang,
         content: {
+          links: normalizeBacklinks(content.links),
           items: (Array.isArray(content.items) ? content.items : []).map(
             (item) => ({
               title: item?.title || "",
               description: item?.description || "",
+              links: normalizeBacklinks(item?.links),
               imageUrl: item?.imageUrl || "",
             })
           ),

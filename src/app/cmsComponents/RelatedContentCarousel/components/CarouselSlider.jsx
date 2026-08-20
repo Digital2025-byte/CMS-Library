@@ -61,6 +61,7 @@ export default function CarouselSlider({
   sliderRef,
   settings,
   cards,
+  itemLinkParts,
   lang,
   cId,
   activeIndex = 0,
@@ -94,6 +95,8 @@ export default function CarouselSlider({
                     lang={lang}
                     cId={cId}
                     style={style}
+                    titleParts={itemLinkParts?.[index]?.titleParts}
+                    bodyParts={itemLinkParts?.[index]?.bodyParts}
                   />
                 </div>
               </div>

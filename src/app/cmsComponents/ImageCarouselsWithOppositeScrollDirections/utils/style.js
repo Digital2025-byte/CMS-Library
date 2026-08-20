@@ -1,3 +1,9 @@
+import {
+  BACKLINK_STYLE_RESET_KEYS,
+  DEFAULT_BACKLINK_STYLE,
+  resolveBacklinkStyle,
+} from "@/app/cmsComponents/shared/backlinks";
+
 export const TITLE_ALIGN_OPTIONS = [
   { value: "left", label: "Start" },
   { value: "center", label: "Center" },
@@ -61,10 +67,10 @@ export const SECTION_PADDING_CLASS = {
 };
 
 export function resolveOppositeScrollStyle(style = {}) {
-  return {
-    ...DEFAULT_OPPOSITE_SCROLL_STYLE,
-    ...style,
-  };
+  return resolveBacklinkStyle(
+    { ...DEFAULT_OPPOSITE_SCROLL_STYLE, ...style },
+    DEFAULT_OPPOSITE_SCROLL_STYLE
+  );
 }
 
 export const DEFAULT_OPPOSITE_SCROLL_STYLE = {
@@ -94,6 +100,7 @@ export const DEFAULT_OPPOSITE_SCROLL_STYLE = {
   titleFontWeight: "semibold",
   descriptionFontWeight: "normal",
   cardTitleFontWeight: "semibold",
+  ...DEFAULT_BACKLINK_STYLE,
 };
 
 export const OPPOSITE_SCROLL_STYLE_RESET_KEYS = {
@@ -119,4 +126,5 @@ export const OPPOSITE_SCROLL_STYLE_RESET_KEYS = {
   ],
   motion: ["pauseOnHover", "reverseRows", "speed"],
   button: ["buttonBg", "buttonColor"],
+  links: [...BACKLINK_STYLE_RESET_KEYS],
 };

@@ -1,3 +1,9 @@
+import {
+  BACKLINK_STYLE_RESET_KEYS,
+  DEFAULT_BACKLINK_STYLE,
+  resolveBacklinkStyle,
+} from "@/app/cmsComponents/shared/backlinks";
+
 export const CARD_RADIUS_OPTIONS = [
   { value: "none", label: "Square" },
   { value: "sm", label: "Small" },
@@ -25,13 +31,14 @@ export const DEFAULT_SCROLL_CAROUSEL_STYLE = {
   cardRadius: "lg",
   titleFontWeight: "semibold",
   descriptionFontWeight: "normal",
+  ...DEFAULT_BACKLINK_STYLE,
 };
 
 export function resolveScrollCarouselStyle(style = {}) {
-  return {
-    ...DEFAULT_SCROLL_CAROUSEL_STYLE,
-    ...style,
-  };
+  return resolveBacklinkStyle(
+    { ...DEFAULT_SCROLL_CAROUSEL_STYLE, ...style },
+    DEFAULT_SCROLL_CAROUSEL_STYLE
+  );
 }
 
 export const SCROLL_CAROUSEL_STYLE_RESET_KEYS = {
@@ -49,4 +56,5 @@ export const SCROLL_CAROUSEL_STYLE_RESET_KEYS = {
     "titleColor", "titleFontWeight",
     "descriptionColor", "descriptionFontWeight",
   ],
+  links: [...BACKLINK_STYLE_RESET_KEYS],
 };

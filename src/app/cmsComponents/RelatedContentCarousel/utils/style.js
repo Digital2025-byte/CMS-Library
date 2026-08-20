@@ -1,3 +1,9 @@
+import {
+  BACKLINK_STYLE_RESET_KEYS,
+  DEFAULT_BACKLINK_STYLE,
+  resolveBacklinkStyle,
+} from "@/app/cmsComponents/shared/backlinks";
+
 export const TITLE_ALIGN_OPTIONS = [
   { value: "left", label: "Start" },
   { value: "center", label: "Center" },
@@ -42,10 +48,10 @@ export const SECTION_PADDING_CLASS = {
 };
 
 export function resolveRelatedContentStyle(style = {}) {
-  return {
-    ...DEFAULT_RELATED_CONTENT_STYLE,
-    ...style,
-  };
+  return resolveBacklinkStyle(
+    { ...DEFAULT_RELATED_CONTENT_STYLE, ...style },
+    DEFAULT_RELATED_CONTENT_STYLE
+  );
 }
 
 export const DEFAULT_RELATED_CONTENT_STYLE = {
@@ -75,6 +81,7 @@ export const DEFAULT_RELATED_CONTENT_STYLE = {
   cardBodyFontWeight: "normal",
   cardTitleFontWeight: "semibold",
   buttonTextFontWeight: "semibold",
+  ...DEFAULT_BACKLINK_STYLE,
 };
 
 export const RELATED_CONTENT_STYLE_RESET_KEYS = {
@@ -85,16 +92,31 @@ export const RELATED_CONTENT_STYLE_RESET_KEYS = {
     "sectionBg",
     "sectionPadding",
   ],
-  title: ["titleAlign", "titleColor", "titleFontWeight", "descriptionColor", "descriptionFontWeight"],
+  title: [
+    "titleAlign",
+    "titleColor",
+    "titleFontWeight",
+    "descriptionColor",
+    "descriptionFontWeight",
+  ],
   cards: [
     "showCardImage",
     "showCardTitle",
     "showCardDescription",
     "cardBg",
     "cardRadius",
-    "cardTitleColor", "cardTitleFontWeight",
-    "cardBodyColor", "cardBodyFontWeight",
+    "cardTitleColor",
+    "cardTitleFontWeight",
+    "cardBodyColor",
+    "cardBodyFontWeight",
   ],
-  button: ["showButton", "buttonBg", "buttonText", "buttonTextFontWeight", "buttonOnFill"],
+  button: [
+    "showButton",
+    "buttonBg",
+    "buttonText",
+    "buttonTextFontWeight",
+    "buttonOnFill",
+  ],
   nav: ["navColor", "navTrack"],
+  links: [...BACKLINK_STYLE_RESET_KEYS],
 };

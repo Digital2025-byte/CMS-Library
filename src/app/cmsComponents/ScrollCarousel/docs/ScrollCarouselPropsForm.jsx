@@ -7,6 +7,7 @@ import {
   InspectorTabs,
   applyInspectorReset,
 } from "@/components/inspector";
+import { BacklinksStyleSection } from "@/app/cmsComponents/shared/backlinks";
 import ScrollCarouselContentForm from "./ScrollCarouselContentForm";
 import {
   CARD_RADIUS_OPTIONS,
@@ -113,6 +114,13 @@ function ScrollCarouselStyleForm({ style, onChange }) {
           onChange={(value) => update("cardRadius", value)}
         />
       </InspectorSection>
+
+      <BacklinksStyleSection
+        style={style}
+        onChange={onChange}
+        onReset={() => reset(SCROLL_CAROUSEL_STYLE_RESET_KEYS.links)}
+        defaults={DEFAULT_SCROLL_CAROUSEL_STYLE}
+      />
     </div>
   );
 }

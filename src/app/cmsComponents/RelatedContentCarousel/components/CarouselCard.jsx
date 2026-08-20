@@ -7,10 +7,18 @@ import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
 import { getFontWeightValue } from "@/styles/fontWeight";
 import { withCampaignPath } from "@/utils/withCampaignPath";
+import { LinkedText } from "@/app/cmsComponents/shared/backlinks";
 import { getImageUrl, isUsableImageSrc } from "../utils/helpers";
 import { CARD_RADIUS_CLASS, CARD_RADIUS_TOP_CLASS } from "../utils/style";
 
-export default function CarouselCard({ card, lang = "en", cId, style }) {
+export default function CarouselCard({
+  card,
+  lang = "en",
+  cId,
+  style,
+  titleParts,
+  bodyParts,
+}) {
   const { t } = useTranslation();
 
   if (!card) {
@@ -78,19 +86,36 @@ export default function CarouselCard({ card, lang = "en", cId, style }) {
           {style.showCardTitle && title ? (
             <h3
               className={`${typography.itemTitle} mb-2 font-semibold leading-snug`}
-              style={{ color: getThemeColorCss(style.cardTitleColor, "secondary-2"), fontWeight: getFontWeightValue(style.cardTitleFontWeight),
+              style={{
+                color: getThemeColorCss(style.cardTitleColor, "secondary-2"),
+                fontWeight: getFontWeightValue(style.cardTitleFontWeight),
               }}
             >
-              {title}
+              <LinkedText
+                text={title}
+                parts={titleParts}
+                links={card.links}
+                style={style}
+                enabled={style.showLinks !== false}
+              />
             </h3>
           ) : null}
 
           {style.showCardDescription && description ? (
             <p
               className={`${typography.itemDescription} mb-5 leading-relaxed`}
-              style={{ color: getThemeColorCss(style.cardBodyColor, "600"), fontWeight: getFontWeightValue(style.cardBodyFontWeight) }}
+              style={{
+                color: getThemeColorCss(style.cardBodyColor, "600"),
+                fontWeight: getFontWeightValue(style.cardBodyFontWeight),
+              }}
             >
-              {description}
+              <LinkedText
+                text={description}
+                parts={bodyParts}
+                links={card.links}
+                style={style}
+                enabled={style.showLinks !== false}
+              />
             </p>
           ) : null}
 

@@ -1,3 +1,8 @@
+import {
+  normalizeBacklinks,
+  toEditorBacklinks,
+} from "@/app/cmsComponents/shared/backlinks";
+
 export function getCardKey(card, index) {
   return card?.id || card?.title || `card-${index}`;
 }
@@ -47,6 +52,7 @@ export function normalizeCarouselCard(page, lang = "en", posParams = "gb") {
     id: page?.id || "",
     title: page?.title || "",
     description: page?.description || "",
+    links: normalizeBacklinks(page?.links),
     image: {
       fileUrl:
         page?.CardImage?.fileUrl ||
@@ -75,6 +81,7 @@ export function getRelatedContentCarouselContent(
     return {
       title: "",
       description: "",
+      links: [],
       cards: [],
       hasContent: false,
     };
@@ -100,6 +107,7 @@ export function getRelatedContentCarouselContent(
   return {
     title: content?.title || "",
     description: content?.description || "",
+    links: normalizeBacklinks(content?.links),
     cards,
     hasContent: Boolean(content?.title || content?.description || cards.length),
   };
@@ -110,7 +118,7 @@ export function getRelatedContentCarouselEditorContent(
   lang = "en",
   posParams = "gb"
 ) {
-  const { title, description, cards } = getRelatedContentCarouselContent(
+  const { title, description, links, cards } = getRelatedContentCarouselContent(
     data,
     lang,
     posParams
@@ -119,10 +127,12 @@ export function getRelatedContentCarouselEditorContent(
   return {
     title,
     description,
+    links: toEditorBacklinks(links),
     items: cards.map((card) => ({
       id: card.id || "",
       title: card.title || "",
       description: card.description || "",
+      links: toEditorBacklinks(card.links),
       imageUrl: card.image?.fileUrl || "",
       imageAlt: card.image?.alt || "",
       imageWidth: card.image?.width || 0,
@@ -142,11 +152,13 @@ export function wrapRelatedContentCarouselContent(content = {}, lang = "en") {
         content: {
           title: content.title || "",
           description: content.description || "",
+          links: normalizeBacklinks(content.links),
           pages: (Array.isArray(content.items) ? content.items : []).map(
             (item, index) => ({
               id: item?.id || `page-${index + 1}`,
               title: item?.title || "",
               description: item?.description || "",
+              links: normalizeBacklinks(item?.links),
               CardImage: {
                 fileUrl: item?.imageUrl || "",
                 width: item?.imageWidth || 0,

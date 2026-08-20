@@ -1,3 +1,8 @@
+import {
+  normalizeBacklinks,
+  toEditorBacklinks,
+} from "@/app/cmsComponents/shared/backlinks";
+
 export function isUsableImageSrc(src) {
   const value = String(src || "").trim();
   if (!value) {
@@ -23,6 +28,7 @@ function normalizeItem(raw) {
   return {
     title: item?.title || "",
     description: item?.description || "",
+    links: normalizeBacklinks(item?.links ?? raw?.links),
     imageUrl:
       item?.imageUrl || image?.fileUrl || image?.url || image?.src || "",
     imageAlt: image?.alt || item?.imageAlt || item?.title || "Value image",
@@ -35,7 +41,7 @@ export function getCarouselImageText6Content(data, lang = "en") {
     : [];
 
   if (!translations.length) {
-    return { title: "", items: [], hasContent: false };
+    return { title: "", links: [], items: [], hasContent: false };
   }
 
   const normalizedLang = String(lang || "").toLowerCase();
@@ -54,19 +60,22 @@ export function getCarouselImageText6Content(data, lang = "en") {
 
   return {
     title,
+    links: normalizeBacklinks(content?.links),
     items,
     hasContent: Boolean(title || items.length),
   };
 }
 
 export function getCarouselImageText6EditorContent(data, lang = "en") {
-  const { title, items } = getCarouselImageText6Content(data, lang);
+  const { title, links, items } = getCarouselImageText6Content(data, lang);
 
   return {
     title,
+    links: toEditorBacklinks(links),
     items: items.map((item) => ({
       title: item.title || "",
       description: item.description || "",
+      links: toEditorBacklinks(item.links),
       imageUrl: item.imageUrl || "",
       imageAlt: item.imageAlt || "",
     })),
@@ -80,11 +89,13 @@ export function wrapCarouselImageText6Content(content = {}, lang = "en") {
         languageCode: lang,
         content: {
           title: content.title || "",
+          links: normalizeBacklinks(content.links),
           items: (Array.isArray(content.items) ? content.items : []).map(
             (item) => ({
               item: {
                 title: item?.title || "",
                 description: item?.description || "",
+                links: normalizeBacklinks(item?.links),
                 image: {
                   fileUrl: item?.imageUrl || "",
                   alt: item?.imageAlt || item?.title || "Value image",

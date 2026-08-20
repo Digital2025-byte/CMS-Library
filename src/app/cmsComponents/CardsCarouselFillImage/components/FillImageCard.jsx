@@ -5,10 +5,18 @@ import AnimatedCTAButton from "@/components/ui/AnimatedCTAButton";
 import { getThemeColorCss } from "@/styles/themeColors";
 import { getFontWeightValue } from "@/styles/fontWeight";
 import { withCampaignPath } from "@/utils/withCampaignPath";
+import { LinkedText } from "@/app/cmsComponents/shared/backlinks";
 import { getImageUrl, isUsableImageSrc } from "../utils/helpers";
 import { CARD_RADIUS_CLASS } from "../utils/style";
 
-export default function FillImageCard({ card, lang = "en", cId, style }) {
+export default function FillImageCard({
+  card,
+  lang = "en",
+  cId,
+  style,
+  titleParts,
+  bodyParts,
+}) {
   if (!card) {
     return null;
   }
@@ -74,18 +82,36 @@ export default function FillImageCard({ card, lang = "en", cId, style }) {
             {style.showCardTitle && title ? (
               <h3
                 className="mb-2 line-clamp-2 text-lg font-bold [text-shadow:0_1px_3px_rgba(0,0,0,0.85)] sm:mb-3 sm:text-xl md:text-2xl"
-                style={{ color: getThemeColorCss(style.cardTitleColor, "white"), fontWeight: getFontWeightValue(style.cardTitleFontWeight) }}
+                style={{
+                  color: getThemeColorCss(style.cardTitleColor, "white"),
+                  fontWeight: getFontWeightValue(style.cardTitleFontWeight),
+                }}
               >
-                {title}
+                <LinkedText
+                  text={title}
+                  parts={titleParts}
+                  links={card.links}
+                  style={style}
+                  enabled={style.showLinks !== false}
+                />
               </h3>
             ) : null}
 
             {style.showCardDescription && description ? (
               <p
                 className="mb-4 line-clamp-3 text-sm font-normal leading-relaxed [text-shadow:0_1px_2px_rgba(0,0,0,0.75)] sm:mb-5 sm:text-base md:text-[0.95rem] md:leading-relaxed"
-                style={{ color: getThemeColorCss(style.cardBodyColor, "white"), fontWeight: getFontWeightValue(style.cardBodyFontWeight) }}
+                style={{
+                  color: getThemeColorCss(style.cardBodyColor, "white"),
+                  fontWeight: getFontWeightValue(style.cardBodyFontWeight),
+                }}
               >
-                {description}
+                <LinkedText
+                  text={description}
+                  parts={bodyParts}
+                  links={card.links}
+                  style={style}
+                  enabled={style.showLinks !== false}
+                />
               </p>
             ) : null}
 

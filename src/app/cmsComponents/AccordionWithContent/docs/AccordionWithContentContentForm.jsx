@@ -13,7 +13,7 @@ import {
   joinItemBacklinkSourceText,
 } from "@/app/cmsComponents/shared/backlinks";
 
-const TITLE_KEYS = ["title", "description", "links"];
+const TITLE_KEYS = ["title", "description"];
 const BUTTON_KEYS = ["buttonLabel", "buttonHref", "buttonLinkType"];
 const ITEM_KEYS = ["items"];
 
@@ -36,18 +36,6 @@ export default function AccordionWithContentContentForm({
         onTitleChange={(value) => updateField("title", value)}
         onDescriptionChange={(value) => updateField("description", value)}
         onReset={() => reset(TITLE_KEYS)}
-      />
-
-      <BacklinksEditor
-        idPrefix="accordion-link"
-        title="Backlinks"
-        links={content.links || []}
-        sourceText={joinItemBacklinkSourceText({
-          description: content.description,
-          items: content.items,
-        })}
-        defaults={defaults?.links || []}
-        onChange={(links) => onChange({ ...content, links })}
       />
 
       <InspectorButtonSection
@@ -100,6 +88,18 @@ export default function AccordionWithContentContentForm({
           )}
         </InspectorRepeater>
       </InspectorSection>
+
+      <BacklinksEditor
+        idPrefix="accordion-link"
+        title="Backlinks"
+        links={content.links || []}
+        sourceText={joinItemBacklinkSourceText({
+          description: content.description,
+          items: content.items,
+        })}
+        defaults={defaults?.links || []}
+        onChange={(links) => onChange({ ...content, links })}
+      />
     </div>
   );
 }

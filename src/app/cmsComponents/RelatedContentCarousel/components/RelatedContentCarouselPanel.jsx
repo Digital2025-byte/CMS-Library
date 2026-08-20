@@ -7,6 +7,7 @@ import CarouselHeader from "./CarouselHeader";
 import CarouselNavigation from "./CarouselNavigation";
 import CarouselSlider from "./CarouselSlider";
 import { useCarouselSettings } from "../hooks/useCarouselSettings";
+import { buildItemBacklinkParts } from "@/app/cmsComponents/shared/backlinks";
 import { getCurrentSlidesToShow } from "../utils/helpers";
 
 export default function RelatedContentCarouselPanel({
@@ -17,7 +18,11 @@ export default function RelatedContentCarouselPanel({
 }) {
   const sliderRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
-  const { title, description, cards } = content;
+  const { title, description, links = [], cards } = content;
+  const showLinks = style.showLinks !== false;
+  const itemLinkParts = showLinks
+    ? buildItemBacklinkParts(cards, links)
+    : null;
 
   const [slidesToShow, setSlidesToShow] = useState(() =>
     getCurrentSlidesToShow(cards.length)
@@ -70,12 +75,18 @@ export default function RelatedContentCarouselPanel({
 
   return (
     <div aria-label={title || "Cards carousel"}>
-      <CarouselHeader title={title} description={description} style={style} />
+      <CarouselHeader
+        title={title}
+        description={description}
+        links={links}
+        style={style}
+      />
 
       <CarouselSlider
         sliderRef={sliderRef}
         settings={settings}
         cards={cards}
+        itemLinkParts={itemLinkParts}
         lang={lang}
         cId={cId}
         activeIndex={activeIndex}

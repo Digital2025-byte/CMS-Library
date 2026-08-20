@@ -8,6 +8,10 @@ import {
   InspectorTitleSection,
   applyInspectorReset,
 } from "@/components/inspector";
+import {
+  BacklinksEditor,
+  joinBacklinkSourceText,
+} from "@/app/cmsComponents/shared/backlinks";
 
 const TITLE_KEYS = ["title", "description"];
 const BUTTON_KEYS = ["buttonLabel", "buttonHref", "buttonLinkType"];
@@ -20,11 +24,7 @@ const emptyCard = () => ({
   imageAlt: "",
 });
 
-function RowRepeater({
-  idPrefix,
-  items,
-  onChange,
-}) {
+function RowRepeater({ idPrefix, items, onChange }) {
   return (
     <InspectorRepeater
       items={items}
@@ -96,10 +96,7 @@ export default function OppositeScrollContentForm({
         onReset={() => reset(BUTTON_KEYS)}
       />
 
-      <InspectorSection
-        title="Top row"
-        onReset={() => reset(TOP_KEYS)}
-      >
+      <InspectorSection title="Top row" onReset={() => reset(TOP_KEYS)}>
         <RowRepeater
           idPrefix="opposite-scroll-top"
           items={content.topRow || []}
@@ -107,16 +104,21 @@ export default function OppositeScrollContentForm({
         />
       </InspectorSection>
 
-      <InspectorSection
-        title="Bottom row"
-        onReset={() => reset(BOTTOM_KEYS)}
-      >
+      <InspectorSection title="Bottom row" onReset={() => reset(BOTTOM_KEYS)}>
         <RowRepeater
           idPrefix="opposite-scroll-bottom"
           items={content.bottomRow || []}
           onChange={(bottomRow) => onChange({ ...content, bottomRow })}
         />
       </InspectorSection>
+
+      <BacklinksEditor
+        idPrefix="opposite-scroll-link"
+        links={content.links || []}
+        sourceText={joinBacklinkSourceText(content.description)}
+        defaults={defaults?.links || []}
+        onChange={(links) => onChange({ ...content, links })}
+      />
     </div>
   );
 }

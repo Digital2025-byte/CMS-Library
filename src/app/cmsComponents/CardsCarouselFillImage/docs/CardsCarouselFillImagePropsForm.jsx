@@ -7,6 +7,7 @@ import {
   InspectorTabs,
   applyInspectorReset,
 } from "@/components/inspector";
+import { BacklinksStyleSection } from "@/app/cmsComponents/shared/backlinks";
 import CardsCarouselFillImageContentForm from "./CardsCarouselFillImageContentForm";
 import {
   CARD_RADIUS_OPTIONS,
@@ -200,6 +201,13 @@ function CardsCarouselFillImageStyleForm({ style, onChange }) {
           </>
         ) : null}
       </InspectorSection>
+
+      <BacklinksStyleSection
+        style={style}
+        onChange={onChange}
+        onReset={() => reset(FILL_IMAGE_STYLE_RESET_KEYS.links)}
+        defaults={DEFAULT_FILL_IMAGE_STYLE}
+      />
     </div>
   );
 }

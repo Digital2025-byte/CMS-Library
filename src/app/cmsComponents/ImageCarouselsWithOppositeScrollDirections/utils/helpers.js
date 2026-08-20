@@ -1,3 +1,8 @@
+import {
+  normalizeBacklinks,
+  toEditorBacklinks,
+} from "@/app/cmsComponents/shared/backlinks";
+
 export function isUsableImageSrc(src) {
   const value = String(src || "").trim();
   if (!value) {
@@ -49,6 +54,7 @@ export function getOppositeScrollCarouselContent(data, lang = "en") {
     return {
       title: "",
       description: "",
+      links: [],
       exploreLabel: "",
       exploreHref: "#",
       topRow: [],
@@ -82,6 +88,7 @@ export function getOppositeScrollCarouselContent(data, lang = "en") {
   return {
     title,
     description,
+    links: normalizeBacklinks(content?.links),
     exploreLabel,
     exploreHref,
     topRow,
@@ -116,6 +123,7 @@ export function getOppositeScrollEditorContent(data, lang = "en") {
   return {
     title: parsed.title,
     description: parsed.description,
+    links: toEditorBacklinks(parsed.links),
     buttonLabel: parsed.exploreLabel,
     buttonHref: parsed.exploreHref || "#",
     buttonLinkType: "internal",
@@ -132,6 +140,7 @@ export function wrapOppositeScrollContent(content = {}, lang = "en") {
         content: {
           carouselTitle: content.title || "",
           carouselDescription: content.description || "",
+          links: normalizeBacklinks(content.links),
           exploreLabel: content.buttonLabel || "",
           exploreHref: content.buttonHref || "#",
           itemsLeftToRight: toCmsRow(content.topRow, "imagesLeftToRight"),

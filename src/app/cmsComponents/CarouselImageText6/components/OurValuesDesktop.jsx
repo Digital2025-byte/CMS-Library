@@ -4,11 +4,13 @@ import { useState } from "react";
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
 import { getFontWeightValue } from "@/styles/fontWeight";
+import { LinkedText } from "@/app/cmsComponents/shared/backlinks";
 import { isUsableImageSrc } from "../utils/helpers";
 
 export default function OurValuesDesktop({
   lang = "en",
   items = [],
+  itemLinkParts = null,
   style,
 }) {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -84,7 +86,13 @@ export default function OurValuesDesktop({
                     textShadow: "0 4px 8px rgb(0 0 0 / 0.45)",
                   }}
                 >
-                  {item.title}
+                  <LinkedText
+                    text={item.title}
+                    parts={itemLinkParts?.[index]?.titleParts}
+                    links={item.links}
+                    style={style}
+                    enabled={style.showLinks !== false}
+                  />
                 </h3>
               </div>
             ) : null}
@@ -107,7 +115,13 @@ export default function OurValuesDesktop({
                 className={`${typography.body} text-start leading-relaxed`}
                 style={{ color: getThemeColorCss(style.itemBodyColor, "white") }}
               >
-                {item.description}
+                <LinkedText
+                  text={item.description}
+                  parts={itemLinkParts?.[index]?.bodyParts}
+                  links={item.links}
+                  style={style}
+                  enabled={style.showLinks !== false}
+                />
               </p>
             </div>
           </div>

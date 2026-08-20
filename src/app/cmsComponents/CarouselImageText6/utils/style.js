@@ -1,3 +1,9 @@
+import {
+  BACKLINK_STYLE_RESET_KEYS,
+  DEFAULT_BACKLINK_STYLE,
+  resolveBacklinkStyle,
+} from "@/app/cmsComponents/shared/backlinks";
+
 export const TITLE_ALIGN_OPTIONS = [
   { value: "left", label: "Start" },
   { value: "center", label: "Center" },
@@ -14,10 +20,10 @@ export const TITLE_ALIGN_CLASS = {
 };
 
 export function resolveCarouselImageTextStyle(style = {}) {
-  return {
-    ...DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE,
-    ...style,
-  };
+  return resolveBacklinkStyle(
+    { ...DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE, ...style },
+    DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE
+  );
 }
 
 export const DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE = {
@@ -40,6 +46,7 @@ export const DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE = {
   itemBodyColor: "white",
   titleFontWeight: "semibold",
   itemTitleFontWeight: "semibold",
+  ...DEFAULT_BACKLINK_STYLE,
 };
 
 export const CAROUSEL_IMAGE_TEXT_STYLE_RESET_KEYS = {
@@ -59,4 +66,5 @@ export const CAROUSEL_IMAGE_TEXT_STYLE_RESET_KEYS = {
     "itemTitleColor", "itemTitleFontWeight",
     "itemBodyColor",
   ],
+  links: [...BACKLINK_STYLE_RESET_KEYS],
 };

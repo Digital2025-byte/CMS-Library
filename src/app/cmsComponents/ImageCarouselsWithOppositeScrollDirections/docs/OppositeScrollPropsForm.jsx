@@ -8,6 +8,7 @@ import {
   InspectorTabs,
   applyInspectorReset,
 } from "@/components/inspector";
+import { BacklinksStyleSection } from "@/app/cmsComponents/shared/backlinks";
 import OppositeScrollContentForm from "./OppositeScrollContentForm";
 import {
   CARD_RADIUS_OPTIONS,
@@ -214,6 +215,13 @@ function OppositeScrollStyleForm({ style, onChange }) {
           onChange={(value) => update("speed", value)}
         />
       </InspectorSection>
+
+      <BacklinksStyleSection
+        style={style}
+        onChange={onChange}
+        onReset={() => reset(OPPOSITE_SCROLL_STYLE_RESET_KEYS.links)}
+        defaults={DEFAULT_OPPOSITE_SCROLL_STYLE}
+      />
     </div>
   );
 }

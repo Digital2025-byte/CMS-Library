@@ -6,6 +6,7 @@ import { ArrowLeft, ArrowRight } from "@phosphor-icons/react";
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
 import { getFontWeightValue } from "@/styles/fontWeight";
+import { LinkedText } from "@/app/cmsComponents/shared/backlinks";
 import { isUsableImageSrc } from "../utils/helpers";
 import "slick-carousel/slick/slick.css";
 import styles from "./OurValuesMobile.module.css";
@@ -13,6 +14,7 @@ import styles from "./OurValuesMobile.module.css";
 export default function OurValuesMobile({
   lang = "en",
   items = [],
+  itemLinkParts = null,
   style,
 }) {
   const sliderRef = useRef(null);
@@ -123,7 +125,13 @@ export default function OurValuesMobile({
                         style={{ color: getThemeColorCss(style.itemTitleColor, "white"), fontWeight: getFontWeightValue(style.itemTitleFontWeight),
                         }}
                       >
-                        {item.title}
+                        <LinkedText
+                          text={item.title}
+                          parts={itemLinkParts?.[index]?.titleParts}
+                          links={item.links}
+                          style={style}
+                          enabled={style.showLinks !== false}
+                        />
                       </h3>
                     ) : null}
 
@@ -137,7 +145,13 @@ export default function OurValuesMobile({
                             color: getThemeColorCss(style.itemBodyColor, "white"),
                           }}
                         >
-                          {item.description}
+                          <LinkedText
+                            text={item.description}
+                            parts={itemLinkParts?.[index]?.bodyParts}
+                            links={item.links}
+                            style={style}
+                            enabled={style.showLinks !== false}
+                          />
                         </p>
                       </div>
                     ) : null}

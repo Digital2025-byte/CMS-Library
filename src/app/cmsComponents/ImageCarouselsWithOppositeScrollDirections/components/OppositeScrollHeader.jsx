@@ -2,11 +2,18 @@ import { typography } from "@/styles/typography";
 import PageContentContainer from "@/components/layout/PageContentContainer";
 import { getThemeColorCss } from "@/styles/themeColors";
 import { getFontWeightValue } from "@/styles/fontWeight";
+import { LinkedText } from "@/app/cmsComponents/shared/backlinks";
 import { TITLE_ALIGN_CLASS } from "../utils/style";
 
-export default function OppositeScrollHeader({ title, description, style }) {
+export default function OppositeScrollHeader({
+  title,
+  description,
+  links = [],
+  style,
+}) {
   const showHeading = style.showTitleDescription && title;
   const showBody = style.showDescription && description;
+  const showLinks = style.showLinks !== false;
 
   if (!showHeading && !showBody) {
     return null;
@@ -34,7 +41,12 @@ export default function OppositeScrollHeader({ title, description, style }) {
           }`}
           style={{ color: getThemeColorCss(style.descriptionColor, "white"), fontWeight: getFontWeightValue(style.descriptionFontWeight) }}
         >
-          {description}
+          <LinkedText
+            text={description}
+            links={links}
+            style={style}
+            enabled={showLinks}
+          />
         </p>
       ) : null}
     </PageContentContainer>

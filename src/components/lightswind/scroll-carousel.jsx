@@ -5,6 +5,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { cn } from "@/components/lib/utils";
 import { refreshScrollTriggers } from "@/components/lib/refreshScrollTriggers";
+import { LinkedText } from "@/app/cmsComponents/shared/backlinks";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -183,6 +184,8 @@ function FeatureCard({
   showDescription = true,
   showCardImage = true,
   showOverlay = true,
+  showLinks = true,
+  linkStyle,
   cardRadiusClass = "rounded-[28px]",
   titleCss,
   descriptionCss,
@@ -214,7 +217,13 @@ function FeatureCard({
               className="text-[22px] leading-tight font-semibold tracking-tight lg:text-2xl"
               style={titleCss ? { color: titleCss } : undefined}
             >
-              {feature.title}
+              <LinkedText
+                text={feature.title}
+                parts={feature.titleParts}
+                links={feature.links}
+                style={linkStyle}
+                enabled={showLinks}
+              />
             </h3>
           ) : null}
           {showDescription && feature.description ? (
@@ -222,7 +231,13 @@ function FeatureCard({
               className="mt-1.5 text-sm leading-snug text-white/80"
               style={descriptionCss ? { color: descriptionCss } : undefined}
             >
-              {feature.description}
+              <LinkedText
+                text={feature.description}
+                parts={feature.bodyParts}
+                links={feature.links}
+                style={linkStyle}
+                enabled={showLinks}
+              />
             </p>
           ) : null}
         </div>
@@ -246,6 +261,8 @@ export const ScrollCarousel = forwardRef(function ScrollCarousel(
     showOverlay = true,
     showProgress = true,
     showDots = true,
+    showLinks = true,
+    linkStyle,
     cardRadiusClass = "rounded-[28px]",
     stageBgCss,
     dotsColorCss,
@@ -303,6 +320,8 @@ export const ScrollCarousel = forwardRef(function ScrollCarousel(
         showDescription={showDescription}
         showCardImage={showCardImage}
         showOverlay={showOverlay}
+        showLinks={showLinks}
+        linkStyle={linkStyle}
         cardRadiusClass={cardRadiusClass}
         titleCss={titleCss}
         descriptionCss={descriptionCss}

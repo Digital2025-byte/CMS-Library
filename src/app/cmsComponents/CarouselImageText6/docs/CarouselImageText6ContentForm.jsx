@@ -6,6 +6,10 @@ import {
   InspectorSection,
   applyInspectorReset,
 } from "@/components/inspector";
+import {
+  BacklinksEditor,
+  joinItemBacklinkSourceText,
+} from "@/app/cmsComponents/shared/backlinks";
 
 const TITLE_KEYS = ["title"];
 const ITEM_KEYS = ["items"];
@@ -13,6 +17,7 @@ const ITEM_KEYS = ["items"];
 const emptyItem = () => ({
   title: "",
   description: "",
+  links: [],
   imageUrl: "",
   imageAlt: "",
 });
@@ -72,10 +77,30 @@ export default function CarouselImageText6ContentForm({
                 value={item.imageAlt || ""}
                 onChange={(value) => update("imageAlt", value)}
               />
+              <BacklinksEditor
+                idPrefix={`carousel-image-text-item-${index}-link`}
+                title="Item backlinks"
+                links={item.links || []}
+                sourceText={item.description || ""}
+                defaults={[]}
+                onChange={(links) => update("links", links)}
+                showReset={false}
+              />
             </>
           )}
         </InspectorRepeater>
       </InspectorSection>
+
+      <BacklinksEditor
+        idPrefix="carousel-image-text-link"
+        title="Backlinks"
+        links={content.links || []}
+        sourceText={joinItemBacklinkSourceText({
+          items: content.items,
+        })}
+        defaults={defaults?.links || []}
+        onChange={(links) => onChange({ ...content, links })}
+      />
     </div>
   );
 }
