@@ -9,6 +9,7 @@ import {
 import FlightFaresSectionContentForm from "./FlightFaresSectionContentForm";
 import {
   CARD_RADIUS_OPTIONS,
+  COLUMNS_ORDER_OPTIONS,
   DEFAULT_FLIGHT_FARES_STYLE,
   FLIGHT_FARES_STYLE_RESET_KEYS,
   SPACING_OPTIONS,
@@ -68,6 +69,13 @@ function FlightFaresSectionStyleForm({ style, onChange }) {
           value={style.sectionPadding}
           options={SPACING_OPTIONS}
           onChange={(value) => update("sectionPadding", value)}
+        />
+        <InspectorChoose
+          label="Column order"
+          name="columnsOrder"
+          value={style.columnsOrder}
+          options={COLUMNS_ORDER_OPTIONS}
+          onChange={(value) => update("columnsOrder", value)}
         />
       </InspectorSection>
 

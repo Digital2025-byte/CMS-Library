@@ -13,6 +13,7 @@ export default function FlightFareCard({
   size,
   imageIndex = 0,
   style = DEFAULT_FLIGHT_FARES_STYLE,
+  gridStyle,
 }) {
   const { t } = useTranslation();
 
@@ -57,6 +58,7 @@ export default function FlightFareCard({
         sizeClass,
         className,
       ].join(" ")}
+      style={gridStyle}
     >
       <div className="absolute inset-0">
         {style.showImage && isUsableImageSrc(imageSrc) ? (

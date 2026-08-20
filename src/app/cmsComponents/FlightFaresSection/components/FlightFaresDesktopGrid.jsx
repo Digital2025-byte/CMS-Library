@@ -1,23 +1,25 @@
 import FlightFareCard from "./FlightFareCard";
 import { getImageIndexForPosition } from "../utils/helpers";
-
-const DESKTOP_LAYOUT = [
-  { index: 0, size: "SMALL" },
-  { index: 2, size: "TALL" },
-  { index: 3, size: "WIDE" },
-  { index: 1, size: "SMALL" },
-  { index: 4, size: "SMALL" },
-  { index: 5, size: "SMALL" },
-];
+import {
+  buildFeaturedDesktopLayout,
+  DEFAULT_FLIGHT_FARES_STYLE,
+} from "../utils/style";
 
 export default function FlightFaresDesktopGrid({ items, lang, style }) {
   if (!Array.isArray(items) || items.length === 0) {
     return null;
   }
 
+  const { gridTemplateColumns, slots } = buildFeaturedDesktopLayout(
+    style?.columnsOrder || DEFAULT_FLIGHT_FARES_STYLE.columnsOrder
+  );
+
   return (
-    <div className="hidden min-h-147.5 gap-4 lg:grid lg:auto-rows-42.5 lg:grid-rows-2 lg:grid-cols-[1.4fr_1.7fr_1.1fr_1.1fr]">
-      {DESKTOP_LAYOUT.map(({ index, size }) => {
+    <div
+      className="hidden min-h-147.5 gap-4 lg:grid lg:auto-rows-42.5 lg:grid-rows-2"
+      style={{ gridTemplateColumns }}
+    >
+      {slots.map(({ index, gridColumn, gridRow }) => {
         const item = items[index];
         if (!item) return null;
 
@@ -27,8 +29,8 @@ export default function FlightFaresDesktopGrid({ items, lang, style }) {
             lang={lang}
             item={item}
             imageIndex={getImageIndexForPosition(items, index)}
-            size={size}
             style={style}
+            gridStyle={{ gridColumn, gridRow }}
           />
         );
       })}
