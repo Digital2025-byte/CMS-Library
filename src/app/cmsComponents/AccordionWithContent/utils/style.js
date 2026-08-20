@@ -1,6 +1,7 @@
 import {
+  BACKLINK_STYLE_RESET_KEYS,
   DEFAULT_BACKLINK_STYLE,
-  resolveBacklinkUnderline,
+  resolveBacklinkStyle,
 } from "@/app/cmsComponents/shared/backlinks";
 
 export const TITLE_ALIGN_OPTIONS = [
@@ -95,16 +96,10 @@ export const DEFAULT_ACCORDION_STYLE = {
 };
 
 export function resolveAccordionStyle(style = {}) {
-  const { linkUnderline, ...rest } = style;
-
-  return {
-    ...DEFAULT_ACCORDION_STYLE,
-    ...rest,
-    linkUnderline: resolveBacklinkUnderline(
-      linkUnderline,
-      DEFAULT_ACCORDION_STYLE.linkUnderline
-    ),
-  };
+  return resolveBacklinkStyle(
+    { ...DEFAULT_ACCORDION_STYLE, ...style },
+    DEFAULT_ACCORDION_STYLE
+  );
 }
 
 export const ACCORDION_STYLE_RESET_KEYS = {
@@ -136,12 +131,5 @@ export const ACCORDION_STYLE_RESET_KEYS = {
     "itemBodyFontWeight",
   ],
   button: ["buttonPosition", "buttonVariant", "buttonWidth"],
-  links: [
-    "showLinks",
-    "linkColor",
-    "linkHoverColor",
-    "linkFontWeight",
-    "linkUnderline",
-    "linkItalic",
-  ],
+  links: [...BACKLINK_STYLE_RESET_KEYS],
 };

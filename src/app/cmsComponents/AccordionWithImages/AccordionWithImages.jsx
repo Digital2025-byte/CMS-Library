@@ -4,7 +4,7 @@ import AccordionImagesHeader from "./components/AccordionImagesHeader";
 import AccordionImagesItem from "./components/AccordionImagesItem";
 import AccordionImagesPanel from "./components/AccordionImagesPanel";
 import { useAccordionImages } from "./hooks/useAccordionImages";
-import { buildAccordionItemLinkParts } from "@/app/cmsComponents/shared/backlinks";
+import { buildItemBacklinkParts } from "@/app/cmsComponents/shared/backlinks";
 import { getAccordionImagesContent } from "./utils/helpers";
 import {
   ITEM_GAP_CLASS,
@@ -19,7 +19,7 @@ export default function AccordionWithImages({ data, style }) {
   const gapClass = ITEM_GAP_CLASS[resolved.itemGap] ?? ITEM_GAP_CLASS.tight;
   const showLinks = resolved.showLinks !== false;
   const itemLinkParts = showLinks
-    ? buildAccordionItemLinkParts(items, links)
+    ? buildItemBacklinkParts(items, links)
     : items.map((item) => ({
         titleParts: [{ type: "text", value: item.title || "" }],
         bodyParts: [{ type: "text", value: item.content || "" }],

@@ -1,6 +1,7 @@
 import {
+  BACKLINK_STYLE_RESET_KEYS,
   DEFAULT_BACKLINK_STYLE,
-  resolveBacklinkUnderline,
+  resolveBacklinkStyle,
 } from "@/app/cmsComponents/shared/backlinks";
 
 export const TITLE_ALIGN_OPTIONS = [
@@ -87,16 +88,10 @@ export const DEFAULT_ACCORDION_IMAGES_STYLE = {
 };
 
 export function resolveAccordionImagesStyle(style = {}) {
-  const { linkUnderline, ...rest } = style;
-
-  return {
-    ...DEFAULT_ACCORDION_IMAGES_STYLE,
-    ...rest,
-    linkUnderline: resolveBacklinkUnderline(
-      linkUnderline,
-      DEFAULT_ACCORDION_IMAGES_STYLE.linkUnderline
-    ),
-  };
+  return resolveBacklinkStyle(
+    { ...DEFAULT_ACCORDION_IMAGES_STYLE, ...style },
+    DEFAULT_ACCORDION_IMAGES_STYLE
+  );
 }
 
 export const ACCORDION_IMAGES_STYLE_RESET_KEYS = {
@@ -129,12 +124,5 @@ export const ACCORDION_IMAGES_STYLE_RESET_KEYS = {
   ],
   image: ["imagePosition", "imageRadius", "imageBg"],
   toggle: ["toggleBg", "toggleBorder", "toggleIcon"],
-  links: [
-    "showLinks",
-    "linkColor",
-    "linkHoverColor",
-    "linkFontWeight",
-    "linkUnderline",
-    "linkItalic",
-  ],
+  links: [...BACKLINK_STYLE_RESET_KEYS],
 };

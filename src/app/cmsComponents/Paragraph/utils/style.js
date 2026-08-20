@@ -1,7 +1,8 @@
 import {
+  BACKLINK_STYLE_RESET_KEYS,
   DEFAULT_BACKLINK_STYLE,
   LINK_UNDERLINE_OPTIONS,
-  resolveBacklinkUnderline,
+  resolveBacklinkStyle,
 } from "@/app/cmsComponents/shared/backlinks";
 
 export { LINK_UNDERLINE_OPTIONS };
@@ -43,16 +44,10 @@ export const DEFAULT_PARAGRAPH_STYLE = {
 };
 
 export function resolveParagraphStyle(style = {}) {
-  const { linkUnderline, ...rest } = style;
-
-  return {
-    ...DEFAULT_PARAGRAPH_STYLE,
-    ...rest,
-    linkUnderline: resolveBacklinkUnderline(
-      linkUnderline,
-      DEFAULT_PARAGRAPH_STYLE.linkUnderline
-    ),
-  };
+  return resolveBacklinkStyle(
+    { ...DEFAULT_PARAGRAPH_STYLE, ...style },
+    DEFAULT_PARAGRAPH_STYLE
+  );
 }
 
 export const PARAGRAPH_STYLE_RESET_KEYS = {
@@ -68,12 +63,6 @@ export const PARAGRAPH_STYLE_RESET_KEYS = {
     "descriptionColor",
     "descriptionFontWeight",
   ],
-  links: [
-    "showLinks",
-    "linkColor",
-    "linkHoverColor",
-    "linkFontWeight",
-    "linkUnderline",
-    "linkItalic",
-  ],
+  links: [...BACKLINK_STYLE_RESET_KEYS],
 };
+

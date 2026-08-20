@@ -1,8 +1,12 @@
 import { getThemeColorCss } from "@/styles/themeColors";
 import { getFontWeightValue } from "@/styles/fontWeight";
-import { buildLinkedTextParts } from "./helpers";
-import { DEFAULT_BACKLINK_STYLE } from "./style";
+import { buildLinkedTextParts } from "./core/build";
+import { DEFAULT_BACKLINK_STYLE } from "./core/style";
 
+/**
+ * Renders plain text with optional phrase backlinks.
+ * Pass either `links` (built here) or precomputed `parts`.
+ */
 export default function LinkedText({
   text,
   links,

@@ -7,7 +7,10 @@ import {
   InspectorTitleSection,
   applyInspectorReset,
 } from "@/components/inspector";
-import { BacklinksEditor } from "@/app/cmsComponents/shared/backlinks";
+import {
+  BacklinksEditor,
+  joinItemBacklinkSourceText,
+} from "@/app/cmsComponents/shared/backlinks";
 
 const TITLE_KEYS = ["title", "description", "links"];
 const ITEM_KEYS = ["items"];
@@ -37,13 +40,10 @@ export default function AccordionWithImagesContentForm({
         idPrefix="accordion-images-link"
         title="Backlinks"
         links={content.links || []}
-        sourceText={[
-          content.description || "",
-          ...(content.items || []).flatMap((item) => [
-            item.title || "",
-            item.description || "",
-          ]),
-        ].join("\n")}
+        sourceText={joinItemBacklinkSourceText({
+          description: content.description,
+          items: content.items,
+        })}
         defaults={defaults?.links || []}
         onChange={(links) => onChange({ ...content, links })}
       />

@@ -9,8 +9,11 @@ import {
   BACKLINK_STYLE_RESET_KEYS,
   DEFAULT_BACKLINK_STYLE,
   LINK_UNDERLINE_OPTIONS,
-} from "./style";
+} from "./core/style";
 
+/**
+ * Style-tab controls for backlink appearance.
+ */
 export default function BacklinksStyleSection({
   style,
   onChange,

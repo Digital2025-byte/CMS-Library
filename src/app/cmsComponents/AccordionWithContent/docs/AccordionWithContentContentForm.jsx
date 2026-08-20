@@ -10,6 +10,7 @@ import {
 } from "@/components/inspector";
 import {
   BacklinksEditor,
+  joinItemBacklinkSourceText,
 } from "@/app/cmsComponents/shared/backlinks";
 
 const TITLE_KEYS = ["title", "description", "links"];
@@ -41,13 +42,10 @@ export default function AccordionWithContentContentForm({
         idPrefix="accordion-link"
         title="Backlinks"
         links={content.links || []}
-        sourceText={[
-          content.description || "",
-          ...(content.items || []).flatMap((item) => [
-            item.title || "",
-            item.description || "",
-          ]),
-        ].join("\n")}
+        sourceText={joinItemBacklinkSourceText({
+          description: content.description,
+          items: content.items,
+        })}
         defaults={defaults?.links || []}
         onChange={(links) => onChange({ ...content, links })}
       />
