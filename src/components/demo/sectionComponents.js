@@ -691,22 +691,6 @@ export const SECTION_COMPONENTS = {
       },
     }))
   ),
-  "three-d-image-ring-section": lazySection(() =>
-    import("@/app/cmsComponents/ThreeDImageRingSection").then((Comp) => ({
-      default: function Section({ lang, threeDImageRingSectionData }) {
-        return (
-          <Comp.default lang={lang} data={threeDImageRingSectionData} />
-        );
-      },
-    }))
-  ),
-  "draggable-3d-image-ring": lazySection(() =>
-    import("@/app/cmsComponents/Draggable3DImageRing").then((Comp) => ({
-      default: function Section({ lang }) {
-        return <Comp.default lang={lang} />;
-      },
-    }))
-  ),
   "on-board-image-ring": lazySection(() =>
     import("@/app/cmsComponents/OnBoardImageRing").then((Comp) => ({
       default: function Section({ lang, onBoardImageRingData }) {

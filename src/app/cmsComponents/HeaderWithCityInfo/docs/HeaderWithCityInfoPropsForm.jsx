@@ -120,26 +120,16 @@ function HeaderWithCityInfoStyleForm({ style, onChange }) {
             label="Copy"
             hint="Text under the card title"
           />
-          <InspectorSwitch
-            checked={style.showTiles}
-            onChange={() => toggle("showTiles")}
-            label="Tiles"
-            hint="Weather, time, duration, flights"
+          <InspectorColor
+            label="Tile label"
+            value={style.tileLabelColor}
+            onChange={(value) => update("tileLabelColor", value)}
           />
-          {style.showTiles ? (
-            <>
-              <InspectorColor
-                label="Tile label"
-                value={style.tileLabelColor}
-                onChange={(value) => update("tileLabelColor", value)}
-              />
-              <InspectorColor
-                label="Tile value"
-                value={style.tileValueColor}
-                onChange={(value) => update("tileValueColor", value)}
-              />
-            </>
-          ) : null}
+          <InspectorColor
+            label="Tile value"
+            value={style.tileValueColor}
+            onChange={(value) => update("tileValueColor", value)}
+          />
           <InspectorSwitch
             checked={style.showNextFlight}
             onChange={() => toggle("showNextFlight")}

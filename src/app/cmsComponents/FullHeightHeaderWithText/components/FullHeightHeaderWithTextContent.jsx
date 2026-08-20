@@ -21,6 +21,7 @@ export default function FullHeightHeaderWithTextContent({
   const showHeading = style.showTitle && title;
   const showCopy = style.showDescription && description;
   const showCta = style.showButton && buttonLabel;
+  const isCenter = style.titleAlign === "center";
   const alignClass =
     TITLE_ALIGN_CLASS[style.titleAlign] ?? TITLE_ALIGN_CLASS.left;
   const titleCss = getThemeColorCss(style.titleColor, "secondary-100");
@@ -36,7 +37,11 @@ export default function FullHeightHeaderWithTextContent({
   }
 
   return (
-    <div className={`w-full max-w-xl ${alignClass}`}>
+    <div
+      className={`flex w-full max-w-xl flex-col ${alignClass} ${
+        isCenter ? "mx-auto items-center" : "items-start"
+      }`}
+    >
       {showHeading ? (
         <h1
           className={`${typography.sectionTitle} max-w-lg font-semibold`}

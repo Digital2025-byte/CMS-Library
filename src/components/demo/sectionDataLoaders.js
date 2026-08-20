@@ -273,14 +273,6 @@ export const SECTION_DATA_LOADERS = {
       dualImageTrainingData: buildDualImageTextData(t, lang, "training"),
     };
   },
-  "three-d-image-ring-section": async (t, lang) => {
-    const { buildThreeDImageRingSectionData } = await import(
-      "@/app/cmsComponents/ThreeDImageRingSection/utils/data"
-    );
-    return {
-      threeDImageRingSectionData: buildThreeDImageRingSectionData(t, lang),
-    };
-  },
   "on-board-image-ring": async (t, lang) => {
     const { buildOnBoardImageRingData } = await import(
       "@/app/cmsComponents/OnBoardImageRing/utils/data"

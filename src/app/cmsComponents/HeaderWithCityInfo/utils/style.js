@@ -30,7 +30,6 @@ export const DEFAULT_HEADER_WITH_CITY_INFO_STYLE = {
   showOverlay: true,
   showCardHeading: true,
   showCardDescription: true,
-  showTiles: true,
   showNextFlight: true,
   titleAlign: "left",
   titleColor: "white",
@@ -58,7 +57,6 @@ export const HEADER_WITH_CITY_INFO_STYLE_RESET_KEYS = {
   card: [
     "showCardHeading",
     "showCardDescription",
-    "showTiles",
     "showNextFlight",
     "cardRadius",
     "cardHeadingColor",

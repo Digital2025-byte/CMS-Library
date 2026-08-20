@@ -58,10 +58,6 @@ export default function CityInfoCard({
   const showFooter =
     style.showNextFlight && (labels.nextFlight || content.nextFlight);
 
-  if (!showHeader && !style.showTiles && !showFooter) {
-    return null;
-  }
-
   return (
     <div
       dir={isRtl ? "rtl" : "ltr"}
@@ -96,38 +92,36 @@ export default function CityInfoCard({
         </div>
       ) : null}
 
-      {style.showTiles ? (
-        <div className="grid grid-cols-2 gap-3">
-          <Tile
-            icon={CloudSun}
-            title={labels.weather}
-            value={content.weather || "N/A"}
-            labelCss={tileLabelCss}
-            valueCss={tileValueCss}
-          />
-          <Tile
-            icon={Clock}
-            title={labels.localTime}
-            value={content.localTime || "N/A"}
-            labelCss={tileLabelCss}
-            valueCss={tileValueCss}
-          />
-          <Tile
-            icon={Timer}
-            title={labels.flightDuration}
-            value={content.duration || "N/A"}
-            labelCss={tileLabelCss}
-            valueCss={tileValueCss}
-          />
-          <Tile
-            icon={CalendarCheck}
-            title={labels.flightsPerWeek}
-            value={content.numberOfFlightPerWeek || "N/A"}
-            labelCss={tileLabelCss}
-            valueCss={tileValueCss}
-          />
-        </div>
-      ) : null}
+      <div className="grid grid-cols-2 gap-3">
+        <Tile
+          icon={CloudSun}
+          title={labels.weather}
+          value={content.weather || "N/A"}
+          labelCss={tileLabelCss}
+          valueCss={tileValueCss}
+        />
+        <Tile
+          icon={Clock}
+          title={labels.localTime}
+          value={content.localTime || "N/A"}
+          labelCss={tileLabelCss}
+          valueCss={tileValueCss}
+        />
+        <Tile
+          icon={Timer}
+          title={labels.flightDuration}
+          value={content.duration || "N/A"}
+          labelCss={tileLabelCss}
+          valueCss={tileValueCss}
+        />
+        <Tile
+          icon={CalendarCheck}
+          title={labels.flightsPerWeek}
+          value={content.numberOfFlightPerWeek || "N/A"}
+          labelCss={tileLabelCss}
+          valueCss={tileValueCss}
+        />
+      </div>
 
       {showFooter ? (
         <>

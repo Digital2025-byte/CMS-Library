@@ -24,7 +24,6 @@ import DataTableWithImageExamples from "@/app/cmsComponents/DataTableWithImage/d
 import DestinationShowcaseExamples from "@/app/cmsComponents/DestinationShowcase/docs/DestinationShowcaseExamples";
 import DestinationsCitiesExamples from "@/app/cmsComponents/DestinationsCities/docs/DestinationsCitiesExamples";
 import DestinationsMapExamples from "@/app/cmsComponents/DestinationsMap/docs/DestinationsMapExamples";
-import Draggable3DImageRingExamples from "@/app/cmsComponents/Draggable3DImageRing/docs/Draggable3DImageRingExamples";
 import DualImageTextExamples from "@/app/cmsComponents/DualImageText/docs/DualImageTextExamples";
 import FlightFaresSectionExamples from "@/app/cmsComponents/FlightFaresSection/docs/FlightFaresSectionExamples";
 import FormFooterExamples from "@/app/cmsComponents/FormFooter/docs/FormFooterExamples";
@@ -57,7 +56,6 @@ import SplitTextOnlyExamples from "@/app/cmsComponents/SplitTextOnly/docs/SplitT
 import SplitWithImageExamples from "@/app/cmsComponents/SplitWithImage/docs/SplitWithImageExamples";
 import TabbedCardsSectionExamples from "@/app/cmsComponents/TabbedCardsSection/docs/TabbedCardsSectionExamples";
 import TextWithBlobImageExamples from "@/app/cmsComponents/TextWithBlobImage/docs/TextWithBlobImageExamples";
-import ThreeDImageRingSectionExamples from "@/app/cmsComponents/ThreeDImageRingSection/docs/ThreeDImageRingSectionExamples";
 import ThreeDSliderExamples from "@/app/cmsComponents/ThreeDSlider/docs/ThreeDSliderExamples";
 import TitleWithListExamples from "@/app/cmsComponents/TitleWithList/docs/TitleWithListExamples";
 import TwoColumnIntroWithTwoImageExamples from "@/app/cmsComponents/TwoColumnIntroWithTwoImage/docs/TwoColumnIntroWithTwoImageExamples";
@@ -212,12 +210,6 @@ const DOCS_EXAMPLES = {
   ),
   "scroll-carousel": (ctx, label) => (
     <ScrollCarouselExamples ctx={ctx} name={label} />
-  ),
-  "three-d-image-ring-section": (ctx, label) => (
-    <ThreeDImageRingSectionExamples ctx={ctx} name={label} />
-  ),
-  "draggable-3d-image-ring": (ctx, label) => (
-    <Draggable3DImageRingExamples ctx={ctx} name={label} />
   ),
 };
 

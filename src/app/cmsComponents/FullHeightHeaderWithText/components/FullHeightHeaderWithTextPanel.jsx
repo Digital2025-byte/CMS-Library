@@ -25,6 +25,7 @@ export default function FullHeightHeaderWithTextPanel({
   const overlayCss = style.showOverlay
     ? getThemeColorCss(style.overlayColor, "main")
     : undefined;
+  const isCenter = style.titleAlign === "center";
 
   return (
     <div
@@ -54,7 +55,11 @@ export default function FullHeightHeaderWithTextPanel({
         >
           <PageContentContainer className="w-full">
             <motion.div
-              className="grid w-full grid-cols-1 gap-8 lg:grid-cols-2"
+              className={
+                isCenter
+                  ? "flex w-full justify-center"
+                  : "grid w-full grid-cols-1 gap-8 lg:grid-cols-2"
+              }
               initial={{ opacity: 0, y: 64 }}
               animate={
                 isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 64 }
