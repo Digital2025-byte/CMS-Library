@@ -79,7 +79,7 @@ function FlightFaresSectionStyleForm({ style, onChange }) {
           checked={style.showImage}
           onChange={() => toggle("showImage")}
           label="Image"
-          hint="Photo on each fare card"
+          hint="Photo on each card"
         />
         <InspectorSwitch
           checked={style.showOverlay}
@@ -95,18 +95,18 @@ function FlightFaresSectionStyleForm({ style, onChange }) {
           />
         ) : null}
         <InspectorSwitch
-          checked={style.showOneWay}
-          onChange={() => toggle("showOneWay")}
-          label="One-way"
-          hint="One-way badge in the corner"
+          checked={style.showTopBadge}
+          onChange={() => toggle("showTopBadge")}
+          label="Top badge"
+          hint="Corner badge on cards"
         />
         <InspectorSwitch
-          checked={style.showNew}
-          onChange={() => toggle("showNew")}
-          label="New"
-          hint="New badge when a city is marked new"
+          checked={style.showExtraBadge}
+          onChange={() => toggle("showExtraBadge")}
+          label="Extra badge"
+          hint="Secondary badge above the title"
         />
-        {style.showOneWay || style.showNew ? (
+        {style.showTopBadge || style.showExtraBadge ? (
           <>
             <InspectorColor
               label="Badge color"
@@ -121,29 +121,29 @@ function FlightFaresSectionStyleForm({ style, onChange }) {
           </>
         ) : null}
         <InspectorSwitch
-          checked={style.showCity}
-          onChange={() => toggle("showCity")}
-          label="City"
-          hint="City name and IATA"
+          checked={style.showItemTitle}
+          onChange={() => toggle("showItemTitle")}
+          label="Title"
+          hint="Item title on each card"
         />
-        {style.showCity ? (
+        {style.showItemTitle ? (
           <InspectorColor
-            label="City color"
-            value={style.cityColor}
-            onChange={(value) => update("cityColor", value)}
+            label="Title color"
+            value={style.itemTitleColor}
+            onChange={(value) => update("itemTitleColor", value)}
           />
         ) : null}
         <InspectorSwitch
-          checked={style.showPrice}
-          onChange={() => toggle("showPrice")}
-          label="Price"
-          hint="Economy from price line"
+          checked={style.showSubtitle}
+          onChange={() => toggle("showSubtitle")}
+          label="Subtitle"
+          hint="Text under the title"
         />
-        {style.showPrice ? (
+        {style.showSubtitle ? (
           <InspectorColor
-            label="Price color"
-            value={style.priceColor}
-            onChange={(value) => update("priceColor", value)}
+            label="Subtitle color"
+            value={style.subtitleColor}
+            onChange={(value) => update("subtitleColor", value)}
           />
         ) : null}
         <InspectorChoose

@@ -1,4 +1,6 @@
-const CITY_IMAGES = [
+import { defaultFareLabels, formatFarePrice } from "./helpers";
+
+const ITEM_IMAGES = [
   "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=80",
   "https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?auto=format&fit=crop&w=1200&q=80",
   "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=1200&q=80",
@@ -10,8 +12,20 @@ const CITY_IMAGES = [
 /**
  * Builds CMS-shaped FlightFaresSection data from i18next translations.
  */
+function readItemsList(t) {
+  const fromItems = t("flightFares.items", { returnObjects: true });
+  if (Array.isArray(fromItems)) return fromItems;
+
+  const fromCities = t("flightFares.cities", { returnObjects: true });
+  if (Array.isArray(fromCities)) return fromCities;
+
+  return [];
+}
+
 export function buildFlightFaresData(t, lang = "en") {
-  const cities = t("flightFares.cities", { returnObjects: true });
+  const rawItems = readItemsList(t);
+  const labels = defaultFareLabels(lang);
+  const economyFrom = t("flightFares.economyFrom");
 
   return {
     translations: [
@@ -19,23 +33,38 @@ export function buildFlightFaresData(t, lang = "en") {
         languageCode: lang,
         content: {
           title: t("flightFares.title"),
-          cities: Array.isArray(cities)
-            ? cities.map((city, index) => ({
-                cityId: city?.cityId || index + 1,
-                cityName: city?.cityName || "",
-                IATACode: city?.IATACode || "",
-                countryName: city?.countryName || "",
-                price: city?.price || "",
-                currency: city?.currency || "",
-                isNew: Boolean(city?.isNew),
-                images: [
-                  {
-                    url: CITY_IMAGES[index % CITY_IMAGES.length],
-                    alt: city?.cityName || "",
-                  },
-                ],
-              }))
-            : [],
+          items: rawItems.map((item, index) => {
+            const title = item?.title || item?.cityName || "";
+            const price = item?.price || "";
+            const currency = item?.currency || "";
+            const subtitle =
+              item?.subtitle ||
+              formatFarePrice(economyFrom, price, currency, labels.subtitle);
+
+            return {
+              id: item?.id || item?.cityId || index + 1,
+              cityId: item?.cityId || item?.id || index + 1,
+              title,
+              cityName: title,
+              IATACode: item?.IATACode || "",
+              countryName: item?.countryName || "",
+              price,
+              currency,
+              topBadge: item?.topBadge || labels.topBadge,
+              hasTopBadge: true,
+              subtitle,
+              hasExtraBadge: Boolean(
+                item?.hasExtraBadge ?? item?.isNew ?? false
+              ),
+              extraBadge: item?.extraBadge || labels.extraBadge,
+              images: [
+                {
+                  url: ITEM_IMAGES[index % ITEM_IMAGES.length],
+                  alt: title,
+                },
+              ],
+            };
+          }),
         },
       },
     ],

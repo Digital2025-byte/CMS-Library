@@ -23,19 +23,13 @@ export default function FlightFaresSection({
     <>
       <FlightFaresHeader title={content.title} style={resolvedStyle} />
       <FlightFaresMobileSlider
-        cities={content.cities}
+        items={content.items}
         lang={lang}
-        oneWayLabel={content.oneWayLabel}
-        newLabel={content.newLabel}
-        fromTemplate={content.fromTemplate}
         style={resolvedStyle}
       />
       <FlightFaresDesktopGrid
-        cities={content.cities}
+        items={content.items}
         lang={lang}
-        oneWayLabel={content.oneWayLabel}
-        newLabel={content.newLabel}
-        fromTemplate={content.fromTemplate}
         style={resolvedStyle}
       />
     </>

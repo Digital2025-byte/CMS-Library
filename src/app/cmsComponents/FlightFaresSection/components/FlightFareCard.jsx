@@ -12,9 +12,6 @@ export default function FlightFareCard({
   className = "",
   size,
   imageIndex = 0,
-  oneWayLabel,
-  newLabel,
-  fromTemplate,
   style = DEFAULT_FLIGHT_FARES_STYLE,
 }) {
   const { t } = useTranslation();
@@ -32,19 +29,24 @@ export default function FlightFareCard({
   const radiusClass =
     CARD_RADIUS_CLASS[style.cardRadius] ?? CARD_RADIUS_CLASS.lg;
   const overlayCss = getThemeColorCss(style.overlayColor, "secondary-2");
-  const cityCss = getThemeColorCss(style.cityColor, "primary-3");
-  const priceCss = getThemeColorCss(style.priceColor, "white");
+  const titleCss = getThemeColorCss(style.itemTitleColor, "primary-3");
+  const subtitleCss = getThemeColorCss(style.subtitleColor, "white");
   const badgeCss = getThemeColorCss(style.badgeColor, "secondary-2");
   const badgeTextCss = getThemeColorCss(style.badgeText, "white");
-  const priceLine = formatFarePrice(
-    fromTemplate,
-    item.price,
-    item.currency,
-    t("flightFares.economyFrom", {
-      price: item.price,
-      currency: item.currency,
-    })
-  );
+  const itemTitle = item.title || item.cityName || "";
+  const subtitle =
+    item.price || item.currency
+      ? formatFarePrice(
+          item.subtitle,
+          item.price,
+          item.currency,
+          item.subtitle ||
+            t("flightFares.economyFrom", {
+              price: item.price,
+              currency: item.currency,
+            })
+        )
+      : item.subtitle || "";
 
   return (
     <div
@@ -60,7 +62,7 @@ export default function FlightFareCard({
         {style.showImage && isUsableImageSrc(imageSrc) ? (
           <Image
             src={imageSrc}
-            alt={item?.cityName || image?.alt || ""}
+            alt={itemTitle || image?.alt || ""}
             fill
             className="object-cover transition duration-300 group-hover:scale-[1.03]"
             sizes="(min-width: 1024px) 33vw, (min-width: 640px) 46vw, 80vw"
@@ -76,7 +78,7 @@ export default function FlightFareCard({
         ) : null}
       </div>
 
-      {style.showOneWay ? (
+      {style.showTopBadge && item.hasTopBadge && item.topBadge ? (
         <div className="absolute top-3 end-3 z-10">
           <span
             className={`${typography.caption} rounded-full px-2.5 py-1 font-medium backdrop-blur`}
@@ -85,13 +87,13 @@ export default function FlightFareCard({
               color: badgeTextCss,
             }}
           >
-            {oneWayLabel || t("flightFares.oneWay")}
+            {item.topBadge}
           </span>
         </div>
       ) : null}
 
       <div className="relative z-10 flex h-full flex-col justify-end p-4">
-        {style.showNew && item.isNew ? (
+        {style.showExtraBadge && item.hasExtraBadge && item.extraBadge ? (
           <div className="mb-1 flex items-center gap-2">
             <span
               className={`${typography.caption} inline-flex items-center gap-1 rounded-full px-2 py-1 font-medium backdrop-blur`}
@@ -100,29 +102,28 @@ export default function FlightFareCard({
                 color: badgeTextCss,
               }}
             >
-              {newLabel || t("flightFares.new")}{" "}
-              <span aria-hidden="true">★</span>
+              {item.extraBadge} <span aria-hidden="true">★</span>
             </span>
           </div>
         ) : null}
 
-        {style.showCity ? (
+        {style.showItemTitle && itemTitle ? (
           <h3
             className={`${typography.itemTitle} font-bold wrap-break-word`}
-            style={{ color: cityCss }}
+            style={{ color: titleCss }}
           >
-            {item.cityName}
+            {itemTitle}
             {item.IATACode ? ` (${item.IATACode})` : ""}
           </h3>
         ) : null}
-        {style.showPrice ? (
+        {style.showSubtitle && subtitle ? (
           <p
             className={`${typography.itemDescription} mt-1 font-medium wrap-break-word`}
             style={{
-              color: `color-mix(in srgb, ${priceCss} 90%, transparent)`,
+              color: `color-mix(in srgb, ${subtitleCss} 90%, transparent)`,
             }}
           >
-            {priceLine}
+            {subtitle}
           </p>
         ) : null}
       </div>

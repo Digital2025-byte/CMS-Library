@@ -28,7 +28,6 @@ export function getSearchWithTabsAndGridContent(data, lang = "en") {
       gridTitle: "",
       tags: [],
       sights: [],
-      emptyMessage: "",
       allLabel: "All",
       exploreLabel: "Explore",
       exploreMagazineLabel: "Explore as magazine",
@@ -79,7 +78,6 @@ export function getSearchWithTabsAndGridContent(data, lang = "en") {
     gridTitle,
     tags,
     sights,
-    emptyMessage: content?.emptyMessage || "",
     allLabel: content?.allLabel || (lang === "ar" ? "الكل" : "All"),
     exploreLabel: content?.exploreLabel || (lang === "ar" ? "اكتشف" : "Explore"),
     exploreMagazineLabel:
@@ -113,7 +111,6 @@ export function getSearchWithTabsAndGridEditorContent(data, lang = "en") {
   return {
     searchPlaceholder: content.searchPlaceholder || "",
     gridTitle: content.gridTitle || "",
-    emptyMessage: content.emptyMessage || "",
     allLabel: content.allLabel || "",
     exploreLabel: content.exploreLabel || "",
     exploreMagazineLabel: content.exploreMagazineLabel || "",
@@ -165,7 +162,6 @@ export function wrapSearchWithTabsAndGridContent(content = {}, lang = "en") {
               })
             ),
           },
-          emptyMessage: content.emptyMessage || "",
           allLabel: content.allLabel || "",
           exploreLabel: content.exploreLabel || "",
           exploreMagazineLabel: content.exploreMagazineLabel || "",

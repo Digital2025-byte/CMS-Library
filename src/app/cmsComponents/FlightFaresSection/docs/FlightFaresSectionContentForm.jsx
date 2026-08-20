@@ -9,16 +9,16 @@ import {
 } from "@/components/inspector";
 
 const TITLE_KEYS = ["title"];
-const LABEL_KEYS = ["oneWayLabel", "newLabel", "fromTemplate"];
 const ITEM_KEYS = ["items"];
 
 const emptyItem = () => ({
-  cityName: "",
+  hasTopBadge: false,
+  topBadge: "",
+  title: "",
+  subtitle: "",
+  hasExtraBadge: false,
+  extraBadge: "",
   IATACode: "",
-  countryName: "",
-  price: "",
-  currency: "",
-  isNew: false,
   imageUrl: "",
   imageAlt: "",
 });
@@ -44,72 +44,61 @@ export default function FlightFaresSectionContentForm({
         />
       </InspectorSection>
 
-      <InspectorSection title="Labels" onReset={() => reset(LABEL_KEYS)}>
-        <InspectorField
-          id="flight-fares-one-way"
-          label="One-way"
-          value={content.oneWayLabel || ""}
-          onChange={(value) => updateField("oneWayLabel", value)}
-        />
-        <InspectorField
-          id="flight-fares-new"
-          label="New"
-          value={content.newLabel || ""}
-          onChange={(value) => updateField("newLabel", value)}
-        />
-        <InspectorField
-          id="flight-fares-from"
-          label="Price line"
-          value={content.fromTemplate || ""}
-          onChange={(value) => updateField("fromTemplate", value)}
-        />
-      </InspectorSection>
-
       <InspectorSection title="Items" onReset={() => reset(ITEM_KEYS)}>
         <InspectorRepeater
           items={content.items || []}
           createItem={emptyItem}
-          itemLabel={(_item, index) => `Item ${index + 1}`}
+          itemLabel={(item, index) => item?.title || `Item ${index + 1}`}
           addLabel="Add Item"
           onChange={(items) => onChange({ ...content, items })}
         >
           {(item, { index, update }) => (
             <>
-              <InspectorField
-                id={`flight-fares-${index}-city`}
-                label="City"
-                value={item.cityName || ""}
-                onChange={(value) => update("cityName", value)}
+              <InspectorSwitch
+                checked={Boolean(item.hasTopBadge)}
+                onChange={() => update("hasTopBadge", !item.hasTopBadge)}
+                label="Top badge"
+                hint="Corner badge on this card"
               />
+              {item.hasTopBadge ? (
+                <InspectorField
+                  id={`flight-fares-${index}-top-badge`}
+                  label="Top badge label"
+                  value={item.topBadge || ""}
+                  onChange={(value) => update("topBadge", value)}
+                />
+              ) : null}
+              <InspectorField
+                id={`flight-fares-${index}-title`}
+                label="Title"
+                value={item.title || ""}
+                onChange={(value) => update("title", value)}
+              />
+              <InspectorField
+                id={`flight-fares-${index}-subtitle`}
+                label="Subtitle"
+                value={item.subtitle || ""}
+                onChange={(value) => update("subtitle", value)}
+              />
+              <InspectorSwitch
+                checked={Boolean(item.hasExtraBadge)}
+                onChange={() => update("hasExtraBadge", !item.hasExtraBadge)}
+                label="Extra badge"
+                hint="Secondary badge above the title"
+              />
+              {item.hasExtraBadge ? (
+                <InspectorField
+                  id={`flight-fares-${index}-extra-badge`}
+                  label="Extra badge label"
+                  value={item.extraBadge || ""}
+                  onChange={(value) => update("extraBadge", value)}
+                />
+              ) : null}
               <InspectorField
                 id={`flight-fares-${index}-iata`}
                 label="IATA"
                 value={item.IATACode || ""}
                 onChange={(value) => update("IATACode", value)}
-              />
-              <InspectorField
-                id={`flight-fares-${index}-country`}
-                label="Country"
-                value={item.countryName || ""}
-                onChange={(value) => update("countryName", value)}
-              />
-              <InspectorField
-                id={`flight-fares-${index}-price`}
-                label="Price"
-                value={item.price || ""}
-                onChange={(value) => update("price", value)}
-              />
-              <InspectorField
-                id={`flight-fares-${index}-currency`}
-                label="Currency"
-                value={item.currency || ""}
-                onChange={(value) => update("currency", value)}
-              />
-              <InspectorSwitch
-                checked={Boolean(item.isNew)}
-                onChange={() => update("isNew", !item.isNew)}
-                label="New"
-                hint="Show the New badge on this card"
               />
               <InspectorField
                 id={`flight-fares-${index}-image`}

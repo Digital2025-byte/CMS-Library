@@ -42,7 +42,6 @@ export function buildSearchWithTabsAndGridData(t, lang = "en") {
                 }))
               : [],
           },
-          emptyMessage: t("searchWithTabsAndGrid.emptyMessage"),
           allLabel: t("searchWithTabsAndGrid.allLabel"),
           exploreLabel: t("searchWithTabsAndGrid.exploreLabel"),
           exploreMagazineLabel: t("searchWithTabsAndGrid.exploreMagazineLabel"),

@@ -12,7 +12,6 @@ import { SIGHT_TAG_ICON_OPTIONS } from "@/constants/Icons";
 const SEARCH_KEYS = ["searchPlaceholder"];
 const TITLE_KEYS = [
   "gridTitle",
-  "emptyMessage",
   "allLabel",
   "exploreLabel",
   "exploreMagazineLabel",
@@ -65,12 +64,6 @@ export default function SearchWithTabsAndGridContentForm({
           label="Grid title"
           value={content.gridTitle || ""}
           onChange={(value) => updateField("gridTitle", value)}
-        />
-        <InspectorField
-          id="search-grid-empty"
-          label="Empty message"
-          value={content.emptyMessage || ""}
-          onChange={(value) => updateField("emptyMessage", value)}
         />
         <InspectorField
           id="search-grid-all"

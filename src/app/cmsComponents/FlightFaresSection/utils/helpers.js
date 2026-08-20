@@ -1,6 +1,6 @@
 /**
  * POS code -> country names (en + ar) to exclude:
- * hide cities in the current origin country.
+ * hide items tagged with the current origin country.
  */
 export const POS_COUNTRY_NAMES = {
   sy: ["syria", "سورية"],
@@ -17,67 +17,109 @@ export function normalizeForMatch(str) {
   return (str || "").trim().toLowerCase();
 }
 
-export function isCityInPosCountry(city, posCode) {
+export function isItemInPosCountry(item, posCode) {
   const names = POS_COUNTRY_NAMES[posCode];
   if (!names || !Array.isArray(names)) return false;
-  const country = normalizeForMatch(city?.countryName || "");
+  const country = normalizeForMatch(item?.countryName || "");
   return names.some((name) => normalizeForMatch(name) === country);
 }
 
 /**
- * For duplicate cityId/cityName: first occurrence uses images[0],
+ * For duplicate id/title: first occurrence uses images[0],
  * second images[1], etc.
  */
-export function getImageIndexForPosition(cities, index) {
-  const current = cities[index];
+export function getImageIndexForPosition(items, index) {
+  const current = items[index];
   if (!current) return 0;
 
-  const key = (city) =>
-    city?.cityId != null
-      ? String(city.cityId)
-      : (city?.cityName || "").trim().toLowerCase();
+  const key = (item) =>
+    item?.id != null
+      ? String(item.id)
+      : item?.cityId != null
+        ? String(item.cityId)
+        : (item?.title || item?.cityName || "").trim().toLowerCase();
 
   const currentKey = key(current);
   let occurrence = 0;
 
   for (let i = 0; i < index; i += 1) {
-    if (key(cities[i]) === currentKey) occurrence += 1;
+    if (key(items[i]) === currentKey) occurrence += 1;
   }
 
   return occurrence;
 }
 
-export function filterCitiesByPos(cities = [], posParams) {
+export function filterItemsByPos(items = [], posParams) {
   const posCode = String(posParams || "")
     .trim()
     .toLowerCase();
 
-  if (!posCode) return cities;
+  if (!posCode) return items;
 
-  return cities.filter((city) => !isCityInPosCountry(city, posCode));
+  return items.filter((item) => !isItemInPosCountry(item, posCode));
 }
 
-export function normalizeFareCity(city) {
-  const images = Array.isArray(city?.images)
-    ? city.images
+export function defaultFareLabels(lang = "en") {
+  const isAr = String(lang || "").toLowerCase() === "ar";
+
+  return {
+    topBadge: isAr ? "اتجاه واحد" : "One-way",
+    extraBadge: isAr ? "جديد" : "New",
+    subtitle: isAr ? "الدرجة الاقتصادية" : "Economy class",
+  };
+}
+
+export function normalizeFareItem(item, defaults = {}) {
+  const images = Array.isArray(item?.images)
+    ? item.images
         .map((image) => ({
           url: image?.url || image?.fileUrl || "",
-          alt: image?.alt || city?.cityName || "",
+          alt: image?.alt || item?.title || item?.cityName || "",
         }))
         .filter((image) => image.url)
     : [];
 
+  const title = item?.title || item?.cityName || "";
+  const topBadge =
+    item?.topBadge || item?.oneWayLabel || defaults.topBadge || "";
+  const subtitle =
+    item?.subtitle || item?.fromTemplate || defaults.subtitle || "";
+  const extraBadge =
+    item?.extraBadge ||
+    item?.badgeLabel ||
+    item?.newLabel ||
+    defaults.extraBadge ||
+    "";
+
   return {
-    cityId: city?.cityId ?? null,
-    cityName: city?.cityName || "",
-    IATACode: city?.IATACode || city?.iataCode || "",
-    countryName: city?.countryName || "",
-    price: city?.price || "",
-    currency: city?.currency || "",
-    isNew: Boolean(city?.isNew),
+    id: item?.id ?? item?.cityId ?? null,
+    cityId: item?.cityId ?? item?.id ?? null,
+    title,
+    cityName: title,
+    IATACode: item?.IATACode || item?.iataCode || "",
+    countryName: item?.countryName || "",
+    price: item?.price || "",
+    currency: item?.currency || "",
+    hasTopBadge:
+      item?.hasTopBadge !== undefined && item?.hasTopBadge !== null
+        ? Boolean(item.hasTopBadge)
+        : Boolean(item?.topBadge || item?.oneWayLabel || defaults.topBadge),
+    topBadge,
+    subtitle,
+    hasExtraBadge: Boolean(
+      item?.hasExtraBadge ??
+        item?.hasBadge ??
+        item?.isNew ??
+        item?.showBadge ??
+        false
+    ),
+    extraBadge,
     images,
   };
 }
+
+/** @deprecated Use normalizeFareItem */
+export const normalizeFareCity = normalizeFareItem;
 
 export function isUsableImageSrc(src) {
   const value = String(src || "").trim();
@@ -109,16 +151,14 @@ export function formatFarePrice(template, price, currency, fallback) {
     .replaceAll("{currency}", currency ?? "");
 }
 
-function defaultFareLabels(lang = "en") {
-  const isAr = String(lang || "").toLowerCase() === "ar";
-
-  return {
-    oneWayLabel: isAr ? "اتجاه واحد" : "One-way",
-    newLabel: isAr ? "جديد" : "New",
-    fromTemplate: isAr
-      ? "الدرجة الاقتصادية من {price} {currency}"
-      : "Economy from {price} {currency}",
-  };
+function getRawItems(content = {}) {
+  if (Array.isArray(content.items) && content.items.length) {
+    return content.items;
+  }
+  if (Array.isArray(content.cities)) {
+    return content.cities;
+  }
+  return [];
 }
 
 export function getFlightFaresContent(data, lang = "en", posParams) {
@@ -129,10 +169,7 @@ export function getFlightFaresContent(data, lang = "en", posParams) {
   if (!translations.length) {
     return {
       title: "",
-      cities: [],
-      oneWayLabel: "",
-      newLabel: "",
-      fromTemplate: "",
+      items: [],
       hasContent: false,
     };
   }
@@ -146,40 +183,45 @@ export function getFlightFaresContent(data, lang = "en", posParams) {
 
   const content = matchedTranslation?.content || {};
   const title = content?.title || "";
-  const rawCities = Array.isArray(content?.cities) ? content.cities : [];
-  const cities = filterCitiesByPos(
-    rawCities.map(normalizeFareCity),
+  const labels = defaultFareLabels(lang);
+  const defaults = {
+    topBadge: content?.topBadge || content?.oneWayLabel || labels.topBadge,
+    extraBadge:
+      content?.extraBadge ||
+      content?.badgeLabel ||
+      content?.newLabel ||
+      labels.extraBadge,
+    subtitle: content?.subtitle || content?.fromTemplate || labels.subtitle,
+  };
+  const items = filterItemsByPos(
+    getRawItems(content).map((item) => normalizeFareItem(item, defaults)),
     posParams
   );
 
   return {
     title,
-    cities,
-    oneWayLabel: content?.oneWayLabel || "",
-    newLabel: content?.newLabel || "",
-    fromTemplate: content?.fromTemplate || "",
-    hasContent: Boolean(title || cities.length),
+    items,
+    /** @deprecated Use items */
+    cities: items,
+    hasContent: Boolean(title || items.length),
   };
 }
 
 export function getFlightFaresEditorContent(data, lang = "en") {
   const content = getFlightFaresContent(data, lang);
-  const labels = defaultFareLabels(lang);
 
   return {
     title: content.title || "",
-    oneWayLabel: content.oneWayLabel || labels.oneWayLabel,
-    newLabel: content.newLabel || labels.newLabel,
-    fromTemplate: content.fromTemplate || labels.fromTemplate,
-    items: content.cities.map((city) => ({
-      cityName: city.cityName || "",
-      IATACode: city.IATACode || "",
-      countryName: city.countryName || "",
-      price: city.price || "",
-      currency: city.currency || "",
-      isNew: Boolean(city.isNew),
-      imageUrl: city.images?.[0]?.url || "",
-      imageAlt: city.images?.[0]?.alt || city.cityName || "",
+    items: content.items.map((item) => ({
+      title: item.title || "",
+      hasTopBadge: Boolean(item.hasTopBadge),
+      topBadge: item.topBadge || "",
+      subtitle: item.subtitle || "",
+      hasExtraBadge: Boolean(item.hasExtraBadge),
+      extraBadge: item.extraBadge || "",
+      IATACode: item.IATACode || "",
+      imageUrl: item.images?.[0]?.url || "",
+      imageAlt: item.images?.[0]?.alt || item.title || "",
     })),
   };
 }
@@ -191,23 +233,21 @@ export function wrapFlightFaresContent(content = {}, lang = "en") {
         languageCode: lang,
         content: {
           title: content.title || "",
-          oneWayLabel: content.oneWayLabel || "",
-          newLabel: content.newLabel || "",
-          fromTemplate: content.fromTemplate || "",
-          cities: (Array.isArray(content.items) ? content.items : []).map(
+          items: (Array.isArray(content.items) ? content.items : []).map(
             (item, index) => ({
-              cityId: item?.cityId ?? index + 1,
-              cityName: item?.cityName || "",
+              id: item?.id ?? item?.cityId ?? index + 1,
+              title: item?.title || "",
               IATACode: item?.IATACode || item?.iataCode || "",
-              countryName: item?.countryName || "",
-              price: item?.price || "",
-              currency: item?.currency || "",
-              isNew: Boolean(item?.isNew),
+              hasTopBadge: Boolean(item?.hasTopBadge),
+              topBadge: item?.topBadge || "",
+              subtitle: item?.subtitle || "",
+              hasExtraBadge: Boolean(item?.hasExtraBadge),
+              extraBadge: item?.extraBadge || "",
               images: item?.imageUrl
                 ? [
                     {
                       url: item.imageUrl,
-                      alt: item.imageAlt || item.cityName || "",
+                      alt: item.imageAlt || item.title || "",
                     },
                   ]
                 : [],

@@ -1063,7 +1063,6 @@
   "searchWithTabsAndGrid": {
     "searchPlaceholder": "Search by sight or city...",
     "gridTitle": "Popular Sights",
-    "emptyMessage": "No sights found for your search.",
     "allLabel": "All",
     "exploreLabel": "Explore",
     "exploreMagazineLabel": "Explore as magazine",

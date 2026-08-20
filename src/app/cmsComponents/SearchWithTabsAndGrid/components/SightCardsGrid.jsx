@@ -12,11 +12,9 @@ export default function SightCardsGrid({
   posParams = "gb",
   cId,
   gridTitle = "",
-  emptyMessage = "",
   exploreLabel,
   exploreMagazineLabel,
   paginatedCards = [],
-  filteredCount = 0,
   activePageIndex = 0,
   style = DEFAULT_SEARCH_GRID_STYLE,
 }) {
@@ -50,17 +48,6 @@ export default function SightCardsGrid({
             style={style}
           />
         ))}
-
-        {filteredCount === 0 ? (
-          <p
-            className={`${typography.body} col-span-full`}
-            style={{
-              color: `color-mix(in srgb, ${getThemeColorCss(style.titleColor, "white")} 80%, transparent)`,
-            }}
-          >
-            {emptyMessage}
-          </p>
-        ) : null}
       </div>
     </div>
   );

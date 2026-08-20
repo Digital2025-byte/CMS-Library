@@ -39,26 +39,67 @@ export const DEFAULT_FLIGHT_FARES_STYLE = {
   showSectionBg: true,
   showImage: true,
   showOverlay: true,
-  showOneWay: true,
-  showNew: true,
-  showCity: true,
-  showPrice: true,
+  showTopBadge: true,
+  showExtraBadge: true,
+  showItemTitle: true,
+  showSubtitle: true,
   sectionBg: "white",
   sectionPadding: "default",
   titleAlign: "left",
   titleColor: "primary-1",
   cardRadius: "lg",
   overlayColor: "secondary-2",
-  cityColor: "primary-3",
-  priceColor: "white",
+  itemTitleColor: "primary-3",
+  subtitleColor: "white",
   badgeColor: "secondary-2",
   badgeText: "white",
 };
 
 export function resolveFlightFaresStyle(style = {}) {
+  const {
+    showNew,
+    showOneWay,
+    showBadge,
+    showCity,
+    showPrice,
+    cityColor,
+    priceColor,
+    ...rest
+  } = style;
+
   return {
     ...DEFAULT_FLIGHT_FARES_STYLE,
-    ...style,
+    ...rest,
+    showTopBadge:
+      rest.showTopBadge !== undefined
+        ? rest.showTopBadge
+        : showOneWay !== undefined
+          ? showOneWay
+          : DEFAULT_FLIGHT_FARES_STYLE.showTopBadge,
+    showExtraBadge:
+      rest.showExtraBadge !== undefined
+        ? rest.showExtraBadge
+        : showBadge !== undefined
+          ? showBadge
+          : showNew !== undefined
+            ? showNew
+            : DEFAULT_FLIGHT_FARES_STYLE.showExtraBadge,
+    showItemTitle:
+      rest.showItemTitle !== undefined
+        ? rest.showItemTitle
+        : showCity !== undefined
+          ? showCity
+          : DEFAULT_FLIGHT_FARES_STYLE.showItemTitle,
+    showSubtitle:
+      rest.showSubtitle !== undefined
+        ? rest.showSubtitle
+        : showPrice !== undefined
+          ? showPrice
+          : DEFAULT_FLIGHT_FARES_STYLE.showSubtitle,
+    itemTitleColor:
+      rest.itemTitleColor || cityColor || DEFAULT_FLIGHT_FARES_STYLE.itemTitleColor,
+    subtitleColor:
+      rest.subtitleColor || priceColor || DEFAULT_FLIGHT_FARES_STYLE.subtitleColor,
   };
 }
 
@@ -68,14 +109,14 @@ export const FLIGHT_FARES_STYLE_RESET_KEYS = {
   cards: [
     "showImage",
     "showOverlay",
-    "showOneWay",
-    "showNew",
-    "showCity",
-    "showPrice",
+    "showTopBadge",
+    "showExtraBadge",
+    "showItemTitle",
+    "showSubtitle",
     "cardRadius",
     "overlayColor",
-    "cityColor",
-    "priceColor",
+    "itemTitleColor",
+    "subtitleColor",
     "badgeColor",
     "badgeText",
   ],

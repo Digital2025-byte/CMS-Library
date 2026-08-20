@@ -10,34 +10,24 @@ const DESKTOP_LAYOUT = [
   { index: 5, size: "SMALL" },
 ];
 
-export default function FlightFaresDesktopGrid({
-  cities,
-  lang,
-  oneWayLabel,
-  newLabel,
-  fromTemplate,
-  style,
-}) {
-  if (!Array.isArray(cities) || cities.length === 0) {
+export default function FlightFaresDesktopGrid({ items, lang, style }) {
+  if (!Array.isArray(items) || items.length === 0) {
     return null;
   }
 
   return (
     <div className="hidden min-h-147.5 gap-4 lg:grid lg:auto-rows-42.5 lg:grid-rows-2 lg:grid-cols-[1.4fr_1.7fr_1.1fr_1.1fr]">
       {DESKTOP_LAYOUT.map(({ index, size }) => {
-        const item = cities[index];
+        const item = items[index];
         if (!item) return null;
 
         return (
           <FlightFareCard
-            key={`${item.cityId || item.cityName}-${index}`}
+            key={`${item.id || item.cityId || item.title}-${index}`}
             lang={lang}
             item={item}
-            imageIndex={getImageIndexForPosition(cities, index)}
+            imageIndex={getImageIndexForPosition(items, index)}
             size={size}
-            oneWayLabel={oneWayLabel}
-            newLabel={newLabel}
-            fromTemplate={fromTemplate}
             style={style}
           />
         );
