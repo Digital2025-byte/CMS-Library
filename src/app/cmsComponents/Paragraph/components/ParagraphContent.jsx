@@ -14,7 +14,12 @@ function LinkedText({ text, links, style, enabled }) {
       : [{ type: "text", value: text }];
 
   const linkColor = getThemeColorCss(style.linkColor, "primary-1");
+  const linkHoverColor = getThemeColorCss(
+    style.linkHoverColor || style.linkColor,
+    "primary-2"
+  );
   const linkWeight = getFontWeightValue(style.linkFontWeight, "semibold");
+  const underline = style.linkUnderline || "always";
 
   return parts.map((part, index) => {
     if (part.type !== "link") {
@@ -22,13 +27,34 @@ function LinkedText({ text, links, style, enabled }) {
     }
 
     const isExternal = part.linkType === "external";
+    const underlineClass =
+      underline === "always"
+        ? "underline underline-offset-2"
+        : underline === "hover"
+          ? "no-underline hover:underline hover:underline-offset-2"
+          : "no-underline";
 
     return (
       <a
         key={`link-${index}-${part.href}`}
         href={part.href}
-        className={style.linkUnderline ? "underline underline-offset-2" : ""}
-        style={{ color: linkColor, fontWeight: linkWeight }}
+        className={[
+          "transition-colors",
+          underlineClass,
+          style.linkItalic ? "italic" : "",
+        ]
+          .filter(Boolean)
+          .join(" ")}
+        style={{
+          color: linkColor,
+          fontWeight: linkWeight,
+        }}
+        onMouseEnter={(event) => {
+          event.currentTarget.style.color = linkHoverColor;
+        }}
+        onMouseLeave={(event) => {
+          event.currentTarget.style.color = linkColor;
+        }}
         target={isExternal ? "_blank" : undefined}
         rel={isExternal ? "noopener noreferrer" : undefined}
       >

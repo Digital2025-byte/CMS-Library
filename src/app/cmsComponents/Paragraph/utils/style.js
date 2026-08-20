@@ -9,6 +9,12 @@ export const SPACING_OPTIONS = [
   { value: "loose", label: "Loose" },
 ];
 
+export const LINK_UNDERLINE_OPTIONS = [
+  { value: "none", label: "None" },
+  { value: "always", label: "Always" },
+  { value: "hover", label: "On hover" },
+];
+
 export const TITLE_ALIGN_CLASS = {
   left: "text-start",
   center: "text-center",
@@ -31,16 +37,28 @@ export const DEFAULT_PARAGRAPH_STYLE = {
   titleColor: "primary-1",
   descriptionColor: "700",
   linkColor: "primary-1",
-  linkUnderline: true,
+  linkHoverColor: "primary-2",
+  linkFontWeight: "semibold",
+  linkUnderline: "always",
+  linkItalic: false,
   titleFontWeight: "semibold",
   descriptionFontWeight: "normal",
-  linkFontWeight: "semibold",
 };
 
 export function resolveParagraphStyle(style = {}) {
+  const { linkUnderline, ...rest } = style;
+
+  let resolvedUnderline = DEFAULT_PARAGRAPH_STYLE.linkUnderline;
+  if (linkUnderline === true) resolvedUnderline = "always";
+  else if (linkUnderline === false) resolvedUnderline = "none";
+  else if (LINK_UNDERLINE_OPTIONS.some((option) => option.value === linkUnderline)) {
+    resolvedUnderline = linkUnderline;
+  }
+
   return {
     ...DEFAULT_PARAGRAPH_STYLE,
-    ...style,
+    ...rest,
+    linkUnderline: resolvedUnderline,
   };
 }
 
@@ -48,7 +66,6 @@ export const PARAGRAPH_STYLE_RESET_KEYS = {
   layout: [
     "showTitle",
     "showDescription",
-    "showLinks",
     "showSectionBg",
     "sectionBg",
     "sectionPadding",
@@ -57,8 +74,13 @@ export const PARAGRAPH_STYLE_RESET_KEYS = {
     "titleFontWeight",
     "descriptionColor",
     "descriptionFontWeight",
+  ],
+  links: [
+    "showLinks",
     "linkColor",
+    "linkHoverColor",
     "linkFontWeight",
     "linkUnderline",
+    "linkItalic",
   ],
 };

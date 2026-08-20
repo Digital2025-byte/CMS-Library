@@ -10,6 +10,7 @@ import {
 import ParagraphContentForm from "./ParagraphContentForm";
 import {
   DEFAULT_PARAGRAPH_STYLE,
+  LINK_UNDERLINE_OPTIONS,
   PARAGRAPH_STYLE_RESET_KEYS,
   SPACING_OPTIONS,
   TITLE_ALIGN_OPTIONS,
@@ -35,18 +36,18 @@ function ParagraphStyleForm({ style, onChange }) {
         />
         {style.showTitle ? (
           <>
-          <InspectorColor
-            label="Title color"
-            value={style.titleColor}
-            onChange={(value) => update("titleColor", value)}
-          />
-          <InspectorFontWeight
-            id="titleColor-weight"
-            label="Title weight"
-            value={style.titleFontWeight}
-            onChange={(value) => update("titleFontWeight", value)}
-          />
-        </>
+            <InspectorColor
+              label="Title color"
+              value={style.titleColor}
+              onChange={(value) => update("titleColor", value)}
+            />
+            <InspectorFontWeight
+              id="titleColor-weight"
+              label="Title weight"
+              value={style.titleFontWeight}
+              onChange={(value) => update("titleFontWeight", value)}
+            />
+          </>
         ) : null}
         <InspectorSwitch
           checked={style.showDescription}
@@ -66,33 +67,6 @@ function ParagraphStyleForm({ style, onChange }) {
               label="Description weight"
               value={style.descriptionFontWeight}
               onChange={(value) => update("descriptionFontWeight", value)}
-            />
-          </>
-        ) : null}
-        <InspectorSwitch
-          checked={style.showLinks}
-          onChange={() => toggle("showLinks")}
-          label="Backlinks"
-          hint="Turn chosen words into links"
-        />
-        {style.showLinks ? (
-          <>
-            <InspectorColor
-              label="Link color"
-              value={style.linkColor}
-              onChange={(value) => update("linkColor", value)}
-            />
-            <InspectorFontWeight
-              id="linkColor-weight"
-              label="Link weight"
-              value={style.linkFontWeight}
-              onChange={(value) => update("linkFontWeight", value)}
-            />
-            <InspectorSwitch
-              checked={style.linkUnderline}
-              onChange={() => toggle("linkUnderline")}
-              label="Underline"
-              hint="Underline linked words"
             />
           </>
         ) : null}
@@ -125,6 +99,51 @@ function ParagraphStyleForm({ style, onChange }) {
           options={SPACING_OPTIONS}
           onChange={(value) => update("sectionPadding", value)}
         />
+      </InspectorSection>
+
+      <InspectorSection
+        title="Backlinks"
+        onReset={() => reset(PARAGRAPH_STYLE_RESET_KEYS.links)}
+      >
+        <InspectorSwitch
+          checked={style.showLinks}
+          onChange={() => toggle("showLinks")}
+          label="Backlinks"
+          hint="Turn chosen words into links"
+        />
+        {style.showLinks ? (
+          <>
+            <InspectorColor
+              label="Color"
+              value={style.linkColor}
+              onChange={(value) => update("linkColor", value)}
+            />
+            <InspectorColor
+              label="Hover color"
+              value={style.linkHoverColor}
+              onChange={(value) => update("linkHoverColor", value)}
+            />
+            <InspectorFontWeight
+              id="linkColor-weight"
+              label="Weight"
+              value={style.linkFontWeight}
+              onChange={(value) => update("linkFontWeight", value)}
+            />
+            <InspectorChoose
+              label="Underline"
+              name="linkUnderline"
+              value={style.linkUnderline}
+              options={LINK_UNDERLINE_OPTIONS}
+              onChange={(value) => update("linkUnderline", value)}
+            />
+            <InspectorSwitch
+              checked={style.linkItalic}
+              onChange={() => toggle("linkItalic")}
+              label="Italic"
+              hint="Italic linked words"
+            />
+          </>
+        ) : null}
       </InspectorSection>
     </div>
   );
