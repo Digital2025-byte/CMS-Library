@@ -11,6 +11,7 @@ import {
   applyInspectorReset,
 } from "@/components/inspector";
 import {
+  countPhraseOccurrences,
   getOccurrenceOptions,
   getWordSuggestionsFromText,
 } from "../utils/helpers";
@@ -56,10 +57,15 @@ export default function ParagraphContentForm({ content, onChange, defaults }) {
           onChange={(links) => onChange({ ...content, links })}
         >
           {(item, { index, update }) => {
-            const occurrenceOptions = getOccurrenceOptions(
+            const phrase = item.text || "";
+            const matchCount = countPhraseOccurrences(
               content.description || "",
-              item.text || ""
+              phrase
             );
+            const hasMultipleMatches = matchCount > 1;
+            const occurrenceOptions = hasMultipleMatches
+              ? getOccurrenceOptions(content.description || "", phrase)
+              : [];
             const occurrenceValue = occurrenceOptions.some(
               (option) => option.value === String(item.occurrence || "first")
             )
@@ -71,18 +77,20 @@ export default function ParagraphContentForm({ content, onChange, defaults }) {
                 <InspectorAutocompleteField
                   id={`paragraph-link-${index}-text`}
                   label="Word or phrase"
-                  value={item.text || ""}
+                  value={phrase}
                   onChange={(value) => update("text", value)}
                   suggestions={wordSuggestions}
                   placeholder="Type a word, then press Tab"
                 />
-                <InspectorSelect
-                  id={`paragraph-link-${index}-occurrence`}
-                  label="Which match"
-                  value={occurrenceValue}
-                  options={occurrenceOptions}
-                  onChange={(value) => update("occurrence", value)}
-                />
+                {hasMultipleMatches ? (
+                  <InspectorSelect
+                    id={`paragraph-link-${index}-occurrence`}
+                    label="Which match"
+                    value={occurrenceValue}
+                    options={occurrenceOptions}
+                    onChange={(value) => update("occurrence", value)}
+                  />
+                ) : null}
                 <InspectorLink
                   id={`paragraph-link-${index}`}
                   type={item.type || "internal"}
