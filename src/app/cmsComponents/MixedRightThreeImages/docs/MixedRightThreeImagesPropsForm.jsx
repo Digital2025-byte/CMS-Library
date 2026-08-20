@@ -96,7 +96,6 @@ function MixedRightThreeImagesStyleForm({ style, onChange }) {
           hint="Fill color behind the whole section"
         />
         {style.showSectionBg ? (
-          <>
           <InspectorColor
             label="Section background"
             value={style.sectionBg}
@@ -166,7 +165,6 @@ function MixedRightThreeImagesStyleForm({ style, onChange }) {
             onChange={(value) => update("primaryTextFontWeight", value)}
           />
           </>
-        </>
         ) : null}
         <InspectorSwitch
           checked={style.showSecondary}

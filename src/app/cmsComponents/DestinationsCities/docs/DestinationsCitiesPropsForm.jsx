@@ -86,7 +86,6 @@ function DestinationsCitiesStyleForm({ style, onChange }) {
           hint="Show the section background color"
         />
         {style.showSectionBg ? (
-          <>
           <InspectorColor
             label="Section background"
             value={style.sectionBg}
@@ -177,6 +176,7 @@ function DestinationsCitiesStyleForm({ style, onChange }) {
           hint="Body text on each card"
         />
         {style.showCardDescription ? (
+          <>
           <InspectorColor
             label="Body color"
             value={style.bodyColor}

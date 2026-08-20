@@ -36,7 +36,6 @@ function LegalInformationCardsStyleForm({ style, onChange }) {
           hint="Fill color behind the whole section"
         />
         {style.showSectionBg ? (
-          <>
           <InspectorColor
             label="Section background"
             value={style.sectionBg}
@@ -90,6 +89,7 @@ function LegalInformationCardsStyleForm({ style, onChange }) {
           hint="Card heading"
         />
         {style.showTitle ? (
+          <>
           <InspectorColor
             label="Title color"
             value={style.titleColor}

@@ -111,7 +111,6 @@ function GridInfoStyleForm({ style, onChange }) {
           hint="Fill color behind the whole section"
         />
         {style.showSectionBg ? (
-          <>
           <InspectorColor
             label="Section background"
             value={style.sectionBg}
@@ -138,6 +137,7 @@ function GridInfoStyleForm({ style, onChange }) {
           hint="Branch name on each card"
         />
         {style.showName ? (
+          <>
           <InspectorColor
             label="Name color"
             value={style.nameColor}

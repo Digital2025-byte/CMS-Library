@@ -87,7 +87,6 @@ function SectionWithAnimatedImagesStyleForm({ style, onChange }) {
           hint="Gradient wash behind the section"
         />
         {style.showSectionBg ? (
-          <>
           <InspectorColor
             label="Section background"
             value={style.sectionBg}
@@ -144,7 +143,6 @@ function SectionWithAnimatedImagesStyleForm({ style, onChange }) {
             onChange={(value) => update("buttonTextFontWeight", value)}
           />
           </>
-        </>
         ) : null}
       </InspectorSection>
     </div>

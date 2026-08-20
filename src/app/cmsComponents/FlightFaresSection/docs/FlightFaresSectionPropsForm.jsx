@@ -64,7 +64,6 @@ function FlightFaresSectionStyleForm({ style, onChange }) {
           hint="Fill color behind the whole section"
         />
         {style.showSectionBg ? (
-          <>
           <InspectorColor
             label="Section background"
             value={style.sectionBg}
@@ -141,7 +140,6 @@ function FlightFaresSectionStyleForm({ style, onChange }) {
             onChange={(value) => update("badgeTextFontWeight", value)}
           />
           </>
-        </>
         ) : null}
         <InspectorSwitch
           checked={style.showItemTitle}
@@ -150,7 +148,6 @@ function FlightFaresSectionStyleForm({ style, onChange }) {
           hint="Item title on each card"
         />
         {style.showItemTitle ? (
-          <>
           <InspectorColor
             label="Title color"
             value={style.itemTitleColor}
@@ -164,6 +161,7 @@ function FlightFaresSectionStyleForm({ style, onChange }) {
           hint="Text under the title"
         />
         {style.showSubtitle ? (
+          <>
           <InspectorColor
             label="Subtitle color"
             value={style.subtitleColor}

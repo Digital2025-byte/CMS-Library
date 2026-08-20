@@ -116,7 +116,6 @@ function TabbedCardsSectionStyleForm({ style, onChange }) {
           hint="Fill color behind the whole section"
         />
         {style.showSectionBg ? (
-          <>
           <InspectorColor
             label="Section background"
             value={style.sectionBg}
@@ -149,6 +148,7 @@ function TabbedCardsSectionStyleForm({ style, onChange }) {
           hint="Card title under the photo"
         />
         {style.showCardTitle ? (
+          <>
           <InspectorColor
             label="Name color"
             value={style.nameColor}

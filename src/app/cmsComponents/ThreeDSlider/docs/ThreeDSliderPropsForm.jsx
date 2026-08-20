@@ -44,7 +44,6 @@ function ThreeDSliderStyleForm({ style, onChange }) {
           hint="Fill color behind the whole component"
         />
         {style.showSectionBg ? (
-          <>
           <InspectorColor
             label="Section background"
             value={style.sectionBg}
@@ -83,6 +82,7 @@ function ThreeDSliderStyleForm({ style, onChange }) {
           hint="Index overlay in the corner"
         />
         {style.showNumber ? (
+          <>
           <InspectorColor
             label="Number color"
             value={style.numberColor}

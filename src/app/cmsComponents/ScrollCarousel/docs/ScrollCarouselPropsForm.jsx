@@ -39,7 +39,6 @@ function ScrollCarouselStyleForm({ style, onChange }) {
           hint="Fill color behind the whole component"
         />
         {style.showSectionBg ? (
-          <>
           <InspectorColor
             label="Section background"
             value={style.sectionBg}
@@ -65,6 +64,7 @@ function ScrollCarouselStyleForm({ style, onChange }) {
           hint="Heading on each card"
         />
         {style.showTitle ? (
+          <>
           <InspectorColor
             label="Title color"
             value={style.titleColor}

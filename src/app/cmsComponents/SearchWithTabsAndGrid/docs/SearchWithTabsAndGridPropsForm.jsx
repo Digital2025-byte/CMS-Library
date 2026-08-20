@@ -103,7 +103,6 @@ function SearchWithTabsAndGridStyleForm({ style, onChange }) {
           hint="Fill color behind the whole section"
         />
         {style.showSectionBg ? (
-          <>
           <InspectorColor
             label="Section background"
             value={style.sectionBg}
@@ -149,6 +148,7 @@ function SearchWithTabsAndGridStyleForm({ style, onChange }) {
           hint="Sight name at the bottom"
         />
         {style.showName ? (
+          <>
           <InspectorColor
             label="Name color"
             value={style.nameColor}
@@ -169,7 +169,6 @@ function SearchWithTabsAndGridStyleForm({ style, onChange }) {
           hint="Category next to the name"
         />
         {style.showTag ? (
-          <>
           <InspectorColor
             label="Tag color"
             value={style.tagColor}
@@ -232,7 +231,6 @@ function SearchWithTabsAndGridStyleForm({ style, onChange }) {
               onChange={(value) => update("secondaryText", value)}
             />
           </>
-        </>
         ) : null}
       </InspectorSection>
 

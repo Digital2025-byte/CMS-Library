@@ -39,7 +39,6 @@ function CoolSlideGalleryStyleForm({ style, onChange }) {
           hint="Fill color behind the whole component"
         />
         {style.showSectionBg ? (
-          <>
           <InspectorColor
             label="Section background"
             value={style.sectionBg}
@@ -105,6 +104,7 @@ function CoolSlideGalleryStyleForm({ style, onChange }) {
           hint="Title on each slide"
         />
         {style.showTitle ? (
+          <>
           <InspectorColor
             label="Title color"
             value={style.titleColor}

@@ -127,7 +127,6 @@ function BannerWithCTAsAndItemsStyleForm({ style, onChange }) {
           hint="Solid fill behind the banner"
         />
         {style.showSectionBg ? (
-          <>
           <InspectorColor
             label="Section background"
             value={style.sectionBg}
@@ -190,7 +189,6 @@ function BannerWithCTAsAndItemsStyleForm({ style, onChange }) {
             onChange={(value) => update("primaryTextFontWeight", value)}
           />
           </>
-        </>
         ) : null}
         <InspectorSwitch
           checked={style.showSecondaryButton}

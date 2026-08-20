@@ -1,5 +1,6 @@
 export { default as InspectorSection } from "./InspectorSection";
 export { default as InspectorField } from "./InspectorField";
+export { default as InspectorAutocompleteField } from "./InspectorAutocompleteField";
 export { default as InspectorSwitch } from "./InspectorSwitch";
 export { default as InspectorChoose } from "./InspectorChoose";
 export { default as InspectorSelect } from "./InspectorSelect";

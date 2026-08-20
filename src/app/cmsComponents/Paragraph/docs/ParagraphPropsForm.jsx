@@ -56,18 +56,45 @@ function ParagraphStyleForm({ style, onChange }) {
         />
         {style.showDescription ? (
           <>
-          <InspectorColor
-            label="Description color"
-            value={style.descriptionColor}
-            onChange={(value) => update("descriptionColor", value)}
-          />
-          <InspectorFontWeight
-            id="descriptionColor-weight"
-            label="Description weight"
-            value={style.descriptionFontWeight}
-            onChange={(value) => update("descriptionFontWeight", value)}
-          />
-        </>
+            <InspectorColor
+              label="Description color"
+              value={style.descriptionColor}
+              onChange={(value) => update("descriptionColor", value)}
+            />
+            <InspectorFontWeight
+              id="descriptionColor-weight"
+              label="Description weight"
+              value={style.descriptionFontWeight}
+              onChange={(value) => update("descriptionFontWeight", value)}
+            />
+          </>
+        ) : null}
+        <InspectorSwitch
+          checked={style.showLinks}
+          onChange={() => toggle("showLinks")}
+          label="Backlinks"
+          hint="Turn chosen words into links"
+        />
+        {style.showLinks ? (
+          <>
+            <InspectorColor
+              label="Link color"
+              value={style.linkColor}
+              onChange={(value) => update("linkColor", value)}
+            />
+            <InspectorFontWeight
+              id="linkColor-weight"
+              label="Link weight"
+              value={style.linkFontWeight}
+              onChange={(value) => update("linkFontWeight", value)}
+            />
+            <InspectorSwitch
+              checked={style.linkUnderline}
+              onChange={() => toggle("linkUnderline")}
+              label="Underline"
+              hint="Underline linked words"
+            />
+          </>
         ) : null}
         {style.showTitle || style.showDescription ? (
           <InspectorChoose

@@ -94,7 +94,6 @@ function CitiesSectionsStyleForm({ style, onChange }) {
           hint="Fill color behind the section"
         />
         {style.showSectionBg ? (
-          <>
           <InspectorColor
             label="Section background"
             value={style.sectionBg}
@@ -158,7 +157,6 @@ function CitiesSectionsStyleForm({ style, onChange }) {
             onChange={(value) => update("buttonTextFontWeight", value)}
           />
           </>
-        </>
         ) : null}
       </InspectorSection>
     </div>

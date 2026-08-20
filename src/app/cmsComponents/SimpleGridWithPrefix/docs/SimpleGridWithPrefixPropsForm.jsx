@@ -84,7 +84,6 @@ function SimpleGridWithPrefixStyleForm({ style, onChange }) {
           hint="Fill color behind the whole section"
         />
         {style.showSectionBg ? (
-          <>
           <InspectorColor
             label="Section background"
             value={style.sectionBg}
@@ -141,7 +140,6 @@ function SimpleGridWithPrefixStyleForm({ style, onChange }) {
             onChange={(value) => update("chipTextFontWeight", value)}
           />
           </>
-        </>
         ) : null}
         <InspectorSwitch
           checked={style.showUserName}

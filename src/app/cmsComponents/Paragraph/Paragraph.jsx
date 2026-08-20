@@ -6,7 +6,10 @@ import { resolveParagraphStyle } from "./utils/style";
 
 export default function Paragraph({ lang = "en", data, style }) {
   const resolvedStyle = resolveParagraphStyle(style);
-  const { title, description, hasContent } = getParagraphContent(data, lang);
+  const { title, description, links, hasContent } = getParagraphContent(
+    data,
+    lang
+  );
 
   if (!hasContent) {
     return null;
@@ -16,6 +19,7 @@ export default function Paragraph({ lang = "en", data, style }) {
     <ParagraphContent
       title={title}
       description={description}
+      links={links}
       style={resolvedStyle}
     />
   );

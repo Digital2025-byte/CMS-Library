@@ -96,7 +96,6 @@ function TwoColumnIntroWithTwoImageStyleForm({ style, onChange }) {
           hint="Fill color behind the section"
         />
         {style.showSectionBg ? (
-          <>
           <InspectorColor
             label="Section background"
             value={style.sectionBg}
@@ -159,14 +158,13 @@ function TwoColumnIntroWithTwoImageStyleForm({ style, onChange }) {
               value={style.buttonText}
               onChange={(value) => update("buttonText", value)}
             />
-          <InspectorFontWeight
-            id="buttonText-weight"
-            label="Button text weight"
-            value={style.buttonTextFontWeight}
-            onChange={(value) => update("buttonTextFontWeight", value)}
-          />
+            <InspectorFontWeight
+              id="buttonText-weight"
+              label="Button text weight"
+              value={style.buttonTextFontWeight}
+              onChange={(value) => update("buttonTextFontWeight", value)}
+            />
           </>
-        </>
         ) : null}
       </InspectorSection>
     </div>

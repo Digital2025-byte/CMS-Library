@@ -63,7 +63,6 @@ function CarouselItemStyleForm({ style, onChange }) {
           hint="Previous / next arrow controls"
         />
         {style.showArrows ? (
-          <>
           <InspectorColor
             label="Arrow color"
             value={style.navColor}
@@ -141,6 +140,7 @@ function CarouselItemStyleForm({ style, onChange }) {
           hint="Country name under the button"
         />
         {style.showCountry ? (
+          <>
           <InspectorColor
             label="Country color"
             value={style.countryColor}

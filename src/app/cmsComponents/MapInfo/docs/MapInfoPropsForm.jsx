@@ -136,7 +136,6 @@ function MapInfoStyleForm({ style, onChange }) {
           hint="Fill color behind the whole section"
         />
         {style.showSectionBg ? (
-          <>
           <InspectorColor
             label="Section background"
             value={style.sectionBg}
@@ -163,6 +162,7 @@ function MapInfoStyleForm({ style, onChange }) {
           hint="Office name on the card"
         />
         {style.showName ? (
+          <>
           <InspectorColor
             label="Name color"
             value={style.nameColor}

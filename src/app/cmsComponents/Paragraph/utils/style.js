@@ -23,14 +23,18 @@ export const SECTION_PADDING_CLASS = {
 export const DEFAULT_PARAGRAPH_STYLE = {
   showTitle: true,
   showDescription: true,
+  showLinks: true,
   showSectionBg: true,
   sectionBg: "background",
   sectionPadding: "default",
   titleAlign: "left",
   titleColor: "primary-1",
   descriptionColor: "700",
+  linkColor: "primary-1",
+  linkUnderline: true,
   titleFontWeight: "semibold",
   descriptionFontWeight: "normal",
+  linkFontWeight: "semibold",
 };
 
 export function resolveParagraphStyle(style = {}) {
@@ -44,9 +48,17 @@ export const PARAGRAPH_STYLE_RESET_KEYS = {
   layout: [
     "showTitle",
     "showDescription",
+    "showLinks",
     "showSectionBg",
     "sectionBg",
     "sectionPadding",
+    "titleAlign",
+    "titleColor",
+    "titleFontWeight",
+    "descriptionColor",
+    "descriptionFontWeight",
+    "linkColor",
+    "linkFontWeight",
+    "linkUnderline",
   ],
-  title: ["titleAlign", "titleColor", "titleFontWeight", "descriptionColor", "descriptionFontWeight"],
 };
