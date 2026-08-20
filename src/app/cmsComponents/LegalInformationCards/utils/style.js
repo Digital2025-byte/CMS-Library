@@ -47,6 +47,8 @@ export const DEFAULT_LEGAL_INFORMATION_CARDS_STYLE = {
   titleColor: "primary-2",
   descriptionColor: "50",
   ctaColor: "50",
+  titleFontWeight: "semibold",
+  descriptionFontWeight: "normal",
 };
 
 export function resolveLegalInformationCardsStyle(style = {}) {
@@ -73,8 +75,8 @@ export const LEGAL_INFORMATION_CARDS_STYLE_RESET_KEYS = {
     "cardBg",
     "iconBg",
     "iconColor",
-    "titleColor",
-    "descriptionColor",
+    "titleColor", "titleFontWeight",
+    "descriptionColor", "descriptionFontWeight",
     "ctaColor",
   ],
 };

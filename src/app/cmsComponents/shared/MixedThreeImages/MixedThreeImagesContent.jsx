@@ -1,5 +1,6 @@
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getFontWeightValue } from "@/styles/fontWeight";
 import MixedThreeImagesCtas from "./MixedThreeImagesCtas";
 import {
   DEFAULT_MIXED_THREE_IMAGES_STYLE,
@@ -32,7 +33,7 @@ export default function MixedThreeImagesContent({
       {showHeading ? (
         <h2
           className={`${typography.sectionTitle} font-semibold wrap-break-word`}
-          style={{ color: titleCss }}
+          style={{ color: titleCss, fontWeight: getFontWeightValue(style.titleFontWeight) }}
         >
           {title}
         </h2>

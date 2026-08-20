@@ -5,6 +5,7 @@ import Slider from "react-slick";
 import { ArrowLeft, ArrowRight } from "@phosphor-icons/react";
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getFontWeightValue } from "@/styles/fontWeight";
 import { isUsableImageSrc } from "../utils/helpers";
 import "slick-carousel/slick/slick.css";
 import styles from "./OurValuesMobile.module.css";
@@ -119,8 +120,7 @@ export default function OurValuesMobile({
                     {style.showItemTitle && item.title ? (
                       <h3
                         className={`${typography.itemTitle} absolute top-5 start-5 z-10 max-w-[70%] font-medium sm:top-6 sm:start-6`}
-                        style={{
-                          color: getThemeColorCss(style.itemTitleColor, "white"),
+                        style={{ color: getThemeColorCss(style.itemTitleColor, "white"), fontWeight: getFontWeightValue(style.itemTitleFontWeight),
                         }}
                       >
                         {item.title}

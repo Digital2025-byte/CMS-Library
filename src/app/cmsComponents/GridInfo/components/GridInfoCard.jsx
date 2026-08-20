@@ -6,6 +6,7 @@ import {
   PhoneIcon,
 } from "@phosphor-icons/react";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getFontWeightValue } from "@/styles/fontWeight";
 import { typography } from "@/styles/typography";
 import {
   CARD_RADIUS_CLASS,
@@ -142,7 +143,7 @@ export default function GridInfoCard({
       {showHeading ? (
         <h3
           className={`${typography.itemTitle} font-medium`}
-          style={{ color: nameCss }}
+          style={{ color: nameCss, fontWeight: getFontWeightValue(style.nameFontWeight) }}
         >
           {item.name}
         </h3>
@@ -159,7 +160,7 @@ export default function GridInfoCard({
             className={`${typography.caption} flex gap-2 ${
               hasMultiLine ? "items-start" : "items-center"
             }`}
-            style={{ color: bodyCss }}
+            style={{ color: bodyCss, fontWeight: getFontWeightValue(style.bodyFontWeight) }}
           >
             {contactItem.icon}
             {renderLabel(contactItem.label)}

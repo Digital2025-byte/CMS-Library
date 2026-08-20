@@ -24,6 +24,8 @@ export const DEFAULT_SPLIT_TEXT_ONLY_STYLE = {
   titleAlign: "left",
   titleColor: "secondary-100",
   descriptionColor: "secondary-100",
+  titleFontWeight: "semibold",
+  descriptionFontWeight: "normal",
 };
 
 export function resolveSplitTextOnlyStyle(style = {}) {
@@ -42,5 +44,5 @@ export const SPLIT_TEXT_ONLY_STYLE_RESET_KEYS = {
     "showBackgroundImage",
     "showOverlay",
   ],
-  title: ["titleAlign", "titleColor", "descriptionColor"],
+  title: ["titleAlign", "titleColor", "titleFontWeight", "descriptionColor", "descriptionFontWeight"],
 };

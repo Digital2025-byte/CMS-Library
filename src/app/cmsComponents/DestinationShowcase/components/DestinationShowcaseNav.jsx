@@ -2,6 +2,7 @@
 
 import Button from "@/components/ui/Button";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getFontWeightValue } from "@/styles/fontWeight";
 import { DEFAULT_DESTINATION_SHOWCASE_STYLE } from "../utils/style";
 
 /** Explore CTA only — arrows + dots live in DestinationShowcaseControls. */
@@ -25,6 +26,8 @@ export default function DestinationShowcaseNav({
           backgroundColor: pillCss,
           borderColor: pillCss,
           color: labelCss,
+
+          fontWeight: getFontWeightValue(style.buttonTextFontWeight),
         }}
       />
     </div>

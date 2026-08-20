@@ -1,5 +1,6 @@
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getFontWeightValue } from "@/styles/fontWeight";
 import {
   DEFAULT_GRID_INFO_STYLE,
   TITLE_ALIGN_CLASS,
@@ -28,7 +29,7 @@ export default function GridInfoHeader({
       {showHeading ? (
         <h2
           className={`${typography.sectionTitle} mb-4 font-bold`}
-          style={{ color: getThemeColorCss(style.titleColor, "primary-1") }}
+          style={{ color: getThemeColorCss(style.titleColor, "primary-1"), fontWeight: getFontWeightValue(style.titleFontWeight) }}
         >
           {title}
         </h2>
@@ -36,8 +37,7 @@ export default function GridInfoHeader({
       {showCopy ? (
         <p
           className={`${typography.sectionDescription} max-w-3xl`}
-          style={{
-            color: getThemeColorCss(style.descriptionColor, "primary-1"),
+          style={{ color: getThemeColorCss(style.descriptionColor, "primary-1"), fontWeight: getFontWeightValue(style.descriptionFontWeight),
           }}
         >
           {description}

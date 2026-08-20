@@ -70,6 +70,10 @@ export const DEFAULT_DESTINATIONS_CITIES_STYLE = {
   overlayColor: "secondary-2",
   buttonBg: "main",
   buttonText: "white",
+  titleFontWeight: "semibold",
+  descriptionFontWeight: "normal",
+  bodyFontWeight: "normal",
+  buttonTextFontWeight: "semibold",
 };
 
 export function resolveDestinationsCitiesStyle(style = {}) {
@@ -87,7 +91,7 @@ export const DESTINATIONS_CITIES_STYLE_RESET_KEYS = {
     "sectionBg",
     "sectionPadding",
   ],
-  title: ["titleAlign", "titleColor", "descriptionColor"],
+  title: ["titleAlign", "titleColor", "titleFontWeight", "descriptionColor", "descriptionFontWeight"],
   cards: [
     "showCardImage",
     "showCity",
@@ -103,9 +107,9 @@ export const DESTINATIONS_CITIES_STYLE_RESET_KEYS = {
     "originColor",
     "originBg",
     "metaColor",
-    "bodyColor",
+    "bodyColor", "bodyFontWeight",
     "panelBg",
     "overlayColor",
   ],
-  button: ["showButton", "buttonBg", "buttonText"],
+  button: ["showButton", "buttonBg", "buttonText", "buttonTextFontWeight"],
 };

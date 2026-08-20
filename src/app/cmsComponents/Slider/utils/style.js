@@ -155,6 +155,9 @@ export const DEFAULT_SLIDER_STYLE = {
   draggable: true,
   touchThreshold: "8",
   adaptiveHeight: false,
+  titleFontWeight: "semibold",
+  descriptionFontWeight: "normal",
+  subtitleFontWeight: "medium",
 };
 
 export const SLIDER_STYLE_RESET_KEYS = {
@@ -165,9 +168,9 @@ export const SLIDER_STYLE_RESET_KEYS = {
     "showSubtitleText",
     "showDescriptionText",
     "titleAlign",
-    "titleColor",
-    "subtitleColor",
-    "descriptionColor",
+    "titleColor", "titleFontWeight",
+    "subtitleColor", "subtitleFontWeight",
+    "descriptionColor", "descriptionFontWeight",
   ],
   button: ["buttonVariant"],
   overlay: [

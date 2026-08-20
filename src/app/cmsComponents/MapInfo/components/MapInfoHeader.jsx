@@ -1,5 +1,6 @@
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getFontWeightValue } from "@/styles/fontWeight";
 import { DEFAULT_MAP_INFO_STYLE, TITLE_ALIGN_CLASS } from "../utils/style";
 
 export default function MapInfoHeader({
@@ -22,7 +23,7 @@ export default function MapInfoHeader({
       {showHeading ? (
         <h2
           className={`${typography.sectionTitle} font-bold`}
-          style={{ color: getThemeColorCss(style.titleColor, "main") }}
+          style={{ color: getThemeColorCss(style.titleColor, "main"), fontWeight: getFontWeightValue(style.titleFontWeight) }}
         >
           {title}
         </h2>
@@ -30,8 +31,7 @@ export default function MapInfoHeader({
       {showCopy ? (
         <p
           className={`${typography.sectionDescription} mb-3 mt-2 px-0.5`}
-          style={{
-            color: getThemeColorCss(style.descriptionColor, "main"),
+          style={{ color: getThemeColorCss(style.descriptionColor, "main"), fontWeight: getFontWeightValue(style.descriptionFontWeight),
           }}
         >
           {description}

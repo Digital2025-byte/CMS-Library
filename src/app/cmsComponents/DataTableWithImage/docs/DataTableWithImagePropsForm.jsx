@@ -1,6 +1,7 @@
 import {
   InspectorChoose,
   InspectorColor,
+  InspectorFontWeight,
   InspectorSection,
   InspectorSwitch,
   InspectorTabs,
@@ -49,6 +50,12 @@ function DataTableWithImageStyleForm({ style, onChange }) {
               value={style.titleColor}
               onChange={(value) => update("titleColor", value)}
             />
+          <InspectorFontWeight
+            id="titleColor-weight"
+            label="Title weight"
+            value={style.titleFontWeight}
+            onChange={(value) => update("titleFontWeight", value)}
+          />
           </>
         ) : null}
         <InspectorSwitch

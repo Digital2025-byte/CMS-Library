@@ -61,6 +61,9 @@ export const DEFAULT_PHOTO_TILE_GRID_STYLE = {
   overlayColor: "secondary-2",
   buttonBg: "primary-2",
   buttonText: "white",
+  titleFontWeight: "semibold",
+  countryFontWeight: "medium",
+  buttonTextFontWeight: "semibold",
 };
 
 export function resolvePhotoTileGridStyle(style = {}) {
@@ -77,7 +80,7 @@ export const PHOTO_TILE_GRID_STYLE_RESET_KEYS = {
     "sectionBg",
     "sectionPadding",
   ],
-  title: ["titleAlign", "titleColor"],
+  title: ["titleAlign", "titleColor", "titleFontWeight"],
   cards: [
     "showCardImage",
     "showCity",
@@ -88,8 +91,8 @@ export const PHOTO_TILE_GRID_STYLE_RESET_KEYS = {
     "cardRadius",
     "cardGap",
     "cityColor",
-    "countryColor",
+    "countryColor", "countryFontWeight",
     "overlayColor",
   ],
-  button: ["showButton", "buttonBg", "buttonText"],
+  button: ["showButton", "buttonBg", "buttonText", "buttonTextFontWeight"],
 };

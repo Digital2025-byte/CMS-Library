@@ -1,5 +1,6 @@
 import { CalendarCheck, Clock, CloudSun, Timer } from "@phosphor-icons/react";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getFontWeightValue } from "@/styles/fontWeight";
 import { typography } from "@/styles/typography";
 import {
   CARD_RADIUS_CLASS,
@@ -74,7 +75,7 @@ export default function CityInfoCard({
           {style.showCardHeading && content.weatherTitle ? (
             <h3
               className={`${typography.itemTitle} font-normal leading-none`}
-              style={{ color: headingCss }}
+              style={{ color: headingCss, fontWeight: getFontWeightValue(style.cardHeadingFontWeight) }}
             >
               {content.weatherTitle}
             </h3>
@@ -137,7 +138,7 @@ export default function CityInfoCard({
             </span>
             <span
               className={`${typography.body} font-medium`}
-              style={{ color: accentCss }}
+              style={{ color: accentCss, fontWeight: getFontWeightValue(style.nextFlightFontWeight) }}
             >
               {content.nextFlight || "N/A"}
             </span>

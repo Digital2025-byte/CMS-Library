@@ -1,5 +1,6 @@
 import { getIconByName } from "@/constants/Icons";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getFontWeightValue } from "@/styles/fontWeight";
 import { typography } from "@/styles/typography";
 import { DEFAULT_SEARCH_GRID_STYLE } from "../utils/style";
 
@@ -36,6 +37,7 @@ export default function FilterTabs({
                     backgroundColor: chipCss,
                     borderColor: chipCss,
                     color: activeTextCss,
+                    fontWeight: getFontWeightValue(style.chipActiveTextFontWeight),
                   }
                 : {
                     backgroundColor: `color-mix(in srgb, ${chipCss} 10%, transparent)`,

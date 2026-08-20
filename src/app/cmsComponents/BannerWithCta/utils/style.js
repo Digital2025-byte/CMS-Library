@@ -90,6 +90,9 @@ export const DEFAULT_BANNER_WITH_CTA_STYLE = {
   bannerRadius: "lg",
   buttonBg: "primary-2",
   buttonText: "white",
+  titleFontWeight: "semibold",
+  descriptionFontWeight: "normal",
+  buttonTextFontWeight: "semibold",
 };
 
 export function resolveBannerWithCtaStyle(style = {}) {
@@ -110,7 +113,7 @@ export const BANNER_WITH_CTA_STYLE_RESET_KEYS = {
     "verticalAlign",
     "bannerHeight",
   ],
-  title: ["titleColor", "descriptionColor"],
+  title: ["titleColor", "titleFontWeight", "descriptionColor", "descriptionFontWeight"],
   banner: ["showHeroImage", "showOverlay", "overlayColor", "bannerRadius"],
-  button: ["showButton", "buttonBg", "buttonText"],
+  button: ["showButton", "buttonBg", "buttonText", "buttonTextFontWeight"],
 };

@@ -23,6 +23,8 @@ export default function AccordionWithContent({ data, style }) {
           align={resolved.titleAlign}
           titleColor={resolved.titleColor}
           descriptionColor={resolved.descriptionColor}
+          titleFontWeight={resolved.titleFontWeight}
+          descriptionFontWeight={resolved.descriptionFontWeight}
           showDescription={resolved.showDescription}
         />
       ) : null}
@@ -42,6 +44,8 @@ export default function AccordionWithContent({ data, style }) {
             titleColor={resolved.itemTitleColor}
             openColor={resolved.itemOpenColor}
             bodyColor={resolved.itemBodyColor}
+            titleFontWeight={resolved.itemTitleFontWeight}
+            bodyFontWeight={resolved.itemBodyFontWeight}
           />
         ))}
       </div>

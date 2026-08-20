@@ -117,6 +117,8 @@ export default function CoolSlideGallery({
   showCardImage = true,
   titleCss,
   subtitleCss,
+  titleFontWeight,
+  subtitleFontWeight,
   overlayCss,
   badgeBgCss,
   badgeTextCss,
@@ -377,6 +379,7 @@ export default function CoolSlideGallery({
                           textShadow: "0 2px 12px rgba(0,0,0,0.5)",
                           whiteSpace: "pre-line",
                           color: titleCss,
+                          fontWeight: titleFontWeight ?? 700,
                         }}
                       >
                         {slide.title}
@@ -394,6 +397,7 @@ export default function CoolSlideGallery({
                           letterSpacing: "0.01em",
                           textShadow: "0 1px 6px rgba(0,0,0,0.4)",
                           color: subtitleCss,
+                          fontWeight: subtitleFontWeight ?? 500,
                         }}
                       >
                         {slide.subtitle}

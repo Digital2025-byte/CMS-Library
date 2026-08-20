@@ -2,6 +2,7 @@
 
 import CoolSlideGalleryLib from "@/components/lightswind/cool-slide-gallery";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getFontWeightValue } from "@/styles/fontWeight";
 import {
   CARD_RADIUS_VALUE,
   GALLERY_EXTRAS,
@@ -43,11 +44,13 @@ export default function CoolSlideGalleryPanel({ content, style }) {
           ? getThemeColorCss(style.titleColor, "white")
           : undefined
       }
+      titleFontWeight={getFontWeightValue(style.titleFontWeight, "bold")}
       subtitleCss={
         style.subtitleColor
           ? getThemeColorCss(style.subtitleColor, "white")
           : undefined
       }
+      subtitleFontWeight={getFontWeightValue(style.subtitleFontWeight, "medium")}
       overlayCss={
         style.overlayColor
           ? getThemeColorCss(style.overlayColor, "foreground")

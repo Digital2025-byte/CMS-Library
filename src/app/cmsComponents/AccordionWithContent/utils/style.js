@@ -82,6 +82,10 @@ export const DEFAULT_ACCORDION_STYLE = {
   buttonPosition: "center",
   buttonVariant: "primary",
   buttonWidth: "auto",
+  titleFontWeight: "semibold",
+  descriptionFontWeight: "normal",
+  itemTitleFontWeight: "semibold",
+  itemBodyFontWeight: "normal",
 };
 
 export function resolveAccordionStyle(style = {}) {
@@ -99,7 +103,7 @@ export const ACCORDION_STYLE_RESET_KEYS = {
     "showSectionBg",
     "sectionBg",
   ],
-  title: ["titleAlign", "titleColor", "descriptionColor"],
+  title: ["titleAlign", "titleColor", "titleFontWeight", "descriptionColor", "descriptionFontWeight"],
   items: [
     "itemLook",
     "showItemBg",
@@ -107,7 +111,7 @@ export const ACCORDION_STYLE_RESET_KEYS = {
     "itemRadius",
     "itemGap",
     "itemPadding",
-    "itemTitleColor",
+    "itemTitleColor", "itemTitleFontWeight",
     "itemOpenColor",
     "itemBodyColor",
   ],

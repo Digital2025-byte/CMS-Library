@@ -1,6 +1,7 @@
 import {
   InspectorChoose,
   InspectorColor,
+  InspectorFontWeight,
   InspectorSection,
   InspectorSwitch,
   InspectorTabs,
@@ -36,11 +37,19 @@ function TwoColumnWithSubSectionsStyleForm({ style, onChange }) {
           hint="Show the heading"
         />
         {style.showTitle ? (
+          <>
           <InspectorColor
             label="Title color"
             value={style.titleColor}
             onChange={(value) => update("titleColor", value)}
           />
+          <InspectorFontWeight
+            id="titleColor-weight"
+            label="Title weight"
+            value={style.titleFontWeight}
+            onChange={(value) => update("titleFontWeight", value)}
+          />
+        </>
         ) : null}
         <InspectorSwitch
           checked={style.showDescription}
@@ -49,11 +58,19 @@ function TwoColumnWithSubSectionsStyleForm({ style, onChange }) {
           hint="Show text under the title"
         />
         {style.showDescription ? (
+          <>
           <InspectorColor
             label="Description color"
             value={style.descriptionColor}
             onChange={(value) => update("descriptionColor", value)}
           />
+          <InspectorFontWeight
+            id="descriptionColor-weight"
+            label="Description weight"
+            value={style.descriptionFontWeight}
+            onChange={(value) => update("descriptionFontWeight", value)}
+          />
+        </>
         ) : null}
         <InspectorSwitch
           checked={style.showSectionLabel}
@@ -62,11 +79,19 @@ function TwoColumnWithSubSectionsStyleForm({ style, onChange }) {
           hint="Small label above the title"
         />
         {style.showSectionLabel ? (
+          <>
           <InspectorColor
             label="Label color"
             value={style.labelColor}
             onChange={(value) => update("labelColor", value)}
           />
+          <InspectorFontWeight
+            id="labelColor-weight"
+            label="Label weight"
+            value={style.labelFontWeight}
+            onChange={(value) => update("labelFontWeight", value)}
+          />
+        </>
         ) : null}
         {style.showTitle || style.showDescription || style.showSectionLabel ? (
           <InspectorChoose
@@ -101,6 +126,12 @@ function TwoColumnWithSubSectionsStyleForm({ style, onChange }) {
               value={style.buttonText}
               onChange={(value) => update("buttonText", value)}
             />
+          <InspectorFontWeight
+            id="buttonText-weight"
+            label="Button text weight"
+            value={style.buttonTextFontWeight}
+            onChange={(value) => update("buttonTextFontWeight", value)}
+          />
           </>
         ) : null}
         <InspectorSwitch

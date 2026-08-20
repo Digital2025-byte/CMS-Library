@@ -58,6 +58,9 @@ export const DEFAULT_COOL_SLIDE_GALLERY_STYLE = {
   controlsBg: "white",
   overlayPosition: "bottom-left",
   cardRadius: "sm",
+  titleFontWeight: "semibold",
+  subtitleFontWeight: "medium",
+  chipTextFontWeight: "medium",
 };
 
 export function resolveCoolSlideGalleryStyle(style = {}) {
@@ -80,10 +83,10 @@ export const COOL_SLIDE_GALLERY_STYLE_RESET_KEYS = {
     "showTitle",
     "showSubtitle",
     "showBadge",
-    "titleColor",
-    "subtitleColor",
+    "titleColor", "titleFontWeight",
+    "subtitleColor", "subtitleFontWeight",
     "chipBg",
-    "chipText",
+    "chipText", "chipTextFontWeight",
     "overlayColor",
     "overlayPosition",
   ],

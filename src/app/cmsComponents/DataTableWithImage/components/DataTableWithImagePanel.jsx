@@ -1,5 +1,6 @@
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getFontWeightValue } from "@/styles/fontWeight";
 import DataTable from "./DataTable";
 import DataTableImage from "./DataTableImage";
 import DataTableNote from "./DataTableNote";
@@ -27,7 +28,7 @@ export default function DataTableWithImagePanel({
       {style.showTitle && title ? (
         <h2
           className={`${typography.sectionTitle} mb-4 font-semibold lg:mb-5 ${alignClass}`}
-          style={{ color: getThemeColorCss(style.titleColor, "primary-1") }}
+          style={{ color: getThemeColorCss(style.titleColor, "primary-1"), fontWeight: getFontWeightValue(style.titleFontWeight) }}
         >
           {title}
         </h2>

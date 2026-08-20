@@ -73,6 +73,9 @@ export const DEFAULT_SERVICE_CARDS_STYLE = {
   itemTitleColor: "secondary-2",
   itemBodyColor: "icon",
   arrowColor: "icon",
+  titleFontWeight: "semibold",
+  descriptionFontWeight: "normal",
+  itemTitleFontWeight: "semibold",
 };
 
 export const SERVICE_CARDS_STYLE_RESET_KEYS = {
@@ -82,7 +85,7 @@ export const SERVICE_CARDS_STYLE_RESET_KEYS = {
     "sectionBg",
     "sectionPadding",
   ],
-  title: ["titleAlign", "titleColor", "descriptionColor"],
+  title: ["titleAlign", "titleColor", "titleFontWeight", "descriptionColor", "descriptionFontWeight"],
   cards: [
     "showItemTitle",
     "showItemDescription",
@@ -93,7 +96,7 @@ export const SERVICE_CARDS_STYLE_RESET_KEYS = {
     "cardPadding",
     "cardGap",
     "iconBg",
-    "itemTitleColor",
+    "itemTitleColor", "itemTitleFontWeight",
     "itemBodyColor",
     "arrowColor",
   ],

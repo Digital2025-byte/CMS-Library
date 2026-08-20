@@ -4,6 +4,7 @@ import Image from "next/image";
 import defaultPattern from "@/assets/legal/pattern.webp";
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getFontWeightValue } from "@/styles/fontWeight";
 import {
   DEFAULT_LEGAL_INFORMATION_HERO_STYLE,
   TITLE_ALIGN_CLASS,
@@ -52,7 +53,7 @@ export default function LegalInformationHeroPanel({
         {style.showTitle && title ? (
           <h1
             className={`${typography.pageTitle} mb-4 font-semibold`}
-            style={{ color: getThemeColorCss(style.titleColor, "50") }}
+            style={{ color: getThemeColorCss(style.titleColor, "50"), fontWeight: getFontWeightValue(style.titleFontWeight) }}
           >
             {title}
           </h1>
@@ -60,8 +61,7 @@ export default function LegalInformationHeroPanel({
         {style.showDescription && description ? (
           <p
             className={`${typography.sectionDescription} max-w-4xl`}
-            style={{
-              color: getThemeColorCss(style.descriptionColor, "50"),
+            style={{ color: getThemeColorCss(style.descriptionColor, "50"), fontWeight: getFontWeightValue(style.descriptionFontWeight),
               opacity: 0.9,
             }}
           >

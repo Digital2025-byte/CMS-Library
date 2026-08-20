@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { ArrowUpLeftIcon, ArrowUpRightIcon } from "@phosphor-icons/react";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getFontWeightValue } from "@/styles/fontWeight";
 import { typography } from "@/styles/typography";
 import {
   CARD_RADIUS_CLASS,
@@ -57,7 +58,7 @@ export default function SimpleGridCard({
         {showHeading ? (
           <h4
             className={`${typography.itemDescription} truncate font-semibold`}
-            style={{ color: getThemeColorCss(style.nameColor, "secondary-2") }}
+            style={{ color: getThemeColorCss(style.nameColor, "secondary-2"), fontWeight: getFontWeightValue(style.nameFontWeight) }}
           >
             {style.showPrefix && prefix ? `${prefix} ` : ""}
             {title}
@@ -70,6 +71,8 @@ export default function SimpleGridCard({
               style={{
                 backgroundColor: `color-mix(in srgb, ${chipCss} 50%, transparent)`,
                 color: chipTextCss,
+
+                fontWeight: getFontWeightValue(style.chipTextFontWeight),
               }}
             >
               {chip}
@@ -79,7 +82,7 @@ export default function SimpleGridCard({
         {style.showUserName && userName ? (
           <p
             className={typography.caption}
-            style={{ color: getThemeColorCss(style.userNameColor, "icon") }}
+            style={{ color: getThemeColorCss(style.userNameColor, "icon"), fontWeight: getFontWeightValue(style.userNameFontWeight) }}
           >
             {userName}
           </p>

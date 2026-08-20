@@ -3,6 +3,7 @@
 import PageContentContainer from "@/components/layout/PageContentContainer";
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getFontWeightValue } from "@/styles/fontWeight";
 import LegalAlert from "./LegalAlert";
 import LegalBodySection from "./LegalBodySection";
 import LegalChip from "./LegalChip";
@@ -63,7 +64,7 @@ export default function LegalBodyTermsPanel({
               {acceptance.title ? (
                 <h3
                   className={`${typography.itemTitle} font-semibold`}
-                  style={{ color: titleCss }}
+                  style={{ color: titleCss, fontWeight: getFontWeightValue(style.titleFontWeight) }}
                 >
                   {acceptance.title}
                 </h3>
@@ -93,7 +94,7 @@ export default function LegalBodyTermsPanel({
               {contactTitle || contact.title ? (
                 <h3
                   className={`${typography.itemTitle} mb-2 font-semibold`}
-                  style={{ color: titleCss }}
+                  style={{ color: titleCss, fontWeight: getFontWeightValue(style.titleFontWeight) }}
                 >
                   {contactTitle || contact.title}
                 </h3>
@@ -101,7 +102,7 @@ export default function LegalBodyTermsPanel({
               {contactDescription || contact.description ? (
                 <p
                   className={`${typography.body} mb-4 leading-relaxed`}
-                  style={{ color: bodyCss }}
+                  style={{ color: bodyCss, fontWeight: getFontWeightValue(style.bodyFontWeight) }}
                 >
                   {contactDescription || contact.description}
                 </p>

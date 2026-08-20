@@ -1,6 +1,7 @@
 import {
   InspectorChoose,
   InspectorColor,
+  InspectorFontWeight,
   InspectorSection,
   InspectorSwitch,
   InspectorTabs,
@@ -47,6 +48,12 @@ function MapInfoStyleForm({ style, onChange }) {
               value={style.titleColor}
               onChange={(value) => update("titleColor", value)}
             />
+          <InspectorFontWeight
+            id="titleColor-weight"
+            label="Title weight"
+            value={style.titleFontWeight}
+            onChange={(value) => update("titleFontWeight", value)}
+          />
           </>
         ) : null}
         <InspectorSwitch
@@ -56,11 +63,19 @@ function MapInfoStyleForm({ style, onChange }) {
           hint="Show text under the title"
         />
         {style.showDescription ? (
+          <>
           <InspectorColor
             label="Description color"
             value={style.descriptionColor}
             onChange={(value) => update("descriptionColor", value)}
           />
+          <InspectorFontWeight
+            id="descriptionColor-weight"
+            label="Description weight"
+            value={style.descriptionFontWeight}
+            onChange={(value) => update("descriptionFontWeight", value)}
+          />
+        </>
         ) : null}
         <InspectorSwitch
           checked={style.showCountries}
@@ -100,11 +115,19 @@ function MapInfoStyleForm({ style, onChange }) {
           hint="Office tabs when a city has more than one"
         />
         {style.showCities || style.showOffices ? (
+          <>
           <InspectorColor
             label="Tab color"
             value={style.tabColor}
             onChange={(value) => update("tabColor", value)}
           />
+          <InspectorFontWeight
+            id="tabColor-weight"
+            label="Tab weight"
+            value={style.tabFontWeight}
+            onChange={(value) => update("tabFontWeight", value)}
+          />
+        </>
         ) : null}
         <InspectorSwitch
           checked={style.showSectionBg}
@@ -113,6 +136,7 @@ function MapInfoStyleForm({ style, onChange }) {
           hint="Fill color behind the whole section"
         />
         {style.showSectionBg ? (
+          <>
           <InspectorColor
             label="Section background"
             value={style.sectionBg}
@@ -144,6 +168,13 @@ function MapInfoStyleForm({ style, onChange }) {
             value={style.nameColor}
             onChange={(value) => update("nameColor", value)}
           />
+          <InspectorFontWeight
+            id="nameColor-weight"
+            label="Name weight"
+            value={style.nameFontWeight}
+            onChange={(value) => update("nameFontWeight", value)}
+          />
+        </>
         ) : null}
         <InspectorSwitch
           checked={style.showAddress}

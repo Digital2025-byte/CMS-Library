@@ -6,6 +6,7 @@ import {
 } from "@phosphor-icons/react";
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getFontWeightValue } from "@/styles/fontWeight";
 import ContactInfoItem from "./ContactInfoItem";
 import { makeMapUrl } from "../utils/helpers";
 import {
@@ -83,7 +84,7 @@ export default function MapInfoDetails({
             {showHeading ? (
               <h3
                 className={`${typography.itemTitle} font-medium`}
-                style={{ color: nameCss }}
+                style={{ color: nameCss, fontWeight: getFontWeightValue(style.nameFontWeight) }}
               >
                 {officeTitle}
               </h3>

@@ -1,5 +1,6 @@
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getFontWeightValue } from "@/styles/fontWeight";
 import { DEFAULT_MAP_INFO_STYLE } from "../utils/style";
 
 export default function MapInfoCountryTabs({
@@ -33,6 +34,8 @@ export default function MapInfoCountryTabs({
                     backgroundColor: brandCss,
                     border: `1px solid ${brandCss}`,
                     color: activeTextCss,
+
+                    fontWeight: getFontWeightValue(style.chipActiveTextFontWeight),
                   }
                 : {
                     backgroundColor: idleBgCss,

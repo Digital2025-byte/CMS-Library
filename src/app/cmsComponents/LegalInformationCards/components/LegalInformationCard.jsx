@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowLeftIcon, ArrowRightIcon } from "@phosphor-icons/react";
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getFontWeightValue } from "@/styles/fontWeight";
 import { withCampaignPath } from "@/utils/withCampaignPath";
 import { getLegalHref, getLegalIcon } from "../utils/helpers";
 import {
@@ -52,7 +53,7 @@ export default function LegalInformationCard({
       {style.showTitle ? (
         <h3
           className={`${typography.itemTitle} mb-3 font-semibold`}
-          style={{ color: getThemeColorCss(style.titleColor, "primary-2") }}
+          style={{ color: getThemeColorCss(style.titleColor, "primary-2"), fontWeight: getFontWeightValue(style.titleFontWeight) }}
         >
           {card.title}
         </h3>
@@ -61,7 +62,7 @@ export default function LegalInformationCard({
       {style.showDescription ? (
         <p
           className={`${typography.itemDescription} mb-6 flex-1`}
-          style={{ color: getThemeColorCss(style.descriptionColor, "50") }}
+          style={{ color: getThemeColorCss(style.descriptionColor, "50"), fontWeight: getFontWeightValue(style.descriptionFontWeight) }}
         >
           {card.description}
         </p>

@@ -65,6 +65,11 @@ export const DEFAULT_SEARCH_GRID_STYLE = {
   secondaryText: "white",
   navColor: "white",
   dotColor: "primary-2",
+  titleFontWeight: "semibold",
+  nameFontWeight: "semibold",
+  chipActiveTextFontWeight: "medium",
+  primaryTextFontWeight: "semibold",
+  secondaryTextFontWeight: "semibold",
 };
 
 export function resolveSearchGridStyle(style = {}) {
@@ -83,9 +88,9 @@ export const SEARCH_GRID_STYLE_RESET_KEYS = {
     "sectionBg",
     "sectionPadding",
   ],
-  title: ["titleAlign", "titleColor"],
+  title: ["titleAlign", "titleColor", "titleFontWeight"],
   search: ["searchBg", "searchText"],
-  tabs: ["chipColor", "chipActiveText"],
+  tabs: ["chipColor", "chipActiveText", "chipActiveTextFontWeight"],
   cards: [
     "showCardImage",
     "showCity",
@@ -95,9 +100,9 @@ export const SEARCH_GRID_STYLE_RESET_KEYS = {
     "cardRadius",
     "overlayColor",
     "cityColor",
-    "nameColor",
+    "nameColor", "nameFontWeight",
     "tagColor",
   ],
-  button: ["showButtons", "primaryBg", "primaryText", "secondaryText"],
+  button: ["showButtons", "primaryBg", "primaryText", "primaryTextFontWeight", "secondaryText", "secondaryTextFontWeight"],
   nav: ["showArrows", "showDots", "navColor", "dotColor"],
 };

@@ -4,6 +4,7 @@ import Image from "next/image";
 import { BookOpenTextIcon } from "@phosphor-icons/react";
 import Button from "@/components/ui/Button";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getFontWeightValue } from "@/styles/fontWeight";
 import { typography } from "@/styles/typography";
 import { isUsableImageSrc } from "../utils/helpers";
 import {
@@ -80,7 +81,7 @@ export default function SightCard({
         {style.showName && card?.name ? (
           <h3
             className={`${typography.itemTitle} font-semibold`}
-            style={{ color: nameCss, textShadow: "0 2px 8px rgba(0,0,0,0.45)" }}
+            style={{ color: nameCss, fontWeight: getFontWeightValue(style.nameFontWeight), textShadow: "0 2px 8px rgba(0,0,0,0.45)" }}
           >
             {card.name}
           </h3>
@@ -107,6 +108,7 @@ export default function SightCard({
               backgroundColor: primaryPill,
               borderColor: primaryPill,
               color: primaryFg,
+              fontWeight: getFontWeightValue(style.primaryTextFontWeight),
             }}
           />
           <Button
@@ -121,6 +123,7 @@ export default function SightCard({
             style={{
               borderColor: secondaryFg,
               color: secondaryFg,
+              fontWeight: getFontWeightValue(style.secondaryTextFontWeight),
             }}
           />
         </div>

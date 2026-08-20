@@ -1,6 +1,7 @@
 import {
   InspectorChoose,
   InspectorColor,
+  InspectorFontWeight,
   InspectorSection,
   InspectorSwitch,
   InspectorTabs,
@@ -32,11 +33,19 @@ function FormFooterStyleForm({ style, onChange }) {
           hint="Follow title, copy, and social row"
         />
         {style.showFollow ? (
+          <>
           <InspectorColor
             label="Title color"
             value={style.titleColor}
             onChange={(value) => update("titleColor", value)}
           />
+          <InspectorFontWeight
+            id="titleColor-weight"
+            label="Title weight"
+            value={style.titleFontWeight}
+            onChange={(value) => update("titleFontWeight", value)}
+          />
+        </>
         ) : null}
         <InspectorSwitch
           checked={style.showDescription}

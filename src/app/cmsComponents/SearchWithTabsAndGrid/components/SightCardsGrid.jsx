@@ -1,5 +1,6 @@
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getFontWeightValue } from "@/styles/fontWeight";
 import { CARDS_PER_PAGE } from "../utils/constants";
 import {
   DEFAULT_SEARCH_GRID_STYLE,
@@ -26,7 +27,7 @@ export default function SightCardsGrid({
       {style.showTitle && gridTitle ? (
         <h2
           className={`${typography.sectionTitle} font-bold ${alignClass}`}
-          style={{ color: getThemeColorCss(style.titleColor, "white") }}
+          style={{ color: getThemeColorCss(style.titleColor, "white"), fontWeight: getFontWeightValue(style.titleFontWeight) }}
         >
           {gridTitle}
         </h2>

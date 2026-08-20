@@ -1,5 +1,6 @@
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getFontWeightValue } from "@/styles/fontWeight";
 import {
   DEFAULT_TABBED_CARDS_STYLE,
   TITLE_ALIGN_CLASS,
@@ -26,7 +27,7 @@ export default function TabbedCardsHeader({
         {showHeading ? (
           <h2
             className={`${typography.sectionTitle} font-semibold wrap-break-word`}
-            style={{ color: getThemeColorCss(style.titleColor, "primary-1") }}
+            style={{ color: getThemeColorCss(style.titleColor, "primary-1"), fontWeight: getFontWeightValue(style.titleFontWeight) }}
           >
             {title}
           </h2>
@@ -34,8 +35,7 @@ export default function TabbedCardsHeader({
         {showCopy ? (
           <p
             className={`${typography.sectionDescription} mt-2 wrap-break-word`}
-            style={{
-              color: getThemeColorCss(style.descriptionColor, "primary-1"),
+            style={{ color: getThemeColorCss(style.descriptionColor, "primary-1"), fontWeight: getFontWeightValue(style.descriptionFontWeight),
             }}
           >
             {subtitle}

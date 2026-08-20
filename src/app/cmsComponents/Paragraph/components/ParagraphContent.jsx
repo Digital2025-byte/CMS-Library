@@ -1,5 +1,6 @@
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getFontWeightValue } from "@/styles/fontWeight";
 import {
   DEFAULT_PARAGRAPH_STYLE,
   TITLE_ALIGN_CLASS,
@@ -25,7 +26,7 @@ export default function ParagraphContent({
       {showHeading ? (
         <h2
           className={`${typography.sectionTitle} wrap-break-word font-semibold leading-snug md:leading-loose`}
-          style={{ color: getThemeColorCss(style.titleColor, "primary-1") }}
+          style={{ color: getThemeColorCss(style.titleColor, "primary-1"), fontWeight: getFontWeightValue(style.titleFontWeight) }}
         >
           {title}
         </h2>
@@ -33,7 +34,7 @@ export default function ParagraphContent({
       {showCopy ? (
         <p
           className={`${typography.sectionDescription} mt-2 wrap-break-word leading-relaxed md:leading-loose`}
-          style={{ color: getThemeColorCss(style.descriptionColor, "700") }}
+          style={{ color: getThemeColorCss(style.descriptionColor, "700"), fontWeight: getFontWeightValue(style.descriptionFontWeight) }}
         >
           {description}
         </p>

@@ -1,6 +1,7 @@
 import {
   InspectorChoose,
   InspectorColor,
+  InspectorFontWeight,
   InspectorSection,
   InspectorSelect,
   InspectorSwitch,
@@ -43,6 +44,7 @@ function ThreeDSliderStyleForm({ style, onChange }) {
           hint="Fill color behind the whole component"
         />
         {style.showSectionBg ? (
+          <>
           <InspectorColor
             label="Section background"
             value={style.sectionBg}
@@ -86,6 +88,13 @@ function ThreeDSliderStyleForm({ style, onChange }) {
             value={style.numberColor}
             onChange={(value) => update("numberColor", value)}
           />
+          <InspectorFontWeight
+            id="numberColor-weight"
+            label="Number weight"
+            value={style.numberFontWeight}
+            onChange={(value) => update("numberFontWeight", value)}
+          />
+        </>
         ) : null}
         <InspectorSwitch
           checked={style.showOverlay}

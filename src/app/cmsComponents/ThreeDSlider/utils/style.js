@@ -69,6 +69,8 @@ export const DEFAULT_THREE_D_SLIDER_STYLE = {
   overlayColor: "foreground",
   wheelSpeed: "default",
   dragSpeed: "default",
+  cardTitleFontWeight: "semibold",
+  numberFontWeight: "bold",
 };
 
 export const THREE_D_SLIDER_STYLE_RESET_KEYS = {
@@ -83,8 +85,8 @@ export const THREE_D_SLIDER_STYLE_RESET_KEYS = {
     "showNumber",
     "showOverlay",
     "cardRadius",
-    "cardTitleColor",
-    "numberColor",
+    "cardTitleColor", "cardTitleFontWeight",
+    "numberColor", "numberFontWeight",
     "overlayColor",
   ],
   motion: ["wheelSpeed", "dragSpeed"],

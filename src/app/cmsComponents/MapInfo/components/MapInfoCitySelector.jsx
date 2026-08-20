@@ -1,5 +1,6 @@
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getFontWeightValue } from "@/styles/fontWeight";
 import { CITY_TABS_LIMIT } from "../utils/helpers";
 import { DEFAULT_MAP_INFO_STYLE } from "../utils/style";
 
@@ -27,7 +28,7 @@ export default function MapInfoCitySelector({
             value={selectedCity || ""}
             onChange={(event) => onCityChange(event.target.value)}
             className={`${typography.button} min-w-55 cursor-pointer rounded-lg border border-gray-200 bg-white px-4 py-2 focus:outline-none`}
-            style={{ color: tabCss }}
+            style={{ color: tabCss, fontWeight: getFontWeightValue(style.tabFontWeight) }}
           >
             {cities.map((city) => (
               <option key={city} value={city}>
@@ -58,6 +59,8 @@ export default function MapInfoCitySelector({
                     ? {
                         borderBottom: `2px solid ${tabCss}`,
                         color: tabCss,
+
+                        fontWeight: getFontWeightValue(style.tabFontWeight),
                       }
                     : {
                         borderBottom: "2px solid transparent",

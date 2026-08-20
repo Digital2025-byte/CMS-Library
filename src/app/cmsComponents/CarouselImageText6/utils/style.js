@@ -38,11 +38,13 @@ export const DEFAULT_CAROUSEL_IMAGE_TEXT_STYLE = {
   cardBg: "secondary-2",
   itemTitleColor: "white",
   itemBodyColor: "white",
+  titleFontWeight: "semibold",
+  itemTitleFontWeight: "semibold",
 };
 
 export const CAROUSEL_IMAGE_TEXT_STYLE_RESET_KEYS = {
   layout: ["showTitle", "showSectionBg", "sectionBg"],
-  title: ["titleAlign", "titleColor"],
+  title: ["titleAlign", "titleColor", "titleFontWeight"],
   cards: [
     "showItemTitle",
     "showItemDescription",
@@ -54,7 +56,7 @@ export const CAROUSEL_IMAGE_TEXT_STYLE_RESET_KEYS = {
     "overlayColor",
     "showPanelBg",
     "panelColor",
-    "itemTitleColor",
+    "itemTitleColor", "itemTitleFontWeight",
     "itemBodyColor",
   ],
 };

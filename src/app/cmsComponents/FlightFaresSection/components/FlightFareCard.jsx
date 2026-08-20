@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useTranslation } from "react-i18next";
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getFontWeightValue } from "@/styles/fontWeight";
 import { formatFarePrice, isUsableImageSrc } from "../utils/helpers";
 import { CARD_RADIUS_CLASS, DEFAULT_FLIGHT_FARES_STYLE } from "../utils/style";
 
@@ -87,6 +88,8 @@ export default function FlightFareCard({
             style={{
               backgroundColor: `color-mix(in srgb, ${badgeCss} 25%, transparent)`,
               color: badgeTextCss,
+
+              fontWeight: getFontWeightValue(style.badgeTextFontWeight),
             }}
           >
             {item.topBadge}
@@ -102,6 +105,8 @@ export default function FlightFareCard({
               style={{
                 backgroundColor: `color-mix(in srgb, ${badgeCss} 25%, transparent)`,
                 color: badgeTextCss,
+
+                fontWeight: getFontWeightValue(style.badgeTextFontWeight),
               }}
             >
               {item.extraBadge} <span aria-hidden="true">★</span>
@@ -112,7 +117,10 @@ export default function FlightFareCard({
         {style.showItemTitle && itemTitle ? (
           <h3
             className={`${typography.itemTitle} font-bold wrap-break-word`}
-            style={{ color: titleCss }}
+            style={{
+              color: titleCss,
+              fontWeight: getFontWeightValue(style.itemTitleFontWeight),
+            }}
           >
             {itemTitle}
           </h3>
@@ -122,6 +130,7 @@ export default function FlightFareCard({
             className={`${typography.itemDescription} mt-1 font-medium wrap-break-word`}
             style={{
               color: `color-mix(in srgb, ${subtitleCss} 90%, transparent)`,
+              fontWeight: getFontWeightValue(style.subtitleFontWeight),
             }}
           >
             {subtitle}

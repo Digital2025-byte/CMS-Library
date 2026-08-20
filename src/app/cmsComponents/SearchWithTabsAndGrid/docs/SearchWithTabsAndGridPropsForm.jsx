@@ -1,6 +1,7 @@
 import {
   InspectorChoose,
   InspectorColor,
+  InspectorFontWeight,
   InspectorSection,
   InspectorSwitch,
   InspectorTabs,
@@ -47,6 +48,12 @@ function SearchWithTabsAndGridStyleForm({ style, onChange }) {
               value={style.titleColor}
               onChange={(value) => update("titleColor", value)}
             />
+          <InspectorFontWeight
+            id="titleColor-weight"
+            label="Title weight"
+            value={style.titleFontWeight}
+            onChange={(value) => update("titleFontWeight", value)}
+          />
           </>
         ) : null}
         <InspectorSwitch
@@ -96,6 +103,7 @@ function SearchWithTabsAndGridStyleForm({ style, onChange }) {
           hint="Fill color behind the whole section"
         />
         {style.showSectionBg ? (
+          <>
           <InspectorColor
             label="Section background"
             value={style.sectionBg}
@@ -146,6 +154,13 @@ function SearchWithTabsAndGridStyleForm({ style, onChange }) {
             value={style.nameColor}
             onChange={(value) => update("nameColor", value)}
           />
+          <InspectorFontWeight
+            id="nameColor-weight"
+            label="Name weight"
+            value={style.nameFontWeight}
+            onChange={(value) => update("nameFontWeight", value)}
+          />
+        </>
         ) : null}
         <InspectorSwitch
           checked={style.showTag}
@@ -154,6 +169,7 @@ function SearchWithTabsAndGridStyleForm({ style, onChange }) {
           hint="Category next to the name"
         />
         {style.showTag ? (
+          <>
           <InspectorColor
             label="Tag color"
             value={style.tagColor}
@@ -204,12 +220,19 @@ function SearchWithTabsAndGridStyleForm({ style, onChange }) {
               value={style.primaryText}
               onChange={(value) => update("primaryText", value)}
             />
+          <InspectorFontWeight
+            id="primaryText-weight"
+            label="Primary text weight"
+            value={style.primaryTextFontWeight}
+            onChange={(value) => update("primaryTextFontWeight", value)}
+          />
             <InspectorColor
               label="Secondary color"
               value={style.secondaryText}
               onChange={(value) => update("secondaryText", value)}
             />
           </>
+        </>
         ) : null}
       </InspectorSection>
 

@@ -1,6 +1,7 @@
 import { ArrowLeftIcon, ArrowRightIcon } from "@phosphor-icons/react";
 import Button from "@/components/ui/Button";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getFontWeightValue } from "@/styles/fontWeight";
 import { typography } from "@/styles/typography";
 import {
   DEFAULT_FULL_HEIGHT_HEADER_STYLE,
@@ -45,7 +46,7 @@ export default function FullHeightHeaderWithTextContent({
       {showHeading ? (
         <h1
           className={`${typography.sectionTitle} max-w-lg font-semibold`}
-          style={{ color: titleCss }}
+          style={{ color: titleCss, fontWeight: getFontWeightValue(style.titleFontWeight) }}
         >
           {title}
         </h1>
@@ -54,7 +55,7 @@ export default function FullHeightHeaderWithTextContent({
       {showCopy ? (
         <p
           className={`${typography.sectionDescription} mt-3 max-w-md leading-relaxed sm:mt-4`}
-          style={{ color: descriptionCss }}
+          style={{ color: descriptionCss, fontWeight: getFontWeightValue(style.descriptionFontWeight) }}
         >
           {description}
         </p>
@@ -74,6 +75,7 @@ export default function FullHeightHeaderWithTextContent({
               backgroundColor: pillCss,
               borderColor: pillCss,
               color: labelCss,
+              fontWeight: getFontWeightValue(style.buttonTextFontWeight),
             }}
           />
         </div>

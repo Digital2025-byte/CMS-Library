@@ -63,6 +63,11 @@ export const DEFAULT_SIMPLE_GRID_STYLE = {
   chipText: "primary-2",
   userNameColor: "icon",
   arrowColor: "primary-1",
+  titleFontWeight: "semibold",
+  descriptionFontWeight: "normal",
+  nameFontWeight: "semibold",
+  userNameFontWeight: "medium",
+  chipTextFontWeight: "medium",
 };
 
 export function resolveSimpleGridStyle(style = {}) {
@@ -80,7 +85,7 @@ export const SIMPLE_GRID_STYLE_RESET_KEYS = {
     "sectionBg",
     "sectionPadding",
   ],
-  title: ["titleAlign", "titleColor", "descriptionColor"],
+  title: ["titleAlign", "titleColor", "titleFontWeight", "descriptionColor", "descriptionFontWeight"],
   cards: [
     "showIcon",
     "showPrefix",
@@ -91,10 +96,10 @@ export const SIMPLE_GRID_STYLE_RESET_KEYS = {
     "cardRadius",
     "cardGap",
     "cardBg",
-    "nameColor",
+    "nameColor", "nameFontWeight",
     "chipBg",
-    "chipText",
-    "userNameColor",
+    "chipText", "chipTextFontWeight",
+    "userNameColor", "userNameFontWeight",
     "arrowColor",
   ],
 };

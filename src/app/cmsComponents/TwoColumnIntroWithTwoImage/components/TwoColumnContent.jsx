@@ -1,5 +1,6 @@
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getFontWeightValue } from "@/styles/fontWeight";
 import TwoColumnCta from "./TwoColumnCta";
 import {
   DEFAULT_TWO_COLUMN_INTRO_STYLE,
@@ -29,7 +30,7 @@ export default function TwoColumnContent({
       {showTitle ? (
         <h2
           className={`${typography.sectionTitle} font-semibold leading-snug wrap-break-word`}
-          style={{ color: getThemeColorCss(style.titleColor, "primary-1") }}
+          style={{ color: getThemeColorCss(style.titleColor, "primary-1"), fontWeight: getFontWeightValue(style.titleFontWeight) }}
         >
           {title}
         </h2>
@@ -38,7 +39,7 @@ export default function TwoColumnContent({
       {showDescription ? (
         <p
           className={`${typography.sectionDescription} mt-4 leading-relaxed wrap-break-word sm:mt-5 lg:mt-6`}
-          style={{ color: getThemeColorCss(style.descriptionColor, "700") }}
+          style={{ color: getThemeColorCss(style.descriptionColor, "700"), fontWeight: getFontWeightValue(style.descriptionFontWeight) }}
         >
           {description}
         </p>

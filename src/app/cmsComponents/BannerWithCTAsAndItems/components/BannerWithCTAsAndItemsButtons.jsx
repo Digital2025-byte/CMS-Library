@@ -1,5 +1,6 @@
 import Button from "@/components/ui/Button";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getFontWeightValue } from "@/styles/fontWeight";
 import {
   DEFAULT_BANNER_WITH_CTAS_STYLE,
   TITLE_JUSTIFY_CLASS,
@@ -41,6 +42,8 @@ export default function BannerWithCTAsAndItemsButtons({
             backgroundColor: primaryPill,
             borderColor: primaryPill,
             color: primaryFg,
+
+            fontWeight: getFontWeightValue(style.primaryTextFontWeight),
           }}
         />
       ) : null}
@@ -55,6 +58,8 @@ export default function BannerWithCTAsAndItemsButtons({
           style={{
             borderColor: secondaryFg,
             color: secondaryFg,
+
+            fontWeight: getFontWeightValue(style.secondaryTextFontWeight),
           }}
         />
       ) : null}

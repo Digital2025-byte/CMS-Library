@@ -91,6 +91,9 @@ export const DEFAULT_OPPOSITE_SCROLL_STYLE = {
   speed: "15",
   buttonBg: "white",
   buttonColor: "white",
+  titleFontWeight: "semibold",
+  descriptionFontWeight: "normal",
+  cardTitleFontWeight: "semibold",
 };
 
 export const OPPOSITE_SCROLL_STYLE_RESET_KEYS = {
@@ -102,7 +105,7 @@ export const OPPOSITE_SCROLL_STYLE_RESET_KEYS = {
     "sectionBg",
     "sectionPadding",
   ],
-  title: ["titleAlign", "titleColor", "descriptionColor"],
+  title: ["titleAlign", "titleColor", "titleFontWeight", "descriptionColor", "descriptionFontWeight"],
   cards: [
     "showCardTitles",
     "showOverlay",
@@ -111,7 +114,7 @@ export const OPPOSITE_SCROLL_STYLE_RESET_KEYS = {
     "cardRadius",
     "cardGap",
     "rowGap",
-    "cardTitleColor",
+    "cardTitleColor", "cardTitleFontWeight",
     "overlayColor",
   ],
   motion: ["pauseOnHover", "reverseRows", "speed"],

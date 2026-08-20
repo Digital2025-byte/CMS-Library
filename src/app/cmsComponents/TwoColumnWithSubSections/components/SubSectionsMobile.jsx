@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Button from "@/components/ui/Button";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getFontWeightValue } from "@/styles/fontWeight";
 import SubSectionBlock from "./SubSectionBlock";
 import SubSectionsHeader from "./SubSectionsHeader";
 import { isUsableImageSrc } from "../utils/helpers";
@@ -108,6 +109,7 @@ export default function SubSectionsMobile({
               backgroundColor: buttonBg,
               borderColor: buttonBg,
               color: buttonText,
+              fontWeight: getFontWeightValue(style.buttonTextFontWeight),
             }}
           />
         </div>

@@ -1,6 +1,7 @@
 import { typography } from "@/styles/typography";
 import PageContentContainer from "@/components/layout/PageContentContainer";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getFontWeightValue } from "@/styles/fontWeight";
 import { TITLE_ALIGN_CLASS } from "../utils/style";
 
 export default function OppositeScrollHeader({ title, description, style }) {
@@ -21,7 +22,7 @@ export default function OppositeScrollHeader({ title, description, style }) {
       {showHeading ? (
         <h2
           className={`${typography.sectionTitle} font-bold`}
-          style={{ color: getThemeColorCss(style.titleColor, "white") }}
+          style={{ color: getThemeColorCss(style.titleColor, "white"), fontWeight: getFontWeightValue(style.titleFontWeight) }}
         >
           {title}
         </h2>
@@ -31,7 +32,7 @@ export default function OppositeScrollHeader({ title, description, style }) {
           className={`${typography.sectionDescription} mt-1 font-normal ${
             style.titleAlign === "center" ? "mx-auto max-w-3xl" : "max-w-3xl"
           }`}
-          style={{ color: getThemeColorCss(style.descriptionColor, "white") }}
+          style={{ color: getThemeColorCss(style.descriptionColor, "white"), fontWeight: getFontWeightValue(style.descriptionFontWeight) }}
         >
           {description}
         </p>

@@ -26,6 +26,8 @@ export default function AccordionWithImages({ data, style }) {
           align={resolved.titleAlign}
           titleColor={resolved.titleColor}
           descriptionColor={resolved.descriptionColor}
+          titleFontWeight={resolved.titleFontWeight}
+          descriptionFontWeight={resolved.descriptionFontWeight}
           showDescription={resolved.showDescription}
           showTitleBorder={resolved.showTitleBorder}
         />
@@ -57,6 +59,8 @@ export default function AccordionWithImages({ data, style }) {
                   titleColor={resolved.itemTitleColor}
                   openColor={resolved.itemOpenColor}
                   bodyColor={resolved.itemBodyColor}
+                  titleFontWeight={resolved.itemTitleFontWeight}
+                  bodyFontWeight={resolved.itemBodyFontWeight}
                   toggleBg={resolved.toggleBg}
                   toggleBorder={resolved.toggleBorder}
                   toggleIcon={resolved.toggleIcon}

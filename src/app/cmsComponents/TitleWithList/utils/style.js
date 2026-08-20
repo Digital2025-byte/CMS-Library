@@ -33,6 +33,8 @@ export const DEFAULT_TITLE_WITH_LIST_STYLE = {
   descriptionColor: "primary-1",
   bulletColor: "primary-2",
   iconColor: "primary-1",
+  titleFontWeight: "semibold",
+  descriptionFontWeight: "normal",
 };
 
 export function resolveTitleWithListStyle(style = {}) {
@@ -52,5 +54,5 @@ export const TITLE_WITH_LIST_STYLE_RESET_KEYS = {
     "sectionBg",
     "sectionPadding",
   ],
-  title: ["titleAlign", "titleColor", "descriptionColor", "bulletColor", "iconColor"],
+  title: ["titleAlign", "titleColor", "titleFontWeight", "descriptionColor", "descriptionFontWeight", "bulletColor", "iconColor"],
 };

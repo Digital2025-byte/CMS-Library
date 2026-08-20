@@ -1,5 +1,6 @@
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getFontWeightValue } from "@/styles/fontWeight";
 import { TITLE_ALIGN_CLASS } from "../utils/style";
 
 export default function AccordionImagesHeader({
@@ -8,6 +9,8 @@ export default function AccordionImagesHeader({
   align = "left",
   titleColor = "primary-1",
   descriptionColor = "700",
+  titleFontWeight = "semibold",
+  descriptionFontWeight = "normal",
   showDescription = true,
   showTitleBorder = true,
 }) {
@@ -24,7 +27,10 @@ export default function AccordionImagesHeader({
           className={`${typography.sectionTitle} py-2 font-semibold leading-snug lg:py-4 ${
             showTitleBorder ? "border-b border-200" : ""
           }`}
-          style={{ color: getThemeColorCss(titleColor, "primary-1") }}
+          style={{
+            color: getThemeColorCss(titleColor, "primary-1"),
+            fontWeight: getFontWeightValue(titleFontWeight),
+          }}
         >
           {title}
         </h2>
@@ -34,7 +40,10 @@ export default function AccordionImagesHeader({
           className={`${typography.sectionDescription} mt-2 leading-relaxed ${
             align === "center" ? "mx-auto max-w-2xl" : "max-w-2xl"
           }`}
-          style={{ color: getThemeColorCss(descriptionColor, "700") }}
+          style={{
+            color: getThemeColorCss(descriptionColor, "700"),
+            fontWeight: getFontWeightValue(descriptionFontWeight),
+          }}
         >
           {description}
         </p>

@@ -1,4 +1,5 @@
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getFontWeightValue } from "@/styles/fontWeight";
 import { DEFAULT_MAP_INFO_STYLE } from "../utils/style";
 
 export default function MapInfoOfficeTabs({
@@ -33,6 +34,8 @@ export default function MapInfoOfficeTabs({
                     ? {
                         borderBottom: `2px solid ${tabCss}`,
                         color: tabCss,
+
+                        fontWeight: getFontWeightValue(style.tabFontWeight),
                       }
                     : {
                         borderBottom: "2px solid transparent",

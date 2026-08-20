@@ -1,5 +1,6 @@
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getFontWeightValue } from "@/styles/fontWeight";
 import {
   DEFAULT_GRID_INFO_STYLE,
   TITLE_JUSTIFY_CLASS,
@@ -39,6 +40,8 @@ export default function GridInfoCityFilter({
                     backgroundColor: brandCss,
                     borderColor: brandCss,
                     color: activeTextCss,
+
+                    fontWeight: getFontWeightValue(style.chipActiveTextFontWeight),
                   }
                 : {
                     backgroundColor: idleBgCss,

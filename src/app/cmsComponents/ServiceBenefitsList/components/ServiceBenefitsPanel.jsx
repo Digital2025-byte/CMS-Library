@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getFontWeightValue } from "@/styles/fontWeight";
 import ServiceBenefitItem from "./ServiceBenefitItem";
 import { isUsableImageSrc } from "../utils/helpers";
 import {
@@ -53,7 +54,7 @@ export default function ServiceBenefitsPanel({
         {style.showTitle && mainTitle ? (
           <h2
             className={`${typography.sectionTitle} font-semibold ${alignClass}`}
-            style={{ color: getThemeColorCss(style.titleColor, "white") }}
+            style={{ color: getThemeColorCss(style.titleColor, "white"), fontWeight: getFontWeightValue(style.titleFontWeight) }}
           >
             {mainTitle}
           </h2>

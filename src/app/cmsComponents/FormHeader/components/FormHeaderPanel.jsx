@@ -5,6 +5,7 @@ import Link from "next/link";
 import PageContentContainer from "@/components/layout/PageContentContainer";
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getFontWeightValue } from "@/styles/fontWeight";
 import {
   DEFAULT_HEADER_IMAGE,
   DEFAULT_PROMO_HREF,
@@ -77,7 +78,7 @@ export default function FormHeaderPanel({
             {style.showTitle && title ? (
               <strong
                 className={`${typography.itemTitle} block font-semibold`}
-                style={{ color: getThemeColorCss(style.titleColor, "main") }}
+                style={{ color: getThemeColorCss(style.titleColor, "main"), fontWeight: getFontWeightValue(style.titleFontWeight) }}
               >
                 {title}
               </strong>
@@ -85,8 +86,7 @@ export default function FormHeaderPanel({
             {style.showDescription && subtitle ? (
               <p
                 className={`${typography.body} pt-1`}
-                style={{
-                  color: getThemeColorCss(style.descriptionColor, "main"),
+                style={{ color: getThemeColorCss(style.descriptionColor, "main"), fontWeight: getFontWeightValue(style.descriptionFontWeight),
                 }}
               >
                 {subtitle}

@@ -54,6 +54,9 @@ export const DEFAULT_CITIES_SECTIONS_STYLE = {
   imageRadius: "sm",
   buttonBg: "primary-2",
   buttonText: "white",
+  titleFontWeight: "semibold",
+  descriptionFontWeight: "normal",
+  buttonTextFontWeight: "semibold",
 };
 
 export function resolveCitiesSectionsStyle(style = {}, { side } = {}) {
@@ -73,7 +76,7 @@ export const CITIES_SECTIONS_STYLE_RESET_KEYS = {
     "sectionPadding",
     "imageSide",
   ],
-  title: ["titleAlign", "titleColor", "descriptionColor"],
+  title: ["titleAlign", "titleColor", "titleFontWeight", "descriptionColor", "descriptionFontWeight"],
   images: ["showImages", "imageRadius"],
-  button: ["showCta", "buttonBg", "buttonText"],
+  button: ["showCta", "buttonBg", "buttonText", "buttonTextFontWeight"],
 };

@@ -1,6 +1,7 @@
 import {
   InspectorChoose,
   InspectorColor,
+  InspectorFontWeight,
   InspectorSection,
   InspectorSwitch,
   InspectorTabs,
@@ -42,11 +43,23 @@ function VerticalImageSliceTextSectionStyleForm({ style, onChange }) {
               value={style.titleColor}
               onChange={(value) => update("titleColor", value)}
             />
+          <InspectorFontWeight
+            id="titleColor-weight"
+            label="Title weight"
+            value={style.titleFontWeight}
+            onChange={(value) => update("titleFontWeight", value)}
+          />
             <InspectorColor
               label="Highlight color"
               value={style.highlightColor}
               onChange={(value) => update("highlightColor", value)}
             />
+          <InspectorFontWeight
+            id="highlightColor-weight"
+            label="Highlight weight"
+            value={style.highlightFontWeight}
+            onChange={(value) => update("highlightFontWeight", value)}
+          />
           </>
         ) : null}
         <InspectorSwitch
@@ -56,11 +69,19 @@ function VerticalImageSliceTextSectionStyleForm({ style, onChange }) {
           hint="Show text under the title"
         />
         {style.showDescription ? (
+          <>
           <InspectorColor
             label="Description color"
             value={style.descriptionColor}
             onChange={(value) => update("descriptionColor", value)}
           />
+          <InspectorFontWeight
+            id="descriptionColor-weight"
+            label="Description weight"
+            value={style.descriptionFontWeight}
+            onChange={(value) => update("descriptionFontWeight", value)}
+          />
+        </>
         ) : null}
         {style.showTitle || style.showDescription ? (
           <InspectorChoose

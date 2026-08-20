@@ -1,6 +1,7 @@
 import {
   InspectorChoose,
   InspectorColor,
+  InspectorFontWeight,
   InspectorSection,
   InspectorSwitch,
   InspectorTabs,
@@ -38,6 +39,7 @@ function CoolSlideGalleryStyleForm({ style, onChange }) {
           hint="Fill color behind the whole component"
         />
         {style.showSectionBg ? (
+          <>
           <InspectorColor
             label="Section background"
             value={style.sectionBg}
@@ -108,6 +110,13 @@ function CoolSlideGalleryStyleForm({ style, onChange }) {
             value={style.titleColor}
             onChange={(value) => update("titleColor", value)}
           />
+          <InspectorFontWeight
+            id="titleColor-weight"
+            label="Title weight"
+            value={style.titleFontWeight}
+            onChange={(value) => update("titleFontWeight", value)}
+          />
+        </>
         ) : null}
         <InspectorSwitch
           checked={style.showSubtitle}
@@ -116,11 +125,19 @@ function CoolSlideGalleryStyleForm({ style, onChange }) {
           hint="Subtitle under the title"
         />
         {style.showSubtitle ? (
+          <>
           <InspectorColor
             label="Subtitle color"
             value={style.subtitleColor}
             onChange={(value) => update("subtitleColor", value)}
           />
+          <InspectorFontWeight
+            id="subtitleColor-weight"
+            label="Subtitle weight"
+            value={style.subtitleFontWeight}
+            onChange={(value) => update("subtitleFontWeight", value)}
+          />
+        </>
         ) : null}
         <InspectorSwitch
           checked={style.showBadge}
@@ -140,6 +157,12 @@ function CoolSlideGalleryStyleForm({ style, onChange }) {
               value={style.chipText}
               onChange={(value) => update("chipText", value)}
             />
+          <InspectorFontWeight
+            id="chipText-weight"
+            label="Chip text weight"
+            value={style.chipTextFontWeight}
+            onChange={(value) => update("chipTextFontWeight", value)}
+          />
           </>
         ) : null}
         {showOverlay ? (

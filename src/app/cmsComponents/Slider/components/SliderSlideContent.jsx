@@ -1,6 +1,7 @@
 import Button from "@/components/ui/Button";
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getFontWeightValue } from "@/styles/fontWeight";
 import { TITLE_ALIGN_JUSTIFY, TITLE_ALIGN_TEXT } from "../utils/style";
 
 export default function SliderSlideContent({
@@ -47,7 +48,7 @@ export default function SliderSlideContent({
         {canShowSubtitle ? (
           <p
             className={`${typography.sectionDescription} font-medium`}
-            style={{ color: getThemeColorCss(style.subtitleColor, "white") }}
+            style={{ color: getThemeColorCss(style.subtitleColor, "white"), fontWeight: getFontWeightValue(style.subtitleFontWeight) }}
           >
             {subtitle}
           </p>
@@ -56,7 +57,7 @@ export default function SliderSlideContent({
         {canShowTitle ? (
           <h1
             className={`${typography.sectionTitle} mt-1 font-bold leading-tight sm:mt-2 md:mt-3`}
-            style={{ color: getThemeColorCss(style.titleColor, "white") }}
+            style={{ color: getThemeColorCss(style.titleColor, "white"), fontWeight: getFontWeightValue(style.titleFontWeight) }}
           >
             {title}
           </h1>
@@ -65,7 +66,7 @@ export default function SliderSlideContent({
         {canShowDescription ? (
           <p
             className={`${typography.sectionDescription} mt-2 sm:mt-3`}
-            style={{ color: getThemeColorCss(style.descriptionColor, "white") }}
+            style={{ color: getThemeColorCss(style.descriptionColor, "white"), fontWeight: getFontWeightValue(style.descriptionFontWeight) }}
           >
             {description}
           </p>

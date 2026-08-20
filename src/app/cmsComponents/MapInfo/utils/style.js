@@ -62,6 +62,12 @@ export const DEFAULT_MAP_INFO_STYLE = {
   nameColor: "main",
   bodyColor: "secondary-2",
   iconColor: "primary-2",
+  titleFontWeight: "semibold",
+  descriptionFontWeight: "normal",
+  nameFontWeight: "semibold",
+  bodyFontWeight: "normal",
+  chipActiveTextFontWeight: "medium",
+  tabFontWeight: "medium",
 };
 
 export function resolveMapInfoStyle(style = {}) {
@@ -82,8 +88,8 @@ export const MAP_INFO_STYLE_RESET_KEYS = {
     "sectionBg",
     "sectionPadding",
   ],
-  title: ["titleAlign", "titleColor", "descriptionColor"],
-  tabs: ["chipColor", "chipActiveText", "chipIdleBg", "tabColor"],
+  title: ["titleAlign", "titleColor", "titleFontWeight", "descriptionColor", "descriptionFontWeight"],
+  tabs: ["chipColor", "chipActiveText", "chipActiveTextFontWeight", "chipIdleBg", "tabColor", "tabFontWeight"],
   details: [
     "showName",
     "showAddress",
@@ -94,8 +100,8 @@ export const MAP_INFO_STYLE_RESET_KEYS = {
     "showCardBg",
     "cardRadius",
     "cardBg",
-    "nameColor",
-    "bodyColor",
+    "nameColor", "nameFontWeight",
+    "bodyColor", "bodyFontWeight",
     "iconColor",
   ],
 };

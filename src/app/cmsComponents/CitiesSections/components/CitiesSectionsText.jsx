@@ -1,6 +1,7 @@
 import Button from "@/components/ui/Button";
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getFontWeightValue } from "@/styles/fontWeight";
 import {
   DEFAULT_CITIES_SECTIONS_STYLE,
   TITLE_ALIGN_CLASS,
@@ -29,7 +30,7 @@ export default function CitiesSectionsText({
       {showHeading ? (
         <h2
           className={`${typography.sectionTitle} font-semibold wrap-break-word`}
-          style={{ color: getThemeColorCss(style.titleColor, "primary-100") }}
+          style={{ color: getThemeColorCss(style.titleColor, "primary-100"), fontWeight: getFontWeightValue(style.titleFontWeight) }}
         >
           {content.title}
         </h2>
@@ -38,7 +39,7 @@ export default function CitiesSectionsText({
       {showCopy ? (
         <p
           className={`${typography.sectionDescription} mt-4 max-w-md leading-relaxed wrap-break-word`}
-          style={{ color: getThemeColorCss(style.descriptionColor, "white") }}
+          style={{ color: getThemeColorCss(style.descriptionColor, "white"), fontWeight: getFontWeightValue(style.descriptionFontWeight) }}
         >
           {content.description}
         </p>
@@ -55,6 +56,7 @@ export default function CitiesSectionsText({
               backgroundColor: buttonBg,
               borderColor: buttonBg,
               color: buttonText,
+              fontWeight: getFontWeightValue(style.buttonTextFontWeight),
             }}
           />
         </div>

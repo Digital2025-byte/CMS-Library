@@ -17,6 +17,8 @@ export const DEFAULT_LEGAL_INFORMATION_HERO_STYLE = {
   titleAlign: "center",
   titleColor: "50",
   descriptionColor: "50",
+  titleFontWeight: "semibold",
+  descriptionFontWeight: "normal",
 };
 
 export function resolveLegalInformationHeroStyle(style = {}) {
@@ -34,5 +36,5 @@ export const LEGAL_INFORMATION_HERO_STYLE_RESET_KEYS = {
     "showSectionBg",
     "sectionBg",
   ],
-  title: ["titleAlign", "titleColor", "descriptionColor"],
+  title: ["titleAlign", "titleColor", "titleFontWeight", "descriptionColor", "descriptionFontWeight"],
 };

@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import AnimatedCTAButton from "@/components/ui/AnimatedCTAButton";
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getFontWeightValue } from "@/styles/fontWeight";
 import { withCampaignPath } from "@/utils/withCampaignPath";
 import { getImageUrl, isUsableImageSrc } from "../utils/helpers";
 import { CARD_RADIUS_CLASS, CARD_RADIUS_TOP_CLASS } from "../utils/style";
@@ -77,8 +78,7 @@ export default function CarouselCard({ card, lang = "en", cId, style }) {
           {style.showCardTitle && title ? (
             <h3
               className={`${typography.itemTitle} mb-2 font-semibold leading-snug`}
-              style={{
-                color: getThemeColorCss(style.cardTitleColor, "secondary-2"),
+              style={{ color: getThemeColorCss(style.cardTitleColor, "secondary-2"), fontWeight: getFontWeightValue(style.cardTitleFontWeight),
               }}
             >
               {title}
@@ -88,7 +88,7 @@ export default function CarouselCard({ card, lang = "en", cId, style }) {
           {style.showCardDescription && description ? (
             <p
               className={`${typography.itemDescription} mb-5 leading-relaxed`}
-              style={{ color: getThemeColorCss(style.cardBodyColor, "600") }}
+              style={{ color: getThemeColorCss(style.cardBodyColor, "600"), fontWeight: getFontWeightValue(style.cardBodyFontWeight) }}
             >
               {description}
             </p>

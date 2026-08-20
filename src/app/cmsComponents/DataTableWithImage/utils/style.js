@@ -50,6 +50,8 @@ export const DEFAULT_DATA_TABLE_WITH_IMAGE_STYLE = {
   cellColor: "700",
   stripeColor: "primary-2",
   tableRadius: "sm",
+  titleFontWeight: "semibold",
+  descriptionFontWeight: "normal",
 };
 
 export function resolveDataTableWithImageStyle(style = {}) {
@@ -69,7 +71,7 @@ export const DATA_TABLE_WITH_IMAGE_STYLE_RESET_KEYS = {
     "sectionBg",
     "sectionPadding",
   ],
-  title: ["titleAlign", "titleColor", "descriptionColor"],
+  title: ["titleAlign", "titleColor", "titleFontWeight", "descriptionColor", "descriptionFontWeight"],
   table: [
     "tableBg",
     "headerColor",

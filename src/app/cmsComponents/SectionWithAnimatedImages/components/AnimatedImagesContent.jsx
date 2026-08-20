@@ -2,6 +2,7 @@ import { typography } from "@/styles/typography";
 import AnimatedImagesCta from "./AnimatedImagesCta";
 import PageContentContainer from "@/components/layout/PageContentContainer";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getFontWeightValue } from "@/styles/fontWeight";
 import {
   DEFAULT_ANIMATED_IMAGES_STYLE,
   SECTION_PADDING_CLASS,
@@ -34,8 +35,7 @@ export default function AnimatedImagesContent({
       {style.showDescription && preTitle ? (
         <p
           className={`${typography.sectionDescription} mb-2 wrap-break-word md:mb-3`}
-          style={{
-            color: getThemeColorCss(style.descriptionColor, "primary-1"),
+          style={{ color: getThemeColorCss(style.descriptionColor, "primary-1"), fontWeight: getFontWeightValue(style.descriptionFontWeight),
           }}
         >
           {preTitle}
@@ -45,7 +45,7 @@ export default function AnimatedImagesContent({
       {style.showTitle && title ? (
         <h2
           className={`${typography.pageTitle} mb-8 font-bold wrap-break-word md:mb-10`}
-          style={{ color: getThemeColorCss(style.titleColor, "primary-1") }}
+          style={{ color: getThemeColorCss(style.titleColor, "primary-1"), fontWeight: getFontWeightValue(style.titleFontWeight) }}
         >
           {title}
         </h2>

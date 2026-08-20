@@ -55,6 +55,9 @@ export const DEFAULT_TWO_COLUMN_INTRO_STYLE = {
   imageRadius: "lg",
   buttonBg: "primary-2",
   buttonText: "white",
+  titleFontWeight: "semibold",
+  descriptionFontWeight: "normal",
+  buttonTextFontWeight: "semibold",
 };
 
 export function resolveTwoColumnIntroStyle(style = {}, data) {
@@ -79,7 +82,7 @@ export const TWO_COLUMN_INTRO_STYLE_RESET_KEYS = {
     "sectionPadding",
     "imageSide",
   ],
-  title: ["titleAlign", "titleColor", "descriptionColor"],
+  title: ["titleAlign", "titleColor", "titleFontWeight", "descriptionColor", "descriptionFontWeight"],
   images: ["showMainImage", "showOverlayImage", "imageRadius"],
-  button: ["showCta", "buttonBg", "buttonText"],
+  button: ["showCta", "buttonBg", "buttonText", "buttonTextFontWeight"],
 };

@@ -2,6 +2,7 @@ import { ArrowLeftIcon, ArrowRightIcon } from "@phosphor-icons/react";
 import Button from "@/components/ui/Button";
 import PageContentContainer from "@/components/layout/PageContentContainer";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getFontWeightValue } from "@/styles/fontWeight";
 import { typography } from "@/styles/typography";
 import {
   DEFAULT_HEADER_WITH_THREE_IMAGE_STYLE,
@@ -49,7 +50,7 @@ export default function HeaderWithThreeImageContent({
         {showHeading ? (
           <h1
             className={`${typography.pageTitle} mt-2 font-semibold`}
-            style={{ color: getThemeColorCss(style.titleColor, "50") }}
+            style={{ color: getThemeColorCss(style.titleColor, "50"), fontWeight: getFontWeightValue(style.titleFontWeight) }}
           >
             {title}
           </h1>
@@ -63,7 +64,7 @@ export default function HeaderWithThreeImageContent({
                   ? "text-end"
                   : "text-justify"
             }`}
-            style={{ color: getThemeColorCss(style.descriptionColor, "50") }}
+            style={{ color: getThemeColorCss(style.descriptionColor, "50"), fontWeight: getFontWeightValue(style.descriptionFontWeight) }}
           >
             {description}
           </p>
@@ -82,6 +83,7 @@ export default function HeaderWithThreeImageContent({
                 backgroundColor: pillCss,
                 borderColor: pillCss,
                 color: labelCss,
+                fontWeight: getFontWeightValue(style.buttonTextFontWeight),
               }}
             />
           </div>

@@ -1,5 +1,6 @@
 import Button from "@/components/ui/Button";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getFontWeightValue } from "@/styles/fontWeight";
 import { DEFAULT_ANIMATED_IMAGES_STYLE } from "../utils/style";
 
 export default function AnimatedImagesCta({
@@ -30,6 +31,7 @@ export default function AnimatedImagesCta({
         backgroundColor: buttonBg,
         borderColor: buttonBg,
         color: buttonTextColor,
+        fontWeight: getFontWeightValue(style.buttonTextFontWeight),
       }}
     />
   );

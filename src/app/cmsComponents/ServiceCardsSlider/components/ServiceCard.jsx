@@ -3,6 +3,7 @@ import Link from "next/link";
 import { CaretLeftIcon, CaretRightIcon } from "@phosphor-icons/react";
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getFontWeightValue } from "@/styles/fontWeight";
 import { isUsableImageSrc } from "../utils/helpers";
 import { CARD_PADDING_CLASS, CARD_RADIUS_CLASS } from "../utils/style";
 
@@ -51,7 +52,7 @@ export default function ServiceCard({ service, isRtl = false, style }) {
         {style.showItemTitle && title ? (
           <h3
             className={`${typography.itemTitle} font-semibold`}
-            style={{ color: getThemeColorCss(style.itemTitleColor, "secondary-2") }}
+            style={{ color: getThemeColorCss(style.itemTitleColor, "secondary-2"), fontWeight: getFontWeightValue(style.itemTitleFontWeight) }}
           >
             {title}
           </h3>

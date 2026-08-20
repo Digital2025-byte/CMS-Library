@@ -1,5 +1,6 @@
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getFontWeightValue } from "@/styles/fontWeight";
 import { CONNECTION_STEPS_LAYOUT } from "../utils/layout";
 import {
   DEFAULT_CONNECTION_STEPS_STYLE,
@@ -35,7 +36,7 @@ export default function ConnectionStepsListPanel({
       {style.showTitle && title ? (
         <h2
           className={`${typography.sectionTitle} mb-8 font-semibold md:mb-12 ${alignClass}`}
-          style={{ color: getThemeColorCss(style.titleColor, "primary-1") }}
+          style={{ color: getThemeColorCss(style.titleColor, "primary-1"), fontWeight: getFontWeightValue(style.titleFontWeight) }}
         >
           {title}
         </h2>

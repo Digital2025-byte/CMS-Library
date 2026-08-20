@@ -61,6 +61,11 @@ export const DEFAULT_TWO_COLUMN_SUB_SECTIONS_STYLE = {
   imageRadius: "lg",
   buttonBg: "primary-1",
   buttonText: "white",
+  titleFontWeight: "semibold",
+  descriptionFontWeight: "normal",
+  itemTitleFontWeight: "semibold",
+  buttonTextFontWeight: "semibold",
+  labelFontWeight: "medium",
 };
 
 export function resolveTwoColumnWithSubSectionsStyle(style = {}) {
@@ -83,11 +88,11 @@ export const TWO_COLUMN_SUB_SECTIONS_STYLE_RESET_KEYS = {
   ],
   title: [
     "titleAlign",
-    "titleColor",
-    "descriptionColor",
-    "labelColor",
+    "titleColor", "titleFontWeight",
+    "descriptionColor", "descriptionFontWeight",
+    "labelColor", "labelFontWeight",
   ],
-  items: ["itemTitleColor", "itemBodyColor", "dividerColor"],
+  items: ["itemTitleColor", "itemTitleFontWeight", "itemBodyColor", "dividerColor"],
   images: ["showImages", "imageRadius"],
-  button: ["showCta", "buttonBg", "buttonText"],
+  button: ["showCta", "buttonBg", "buttonText", "buttonTextFontWeight"],
 };

@@ -37,6 +37,8 @@ export const DEFAULT_SPLIT_WITH_IMAGE_STYLE = {
   titleAlign: "left",
   titleColor: "primary-1",
   descriptionColor: "secondary-2",
+  titleFontWeight: "semibold",
+  descriptionFontWeight: "normal",
 };
 
 export function resolveSplitWithImageStyle(style = {}) {
@@ -55,6 +57,6 @@ export const SPLIT_WITH_IMAGE_STYLE_RESET_KEYS = {
     "sectionPadding",
     "imageSide",
   ],
-  title: ["titleAlign", "titleColor", "descriptionColor"],
+  title: ["titleAlign", "titleColor", "titleFontWeight", "descriptionColor", "descriptionFontWeight"],
   images: ["showImage", "showBackgroundImage"],
 };

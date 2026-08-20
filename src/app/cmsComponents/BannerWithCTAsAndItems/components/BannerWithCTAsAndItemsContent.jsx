@@ -1,5 +1,6 @@
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getFontWeightValue } from "@/styles/fontWeight";
 import {
   DEFAULT_BANNER_WITH_CTAS_STYLE,
   TITLE_ALIGN_CLASS,
@@ -38,7 +39,7 @@ export default function BannerWithCTAsAndItemsContent({
       {showHeading ? (
         <h1
           className={`${typography.sectionTitle} font-semibold leading-tight`}
-          style={{ color: getThemeColorCss(style.titleColor, "white") }}
+          style={{ color: getThemeColorCss(style.titleColor, "white"), fontWeight: getFontWeightValue(style.titleFontWeight) }}
         >
           {title}
         </h1>
@@ -47,7 +48,7 @@ export default function BannerWithCTAsAndItemsContent({
       {showCopy ? (
         <p
           className={`${typography.sectionDescription} mt-3 leading-relaxed sm:mt-4`}
-          style={{ color: getThemeColorCss(style.descriptionColor, "white") }}
+          style={{ color: getThemeColorCss(style.descriptionColor, "white"), fontWeight: getFontWeightValue(style.descriptionFontWeight) }}
         >
           {description}
         </p>

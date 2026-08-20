@@ -23,6 +23,8 @@ export const DEFAULT_FORM_FOOTER_STYLE = {
   descriptionColor: "50",
   linkColor: "50",
   copyrightColor: "main",
+  titleFontWeight: "semibold",
+  descriptionFontWeight: "normal",
 };
 
 export function resolveFormFooterStyle(style = {}) {
@@ -43,5 +45,5 @@ export const FORM_FOOTER_STYLE_RESET_KEYS = {
     "sectionBg",
     "sectionPadding",
   ],
-  copy: ["titleColor", "descriptionColor", "linkColor", "copyrightColor"],
+  copy: ["titleColor", "titleFontWeight", "descriptionColor", "descriptionFontWeight", "linkColor", "copyrightColor"],
 };

@@ -1,6 +1,7 @@
 import { CaretDownIcon, CaretUpIcon } from "@phosphor-icons/react";
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getFontWeightValue } from "@/styles/fontWeight";
 import { ITEM_PADDING_CLASS, ITEM_RADIUS_CLASS } from "../utils/style";
 
 export default function AccordionItem({
@@ -15,6 +16,8 @@ export default function AccordionItem({
   titleColor = "800",
   openColor = "primary-1",
   bodyColor = "700",
+  titleFontWeight = "semibold",
+  bodyFontWeight = "normal",
 }) {
   const radiusClass = ITEM_RADIUS_CLASS[radius] ?? ITEM_RADIUS_CLASS.lg;
   const paddingClass = ITEM_PADDING_CLASS[padding] ?? ITEM_PADDING_CLASS.default;
@@ -39,7 +42,10 @@ export default function AccordionItem({
       >
         <h3
           className={`${typography.itemTitle} font-medium leading-snug`}
-          style={{ color: titleCss }}
+          style={{
+            color: titleCss,
+            fontWeight: getFontWeightValue(titleFontWeight),
+          }}
         >
           {item.title}
         </h3>
@@ -65,7 +71,10 @@ export default function AccordionItem({
       >
         <p
           className={`${typography.itemDescription} pr-6 leading-relaxed whitespace-pre-line sm:pr-8`}
-          style={{ color: bodyCss }}
+          style={{
+            color: bodyCss,
+            fontWeight: getFontWeightValue(bodyFontWeight),
+          }}
         >
           {item.description}
         </p>

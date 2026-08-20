@@ -29,6 +29,8 @@ export const DEFAULT_PARAGRAPH_STYLE = {
   titleAlign: "left",
   titleColor: "primary-1",
   descriptionColor: "700",
+  titleFontWeight: "semibold",
+  descriptionFontWeight: "normal",
 };
 
 export function resolveParagraphStyle(style = {}) {
@@ -46,5 +48,5 @@ export const PARAGRAPH_STYLE_RESET_KEYS = {
     "sectionBg",
     "sectionPadding",
   ],
-  title: ["titleAlign", "titleColor", "descriptionColor"],
+  title: ["titleAlign", "titleColor", "titleFontWeight", "descriptionColor", "descriptionFontWeight"],
 };

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getFontWeightValue } from "@/styles/fontWeight";
 import { isUsableImageSrc } from "../utils/helpers";
 
 export default function OurValuesDesktop({
@@ -79,8 +80,7 @@ export default function OurValuesDesktop({
               <div className="absolute top-10 z-20 m-3 rounded-xl p-3 opacity-90 transition-opacity duration-500">
                 <h3
                   className={`${typography.itemTitle} font-bold`}
-                  style={{
-                    color: getThemeColorCss(style.itemTitleColor, "white"),
+                  style={{ color: getThemeColorCss(style.itemTitleColor, "white"), fontWeight: getFontWeightValue(style.itemTitleFontWeight),
                     textShadow: "0 4px 8px rgb(0 0 0 / 0.45)",
                   }}
                 >

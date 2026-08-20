@@ -36,6 +36,8 @@ export const DEFAULT_TEXT_WITH_BLOB_STYLE = {
   titleAlign: "left",
   titleColor: "primary-1",
   descriptionColor: "700",
+  titleFontWeight: "semibold",
+  descriptionFontWeight: "normal",
 };
 
 export function resolveTextWithBlobStyle(style = {}) {
@@ -54,6 +56,6 @@ export const TEXT_WITH_BLOB_STYLE_RESET_KEYS = {
     "sectionPadding",
     "imageSide",
   ],
-  title: ["titleAlign", "titleColor", "descriptionColor"],
+  title: ["titleAlign", "titleColor", "titleFontWeight", "descriptionColor", "descriptionFontWeight"],
   images: ["showImage"],
 };

@@ -126,6 +126,10 @@ export const DEFAULT_FLIGHT_FARES_STYLE = {
   subtitleColor: "white",
   badgeColor: "secondary-2",
   badgeText: "white",
+  titleFontWeight: "semibold",
+  subtitleFontWeight: "medium",
+  itemTitleFontWeight: "semibold",
+  badgeTextFontWeight: "medium",
 };
 
 export function resolveFlightFaresStyle(style = {}) {
@@ -191,7 +195,7 @@ export const FLIGHT_FARES_STYLE_RESET_KEYS = {
     "sectionBg",
     "sectionPadding",
     "titleAlign",
-    "titleColor",
+    "titleColor", "titleFontWeight",
     "columnsOrder",
   ],
   cards: [
@@ -203,9 +207,9 @@ export const FLIGHT_FARES_STYLE_RESET_KEYS = {
     "showSubtitle",
     "cardRadius",
     "overlayColor",
-    "itemTitleColor",
-    "subtitleColor",
+    "itemTitleColor", "itemTitleFontWeight",
+    "subtitleColor", "subtitleFontWeight",
     "badgeColor",
-    "badgeText",
+    "badgeText", "badgeTextFontWeight",
   ],
 };

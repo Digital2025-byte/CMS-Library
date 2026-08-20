@@ -79,6 +79,11 @@ export const DEFAULT_GRID_INFO_STYLE = {
   nameColor: "main",
   bodyColor: "secondary-2",
   iconColor: "primary-2",
+  titleFontWeight: "semibold",
+  descriptionFontWeight: "normal",
+  nameFontWeight: "semibold",
+  bodyFontWeight: "normal",
+  chipActiveTextFontWeight: "medium",
 };
 
 export function resolveGridInfoStyle(style = {}) {
@@ -98,8 +103,8 @@ export const GRID_INFO_STYLE_RESET_KEYS = {
     "sectionPadding",
     "titleAlign",
   ],
-  title: ["titleColor", "descriptionColor"],
-  filter: ["chipColor", "chipActiveText", "chipIdleBg"],
+  title: ["titleColor", "titleFontWeight", "descriptionColor", "descriptionFontWeight"],
+  filter: ["chipColor", "chipActiveText", "chipActiveTextFontWeight", "chipIdleBg"],
   cards: [
     "showName",
     "showAddress",
@@ -110,8 +115,8 @@ export const GRID_INFO_STYLE_RESET_KEYS = {
     "cardRadius",
     "cardGap",
     "cardBg",
-    "nameColor",
-    "bodyColor",
+    "nameColor", "nameFontWeight",
+    "bodyColor", "bodyFontWeight",
     "iconColor",
   ],
 };

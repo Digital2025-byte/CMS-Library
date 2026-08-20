@@ -1,5 +1,6 @@
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getFontWeightValue } from "@/styles/fontWeight";
 import PageContentContainer from "@/components/layout/PageContentContainer";
 import {
   DEFAULT_ON_BOARD_IMAGE_RING_STYLE,
@@ -32,7 +33,7 @@ export default function OnBoardImageRingHeader({
         {showHeading ? (
           <h2
             className={`${typography.sectionTitle} shrink-0 font-semibold`}
-            style={{ color: getThemeColorCss(style.titleColor, "50") }}
+            style={{ color: getThemeColorCss(style.titleColor, "50"), fontWeight: getFontWeightValue(style.titleFontWeight) }}
           >
             {title}
           </h2>

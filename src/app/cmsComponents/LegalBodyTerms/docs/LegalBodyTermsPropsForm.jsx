@@ -1,6 +1,7 @@
 import {
   InspectorChoose,
   InspectorColor,
+  InspectorFontWeight,
   InspectorSection,
   InspectorSwitch,
   InspectorTabs,
@@ -102,11 +103,23 @@ function LegalBodyTermsStyleForm({ style, onChange }) {
           value={style.titleColor}
           onChange={(value) => update("titleColor", value)}
         />
+          <InspectorFontWeight
+            id="titleColor-weight"
+            label="Title weight"
+            value={style.titleFontWeight}
+            onChange={(value) => update("titleFontWeight", value)}
+          />
         <InspectorColor
           label="Body color"
           value={style.bodyColor}
           onChange={(value) => update("bodyColor", value)}
         />
+          <InspectorFontWeight
+            id="bodyColor-weight"
+            label="Body weight"
+            value={style.bodyFontWeight}
+            onChange={(value) => update("bodyFontWeight", value)}
+          />
       </InspectorSection>
     </div>
   );

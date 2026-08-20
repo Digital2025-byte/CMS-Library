@@ -56,6 +56,8 @@ export const DEFAULT_ON_BOARD_IMAGE_RING_STYLE = {
   cardGap: "default",
   captionColor: "white",
   overlayColor: "foreground",
+  titleFontWeight: "semibold",
+  descriptionFontWeight: "normal",
 };
 
 export function resolveOnBoardImageRingStyle(style = {}) {
@@ -73,7 +75,7 @@ export const ON_BOARD_IMAGE_RING_STYLE_RESET_KEYS = {
     "sectionBg",
     "sectionPadding",
   ],
-  title: ["titleAlign", "titleColor", "descriptionColor"],
+  title: ["titleAlign", "titleColor", "titleFontWeight", "descriptionColor", "descriptionFontWeight"],
   cards: [
     "showCardImage",
     "showCaptions",

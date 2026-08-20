@@ -4,6 +4,7 @@ import { useId } from "react";
 import PageContentContainer from "@/components/layout/PageContentContainer";
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getFontWeightValue } from "@/styles/fontWeight";
 import { useMealsDescriptionTabbed } from "../hooks/useMealsDescriptionTabbed";
 import MealsDescriptionImage from "./MealsDescriptionImage";
 import MealsDescriptionSections from "./MealsDescriptionSections";
@@ -53,7 +54,7 @@ export default function MealsDescriptionTabbedPanel({
           <h2
             id={`${baseId}-title`}
             className={`${typography.sectionTitle} mb-5 font-semibold wrap-break-word ${alignClass}`}
-            style={{ color: getThemeColorCss(style.titleColor, "primary-1") }}
+            style={{ color: getThemeColorCss(style.titleColor, "primary-1"), fontWeight: getFontWeightValue(style.titleFontWeight) }}
           >
             {content.title}
           </h2>

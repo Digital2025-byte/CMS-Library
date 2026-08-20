@@ -1,5 +1,6 @@
 import Button from "@/components/ui/Button";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getFontWeightValue } from "@/styles/fontWeight";
 import { DEFAULT_TWO_COLUMN_INTRO_STYLE } from "../utils/style";
 
 export default function TwoColumnCta({
@@ -27,6 +28,7 @@ export default function TwoColumnCta({
         backgroundColor: buttonBg,
         borderColor: buttonBg,
         color: buttonText,
+        fontWeight: getFontWeightValue(style.buttonTextFontWeight),
       }}
     />
   );

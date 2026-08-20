@@ -1,6 +1,7 @@
 import {
   InspectorChoose,
   InspectorColor,
+  InspectorFontWeight,
   InspectorSection,
   InspectorSwitch,
   InspectorTabs,
@@ -47,6 +48,12 @@ function CarouselItemStyleForm({ style, onChange }) {
               value={style.titleColor}
               onChange={(value) => update("titleColor", value)}
             />
+          <InspectorFontWeight
+            id="titleColor-weight"
+            label="Title weight"
+            value={style.titleFontWeight}
+            onChange={(value) => update("titleFontWeight", value)}
+          />
           </>
         ) : null}
         <InspectorSwitch
@@ -56,6 +63,7 @@ function CarouselItemStyleForm({ style, onChange }) {
           hint="Previous / next arrow controls"
         />
         {style.showArrows ? (
+          <>
           <InspectorColor
             label="Arrow color"
             value={style.navColor}
@@ -138,6 +146,13 @@ function CarouselItemStyleForm({ style, onChange }) {
             value={style.countryColor}
             onChange={(value) => update("countryColor", value)}
           />
+          <InspectorFontWeight
+            id="countryColor-weight"
+            label="Country weight"
+            value={style.countryFontWeight}
+            onChange={(value) => update("countryFontWeight", value)}
+          />
+        </>
         ) : null}
         <InspectorSwitch
           checked={style.showOverlay}

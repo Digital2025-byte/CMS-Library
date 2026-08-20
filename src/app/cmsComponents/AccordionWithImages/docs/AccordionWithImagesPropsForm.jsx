@@ -1,6 +1,7 @@
 import {
   InspectorChoose,
   InspectorColor,
+  InspectorFontWeight,
   InspectorSection,
   InspectorSwitch,
   InspectorTabs,
@@ -55,6 +56,12 @@ function AccordionWithImagesStyleForm({ style, onChange }) {
               value={style.titleColor}
               onChange={(value) => update("titleColor", value)}
             />
+          <InspectorFontWeight
+            id="titleColor-weight"
+            label="Title weight"
+            value={style.titleFontWeight}
+            onChange={(value) => update("titleFontWeight", value)}
+          />
           </>
         ) : null}
         <InspectorSwitch
@@ -64,11 +71,19 @@ function AccordionWithImagesStyleForm({ style, onChange }) {
           hint="Show text under the title"
         />
         {style.showDescription ? (
+          <>
           <InspectorColor
             label="Description color"
             value={style.descriptionColor}
             onChange={(value) => update("descriptionColor", value)}
           />
+          <InspectorFontWeight
+            id="descriptionColor-weight"
+            label="Description weight"
+            value={style.descriptionFontWeight}
+            onChange={(value) => update("descriptionFontWeight", value)}
+          />
+        </>
         ) : null}
         <InspectorSwitch
           checked={style.showImagePanel}
@@ -135,6 +150,12 @@ function AccordionWithImagesStyleForm({ style, onChange }) {
           value={style.itemTitleColor}
           onChange={(value) => update("itemTitleColor", value)}
         />
+        <InspectorFontWeight
+          id="itemTitleColor-weight"
+          label="Title weight"
+          value={style.itemTitleFontWeight}
+          onChange={(value) => update("itemTitleFontWeight", value)}
+        />
         <InspectorColor
           label="Open title color"
           value={style.itemOpenColor}
@@ -144,6 +165,12 @@ function AccordionWithImagesStyleForm({ style, onChange }) {
           label="Body color"
           value={style.itemBodyColor}
           onChange={(value) => update("itemBodyColor", value)}
+        />
+        <InspectorFontWeight
+          id="itemBodyColor-weight"
+          label="Body weight"
+          value={style.itemBodyFontWeight}
+          onChange={(value) => update("itemBodyFontWeight", value)}
         />
       </InspectorSection>
 

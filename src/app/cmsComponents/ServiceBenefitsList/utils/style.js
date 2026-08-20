@@ -51,6 +51,9 @@ export const DEFAULT_SERVICE_BENEFITS_STYLE = {
   cardRadius: "sm",
   iconBg: "background",
   iconColor: "primary-1",
+  titleFontWeight: "semibold",
+  descriptionFontWeight: "normal",
+  itemTitleFontWeight: "semibold",
 };
 
 export function resolveServiceBenefitsStyle(style = {}) {
@@ -68,12 +71,12 @@ export const SERVICE_BENEFITS_STYLE_RESET_KEYS = {
     "sectionBg",
     "sectionPadding",
   ],
-  title: ["titleAlign", "titleColor"],
+  title: ["titleAlign", "titleColor", "titleFontWeight"],
   items: [
     "showDescription",
     "showIcons",
-    "itemTitleColor",
-    "descriptionColor",
+    "itemTitleColor", "itemTitleFontWeight",
+    "descriptionColor", "descriptionFontWeight",
     "iconBg",
     "iconColor",
   ],

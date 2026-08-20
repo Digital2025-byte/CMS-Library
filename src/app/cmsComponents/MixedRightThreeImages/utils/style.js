@@ -57,6 +57,10 @@ export const DEFAULT_MIXED_THREE_IMAGES_STYLE = {
   primaryBg: "primary-2",
   primaryText: "white",
   secondaryText: "white",
+  titleFontWeight: "semibold",
+  descriptionFontWeight: "normal",
+  primaryTextFontWeight: "semibold",
+  secondaryTextFontWeight: "semibold",
 };
 
 export function resolveMixedThreeImagesStyle(style = {}) {
@@ -90,7 +94,7 @@ export const MIXED_THREE_IMAGES_STYLE_RESET_KEYS = {
     "sectionPadding",
     "imageSide",
   ],
-  title: ["titleAlign", "titleColor", "descriptionColor"],
+  title: ["titleAlign", "titleColor", "titleFontWeight", "descriptionColor", "descriptionFontWeight"],
   images: ["showLargeImage", "showSmallImages", "imageRadius"],
-  button: ["showPrimary", "showSecondary", "primaryBg", "primaryText", "secondaryText"],
+  button: ["showPrimary", "showSecondary", "primaryBg", "primaryText", "primaryTextFontWeight", "secondaryText", "secondaryTextFontWeight"],
 };

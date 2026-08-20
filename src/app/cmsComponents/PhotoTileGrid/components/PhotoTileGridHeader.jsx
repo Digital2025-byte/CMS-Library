@@ -1,5 +1,6 @@
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getFontWeightValue } from "@/styles/fontWeight";
 import {
   DEFAULT_PHOTO_TILE_GRID_STYLE,
   TITLE_ALIGN_CLASS,
@@ -24,7 +25,7 @@ export default function PhotoTileGridHeader({
     >
       <h2
         className={`${typography.sectionTitle} w-full font-bold`}
-        style={{ color: getThemeColorCss(style.titleColor, "white") }}
+        style={{ color: getThemeColorCss(style.titleColor, "white"), fontWeight: getFontWeightValue(style.titleFontWeight) }}
       >
         {title}
       </h2>

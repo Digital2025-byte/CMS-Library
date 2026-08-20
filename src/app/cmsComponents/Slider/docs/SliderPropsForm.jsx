@@ -1,6 +1,7 @@
 import {
   InspectorChoose,
   InspectorColor,
+  InspectorFontWeight,
   InspectorSection,
   InspectorSelect,
   InspectorSwitch,
@@ -84,11 +85,19 @@ function SliderStyleForm({ style, onChange }) {
             hint="Main heading on each slide"
           />
           {style.showTitleText ? (
+            <>
             <InspectorColor
               label="Title color"
               value={style.titleColor}
               onChange={(value) => update("titleColor", value)}
             />
+          <InspectorFontWeight
+            id="titleColor-weight"
+            label="Title weight"
+            value={style.titleFontWeight}
+            onChange={(value) => update("titleFontWeight", value)}
+          />
+          </>
           ) : null}
           <InspectorSwitch
             checked={style.showSubtitleText}
@@ -97,11 +106,19 @@ function SliderStyleForm({ style, onChange }) {
             hint="Small text above the title"
           />
           {style.showSubtitleText ? (
+            <>
             <InspectorColor
               label="Subtitle color"
               value={style.subtitleColor}
               onChange={(value) => update("subtitleColor", value)}
             />
+          <InspectorFontWeight
+            id="subtitleColor-weight"
+            label="Subtitle weight"
+            value={style.subtitleFontWeight}
+            onChange={(value) => update("subtitleFontWeight", value)}
+          />
+          </>
           ) : null}
           <InspectorSwitch
             checked={style.showDescriptionText}
@@ -110,11 +127,19 @@ function SliderStyleForm({ style, onChange }) {
             hint="Body text under the title"
           />
           {style.showDescriptionText ? (
+            <>
             <InspectorColor
               label="Description color"
               value={style.descriptionColor}
               onChange={(value) => update("descriptionColor", value)}
             />
+          <InspectorFontWeight
+            id="descriptionColor-weight"
+            label="Description weight"
+            value={style.descriptionFontWeight}
+            onChange={(value) => update("descriptionFontWeight", value)}
+          />
+          </>
           ) : null}
           <InspectorChoose
             label="Alignment"

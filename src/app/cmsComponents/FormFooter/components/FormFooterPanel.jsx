@@ -4,6 +4,7 @@ import Image from "next/image";
 import PageContentContainer from "@/components/layout/PageContentContainer";
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getFontWeightValue } from "@/styles/fontWeight";
 import {
   DEFAULT_FORM_FOOTER_STYLE,
   SECTION_PADDING_CLASS,
@@ -45,7 +46,7 @@ export default function FormFooterPanel({
                 {followTitle ? (
                   <div
                     className={`${typography.itemTitle} mb-1 font-semibold`}
-                    style={{ color: titleCss }}
+                    style={{ color: titleCss, fontWeight: getFontWeightValue(style.titleFontWeight) }}
                   >
                     {followTitle}
                   </div>
@@ -53,7 +54,7 @@ export default function FormFooterPanel({
                 {style.showDescription && followDescription ? (
                   <p
                     className={`${typography.caption} leading-5`}
-                    style={{ color: copyCss }}
+                    style={{ color: copyCss, fontWeight: getFontWeightValue(style.copyFontWeight) }}
                   >
                     {followDescription}
                   </p>
@@ -85,7 +86,7 @@ export default function FormFooterPanel({
                 {contactTitle ? (
                   <div
                     className={`${typography.itemTitle} mb-1 font-semibold`}
-                    style={{ color: titleCss }}
+                    style={{ color: titleCss, fontWeight: getFontWeightValue(style.titleFontWeight) }}
                   >
                     {contactTitle}
                   </div>

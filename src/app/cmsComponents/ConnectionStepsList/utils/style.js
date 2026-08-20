@@ -31,6 +31,9 @@ export const DEFAULT_CONNECTION_STEPS_STYLE = {
   titleColor: "primary-1",
   labelColor: "secondary-2",
   descriptionColor: "secondary-2",
+  titleFontWeight: "semibold",
+  descriptionFontWeight: "normal",
+  labelFontWeight: "medium",
 };
 
 export function resolveConnectionStepsListStyle(style = {}) {
@@ -49,5 +52,5 @@ export const CONNECTION_STEPS_STYLE_RESET_KEYS = {
     "sectionBg",
     "sectionPadding",
   ],
-  title: ["titleAlign", "titleColor", "labelColor", "descriptionColor"],
+  title: ["titleAlign", "titleColor", "titleFontWeight", "labelColor", "labelFontWeight", "descriptionColor", "descriptionFontWeight"],
 };

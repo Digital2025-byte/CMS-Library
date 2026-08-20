@@ -75,6 +75,9 @@ export const DEFAULT_HEADER_WITH_THREE_IMAGE_STYLE = {
   sectionBg: "main",
   buttonBg: "primary-2",
   buttonText: "white",
+  titleFontWeight: "semibold",
+  descriptionFontWeight: "normal",
+  buttonTextFontWeight: "semibold",
 };
 
 export function resolveHeaderWithThreeImageStyle(style = {}) {
@@ -105,5 +108,5 @@ export const HEADER_WITH_THREE_IMAGE_STYLE_RESET_KEYS = {
     "showOverlay",
     "overlayColor",
   ],
-  button: ["showButton", "buttonBg", "buttonText"],
+  button: ["showButton", "buttonBg", "buttonText", "buttonTextFontWeight"],
 };

@@ -1,6 +1,7 @@
-import AccordionImagesToggle from "./AccordionImagesToggle";
+﻿import AccordionImagesToggle from "./AccordionImagesToggle";
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getFontWeightValue } from "@/styles/fontWeight";
 import { ITEM_PADDING_CLASS, ITEM_RADIUS_CLASS } from "../utils/style";
 
 export default function AccordionImagesItem({
@@ -16,6 +17,8 @@ export default function AccordionImagesItem({
   titleColor = "800",
   openColor = "primary-1",
   bodyColor = "700",
+  titleFontWeight = "semibold",
+  bodyFontWeight = "normal",
   toggleBg = "primary-1",
   toggleBorder = "secondary-1",
   toggleIcon = "white",
@@ -50,7 +53,10 @@ export default function AccordionImagesItem({
         <div className="min-w-0 flex-1">
           <h3
             className={`${typography.itemTitle} mb-2 font-medium leading-snug`}
-            style={{ color: titleCss }}
+            style={{
+              color: titleCss,
+              fontWeight: getFontWeightValue(titleFontWeight),
+            }}
           >
             {item.title}
           </h3>
@@ -65,7 +71,10 @@ export default function AccordionImagesItem({
             <div className="overflow-hidden">
               <p
                 className={`${typography.itemDescription} pt-2 leading-relaxed`}
-                style={{ color: bodyCss }}
+                style={{
+                  color: bodyCss,
+                  fontWeight: getFontWeightValue(bodyFontWeight),
+                }}
               >
                 {item.content}
               </p>

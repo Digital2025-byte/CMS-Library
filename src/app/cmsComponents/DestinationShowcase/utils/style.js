@@ -70,6 +70,9 @@ export const DEFAULT_DESTINATION_SHOWCASE_STYLE = {
   buttonBg: "primary-2",
   buttonText: "white",
   navColor: "50",
+  titleFontWeight: "semibold",
+  descriptionFontWeight: "normal",
+  buttonTextFontWeight: "semibold",
 };
 
 export function resolveDestinationShowcaseStyle(style = {}) {
@@ -88,7 +91,7 @@ export const DESTINATION_SHOWCASE_STYLE_RESET_KEYS = {
     "sectionBg",
     "sectionPadding",
   ],
-  title: ["titleAlign", "titleColor", "descriptionColor", "viewAllColor"],
+  title: ["titleAlign", "titleColor", "titleFontWeight", "descriptionColor", "descriptionFontWeight", "viewAllColor"],
   banner: [
     "showHeroImage",
     "showOverlay",
@@ -105,6 +108,6 @@ export const DESTINATION_SHOWCASE_STYLE_RESET_KEYS = {
     "cardRadius",
     "cardOverlayColor",
   ],
-  button: ["showButton", "buttonBg", "buttonText"],
+  button: ["showButton", "buttonBg", "buttonText", "buttonTextFontWeight"],
   nav: ["showArrows", "showDots", "navColor"],
 };

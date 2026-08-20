@@ -3,6 +3,7 @@
 import PageContentContainer from "@/components/layout/PageContentContainer";
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getFontWeightValue } from "@/styles/fontWeight";
 import LegalChip from "../../LegalBodyTerms/components/LegalChip";
 import LegalContactCard from "../../LegalBodyTerms/components/LegalContactCard";
 import LegalCardInfo from "../../LegalBodyTerms/components/LegalCardInfo";
@@ -69,7 +70,7 @@ export default function LegalBodyCookiesPanel({
             <div className="mb-6">
               <h2
                 className={`${typography.sectionTitle} mb-4 font-semibold`}
-                style={{ color: titleCss }}
+                style={{ color: titleCss, fontWeight: getFontWeightValue(style.titleFontWeight) }}
               >
                 {typesTitle || "Types of Cookies We Use"}
               </h2>
@@ -119,7 +120,7 @@ export default function LegalBodyCookiesPanel({
                   {updates.title ? (
                     <h3
                       className={`${typography.itemTitle} mb-2 font-semibold`}
-                      style={{ color: titleCss }}
+                      style={{ color: titleCss, fontWeight: getFontWeightValue(style.titleFontWeight) }}
                     >
                       {updates.title}
                     </h3>
@@ -127,7 +128,7 @@ export default function LegalBodyCookiesPanel({
                   {updates.description ? (
                     <p
                       className={`${typography.body} mb-4 leading-relaxed`}
-                      style={{ color: bodyCss }}
+                      style={{ color: bodyCss, fontWeight: getFontWeightValue(style.bodyFontWeight) }}
                     >
                       {updates.description}
                     </p>

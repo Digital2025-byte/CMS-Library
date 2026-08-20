@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getFontWeightValue } from "@/styles/fontWeight";
 import { isUsableImageSrc } from "../utils/helpers";
 import styles from "../ImageCarouselsWithOppositeScrollDirections.module.css";
 
@@ -34,7 +35,7 @@ export default function DestinationImageCard({ item, w, h, style }) {
         <div className={styles.titleWrap}>
           <p
             className={`${typography.itemTitle} font-semibold`}
-            style={{ color: getThemeColorCss(style.cardTitleColor, "white") }}
+            style={{ color: getThemeColorCss(style.cardTitleColor, "white"), fontWeight: getFontWeightValue(style.cardTitleFontWeight) }}
           >
             {item.title}
           </p>

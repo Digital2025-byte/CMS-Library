@@ -74,6 +74,10 @@ export const DEFAULT_ACCORDION_IMAGES_STYLE = {
   toggleBg: "primary-1",
   toggleBorder: "secondary-1",
   toggleIcon: "white",
+  titleFontWeight: "semibold",
+  descriptionFontWeight: "normal",
+  itemTitleFontWeight: "semibold",
+  itemBodyFontWeight: "normal",
 };
 
 export function resolveAccordionImagesStyle(style = {}) {
@@ -90,7 +94,7 @@ export const ACCORDION_IMAGES_STYLE_RESET_KEYS = {
     "showImagePanel",
     "sectionBg",
   ],
-  title: ["titleAlign", "showTitleBorder", "titleColor", "descriptionColor"],
+  title: ["titleAlign", "showTitleBorder", "titleColor", "titleFontWeight", "descriptionColor", "descriptionFontWeight"],
   items: [
     "itemLook",
     "itemBg",
@@ -98,7 +102,7 @@ export const ACCORDION_IMAGES_STYLE_RESET_KEYS = {
     "itemGap",
     "itemPadding",
     "showItemDivider",
-    "itemTitleColor",
+    "itemTitleColor", "itemTitleFontWeight",
     "itemOpenColor",
     "itemBodyColor",
   ],

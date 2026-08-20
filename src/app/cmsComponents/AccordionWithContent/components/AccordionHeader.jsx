@@ -1,5 +1,6 @@
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getFontWeightValue } from "@/styles/fontWeight";
 import { TITLE_ALIGN_CLASS } from "../utils/style";
 
 export default function AccordionHeader({
@@ -8,6 +9,8 @@ export default function AccordionHeader({
   align = "left",
   titleColor = "primary-1",
   descriptionColor = "700",
+  titleFontWeight = "semibold",
+  descriptionFontWeight = "normal",
   showDescription = true,
 }) {
   if (!title && !(showDescription && description)) {
@@ -21,7 +24,10 @@ export default function AccordionHeader({
       {title ? (
         <h2
           className={`${typography.sectionTitle} font-semibold leading-snug`}
-          style={{ color: getThemeColorCss(titleColor, "primary-1") }}
+          style={{
+            color: getThemeColorCss(titleColor, "primary-1"),
+            fontWeight: getFontWeightValue(titleFontWeight),
+          }}
         >
           {title}
         </h2>
@@ -31,7 +37,10 @@ export default function AccordionHeader({
           className={`${typography.sectionDescription} mt-2 leading-relaxed ${
             align === "center" ? "mx-auto max-w-2xl" : "max-w-2xl"
           }`}
-          style={{ color: getThemeColorCss(descriptionColor, "700") }}
+          style={{
+            color: getThemeColorCss(descriptionColor, "700"),
+            fontWeight: getFontWeightValue(descriptionFontWeight),
+          }}
         >
           {description}
         </p>

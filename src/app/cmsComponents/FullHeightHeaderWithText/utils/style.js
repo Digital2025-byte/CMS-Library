@@ -20,6 +20,9 @@ export const DEFAULT_FULL_HEIGHT_HEADER_STYLE = {
   overlayColor: "main",
   buttonBg: "primary-2",
   buttonText: "white",
+  titleFontWeight: "semibold",
+  descriptionFontWeight: "normal",
+  buttonTextFontWeight: "semibold",
 };
 
 export function resolveFullHeightHeaderStyle(style = {}) {
@@ -32,6 +35,6 @@ export function resolveFullHeightHeaderStyle(style = {}) {
 export const FULL_HEIGHT_HEADER_STYLE_RESET_KEYS = {
   layout: ["showTitle", "showDescription"],
   banner: ["showHeroImage", "showOverlay", "overlayColor"],
-  title: ["titleAlign", "titleColor", "descriptionColor"],
-  button: ["showButton", "buttonBg", "buttonText"],
+  title: ["titleAlign", "titleColor", "titleFontWeight", "descriptionColor", "descriptionFontWeight"],
+  button: ["showButton", "buttonBg", "buttonText", "buttonTextFontWeight"],
 };

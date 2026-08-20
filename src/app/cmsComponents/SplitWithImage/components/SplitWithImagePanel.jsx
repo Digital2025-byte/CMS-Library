@@ -7,6 +7,7 @@ import CustomBackgroundImage from "@/components/ui/CustomBackgroundImage";
 import PageContentContainer from "@/components/layout/PageContentContainer";
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getFontWeightValue } from "@/styles/fontWeight";
 import { isUsableImageSrc } from "../utils/helpers";
 import {
   DEFAULT_SPLIT_WITH_IMAGE_STYLE,
@@ -81,8 +82,7 @@ export default function SplitWithImagePanel({
               {style.showTitle && content.title ? (
                 <h2
                   className={`${typography.pageTitle} mb-4 font-bold wrap-break-word`}
-                  style={{
-                    color: getThemeColorCss(style.titleColor, "primary-1"),
+                  style={{ color: getThemeColorCss(style.titleColor, "primary-1"), fontWeight: getFontWeightValue(style.titleFontWeight),
                   }}
                 >
                   {content.title}

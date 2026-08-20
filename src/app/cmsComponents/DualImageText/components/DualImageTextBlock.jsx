@@ -2,6 +2,7 @@ import Image from "next/image";
 import Button from "@/components/ui/Button";
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getFontWeightValue } from "@/styles/fontWeight";
 import {
   DEFAULT_EXTRA_IMAGE_POSITION,
   imageSrc,
@@ -105,8 +106,7 @@ export default function DualImageTextBlock({
               <p
                 key={`${item.title}-p-${index}`}
                 className={`${typography.sectionDescription} mt-4 leading-relaxed wrap-break-word text-start lg:mt-6 lg:text-justify`}
-                style={{
-                  color: getThemeColorCss(style.descriptionColor, "700"),
+                style={{ color: getThemeColorCss(style.descriptionColor, "700"), fontWeight: getFontWeightValue(style.descriptionFontWeight),
                 }}
               >
                 {paragraph}
@@ -124,6 +124,7 @@ export default function DualImageTextBlock({
                 backgroundColor: buttonBg,
                 borderColor: buttonBg,
                 color: buttonText,
+                fontWeight: getFontWeightValue(style.buttonTextFontWeight),
               }}
             />
           </div>

@@ -65,6 +65,9 @@ export const DEFAULT_CAROUSEL_ITEM_STYLE = {
   buttonText: "white",
   navColor: "white",
   dotColor: "primary-2",
+  titleFontWeight: "semibold",
+  countryFontWeight: "medium",
+  buttonTextFontWeight: "semibold",
 };
 
 export const CAROUSEL_ITEM_STYLE_RESET_KEYS = {
@@ -76,7 +79,7 @@ export const CAROUSEL_ITEM_STYLE_RESET_KEYS = {
     "sectionBg",
     "sectionPadding",
   ],
-  title: ["titleAlign", "titleColor"],
+  title: ["titleAlign", "titleColor", "titleFontWeight"],
   cards: [
     "showCardImage",
     "showCity",
@@ -86,9 +89,9 @@ export const CAROUSEL_ITEM_STYLE_RESET_KEYS = {
     "showHoverDim",
     "cardRadius",
     "cityColor",
-    "countryColor",
+    "countryColor", "countryFontWeight",
     "overlayColor",
   ],
-  button: ["showButton", "buttonBg", "buttonText"],
+  button: ["showButton", "buttonBg", "buttonText", "buttonTextFontWeight"],
   nav: ["navColor", "dotColor"],
 };

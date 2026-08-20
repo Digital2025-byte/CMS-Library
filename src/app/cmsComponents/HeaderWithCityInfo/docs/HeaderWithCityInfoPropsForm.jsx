@@ -1,6 +1,7 @@
 import {
   InspectorChoose,
   InspectorColor,
+  InspectorFontWeight,
   InspectorSection,
   InspectorSwitch,
   InspectorTabs,
@@ -48,6 +49,12 @@ function HeaderWithCityInfoStyleForm({ style, onChange }) {
               value={style.titleColor}
               onChange={(value) => update("titleColor", value)}
             />
+          <InspectorFontWeight
+            id="titleColor-weight"
+            label="Title weight"
+            value={style.titleFontWeight}
+            onChange={(value) => update("titleFontWeight", value)}
+          />
           </>
         ) : null}
         <InspectorSwitch
@@ -57,6 +64,7 @@ function HeaderWithCityInfoStyleForm({ style, onChange }) {
           hint="Show the country name"
         />
         {style.showDescription ? (
+          <>
           <InspectorColor
             label="Country color"
             value={style.descriptionColor}
@@ -142,6 +150,13 @@ function HeaderWithCityInfoStyleForm({ style, onChange }) {
               value={style.nextFlightColor}
               onChange={(value) => update("nextFlightColor", value)}
             />
+          <InspectorFontWeight
+            id="nextFlightColor-weight"
+            label="Next flight weight"
+            value={style.nextFlightFontWeight}
+            onChange={(value) => update("nextFlightFontWeight", value)}
+          />
+          </>
           ) : null}
           {style.showCardDescription || style.showNextFlight ? (
             <InspectorColor

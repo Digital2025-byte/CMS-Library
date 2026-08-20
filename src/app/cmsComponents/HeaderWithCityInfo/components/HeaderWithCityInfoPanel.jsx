@@ -1,6 +1,7 @@
 import CustomBackgroundImage from "@/components/ui/CustomBackgroundImage";
 import PageContentContainer from "@/components/layout/PageContentContainer";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getFontWeightValue } from "@/styles/fontWeight";
 import { typography } from "@/styles/typography";
 import { isUsableImageSrc } from "../utils/helpers";
 import {
@@ -53,8 +54,7 @@ export default function HeaderWithCityInfoPanel({
                 {showHeading ? (
                   <h1
                     className={`${typography.sectionTitle} font-semibold leading-tight`}
-                    style={{
-                      color: getThemeColorCss(style.titleColor, "white"),
+                    style={{ color: getThemeColorCss(style.titleColor, "white"), fontWeight: getFontWeightValue(style.titleFontWeight),
                     }}
                   >
                     {content.title}
@@ -63,8 +63,7 @@ export default function HeaderWithCityInfoPanel({
                 {showCountry ? (
                   <p
                     className={`${typography.sectionDescription} mt-2 font-normal`}
-                    style={{
-                      color: getThemeColorCss(style.descriptionColor, "white"),
+                    style={{ color: getThemeColorCss(style.descriptionColor, "white"), fontWeight: getFontWeightValue(style.descriptionFontWeight),
                     }}
                   >
                     {content.countryName}

@@ -1,5 +1,6 @@
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getFontWeightValue } from "@/styles/fontWeight";
 import {
   DEFAULT_DESTINATIONS_CITIES_STYLE,
   TITLE_ALIGN_CLASS,
@@ -27,7 +28,7 @@ export default function DestinationsCitiesIntro({
       {showHeading ? (
         <h2
           className={`${typography.sectionTitle} mt-4 font-semibold whitespace-pre-line`}
-          style={{ color: getThemeColorCss(style.titleColor, "50") }}
+          style={{ color: getThemeColorCss(style.titleColor, "50"), fontWeight: getFontWeightValue(style.titleFontWeight) }}
         >
           {title}
         </h2>

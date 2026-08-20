@@ -1,5 +1,6 @@
 import Button from "@/components/ui/Button";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getFontWeightValue } from "@/styles/fontWeight";
 import { DEFAULT_BANNER_WITH_CTA_STYLE } from "../utils/style";
 
 export default function BannerWithCtaButton({
@@ -27,6 +28,8 @@ export default function BannerWithCtaButton({
         backgroundColor: pillCss,
         borderColor: pillCss,
         color: labelCss,
+
+        fontWeight: getFontWeightValue(style.buttonTextFontWeight),
       }}
     />
   );

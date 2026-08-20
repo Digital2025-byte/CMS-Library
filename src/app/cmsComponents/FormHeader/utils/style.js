@@ -34,6 +34,8 @@ export const DEFAULT_FORM_HEADER_STYLE = {
   descriptionColor: "main",
   ctaBg: "primary-1",
   ctaText: "50",
+  titleFontWeight: "semibold",
+  descriptionFontWeight: "normal",
 };
 
 export function resolveFormHeaderStyle(style = {}) {
@@ -54,6 +56,6 @@ export const FORM_HEADER_STYLE_RESET_KEYS = {
     "sectionBg",
     "sectionPadding",
   ],
-  title: ["titleAlign", "titleColor", "descriptionColor"],
+  title: ["titleAlign", "titleColor", "titleFontWeight", "descriptionColor", "descriptionFontWeight"],
   button: ["ctaBg", "ctaText"],
 };

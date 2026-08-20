@@ -63,6 +63,10 @@ export const DEFAULT_TABBED_CARDS_STYLE = {
   cardBg: "primary-1",
   nameColor: "secondary-2",
   bodyColor: "600",
+  titleFontWeight: "semibold",
+  descriptionFontWeight: "normal",
+  nameFontWeight: "semibold",
+  bodyFontWeight: "normal",
 };
 
 export function resolveTabbedCardsStyle(style = {}) {
@@ -81,7 +85,7 @@ export const TABBED_CARDS_STYLE_RESET_KEYS = {
     "sectionBg",
     "sectionPadding",
   ],
-  title: ["titleAlign", "titleColor", "descriptionColor"],
+  title: ["titleAlign", "titleColor", "titleFontWeight", "descriptionColor", "descriptionFontWeight"],
   tabs: ["tabTrack", "tabActiveBg", "tabActiveText", "tabIdleText"],
   cards: [
     "showImage",
@@ -91,7 +95,7 @@ export const TABBED_CARDS_STYLE_RESET_KEYS = {
     "cardRadius",
     "cardGap",
     "cardBg",
-    "nameColor",
-    "bodyColor",
+    "nameColor", "nameFontWeight",
+    "bodyColor", "bodyFontWeight",
   ],
 };

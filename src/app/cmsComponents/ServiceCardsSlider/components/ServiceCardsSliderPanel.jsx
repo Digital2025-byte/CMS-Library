@@ -1,6 +1,7 @@
 import PageContentContainer from "@/components/layout/PageContentContainer";
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getFontWeightValue } from "@/styles/fontWeight";
 import ServiceCard from "./ServiceCard";
 import {
   CARD_GAP_CLASS,
@@ -40,7 +41,7 @@ export default function ServiceCardsSliderPanel({
             {style.showTitle && title ? (
               <h2
                 className={`${typography.sectionTitle} font-semibold`}
-                style={{ color: getThemeColorCss(style.titleColor, "primary-1") }}
+                style={{ color: getThemeColorCss(style.titleColor, "primary-1"), fontWeight: getFontWeightValue(style.titleFontWeight) }}
               >
                 {title}
               </h2>
@@ -50,8 +51,7 @@ export default function ServiceCardsSliderPanel({
                 className={`${typography.sectionDescription} mt-2 ${
                   style.titleAlign === "center" ? "mx-auto max-w-3xl" : ""
                 }`}
-                style={{
-                  color: getThemeColorCss(style.descriptionColor, "secondary-2"),
+                style={{ color: getThemeColorCss(style.descriptionColor, "secondary-2"), fontWeight: getFontWeightValue(style.descriptionFontWeight),
                 }}
               >
                 {description}

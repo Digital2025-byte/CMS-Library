@@ -37,6 +37,9 @@ export const DEFAULT_DUAL_IMAGE_TEXT_STYLE = {
   showExtraImage: false,
   buttonBg: "primary-2",
   buttonText: "white",
+  titleFontWeight: "semibold",
+  descriptionFontWeight: "normal",
+  buttonTextFontWeight: "semibold",
 };
 
 export function resolveDualImageTextStyle(style = {}) {
@@ -62,7 +65,7 @@ export const DUAL_IMAGE_TEXT_STYLE_RESET_KEYS = {
     "showFirstSection",
     "animate",
   ],
-  title: ["titleAlign", "titleColor", "descriptionColor", "underlineFirstWord"],
+  title: ["titleAlign", "titleColor", "titleFontWeight", "descriptionColor", "descriptionFontWeight", "underlineFirstWord"],
   images: ["blueLayer", "showExtraImage"],
-  button: ["showExploreButton", "buttonBg", "buttonText"],
+  button: ["showExploreButton", "buttonBg", "buttonText", "buttonTextFontWeight"],
 };

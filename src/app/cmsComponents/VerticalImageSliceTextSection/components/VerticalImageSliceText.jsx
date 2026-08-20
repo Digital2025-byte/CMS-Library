@@ -1,5 +1,6 @@
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getFontWeightValue } from "@/styles/fontWeight";
 import {
   DEFAULT_VERTICAL_IMAGE_SLICE_STYLE,
   TITLE_ALIGN_CLASS,
@@ -31,8 +32,7 @@ export default function VerticalImageSliceText({
           {firstPart ? (
             <span
               className="font-semibold"
-              style={{
-                color: getThemeColorCss(style.titleColor, "secondary-2"),
+              style={{ color: getThemeColorCss(style.titleColor, "secondary-2"), fontWeight: getFontWeightValue(style.titleFontWeight),
               }}
             >
               {firstPart}
@@ -41,8 +41,7 @@ export default function VerticalImageSliceText({
           {highlightPart ? (
             <span
               className="font-bold"
-              style={{
-                color: getThemeColorCss(style.highlightColor, "primary-2"),
+              style={{ color: getThemeColorCss(style.highlightColor, "primary-2"), fontWeight: getFontWeightValue(style.highlightFontWeight),
               }}
             >
               {highlightPart}
@@ -51,8 +50,7 @@ export default function VerticalImageSliceText({
           {restPart ? (
             <span
               className="font-semibold"
-              style={{
-                color: getThemeColorCss(style.titleColor, "secondary-2"),
+              style={{ color: getThemeColorCss(style.titleColor, "secondary-2"), fontWeight: getFontWeightValue(style.titleFontWeight),
               }}
             >
               {restPart}
@@ -64,7 +62,7 @@ export default function VerticalImageSliceText({
       {showDescription ? (
         <p
           className={`${typography.sectionDescription} max-w-xl leading-relaxed wrap-break-word sm:leading-loose`}
-          style={{ color: getThemeColorCss(style.descriptionColor, "700") }}
+          style={{ color: getThemeColorCss(style.descriptionColor, "700"), fontWeight: getFontWeightValue(style.descriptionFontWeight) }}
         >
           {description}
         </p>

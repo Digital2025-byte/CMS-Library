@@ -68,6 +68,8 @@ export const DEFAULT_MEALS_TABBED_STYLE = {
   stripeColor: "primary-2",
   notesColor: "primary-1",
   imageRadius: "full",
+  titleFontWeight: "semibold",
+  itemTitleFontWeight: "semibold",
 };
 
 export function resolveMealsTabbedStyle(style = {}) {
@@ -87,7 +89,7 @@ export const MEALS_TABBED_STYLE_RESET_KEYS = {
     "sectionBg",
     "sectionPadding",
   ],
-  title: ["titleAlign", "titleColor"],
+  title: ["titleAlign", "titleColor", "titleFontWeight"],
   tabs: ["tabActive", "tabIdle", "tabBorder"],
   accordion: [
     "accordionRadius",
@@ -97,7 +99,7 @@ export const MEALS_TABBED_STYLE_RESET_KEYS = {
     "groupTitleColor",
     "showItemTitle",
     "showItemDescription",
-    "itemTitleColor",
+    "itemTitleColor", "itemTitleFontWeight",
     "groupItemTitleColor",
     "itemBodyColor",
     "itemBg",

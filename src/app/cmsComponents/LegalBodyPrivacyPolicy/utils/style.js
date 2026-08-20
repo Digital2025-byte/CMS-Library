@@ -24,6 +24,8 @@ export const DEFAULT_LEGAL_BODY_PRIVACY_POLICY_STYLE = {
   titleColor: "primary-1",
   bodyColor: "700",
   chipColor: "primary-1",
+  titleFontWeight: "semibold",
+  bodyFontWeight: "normal",
 };
 
 export function resolveLegalBodyPrivacyPolicyStyle(style = {}) {
@@ -46,5 +48,5 @@ export const LEGAL_BODY_PRIVACY_POLICY_STYLE_RESET_KEYS = {
     "showCardBg",
     "cardBg",
   ],
-  copy: ["titleColor", "bodyColor", "chipColor"],
+  copy: ["titleColor", "titleFontWeight", "bodyColor", "bodyFontWeight", "chipColor"],
 };

@@ -59,6 +59,11 @@ export const DEFAULT_FILL_IMAGE_STYLE = {
   buttonText: "white",
   buttonOnFill: "primary-1",
   navColor: "primary-1",
+  titleFontWeight: "semibold",
+  descriptionFontWeight: "normal",
+  cardBodyFontWeight: "normal",
+  cardTitleFontWeight: "semibold",
+  buttonTextFontWeight: "semibold",
 };
 
 export const FILL_IMAGE_STYLE_RESET_KEYS = {
@@ -70,17 +75,17 @@ export const FILL_IMAGE_STYLE_RESET_KEYS = {
     "sectionBg",
     "sectionPadding",
   ],
-  title: ["titleAlign", "titleColor", "descriptionColor"],
+  title: ["titleAlign", "titleColor", "titleFontWeight", "descriptionColor", "descriptionFontWeight"],
   cards: [
     "showCardImage",
     "showCardTitle",
     "showCardDescription",
     "showOverlay",
     "cardRadius",
-    "cardTitleColor",
-    "cardBodyColor",
+    "cardTitleColor", "cardTitleFontWeight",
+    "cardBodyColor", "cardBodyFontWeight",
     "overlayColor",
   ],
-  button: ["showButton", "buttonBg", "buttonText", "buttonOnFill"],
+  button: ["showButton", "buttonBg", "buttonText", "buttonTextFontWeight", "buttonOnFill"],
   nav: ["navColor"],
 };

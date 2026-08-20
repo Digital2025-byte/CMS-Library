@@ -1,6 +1,7 @@
 import Button from "@/components/ui/Button";
 import PageContentContainer from "@/components/layout/PageContentContainer";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getFontWeightValue } from "@/styles/fontWeight";
 import CitiesSectionsImages from "./CitiesSectionsImages";
 import CitiesSectionsText from "./CitiesSectionsText";
 import {
@@ -65,6 +66,7 @@ export default function CitiesSectionsPanel({
                   backgroundColor: buttonBg,
                   borderColor: buttonBg,
                   color: buttonText,
+                  fontWeight: getFontWeightValue(style.buttonTextFontWeight),
                 }}
               />
             </div>

@@ -70,6 +70,11 @@ export const DEFAULT_RELATED_CONTENT_STYLE = {
   buttonOnFill: "white",
   navColor: "primary-1",
   navTrack: "200",
+  titleFontWeight: "semibold",
+  descriptionFontWeight: "normal",
+  cardBodyFontWeight: "normal",
+  cardTitleFontWeight: "semibold",
+  buttonTextFontWeight: "semibold",
 };
 
 export const RELATED_CONTENT_STYLE_RESET_KEYS = {
@@ -80,16 +85,16 @@ export const RELATED_CONTENT_STYLE_RESET_KEYS = {
     "sectionBg",
     "sectionPadding",
   ],
-  title: ["titleAlign", "titleColor", "descriptionColor"],
+  title: ["titleAlign", "titleColor", "titleFontWeight", "descriptionColor", "descriptionFontWeight"],
   cards: [
     "showCardImage",
     "showCardTitle",
     "showCardDescription",
     "cardBg",
     "cardRadius",
-    "cardTitleColor",
-    "cardBodyColor",
+    "cardTitleColor", "cardTitleFontWeight",
+    "cardBodyColor", "cardBodyFontWeight",
   ],
-  button: ["showButton", "buttonBg", "buttonText", "buttonOnFill"],
+  button: ["showButton", "buttonBg", "buttonText", "buttonTextFontWeight", "buttonOnFill"],
   nav: ["navColor", "navTrack"],
 };

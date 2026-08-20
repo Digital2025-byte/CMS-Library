@@ -37,6 +37,9 @@ export const DEFAULT_VERTICAL_IMAGE_SLICE_STYLE = {
   titleColor: "secondary-2",
   highlightColor: "primary-2",
   descriptionColor: "700",
+  titleFontWeight: "semibold",
+  descriptionFontWeight: "normal",
+  highlightFontWeight: "bold",
 };
 
 export function resolveVerticalImageSliceStyle(style = {}) {
@@ -55,6 +58,6 @@ export const VERTICAL_IMAGE_SLICE_STYLE_RESET_KEYS = {
     "sectionPadding",
     "imageSide",
   ],
-  title: ["titleAlign", "titleColor", "highlightColor", "descriptionColor"],
+  title: ["titleAlign", "titleColor", "titleFontWeight", "highlightColor", "highlightFontWeight", "descriptionColor", "descriptionFontWeight"],
   images: ["showImage"],
 };

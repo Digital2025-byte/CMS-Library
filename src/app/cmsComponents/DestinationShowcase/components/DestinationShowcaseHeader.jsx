@@ -2,6 +2,7 @@ import Link from "next/link";
 import { CaretLeftIcon, CaretRightIcon } from "@phosphor-icons/react";
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getFontWeightValue } from "@/styles/fontWeight";
 import {
   DEFAULT_DESTINATION_SHOWCASE_STYLE,
   TITLE_ALIGN_CLASS,
@@ -28,7 +29,7 @@ export default function DestinationShowcaseHeader({
       {showHeading ? (
         <h2
           className={`${typography.sectionTitle} font-semibold`}
-          style={{ color: getThemeColorCss(style.titleColor, "primary-1") }}
+          style={{ color: getThemeColorCss(style.titleColor, "primary-1"), fontWeight: getFontWeightValue(style.titleFontWeight) }}
         >
           {title}
         </h2>
@@ -41,7 +42,7 @@ export default function DestinationShowcaseHeader({
               className={`${typography.sectionDescription} max-w-2xl ${
                 style.titleAlign === "center" ? "mx-auto sm:mx-0" : ""
               }`}
-              style={{ color: getThemeColorCss(style.descriptionColor, "700") }}
+              style={{ color: getThemeColorCss(style.descriptionColor, "700"), fontWeight: getFontWeightValue(style.descriptionFontWeight) }}
             >
               {description}
             </p>

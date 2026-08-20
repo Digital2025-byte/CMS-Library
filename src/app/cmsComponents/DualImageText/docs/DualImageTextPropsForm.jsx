@@ -1,6 +1,7 @@
 import {
   InspectorChoose,
   InspectorColor,
+  InspectorFontWeight,
   InspectorSection,
   InspectorSwitch,
   InspectorTabs,
@@ -47,6 +48,12 @@ function DualImageTextStyleForm({ style, onChange }) {
               value={style.titleColor}
               onChange={(value) => update("titleColor", value)}
             />
+          <InspectorFontWeight
+            id="titleColor-weight"
+            label="Title weight"
+            value={style.titleFontWeight}
+            onChange={(value) => update("titleFontWeight", value)}
+          />
           </>
         ) : null}
         <InspectorSwitch
@@ -56,11 +63,19 @@ function DualImageTextStyleForm({ style, onChange }) {
           hint="Show copy under each title"
         />
         {style.showDescription ? (
+          <>
           <InspectorColor
             label="Description color"
             value={style.descriptionColor}
             onChange={(value) => update("descriptionColor", value)}
           />
+          <InspectorFontWeight
+            id="descriptionColor-weight"
+            label="Description weight"
+            value={style.descriptionFontWeight}
+            onChange={(value) => update("descriptionFontWeight", value)}
+          />
+        </>
         ) : null}
         {style.showTitle || style.showDescription ? (
           <InspectorChoose
@@ -90,6 +105,7 @@ function DualImageTextStyleForm({ style, onChange }) {
           hint="Fill color behind the section"
         />
         {style.showSectionBg ? (
+          <>
           <InspectorColor
             label="Section background"
             value={style.sectionBg}
@@ -145,7 +161,14 @@ function DualImageTextStyleForm({ style, onChange }) {
               value={style.buttonText}
               onChange={(value) => update("buttonText", value)}
             />
+          <InspectorFontWeight
+            id="buttonText-weight"
+            label="Button text weight"
+            value={style.buttonTextFontWeight}
+            onChange={(value) => update("buttonTextFontWeight", value)}
+          />
           </>
+        </>
         ) : null}
       </InspectorSection>
     </div>

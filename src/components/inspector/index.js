@@ -4,6 +4,8 @@ export { default as InspectorSwitch } from "./InspectorSwitch";
 export { default as InspectorChoose } from "./InspectorChoose";
 export { default as InspectorSelect } from "./InspectorSelect";
 export { default as InspectorColor } from "./InspectorColor";
+export { default as InspectorFontWeight } from "./InspectorFontWeight";
+export { default as InspectorTextStyle } from "./InspectorTextStyle";
 export { default as InspectorLink } from "./InspectorLink";
 export { default as InspectorRepeater } from "./InspectorRepeater";
 export { default as InspectorRepeaterItem } from "./InspectorRepeaterItem";

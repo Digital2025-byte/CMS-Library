@@ -66,6 +66,11 @@ export const DEFAULT_BANNER_WITH_CTAS_STYLE = {
   primaryBg: "primary-2",
   primaryText: "white",
   secondaryText: "white",
+  titleFontWeight: "semibold",
+  descriptionFontWeight: "normal",
+  itemFontWeight: "medium",
+  primaryTextFontWeight: "semibold",
+  secondaryTextFontWeight: "semibold",
 };
 
 export function resolveBannerWithCTAsStyle(style = {}) {
@@ -87,12 +92,12 @@ export const BANNER_WITH_CTAS_STYLE_RESET_KEYS = {
     "sectionBg",
   ],
   banner: ["showHeroImage", "showOverlay", "overlayColor"],
-  items: ["itemColor"],
+  items: ["itemColor", "itemFontWeight"],
   button: [
     "showPrimaryButton",
     "showSecondaryButton",
     "primaryBg",
-    "primaryText",
-    "secondaryText",
+    "primaryText", "primaryTextFontWeight",
+    "secondaryText", "secondaryTextFontWeight",
   ],
 };

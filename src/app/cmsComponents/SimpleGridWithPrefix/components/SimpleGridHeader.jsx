@@ -1,5 +1,6 @@
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getFontWeightValue } from "@/styles/fontWeight";
 import {
   DEFAULT_SIMPLE_GRID_STYLE,
   TITLE_ALIGN_CLASS,
@@ -25,7 +26,7 @@ export default function SimpleGridHeader({
       {showHeading ? (
         <h2
           className={`${typography.sectionTitle} mb-2 font-bold`}
-          style={{ color: getThemeColorCss(style.titleColor, "primary-1") }}
+          style={{ color: getThemeColorCss(style.titleColor, "primary-1"), fontWeight: getFontWeightValue(style.titleFontWeight) }}
         >
           {title}
         </h2>
@@ -33,8 +34,7 @@ export default function SimpleGridHeader({
       {showCopy ? (
         <p
           className={`${typography.sectionDescription} px-1`}
-          style={{
-            color: getThemeColorCss(style.descriptionColor, "primary-1"),
+          style={{ color: getThemeColorCss(style.descriptionColor, "primary-1"), fontWeight: getFontWeightValue(style.descriptionFontWeight),
           }}
         >
           {description}

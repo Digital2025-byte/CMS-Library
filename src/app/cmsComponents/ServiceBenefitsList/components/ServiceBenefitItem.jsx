@@ -1,5 +1,6 @@
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getFontWeightValue } from "@/styles/fontWeight";
 import { getIconByName } from "@/constants/Icons";
 import { DEFAULT_SERVICE_BENEFITS_STYLE } from "../utils/style";
 
@@ -29,8 +30,7 @@ export default function ServiceBenefitItem({
         {title ? (
           <h3
             className={`${typography.itemTitle} font-semibold md:text-base lg:text-lg`}
-            style={{
-              color: getThemeColorCss(style.itemTitleColor, "white"),
+            style={{ color: getThemeColorCss(style.itemTitleColor, "white"), fontWeight: getFontWeightValue(style.itemTitleFontWeight),
             }}
           >
             {title}
@@ -39,8 +39,7 @@ export default function ServiceBenefitItem({
         {style.showDescription && description ? (
           <p
             className="mt-1 text-sm leading-relaxed md:text-sm md:leading-5 lg:text-base lg:leading-relaxed"
-            style={{
-              color: getThemeColorCss(style.descriptionColor, "white"),
+            style={{ color: getThemeColorCss(style.descriptionColor, "white"), fontWeight: getFontWeightValue(style.descriptionFontWeight),
               opacity: 0.9,
             }}
           >

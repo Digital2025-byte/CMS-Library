@@ -40,6 +40,9 @@ export const DEFAULT_CALL_US_STYLE = {
   phoneColor: "white",
   iconBg: "primary-1",
   iconColor: "white",
+  titleFontWeight: "semibold",
+  descriptionFontWeight: "normal",
+  phoneFontWeight: "semibold",
 };
 
 export function resolveCallUsStyle(style = {}) {
@@ -60,6 +63,6 @@ export const CALL_US_STYLE_RESET_KEYS = {
     "sectionPadding",
   ],
   card: ["showCardBg", "cardRadius", "cardBg"],
-  title: ["titleColor", "descriptionColor", "phoneColor"],
+  title: ["titleColor", "titleFontWeight", "descriptionColor", "descriptionFontWeight", "phoneColor", "phoneFontWeight"],
   icon: ["iconBg", "iconColor"],
 };

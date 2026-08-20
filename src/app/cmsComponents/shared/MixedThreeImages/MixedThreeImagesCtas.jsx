@@ -7,6 +7,7 @@ import {
 } from "@phosphor-icons/react";
 import Button from "@/components/ui/Button";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getFontWeightValue } from "@/styles/fontWeight";
 import { DEFAULT_MIXED_THREE_IMAGES_STYLE } from "@/app/cmsComponents/MixedRightThreeImages/utils/style";
 
 export default function MixedThreeImagesCtas({
@@ -53,6 +54,7 @@ export default function MixedThreeImagesCtas({
             backgroundColor: primaryBgCss,
             borderColor: primaryBgCss,
             color: primaryTextCss,
+            fontWeight: getFontWeightValue(style.primaryTextFontWeight),
           }}
         />
       ) : null}
@@ -69,6 +71,7 @@ export default function MixedThreeImagesCtas({
             backgroundColor: "transparent",
             borderColor: secondaryCss,
             color: secondaryCss,
+            fontWeight: getFontWeightValue(style.secondaryTextFontWeight),
           }}
         />
       ) : null}

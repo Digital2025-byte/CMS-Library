@@ -41,6 +41,13 @@ export const DEFAULT_HEADER_WITH_CITY_INFO_STYLE = {
   tileLabelColor: "white",
   tileValueColor: "white",
   nextFlightColor: "primary-100",
+  titleFontWeight: "semibold",
+  descriptionFontWeight: "normal",
+  cardHeadingFontWeight: "semibold",
+  cardBodyFontWeight: "normal",
+  tileLabelFontWeight: "medium",
+  tileValueFontWeight: "semibold",
+  nextFlightFontWeight: "semibold",
 };
 
 export function resolveHeaderWithCityInfoStyle(style = {}) {
@@ -52,17 +59,17 @@ export function resolveHeaderWithCityInfoStyle(style = {}) {
 
 export const HEADER_WITH_CITY_INFO_STYLE_RESET_KEYS = {
   layout: ["showTitle", "showDescription", "showCityCard"],
-  title: ["titleAlign", "titleColor", "descriptionColor"],
+  title: ["titleAlign", "titleColor", "titleFontWeight", "descriptionColor", "descriptionFontWeight"],
   banner: ["showHeroImage", "showOverlay", "overlayColor"],
   card: [
     "showCardHeading",
     "showCardDescription",
     "showNextFlight",
     "cardRadius",
-    "cardHeadingColor",
-    "cardBodyColor",
-    "tileLabelColor",
-    "tileValueColor",
-    "nextFlightColor",
+    "cardHeadingColor", "cardHeadingFontWeight",
+    "cardBodyColor", "cardBodyFontWeight",
+    "tileLabelColor", "tileLabelFontWeight",
+    "tileValueColor", "tileValueFontWeight",
+    "nextFlightColor", "nextFlightFontWeight",
   ],
 };

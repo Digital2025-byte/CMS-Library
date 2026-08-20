@@ -1,5 +1,6 @@
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getFontWeightValue } from "@/styles/fontWeight";
 import { TITLE_ALIGN_CLASS } from "../utils/style";
 
 export default function CarouselHeader({ title, description, style }) {
@@ -18,7 +19,7 @@ export default function CarouselHeader({ title, description, style }) {
       {showHeading ? (
         <h2
           className={`${typography.sectionTitle} font-semibold`}
-          style={{ color: getThemeColorCss(style.titleColor, "primary-1") }}
+          style={{ color: getThemeColorCss(style.titleColor, "primary-1"), fontWeight: getFontWeightValue(style.titleFontWeight) }}
         >
           {title}
         </h2>
@@ -28,7 +29,7 @@ export default function CarouselHeader({ title, description, style }) {
           className={`${typography.sectionDescription} mt-2 max-w-4xl ${
             style.titleAlign === "center" ? "mx-auto" : ""
           }`}
-          style={{ color: getThemeColorCss(style.descriptionColor, "700") }}
+          style={{ color: getThemeColorCss(style.descriptionColor, "700"), fontWeight: getFontWeightValue(style.descriptionFontWeight) }}
         >
           {description}
         </p>

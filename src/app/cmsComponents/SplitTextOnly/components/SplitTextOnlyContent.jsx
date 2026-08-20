@@ -1,5 +1,6 @@
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getFontWeightValue } from "@/styles/fontWeight";
 import {
   DEFAULT_SPLIT_TEXT_ONLY_STYLE,
   TITLE_ALIGN_CLASS,
@@ -25,8 +26,7 @@ export default function SplitTextOnlyContent({
       {showHeading ? (
         <h1
           className={`${typography.sectionTitle} font-semibold`}
-          style={{
-            color: getThemeColorCss(style.titleColor, "secondary-100"),
+          style={{ color: getThemeColorCss(style.titleColor, "secondary-100"), fontWeight: getFontWeightValue(style.titleFontWeight),
           }}
         >
           {title}
@@ -36,8 +36,7 @@ export default function SplitTextOnlyContent({
       {showCopy ? (
         <p
           className={`${typography.sectionDescription} mt-2 p-1 leading-relaxed`}
-          style={{
-            color: getThemeColorCss(style.descriptionColor, "secondary-100"),
+          style={{ color: getThemeColorCss(style.descriptionColor, "secondary-100"), fontWeight: getFontWeightValue(style.descriptionFontWeight),
           }}
         >
           {description}

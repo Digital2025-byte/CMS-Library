@@ -1,6 +1,7 @@
 import { InfoIcon } from "@phosphor-icons/react";
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getFontWeightValue } from "@/styles/fontWeight";
 import {
   DEFAULT_TITLE_WITH_LIST_STYLE,
   TITLE_ALIGN_CLASS,
@@ -29,7 +30,7 @@ export default function TitleWithListPanel({
       {showHeading ? (
         <h2
           className={`${typography.itemTitle} flex items-center gap-2 font-medium`}
-          style={{ color: titleColor }}
+          style={{ color: titleColor, fontWeight: getFontWeightValue(style.titleFontWeight) }}
         >
           {style.showIcon ? (
             <InfoIcon
@@ -47,7 +48,7 @@ export default function TitleWithListPanel({
       {showList ? (
         <ul
           className={`${typography.body} mt-3 space-y-3 leading-relaxed`}
-          style={{ color: itemColor }}
+          style={{ color: itemColor, fontWeight: getFontWeightValue(style.itemFontWeight) }}
         >
           {items.map((item, index) => (
             <li

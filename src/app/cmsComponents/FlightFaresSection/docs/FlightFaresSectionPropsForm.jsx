@@ -1,6 +1,7 @@
 import {
   InspectorChoose,
   InspectorColor,
+  InspectorFontWeight,
   InspectorSection,
   InspectorSwitch,
   InspectorTabs,
@@ -48,6 +49,12 @@ function FlightFaresSectionStyleForm({ style, onChange }) {
               value={style.titleColor}
               onChange={(value) => update("titleColor", value)}
             />
+          <InspectorFontWeight
+            id="titleColor-weight"
+            label="Title weight"
+            value={style.titleFontWeight}
+            onChange={(value) => update("titleFontWeight", value)}
+          />
           </>
         ) : null}
         <InspectorSwitch
@@ -57,6 +64,7 @@ function FlightFaresSectionStyleForm({ style, onChange }) {
           hint="Fill color behind the whole section"
         />
         {style.showSectionBg ? (
+          <>
           <InspectorColor
             label="Section background"
             value={style.sectionBg}
@@ -126,7 +134,14 @@ function FlightFaresSectionStyleForm({ style, onChange }) {
               value={style.badgeText}
               onChange={(value) => update("badgeText", value)}
             />
+          <InspectorFontWeight
+            id="badgeText-weight"
+            label="Badge weight"
+            value={style.badgeTextFontWeight}
+            onChange={(value) => update("badgeTextFontWeight", value)}
+          />
           </>
+        </>
         ) : null}
         <InspectorSwitch
           checked={style.showItemTitle}
@@ -135,6 +150,7 @@ function FlightFaresSectionStyleForm({ style, onChange }) {
           hint="Item title on each card"
         />
         {style.showItemTitle ? (
+          <>
           <InspectorColor
             label="Title color"
             value={style.itemTitleColor}
@@ -153,6 +169,13 @@ function FlightFaresSectionStyleForm({ style, onChange }) {
             value={style.subtitleColor}
             onChange={(value) => update("subtitleColor", value)}
           />
+          <InspectorFontWeight
+            id="subtitleColor-weight"
+            label="Subtitle weight"
+            value={style.subtitleFontWeight}
+            onChange={(value) => update("subtitleFontWeight", value)}
+          />
+        </>
         ) : null}
         <InspectorChoose
           label="Corners"

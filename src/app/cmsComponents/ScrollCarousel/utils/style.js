@@ -23,6 +23,8 @@ export const DEFAULT_SCROLL_CAROUSEL_STYLE = {
   titleColor: "white",
   descriptionColor: "white",
   cardRadius: "lg",
+  titleFontWeight: "semibold",
+  descriptionFontWeight: "normal",
 };
 
 export function resolveScrollCarouselStyle(style = {}) {
@@ -44,7 +46,7 @@ export const SCROLL_CAROUSEL_STYLE_RESET_KEYS = {
     "showDescription",
     "showOverlay",
     "cardRadius",
-    "titleColor",
-    "descriptionColor",
+    "titleColor", "titleFontWeight",
+    "descriptionColor", "descriptionFontWeight",
   ],
 };

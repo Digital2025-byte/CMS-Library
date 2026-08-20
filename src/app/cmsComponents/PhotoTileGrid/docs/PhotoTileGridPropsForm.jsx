@@ -1,6 +1,7 @@
 import {
   InspectorChoose,
   InspectorColor,
+  InspectorFontWeight,
   InspectorSection,
   InspectorSwitch,
   InspectorTabs,
@@ -47,6 +48,12 @@ function PhotoTileGridStyleForm({ style, onChange }) {
               value={style.titleColor}
               onChange={(value) => update("titleColor", value)}
             />
+          <InspectorFontWeight
+            id="titleColor-weight"
+            label="Title weight"
+            value={style.titleFontWeight}
+            onChange={(value) => update("titleFontWeight", value)}
+          />
           </>
         ) : null}
         <InspectorSwitch
@@ -56,6 +63,7 @@ function PhotoTileGridStyleForm({ style, onChange }) {
           hint="Fill color behind the whole section"
         />
         {style.showSectionBg ? (
+          <>
           <InspectorColor
             label="Section background"
             value={style.sectionBg}
@@ -112,6 +120,13 @@ function PhotoTileGridStyleForm({ style, onChange }) {
             value={style.countryColor}
             onChange={(value) => update("countryColor", value)}
           />
+          <InspectorFontWeight
+            id="countryColor-weight"
+            label="Country weight"
+            value={style.countryFontWeight}
+            onChange={(value) => update("countryFontWeight", value)}
+          />
+        </>
         ) : null}
         <InspectorSwitch
           checked={style.showOverlay}

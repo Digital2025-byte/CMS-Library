@@ -1,5 +1,6 @@
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getFontWeightValue } from "@/styles/fontWeight";
 import {
   DEFAULT_BANNER_WITH_CTA_STYLE,
   TITLE_ALIGN_CLASS,
@@ -37,7 +38,7 @@ export default function BannerWithCtaContent({
         {showHeading ? (
           <h2
             className={`${typography.sectionTitle} font-bold leading-tight`}
-            style={{ color: titleCss }}
+            style={{ color: titleCss, fontWeight: getFontWeightValue(style.titleFontWeight) }}
           >
             {title}
           </h2>

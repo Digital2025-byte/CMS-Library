@@ -33,6 +33,9 @@ export const DEFAULT_ANIMATED_IMAGES_STYLE = {
   descriptionColor: "primary-1",
   buttonBg: "primary-2",
   buttonText: "white",
+  titleFontWeight: "semibold",
+  descriptionFontWeight: "normal",
+  buttonTextFontWeight: "semibold",
 };
 
 export function resolveAnimatedImagesStyle(style = {}) {
@@ -50,7 +53,7 @@ export const ANIMATED_IMAGES_STYLE_RESET_KEYS = {
     "sectionBg",
     "sectionPadding",
   ],
-  title: ["titleAlign", "titleColor", "descriptionColor"],
+  title: ["titleAlign", "titleColor", "titleFontWeight", "descriptionColor", "descriptionFontWeight"],
   images: ["showImages"],
-  button: ["showCta", "buttonBg", "buttonText"],
+  button: ["showCta", "buttonBg", "buttonText", "buttonTextFontWeight"],
 };
