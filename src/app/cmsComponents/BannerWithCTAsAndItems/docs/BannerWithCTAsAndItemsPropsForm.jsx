@@ -10,7 +10,9 @@ import BannerWithCTAsAndItemsContentForm from "./BannerWithCTAsAndItemsContentFo
 import {
   BANNER_WITH_CTAS_STYLE_RESET_KEYS,
   DEFAULT_BANNER_WITH_CTAS_STYLE,
+  HEIGHT_OPTIONS,
   TITLE_ALIGN_OPTIONS,
+  VERTICAL_ALIGN_OPTIONS,
 } from "../utils/style";
 
 function BannerWithCTAsAndItemsStyleForm({ style, onChange }) {
@@ -32,20 +34,11 @@ function BannerWithCTAsAndItemsStyleForm({ style, onChange }) {
           hint="Show the heading"
         />
         {style.showTitle ? (
-          <>
-            <InspectorChoose
-              label="Alignment"
-              name="titleAlign"
-              value={style.titleAlign}
-              options={TITLE_ALIGN_OPTIONS}
-              onChange={(value) => update("titleAlign", value)}
-            />
-            <InspectorColor
-              label="Title color"
-              value={style.titleColor}
-              onChange={(value) => update("titleColor", value)}
-            />
-          </>
+          <InspectorColor
+            label="Title color"
+            value={style.titleColor}
+            onChange={(value) => update("titleColor", value)}
+          />
         ) : null}
         <InspectorSwitch
           checked={style.showDescription}
@@ -71,6 +64,48 @@ function BannerWithCTAsAndItemsStyleForm({ style, onChange }) {
             label="Item color"
             value={style.itemColor}
             onChange={(value) => update("itemColor", value)}
+          />
+        ) : null}
+        {style.showTitle ||
+        style.showDescription ||
+        style.showItems ||
+        style.showPrimaryButton ||
+        style.showSecondaryButton ? (
+          <>
+            <InspectorChoose
+              label="Alignment"
+              name="titleAlign"
+              value={style.titleAlign}
+              options={TITLE_ALIGN_OPTIONS}
+              onChange={(value) => update("titleAlign", value)}
+            />
+            <InspectorChoose
+              label="Vertical"
+              name="verticalAlign"
+              value={style.verticalAlign}
+              options={VERTICAL_ALIGN_OPTIONS}
+              onChange={(value) => update("verticalAlign", value)}
+            />
+          </>
+        ) : null}
+        <InspectorChoose
+          label="Height"
+          name="bannerHeight"
+          value={style.bannerHeight}
+          options={HEIGHT_OPTIONS}
+          onChange={(value) => update("bannerHeight", value)}
+        />
+        <InspectorSwitch
+          checked={style.showSectionBg}
+          onChange={() => toggle("showSectionBg")}
+          label="Background"
+          hint="Solid fill behind the banner"
+        />
+        {style.showSectionBg ? (
+          <InspectorColor
+            label="Section background"
+            value={style.sectionBg}
+            onChange={(value) => update("sectionBg", value)}
           />
         ) : null}
       </InspectorSection>

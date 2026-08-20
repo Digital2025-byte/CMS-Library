@@ -1,6 +1,9 @@
 import Button from "@/components/ui/Button";
 import { getThemeColorCss } from "@/styles/themeColors";
-import { DEFAULT_BANNER_WITH_CTAS_STYLE } from "../utils/style";
+import {
+  DEFAULT_BANNER_WITH_CTAS_STYLE,
+  TITLE_JUSTIFY_CLASS,
+} from "../utils/style";
 
 export default function BannerWithCTAsAndItemsButtons({
   primaryLabel,
@@ -11,6 +14,7 @@ export default function BannerWithCTAsAndItemsButtons({
   secondaryIcon,
   cId,
   style = DEFAULT_BANNER_WITH_CTAS_STYLE,
+  align = "left",
 }) {
   if (!primaryLabel && !secondaryLabel) {
     return null;
@@ -19,9 +23,12 @@ export default function BannerWithCTAsAndItemsButtons({
   const primaryPill = getThemeColorCss(style.primaryBg, "primary-2");
   const primaryFg = getThemeColorCss(style.primaryText, "white");
   const secondaryFg = getThemeColorCss(style.secondaryText, "white");
+  const justifyClass = TITLE_JUSTIFY_CLASS[align] ?? TITLE_JUSTIFY_CLASS.left;
 
   return (
-    <div className="mt-6 flex w-full flex-col gap-3 sm:mt-8 sm:flex-row sm:flex-wrap sm:gap-4">
+    <div
+      className={`mt-6 flex w-full flex-col gap-3 sm:mt-8 sm:flex-row sm:flex-wrap sm:gap-4 ${justifyClass}`}
+    >
       {primaryLabel ? (
         <Button
           label={primaryLabel}

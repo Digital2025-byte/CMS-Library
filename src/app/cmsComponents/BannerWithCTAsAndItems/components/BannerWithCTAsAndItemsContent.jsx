@@ -3,6 +3,7 @@ import { getThemeColorCss } from "@/styles/themeColors";
 import {
   DEFAULT_BANNER_WITH_CTAS_STYLE,
   TITLE_ALIGN_CLASS,
+  TITLE_ITEMS_CLASS,
 } from "../utils/style";
 import BannerWithCTAsAndItemsButtons from "./BannerWithCTAsAndItemsButtons";
 import BannerWithCTAsAndItemsList from "./BannerWithCTAsAndItemsList";
@@ -16,12 +17,23 @@ export default function BannerWithCTAsAndItemsContent({
   const description = content.description;
   const showHeading = style.showTitle && title;
   const showCopy = style.showDescription && description;
-  const alignClass =
-    TITLE_ALIGN_CLASS[style.titleAlign] ?? TITLE_ALIGN_CLASS.left;
+  const showItems = style.showItems && Array.isArray(content.items) && content.items.length > 0;
+  const showButtons =
+    (style.showPrimaryButton && content.primaryLabel) ||
+    (style.showSecondaryButton && content.secondaryLabel);
+
+  if (!showHeading && !showCopy && !showItems && !showButtons) {
+    return null;
+  }
+
+  const alignKey =
+    style.titleAlign in TITLE_ALIGN_CLASS ? style.titleAlign : "left";
+  const alignClass = TITLE_ALIGN_CLASS[alignKey];
+  const itemsClass = TITLE_ITEMS_CLASS[alignKey];
 
   return (
     <div
-      className={`mx-auto w-full max-w-md py-10 sm:mx-0 sm:max-w-none sm:py-12 lg:w-1/2 lg:py-14 ${alignClass}`}
+      className={`flex w-full max-w-xl flex-col py-10 sm:py-12 lg:py-14 ${alignClass} ${itemsClass}`}
     >
       {showHeading ? (
         <h1
@@ -41,8 +53,12 @@ export default function BannerWithCTAsAndItemsContent({
         </p>
       ) : null}
 
-      {style.showItems ? (
-        <BannerWithCTAsAndItemsList items={content.items} style={style} />
+      {showItems ? (
+        <BannerWithCTAsAndItemsList
+          items={content.items}
+          style={style}
+          align={alignKey}
+        />
       ) : null}
 
       <BannerWithCTAsAndItemsButtons
@@ -51,6 +67,7 @@ export default function BannerWithCTAsAndItemsContent({
         secondaryLabel={style.showSecondaryButton ? content.secondaryLabel : ""}
         secondaryHref={content.secondaryHref}
         style={style}
+        align={alignKey}
         cId={cId}
       />
     </div>
