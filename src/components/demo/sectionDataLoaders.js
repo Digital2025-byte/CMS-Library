@@ -262,15 +262,7 @@ export const SECTION_DATA_LOADERS = {
       "@/app/cmsComponents/DualImageText/utils/data"
     );
     return {
-      dualImageTextData: buildDualImageTextData(t, lang, "towards"),
-    };
-  },
-  "dual-image-text-training": async (t, lang) => {
-    const { buildDualImageTextData } = await import(
-      "@/app/cmsComponents/DualImageText/utils/data"
-    );
-    return {
-      dualImageTrainingData: buildDualImageTextData(t, lang, "training"),
+      dualImageTextData: buildDualImageTextData(t, lang),
     };
   },
   "on-board-image-ring": async (t, lang) => {

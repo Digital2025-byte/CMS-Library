@@ -67,10 +67,7 @@ import { typography } from "@/styles/typography";
 
 const DOCS_EXAMPLES = {
   "dual-image-text": (ctx, label) => (
-    <DualImageTextExamples ctx={ctx} name={label} variant="towards" />
-  ),
-  "dual-image-text-training": (ctx, label) => (
-    <DualImageTextExamples ctx={ctx} name={label} variant="training" />
+    <DualImageTextExamples ctx={ctx} name={label} />
   ),
   "accordion-with-content": (ctx, label) => (
     <AccordionWithContentExamples ctx={ctx} name={label} />

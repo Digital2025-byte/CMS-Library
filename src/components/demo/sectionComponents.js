@@ -662,35 +662,6 @@ export const SECTION_COMPONENTS = {
       },
     }))
   ),
-  "dual-image-text-training": lazySection(() =>
-    Promise.all([
-      import("@/app/cmsComponents/DualImageText"),
-      import(
-        "@/app/cmsComponents/DualImageText/components/DualImageTextContainer"
-      ),
-    ]).then(([Comp, Cont]) => ({
-      default: function Section({ lang, dir, dualImageTrainingData }) {
-        return (
-          <Cont.default lang={lang} dir={dir}>
-            <Comp.default
-              lang={lang}
-              data={dualImageTrainingData}
-              style={{
-                underlineFirstWord: true,
-                bgColor: "bg-100",
-                showFirstSection: true,
-                showExtraImage: true,
-              }}
-              extraImagePositions={[
-                { bottom: -50, start: 0, horizontal: 60 },
-                { bottom: -50, end: 0, horizontal: -60 },
-              ]}
-            />
-          </Cont.default>
-        );
-      },
-    }))
-  ),
   "on-board-image-ring": lazySection(() =>
     import("@/app/cmsComponents/OnBoardImageRing").then((Comp) => ({
       default: function Section({ lang, onBoardImageRingData }) {

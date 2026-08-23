@@ -50,7 +50,6 @@ export const COMPONENT_NAV_ITEMS = [
   { id: "title-with-list", label: "TitleWithList" },
   { id: "search-with-tabs-and-grid", label: "SearchWithTabsAndGrid" },
   { id: "dual-image-text", label: "DualImageText" },
-  { id: "dual-image-text-training", label: "DualImageText (Training)" },
   { id: "photo-tile-grid", label: "PhotoTileGrid" },
   { id: "on-board-image-ring", label: "OnBoardImageRing" },
   { id: "three-d-slider", label: "ThreeDSlider" },

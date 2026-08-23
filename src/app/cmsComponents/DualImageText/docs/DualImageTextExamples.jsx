@@ -52,18 +52,17 @@ function toEditorContent(data, lang) {
 export default function DualImageTextExamples({
   ctx,
   name = "DualImageText",
-  variant = "towards",
 }) {
-  const { lang, dir } = ctx;
-  const data =
-    variant === "training" ? ctx.dualImageTrainingData : ctx.dualImageTextData;
+  const { lang, dir, dualImageTextData } = ctx;
   const drawer = useDrawer();
   const [style, setStyle] = useState(DEFAULT_DUAL_IMAGE_TEXT_STYLE);
-  const [content, setContent] = useState(() => toEditorContent(data, lang));
+  const [content, setContent] = useState(() =>
+    toEditorContent(dualImageTextData, lang)
+  );
 
   useEffect(() => {
-    setContent(toEditorContent(data, lang));
-  }, [data, lang]);
+    setContent(toEditorContent(dualImageTextData, lang));
+  }, [dualImageTextData, lang]);
 
   return (
     <div>
@@ -93,7 +92,7 @@ export default function DualImageTextExamples({
         <DualImageTextPropsForm
           content={content}
           onContentChange={setContent}
-          contentDefaults={toEditorContent(data, lang)}
+          contentDefaults={toEditorContent(dualImageTextData, lang)}
           style={style}
           onStyleChange={setStyle}
         />

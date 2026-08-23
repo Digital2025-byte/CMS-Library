@@ -12,15 +12,14 @@ const ph4Url = toUrl(ph4);
 
 /**
  * Builds CMS-shaped DualImageText data from i18next translations.
- * Set content.variant to "towards" | "training".
  */
-export function buildDualImageTextData(t, lang = "en", variant = "towards") {
+export function buildDualImageTextData(t, lang = "en") {
   return {
     translations: [
       {
         languageCode: lang,
         content: {
-          variant,
+          variant: "towards",
           exploreButton: {
             label: t("dualImageText.exploreMore"),
             slug: t("dualImageText.exploreSlug"),
@@ -45,21 +44,21 @@ export function buildDualImageTextData(t, lang = "en", variant = "towards") {
           items: [
             {
               item: {
-                title: t(`dualImageText.${variant}.itemOne.title`),
-                description: t(`dualImageText.${variant}.itemOne.description`),
+                title: t("dualImageText.towards.itemOne.title"),
+                description: t("dualImageText.towards.itemOne.description"),
                 image: {
                   fileUrl: ph1Url,
-                  alt: t(`dualImageText.${variant}.itemOne.imageAlt`),
+                  alt: t("dualImageText.towards.itemOne.imageAlt"),
                 },
               },
             },
             {
               item: {
-                title: t(`dualImageText.${variant}.itemTwo.title`),
-                description: t(`dualImageText.${variant}.itemTwo.description`),
+                title: t("dualImageText.towards.itemTwo.title"),
+                description: t("dualImageText.towards.itemTwo.description"),
                 image: {
                   fileUrl: ph2Url,
-                  alt: t(`dualImageText.${variant}.itemTwo.imageAlt`),
+                  alt: t("dualImageText.towards.itemTwo.imageAlt"),
                 },
               },
             },
