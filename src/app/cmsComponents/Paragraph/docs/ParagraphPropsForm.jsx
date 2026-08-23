@@ -1,6 +1,7 @@
 import {
   InspectorChoose,
   InspectorColor,
+  InspectorField,
   InspectorFontWeight,
   InspectorSection,
   InspectorSwitch,
@@ -12,6 +13,7 @@ import ParagraphContentForm from "./ParagraphContentForm";
 import {
   DEFAULT_PARAGRAPH_STYLE,
   PARAGRAPH_STYLE_RESET_KEYS,
+  SECTION_BG_TYPE_OPTIONS,
   SPACING_OPTIONS,
   TITLE_ALIGN_OPTIONS,
 } from "../utils/style";
@@ -83,14 +85,32 @@ function ParagraphStyleForm({ style, onChange }) {
           checked={style.showSectionBg}
           onChange={() => toggle("showSectionBg")}
           label="Background"
-          hint="Fill color behind the section"
+          hint="Fill behind the section"
         />
         {style.showSectionBg ? (
-          <InspectorColor
-            label="Section background"
-            value={style.sectionBg}
-            onChange={(value) => update("sectionBg", value)}
-          />
+          <>
+            <InspectorChoose
+              label="Background type"
+              name="sectionBgType"
+              value={style.sectionBgType || "color"}
+              options={SECTION_BG_TYPE_OPTIONS}
+              onChange={(value) => update("sectionBgType", value)}
+            />
+            {style.sectionBgType === "image" ? (
+              <InspectorField
+                id="paragraph-section-bg-image"
+                label="Background image URL"
+                value={style.sectionBgImage || ""}
+                onChange={(value) => update("sectionBgImage", value)}
+              />
+            ) : (
+              <InspectorColor
+                label="Background color"
+                value={style.sectionBg}
+                onChange={(value) => update("sectionBg", value)}
+              />
+            )}
+          </>
         ) : null}
         <InspectorChoose
           label="Padding"

@@ -1,5 +1,5 @@
 import {
-  findNextPhraseIndex,
+  findNextPhraseMatch,
   normalizeBacklinks,
   normalizeOccurrence,
   occurrenceIncludes,
@@ -10,7 +10,7 @@ function linkStateKey(link) {
   const occurrenceKey = Array.isArray(occurrence)
     ? occurrence.join(",")
     : String(occurrence);
-  return `${link.text}\0${link.href}\0${occurrenceKey}\0${link.type}`;
+  return `${String(link.text || "").toLowerCase()}\0${link.href}\0${occurrenceKey}\0${link.type}`;
 }
 
 function applyLinkToParts(parts, link, state) {
@@ -27,16 +27,16 @@ function applyLinkToParts(parts, link, state) {
 
     const value = part.value;
     let cursor = 0;
-    let matchIndex = findNextPhraseIndex(value, link.text, cursor);
+    let match = findNextPhraseMatch(value, link.text, cursor);
 
-    if (matchIndex < 0) {
+    if (!match) {
       next.push(part);
       continue;
     }
 
-    while (matchIndex >= 0) {
-      if (matchIndex > cursor) {
-        next.push({ type: "text", value: value.slice(cursor, matchIndex) });
+    while (match) {
+      if (match.index > cursor) {
+        next.push({ type: "text", value: value.slice(cursor, match.index) });
       }
 
       seen += 1;
@@ -45,16 +45,16 @@ function applyLinkToParts(parts, link, state) {
       if (shouldLink) {
         next.push({
           type: "link",
-          value: link.text,
+          value: match.value,
           href: link.href,
           linkType: link.type,
         });
       } else {
-        next.push({ type: "text", value: link.text });
+        next.push({ type: "text", value: match.value });
       }
 
-      cursor = matchIndex + link.text.length;
-      matchIndex = findNextPhraseIndex(value, link.text, cursor);
+      cursor = match.index + match.value.length;
+      match = findNextPhraseMatch(value, link.text, cursor);
     }
 
     if (cursor < value.length) {

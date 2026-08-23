@@ -18,6 +18,11 @@ export const SPACING_OPTIONS = [
   { value: "loose", label: "Loose" },
 ];
 
+export const SECTION_BG_TYPE_OPTIONS = [
+  { value: "color", label: "Color" },
+  { value: "image", label: "Image" },
+];
+
 export const TITLE_ALIGN_CLASS = {
   left: "text-start",
   center: "text-center",
@@ -33,7 +38,9 @@ export const DEFAULT_PARAGRAPH_STYLE = {
   showTitle: true,
   showDescription: true,
   showSectionBg: true,
+  sectionBgType: "color",
   sectionBg: "background",
+  sectionBgImage: "",
   sectionPadding: "default",
   titleAlign: "left",
   titleColor: "primary-1",
@@ -44,10 +51,18 @@ export const DEFAULT_PARAGRAPH_STYLE = {
 };
 
 export function resolveParagraphStyle(style = {}) {
-  return resolveBacklinkStyle(
+  const merged = resolveBacklinkStyle(
     { ...DEFAULT_PARAGRAPH_STYLE, ...style },
     DEFAULT_PARAGRAPH_STYLE
   );
+  const sectionBgType =
+    merged.sectionBgType === "image" ? "image" : "color";
+
+  return {
+    ...merged,
+    sectionBgType,
+    sectionBgImage: String(merged.sectionBgImage || "").trim(),
+  };
 }
 
 export const PARAGRAPH_STYLE_RESET_KEYS = {
@@ -55,7 +70,9 @@ export const PARAGRAPH_STYLE_RESET_KEYS = {
     "showTitle",
     "showDescription",
     "showSectionBg",
+    "sectionBgType",
     "sectionBg",
+    "sectionBgImage",
     "sectionPadding",
     "titleAlign",
     "titleColor",
@@ -65,4 +82,3 @@ export const PARAGRAPH_STYLE_RESET_KEYS = {
   ],
   links: [...BACKLINK_STYLE_RESET_KEYS],
 };
-

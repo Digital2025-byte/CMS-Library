@@ -101,24 +101,51 @@ function escapeRegExp(value) {
 }
 
 /**
- * Whole-phrase match index. "available" will not match inside "availability".
+ * Whole-phrase match (case-insensitive). "available" will not match inside
+ * "availability". Returns the matched source slice so display casing is kept.
  */
-export function findNextPhraseIndex(source = "", phrase = "", fromIndex = 0) {
+export function findNextPhraseMatch(source = "", phrase = "", fromIndex = 0) {
   const text = String(source || "");
   const needle = String(phrase || "");
-  if (!text || !needle || fromIndex >= text.length) return -1;
+  if (!text || !needle || fromIndex >= text.length) return null;
 
   try {
     const pattern = new RegExp(
       `(?<![\\p{L}\\p{N}])${escapeRegExp(needle)}(?![\\p{L}\\p{N}])`,
-      "gu"
+      "giu"
     );
     pattern.lastIndex = Math.max(0, fromIndex);
     const match = pattern.exec(text);
-    return match ? match.index : -1;
+    if (!match) return null;
+    return { index: match.index, value: match[0] };
   } catch {
-    return text.indexOf(needle, fromIndex);
+    const lowerText = text.toLowerCase();
+    const lowerNeedle = needle.toLowerCase();
+    let index = lowerText.indexOf(lowerNeedle, fromIndex);
+    while (index >= 0) {
+      const before = index === 0 ? "" : text[index - 1];
+      const afterIndex = index + needle.length;
+      const after = afterIndex >= text.length ? "" : text[afterIndex];
+      const beforeOk = !before || !/[\p{L}\p{N}]/u.test(before);
+      const afterOk = !after || !/[\p{L}\p{N}]/u.test(after);
+      if (beforeOk && afterOk) {
+        return {
+          index,
+          value: text.slice(index, index + needle.length),
+        };
+      }
+      index = lowerText.indexOf(lowerNeedle, index + 1);
+    }
+    return null;
   }
+}
+
+/**
+ * Whole-phrase match index. Case-insensitive.
+ */
+export function findNextPhraseIndex(source = "", phrase = "", fromIndex = 0) {
+  const match = findNextPhraseMatch(source, phrase, fromIndex);
+  return match ? match.index : -1;
 }
 
 export function countPhraseOccurrences(text = "", phrase = "") {
@@ -128,12 +155,12 @@ export function countPhraseOccurrences(text = "", phrase = "") {
 
   let count = 0;
   let cursor = 0;
-  let matchIndex = findNextPhraseIndex(source, needle, cursor);
+  let match = findNextPhraseMatch(source, needle, cursor);
 
-  while (matchIndex >= 0) {
+  while (match) {
     count += 1;
-    cursor = matchIndex + needle.length;
-    matchIndex = findNextPhraseIndex(source, needle, cursor);
+    cursor = match.index + match.value.length;
+    match = findNextPhraseMatch(source, needle, cursor);
   }
 
   return count;

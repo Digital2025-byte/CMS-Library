@@ -87,6 +87,7 @@ export {
 export {
   countPhraseOccurrences,
   findNextPhraseIndex,
+  findNextPhraseMatch,
   getMatchCheckboxOptions,
   getMatchCheckboxOptionsByCount,
   getOccurrenceOptions,
