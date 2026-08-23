@@ -1,8 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { remapOpenIndexes, reorderItems } from "./reorderItems";
 
 export default function useRepeater({ items = [], onChange, createItem }) {
+  const itemsRef = useRef(items);
+  itemsRef.current = items;
+
   const [openIndexes, setOpenIndexes] = useState(
     () => new Set(items.length ? [0] : [])
   );
@@ -20,13 +24,13 @@ export default function useRepeater({ items = [], onChange, createItem }) {
   };
 
   const addItem = () => {
-    const nextIndex = items.length;
-    onChange([...items, createItem()]);
+    const nextIndex = itemsRef.current.length;
+    onChange([...itemsRef.current, createItem()]);
     setOpenIndexes((current) => new Set(current).add(nextIndex));
   };
 
   const removeItem = (index) => {
-    onChange(items.filter((_, itemIndex) => itemIndex !== index));
+    onChange(itemsRef.current.filter((_, itemIndex) => itemIndex !== index));
     setOpenIndexes((current) => {
       const next = new Set();
       current.forEach((itemIndex) => {
@@ -39,9 +43,17 @@ export default function useRepeater({ items = [], onChange, createItem }) {
 
   const updateItem = (index, key, value) => {
     onChange(
-      items.map((item, itemIndex) =>
+      itemsRef.current.map((item, itemIndex) =>
         itemIndex === index ? { ...item, [key]: value } : item
       )
+    );
+  };
+
+  const moveItem = (fromIndex, toIndex) => {
+    if (fromIndex === toIndex) return;
+    onChange(reorderItems(itemsRef.current, fromIndex, toIndex));
+    setOpenIndexes((current) =>
+      remapOpenIndexes(current, fromIndex, toIndex)
     );
   };
 
@@ -52,5 +64,6 @@ export default function useRepeater({ items = [], onChange, createItem }) {
     addItem,
     removeItem,
     updateItem,
+    moveItem,
   };
 }

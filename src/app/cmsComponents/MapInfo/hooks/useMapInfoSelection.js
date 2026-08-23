@@ -25,7 +25,8 @@ export function useMapInfoSelection(branches = []) {
 
   const cities = useMemo(() => {
     if (!selectedCountry || !branchesByCountry[selectedCountry]) return [];
-    return Object.keys(branchesByCountry[selectedCountry]).sort();
+    // Preserve first-seen city order from branches (object insertion order).
+    return Object.keys(branchesByCountry[selectedCountry]);
   }, [selectedCountry, branchesByCountry]);
 
   const cityOffices = useMemo(() => {
@@ -68,7 +69,7 @@ export function useMapInfoSelection(branches = []) {
     setSelectedOfficeIndex(0);
 
     if (branchesByCountry[country]) {
-      const countryCities = Object.keys(branchesByCountry[country]).sort();
+      const countryCities = Object.keys(branchesByCountry[country]);
       setSelectedCity(countryCities[0] || null);
     } else {
       setSelectedCity(null);

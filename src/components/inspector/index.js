@@ -19,6 +19,8 @@ export { default as InspectorReset } from "./InspectorReset";
 export { applyInspectorReset } from "./applyReset";
 export { default as InspectorSubmitButton } from "./InspectorSubmitButton";
 export { default as useRepeater } from "./useRepeater";
+export { default as useRepeaterDrag } from "./useRepeaterDrag";
+export { remapOpenIndexes, reorderItems } from "./reorderItems";
 export {
   ALIGNMENT_OPTIONS,
   LINK_TYPE_OPTIONS,

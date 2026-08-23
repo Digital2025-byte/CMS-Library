@@ -5,10 +5,9 @@ export function makeMapUrl(latitude, longitude) {
   return `https://www.google.com/maps?q=${latitude},${longitude}&output=embed`;
 }
 
+/** Unique countries in branch order (first appearance). No alphabetical sort. */
 export function getUniqueCountries(branches = []) {
-  return [...new Set(branches.map((branch) => branch.country))]
-    .filter(Boolean)
-    .sort();
+  return [...new Set(branches.map((branch) => branch.country))].filter(Boolean);
 }
 
 export function groupBranchesByCountry(branches = []) {
