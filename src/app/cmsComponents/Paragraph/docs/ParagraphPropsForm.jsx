@@ -9,6 +9,7 @@ import {
   applyInspectorReset,
 } from "@/components/inspector";
 import { BacklinksStyleSection } from "@/app/cmsComponents/shared/backlinks";
+import { BackgroundImageControls } from "@/app/cmsComponents/shared/backgroundImage";
 import ParagraphContentForm from "./ParagraphContentForm";
 import {
   DEFAULT_PARAGRAPH_STYLE,
@@ -110,6 +111,14 @@ function ParagraphStyleForm({ style, onChange }) {
                 onChange={(value) => update("sectionBg", value)}
               />
             )}
+            <BackgroundImageControls
+              style={style}
+              onChange={onChange}
+              visible={Boolean(
+                style.showSectionBg && style.sectionBgType === "image"
+              )}
+              idPrefix="paragraph"
+            />
             <InspectorSwitch
               checked={style.showOverlay}
               onChange={() => toggle("showOverlay")}

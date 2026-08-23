@@ -8,6 +8,7 @@ import {
   applyInspectorReset,
 } from "@/components/inspector";
 import { BacklinksStyleSection } from "@/app/cmsComponents/shared/backlinks";
+import { BackgroundImageControls } from "@/app/cmsComponents/shared/backgroundImage";
 import HeaderWithThreeImageContentForm from "./HeaderWithThreeImageContentForm";
 import {
   DEFAULT_HEADER_WITH_THREE_IMAGE_STYLE,
@@ -140,6 +141,12 @@ function HeaderWithThreeImageStyleForm({ style, onChange }) {
               value={style.imageDirection}
               options={IMAGE_DIRECTION_OPTIONS}
               onChange={(value) => update("imageDirection", value)}
+            />
+            <BackgroundImageControls
+              style={style}
+              onChange={onChange}
+              visible
+              idPrefix="header-three-image"
             />
           </>
         ) : null}

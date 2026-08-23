@@ -1,6 +1,10 @@
 import Image from "next/image";
+import { getObjectFitClass } from "@/app/cmsComponents/shared/backgroundImage";
 import { isUsableImageSrc } from "../utils/helpers";
-import { HEIGHT_CLASS } from "../utils/style";
+import {
+  DEFAULT_HEADER_WITH_THREE_IMAGE_STYLE,
+  HEIGHT_CLASS,
+} from "../utils/style";
 
 export default function HeaderWithThreeImageSlice({
   width,
@@ -10,12 +14,14 @@ export default function HeaderWithThreeImageSlice({
   mobileImage,
   heightClass = HEIGHT_CLASS.default,
   priority = false,
+  style = DEFAULT_HEADER_WITH_THREE_IMAGE_STYLE,
 }) {
   const desktopSrc = isUsableImageSrc(desktopImage?.fileUrl)
     ? encodeURI(desktopImage.fileUrl)
     : "";
   const mobileRaw = mobileImage?.fileUrl || desktopImage?.fileUrl;
   const mobileSrc = isUsableImageSrc(mobileRaw) ? encodeURI(mobileRaw) : desktopSrc;
+  const objectFitClass = getObjectFitClass(style);
 
   if (!desktopSrc && !mobileSrc) {
     return (
@@ -39,7 +45,7 @@ export default function HeaderWithThreeImageSlice({
             fill
             priority={priority}
             sizes="50vw"
-            className="hidden object-cover lg:block"
+            className={`hidden lg:block ${objectFitClass}`}
             quality={75}
             unoptimized={desktopSrc.startsWith("http")}
           />
@@ -51,7 +57,7 @@ export default function HeaderWithThreeImageSlice({
             fill
             priority={priority}
             sizes="100vw"
-            className="object-cover lg:hidden"
+            className={`lg:hidden ${objectFitClass}`}
             quality={75}
             unoptimized={mobileSrc.startsWith("http")}
           />

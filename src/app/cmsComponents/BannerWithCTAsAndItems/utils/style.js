@@ -3,6 +3,11 @@ import {
   DEFAULT_BACKLINK_STYLE,
   resolveBacklinkStyle,
 } from "@/app/cmsComponents/shared/backlinks";
+import {
+  BACKGROUND_IMAGE_STYLE_RESET_KEYS,
+  DEFAULT_BACKGROUND_IMAGE_STYLE,
+  resolveBackgroundImageStyle,
+} from "@/app/cmsComponents/shared/backgroundImage";
 
 export const TITLE_ALIGN_OPTIONS = [
   { value: "left", label: "Start" },
@@ -77,12 +82,16 @@ export const DEFAULT_BANNER_WITH_CTAS_STYLE = {
   itemFontWeight: "medium",
   primaryTextFontWeight: "semibold",
   secondaryTextFontWeight: "semibold",
+  ...DEFAULT_BACKGROUND_IMAGE_STYLE,
   ...DEFAULT_BACKLINK_STYLE,
 };
 
 export function resolveBannerWithCTAsStyle(style = {}) {
-  return resolveBacklinkStyle(
-    { ...DEFAULT_BANNER_WITH_CTAS_STYLE, ...style },
+  return resolveBackgroundImageStyle(
+    resolveBacklinkStyle(
+      { ...DEFAULT_BANNER_WITH_CTAS_STYLE, ...style },
+      DEFAULT_BANNER_WITH_CTAS_STYLE
+    ),
     DEFAULT_BANNER_WITH_CTAS_STYLE
   );
 }
@@ -98,7 +107,12 @@ export const BANNER_WITH_CTAS_STYLE_RESET_KEYS = {
     "showSectionBg",
     "sectionBg",
   ],
-  banner: ["showHeroImage", "showOverlay", "overlayColor"],
+  banner: [
+    "showHeroImage",
+    ...BACKGROUND_IMAGE_STYLE_RESET_KEYS,
+    "showOverlay",
+    "overlayColor",
+  ],
   items: ["itemColor", "itemFontWeight"],
   button: [
     "showPrimaryButton",

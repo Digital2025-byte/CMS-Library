@@ -8,6 +8,7 @@ import {
   applyInspectorReset,
 } from "@/components/inspector";
 import { BacklinksStyleSection } from "@/app/cmsComponents/shared/backlinks";
+import { BackgroundImageControls } from "@/app/cmsComponents/shared/backgroundImage";
 import ServiceBenefitsListContentForm from "./ServiceBenefitsListContentForm";
 import {
   CARD_RADIUS_OPTIONS,
@@ -140,6 +141,12 @@ function ServiceBenefitsListStyleForm({ style, onChange }) {
           onChange={() => toggle("showBackgroundImage")}
           label="Photo"
           hint="Background photo on the card"
+        />
+        <BackgroundImageControls
+          style={style}
+          onChange={onChange}
+          visible={style.showBackgroundImage}
+          idPrefix="service-benefits"
         />
         <InspectorSwitch
           checked={style.showOverlay}

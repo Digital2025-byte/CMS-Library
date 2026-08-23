@@ -48,6 +48,8 @@ export default function FullHeightHeaderWithTextPanel({
         desktopGradient={style.showOverlay}
         overlayColor={overlayCss}
         lang={lang}
+        imageFit={style.imageFit}
+        imagePosition={style.imagePosition}
       >
         <section
           className="flex h-full min-h-dvh items-end justify-center py-16 sm:py-20 lg:items-center lg:py-24"

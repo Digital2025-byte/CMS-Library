@@ -3,6 +3,11 @@ import {
   DEFAULT_BACKLINK_STYLE,
   resolveBacklinkStyle,
 } from "@/app/cmsComponents/shared/backlinks";
+import {
+  BACKGROUND_IMAGE_STYLE_RESET_KEYS,
+  DEFAULT_BACKGROUND_IMAGE_STYLE,
+  resolveBackgroundImageStyle,
+} from "@/app/cmsComponents/shared/backgroundImage";
 
 export const TITLE_ALIGN_OPTIONS = [
   { value: "left", label: "Start" },
@@ -99,12 +104,16 @@ export const DEFAULT_BANNER_WITH_CTA_STYLE = {
   titleFontWeight: "semibold",
   descriptionFontWeight: "normal",
   buttonTextFontWeight: "semibold",
+  ...DEFAULT_BACKGROUND_IMAGE_STYLE,
   ...DEFAULT_BACKLINK_STYLE,
 };
 
 export function resolveBannerWithCtaStyle(style = {}) {
-  return resolveBacklinkStyle(
-    { ...DEFAULT_BANNER_WITH_CTA_STYLE, ...style },
+  return resolveBackgroundImageStyle(
+    resolveBacklinkStyle(
+      { ...DEFAULT_BANNER_WITH_CTA_STYLE, ...style },
+      DEFAULT_BANNER_WITH_CTA_STYLE
+    ),
     DEFAULT_BANNER_WITH_CTA_STYLE
   );
 }
@@ -121,7 +130,13 @@ export const BANNER_WITH_CTA_STYLE_RESET_KEYS = {
     "bannerHeight",
   ],
   title: ["titleColor", "titleFontWeight", "descriptionColor", "descriptionFontWeight"],
-  banner: ["showHeroImage", "showOverlay", "overlayColor", "bannerRadius"],
+  banner: [
+    "showHeroImage",
+    ...BACKGROUND_IMAGE_STYLE_RESET_KEYS,
+    "showOverlay",
+    "overlayColor",
+    "bannerRadius",
+  ],
   button: ["showButton", "buttonBg", "buttonText", "buttonTextFontWeight"],
   links: [...BACKLINK_STYLE_RESET_KEYS],
 };

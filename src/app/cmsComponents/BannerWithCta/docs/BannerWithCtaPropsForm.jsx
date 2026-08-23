@@ -8,6 +8,7 @@ import {
   applyInspectorReset,
 } from "@/components/inspector";
 import { BacklinksStyleSection } from "@/app/cmsComponents/shared/backlinks";
+import { BackgroundImageControls } from "@/app/cmsComponents/shared/backgroundImage";
 import BannerWithCtaContentForm from "./BannerWithCtaContentForm";
 import {
   BANNER_WITH_CTA_STYLE_RESET_KEYS,
@@ -129,6 +130,12 @@ function BannerWithCtaStyleForm({ style, onChange }) {
           onChange={() => toggle("showHeroImage")}
           label="Image"
           hint="Photo behind the banner"
+        />
+        <BackgroundImageControls
+          style={style}
+          onChange={onChange}
+          visible={Boolean(style.showHeroImage)}
+          idPrefix="banner-with-cta"
         />
         <InspectorSwitch
           checked={style.showOverlay}

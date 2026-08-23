@@ -8,6 +8,7 @@ import {
   applyInspectorReset,
 } from "@/components/inspector";
 import { BacklinksStyleSection } from "@/app/cmsComponents/shared/backlinks";
+import { BackgroundImageControls } from "@/app/cmsComponents/shared/backgroundImage";
 import FullHeightHeaderWithTextContentForm from "./FullHeightHeaderWithTextContentForm";
 import {
   DEFAULT_FULL_HEIGHT_HEADER_STYLE,
@@ -89,6 +90,12 @@ function FullHeightHeaderWithTextStyleForm({ style, onChange }) {
           onChange={() => toggle("showHeroImage")}
           label="Image"
           hint="Full-height background photo"
+        />
+        <BackgroundImageControls
+          style={style}
+          onChange={onChange}
+          visible={Boolean(style.showHeroImage)}
+          idPrefix="full-height-header-with-text"
         />
         <InspectorSwitch
           checked={style.showOverlay}

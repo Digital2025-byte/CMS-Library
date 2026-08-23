@@ -126,6 +126,7 @@ export default function HeaderWithThreeImageBackground({
           mobileImage={slice.mobileImage}
           heightClass={heightClass}
           priority={Boolean(slice.priority)}
+          style={style}
         />
       ))}
     </div>

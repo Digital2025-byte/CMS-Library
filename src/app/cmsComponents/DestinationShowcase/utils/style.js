@@ -3,6 +3,11 @@ import {
   DEFAULT_BACKLINK_STYLE,
   resolveBacklinkStyle,
 } from "@/app/cmsComponents/shared/backlinks";
+import {
+  BACKGROUND_IMAGE_STYLE_RESET_KEYS,
+  DEFAULT_BACKGROUND_IMAGE_STYLE,
+  resolveBackgroundImageStyle,
+} from "@/app/cmsComponents/shared/backgroundImage";
 
 export const TITLE_ALIGN_OPTIONS = [
   { value: "left", label: "Start" },
@@ -80,11 +85,15 @@ export const DEFAULT_DESTINATION_SHOWCASE_STYLE = {
   descriptionFontWeight: "normal",
   buttonTextFontWeight: "semibold",
   ...DEFAULT_BACKLINK_STYLE,
+  ...DEFAULT_BACKGROUND_IMAGE_STYLE,
 };
 
 export function resolveDestinationShowcaseStyle(style = {}) {
-  return resolveBacklinkStyle(
-    { ...DEFAULT_DESTINATION_SHOWCASE_STYLE, ...style },
+  return resolveBackgroundImageStyle(
+    resolveBacklinkStyle(
+      { ...DEFAULT_DESTINATION_SHOWCASE_STYLE, ...style },
+      DEFAULT_DESTINATION_SHOWCASE_STYLE
+    ),
     DEFAULT_DESTINATION_SHOWCASE_STYLE
   );
 }
@@ -108,6 +117,7 @@ export const DESTINATION_SHOWCASE_STYLE_RESET_KEYS = {
     "overlayColor",
     "destNameColor",
     "destBodyColor",
+    ...BACKGROUND_IMAGE_STYLE_RESET_KEYS,
   ],
   cards: [
     "showCards",

@@ -8,11 +8,10 @@ import {
   applyInspectorReset,
 } from "@/components/inspector";
 import { BacklinksStyleSection } from "@/app/cmsComponents/shared/backlinks";
+import { BackgroundImageControls } from "@/app/cmsComponents/shared/backgroundImage";
 import SplitTextOnlyContentForm from "./SplitTextOnlyContentForm";
 import {
   DEFAULT_SPLIT_TEXT_ONLY_STYLE,
-  IMAGE_FIT_OPTIONS,
-  IMAGE_POSITION_OPTIONS,
   SPLIT_TEXT_ONLY_STYLE_RESET_KEYS,
   TITLE_ALIGN_OPTIONS,
 } from "../utils/style";
@@ -86,24 +85,12 @@ function SplitTextOnlyStyleForm({ style, onChange }) {
           label="Background image"
           hint="Show the hero photo"
         />
-        {style.showBackgroundImage ? (
-          <>
-            <InspectorChoose
-              label="Image fit"
-              name="imageFit"
-              value={style.imageFit || "cover"}
-              options={IMAGE_FIT_OPTIONS}
-              onChange={(value) => update("imageFit", value)}
-            />
-            <InspectorChoose
-              label="Image position"
-              name="imagePosition"
-              value={style.imagePosition || "center"}
-              options={IMAGE_POSITION_OPTIONS}
-              onChange={(value) => update("imagePosition", value)}
-            />
-          </>
-        ) : null}
+        <BackgroundImageControls
+          style={style}
+          onChange={onChange}
+          visible={Boolean(style.showBackgroundImage)}
+          idPrefix="split-text-only"
+        />
         <InspectorSwitch
           checked={style.showOverlay}
           onChange={() => toggle("showOverlay")}

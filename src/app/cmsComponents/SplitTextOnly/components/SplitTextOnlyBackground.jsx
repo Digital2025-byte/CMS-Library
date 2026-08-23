@@ -1,9 +1,6 @@
 import { getThemeColorCss } from "@/styles/themeColors";
-import {
-  DEFAULT_SPLIT_TEXT_ONLY_STYLE,
-  IMAGE_FIT_CSS,
-  IMAGE_POSITION_CSS,
-} from "../utils/style";
+import { getBackgroundDisplayStyle } from "@/app/cmsComponents/shared/backgroundImage";
+import { DEFAULT_SPLIT_TEXT_ONLY_STYLE } from "../utils/style";
 
 function buildMobileGradient(overlayCss) {
   return `linear-gradient(180deg, color-mix(in srgb, ${overlayCss} 15%, transparent) 0%, color-mix(in srgb, ${overlayCss} 55%, transparent) 55%, color-mix(in srgb, ${overlayCss} 85%, transparent) 100%)`;
@@ -23,10 +20,6 @@ export default function SplitTextOnlyBackground({
 }) {
   const fallbackBg = getThemeColorCss(style.sectionBg, "main");
   const overlayCss = getThemeColorCss(style.overlayColor, "primary-1");
-  const backgroundSize =
-    IMAGE_FIT_CSS[style.imageFit] ?? IMAGE_FIT_CSS.cover;
-  const backgroundPosition =
-    IMAGE_POSITION_CSS[style.imagePosition] ?? IMAGE_POSITION_CSS.center;
 
   return (
     <div
@@ -38,8 +31,7 @@ export default function SplitTextOnlyBackground({
           : style.showSectionBg
             ? fallbackBg
             : undefined,
-        backgroundSize: imageUrl ? backgroundSize : undefined,
-        backgroundPosition: imageUrl ? backgroundPosition : undefined,
+        ...(imageUrl ? getBackgroundDisplayStyle(style) : {}),
       }}
     >
       {mobileGradient ? (

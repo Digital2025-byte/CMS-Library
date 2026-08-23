@@ -36,6 +36,8 @@ export default function HeaderWithCityInfoPanel({
       specialGradient={style.showOverlay}
       overlayColor={overlayCss}
       lang={lang}
+      imageFit={style.imageFit}
+      imagePosition={style.imagePosition}
     >
       <section
         className="relative flex min-h-[75vh] w-full items-end"

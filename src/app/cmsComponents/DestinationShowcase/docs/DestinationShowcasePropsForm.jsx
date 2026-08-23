@@ -8,6 +8,7 @@ import {
   applyInspectorReset,
 } from "@/components/inspector";
 import { BacklinksStyleSection } from "@/app/cmsComponents/shared/backlinks";
+import { BackgroundImageControls } from "@/app/cmsComponents/shared/backgroundImage";
 import DestinationShowcaseContentForm from "./DestinationShowcaseContentForm";
 import {
   CARD_RADIUS_OPTIONS,
@@ -124,6 +125,12 @@ function DestinationShowcaseStyleForm({ style, onChange }) {
           onChange={() => toggle("showHeroImage")}
           label="Image"
           hint="Hero photo behind the banner"
+        />
+        <BackgroundImageControls
+          style={style}
+          onChange={onChange}
+          visible={style.showHeroImage}
+          idPrefix="destination-showcase"
         />
         <InspectorSwitch
           checked={style.showOverlay}

@@ -3,6 +3,11 @@ import {
   DEFAULT_BACKLINK_STYLE,
   resolveBacklinkStyle,
 } from "@/app/cmsComponents/shared/backlinks";
+import {
+  BACKGROUND_IMAGE_STYLE_RESET_KEYS,
+  DEFAULT_BACKGROUND_IMAGE_STYLE,
+  resolveBackgroundImageStyle,
+} from "@/app/cmsComponents/shared/backgroundImage";
 
 export const TITLE_ALIGN_OPTIONS = [
   { value: "left", label: "Start" },
@@ -61,11 +66,15 @@ export const DEFAULT_SERVICE_BENEFITS_STYLE = {
   descriptionFontWeight: "normal",
   itemTitleFontWeight: "semibold",
   ...DEFAULT_BACKLINK_STYLE,
+  ...DEFAULT_BACKGROUND_IMAGE_STYLE,
 };
 
 export function resolveServiceBenefitsStyle(style = {}) {
-  return resolveBacklinkStyle(
-    { ...DEFAULT_SERVICE_BENEFITS_STYLE, ...style },
+  return resolveBackgroundImageStyle(
+    resolveBacklinkStyle(
+      { ...DEFAULT_SERVICE_BENEFITS_STYLE, ...style },
+      DEFAULT_SERVICE_BENEFITS_STYLE
+    ),
     DEFAULT_SERVICE_BENEFITS_STYLE
   );
 }
@@ -92,6 +101,7 @@ export const SERVICE_BENEFITS_STYLE_RESET_KEYS = {
     "showOverlay",
     "overlayColor",
     "cardRadius",
+    ...BACKGROUND_IMAGE_STYLE_RESET_KEYS,
   ],
   links: [...BACKLINK_STYLE_RESET_KEYS],
 };

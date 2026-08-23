@@ -3,6 +3,11 @@ import {
   DEFAULT_BACKLINK_STYLE,
   resolveBacklinkStyle,
 } from "@/app/cmsComponents/shared/backlinks";
+import {
+  BACKGROUND_IMAGE_STYLE_RESET_KEYS,
+  DEFAULT_BACKGROUND_IMAGE_STYLE,
+  resolveBackgroundImageStyle,
+} from "@/app/cmsComponents/shared/backgroundImage";
 
 export const TITLE_ALIGN_OPTIONS = [
   { value: "left", label: "Start" },
@@ -54,12 +59,16 @@ export const DEFAULT_HEADER_WITH_CITY_INFO_STYLE = {
   tileLabelFontWeight: "medium",
   tileValueFontWeight: "semibold",
   nextFlightFontWeight: "semibold",
+  ...DEFAULT_BACKGROUND_IMAGE_STYLE,
   ...DEFAULT_BACKLINK_STYLE,
 };
 
 export function resolveHeaderWithCityInfoStyle(style = {}) {
-  return resolveBacklinkStyle(
-    { ...DEFAULT_HEADER_WITH_CITY_INFO_STYLE, ...style },
+  return resolveBackgroundImageStyle(
+    resolveBacklinkStyle(
+      { ...DEFAULT_HEADER_WITH_CITY_INFO_STYLE, ...style },
+      DEFAULT_HEADER_WITH_CITY_INFO_STYLE
+    ),
     DEFAULT_HEADER_WITH_CITY_INFO_STYLE
   );
 }
@@ -67,7 +76,12 @@ export function resolveHeaderWithCityInfoStyle(style = {}) {
 export const HEADER_WITH_CITY_INFO_STYLE_RESET_KEYS = {
   layout: ["showTitle", "showDescription", "showCityCard"],
   title: ["titleAlign", "titleColor", "titleFontWeight", "descriptionColor", "descriptionFontWeight"],
-  banner: ["showHeroImage", "showOverlay", "overlayColor"],
+  banner: [
+    "showHeroImage",
+    ...BACKGROUND_IMAGE_STYLE_RESET_KEYS,
+    "showOverlay",
+    "overlayColor",
+  ],
   card: [
     "showCardHeading",
     "showCardDescription",

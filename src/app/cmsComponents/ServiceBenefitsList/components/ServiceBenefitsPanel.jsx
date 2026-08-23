@@ -2,6 +2,7 @@ import Image from "next/image";
 import { typography } from "@/styles/typography";
 import { getThemeColorCss } from "@/styles/themeColors";
 import { getFontWeightValue } from "@/styles/fontWeight";
+import { getObjectFitClass } from "@/app/cmsComponents/shared/backgroundImage";
 import ServiceBenefitItem from "./ServiceBenefitItem";
 import { isUsableImageSrc } from "../utils/helpers";
 import {
@@ -36,7 +37,7 @@ export default function ServiceBenefitsPanel({
           fill
           priority
           quality={75}
-          className="object-cover object-center"
+          className={getObjectFitClass(style)}
           sizes="(max-width: 1280px) 100vw, 1280px"
         />
       ) : null}

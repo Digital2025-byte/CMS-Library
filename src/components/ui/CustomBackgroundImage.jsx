@@ -2,6 +2,10 @@
 
 import { motion } from "framer-motion";
 import useIsMobile from "@/hooks/useIsMobile";
+import {
+  IMAGE_FIT_CSS,
+  IMAGE_POSITION_CSS,
+} from "@/app/cmsComponents/shared/backgroundImage";
 
 function toCssUrl(url = "") {
   return String(url)
@@ -25,6 +29,8 @@ export default function CustomBackgroundImage({
   lang = "en",
   flipImage = false,
   specialGradient = false,
+  imageFit = "cover",
+  imagePosition = "center",
 }) {
   const isMobile = useIsMobile(768);
 
@@ -34,18 +40,21 @@ export default function CustomBackgroundImage({
       : imageUrl?.src || imageUrl;
 
   const safeBgSrc = typeof bgSrc === "string" ? toCssUrl(bgSrc) : bgSrc;
+  const backgroundSize = IMAGE_FIT_CSS[imageFit] ?? IMAGE_FIT_CSS.cover;
+  const backgroundPosition =
+    IMAGE_POSITION_CSS[imagePosition] ?? IMAGE_POSITION_CSS.center;
 
   return (
     <div className={`relative ${className}`} style={style}>
-      {/* Clip image/gradient only — keep children outside so backdrop-blur works */}
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
         <motion.div
-          className={`absolute inset-0 h-full w-full bg-cover bg-center ${
+          className={`absolute inset-0 h-full w-full bg-no-repeat ${
             flipImage ? "scale-x-[-1]" : ""
           }`}
           style={{
             backgroundImage: safeBgSrc ? `url(${safeBgSrc})` : undefined,
-            backgroundPosition: isMobile ? "center top" : "center center",
+            backgroundSize: safeBgSrc ? backgroundSize : undefined,
+            backgroundPosition: safeBgSrc ? backgroundPosition : undefined,
           }}
           initial={initialAnimation}
           animate={animateAnimation}
@@ -101,7 +110,6 @@ export default function CustomBackgroundImage({
           <div
             className="absolute inset-0"
             style={{
-              // Keep photo visible at the bottom so the city card can blur it
               backgroundImage: overlayColor
                 ? `linear-gradient(180deg, color-mix(in srgb, ${overlayColor} 20%, transparent) 0%, color-mix(in srgb, ${overlayColor} 72%, transparent) 100%)`
                 : "linear-gradient(180deg, rgb(5 78 114 / 0.2) 0%, rgb(19 54 75 / 0.72) 100%)",

@@ -8,6 +8,7 @@ import {
   applyInspectorReset,
 } from "@/components/inspector";
 import { BacklinksStyleSection } from "@/app/cmsComponents/shared/backlinks";
+import { BackgroundImageControls } from "@/app/cmsComponents/shared/backgroundImage";
 import SplitWithImageContentForm from "./SplitWithImageContentForm";
 import {
   DEFAULT_SPLIT_WITH_IMAGE_STYLE,
@@ -120,6 +121,12 @@ function SplitWithImageStyleForm({ style, onChange }) {
           onChange={() => toggle("showBackgroundImage")}
           label="Background photo"
           hint="Full-bleed sky image"
+        />
+        <BackgroundImageControls
+          style={style}
+          onChange={onChange}
+          visible={Boolean(style.showBackgroundImage)}
+          idPrefix="split-with-image"
         />
         <InspectorSwitch
           checked={style.showImage}

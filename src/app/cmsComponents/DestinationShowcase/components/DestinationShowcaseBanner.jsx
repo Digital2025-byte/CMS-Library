@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
+import { getObjectFitClass } from "@/app/cmsComponents/shared/backgroundImage";
 import DestinationShowcaseBlueLayer from "./DestinationShowcaseBlueLayer";
 import DestinationShowcaseContent from "./DestinationShowcaseContent";
 import DestinationShowcaseNav from "./DestinationShowcaseNav";
@@ -57,7 +58,7 @@ export default function DestinationShowcaseBanner({
                 fill
                 sizes={HERO_IMAGE_SIZES}
                 quality={HERO_IMAGE_QUALITY}
-                className="object-cover"
+                className={getObjectFitClass(style)}
                 priority={activeIndex === 0}
                 unoptimized={
                   typeof heroSrc === "string" && heroSrc.startsWith("http")

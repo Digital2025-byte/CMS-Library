@@ -1,5 +1,6 @@
 import PageContentContainer from "@/components/layout/PageContentContainer";
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getBackgroundDisplayStyle } from "@/app/cmsComponents/shared/backgroundImage";
 import {
   DEFAULT_PARAGRAPH_STYLE,
   SECTION_PADDING_CLASS,
@@ -26,9 +27,7 @@ export default function ParagraphContainer({
     ) {
       backgroundStyle = {
         backgroundImage: `url(${toCssUrl(style.sectionBgImage)})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
+        ...getBackgroundDisplayStyle(style),
       };
     } else {
       backgroundStyle = {

@@ -49,6 +49,8 @@ export default function SplitWithImagePanel({
         overlayColor={overlayColor}
         desktopGradient={Boolean(overlayColor)}
         lang={lang}
+        imageFit={style.imageFit}
+        imagePosition={style.imagePosition}
       >
         <section className="flex min-h-screen items-center justify-center">
           <PageContentContainer

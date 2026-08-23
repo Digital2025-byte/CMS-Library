@@ -44,6 +44,8 @@ export default function BannerWithCTAsAndItemsPanel({
       desktopGradient={style.showOverlay}
       overlayColor={overlayCss}
       lang={lang}
+      imageFit={style.imageFit}
+      imagePosition={style.imagePosition}
       className={`w-full ${heightClass}`}
       style={fallbackBg ? { backgroundColor: fallbackBg } : undefined}
     >

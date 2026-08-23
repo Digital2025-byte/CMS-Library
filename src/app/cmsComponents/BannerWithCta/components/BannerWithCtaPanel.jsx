@@ -1,4 +1,5 @@
 import { getThemeColorCss } from "@/styles/themeColors";
+import { getBackgroundDisplayStyle } from "@/app/cmsComponents/shared/backgroundImage";
 import { isUsableImageSrc } from "../utils/helpers";
 import {
   BANNER_RADIUS_CLASS,
@@ -44,9 +45,7 @@ export default function BannerWithCtaPanel({
       aria-label={content.imageAlt || content.title || undefined}
       style={{
         backgroundImage: backgroundLayers || undefined,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
+        ...getBackgroundDisplayStyle(style),
         backgroundColor: heroSrc ? undefined : overlayCss,
       }}
     >

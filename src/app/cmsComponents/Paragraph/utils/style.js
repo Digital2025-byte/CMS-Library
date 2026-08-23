@@ -4,6 +4,11 @@ import {
   LINK_UNDERLINE_OPTIONS,
   resolveBacklinkStyle,
 } from "@/app/cmsComponents/shared/backlinks";
+import {
+  BACKGROUND_IMAGE_STYLE_RESET_KEYS,
+  DEFAULT_BACKGROUND_IMAGE_STYLE,
+  resolveBackgroundImageStyle,
+} from "@/app/cmsComponents/shared/backgroundImage";
 
 export { LINK_UNDERLINE_OPTIONS };
 
@@ -49,12 +54,16 @@ export const DEFAULT_PARAGRAPH_STYLE = {
   descriptionColor: "700",
   titleFontWeight: "semibold",
   descriptionFontWeight: "normal",
+  ...DEFAULT_BACKGROUND_IMAGE_STYLE,
   ...DEFAULT_BACKLINK_STYLE,
 };
 
 export function resolveParagraphStyle(style = {}) {
-  const merged = resolveBacklinkStyle(
-    { ...DEFAULT_PARAGRAPH_STYLE, ...style },
+  const merged = resolveBackgroundImageStyle(
+    resolveBacklinkStyle(
+      { ...DEFAULT_PARAGRAPH_STYLE, ...style },
+      DEFAULT_PARAGRAPH_STYLE
+    ),
     DEFAULT_PARAGRAPH_STYLE
   );
   const sectionBgType =
@@ -76,6 +85,7 @@ export const PARAGRAPH_STYLE_RESET_KEYS = {
     "sectionBgType",
     "sectionBg",
     "sectionBgImage",
+    ...BACKGROUND_IMAGE_STYLE_RESET_KEYS,
     "showOverlay",
     "overlayColor",
     "sectionPadding",
