@@ -9,7 +9,7 @@ import {
 } from "@/components/inspector";
 
 const TITLE_KEYS = ["title", "description"];
-const TAB_KEYS = ["tabs"];
+const ITEM_KEYS = ["tabs"];
 
 const emptyOffice = () => ({
   id: "",
@@ -23,7 +23,7 @@ const emptyOffice = () => ({
   longitude: "",
 });
 
-const emptyTab = () => ({
+const emptyItem = () => ({
   country: "",
   items: [emptyOffice()],
 });
@@ -45,32 +45,27 @@ export default function MapInfoContentForm({ content, onChange, defaults }) {
         onReset={() => reset(TITLE_KEYS)}
       />
 
-      <InspectorSection title="Tabs" onReset={() => reset(TAB_KEYS)}>
+      <InspectorSection title="Items" onReset={() => reset(ITEM_KEYS)}>
         <InspectorRepeater
           items={content.tabs || []}
-          createItem={emptyTab}
-          itemLabel={(tab, index) => tab.country || `Tab ${index + 1}`}
-          addLabel="Add Tab"
-          titleKey="country"
-          titlePlaceholder="Country"
+          createItem={emptyItem}
+          itemLabel={(_tab, index) => `Item ${index + 1}`}
+          addLabel="Add Item"
           onChange={(tabs) => onChange({ ...content, tabs })}
         >
           {(tab, { index, update }) => (
             <>
               <InspectorField
-                id={`map-info-tab-${index}-country`}
+                id={`map-info-item-${index}-country`}
                 label="Country"
                 value={tab.country || ""}
                 onChange={(value) => update("country", value)}
               />
-
               <InspectorRepeater
                 items={tab.items || []}
                 createItem={emptyOffice}
-                itemLabel={(item, itemIndex) =>
-                  item.name || item.city || `Item ${itemIndex + 1}`
-                }
-                addLabel="Add Item"
+                itemLabel={(_item, itemIndex) => `Office ${itemIndex + 1}`}
+                addLabel="Add Office"
                 onChange={(items) => update("items", items)}
               >
                 {(item, { index: itemIndex, update: updateItem }) => (
