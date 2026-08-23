@@ -43,7 +43,7 @@ export function getDestinationsMapContent(data, lang = "en") {
   };
 }
 
-function normalizeCity(city = {}) {
+function normalizeCity(city = {}, { isNewCity } = {}) {
   const imageUrl = Array.isArray(city.imageUrl)
     ? city.imageUrl[0] || ""
     : city.imageUrl || "";
@@ -55,7 +55,8 @@ function normalizeCity(city = {}) {
     IATACode: city.IATACode || "",
     latitude: city.latitude ?? "",
     longitude: city.longitude ?? "",
-    isNewCity: Boolean(city.isNewCity),
+    isNewCity:
+      typeof isNewCity === "boolean" ? isNewCity : Boolean(city.isNewCity),
     price: city.price ?? "",
     currency: city.currency || "",
     numberOfFlightsPerWeek: city.numberOfFlightsPerWeek ?? "",
@@ -65,11 +66,74 @@ function normalizeCity(city = {}) {
   };
 }
 
+/** Editor city fields (category comes from which group the city sits in). */
+function toEditorCity(city = {}) {
+  const normalized = normalizeCity(city);
+  return {
+    cityId: normalized.cityId,
+    cityName: normalized.cityName,
+    countryName: normalized.countryName,
+    IATACode: normalized.IATACode,
+    latitude: normalized.latitude,
+    longitude: normalized.longitude,
+    price: normalized.price,
+    currency: normalized.currency,
+    numberOfFlightsPerWeek: normalized.numberOfFlightsPerWeek,
+    duration: normalized.duration,
+    flightType: normalized.flightType,
+    imageUrl: normalized.imageUrl,
+  };
+}
+
+function serializeCity(city = {}, isNewCity) {
+  return {
+    cityId: city?.cityId || "",
+    cityName: city?.cityName || "",
+    countryName: city?.countryName || "",
+    IATACode: city?.IATACode || "",
+    latitude: city?.latitude ?? "",
+    longitude: city?.longitude ?? "",
+    isNewCity: Boolean(isNewCity),
+    price: city?.price ?? "",
+    currency: city?.currency || "",
+    numberOfFlightsPerWeek: city?.numberOfFlightsPerWeek ?? "",
+    duration: city?.duration ?? "",
+    flightType: city?.flightType || "",
+    imageUrl: city?.imageUrl ? [city.imageUrl] : [],
+  };
+}
+
+/** Flat cities → New routes / Our network editor groups. */
+export function citiesToRouteGroups(cities = []) {
+  const list = Array.isArray(cities) ? cities : [];
+  return {
+    newRouteCities: list.filter((city) => city?.isNewCity).map(toEditorCity),
+    networkCities: list.filter((city) => !city?.isNewCity).map(toEditorCity),
+  };
+}
+
+/** Editor groups → flat cities for runtime / CMS storage. */
+export function routeGroupsToCities(content = {}) {
+  if (Array.isArray(content.cities) && content.cities.length) {
+    return content.cities.map((city) => normalizeCity(city));
+  }
+
+  return [
+    ...(Array.isArray(content.newRouteCities) ? content.newRouteCities : []).map(
+      (city) => normalizeCity(city, { isNewCity: true })
+    ),
+    ...(Array.isArray(content.networkCities) ? content.networkCities : []).map(
+      (city) => normalizeCity(city, { isNewCity: false })
+    ),
+  ];
+}
+
 export function getDestinationsMapEditorContent(data, lang = "en") {
   const result = getDestinationsMapContent(data, lang);
   const cities = result.cities || [];
   const routes = result.routes || [];
   const labels = result.labels || {};
+  const groups = citiesToRouteGroups(cities);
 
   return {
     fromLabel: labels?.from || "",
@@ -78,7 +142,8 @@ export function getDestinationsMapEditorContent(data, lang = "en") {
     bookNowLabel: labels?.bookNow || "",
     newRoutesLabel: labels?.newRoutes || "",
     ourNetworkLabel: labels?.ourNetwork || "",
-    cities: (Array.isArray(cities) ? cities : []).map(normalizeCity),
+    newRouteCities: groups.newRouteCities,
+    networkCities: groups.networkCities,
     routes: (Array.isArray(routes) ? routes : []).map((route) => ({
       fromCityId: route?.fromCityId || "",
       toCityId: route?.toCityId || "",
@@ -87,6 +152,8 @@ export function getDestinationsMapEditorContent(data, lang = "en") {
 }
 
 export function wrapDestinationsMapContent(content = {}, lang = "en") {
+  const cities = routeGroupsToCities(content);
+
   return {
     type: "DestinationsMap",
     translations: [
@@ -101,23 +168,7 @@ export function wrapDestinationsMapContent(content = {}, lang = "en") {
             newRoutes: content.newRoutesLabel || "",
             ourNetwork: content.ourNetworkLabel || "",
           },
-          cities: (Array.isArray(content.cities) ? content.cities : []).map(
-            (city) => ({
-              cityId: city?.cityId || "",
-              cityName: city?.cityName || "",
-              countryName: city?.countryName || "",
-              IATACode: city?.IATACode || "",
-              latitude: city?.latitude ?? "",
-              longitude: city?.longitude ?? "",
-              isNewCity: Boolean(city?.isNewCity),
-              price: city?.price ?? "",
-              currency: city?.currency || "",
-              numberOfFlightsPerWeek: city?.numberOfFlightsPerWeek ?? "",
-              duration: city?.duration ?? "",
-              flightType: city?.flightType || "",
-              imageUrl: city?.imageUrl ? [city.imageUrl] : [],
-            })
-          ),
+          cities: cities.map((city) => serializeCity(city, city.isNewCity)),
           routes: (Array.isArray(content.routes) ? content.routes : []).map(
             (route) => ({
               fromCityId: route?.fromCityId || "",

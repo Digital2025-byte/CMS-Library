@@ -4,7 +4,7 @@ import {
   InspectorField,
   InspectorRepeater,
   InspectorSection,
-  InspectorSwitch,
+  InspectorSelect,
   applyInspectorReset,
 } from "@/components/inspector";
 
@@ -24,7 +24,6 @@ const emptyCity = () => ({
   IATACode: "",
   latitude: "",
   longitude: "",
-  isNewCity: false,
   price: "",
   currency: "",
   numberOfFlightsPerWeek: "",
@@ -38,6 +37,105 @@ const emptyRoute = () => ({
   toCityId: "",
 });
 
+function cityFields(item, { index, update, idPrefix }) {
+  return (
+    <>
+      <InspectorField
+        id={`${idPrefix}-${index}-id`}
+        label="City ID"
+        value={item.cityId || ""}
+        onChange={(value) => update("cityId", value)}
+      />
+      <InspectorField
+        id={`${idPrefix}-${index}-name`}
+        label="Name"
+        value={item.cityName || ""}
+        onChange={(value) => update("cityName", value)}
+      />
+      <InspectorField
+        id={`${idPrefix}-${index}-country`}
+        label="Country"
+        value={item.countryName || ""}
+        onChange={(value) => update("countryName", value)}
+      />
+      <InspectorField
+        id={`${idPrefix}-${index}-iata`}
+        label="IATA"
+        value={item.IATACode || ""}
+        onChange={(value) => update("IATACode", value)}
+      />
+      <InspectorField
+        id={`${idPrefix}-${index}-lat`}
+        label="Latitude"
+        value={String(item.latitude ?? "")}
+        onChange={(value) => update("latitude", value)}
+      />
+      <InspectorField
+        id={`${idPrefix}-${index}-lng`}
+        label="Longitude"
+        value={String(item.longitude ?? "")}
+        onChange={(value) => update("longitude", value)}
+      />
+      <InspectorField
+        id={`${idPrefix}-${index}-price`}
+        label="Price"
+        value={String(item.price ?? "")}
+        onChange={(value) => update("price", value)}
+      />
+      <InspectorField
+        id={`${idPrefix}-${index}-currency`}
+        label="Currency"
+        value={item.currency || ""}
+        onChange={(value) => update("currency", value)}
+      />
+      <InspectorField
+        id={`${idPrefix}-${index}-flights`}
+        label="Flights per week"
+        value={String(item.numberOfFlightsPerWeek ?? "")}
+        onChange={(value) => update("numberOfFlightsPerWeek", value)}
+      />
+      <InspectorField
+        id={`${idPrefix}-${index}-duration`}
+        label="Duration"
+        value={String(item.duration ?? "")}
+        onChange={(value) => update("duration", value)}
+      />
+      <InspectorField
+        id={`${idPrefix}-${index}-type`}
+        label="Flight type"
+        value={item.flightType || ""}
+        onChange={(value) => update("flightType", value)}
+      />
+      <InspectorField
+        id={`${idPrefix}-${index}-image`}
+        label="Image URL"
+        value={item.imageUrl || ""}
+        onChange={(value) => update("imageUrl", value)}
+      />
+    </>
+  );
+}
+
+function buildCityOptions(content) {
+  const cities = [
+    ...(content.newRouteCities || []),
+    ...(content.networkCities || []),
+  ];
+
+  return [
+    { value: "", label: "Select city" },
+    ...cities
+      .filter((city) => city.cityId || city.cityName)
+      .map((city) => ({
+        value: city.cityId || city.cityName,
+        label:
+          [city.cityName, city.IATACode || city.cityId]
+            .filter(Boolean)
+            .join(" · ") || city.cityId,
+      })),
+  ];
+}
+
 export default function DestinationsMapContentForm({
   content,
   onChange,
@@ -47,6 +145,9 @@ export default function DestinationsMapContentForm({
     onChange({ ...content, [key]: value });
   };
   const reset = (keys) => onChange(applyInspectorReset(content, defaults, keys));
+  const cityOptions = buildCityOptions(content);
+  const newRoutesTitle = content.newRoutesLabel || "New routes";
+  const networkTitle = content.ourNetworkLabel || "Our network";
 
   return (
     <div>
@@ -90,121 +191,84 @@ export default function DestinationsMapContentForm({
       </InspectorSection>
 
       <InspectorSection
-        title="Items"
-        onReset={() => reset(["cities"])}
+        title={newRoutesTitle}
+        onReset={() => reset(["newRouteCities"])}
       >
         <InspectorRepeater
-          items={content.cities || []}
+          items={content.newRouteCities || []}
           createItem={emptyCity}
-          itemLabel={(_item, index) => `Item ${index + 1}`}
-          addLabel="Add Item"
-          onChange={(cities) => onChange({ ...content, cities })}
+          itemLabel={(item, index) =>
+            item.cityName || item.IATACode || `Route ${index + 1}`
+          }
+          addLabel="Add Route"
+          onChange={(newRouteCities) =>
+            onChange({ ...content, newRouteCities })
+          }
         >
-          {(item, { index, update }) => (
-            <>
-              <InspectorField
-                id={`destinations-map-city-${index}-id`}
-                label="City ID"
-                value={item.cityId || ""}
-                onChange={(value) => update("cityId", value)}
-              />
-              <InspectorField
-                id={`destinations-map-city-${index}-name`}
-                label="Name"
-                value={item.cityName || ""}
-                onChange={(value) => update("cityName", value)}
-              />
-              <InspectorField
-                id={`destinations-map-city-${index}-country`}
-                label="Country"
-                value={item.countryName || ""}
-                onChange={(value) => update("countryName", value)}
-              />
-              <InspectorField
-                id={`destinations-map-city-${index}-iata`}
-                label="IATA"
-                value={item.IATACode || ""}
-                onChange={(value) => update("IATACode", value)}
-              />
-              <InspectorField
-                id={`destinations-map-city-${index}-lat`}
-                label="Latitude"
-                value={String(item.latitude ?? "")}
-                onChange={(value) => update("latitude", value)}
-              />
-              <InspectorField
-                id={`destinations-map-city-${index}-lng`}
-                label="Longitude"
-                value={String(item.longitude ?? "")}
-                onChange={(value) => update("longitude", value)}
-              />
-              <InspectorSwitch
-                checked={Boolean(item.isNewCity)}
-                onChange={() => update("isNewCity", !item.isNewCity)}
-                label="New route"
-                hint="Mark this city as a new route"
-              />
-              <InspectorField
-                id={`destinations-map-city-${index}-price`}
-                label="Price"
-                value={String(item.price ?? "")}
-                onChange={(value) => update("price", value)}
-              />
-              <InspectorField
-                id={`destinations-map-city-${index}-currency`}
-                label="Currency"
-                value={item.currency || ""}
-                onChange={(value) => update("currency", value)}
-              />
-              <InspectorField
-                id={`destinations-map-city-${index}-flights`}
-                label="Flights per week"
-                value={String(item.numberOfFlightsPerWeek ?? "")}
-                onChange={(value) => update("numberOfFlightsPerWeek", value)}
-              />
-              <InspectorField
-                id={`destinations-map-city-${index}-duration`}
-                label="Duration"
-                value={String(item.duration ?? "")}
-                onChange={(value) => update("duration", value)}
-              />
-              <InspectorField
-                id={`destinations-map-city-${index}-type`}
-                label="Flight type"
-                value={item.flightType || ""}
-                onChange={(value) => update("flightType", value)}
-              />
-              <InspectorField
-                id={`destinations-map-city-${index}-image`}
-                label="Image URL"
-                value={item.imageUrl || ""}
-                onChange={(value) => update("imageUrl", value)}
-              />
-            </>
-          )}
+          {(item, ctx) =>
+            cityFields(item, {
+              ...ctx,
+              idPrefix: "destinations-map-new",
+            })
+          }
         </InspectorRepeater>
       </InspectorSection>
 
-      <InspectorSection title="Routes" onReset={() => reset(["routes"])}>
+      <InspectorSection
+        title={networkTitle}
+        onReset={() => reset(["networkCities"])}
+      >
+        <InspectorRepeater
+          items={content.networkCities || []}
+          createItem={emptyCity}
+          itemLabel={(item, index) =>
+            item.cityName || item.IATACode || `Route ${index + 1}`
+          }
+          addLabel="Add Route"
+          onChange={(networkCities) => onChange({ ...content, networkCities })}
+        >
+          {(item, ctx) =>
+            cityFields(item, {
+              ...ctx,
+              idPrefix: "destinations-map-network",
+            })
+          }
+        </InspectorRepeater>
+      </InspectorSection>
+
+      <InspectorSection title="Connections" onReset={() => reset(["routes"])}>
         <InspectorRepeater
           items={content.routes || []}
           createItem={emptyRoute}
-          itemLabel={(_item, index) => `Item ${index + 1}`}
-          addLabel="Add Item"
+          itemLabel={(item, index) => {
+            const from =
+              cityOptions.find((option) => option.value === item.fromCityId)
+                ?.label || item.fromCityId;
+            const to =
+              cityOptions.find((option) => option.value === item.toCityId)
+                ?.label || item.toCityId;
+            if (item.fromCityId || item.toCityId) {
+              return `${from || "From"} → ${to || "To"}`;
+            }
+            return `Connection ${index + 1}`;
+          }}
+          addLabel="Add Connection"
           onChange={(routes) => onChange({ ...content, routes })}
         >
           {(item, { index, update }) => (
             <>
-              <InspectorField
+              <InspectorSelect
                 id={`destinations-map-route-${index}-from`}
-                label="From city ID"
+                label="From"
                 value={item.fromCityId || ""}
+                options={cityOptions}
                 onChange={(value) => update("fromCityId", value)}
               />
-              <InspectorField
+              <InspectorSelect
                 id={`destinations-map-route-${index}-to`}
-                label="To city ID"
+                label="To"
                 value={item.toCityId || ""}
+                options={cityOptions}
                 onChange={(value) => update("toCityId", value)}
               />
             </>

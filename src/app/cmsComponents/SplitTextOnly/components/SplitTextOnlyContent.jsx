@@ -7,6 +7,9 @@ import {
   TITLE_ALIGN_CLASS,
 } from "../utils/style";
 
+const TEXT_SHADOW =
+  "0 1px 2px rgba(0, 0, 0, 0.45), 0 4px 18px rgba(0, 0, 0, 0.35)";
+
 export default function SplitTextOnlyContent({
   title,
   description,
@@ -28,7 +31,10 @@ export default function SplitTextOnlyContent({
       {showHeading ? (
         <h1
           className={`${typography.sectionTitle} font-semibold`}
-          style={{ color: getThemeColorCss(style.titleColor, "secondary-100"), fontWeight: getFontWeightValue(style.titleFontWeight),
+          style={{
+            color: getThemeColorCss(style.titleColor, "secondary-100"),
+            fontWeight: getFontWeightValue(style.titleFontWeight),
+            textShadow: TEXT_SHADOW,
           }}
         >
           {title}
@@ -37,8 +43,11 @@ export default function SplitTextOnlyContent({
 
       {showCopy ? (
         <p
-          className={`${typography.sectionDescription} mt-2 p-1 leading-relaxed`}
-          style={{ color: getThemeColorCss(style.descriptionColor, "secondary-100"), fontWeight: getFontWeightValue(style.descriptionFontWeight),
+          className={`${typography.sectionDescription} mt-2 p-1 leading-relaxed max-w-2xl`}
+          style={{
+            color: getThemeColorCss(style.descriptionColor, "secondary-100"),
+            fontWeight: getFontWeightValue(style.descriptionFontWeight),
+            textShadow: TEXT_SHADOW,
           }}
         >
           <LinkedText
