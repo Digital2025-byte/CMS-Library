@@ -9,12 +9,11 @@ import {
 } from "@/components/inspector";
 
 const TITLE_KEYS = ["title", "description"];
-const BRANCH_KEYS = ["branches"];
+const TAB_KEYS = ["tabs"];
 
-const emptyBranch = () => ({
+const emptyOffice = () => ({
   id: "",
   name: "",
-  country: "",
   city: "",
   address: "",
   phone: "",
@@ -22,6 +21,11 @@ const emptyBranch = () => ({
   workingHours: "",
   latitude: "",
   longitude: "",
+});
+
+const emptyTab = () => ({
+  country: "",
+  items: [emptyOffice()],
 });
 
 export default function MapInfoContentForm({ content, onChange, defaults }) {
@@ -41,72 +45,89 @@ export default function MapInfoContentForm({ content, onChange, defaults }) {
         onReset={() => reset(TITLE_KEYS)}
       />
 
-      <InspectorSection title="Items" onReset={() => reset(BRANCH_KEYS)}>
+      <InspectorSection title="Tabs" onReset={() => reset(TAB_KEYS)}>
         <InspectorRepeater
-          items={content.branches || []}
-          createItem={emptyBranch}
-          itemLabel={(_item, index) => `Item ${index + 1}`}
-          addLabel="Add Item"
-          onChange={(branches) => onChange({ ...content, branches })}
+          items={content.tabs || []}
+          createItem={emptyTab}
+          itemLabel={(tab, index) => tab.country || `Tab ${index + 1}`}
+          addLabel="Add Tab"
+          titleKey="country"
+          titlePlaceholder="Country"
+          onChange={(tabs) => onChange({ ...content, tabs })}
         >
-          {(item, { index, update }) => (
+          {(tab, { index, update }) => (
             <>
               <InspectorField
-                id={`map-info-${index}-name`}
-                label="Name"
-                value={item.name || ""}
-                onChange={(value) => update("name", value)}
-              />
-              <InspectorField
-                id={`map-info-${index}-country`}
+                id={`map-info-tab-${index}-country`}
                 label="Country"
-                value={item.country || ""}
+                value={tab.country || ""}
                 onChange={(value) => update("country", value)}
               />
-              <InspectorField
-                id={`map-info-${index}-city`}
-                label="City"
-                value={item.city || ""}
-                onChange={(value) => update("city", value)}
-              />
-              <InspectorField
-                id={`map-info-${index}-address`}
-                label="Address"
-                value={item.address || ""}
-                onChange={(value) => update("address", value)}
-                multiline
-              />
-              <InspectorField
-                id={`map-info-${index}-phone`}
-                label="Phone"
-                value={item.phone || ""}
-                onChange={(value) => update("phone", value)}
-              />
-              <InspectorField
-                id={`map-info-${index}-email`}
-                label="Email"
-                value={item.email || ""}
-                onChange={(value) => update("email", value)}
-              />
-              <InspectorField
-                id={`map-info-${index}-hours`}
-                label="Hours"
-                value={item.workingHours || ""}
-                onChange={(value) => update("workingHours", value)}
-                multiline
-              />
-              <InspectorField
-                id={`map-info-${index}-lat`}
-                label="Latitude"
-                value={item.latitude || ""}
-                onChange={(value) => update("latitude", value)}
-              />
-              <InspectorField
-                id={`map-info-${index}-lng`}
-                label="Longitude"
-                value={item.longitude || ""}
-                onChange={(value) => update("longitude", value)}
-              />
+
+              <InspectorRepeater
+                items={tab.items || []}
+                createItem={emptyOffice}
+                itemLabel={(item, itemIndex) =>
+                  item.name || item.city || `Item ${itemIndex + 1}`
+                }
+                addLabel="Add Item"
+                onChange={(items) => update("items", items)}
+              >
+                {(item, { index: itemIndex, update: updateItem }) => (
+                  <>
+                    <InspectorField
+                      id={`map-info-${index}-${itemIndex}-name`}
+                      label="Name"
+                      value={item.name || ""}
+                      onChange={(value) => updateItem("name", value)}
+                    />
+                    <InspectorField
+                      id={`map-info-${index}-${itemIndex}-city`}
+                      label="City"
+                      value={item.city || ""}
+                      onChange={(value) => updateItem("city", value)}
+                    />
+                    <InspectorField
+                      id={`map-info-${index}-${itemIndex}-address`}
+                      label="Address"
+                      value={item.address || ""}
+                      onChange={(value) => updateItem("address", value)}
+                      multiline
+                    />
+                    <InspectorField
+                      id={`map-info-${index}-${itemIndex}-phone`}
+                      label="Phone"
+                      value={item.phone || ""}
+                      onChange={(value) => updateItem("phone", value)}
+                    />
+                    <InspectorField
+                      id={`map-info-${index}-${itemIndex}-email`}
+                      label="Email"
+                      value={item.email || ""}
+                      onChange={(value) => updateItem("email", value)}
+                    />
+                    <InspectorField
+                      id={`map-info-${index}-${itemIndex}-hours`}
+                      label="Hours"
+                      value={item.workingHours || ""}
+                      onChange={(value) => updateItem("workingHours", value)}
+                      multiline
+                    />
+                    <InspectorField
+                      id={`map-info-${index}-${itemIndex}-lat`}
+                      label="Latitude"
+                      value={item.latitude || ""}
+                      onChange={(value) => updateItem("latitude", value)}
+                    />
+                    <InspectorField
+                      id={`map-info-${index}-${itemIndex}-lng`}
+                      label="Longitude"
+                      value={item.longitude || ""}
+                      onChange={(value) => updateItem("longitude", value)}
+                    />
+                  </>
+                )}
+              </InspectorRepeater>
             </>
           )}
         </InspectorRepeater>

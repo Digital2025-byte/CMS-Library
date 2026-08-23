@@ -43,6 +43,62 @@ export function normalizeMapBranch(branch) {
   };
 }
 
+export function normalizeMapOffice(office = {}) {
+  return {
+    id: office?.id || "",
+    name: office?.name || "",
+    city: office?.city || "",
+    address: office?.address || "",
+    phone: office?.phone || "",
+    email: office?.email || "",
+    workingHours: office?.workingHours || office?.workingHoursText || "",
+    latitude: office?.latitude || "",
+    longitude: office?.longitude || "",
+  };
+}
+
+/** Flat branches → editor tabs (country → offices). */
+export function branchesToTabs(branches = []) {
+  const order = [];
+  const byCountry = new Map();
+
+  (Array.isArray(branches) ? branches : []).forEach((branch) => {
+    const normalized = normalizeMapBranch(branch);
+    const country = normalized.country || "";
+    if (!byCountry.has(country)) {
+      byCountry.set(country, []);
+      order.push(country);
+    }
+    byCountry.get(country).push(normalizeMapOffice(normalized));
+  });
+
+  return order.map((country) => ({
+    country,
+    items: byCountry.get(country) || [],
+  }));
+}
+
+/** Editor tabs → flat branches for runtime / CMS storage. */
+export function tabsToBranches(tabs = []) {
+  const branches = [];
+
+  (Array.isArray(tabs) ? tabs : []).forEach((tab, tabIndex) => {
+    const country = tab?.country || "";
+    const items = Array.isArray(tab?.items) ? tab.items : [];
+
+    items.forEach((item, itemIndex) => {
+      const office = normalizeMapOffice(item);
+      branches.push({
+        ...office,
+        id: office.id || `branch-${tabIndex + 1}-${itemIndex + 1}`,
+        country,
+      });
+    });
+  });
+
+  return branches;
+}
+
 export function getMapInfoContent(data, lang = "en") {
   const translations = Array.isArray(data?.translations)
     ? data.translations
@@ -67,10 +123,13 @@ export function getMapInfoContent(data, lang = "en") {
   const content = matchedTranslation?.content || {};
   const title = content?.title || "";
   const description = content?.description || "";
-  const rawBranches = content?.branches || [];
-  const branches = Array.isArray(rawBranches)
-    ? rawBranches.map(normalizeMapBranch)
-    : [];
+
+  let branches = [];
+  if (Array.isArray(content?.tabs) && content.tabs.length) {
+    branches = tabsToBranches(content.tabs).map(normalizeMapBranch);
+  } else if (Array.isArray(content?.branches)) {
+    branches = content.branches.map(normalizeMapBranch);
+  }
 
   return {
     title,
@@ -97,22 +156,17 @@ export function getMapInfoEditorContent(data, lang = "en") {
   return {
     title: content.title || "",
     description: content.description || "",
-    branches: content.branches.map((branch) => ({
-      id: branch.id || "",
-      name: branch.name || "",
-      country: branch.country || "",
-      city: branch.city || "",
-      address: branch.address || "",
-      phone: branch.phone || "",
-      email: branch.email || "",
-      workingHours: branch.workingHours || "",
-      latitude: branch.latitude || "",
-      longitude: branch.longitude || "",
-    })),
+    tabs: branchesToTabs(content.branches),
   };
 }
 
 export function wrapMapInfoContent(content = {}, lang = "en") {
+  const branches = Array.isArray(content.tabs)
+    ? tabsToBranches(content.tabs)
+    : Array.isArray(content.branches)
+      ? content.branches.map(normalizeMapBranch)
+      : [];
+
   return {
     translations: [
       {
@@ -120,21 +174,7 @@ export function wrapMapInfoContent(content = {}, lang = "en") {
         content: {
           title: content.title || "",
           description: content.description || "",
-          branches: (Array.isArray(content.branches)
-            ? content.branches
-            : []
-          ).map((branch, index) => ({
-            id: branch?.id || `branch-${index + 1}`,
-            name: branch?.name || "",
-            country: branch?.country || "",
-            city: branch?.city || "",
-            address: branch?.address || "",
-            phone: branch?.phone || "",
-            email: branch?.email || "",
-            workingHours: branch?.workingHours || "",
-            latitude: branch?.latitude || "",
-            longitude: branch?.longitude || "",
-          })),
+          branches,
         },
       },
     ],
