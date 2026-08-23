@@ -1,7 +1,6 @@
 import {
   InspectorChoose,
   InspectorColor,
-  InspectorField,
   InspectorFontWeight,
   InspectorSection,
   InspectorSwitch,
@@ -10,6 +9,7 @@ import {
 } from "@/components/inspector";
 import { BacklinksStyleSection } from "@/app/cmsComponents/shared/backlinks";
 import { BackgroundImageControls } from "@/app/cmsComponents/shared/backgroundImage";
+import { MediaField } from "@/components/mediaLibrary";
 import ParagraphContentForm from "./ParagraphContentForm";
 import {
   DEFAULT_PARAGRAPH_STYLE,
@@ -98,9 +98,9 @@ function ParagraphStyleForm({ style, onChange }) {
               onChange={(value) => update("sectionBgType", value)}
             />
             {style.sectionBgType === "image" ? (
-              <InspectorField
+              <MediaField
                 id="paragraph-section-bg-image"
-                label="Background image URL"
+                label="Background image"
                 value={style.sectionBgImage || ""}
                 onChange={(value) => update("sectionBgImage", value)}
               />
