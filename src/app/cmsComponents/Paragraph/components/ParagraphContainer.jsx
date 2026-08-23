@@ -37,14 +37,30 @@ export default function ParagraphContainer({
     }
   }
 
+  const showOverlay = style.showSectionBg && style.showOverlay;
+  const overlayCss = getThemeColorCss(style.overlayColor, "primary-1");
+
   return (
     <div
-      className={`w-full ${className}`.trim()}
+      className={`relative w-full overflow-hidden ${className}`.trim()}
       lang={lang}
       dir={dir || (lang === "ar" ? "rtl" : "ltr")}
       style={backgroundStyle}
     >
-      <PageContentContainer as="section" className={paddingClass}>
+      {showOverlay ? (
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{
+            backgroundColor: `color-mix(in srgb, ${overlayCss} 55%, transparent)`,
+          }}
+          aria-hidden
+        />
+      ) : null}
+
+      <PageContentContainer
+        as="section"
+        className={`relative z-10 ${paddingClass}`}
+      >
         {children}
       </PageContentContainer>
     </div>

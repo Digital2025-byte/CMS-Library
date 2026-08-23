@@ -11,6 +11,8 @@ import { BacklinksStyleSection } from "@/app/cmsComponents/shared/backlinks";
 import SplitTextOnlyContentForm from "./SplitTextOnlyContentForm";
 import {
   DEFAULT_SPLIT_TEXT_ONLY_STYLE,
+  IMAGE_FIT_OPTIONS,
+  IMAGE_POSITION_OPTIONS,
   SPLIT_TEXT_ONLY_STYLE_RESET_KEYS,
   TITLE_ALIGN_OPTIONS,
 } from "../utils/style";
@@ -35,18 +37,18 @@ function SplitTextOnlyStyleForm({ style, onChange }) {
         />
         {style.showTitle ? (
           <>
-          <InspectorColor
-            label="Title color"
-            value={style.titleColor}
-            onChange={(value) => update("titleColor", value)}
-          />
-          <InspectorFontWeight
-            id="titleColor-weight"
-            label="Title weight"
-            value={style.titleFontWeight}
-            onChange={(value) => update("titleFontWeight", value)}
-          />
-        </>
+            <InspectorColor
+              label="Title color"
+              value={style.titleColor}
+              onChange={(value) => update("titleColor", value)}
+            />
+            <InspectorFontWeight
+              id="titleColor-weight"
+              label="Title weight"
+              value={style.titleFontWeight}
+              onChange={(value) => update("titleFontWeight", value)}
+            />
+          </>
         ) : null}
         <InspectorSwitch
           checked={style.showDescription}
@@ -56,18 +58,18 @@ function SplitTextOnlyStyleForm({ style, onChange }) {
         />
         {style.showDescription ? (
           <>
-          <InspectorColor
-            label="Description color"
-            value={style.descriptionColor}
-            onChange={(value) => update("descriptionColor", value)}
-          />
-          <InspectorFontWeight
-            id="descriptionColor-weight"
-            label="Description weight"
-            value={style.descriptionFontWeight}
-            onChange={(value) => update("descriptionFontWeight", value)}
-          />
-        </>
+            <InspectorColor
+              label="Description color"
+              value={style.descriptionColor}
+              onChange={(value) => update("descriptionColor", value)}
+            />
+            <InspectorFontWeight
+              id="descriptionColor-weight"
+              label="Description weight"
+              value={style.descriptionFontWeight}
+              onChange={(value) => update("descriptionFontWeight", value)}
+            />
+          </>
         ) : null}
         {style.showTitle || style.showDescription ? (
           <InspectorChoose
@@ -84,12 +86,37 @@ function SplitTextOnlyStyleForm({ style, onChange }) {
           label="Background image"
           hint="Show the hero photo"
         />
+        {style.showBackgroundImage ? (
+          <>
+            <InspectorChoose
+              label="Image fit"
+              name="imageFit"
+              value={style.imageFit || "cover"}
+              options={IMAGE_FIT_OPTIONS}
+              onChange={(value) => update("imageFit", value)}
+            />
+            <InspectorChoose
+              label="Image position"
+              name="imagePosition"
+              value={style.imagePosition || "center"}
+              options={IMAGE_POSITION_OPTIONS}
+              onChange={(value) => update("imagePosition", value)}
+            />
+          </>
+        ) : null}
         <InspectorSwitch
           checked={style.showOverlay}
           onChange={() => toggle("showOverlay")}
           label="Gradient overlay"
-          hint="Blue wash over the photo"
+          hint="Color wash over the photo"
         />
+        {style.showOverlay ? (
+          <InspectorColor
+            label="Overlay color"
+            value={style.overlayColor}
+            onChange={(value) => update("overlayColor", value)}
+          />
+        ) : null}
         <InspectorSwitch
           checked={style.showSectionBg}
           onChange={() => toggle("showSectionBg")}

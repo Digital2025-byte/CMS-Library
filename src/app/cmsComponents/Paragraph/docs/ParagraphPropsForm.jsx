@@ -110,6 +110,19 @@ function ParagraphStyleForm({ style, onChange }) {
                 onChange={(value) => update("sectionBg", value)}
               />
             )}
+            <InspectorSwitch
+              checked={style.showOverlay}
+              onChange={() => toggle("showOverlay")}
+              label="Overlay"
+              hint="Color wash over the background"
+            />
+            {style.showOverlay ? (
+              <InspectorColor
+                label="Overlay color"
+                value={style.overlayColor}
+                onChange={(value) => update("overlayColor", value)}
+              />
+            ) : null}
           </>
         ) : null}
         <InspectorChoose

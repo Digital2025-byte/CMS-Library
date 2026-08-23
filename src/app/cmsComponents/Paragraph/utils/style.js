@@ -41,6 +41,8 @@ export const DEFAULT_PARAGRAPH_STYLE = {
   sectionBgType: "color",
   sectionBg: "background",
   sectionBgImage: "",
+  showOverlay: false,
+  overlayColor: "primary-1",
   sectionPadding: "default",
   titleAlign: "left",
   titleColor: "primary-1",
@@ -62,6 +64,7 @@ export function resolveParagraphStyle(style = {}) {
     ...merged,
     sectionBgType,
     sectionBgImage: String(merged.sectionBgImage || "").trim(),
+    showOverlay: Boolean(merged.showOverlay),
   };
 }
 
@@ -73,6 +76,8 @@ export const PARAGRAPH_STYLE_RESET_KEYS = {
     "sectionBgType",
     "sectionBg",
     "sectionBgImage",
+    "showOverlay",
+    "overlayColor",
     "sectionPadding",
     "titleAlign",
     "titleColor",
