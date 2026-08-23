@@ -16,9 +16,11 @@ export default function TwoColumnWithSubSections({ lang = "en", data, style }) {
   }
 
   const showLinks = resolvedStyle.showLinks !== false;
-  const subItems = [content.firstSubSection, content.secondSubSection];
+  const subSections = (content.subSections || []).filter(
+    (item) => item?.title || item?.description
+  );
   const itemLinkParts = showLinks
-    ? buildItemBacklinkParts(subItems, content.links)
+    ? buildItemBacklinkParts(subSections, content.links)
     : null;
 
   const shared = {
@@ -27,10 +29,8 @@ export default function TwoColumnWithSubSections({ lang = "en", data, style }) {
     title: content.title,
     description: content.description,
     links: content.links,
-    firstSubSection: content.firstSubSection,
-    secondSubSection: content.secondSubSection,
-    firstSubParts: itemLinkParts?.[0],
-    secondSubParts: itemLinkParts?.[1],
+    subSections,
+    itemLinkParts,
     ctaButton: content.ctaButton,
     ctaHref: content.ctaHref,
     style: resolvedStyle,

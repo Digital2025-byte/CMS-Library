@@ -7,7 +7,6 @@ import SubSectionsHeader from "./SubSectionsHeader";
 import { isUsableImageSrc } from "../utils/helpers";
 import {
   DEFAULT_TWO_COLUMN_SUB_SECTIONS_STYLE,
-  IMAGE_RADIUS_CLASS,
   OVERLAY_RADIUS_CLASS,
 } from "../utils/style";
 
@@ -21,10 +20,8 @@ export default function SubSectionsMobile({
   mainImageAlt,
   overlayImage,
   overlayImageAlt,
-  firstSubSection,
-  secondSubSection,
-  firstSubParts,
-  secondSubParts,
+  subSections = [],
+  itemLinkParts = null,
   ctaButton,
   ctaHref,
   ctaIcon,
@@ -33,12 +30,13 @@ export default function SubSectionsMobile({
 }) {
   const canShowMain = style.showImages && isUsableImageSrc(mainImage);
   const canShowOverlay = style.showImages && isUsableImageSrc(overlayImage);
-  const mainRadius =
-    IMAGE_RADIUS_CLASS[style.imageRadius] ?? IMAGE_RADIUS_CLASS.lg;
   const overlayRadius =
     OVERLAY_RADIUS_CLASS[style.imageRadius] ?? OVERLAY_RADIUS_CLASS.lg;
   const buttonBg = getThemeColorCss(style.buttonBg, "primary-1");
   const buttonText = getThemeColorCss(style.buttonText, "white");
+  const visibleSections = (Array.isArray(subSections) ? subSections : []).filter(
+    (item) => item?.title || item?.description
+  );
 
   return (
     <div className="flex flex-col gap-8 lg:hidden">
@@ -50,8 +48,8 @@ export default function SubSectionsMobile({
         style={style}
       />
 
-      <div className="grid grid-cols-2 items-start gap-4 sm:gap-5">
-        <div className="flex flex-col gap-4">
+      {canShowMain || canShowOverlay ? (
+        <div className="grid grid-cols-2 items-start gap-4 sm:gap-5">
           {canShowMain ? (
             <div
               className={`relative aspect-3/4 w-full overflow-hidden ${overlayRadius}`}
@@ -66,19 +64,9 @@ export default function SubSectionsMobile({
                 sizes="50vw"
               />
             </div>
-          ) : null}
-          {style.showSubSections ? (
-            <SubSectionBlock
-              title={secondSubSection?.title}
-              description={secondSubSection?.description}
-              titleParts={secondSubParts?.titleParts}
-              bodyParts={secondSubParts?.bodyParts}
-              style={style}
-            />
-          ) : null}
-        </div>
-
-        <div className="flex flex-col gap-4">
+          ) : (
+            <div />
+          )}
           {canShowOverlay ? (
             <div
               className={`relative aspect-4/3 w-full overflow-hidden ${overlayRadius}`}
@@ -93,17 +81,23 @@ export default function SubSectionsMobile({
               />
             </div>
           ) : null}
-          {style.showSubSections ? (
+        </div>
+      ) : null}
+
+      {style.showSubSections && visibleSections.length ? (
+        <div className="grid grid-cols-2 items-start gap-4 sm:gap-5">
+          {visibleSections.map((item, index) => (
             <SubSectionBlock
-              title={firstSubSection?.title}
-              description={firstSubSection?.description}
-              titleParts={firstSubParts?.titleParts}
-              bodyParts={firstSubParts?.bodyParts}
+              key={`sub-mobile-${index}`}
+              title={item.title}
+              description={item.description}
+              titleParts={itemLinkParts?.[index]?.titleParts}
+              bodyParts={itemLinkParts?.[index]?.bodyParts}
               style={style}
             />
-          ) : null}
+          ))}
         </div>
-      </div>
+      ) : null}
 
       {style.showCta && ctaButton ? (
         <div className="w-full pt-2">

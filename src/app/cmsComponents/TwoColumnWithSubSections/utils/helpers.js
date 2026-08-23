@@ -31,6 +31,39 @@ export function isUsableImageSrc(src) {
   }
 }
 
+function normalizeSubSection(item = {}) {
+  return {
+    title: item?.title || "",
+    description: item?.description || "",
+    links: normalizeBacklinks(item?.links),
+  };
+}
+
+function toEditorSubSection(item = {}) {
+  return {
+    title: item?.title || "",
+    description: item?.description || "",
+    links: toEditorBacklinks(item?.links),
+  };
+}
+
+/** Prefer subSections[]; fall back to legacy first/second fields. */
+export function resolveSubSections(content = {}) {
+  if (Array.isArray(content.subSections) && content.subSections.length) {
+    return content.subSections.map(normalizeSubSection);
+  }
+
+  if (Array.isArray(content.items) && content.items.length) {
+    return content.items.map(normalizeSubSection);
+  }
+
+  const legacy = [content.firstSubSection, content.secondSubSection]
+    .filter(Boolean)
+    .map(normalizeSubSection);
+
+  return legacy.filter((item) => item.title || item.description);
+}
+
 export function getTwoColumnWithSubSectionsContent(data, lang = "en") {
   const translations = Array.isArray(data?.translations)
     ? data.translations
@@ -57,6 +90,8 @@ export function getTwoColumnWithSubSectionsContent(data, lang = "en") {
       ""
   );
 
+  const subSections = resolveSubSections(content);
+
   return {
     sectionLabel: content?.sectionLabel || "",
     title: content?.title || "",
@@ -74,16 +109,9 @@ export function getTwoColumnWithSubSectionsContent(data, lang = "en") {
       content?.overlayImageAlt ||
       content?.title ||
       "Overlay illustration",
-    firstSubSection: {
-      title: content?.firstSubSection?.title || "",
-      description: content?.firstSubSection?.description || "",
-      links: normalizeBacklinks(content?.firstSubSection?.links),
-    },
-    secondSubSection: {
-      title: content?.secondSubSection?.title || "",
-      description: content?.secondSubSection?.description || "",
-      links: normalizeBacklinks(content?.secondSubSection?.links),
-    },
+    subSections,
+    firstSubSection: subSections[0] || normalizeSubSection(),
+    secondSubSection: subSections[1] || normalizeSubSection(),
     ctaButton:
       content?.ctaButton?.content ||
       content?.ctaButton?.label ||
@@ -95,7 +123,7 @@ export function getTwoColumnWithSubSectionsContent(data, lang = "en") {
       style?.ctaButton?.slug ||
       "#",
     hasContent: Boolean(
-      content?.title || content?.description || mainImage
+      content?.title || content?.description || mainImage || subSections.length
     ),
   };
 }
@@ -115,16 +143,16 @@ export function getTwoColumnWithSubSectionsEditorContent(data, lang = "en") {
     mainImageAlt: content.mainImageAlt || "",
     overlayImageUrl: content.overlayImage || "",
     overlayImageAlt: content.overlayImageAlt || "",
-    items: [content.firstSubSection, content.secondSubSection].map((item) => ({
-      title: item?.title || "",
-      description: item?.description || "",
-      links: toEditorBacklinks(item?.links),
-    })),
+    items: (content.subSections.length
+      ? content.subSections
+      : [normalizeSubSection(), normalizeSubSection()]
+    ).map(toEditorSubSection),
   };
 }
 
 export function wrapTwoColumnWithSubSectionsContent(content = {}, lang = "en") {
   const items = Array.isArray(content.items) ? content.items : [];
+  const subSections = items.map(normalizeSubSection);
 
   return {
     translations: [
@@ -135,16 +163,10 @@ export function wrapTwoColumnWithSubSectionsContent(content = {}, lang = "en") {
           title: content.title || "",
           description: content.description || "",
           links: normalizeBacklinks(content.links),
-          firstSubSection: {
-            title: items[0]?.title || "",
-            description: items[0]?.description || "",
-            links: normalizeBacklinks(items[0]?.links),
-          },
-          secondSubSection: {
-            title: items[1]?.title || "",
-            description: items[1]?.description || "",
-            links: normalizeBacklinks(items[1]?.links),
-          },
+          subSections,
+          // Legacy keys kept for older consumers
+          firstSubSection: subSections[0] || normalizeSubSection(),
+          secondSubSection: subSections[1] || normalizeSubSection(),
           ctaButton: {
             label: content.ctaLabel || "",
             href: content.ctaHref || "",
