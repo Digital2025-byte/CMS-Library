@@ -9,6 +9,7 @@ import {
 } from "@/components/inspector";
 import {
   BacklinksEditor,
+  joinBacklinkSourceText,
   joinItemBacklinkSourceText,
 } from "@/app/cmsComponents/shared/backlinks";
 
@@ -101,15 +102,6 @@ export default function TabbedCardsSectionContentForm({
                       value={card.imageAlt || ""}
                       onChange={(value) => updateCard("imageAlt", value)}
                     />
-                    <BacklinksEditor
-                      idPrefix={`tabbed-cards-${index}-${cardIndex}-link`}
-                      title="Item backlinks"
-                      links={card.links || []}
-                      sourceText={card.description || ""}
-                      defaults={[]}
-                      onChange={(links) => updateCard("links", links)}
-                      showReset={false}
-                    />
                   </>
                 )}
               </InspectorRepeater>
@@ -123,7 +115,11 @@ export default function TabbedCardsSectionContentForm({
         title="Backlinks"
         links={content.links || []}
         sourceText={joinItemBacklinkSourceText({
-          description: content.description,
+          description: joinBacklinkSourceText(
+            content.title,
+            content.description,
+            ...(content.items || []).map((tab) => tab.label)
+          ),
           items: (content.items || []).flatMap((tab) => tab.cards || []),
         })}
         defaults={defaults?.links || []}

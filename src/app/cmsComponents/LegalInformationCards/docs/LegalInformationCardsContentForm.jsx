@@ -78,15 +78,6 @@ export default function LegalInformationCardsContentForm({
                 value={item.slug || ""}
                 onChange={(value) => update("slug", value)}
               />
-              <BacklinksEditor
-                idPrefix={`legal-cards-item-${index}-link`}
-                title="Item backlinks"
-                links={item.links || []}
-                sourceText={item.description || ""}
-                defaults={[]}
-                onChange={(links) => update("links", links)}
-                showReset={false}
-              />
             </>
           )}
         </InspectorRepeater>

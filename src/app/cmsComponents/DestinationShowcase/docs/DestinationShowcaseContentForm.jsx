@@ -10,6 +10,7 @@ import {
 } from "@/components/inspector";
 import {
   BacklinksEditor,
+  joinBacklinkSourceText,
   joinItemBacklinkSourceText,
 } from "@/app/cmsComponents/shared/backlinks";
 
@@ -124,15 +125,6 @@ export default function DestinationShowcaseContentForm({
                 value={item.imageAlt || ""}
                 onChange={(value) => update("imageAlt", value)}
               />
-              <BacklinksEditor
-                idPrefix={`destination-showcase-${index}-link`}
-                title="Item backlinks"
-                links={item.links || []}
-                sourceText={item.description || ""}
-                defaults={[]}
-                onChange={(links) => update("links", links)}
-                showReset={false}
-              />
             </>
           )}
         </InspectorRepeater>
@@ -143,7 +135,10 @@ export default function DestinationShowcaseContentForm({
         title="Backlinks"
         links={content.links || []}
         sourceText={joinItemBacklinkSourceText({
-          description: content.description,
+          description: joinBacklinkSourceText(
+            content.title,
+            content.description
+          ),
           items: content.items,
           titleKey: "cityName",
         })}

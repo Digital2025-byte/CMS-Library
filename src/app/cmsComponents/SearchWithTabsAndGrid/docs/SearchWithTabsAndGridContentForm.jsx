@@ -165,15 +165,6 @@ export default function SearchWithTabsAndGridContentForm({
                 value={item.imageUrl || ""}
                 onChange={(value) => update("imageUrl", value)}
               />
-              <BacklinksEditor
-                idPrefix={`search-grid-item-${index}-link`}
-                title="Item backlinks"
-                links={item.links || []}
-                sourceText={item.description || ""}
-                defaults={[]}
-                onChange={(links) => update("links", links)}
-                showReset={false}
-              />
             </>
           )}
         </InspectorRepeater>
@@ -184,7 +175,9 @@ export default function SearchWithTabsAndGridContentForm({
         title="Backlinks"
         links={content.links || []}
         sourceText={joinItemBacklinkSourceText({
+          description: content.gridTitle,
           items: content.items,
+          titleKey: "name",
         })}
         defaults={defaults?.links || []}
         onChange={(links) => onChange({ ...content, links })}

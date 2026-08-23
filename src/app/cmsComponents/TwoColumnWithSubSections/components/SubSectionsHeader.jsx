@@ -32,7 +32,12 @@ export default function SubSectionsHeader({
           className={`${typography.caption} font-medium`}
           style={{ color: getThemeColorCss(style.labelColor, "secondary-2"), fontWeight: getFontWeightValue(style.labelFontWeight) }}
         >
-          {sectionLabel}
+          <LinkedText
+            text={sectionLabel}
+            links={links}
+            style={style}
+            enabled={showLinks}
+          />
         </p>
       ) : null}
 
@@ -41,7 +46,12 @@ export default function SubSectionsHeader({
           className={`${typography.sectionTitle} font-medium italic`}
           style={{ color: getThemeColorCss(style.titleColor, "primary-1"), fontWeight: getFontWeightValue(style.titleFontWeight) }}
         >
-          {title}
+          <LinkedText
+            text={title}
+            links={links}
+            style={style}
+            enabled={showLinks}
+          />
         </h2>
       ) : null}
 

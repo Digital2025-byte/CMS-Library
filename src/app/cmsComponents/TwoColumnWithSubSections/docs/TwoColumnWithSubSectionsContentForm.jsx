@@ -10,6 +10,7 @@ import {
 } from "@/components/inspector";
 import {
   BacklinksEditor,
+  joinBacklinkSourceText,
   joinItemBacklinkSourceText,
 } from "@/app/cmsComponents/shared/backlinks";
 
@@ -93,15 +94,6 @@ export default function TwoColumnWithSubSectionsContentForm({
                 onChange={(value) => update("description", value)}
                 multiline
               />
-              <BacklinksEditor
-                idPrefix={`two-column-sub-${index}-link`}
-                title="Item backlinks"
-                links={item.links || []}
-                sourceText={item.description || ""}
-                defaults={[]}
-                onChange={(links) => update("links", links)}
-                showReset={false}
-              />
             </>
           )}
         </InspectorRepeater>
@@ -139,7 +131,11 @@ export default function TwoColumnWithSubSectionsContentForm({
         title="Backlinks"
         links={content.links || []}
         sourceText={joinItemBacklinkSourceText({
-          description: content.description,
+          description: joinBacklinkSourceText(
+            content.sectionLabel,
+            content.title,
+            content.description
+          ),
           items: content.items,
         })}
         defaults={defaults?.links || []}

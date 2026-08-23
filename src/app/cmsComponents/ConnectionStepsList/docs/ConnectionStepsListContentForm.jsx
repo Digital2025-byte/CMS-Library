@@ -75,15 +75,6 @@ export default function ConnectionStepsListContentForm({
                 value={item.imageAlt || ""}
                 onChange={(value) => update("imageAlt", value)}
               />
-              <BacklinksEditor
-                idPrefix={`connection-steps-${index}-link`}
-                title="Item backlinks"
-                links={item.links || []}
-                sourceText={item.description || ""}
-                defaults={[]}
-                onChange={(links) => update("links", links)}
-                showReset={false}
-              />
             </>
           )}
         </InspectorRepeater>
@@ -94,6 +85,7 @@ export default function ConnectionStepsListContentForm({
         title="Backlinks"
         links={content.links || []}
         sourceText={joinItemBacklinkSourceText({
+          description: content.title,
           items: content.items,
         })}
         defaults={defaults?.links || []}

@@ -9,6 +9,7 @@ import {
 } from "@/components/inspector";
 import {
   BacklinksEditor,
+  joinBacklinkSourceText,
   joinItemBacklinkSourceText,
 } from "@/app/cmsComponents/shared/backlinks";
 
@@ -75,15 +76,6 @@ export default function AccordionWithImagesContentForm({
                 value={item.imageAlt}
                 onChange={(value) => update("imageAlt", value)}
               />
-              <BacklinksEditor
-                idPrefix={`accordion-images-item-${index}-link`}
-                title="Item backlinks"
-                links={item.links || []}
-                sourceText={item.description || ""}
-                defaults={[]}
-                onChange={(links) => update("links", links)}
-                showReset={false}
-              />
             </>
           )}
         </InspectorRepeater>
@@ -94,7 +86,10 @@ export default function AccordionWithImagesContentForm({
         title="Backlinks"
         links={content.links || []}
         sourceText={joinItemBacklinkSourceText({
-          description: content.description,
+          description: joinBacklinkSourceText(
+            content.title,
+            content.description
+          ),
           items: content.items,
         })}
         defaults={defaults?.links || []}

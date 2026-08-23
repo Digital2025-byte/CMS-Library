@@ -85,15 +85,6 @@ export default function ServiceBenefitsListContentForm({
                 value={item.icon || ""}
                 onChange={(value) => update("icon", value)}
               />
-              <BacklinksEditor
-                idPrefix={`service-benefits-${index}-link`}
-                title="Item backlinks"
-                links={item.links || []}
-                sourceText={item.description || ""}
-                defaults={[]}
-                onChange={(links) => update("links", links)}
-                showReset={false}
-              />
             </>
           )}
         </InspectorRepeater>
@@ -104,6 +95,7 @@ export default function ServiceBenefitsListContentForm({
         title="Backlinks"
         links={content.links || []}
         sourceText={joinItemBacklinkSourceText({
+          description: content.title,
           items: content.items,
         })}
         defaults={defaults?.links || []}

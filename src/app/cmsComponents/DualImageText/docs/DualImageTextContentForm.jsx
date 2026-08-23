@@ -9,6 +9,7 @@ import {
 } from "@/components/inspector";
 import {
   BacklinksEditor,
+  joinBacklinkSourceText,
   joinItemBacklinkSourceText,
 } from "@/app/cmsComponents/shared/backlinks";
 
@@ -75,15 +76,6 @@ export default function DualImageTextContentForm({
           value={content.firstSectionImageAlt || ""}
           onChange={(value) => updateField("firstSectionImageAlt", value)}
         />
-        <BacklinksEditor
-          idPrefix="dual-image-first-link"
-          title="Item backlinks"
-          links={content.firstSectionLinks || []}
-          sourceText={content.firstSectionDescription || ""}
-          defaults={[]}
-          onChange={(links) => updateField("firstSectionLinks", links)}
-          showReset={false}
-        />
       </InspectorSection>
 
       <InspectorSection title="Items" onReset={() => reset(ITEM_KEYS)}>
@@ -133,15 +125,6 @@ export default function DualImageTextContentForm({
                 value={item.buttonHref || ""}
                 onChange={(value) => update("buttonHref", value)}
               />
-              <BacklinksEditor
-                idPrefix={`dual-image-item-${index}-link`}
-                title="Item backlinks"
-                links={item.links || []}
-                sourceText={item.description || ""}
-                defaults={[]}
-                onChange={(links) => update("links", links)}
-                showReset={false}
-              />
             </>
           )}
         </InspectorRepeater>
@@ -184,7 +167,10 @@ export default function DualImageTextContentForm({
         title="Backlinks"
         links={content.links || []}
         sourceText={joinItemBacklinkSourceText({
-          description: content.firstSectionDescription,
+          description: joinBacklinkSourceText(
+            content.firstSectionTitle,
+            content.firstSectionDescription
+          ),
           items: content.items,
         })}
         defaults={defaults?.links || []}

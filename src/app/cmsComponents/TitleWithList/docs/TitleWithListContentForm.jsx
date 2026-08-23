@@ -52,15 +52,6 @@ export default function TitleWithListContentForm({
                 onChange={(value) => update("text", value)}
                 multiline
               />
-              <BacklinksEditor
-                idPrefix={`title-with-list-item-${index}-link`}
-                title="Item backlinks"
-                links={item.links || []}
-                sourceText={item.text || ""}
-                defaults={[]}
-                onChange={(links) => update("links", links)}
-                showReset={false}
-              />
             </>
           )}
         </InspectorRepeater>
@@ -71,6 +62,7 @@ export default function TitleWithListContentForm({
         title="Backlinks"
         links={content.links || []}
         sourceText={joinItemBacklinkSourceText({
+          description: content.title,
           items: (content.items || []).map((item) => ({
             description: item.text,
           })),

@@ -77,15 +77,6 @@ export default function CarouselImageText6ContentForm({
                 value={item.imageAlt || ""}
                 onChange={(value) => update("imageAlt", value)}
               />
-              <BacklinksEditor
-                idPrefix={`carousel-image-text-item-${index}-link`}
-                title="Item backlinks"
-                links={item.links || []}
-                sourceText={item.description || ""}
-                defaults={[]}
-                onChange={(links) => update("links", links)}
-                showReset={false}
-              />
             </>
           )}
         </InspectorRepeater>
@@ -96,6 +87,7 @@ export default function CarouselImageText6ContentForm({
         title="Backlinks"
         links={content.links || []}
         sourceText={joinItemBacklinkSourceText({
+          description: content.title,
           items: content.items,
         })}
         defaults={defaults?.links || []}

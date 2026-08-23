@@ -99,15 +99,6 @@ export default function SliderContentForm({ content, onChange, defaults }) {
                   onChange({ ...content, slides });
                 }}
               />
-              <BacklinksEditor
-                idPrefix={`slider-slide-${index}-backlink`}
-                title="Item backlinks"
-                links={item.links || []}
-                sourceText={item.description || ""}
-                defaults={[]}
-                onChange={(links) => update("links", links)}
-                showReset={false}
-              />
             </>
           )}
         </InspectorRepeater>
