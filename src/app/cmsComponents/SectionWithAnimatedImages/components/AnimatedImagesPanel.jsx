@@ -26,7 +26,7 @@ export default function AnimatedImagesPanel({
       ) : null}
 
       {style.showImages ? (
-        <AnimatedFallingCards images={content.images} />
+        <AnimatedFallingCards images={content.images} style={style} />
       ) : null}
 
       <AnimatedImagesContent

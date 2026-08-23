@@ -3,6 +3,7 @@ import {
   InspectorColor,
   InspectorFontWeight,
   InspectorSection,
+  InspectorSelect,
   InspectorSwitch,
   InspectorTabs,
   applyInspectorReset,
@@ -11,7 +12,11 @@ import { BacklinksStyleSection } from "@/app/cmsComponents/shared/backlinks";
 import SectionWithAnimatedImagesContentForm from "./SectionWithAnimatedImagesContentForm";
 import {
   ANIMATED_IMAGES_STYLE_RESET_KEYS,
+  CARDS_PER_SPAWN_OPTIONS,
   DEFAULT_ANIMATED_IMAGES_STYLE,
+  FALL_DURATION_OPTIONS,
+  FALLING_CARD_SIZE_OPTIONS,
+  SPAWN_INTERVAL_OPTIONS,
   SPACING_OPTIONS,
   TITLE_ALIGN_OPTIONS,
 } from "../utils/style";
@@ -20,9 +25,7 @@ function SectionWithAnimatedImagesStyleForm({ style, onChange }) {
   const update = (key, value) => onChange({ ...style, [key]: value });
   const toggle = (key) => onChange({ ...style, [key]: !style[key] });
   const reset = (keys) =>
-    onChange(
-      applyInspectorReset(style, DEFAULT_ANIMATED_IMAGES_STYLE, keys)
-    );
+    onChange(applyInspectorReset(style, DEFAULT_ANIMATED_IMAGES_STYLE, keys));
 
   return (
     <div>
@@ -38,18 +41,18 @@ function SectionWithAnimatedImagesStyleForm({ style, onChange }) {
         />
         {style.showTitle ? (
           <>
-          <InspectorColor
-            label="Title color"
-            value={style.titleColor}
-            onChange={(value) => update("titleColor", value)}
-          />
-          <InspectorFontWeight
-            id="titleColor-weight"
-            label="Title weight"
-            value={style.titleFontWeight}
-            onChange={(value) => update("titleFontWeight", value)}
-          />
-        </>
+            <InspectorColor
+              label="Title color"
+              value={style.titleColor}
+              onChange={(value) => update("titleColor", value)}
+            />
+            <InspectorFontWeight
+              id="titleColor-weight"
+              label="Title weight"
+              value={style.titleFontWeight}
+              onChange={(value) => update("titleFontWeight", value)}
+            />
+          </>
         ) : null}
         <InspectorSwitch
           checked={style.showDescription}
@@ -59,18 +62,18 @@ function SectionWithAnimatedImagesStyleForm({ style, onChange }) {
         />
         {style.showDescription ? (
           <>
-          <InspectorColor
-            label="Description color"
-            value={style.descriptionColor}
-            onChange={(value) => update("descriptionColor", value)}
-          />
-          <InspectorFontWeight
-            id="descriptionColor-weight"
-            label="Description weight"
-            value={style.descriptionFontWeight}
-            onChange={(value) => update("descriptionFontWeight", value)}
-          />
-        </>
+            <InspectorColor
+              label="Description color"
+              value={style.descriptionColor}
+              onChange={(value) => update("descriptionColor", value)}
+            />
+            <InspectorFontWeight
+              id="descriptionColor-weight"
+              label="Description weight"
+              value={style.descriptionFontWeight}
+              onChange={(value) => update("descriptionFontWeight", value)}
+            />
+          </>
         ) : null}
         {style.showTitle || style.showDescription ? (
           <InspectorChoose
@@ -104,7 +107,7 @@ function SectionWithAnimatedImagesStyleForm({ style, onChange }) {
       </InspectorSection>
 
       <InspectorSection
-        title="Images"
+        title="Falling photos"
         onReset={() => reset(ANIMATED_IMAGES_STYLE_RESET_KEYS.images)}
       >
         <InspectorSwitch
@@ -113,6 +116,38 @@ function SectionWithAnimatedImagesStyleForm({ style, onChange }) {
           label="Falling photos"
           hint="Animated cards in the background"
         />
+        {style.showImages ? (
+          <>
+            <InspectorSelect
+              id="falling-fall-duration"
+              label="Fall speed"
+              value={style.fallDuration}
+              options={FALL_DURATION_OPTIONS}
+              onChange={(value) => update("fallDuration", value)}
+            />
+            <InspectorSelect
+              id="falling-spawn-interval"
+              label="Spawn rate"
+              value={style.spawnInterval}
+              options={SPAWN_INTERVAL_OPTIONS}
+              onChange={(value) => update("spawnInterval", value)}
+            />
+            <InspectorSelect
+              id="falling-cards-per-spawn"
+              label="Cards per wave"
+              value={style.cardsPerSpawn}
+              options={CARDS_PER_SPAWN_OPTIONS}
+              onChange={(value) => update("cardsPerSpawn", value)}
+            />
+            <InspectorChoose
+              label="Card size"
+              name="fallingCardSize"
+              value={style.fallingCardSize}
+              options={FALLING_CARD_SIZE_OPTIONS}
+              onChange={(value) => update("fallingCardSize", value)}
+            />
+          </>
+        ) : null}
       </InspectorSection>
 
       <InspectorSection
@@ -137,12 +172,12 @@ function SectionWithAnimatedImagesStyleForm({ style, onChange }) {
               value={style.buttonText}
               onChange={(value) => update("buttonText", value)}
             />
-          <InspectorFontWeight
-            id="buttonText-weight"
-            label="Button text weight"
-            value={style.buttonTextFontWeight}
-            onChange={(value) => update("buttonTextFontWeight", value)}
-          />
+            <InspectorFontWeight
+              id="buttonText-weight"
+              label="Button text weight"
+              value={style.buttonTextFontWeight}
+              onChange={(value) => update("buttonTextFontWeight", value)}
+            />
           </>
         ) : null}
       </InspectorSection>

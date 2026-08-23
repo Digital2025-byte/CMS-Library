@@ -6,38 +6,59 @@ import { AnimatePresence, motion } from "framer-motion";
 import { pageContentPadding } from "@/styles/layout";
 import { fallingCardEasing } from "../utils/easing";
 import { isUsableImageSrc } from "../utils/helpers";
+import { resolveFallingCardsSettings } from "../utils/style";
 
-export default function AnimatedFallingCards({ images = [] }) {
+function pickCardCount(mode) {
+  if (mode === "one") return 1;
+  if (mode === "two") return 2;
+  return Math.random() < 0.5 ? 1 : 2;
+}
+
+export default function AnimatedFallingCards({ images = [], style }) {
+  const settings = resolveFallingCardsSettings(style);
   const [activeCards, setActiveCards] = useState([]);
   const cardIdRef = useRef(0);
   const sectionRef = useRef(null);
   const spawnTimeoutRef = useRef(null);
   const imagesRef = useRef(images);
+  const settingsRef = useRef(settings);
   imagesRef.current = images;
+  settingsRef.current = settings;
 
   const removeCard = (cardId) => {
     setActiveCards((prev) => prev.filter((card) => card.id !== cardId));
   };
 
   useEffect(() => {
-    if (!images.length) return undefined;
+    if (!images.length) {
+      setActiveCards([]);
+      return undefined;
+    }
+
+    setActiveCards([]);
+
+    const nextDelayMs = () => {
+      const { spawnBaseMs, spawnJitterMs } = settingsRef.current;
+      return spawnBaseMs + Math.random() * spawnJitterMs;
+    };
 
     const spawnCards = () => {
       const currentImages = imagesRef.current;
+      const currentSettings = settingsRef.current;
       if (!currentImages.length) return;
 
-      const numCards = Math.random() < 0.5 ? 1 : 2;
+      const numCards = pickCardCount(currentSettings.cardsPerSpawn);
       const newCards = [];
 
       for (let i = 0; i < numCards; i += 1) {
         const randomImage =
           currentImages[Math.floor(Math.random() * currentImages.length)];
-        const startDelay = numCards === 2 && i === 1 ? 0.8 : Math.random() * 0.3;
+        const startDelay =
+          numCards === 2 && i === 1 ? 0.8 : Math.random() * 0.3;
 
         newCards.push({
           id: cardIdRef.current++,
           image: randomImage,
-          // Left edge as % of track (0–78 leaves room for the card width)
           leftPct: Math.random() * 78,
           startDelay,
         });
@@ -46,24 +67,19 @@ export default function AnimatedFallingCards({ images = [] }) {
       setActiveCards((prev) => [...prev, ...newCards]);
     };
 
-    // Wait one frame so the padded track has a real layout size
     let cancelled = false;
     const startId = requestAnimationFrame(() => {
       if (cancelled) return;
       spawnCards();
 
       const scheduleNext = () => {
-        const nextDelay = 2500 + Math.random() * 1500;
         spawnTimeoutRef.current = setTimeout(() => {
           spawnCards();
           scheduleNext();
-        }, nextDelay);
+        }, nextDelayMs());
       };
 
-      spawnTimeoutRef.current = setTimeout(
-        scheduleNext,
-        2500 + Math.random() * 1500
-      );
+      spawnTimeoutRef.current = setTimeout(scheduleNext, nextDelayMs());
     });
 
     return () => {
@@ -73,14 +89,22 @@ export default function AnimatedFallingCards({ images = [] }) {
         clearTimeout(spawnTimeoutRef.current);
       }
     };
-  }, [images.length]);
+  }, [
+    images.length,
+    settings.fallDuration,
+    settings.spawnBaseMs,
+    settings.spawnJitterMs,
+    settings.cardsPerSpawn,
+  ]);
 
   if (!images.length) {
     return null;
   }
 
   return (
-    <div className={`pointer-events-none absolute inset-0 z-1 ${pageContentPadding}`}>
+    <div
+      className={`pointer-events-none absolute inset-0 z-1 ${pageContentPadding}`}
+    >
       <div
         ref={sectionRef}
         className="relative mx-auto h-full w-full max-w-7xl overflow-hidden"
@@ -103,22 +127,22 @@ export default function AnimatedFallingCards({ images = [] }) {
                   }}
                   exit={{ opacity: 0 }}
                   transition={{
-                    duration: 6,
+                    duration: settings.fallDuration,
                     delay: card.startDelay || 0,
                     ease: fallingCardEasing,
                     times: [0, 0.1, 0.5, 0.9, 1],
                   }}
                   onAnimationComplete={() => removeCard(card.id)}
                 >
-                  <div className="h-36 w-28 overflow-hidden rounded-4xl bg-background shadow-xl md:h-48 md:w-36 lg:h-52 lg:w-40">
+                  <div className={settings.cardSizeClass}>
                     {isUsableImageSrc(card.image?.src) ? (
                       <Image
                         src={card.image.src}
                         alt={card.image?.alt || "Travel experience"}
-                        width={160}
-                        height={208}
+                        width={settings.imageSize.width}
+                        height={settings.imageSize.height}
                         className="h-full w-full object-cover"
-                        sizes="160px"
+                        sizes={`${settings.imageSize.width}px`}
                         quality={75}
                       />
                     ) : null}
