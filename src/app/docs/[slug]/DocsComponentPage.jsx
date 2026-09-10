@@ -61,6 +61,19 @@ import TitleWithListExamples from "@/app/cmsComponents/TitleWithList/docs/TitleW
 import TwoColumnIntroWithTwoImageExamples from "@/app/cmsComponents/TwoColumnIntroWithTwoImage/docs/TwoColumnIntroWithTwoImageExamples";
 import TwoColumnWithSubSectionsExamples from "@/app/cmsComponents/TwoColumnWithSubSections/docs/TwoColumnWithSubSectionsExamples";
 import VerticalImageSliceTextSectionExamples from "@/app/cmsComponents/VerticalImageSliceTextSection/docs/VerticalImageSliceTextSectionExamples";
+import PageHeroExamples from "@/app/cmsComponents/PageHero/docs/PageHeroExamples";
+import SearchConsoleExamples from "@/app/cmsComponents/SearchConsole/docs/SearchConsoleExamples";
+import HelpCategoriesExamples from "@/app/cmsComponents/HelpCategories/docs/HelpCategoriesExamples";
+import CtaBannerExamples from "@/app/cmsComponents/CtaBanner/docs/CtaBannerExamples";
+import JourneySectionExamples from "@/app/cmsComponents/JourneySection/docs/JourneySectionExamples";
+import LiveChatBannerExamples from "@/app/cmsComponents/LiveChatBanner/docs/LiveChatBannerExamples";
+import GetInTouchExamples from "@/app/cmsComponents/GetInTouch/docs/GetInTouchExamples";
+import LocationDirectoryExamples from "@/app/cmsComponents/LocationDirectory/docs/LocationDirectoryExamples";
+import FaqExplorerExamples from "@/app/cmsComponents/FaqExplorer/docs/FaqExplorerExamples";
+import FormsDirectoryExamples from "@/app/cmsComponents/FormsDirectory/docs/FormsDirectoryExamples";
+import TrackRequestExamples from "@/app/cmsComponents/TrackRequest/docs/TrackRequestExamples";
+import ContactCardsExamples from "@/app/cmsComponents/ContactCards/docs/ContactCardsExamples";
+import PromoBannerExamples from "@/app/cmsComponents/PromoBanner/docs/PromoBannerExamples";
 import { COMPONENT_NAV_ITEMS } from "@/components/ui/ComponentNav";
 import PageContentContainer from "@/components/layout/PageContentContainer";
 import { typography } from "@/styles/typography";
@@ -207,6 +220,41 @@ const DOCS_EXAMPLES = {
   ),
   "scroll-carousel": (ctx, label) => (
     <ScrollCarouselExamples ctx={ctx} name={label} />
+  ),
+  "page-hero": (ctx, label) => <PageHeroExamples ctx={ctx} name={label} />,
+  "search-console": (ctx, label) => (
+    <SearchConsoleExamples ctx={ctx} name={label} />
+  ),
+  "help-categories": (ctx, label) => (
+    <HelpCategoriesExamples ctx={ctx} name={label} />
+  ),
+  "cta-banner": (ctx, label) => <CtaBannerExamples ctx={ctx} name={label} />,
+  "journey-section": (ctx, label) => (
+    <JourneySectionExamples ctx={ctx} name={label} />
+  ),
+  "live-chat-banner": (ctx, label) => (
+    <LiveChatBannerExamples ctx={ctx} name={label} />
+  ),
+  "get-in-touch": (ctx, label) => (
+    <GetInTouchExamples ctx={ctx} name={label} />
+  ),
+  "location-directory": (ctx, label) => (
+    <LocationDirectoryExamples ctx={ctx} name={label} />
+  ),
+  "faq-explorer": (ctx, label) => (
+    <FaqExplorerExamples ctx={ctx} name={label} />
+  ),
+  "forms-directory": (ctx, label) => (
+    <FormsDirectoryExamples ctx={ctx} name={label} />
+  ),
+  "track-request": (ctx, label) => (
+    <TrackRequestExamples ctx={ctx} name={label} />
+  ),
+  "contact-cards": (ctx, label) => (
+    <ContactCardsExamples ctx={ctx} name={label} />
+  ),
+  "promo-banner": (ctx, label) => (
+    <PromoBannerExamples ctx={ctx} name={label} />
   ),
 };
 

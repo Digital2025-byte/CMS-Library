@@ -4,6 +4,26 @@
  */
 export const IDEA_GROUPS = [
   {
+    slug: "new-app",
+    label: "New App",
+    description: "Help page sections ported from the new Fly Cham app.",
+    sectionIds: [
+      "page-hero",
+      "search-console",
+      "help-categories",
+      "cta-banner",
+      "journey-section",
+      "live-chat-banner",
+      "get-in-touch",
+      "location-directory",
+      "faq-explorer",
+      "forms-directory",
+      "track-request",
+      "contact-cards",
+      "promo-banner",
+    ],
+  },
+  {
     slug: "new",
     label: "New",
     description: "Latest Lightswind experiments.",
@@ -172,6 +192,19 @@ export const HOME_SECTION_IDS = [
   "legal-body-privacy-policy",
   "form-header",
   "form-footer",
+  "page-hero",
+  "search-console",
+  "help-categories",
+  "cta-banner",
+  "journey-section",
+  "live-chat-banner",
+  "get-in-touch",
+  "location-directory",
+  "faq-explorer",
+  "forms-directory",
+  "track-request",
+  "contact-cards",
+  "promo-banner",
 ];
 
 export function getIdeaGroup(slug) {

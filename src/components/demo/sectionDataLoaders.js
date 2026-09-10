@@ -347,6 +347,84 @@ export const SECTION_DATA_LOADERS = {
     );
     return { formFooterData: buildFormFooterData(t, lang) };
   },
+  "page-hero": async (t, lang) => {
+    const { buildPageHeroData } = await import(
+      "@/app/cmsComponents/PageHero/utils/data"
+    );
+    return { pageHeroData: buildPageHeroData(t, lang) };
+  },
+  "search-console": async (t, lang) => {
+    const { buildSearchConsoleData } = await import(
+      "@/app/cmsComponents/SearchConsole/utils/data"
+    );
+    return { searchConsoleData: buildSearchConsoleData(t, lang) };
+  },
+  "help-categories": async (t, lang) => {
+    const { buildHelpCategoriesData } = await import(
+      "@/app/cmsComponents/HelpCategories/utils/data"
+    );
+    return { helpCategoriesData: buildHelpCategoriesData(t, lang) };
+  },
+  "cta-banner": async (t, lang) => {
+    const { buildCtaBannerData } = await import(
+      "@/app/cmsComponents/CtaBanner/utils/data"
+    );
+    return { ctaBannerData: buildCtaBannerData(t, lang) };
+  },
+  "journey-section": async (t, lang) => {
+    const { buildJourneySectionData } = await import(
+      "@/app/cmsComponents/JourneySection/utils/data"
+    );
+    return { journeySectionData: buildJourneySectionData(t, lang) };
+  },
+  "live-chat-banner": async (t, lang) => {
+    const { buildLiveChatBannerData } = await import(
+      "@/app/cmsComponents/LiveChatBanner/utils/data"
+    );
+    return { liveChatBannerData: buildLiveChatBannerData(t, lang) };
+  },
+  "get-in-touch": async (t, lang) => {
+    const { buildGetInTouchData } = await import(
+      "@/app/cmsComponents/GetInTouch/utils/data"
+    );
+    return { getInTouchData: buildGetInTouchData(t, lang) };
+  },
+  "location-directory": async (t, lang) => {
+    const { buildLocationDirectoryData } = await import(
+      "@/app/cmsComponents/LocationDirectory/utils/data"
+    );
+    return { locationDirectoryData: buildLocationDirectoryData(t, lang) };
+  },
+  "faq-explorer": async (t, lang) => {
+    const { buildFaqExplorerData } = await import(
+      "@/app/cmsComponents/FaqExplorer/utils/data"
+    );
+    return { faqExplorerData: buildFaqExplorerData(t, lang) };
+  },
+  "forms-directory": async (t, lang) => {
+    const { buildFormsDirectoryData } = await import(
+      "@/app/cmsComponents/FormsDirectory/utils/data"
+    );
+    return { formsDirectoryData: buildFormsDirectoryData(t, lang) };
+  },
+  "track-request": async (t, lang) => {
+    const { buildTrackRequestData } = await import(
+      "@/app/cmsComponents/TrackRequest/utils/data"
+    );
+    return { trackRequestData: buildTrackRequestData(t, lang) };
+  },
+  "contact-cards": async (t, lang) => {
+    const { buildContactCardsData } = await import(
+      "@/app/cmsComponents/ContactCards/utils/data"
+    );
+    return { contactCardsData: buildContactCardsData(t, lang) };
+  },
+  "promo-banner": async (t, lang) => {
+    const { buildPromoBannerData } = await import(
+      "@/app/cmsComponents/PromoBanner/utils/data"
+    );
+    return { promoBannerData: buildPromoBannerData(t, lang) };
+  },
 };
 
 export const ALL_SECTION_DATA_IDS = Object.keys(SECTION_DATA_LOADERS);

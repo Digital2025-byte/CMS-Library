@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+import { StackIcon } from "@phosphor-icons/react";
 import LanguageSwitcher from "@/i18n/LanguageSwitcher";
 import PageContentContainer from "@/components/layout/PageContentContainer";
 import ComponentNav, { COMPONENT_NAV_ITEMS } from "@/components/ui/ComponentNav";
@@ -26,6 +28,17 @@ export default function CmsDemoChrome({
         <PageContentContainer className="relative z-[60] flex items-center justify-between gap-2 overflow-visible sm:gap-3">
           <IdeaNav tone={overlay ? "light" : "dark"} />
           <div className="flex shrink-0 items-center justify-end gap-1.5 sm:gap-2">
+            <Link
+              href="/pages"
+              className={`inline-flex h-9 items-center gap-1.5 rounded-md px-2.5 text-sm font-medium transition-colors ${
+                overlay
+                  ? "bg-white/15 text-50 hover:bg-white/25"
+                  : "bg-background text-700 hover:bg-100"
+              }`}
+            >
+              <StackIcon size={18} weight="bold" aria-hidden />
+              <span className="hidden sm:inline">Pages</span>
+            </Link>
             <ComponentNav items={navItems} />
             <LanguageSwitcher />
           </div>

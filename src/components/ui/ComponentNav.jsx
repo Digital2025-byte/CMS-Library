@@ -66,6 +66,19 @@ export const COMPONENT_NAV_ITEMS = [
   { id: "legal-body-privacy-policy", label: "LegalBodyPrivacyPolicy" },
   { id: "form-header", label: "FormHeader" },
   { id: "form-footer", label: "FormFooter" },
+  { id: "page-hero", label: "PageHero" },
+  { id: "search-console", label: "SearchConsole" },
+  { id: "help-categories", label: "HelpCategories" },
+  { id: "cta-banner", label: "CtaBanner" },
+  { id: "journey-section", label: "JourneySection" },
+  { id: "live-chat-banner", label: "LiveChatBanner" },
+  { id: "get-in-touch", label: "GetInTouch" },
+  { id: "location-directory", label: "LocationDirectory" },
+  { id: "faq-explorer", label: "FaqExplorer" },
+  { id: "forms-directory", label: "FormsDirectory" },
+  { id: "track-request", label: "TrackRequest" },
+  { id: "contact-cards", label: "ContactCards" },
+  { id: "promo-banner", label: "PromoBanner" },
 ];
 
 export default function ComponentNav({

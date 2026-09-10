@@ -1055,10 +1055,22 @@
     "exploreLabel": "اكتشف",
     "exploreMagazineLabel": "اكتشف كمجلة",
     "tags": [
-      { "name": "Culture", "icon": "Mosque" },
-      { "name": "Nature", "icon": "Mountains" },
-      { "name": "Food", "icon": "ForkKnife" },
-      { "name": "Shopping", "icon": "ShoppingBag" }
+      {
+        "name": "Culture",
+        "icon": "Mosque"
+      },
+      {
+        "name": "Nature",
+        "icon": "Mountains"
+      },
+      {
+        "name": "Food",
+        "icon": "ForkKnife"
+      },
+      {
+        "name": "Shopping",
+        "icon": "ShoppingBag"
+      }
     ],
     "sights": [
       {
@@ -1130,10 +1142,22 @@
   },
   "dataTableWithImage": {
     "sectionTitle": "بدل الأمتعة حسب الدرجة",
-    "tableHeaders": ["الدرجة", "الأمتعة المسجلة", "حقيبة اليد"],
+    "tableHeaders": [
+      "الدرجة",
+      "الأمتعة المسجلة",
+      "حقيبة اليد"
+    ],
     "tableRows": [
-      ["الدرجة الاقتصادية", "قطعة واحدة 3 كغ", "قطعة واحدة 7 كغ"],
-      ["درجة رجال الأعمال", "قطعة واحدة 40 كغ", "قطعة واحدة 7 كغ"]
+      [
+        "الدرجة الاقتصادية",
+        "قطعة واحدة 3 كغ",
+        "قطعة واحدة 7 كغ"
+      ],
+      [
+        "درجة رجال الأعمال",
+        "قطعة واحدة 40 كغ",
+        "قطعة واحدة 7 كغ"
+      ]
     ],
     "infoNote": "في الرحلات الداخلية، 10 كغ مع 7 كغ من أمتعة اليد",
     "imageAlt": "رسم توضيحي لحجم الأمتعة"
@@ -1352,14 +1376,38 @@
       }
     ],
     "routes": [
-      { "fromCityId": "dam", "toCityId": "dxb" },
-      { "fromCityId": "dam", "toCityId": "bgw" },
-      { "fromCityId": "dam", "toCityId": "bey" },
-      { "fromCityId": "dam", "toCityId": "kwi" },
-      { "fromCityId": "dxb", "toCityId": "dam" },
-      { "fromCityId": "dxb", "toCityId": "doh" },
-      { "fromCityId": "bey", "toCityId": "dam" },
-      { "fromCityId": "kwi", "toCityId": "dxb" }
+      {
+        "fromCityId": "dam",
+        "toCityId": "dxb"
+      },
+      {
+        "fromCityId": "dam",
+        "toCityId": "bgw"
+      },
+      {
+        "fromCityId": "dam",
+        "toCityId": "bey"
+      },
+      {
+        "fromCityId": "dam",
+        "toCityId": "kwi"
+      },
+      {
+        "fromCityId": "dxb",
+        "toCityId": "dam"
+      },
+      {
+        "fromCityId": "dxb",
+        "toCityId": "doh"
+      },
+      {
+        "fromCityId": "bey",
+        "toCityId": "dam"
+      },
+      {
+        "fromCityId": "kwi",
+        "toCityId": "dxb"
+      }
     ]
   },
   "destinationShowcase": {
@@ -1553,10 +1601,18 @@
           "title": "Passenger Conduct",
           "intro": "Passengers must behave appropriately and comply with all crew instructions. Disruptive, abusive, or dangerous behavior may result in:",
           "items": [
-            { "title": "Refusal to board" },
-            { "title": "Removal from the aircraft" },
-            { "title": "Legal action" },
-            { "title": "Banning from future flights" }
+            {
+              "title": "Refusal to board"
+            },
+            {
+              "title": "Removal from the aircraft"
+            },
+            {
+              "title": "Legal action"
+            },
+            {
+              "title": "Banning from future flights"
+            }
           ]
         },
         {
@@ -1604,5 +1660,265 @@
         "address": "123 Main St, Anytown, USA"
       }
     }
+  },
+  "pageHero": {
+    "title": "مركز الدعم والمساعدة",
+    "subtitle": "احصل على إجابات لأسئلتك في كل خطوة",
+    "imageAlt": "مركز مساعدة فلاي شام"
+  },
+  "searchConsole": {
+    "label": "البحث في مركز المساعدة",
+    "placeholder": "ابحث عن سؤال أو موضوع، مثل الأمتعة أو تغيير الحجز",
+    "submit": "بحث",
+    "popularLabel": "المواضيع الشائعة",
+    "popularItems": [
+      {
+        "label": "بدل الأمتعة"
+      },
+      {
+        "label": "تغيير الحجز"
+      },
+      {
+        "label": "الاسترداد"
+      },
+      {
+        "label": "تسجيل الوصول"
+      }
+    ]
+  },
+  "helpCategories": {
+    "title": "اختر كيف يمكننا مساعدتك",
+    "subtitle": "اختر الخدمة التي تناسب احتياجك، سواء كنت تبحث عن إجابة سريعة أو ترغب في التواصل معنا أو تقديم طلب.",
+    "items": {
+      "contact": {
+        "title": "اتصل بنا",
+        "description": "تواصل مع فريق خدمة زبائن فلاي شام للحصول على الدعم والمساعدة المتعلقة برحلتك."
+      },
+      "faqs": {
+        "title": "الأسئلة الشائعة",
+        "description": "تصفّح الأسئلة الأكثر شيوعاً حول الحجوزات، الدفع، الأمتعة، الرحلات وخدماتنا."
+      },
+      "offices": {
+        "title": "مكاتب مبيعاتنا ووكلاؤنا",
+        "description": "تعرف على مكاتب مبيعاتنا وشبكة وكلاءنا لتقديم أفضل الخدمات ولمساعدتك في التخطيط لسفرك."
+      },
+      "forms": {
+        "title": "نماذج الطلبات",
+        "description": "قدّم طلباً لخدمات السفر أو الدعم من خلال النموذج المناسب، مثل طلبات الأمتعة المفقودة والاسترداد وغيرها من الخدمات."
+      },
+      "track": {
+        "title": "تتبع طلبك",
+        "description": "هل أرسلت طلبك مسبقاً؟ استخدم رقم الطلب لمعرفة حالته وآخر التحديثات."
+      }
+    }
+  },
+  "ctaBanner": {
+    "title": "هل تحتاج إلى مساعدة فورية؟",
+    "description": "تحدّث مباشرةً مع فريق خدمة الزبائن فلاي شام واحصل على الدعم الفوري لأسئلتك واستفساراتك.",
+    "ctaLabel": "ابدأ المحادثة",
+    "ctaHref": "",
+    "ctaSlug": "help/contact-us",
+    "imageAlt": "خدمة زبائن فلاي شام"
+  },
+  "journeySection": {
+    "title": "كل ما تحتاجه في رحلتك",
+    "subtitle": "من التخطيط للسفر وحتى ما بعد الوصول، تجد هنا المعلومات والخدمات التي تحتاجها في كل مرحلة من رحلتك، بما في ذلك الحجز والأمتعة وإجراءات المطار والدفع ووثائق السفر والخدمات على متن الطائرة.",
+    "steps": {
+      "before": {
+        "title": "قبل السفر",
+        "links": {
+          "baggageAllowance": "بدل الأمتعة",
+          "travelWithChildren": "السفر مع الأطفال",
+          "seatSelection": "اختيار المقعد",
+          "yaMarhaba": "خدمة يا مرحبا"
+        }
+      },
+      "airport": {
+        "title": "في المطار",
+        "links": {
+          "vipBoarding": "الصعود لكبار الشخصيات",
+          "specialServices": "الخدمات الخاصة",
+          "businessLounge": "صالة رجال الأعمال",
+          "excessBaggage": "الأمتعة الزائدة"
+        }
+      },
+      "onboard": {
+        "title": "على متن الطائرة",
+        "links": {
+          "mealService": "خدمة الوجبات",
+          "birthdayCake": "كعكة عيد الميلاد",
+          "wifi": "واي فاي",
+          "entertainment": "الترفيه"
+        }
+      },
+      "after": {
+        "title": "بعد الرحلة",
+        "links": {
+          "refunds": "الاسترداد والتعويض",
+          "lostAndFound": "المفقودات",
+          "baggageQueries": "استفسارات الأمتعة",
+          "feedback": "الملاحظات والشكاوى"
+        }
+      }
+    }
+  },
+  "liveChatBanner": {
+    "title": "ابدأ الدردشة",
+    "description": "تحدّث مباشرةً مع فريق خدمة زبائن فلاي شام واحصل على الدعم الفوري لأسئلتك واستفساراتك.",
+    "ctaLabel": "تحدث الآن",
+    "ctaHref": "",
+    "ctaSlug": "help/contact-us"
+  },
+  "getInTouch": {
+    "title": "تواصل معنا",
+    "label": "الاستفسارات العامة",
+    "phoneDisplay": "+963 -11-2122222",
+    "phoneHref": "tel:+963112122222",
+    "hours": "خط دعم الزبائن: مفتوح من 9 صباحاً حتى 9 مساءً",
+    "note": "احصل على المساعدة من فريق خدمة الزبائن بخصوص حجوزاتك، وحالة الرحلات، وجميع استفساراتك.",
+    "imageAlt": "دعم زبائن فلاي شام"
+  },
+  "locationDirectory": {
+    "title": "مكاتبنا",
+    "subtitle": "اعثر على مواقع مكاتب فلاي شام ومعلوماتها وساعات العمل.",
+    "tabs": [
+      {
+        "label": "دمشق",
+        "locations": [
+          {
+            "name": "المنطقة الحرة",
+            "city": "دمشق",
+            "address": "المنطقة الحرة - دمشق",
+            "phone": "+963 -11-2122222",
+            "email": "cs@flycham.com",
+            "hours": "السبت-الخميس: 09:00 ص - 05:00 م"
+          },
+          {
+            "name": "الفردوس",
+            "city": "دمشق",
+            "address": "الفردوس - دمشق",
+            "phone": "+963 -11-2274444",
+            "email": "cs@flycham.com",
+            "hours": "السبت-الخميس: 09:00 ص - 05:00 م"
+          }
+        ]
+      },
+      {
+        "label": "حلب",
+        "locations": [
+          {
+            "name": "العزيزية",
+            "city": "حلب",
+            "address": "العزيزية - حلب",
+            "phone": "+963-21-2211111",
+            "email": "cs@flycham.com",
+            "hours": "السبت-الخميس: 09:00 ص - 05:00 م"
+          }
+        ]
+      }
+    ]
+  },
+  "faqExplorer": {
+    "title": "الأسئلة الشائعة",
+    "browseLabel": "تصفّح الأسئلة الشائعة",
+    "browseHref": "/help/faqs",
+    "categories": [
+      {
+        "label": "الأمتعة",
+        "questions": [
+          {
+            "question": "ما هو حد الأمتعة المسموح به؟",
+            "answer": "يختلف حد الأمتعة حسب نوع التذكرة والمسار. راجع حجزك أو تواصل مع خدمة الزبائن."
+          },
+          {
+            "question": "كيف يمكنني شراء حقيبة إضافية؟",
+            "answer": "يمكنك إضافة أمتعة إضافية أثناء الحجز، أو لاحقاً عبر إدارة الحجز، أو بالتواصل مع خدمة الزبائن."
+          }
+        ]
+      },
+      {
+        "label": "الحجز",
+        "questions": [
+          {
+            "question": "كيف أعدّل حجزي؟",
+            "answer": "استخدم إدارة الحجز أو قدّم نموذج طلب تعديل الحجز."
+          }
+        ]
+      }
+    ]
+  },
+  "formsDirectory": {
+    "title": "جميع النماذج",
+    "tabs": [
+      {
+        "label": "جميع النماذج",
+        "cards": [
+          {
+            "icon": "change",
+            "category": "قبل السفر",
+            "title": "تعديل الحجز",
+            "description": "تعديل التاريخ أو المسار أو الرحلة لحجز قائم.",
+            "href": "#"
+          },
+          {
+            "icon": "refund",
+            "category": "بعد الرحلة",
+            "title": "استرداد",
+            "description": "اطلب استرداداً لحجز مؤهل لدى فلاي شام.",
+            "href": "#"
+          },
+          {
+            "icon": "baggage",
+            "category": "بعد الرحلة",
+            "title": "أمتعة متأخرة",
+            "description": "أبلغ عن أمتعة مسجلة لم تصل.",
+            "href": "#"
+          }
+        ]
+      }
+    ]
+  },
+  "trackRequest": {
+    "title": "تتبع طلب قائم",
+    "subtitle": "هل قدّمت طلباً مسبقاً؟ استخدم رقم الطلب لمعرفة حالته.",
+    "caseNumberLabel": "رقم الطلب *",
+    "lastNameLabel": "الكنية للمسافر *",
+    "submitLabel": "تتبع طلبي"
+  },
+  "contactCards": {
+    "title": "كيف ترغب في التواصل معنا؟",
+    "subtitle": "",
+    "footerLabel": "عرض كل النماذج",
+    "footerHref": "/help/contact-us/forms",
+    "cards": [
+      {
+        "icon": "buildings",
+        "title": "مكاتب مبيعاتنا",
+        "description": "احصل على المساعدة من خلال مكاتب مبيعاتنا فيما يخص الحجز وتعديل الرحلات وخدمات السفر.",
+        "cta": "تعرّف على مكاتب مبيعاتنا",
+        "href": "/help/contact-us/our-offices"
+      },
+      {
+        "icon": "globe",
+        "title": "تواصل مع وكلائنا",
+        "description": "تعرّف على شبكة وكلاء المبيعات العامة المنتشرين في عدة مناطق.",
+        "cta": "تعرف على شبكة وكلائنا",
+        "href": "/help/contact-us/our-gsa"
+      },
+      {
+        "icon": "clipboard",
+        "title": "النماذج وطلبات الخدمة",
+        "description": "اختر النموذج المناسب لطلبك: الاسترداد، الأمتعة، المساعدة الخاصة وغيرها.",
+        "cta": "تصفّح النماذج",
+        "href": "/help/contact-us/forms"
+      }
+    ]
+  },
+  "promoBanner": {
+    "title": "كن شريكاً",
+    "description": "انضم إلى شبكة شركائنا وكن ممثلنا الإقليمي الرسمي.",
+    "ctaLabel": "ابدأ التقديم",
+    "ctaHref": "#",
+    "imageAlt": "طائرة فلاي شام في الجو"
   }
 }

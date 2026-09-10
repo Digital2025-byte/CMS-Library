@@ -1055,10 +1055,22 @@
     "exploreLabel": "Explore",
     "exploreMagazineLabel": "Explore as magazine",
     "tags": [
-      { "name": "Culture", "icon": "Mosque" },
-      { "name": "Nature", "icon": "Mountains" },
-      { "name": "Food", "icon": "ForkKnife" },
-      { "name": "Shopping", "icon": "ShoppingBag" }
+      {
+        "name": "Culture",
+        "icon": "Mosque"
+      },
+      {
+        "name": "Nature",
+        "icon": "Mountains"
+      },
+      {
+        "name": "Food",
+        "icon": "ForkKnife"
+      },
+      {
+        "name": "Shopping",
+        "icon": "ShoppingBag"
+      }
     ],
     "sights": [
       {
@@ -1130,10 +1142,22 @@
   },
   "dataTableWithImage": {
     "sectionTitle": "Baggage Allowance by Class",
-    "tableHeaders": ["Class", "Checked baggage", "Carry-on baggage"],
+    "tableHeaders": [
+      "Class",
+      "Checked baggage",
+      "Carry-on baggage"
+    ],
     "tableRows": [
-      ["Economy Class", "1 piece 3 kg", "1 piece 7 kg"],
-      ["Business Class", "1 piece 40 kg", "1 piece 7 kg"]
+      [
+        "Economy Class",
+        "1 piece 3 kg",
+        "1 piece 7 kg"
+      ],
+      [
+        "Business Class",
+        "1 piece 40 kg",
+        "1 piece 7 kg"
+      ]
     ],
     "infoNote": "On domestic flights, it's 10 kg with 7 kg of hand luggage",
     "imageAlt": "Baggage size illustration"
@@ -1352,14 +1376,38 @@
       }
     ],
     "routes": [
-      { "fromCityId": "dam", "toCityId": "dxb" },
-      { "fromCityId": "dam", "toCityId": "bgw" },
-      { "fromCityId": "dam", "toCityId": "bey" },
-      { "fromCityId": "dam", "toCityId": "kwi" },
-      { "fromCityId": "dxb", "toCityId": "dam" },
-      { "fromCityId": "dxb", "toCityId": "doh" },
-      { "fromCityId": "bey", "toCityId": "dam" },
-      { "fromCityId": "kwi", "toCityId": "dxb" }
+      {
+        "fromCityId": "dam",
+        "toCityId": "dxb"
+      },
+      {
+        "fromCityId": "dam",
+        "toCityId": "bgw"
+      },
+      {
+        "fromCityId": "dam",
+        "toCityId": "bey"
+      },
+      {
+        "fromCityId": "dam",
+        "toCityId": "kwi"
+      },
+      {
+        "fromCityId": "dxb",
+        "toCityId": "dam"
+      },
+      {
+        "fromCityId": "dxb",
+        "toCityId": "doh"
+      },
+      {
+        "fromCityId": "bey",
+        "toCityId": "dam"
+      },
+      {
+        "fromCityId": "kwi",
+        "toCityId": "dxb"
+      }
     ]
   },
   "destinationShowcase": {
@@ -1553,10 +1601,18 @@
           "title": "Passenger Conduct",
           "intro": "Passengers must behave appropriately and comply with all crew instructions. Disruptive, abusive, or dangerous behavior may result in:",
           "items": [
-            { "title": "Refusal to board" },
-            { "title": "Removal from the aircraft" },
-            { "title": "Legal action" },
-            { "title": "Banning from future flights" }
+            {
+              "title": "Refusal to board"
+            },
+            {
+              "title": "Removal from the aircraft"
+            },
+            {
+              "title": "Legal action"
+            },
+            {
+              "title": "Banning from future flights"
+            }
           ]
         },
         {
@@ -1604,5 +1660,265 @@
         "address": "123 Main St, Anytown, USA"
       }
     }
+  },
+  "pageHero": {
+    "title": "Help Center",
+    "subtitle": "The Support You Deserve Every Step of The Way",
+    "imageAlt": "Fly Cham help center"
+  },
+  "searchConsole": {
+    "label": "Search By Topic, Question, Or Keyword",
+    "placeholder": "Search by topic, question, or keyword",
+    "submit": "Search",
+    "popularLabel": "Popular topics",
+    "popularItems": [
+      {
+        "label": "Baggage allowance"
+      },
+      {
+        "label": "Change booking"
+      },
+      {
+        "label": "Refunds"
+      },
+      {
+        "label": "Check-in"
+      }
+    ]
+  },
+  "helpCategories": {
+    "title": "Choose how we can assist you",
+    "subtitle": "Select the support option that best matches what you need.",
+    "items": {
+      "contact": {
+        "title": "Contact us",
+        "description": "Need assistance? Contact our Customer Service team to get help."
+      },
+      "faqs": {
+        "title": "Frequently asked questions",
+        "description": "Find quick answers for all your question regarding your bookings and our services."
+      },
+      "offices": {
+        "title": "Our Sales Offices and GSA",
+        "description": "Find a contact information for our Sales Offices and General Sales Agents across our network."
+      },
+      "forms": {
+        "title": "Forms and requests",
+        "description": "Find and submit the right form request, or track an existing request."
+      },
+      "track": {
+        "title": "Track Your Request",
+        "description": "Already submitted a form request? Use your case number to check its status."
+      }
+    }
+  },
+  "ctaBanner": {
+    "title": "Need Urgent Help?",
+    "description": "Chat directly with the Fly Cham Customer Service team and get immediate support for your questions and inquiries.",
+    "ctaLabel": "Chat Now",
+    "ctaHref": "",
+    "ctaSlug": "help/contact-us",
+    "imageAlt": "Fly Cham customer service"
+  },
+  "journeySection": {
+    "title": "Your Journey, Supported at Every Step",
+    "subtitle": "Get clear guidance on reservations, baggage, airport procedures, payments, travel documents, onboard services, and assistance after your trip.",
+    "steps": {
+      "before": {
+        "title": "Before You Fly",
+        "links": {
+          "baggageAllowance": "Baggage allowance",
+          "travelWithChildren": "Travel with children",
+          "seatSelection": "Seat selection",
+          "yaMarhaba": "Ya Marhaba service"
+        }
+      },
+      "airport": {
+        "title": "At the Airport",
+        "links": {
+          "vipBoarding": "VIP Boarding",
+          "specialServices": "Special Services",
+          "businessLounge": "Business Lounge",
+          "excessBaggage": "Excess Baggage"
+        }
+      },
+      "onboard": {
+        "title": "Onboard",
+        "links": {
+          "mealService": "Meal service",
+          "birthdayCake": "Birthday cake",
+          "wifi": "WiFi",
+          "entertainment": "Entertainment"
+        }
+      },
+      "after": {
+        "title": "After Your Trip",
+        "links": {
+          "refunds": "Refunds & compensation",
+          "lostAndFound": "Lost and found",
+          "baggageQueries": "Baggage queries",
+          "feedback": "Feedback & complaints"
+        }
+      }
+    }
+  },
+  "liveChatBanner": {
+    "title": "Start Live Chat",
+    "description": "Chat with our Customer Service team and get immediate support for your questions and inquiries.",
+    "ctaLabel": "Chat now",
+    "ctaHref": "",
+    "ctaSlug": "help/contact-us"
+  },
+  "getInTouch": {
+    "title": "Get in touch",
+    "label": "General enquiries",
+    "phoneDisplay": "+963 -11-2122222",
+    "phoneHref": "tel:+963112122222",
+    "hours": "Customer Support Hotline: Open from 9 AM to 9 PM",
+    "note": "Get in touch with our Customer Care team for urgent assistance with bookings, flight status, and cancellations",
+    "imageAlt": "Fly Cham customer support"
+  },
+  "locationDirectory": {
+    "title": "Our offices",
+    "subtitle": "Find Fly Cham office locations, information, and working hours.",
+    "tabs": [
+      {
+        "label": "Damascus",
+        "locations": [
+          {
+            "name": "Free Zone",
+            "city": "Damascus",
+            "address": "Free Zone - Damascus",
+            "phone": "+963 -11-2122222",
+            "email": "cs@flycham.com",
+            "hours": "Sat-Thu: 09:00 AM - 05:00 PM"
+          },
+          {
+            "name": "Fardous",
+            "city": "Damascus",
+            "address": "Fardous - Damascus",
+            "phone": "+963 -11-2274444",
+            "email": "cs@flycham.com",
+            "hours": "Sat-Thu: 09:00 AM - 05:00 PM"
+          }
+        ]
+      },
+      {
+        "label": "Aleppo",
+        "locations": [
+          {
+            "name": "Azizieh",
+            "city": "Aleppo",
+            "address": "Azizieh - Aleppo",
+            "phone": "+963-21-2211111",
+            "email": "cs@flycham.com",
+            "hours": "Sat-Thu: 09:00 AM - 05:00 PM"
+          }
+        ]
+      }
+    ]
+  },
+  "faqExplorer": {
+    "title": "Frequently Asked Questions",
+    "browseLabel": "Browse FAQs",
+    "browseHref": "/help/faqs",
+    "categories": [
+      {
+        "label": "Baggage",
+        "questions": [
+          {
+            "question": "What is the baggage allowance?",
+            "answer": "Baggage allowance depends on your fare type and route. Check your booking or contact Customer Care."
+          },
+          {
+            "question": "How can I purchase an additional bag?",
+            "answer": "You can add extra baggage during booking, later through Manage Booking, or by contacting Customer Care."
+          }
+        ]
+      },
+      {
+        "label": "Booking",
+        "questions": [
+          {
+            "question": "How do I change my booking?",
+            "answer": "Use Manage Booking or submit a Booking Change request form."
+          }
+        ]
+      }
+    ]
+  },
+  "formsDirectory": {
+    "title": "All Forms",
+    "tabs": [
+      {
+        "label": "All forms",
+        "cards": [
+          {
+            "icon": "change",
+            "category": "Before Travel",
+            "title": "Booking Change",
+            "description": "Change the date, route, or flight of an existing booking.",
+            "href": "#"
+          },
+          {
+            "icon": "refund",
+            "category": "After Travel",
+            "title": "Refund",
+            "description": "Request a refund for an eligible Fly Cham booking.",
+            "href": "#"
+          },
+          {
+            "icon": "baggage",
+            "category": "After Travel",
+            "title": "Delayed baggage",
+            "description": "Report checked baggage that did not arrive.",
+            "href": "#"
+          }
+        ]
+      }
+    ]
+  },
+  "trackRequest": {
+    "title": "Track an Existing Request",
+    "subtitle": "Already submitted a form request? Use your case number to check your request status.",
+    "caseNumberLabel": "Case number *",
+    "lastNameLabel": "Passenger last name *",
+    "submitLabel": "Track My Request"
+  },
+  "contactCards": {
+    "title": "How would you like to contact us?",
+    "subtitle": "",
+    "footerLabel": "View all forms",
+    "footerHref": "/help/contact-us/forms",
+    "cards": [
+      {
+        "icon": "buildings",
+        "title": "Visit Our Sales Offices",
+        "description": "Get in-person assistance through our sales office for bookings, flight changes, and travel services.",
+        "cta": "Discover Our Sales Offices",
+        "href": "/help/contact-us/our-offices"
+      },
+      {
+        "icon": "globe",
+        "title": "Contact General Sales Agent",
+        "description": "Discover our network of General Sales Agents located across various regions.",
+        "cta": "Discover GSA Network",
+        "href": "/help/contact-us/our-gsa"
+      },
+      {
+        "icon": "clipboard",
+        "title": "Submit a Request Online",
+        "description": "Choose the right form for your request: refunds, baggage, special assistance, and more.",
+        "cta": "Browse Forms",
+        "href": "/help/contact-us/forms"
+      }
+    ]
+  },
+  "promoBanner": {
+    "title": "Become a partner",
+    "description": "Join our partners' network and become our official regional representative.",
+    "ctaLabel": "Start application",
+    "ctaHref": "#",
+    "imageAlt": "Fly Cham aircraft in flight"
   }
 }

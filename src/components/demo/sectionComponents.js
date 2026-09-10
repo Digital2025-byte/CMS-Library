@@ -874,4 +874,202 @@ export const SECTION_COMPONENTS = {
       },
     }))
   ),
+  "page-hero": lazySection(() =>
+    Promise.all([
+      import("@/app/cmsComponents/PageHero"),
+      import("@/app/cmsComponents/PageHero/components/PageHeroContainer"),
+    ]).then(([Comp, Cont]) => ({
+      default: function Section({ lang, dir, pageHeroData }) {
+        return (
+          <Cont.default lang={lang} dir={dir}>
+            <Comp.default lang={lang} data={pageHeroData} />
+          </Cont.default>
+        );
+      },
+    }))
+  ),
+  "search-console": lazySection(() =>
+    Promise.all([
+      import("@/app/cmsComponents/SearchConsole"),
+      import(
+        "@/app/cmsComponents/SearchConsole/components/SearchConsoleContainer"
+      ),
+    ]).then(([Comp, Cont]) => ({
+      default: function Section({ lang, dir, searchConsoleData }) {
+        return (
+          <Cont.default lang={lang} dir={dir}>
+            <Comp.default lang={lang} data={searchConsoleData} />
+          </Cont.default>
+        );
+      },
+    }))
+  ),
+  "help-categories": lazySection(() =>
+    Promise.all([
+      import("@/app/cmsComponents/HelpCategories"),
+      import(
+        "@/app/cmsComponents/HelpCategories/components/HelpCategoriesContainer"
+      ),
+    ]).then(([Comp, Cont]) => ({
+      default: function Section({ lang, dir, helpCategoriesData }) {
+        return (
+          <Cont.default lang={lang} dir={dir}>
+            <Comp.default lang={lang} data={helpCategoriesData} />
+          </Cont.default>
+        );
+      },
+    }))
+  ),
+  "cta-banner": lazySection(() =>
+    Promise.all([
+      import("@/app/cmsComponents/CtaBanner"),
+      import("@/app/cmsComponents/CtaBanner/components/CtaBannerContainer"),
+    ]).then(([Comp, Cont]) => ({
+      default: function Section({ lang, dir, ctaBannerData }) {
+        return (
+          <Cont.default lang={lang} dir={dir}>
+            <Comp.default lang={lang} data={ctaBannerData} posParams="gb" />
+          </Cont.default>
+        );
+      },
+    }))
+  ),
+  "journey-section": lazySection(() =>
+    Promise.all([
+      import("@/app/cmsComponents/JourneySection"),
+      import(
+        "@/app/cmsComponents/JourneySection/components/JourneySectionContainer"
+      ),
+    ]).then(([Comp, Cont]) => ({
+      default: function Section({ lang, dir, journeySectionData }) {
+        return (
+          <Cont.default lang={lang} dir={dir}>
+            <Comp.default lang={lang} data={journeySectionData} />
+          </Cont.default>
+        );
+      },
+    }))
+  ),
+  "live-chat-banner": lazySection(() =>
+    Promise.all([
+      import("@/app/cmsComponents/LiveChatBanner"),
+      import(
+        "@/app/cmsComponents/LiveChatBanner/components/LiveChatBannerContainer"
+      ),
+    ]).then(([Comp, Cont]) => ({
+      default: function Section({ lang, dir, liveChatBannerData }) {
+        return (
+          <Cont.default lang={lang} dir={dir}>
+            <Comp.default lang={lang} data={liveChatBannerData} posParams="gb" />
+          </Cont.default>
+        );
+      },
+    }))
+  ),
+  "get-in-touch": lazySection(() =>
+    Promise.all([
+      import("@/app/cmsComponents/GetInTouch"),
+      import("@/app/cmsComponents/GetInTouch/components/GetInTouchContainer"),
+    ]).then(([Comp, Cont]) => ({
+      default: function Section({ lang, dir, getInTouchData }) {
+        return (
+          <Cont.default lang={lang} dir={dir}>
+            <Comp.default lang={lang} data={getInTouchData} />
+          </Cont.default>
+        );
+      },
+    }))
+  ),
+  "location-directory": lazySection(() =>
+    Promise.all([
+      import("@/app/cmsComponents/LocationDirectory"),
+      import(
+        "@/app/cmsComponents/LocationDirectory/components/LocationDirectoryContainer"
+      ),
+    ]).then(([Comp, Cont]) => ({
+      default: function Section({ lang, dir, locationDirectoryData }) {
+        return (
+          <Cont.default lang={lang} dir={dir}>
+            <Comp.default lang={lang} data={locationDirectoryData} />
+          </Cont.default>
+        );
+      },
+    }))
+  ),
+  "faq-explorer": lazySection(() =>
+    Promise.all([
+      import("@/app/cmsComponents/FaqExplorer"),
+      import("@/app/cmsComponents/FaqExplorer/components/FaqExplorerContainer"),
+    ]).then(([Comp, Cont]) => ({
+      default: function Section({ lang, dir, faqExplorerData }) {
+        return (
+          <Cont.default lang={lang} dir={dir}>
+            <Comp.default lang={lang} data={faqExplorerData} />
+          </Cont.default>
+        );
+      },
+    }))
+  ),
+  "forms-directory": lazySection(() =>
+    Promise.all([
+      import("@/app/cmsComponents/FormsDirectory"),
+      import(
+        "@/app/cmsComponents/FormsDirectory/components/FormsDirectoryContainer"
+      ),
+    ]).then(([Comp, Cont]) => ({
+      default: function Section({ lang, dir, formsDirectoryData }) {
+        return (
+          <Cont.default lang={lang} dir={dir}>
+            <Comp.default lang={lang} data={formsDirectoryData} />
+          </Cont.default>
+        );
+      },
+    }))
+  ),
+  "track-request": lazySection(() =>
+    Promise.all([
+      import("@/app/cmsComponents/TrackRequest"),
+      import(
+        "@/app/cmsComponents/TrackRequest/components/TrackRequestContainer"
+      ),
+    ]).then(([Comp, Cont]) => ({
+      default: function Section({ lang, dir, trackRequestData }) {
+        return (
+          <Cont.default lang={lang} dir={dir}>
+            <Comp.default lang={lang} data={trackRequestData} />
+          </Cont.default>
+        );
+      },
+    }))
+  ),
+  "contact-cards": lazySection(() =>
+    Promise.all([
+      import("@/app/cmsComponents/ContactCards"),
+      import(
+        "@/app/cmsComponents/ContactCards/components/ContactCardsContainer"
+      ),
+    ]).then(([Comp, Cont]) => ({
+      default: function Section({ lang, dir, contactCardsData }) {
+        return (
+          <Cont.default lang={lang} dir={dir}>
+            <Comp.default lang={lang} data={contactCardsData} />
+          </Cont.default>
+        );
+      },
+    }))
+  ),
+  "promo-banner": lazySection(() =>
+    Promise.all([
+      import("@/app/cmsComponents/PromoBanner"),
+      import("@/app/cmsComponents/PromoBanner/components/PromoBannerContainer"),
+    ]).then(([Comp, Cont]) => ({
+      default: function Section({ lang, dir, promoBannerData }) {
+        return (
+          <Cont.default lang={lang} dir={dir}>
+            <Comp.default lang={lang} data={promoBannerData} />
+          </Cont.default>
+        );
+      },
+    }))
+  ),
 };
