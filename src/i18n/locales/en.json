@@ -1920,5 +1920,47 @@
     "ctaLabel": "Start application",
     "ctaHref": "#",
     "imageAlt": "Fly Cham aircraft in flight"
+  },
+  "officeDirectory": {
+    "callLabel": "Call",
+    "emailLabel": "Email",
+    "weekendLabel": "Weekend",
+    "tabsLabel": "Office locations",
+    "tabs": [
+      {
+        "label": "Damascus",
+        "offices": [
+          {
+            "name": "Free Zone",
+            "address": "Free Zone - Damascus",
+            "phone": "+963 -11-2122222",
+            "email": "cs@flycham.com",
+            "hours": "Sat-Thu: 09:00 AM - 05:00 PM",
+            "weekend": "Friday"
+          },
+          {
+            "name": "Fardous",
+            "address": "Fardous - Damascus",
+            "phone": "+963 -11-2274444",
+            "email": "cs@flycham.com",
+            "hours": "Sat-Thu: 09:00 AM - 05:00 PM",
+            "weekend": "Friday"
+          }
+        ]
+      },
+      {
+        "label": "Aleppo",
+        "offices": [
+          {
+            "name": "Azizieh",
+            "address": "Azizieh - Aleppo",
+            "phone": "+963-21-2211111",
+            "email": "cs@flycham.com",
+            "hours": "Sat-Thu: 09:00 AM - 05:00 PM",
+            "weekend": "Friday"
+          }
+        ]
+      }
+    ]
   }
 }

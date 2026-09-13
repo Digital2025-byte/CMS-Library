@@ -21,6 +21,7 @@ export const IDEA_GROUPS = [
       "track-request",
       "contact-cards",
       "promo-banner",
+      "office-directory",
     ],
   },
   {
@@ -205,6 +206,7 @@ export const HOME_SECTION_IDS = [
   "track-request",
   "contact-cards",
   "promo-banner",
+  "office-directory",
 ];
 
 export function getIdeaGroup(slug) {

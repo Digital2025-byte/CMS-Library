@@ -127,6 +127,14 @@ import {
 } from "@/app/cmsComponents/PromoBanner/utils/helpers";
 import { DEFAULT_PROMO_BANNER_STYLE } from "@/app/cmsComponents/PromoBanner/utils/style";
 
+import { OfficeDirectorySection } from "@/app/cmsComponents/OfficeDirectory";
+import OfficeDirectoryPropsForm from "@/app/cmsComponents/OfficeDirectory/docs/OfficeDirectoryPropsForm";
+import {
+  getOfficeDirectoryEditorContent,
+  wrapOfficeDirectoryContent,
+} from "@/app/cmsComponents/OfficeDirectory/utils/helpers";
+import { DEFAULT_OFFICE_DIRECTORY_STYLE } from "@/app/cmsComponents/OfficeDirectory/utils/style";
+
 /** Resolve a raw href into the { type, href } shape the inspector expects. */
 function toEditorLink(href) {
   if (!href || href === "#") {
@@ -313,6 +321,19 @@ export const BLOCK_REGISTRY = {
     wrapContent: (content, lang) => wrapPromoBannerContent(content, lang),
     Section: PromoBannerSection,
     PropsForm: PromoBannerPropsForm,
+    sectionProps: {},
+  },
+  "office-directory": {
+    id: "office-directory",
+    label: "Office Directory",
+    description: "City tabs + a timeline of offices with call/email actions.",
+    dataKey: "officeDirectoryData",
+    defaultStyle: DEFAULT_OFFICE_DIRECTORY_STYLE,
+    toEditorContent: (data, lang) =>
+      getOfficeDirectoryEditorContent(data, lang),
+    wrapContent: (content, lang) => wrapOfficeDirectoryContent(content, lang),
+    Section: OfficeDirectorySection,
+    PropsForm: OfficeDirectoryPropsForm,
     sectionProps: {},
   },
 };

@@ -1,3 +1,10 @@
+/**
+ * Built-in desktop mask shape. Applied whenever `showMask` is on and no
+ * explicit `content.mask` override is provided — mirrors the source app,
+ * where the hero mask is a fixed shape asset rather than editable content.
+ */
+export const DEFAULT_HERO_MASK = "/cms/page-hero-mask.png";
+
 export const TITLE_ALIGN_OPTIONS = [
   { value: "left", label: "Start" },
   { value: "center", label: "Center" },
@@ -51,6 +58,7 @@ export const DEFAULT_PAGE_HERO_STYLE = {
   titleAlign: "left",
   imageSide: "right",
   imageRadius: "lg",
+  showMask: true,
   titleColor: "primary-1",
   subtitleColor: "700",
   titleFontWeight: "bold",
@@ -76,5 +84,5 @@ export const PAGE_HERO_STYLE_RESET_KEYS = {
     "subtitleColor",
     "subtitleFontWeight",
   ],
-  image: ["showImage", "imageSide", "imageRadius"],
+  image: ["showImage", "imageSide", "imageRadius", "showMask"],
 };

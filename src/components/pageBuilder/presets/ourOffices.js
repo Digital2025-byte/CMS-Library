@@ -32,50 +32,54 @@ export const ourOfficesBlocks = [
     },
   },
   {
-    sectionId: "location-directory",
+    sectionId: "office-directory",
     content: {
       en: {
-        title: "",
-        subtitle: "",
+        callLabel: "Call",
+        emailLabel: "Email",
+        weekendLabel: "Weekend",
+        tabsLabel: "Office locations",
         tabs: [
           {
             label: "Damascus",
-            locations: [
-              { name: "Free Zone", city: "Damascus", address: "Free Zone - Damascus", phone: "+963 -11-2122222", email: "cs@flycham.com", hours: "Sat-Thu: 09:00 AM - 05:00 PM" },
-              { name: "Fardous", city: "Damascus", address: "Fardous - Damascus", phone: "+963 -11-2274444", email: "cs@flycham.com", hours: "Sat-Thu: 09:00 AM - 05:00 PM" },
-              { name: "Masa Plaza Mall - Midan", city: "Damascus", address: "Midan - Damascus", phone: "+963 -11-8842222", email: "cs@flycham.com", hours: "Mon-Thu: 11:00 AM - 09:00 PM" },
-              { name: "Damascus International Airport", city: "Damascus", address: "Damascus International Airport", phone: "+963 -11-5400714", email: "cs@flycham.com", hours: "Mon-Sun: 24 Hours" },
+            offices: [
+              { name: "Free Zone", address: "Free Zone - Damascus", phone: "+963 -11-2122222", email: "cs@flycham.com", hours: "Sat-Thu: 09:00 AM - 05:00 PM", weekend: "Friday" },
+              { name: "Fardous", address: "Fardous - Damascus", phone: "+963 -11-2274444", email: "cs@flycham.com", hours: "Sat-Thu: 09:00 AM - 05:00 PM", weekend: "Friday" },
+              { name: "Masa Plaza Mall - Midan", address: "Midan - Damascus", phone: "+963 -11-8842222", email: "cs@flycham.com", hours: "Mon-Thu: 11:00 AM - 09:00 PM", weekend: "Friday" },
+              { name: "Damascus International Airport", address: "Damascus International Airport", phone: "+963 -11-5400714", email: "cs@flycham.com", hours: "Mon-Sun: 24 Hours", weekend: "" },
             ],
           },
           {
             label: "Aleppo",
-            locations: [
-              { name: "Azizieh", city: "Aleppo", address: "Azizieh - Aleppo", phone: "+963-21-2211111", email: "cs@flycham.com", hours: "Sat-Thu: 09:00 AM - 05:00 PM" },
-              { name: "Al-Jamiliyah", city: "Aleppo", address: "Al-Jamiliyah - Aleppo", phone: "+963-21-3322222", email: "cs@flycham.com", hours: "Sat-Thu: 09:00 AM - 05:00 PM" },
-              { name: "Aleppo International Airport", city: "Aleppo", address: "Aleppo International Airport", phone: "+963-21-5400888", email: "cs@flycham.com", hours: "Mon-Sun: 24 Hours" },
+            offices: [
+              { name: "Azizieh", address: "Azizieh - Aleppo", phone: "+963-21-2211111", email: "cs@flycham.com", hours: "Sat-Thu: 09:00 AM - 05:00 PM", weekend: "Friday" },
+              { name: "Al-Jamiliyah", address: "Al-Jamiliyah - Aleppo", phone: "+963-21-3322222", email: "cs@flycham.com", hours: "Sat-Thu: 09:00 AM - 05:00 PM", weekend: "Friday" },
+              { name: "Aleppo International Airport", address: "Aleppo International Airport", phone: "+963-21-5400888", email: "cs@flycham.com", hours: "Mon-Sun: 24 Hours", weekend: "" },
             ],
           },
         ],
       },
       ar: {
-        title: "",
-        subtitle: "",
+        callLabel: "اتصال",
+        emailLabel: "بريد",
+        weekendLabel: "عطلة نهاية الأسبوع",
+        tabsLabel: "مواقع المكاتب",
         tabs: [
           {
             label: "دمشق",
-            locations: [
-              { name: "المنطقة الحرة", city: "دمشق", address: "المنطقة الحرة - دمشق", phone: "+963 -11-2122222", email: "cs@flycham.com", hours: "السبت-الخميس: 09:00 ص - 05:00 م" },
-              { name: "الفردوس", city: "دمشق", address: "الفردوس - دمشق", phone: "+963 -11-2274444", email: "cs@flycham.com", hours: "السبت-الخميس: 09:00 ص - 05:00 م" },
-              { name: "ماسا بلازا مول - الميدان", city: "دمشق", address: "الميدان - دمشق", phone: "+963 -11-8842222", email: "cs@flycham.com", hours: "الإثنين-الخميس: 11:00 ص - 09:00 م" },
-              { name: "مطار دمشق الدولي", city: "دمشق", address: "مطار دمشق الدولي", phone: "+963 -11-5400714", email: "cs@flycham.com", hours: "الإثنين-الأحد: 24 ساعة" },
+            offices: [
+              { name: "المنطقة الحرة", address: "المنطقة الحرة - دمشق", phone: "+963 -11-2122222", email: "cs@flycham.com", hours: "السبت-الخميس: 09:00 ص - 05:00 م", weekend: "الجمعة" },
+              { name: "الفردوس", address: "الفردوس - دمشق", phone: "+963 -11-2274444", email: "cs@flycham.com", hours: "السبت-الخميس: 09:00 ص - 05:00 م", weekend: "الجمعة" },
+              { name: "ماسا بلازا مول - الميدان", address: "ماسا بلازا مول - الميدان، دمشق", phone: "+963 -11-8842222", email: "cs@flycham.com", hours: "الإثنين-الخميس: 11:00 ص - 09:00 م", weekend: "الجمعة" },
+              { name: "مطار دمشق الدولي", address: "مطار دمشق الدولي", phone: "+963 -11-5400714", email: "cs@flycham.com", hours: "الإثنين-الأحد: 24 ساعة", weekend: "" },
             ],
           },
           {
             label: "حلب",
-            locations: [
-              { name: "العزيزية", city: "حلب", address: "العزيزية - حلب", phone: "+963-21-2211111", email: "cs@flycham.com", hours: "السبت-الخميس: 09:00 ص - 05:00 م" },
-              { name: "الجميلية", city: "حلب", address: "الجميلية - حلب", phone: "+963-21-3322222", email: "cs@flycham.com", hours: "السبت-الخميس: 09:00 ص - 05:00 م" },
-              { name: "مطار حلب الدولي", city: "حلب", address: "مطار حلب الدولي", phone: "+963-21-5400888", email: "cs@flycham.com", hours: "الإثنين-الأحد: 24 ساعة" },
+            offices: [
+              { name: "العزيزية", address: "العزيزية - حلب", phone: "+963-21-2211111", email: "cs@flycham.com", hours: "السبت-الخميس: 09:00 ص - 05:00 م", weekend: "الجمعة" },
+              { name: "الجميلية", address: "الجميلية - حلب", phone: "+963-21-3322222", email: "cs@flycham.com", hours: "السبت-الخميس: 09:00 ص - 05:00 م", weekend: "الجمعة" },
+              { name: "مطار حلب الدولي", address: "مطار حلب الدولي", phone: "+963-21-5400888", email: "cs@flycham.com", hours: "الإثنين-الأحد: 24 ساعة", weekend: "" },
             ],
           },
         ],
@@ -105,7 +109,13 @@ export const ourOfficesBlocks = [
   },
   {
     sectionId: "contact-cards",
-    style: { variant: "getHelp", columns: "2" },
+    style: {
+      variant: "getHelp",
+      columns: "2",
+      titleFontWeight: "semibold",
+      cardTitleFontWeight: "semibold",
+      cardDescriptionColor: "800",
+    },
     content: {
       en: {
         title: "Get Help",

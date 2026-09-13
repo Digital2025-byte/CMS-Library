@@ -74,6 +74,7 @@ import FormsDirectoryExamples from "@/app/cmsComponents/FormsDirectory/docs/Form
 import TrackRequestExamples from "@/app/cmsComponents/TrackRequest/docs/TrackRequestExamples";
 import ContactCardsExamples from "@/app/cmsComponents/ContactCards/docs/ContactCardsExamples";
 import PromoBannerExamples from "@/app/cmsComponents/PromoBanner/docs/PromoBannerExamples";
+import OfficeDirectoryExamples from "@/app/cmsComponents/OfficeDirectory/docs/OfficeDirectoryExamples";
 import { COMPONENT_NAV_ITEMS } from "@/components/ui/ComponentNav";
 import PageContentContainer from "@/components/layout/PageContentContainer";
 import { typography } from "@/styles/typography";
@@ -255,6 +256,9 @@ const DOCS_EXAMPLES = {
   ),
   "promo-banner": (ctx, label) => (
     <PromoBannerExamples ctx={ctx} name={label} />
+  ),
+  "office-directory": (ctx, label) => (
+    <OfficeDirectoryExamples ctx={ctx} name={label} />
   ),
 };
 

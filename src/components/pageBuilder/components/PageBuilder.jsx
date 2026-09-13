@@ -93,7 +93,9 @@ export default function PageBuilder({ page }) {
       {blocks.length === 0 ? (
         <EmptyPageState onAdd={() => setIsAddOpen(true)} />
       ) : (
-        <div>
+        // Source help pages render on a bg-100 page, so white section cards
+        // (JourneySection, HelpCategories, GetInTouch…) read as cards.
+        <div className="bg-100">
           {blocks.map((block, index) => {
             const entry = getBlockEntry(block.sectionId);
             if (!entry) {

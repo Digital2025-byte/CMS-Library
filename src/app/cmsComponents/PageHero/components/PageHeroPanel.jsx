@@ -3,6 +3,7 @@ import { getThemeColorCss } from "@/styles/themeColors";
 import { getFontWeightValue } from "@/styles/fontWeight";
 import { isUsableImageSrc } from "../utils/helpers";
 import {
+  DEFAULT_HERO_MASK,
   DEFAULT_PAGE_HERO_STYLE,
   IMAGE_RADIUS_CLASS,
   TITLE_ALIGN_CLASS,
@@ -29,7 +30,12 @@ export default function PageHeroPanel({
   const showSubtitle = style.showSubtitle && content.subtitle;
   const heroSrc =
     style.showImage && isUsableImageSrc(content.image) ? content.image : "";
-  const mask = heroSrc && content.mask ? content.mask : "";
+  const mask =
+    heroSrc && style.showMask
+      ? isUsableImageSrc(content.mask)
+        ? content.mask
+        : DEFAULT_HERO_MASK
+      : "";
   const alignClass =
     TITLE_ALIGN_CLASS[style.titleAlign] ?? TITLE_ALIGN_CLASS.left;
   const radiusClass =

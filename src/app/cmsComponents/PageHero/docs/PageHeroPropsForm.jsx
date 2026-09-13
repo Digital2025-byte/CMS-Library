@@ -132,6 +132,12 @@ function PageHeroStyleForm({ style, onChange }) {
               options={IMAGE_RADIUS_OPTIONS}
               onChange={(value) => update("imageRadius", value)}
             />
+            <InspectorSwitch
+              checked={style.showMask}
+              onChange={() => toggle("showMask")}
+              label="Mask shape"
+              hint="Apply the shaped hero mask on desktop"
+            />
           </>
         ) : null}
       </InspectorSection>

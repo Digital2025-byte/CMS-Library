@@ -1920,5 +1920,47 @@
     "ctaLabel": "ابدأ التقديم",
     "ctaHref": "#",
     "imageAlt": "طائرة فلاي شام في الجو"
+  },
+  "officeDirectory": {
+    "callLabel": "اتصال",
+    "emailLabel": "بريد",
+    "weekendLabel": "عطلة نهاية الأسبوع",
+    "tabsLabel": "مواقع المكاتب",
+    "tabs": [
+      {
+        "label": "دمشق",
+        "offices": [
+          {
+            "name": "المنطقة الحرة",
+            "address": "المنطقة الحرة - دمشق",
+            "phone": "+963 -11-2122222",
+            "email": "cs@flycham.com",
+            "hours": "السبت-الخميس: 09:00 ص - 05:00 م",
+            "weekend": "الجمعة"
+          },
+          {
+            "name": "الفردوس",
+            "address": "الفردوس - دمشق",
+            "phone": "+963 -11-2274444",
+            "email": "cs@flycham.com",
+            "hours": "السبت-الخميس: 09:00 ص - 05:00 م",
+            "weekend": "الجمعة"
+          }
+        ]
+      },
+      {
+        "label": "حلب",
+        "offices": [
+          {
+            "name": "العزيزية",
+            "address": "العزيزية - حلب",
+            "phone": "+963-21-2211111",
+            "email": "cs@flycham.com",
+            "hours": "السبت-الخميس: 09:00 ص - 05:00 م",
+            "weekend": "الجمعة"
+          }
+        ]
+      }
+    ]
   }
 }

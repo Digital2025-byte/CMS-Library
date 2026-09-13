@@ -1072,4 +1072,20 @@ export const SECTION_COMPONENTS = {
       },
     }))
   ),
+  "office-directory": lazySection(() =>
+    Promise.all([
+      import("@/app/cmsComponents/OfficeDirectory"),
+      import(
+        "@/app/cmsComponents/OfficeDirectory/components/OfficeDirectoryContainer"
+      ),
+    ]).then(([Comp, Cont]) => ({
+      default: function Section({ lang, dir, officeDirectoryData }) {
+        return (
+          <Cont.default lang={lang} dir={dir}>
+            <Comp.default lang={lang} data={officeDirectoryData} />
+          </Cont.default>
+        );
+      },
+    }))
+  ),
 };

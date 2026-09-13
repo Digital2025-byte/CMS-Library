@@ -79,6 +79,7 @@ export const COMPONENT_NAV_ITEMS = [
   { id: "track-request", label: "TrackRequest" },
   { id: "contact-cards", label: "ContactCards" },
   { id: "promo-banner", label: "PromoBanner" },
+  { id: "office-directory", label: "OfficeDirectory" },
 ];
 
 export default function ComponentNav({

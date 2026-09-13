@@ -180,6 +180,16 @@ function ContactCardsStyleForm({ style, onChange }) {
           onChange={(value) => update("buttonBg", value)}
         />
         <InspectorColor
+          label="Button hover (Channels)"
+          value={style.buttonHoverBg}
+          onChange={(value) => update("buttonHoverBg", value)}
+        />
+        <InspectorColor
+          label="Button focus ring (Channels)"
+          value={style.buttonFocusRing}
+          onChange={(value) => update("buttonFocusRing", value)}
+        />
+        <InspectorColor
           label="Button text (Channels)"
           value={style.buttonText}
           onChange={(value) => update("buttonText", value)}

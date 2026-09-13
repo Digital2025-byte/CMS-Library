@@ -57,7 +57,7 @@ export const contactUsBlocks = [
             icon: "globe",
             title: "Contact General Sales Agent",
             description:
-              "Discover our network of General Sales Agents located across various regions, dedicated to providing excellent services.",
+              "Discover our network of General Sales Agents located across various regions, dedicated to providing excellent services and meeting your needs.",
             cta: "Discover GSA Network",
             href: "/help/contact-us/our-gsa",
           },
@@ -65,7 +65,7 @@ export const contactUsBlocks = [
             icon: "clipboard",
             title: "Submit a Request Online",
             description:
-              "Choose the right form for your request: refunds, baggage matters, special assistance, complaints, feedback, and more.",
+              "Choose the right form for your request, refunds, baggage matters, special assistance, complaints, feedback, and other available requests.",
             cta: "Browse Forms",
             href: "/help/contact-us/forms",
           },
@@ -87,7 +87,7 @@ export const contactUsBlocks = [
             icon: "globe",
             title: "تواصل مع وكلائنا",
             description:
-              "يمكنك التواصل مع أحد وكلائنا المنتشرين في عدة مناطق لتقديم أفضل الخدمات ومساعدتك في حجوزاتك واستفساراتك.",
+              "يمكنك التواصل مع أحد وكلائنا المنتشرين في عدة مناطق لتقديم أفضل الخدمات ومساعدتك في حجوزاتك، والاستفسارات، وتقديم المشورة لخطط سفرك.",
             cta: "تعرف على شبكة وكلائنا",
             href: "/help/contact-us/our-gsa",
           },
@@ -95,7 +95,7 @@ export const contactUsBlocks = [
             icon: "clipboard",
             title: "النماذج وطلبات الخدمة",
             description:
-              "قدّم طلبك إلكترونياً من خلال النموذج المخصص: طلبات الاسترداد، الأمتعة، المساعدة الخاصة، الشكاوى والملاحظات.",
+              "قدّم طلبك إلكترونياً من خلال النموذج المخصص للخدمة التي تحتاجها، بما في ذلك طلبات الاسترداد، الأمتعة، المساعدة الخاصة، الشكاوى والملاحظات.",
             cta: "تصفّح النماذج",
             href: "/help/contact-us/forms",
           },
@@ -105,7 +105,14 @@ export const contactUsBlocks = [
   },
   {
     sectionId: "contact-cards",
-    style: { variant: "forms", columns: "4", showFooterLink: true },
+    style: {
+      variant: "forms",
+      columns: "4",
+      showFooterLink: true,
+      titleFontWeight: "semibold",
+      cardTitleFontWeight: "semibold",
+      cardDescriptionColor: "700",
+    },
     content: {
       en: {
         title: "Choose the right form",

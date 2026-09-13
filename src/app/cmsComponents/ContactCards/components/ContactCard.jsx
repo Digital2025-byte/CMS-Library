@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import { ArrowRightIcon } from "@phosphor-icons/react";
 import { typography } from "@/styles/typography";
@@ -16,6 +19,8 @@ export default function ContactCard({
   card,
   style = DEFAULT_CONTACT_CARDS_STYLE,
 }) {
+  const [buttonHovered, setButtonHovered] = useState(false);
+  const [buttonFocused, setButtonFocused] = useState(false);
   const Icon = getContactIcon(card.icon);
   const iconBg = getThemeColorCss(style.iconBg, "100");
   const iconColor = getThemeColorCss(style.iconColor, "700");
@@ -139,11 +144,22 @@ export default function ContactCard({
       {card.cta ? (
         <Link
           href={card.href || "#"}
-          className={`${typography.button} inline-flex w-full items-center justify-center gap-2 rounded-xl px-4 py-3 font-medium no-underline transition-colors`}
+          className={`${typography.button} inline-flex w-full items-center justify-center gap-2 rounded-xl px-4 py-3 font-medium no-underline outline-none transition-[background-color,transform] active:scale-[0.98]`}
           style={{
-            backgroundColor: getThemeColorCss(style.buttonBg, "primary-1"),
+            backgroundColor: buttonHovered
+              ? getThemeColorCss(style.buttonHoverBg, "primary-800")
+              : getThemeColorCss(style.buttonBg, "primary-1"),
             color: getThemeColorCss(style.buttonText, "50"),
+            boxShadow: buttonFocused
+              ? `0 0 0 2px ${getThemeColorCss(style.cardBg, "background")}, 0 0 0 4px ${getThemeColorCss(style.buttonFocusRing, "primary-1")}`
+              : undefined,
           }}
+          onMouseEnter={() => setButtonHovered(true)}
+          onMouseLeave={() => setButtonHovered(false)}
+          onFocus={(event) =>
+            setButtonFocused(event.currentTarget.matches(":focus-visible"))
+          }
+          onBlur={() => setButtonFocused(false)}
         >
           {card.cta}
           <ArrowRightIcon size={16} weight="bold" className="rtl:-scale-x-100" />

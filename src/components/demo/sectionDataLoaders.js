@@ -425,6 +425,12 @@ export const SECTION_DATA_LOADERS = {
     );
     return { promoBannerData: buildPromoBannerData(t, lang) };
   },
+  "office-directory": async (t, lang) => {
+    const { buildOfficeDirectoryData } = await import(
+      "@/app/cmsComponents/OfficeDirectory/utils/data"
+    );
+    return { officeDirectoryData: buildOfficeDirectoryData(t, lang) };
+  },
 };
 
 export const ALL_SECTION_DATA_IDS = Object.keys(SECTION_DATA_LOADERS);

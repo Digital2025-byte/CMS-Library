@@ -6,6 +6,19 @@
  *   help-categories  → "Get Help" (2 cards)
  *   live-chat-banner → live chat
  */
+import { FAQ_CATEGORIES } from "./faqExplorerData";
+
+/** Full FAQ taxonomy (14 categories, 158 Qs) mapped to FaqExplorer content. */
+function buildFaqCategories(lang) {
+  return FAQ_CATEGORIES.map((cat) => ({
+    label: cat.label[lang],
+    questions: cat.questions.map((q) => ({
+      question: q[lang].question,
+      answer: q[lang].answer,
+    })),
+  }));
+}
+
 export const faqsBlocks = [
   {
     sectionId: "page-hero",
@@ -64,74 +77,26 @@ export const faqsBlocks = [
         browseLabel: "",
         browseHref: "",
         browseLinkType: "internal",
-        categories: [
-          {
-            label: "Baggage",
-            questions: [
-              { question: "What is the baggage allowance?", answer: "Baggage allowance depends on your fare type and route. Check your booking or contact Customer Care for adult and child limits." },
-              { question: "How can I purchase an additional bag?", answer: "You can add extra baggage during booking, later through Manage Booking, or by contacting Customer Care." },
-            ],
-          },
-          {
-            label: "Booking",
-            questions: [
-              { question: "How do I book a flight online?", answer: "Choose your route and dates on the booking page, select a fare, add passenger details, and pay securely to receive your confirmation." },
-              { question: "How do I change my booking?", answer: "Use Manage Booking to change your date, route, or flight, or submit a Booking Change request form." },
-            ],
-          },
-          {
-            label: "Check-in",
-            questions: [
-              { question: "When does check-in open?", answer: "Airport check-in opens a few hours before departure and closes at the published cut-off time. Arrive early for international flights." },
-            ],
-          },
-          {
-            label: "Flight Status",
-            questions: [
-              { question: "How do I check my flight status?", answer: "Track departures, arrivals, and gate updates in real time from the flight status page using your flight number or route." },
-            ],
-          },
-        ],
+        categories: buildFaqCategories("en"),
       },
       ar: {
         title: "",
         browseLabel: "",
         browseHref: "",
         browseLinkType: "internal",
-        categories: [
-          {
-            label: "الأمتعة",
-            questions: [
-              { question: "ما هو حد الأمتعة المسموح به؟", answer: "يختلف حد الأمتعة حسب نوع التذكرة والمسار. راجع حجزك أو تواصل مع خدمة الزبائن لمعرفة حدود البالغ والطفل." },
-              { question: "كيف يمكنني شراء حقيبة إضافية؟", answer: "يمكنك إضافة أمتعة إضافية أثناء الحجز، أو لاحقاً عبر إدارة الحجز، أو بالتواصل مع خدمة الزبائن." },
-            ],
-          },
-          {
-            label: "الحجز",
-            questions: [
-              { question: "كيف أحجز رحلة عبر الإنترنت؟", answer: "اختر المسار والتواريخ في صفحة الحجز، ثم اختر التذكرة، وأضف بيانات المسافرين، وادفع بأمان لتصلك رسالة التأكيد." },
-              { question: "كيف أعدّل حجزي؟", answer: "استخدم إدارة الحجز لتعديل التاريخ أو المسار أو الرحلة، أو قدّم نموذج طلب تعديل الحجز." },
-            ],
-          },
-          {
-            label: "تسجيل الوصول",
-            questions: [
-              { question: "متى يبدأ تسجيل الوصول؟", answer: "يبدأ تسجيل الوصول في المطار قبل المغادرة بعدة ساعات ويُغلق في وقت الانتهاء المحدد. احضر مبكراً للرحلات الدولية." },
-            ],
-          },
-          {
-            label: "حالة الرحلة",
-            questions: [
-              { question: "كيف أتحقق من حالة رحلتي؟", answer: "تابع المغادرات والوصولات وتحديثات البوابات في الوقت الفعلي من صفحة حالة الرحلة باستخدام رقم رحلتك أو مسارك." },
-            ],
-          },
-        ],
+        categories: buildFaqCategories("ar"),
       },
     },
   },
   {
     sectionId: "contact-cards",
-    style: { variant: "getHelp", columns: "2" },
+    style: {
+      variant: "getHelp",
+      columns: "2",
+      titleFontWeight: "semibold",
+      cardTitleFontWeight: "semibold",
+      cardDescriptionColor: "800",
+    },
     content: {
       en: {
         title: "Get Help",
